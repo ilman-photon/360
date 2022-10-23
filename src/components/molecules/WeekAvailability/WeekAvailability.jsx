@@ -6,6 +6,7 @@ import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDown
 import { Button, Divider, Typography } from "@mui/material";
 import constants from "../../../utils/constants";
 import {
+  getAppointmentTypeOnTimeSlot,
   parseDateWeekList,
   parseScheduleDataWeek,
 } from "../../../utils/appointment";
@@ -87,7 +88,8 @@ export const WeekAvailability = ({
             gridArea,
             isTypeMore,
             `${keyWeek}-${i}-${key}-schedule-button`,
-            dateWeekList[dayNames[key]]
+            dateWeekList[dayNames[key]],
+            getAppointmentTypeOnTimeSlot(scheduleData[dayNames[key]], value[i])
           )
         );
       }
@@ -100,9 +102,11 @@ export const WeekAvailability = ({
     gridArea = "",
     isTypeMore = false,
     index = "",
-    date = ""
+    date = "",
+    appointmentType = ""
   ) {
     if (label) {
+      const appointmentCode = appointmentType;
       const parseDate = new moment(date).format("YYYY-MM-DD");
       const isLabelMore = label.indexOf("more") > -1;
       const dateTime = !isLabelMore
@@ -130,7 +134,7 @@ export const WeekAvailability = ({
               if (isLabelMore) {
                 onClickViewAllAvailability();
               } else {
-                OnDayClicked(dateTime);
+                OnDayClicked({ dateTime, appointmentCode });
               }
             }}
           >

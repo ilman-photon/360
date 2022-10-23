@@ -19,8 +19,6 @@ import { colors } from "../../../styles/theme";
 import PrescriptionIcon from "../../../assets/icons/PrescriptionIcon";
 import TestLabIcon from "../../../assets/icons/TestLabIcon";
 import IntakeFormsIcon from "../../../assets/icons/IntakeFormsIcon";
-import InsuranceDocumentsIcon from "../../../assets/icons/InsuranceDocumentsIcon";
-import HealthRecordIcon from "../../../assets/icons/HealthRecordIcon";
 
 export const AccountDrawer = ({
   opened = false,

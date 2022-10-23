@@ -15,7 +15,7 @@ export default function StepperAppoinment({ ...props }) {
         width: "100%",
         display: "flex",
         p: { xs: 1, md: "16px 240px" },
-        mt: { xs: 0, md: "80px" },
+        mt: { xs: 0 },
         justifyContent: "center",
         borderBottom: "1px solid #E0E0E0",
       }}

@@ -65,7 +65,7 @@ export default function ScheduleAppointmentConfirmationPage() {
   }, [isLoggedIn]);
 
   return (
-    <section style={{ paddingTop: "64px" }}>
+    <section>
       <BaseHeader />
       <Grid
         width="100%"

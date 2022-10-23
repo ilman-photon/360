@@ -123,7 +123,7 @@ const EnhancedTableHead = (props) => {
                       color: "#003B4A !important",
                     }}
                   >
-                    <b>{headCell.label}</b>
+                    <b tabIndex={0}>{headCell.label}</b>
                     {orderBy === headCell.id ? (
                       <Box component="span" sx={visuallyHidden}>
                         {isDesc ? "sorted descending" : "sorted ascending"}

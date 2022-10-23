@@ -1,6 +1,6 @@
 import { Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGeolocated } from "react-geolocated";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import Cookies from "universal-cookie";
@@ -16,6 +16,7 @@ import {
   setFilterData,
   setIsFilterApplied,
   setProviderListData,
+  fetchAppointmentById,
 } from "../../store/appointment";
 import {
   getMondayOfCurrentWeek,
@@ -56,6 +57,7 @@ export default function HomePage({ googleApiKey }) {
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
+
   const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
@@ -214,9 +216,32 @@ export default function HomePage({ googleApiKey }) {
     setIsOpenCancel(false);
   };
 
-  const handleCancelSchedule = () => {
-    setIsOpenCancel(false);
-    setModalSuccessCancel(true);
+  const handleCancelSchedule = (data) => {
+    const api = new Api();
+    const cancelReason =
+      data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
+    const postBody = {
+      current: {
+        state: appointmentData[0].appointmentInfo.state.state,
+        subState: appointmentData[0].appointmentInfo.state.subState.subState,
+      },
+      target: {
+        state: "CANCELLED",
+        subState: "NONE",
+      },
+      reason: cancelReason,
+      code: 2,
+    };
+    api
+      .cancelAppointment(appointmentData[0].appointmentId, postBody)
+      .then(() => {
+        onCalledGetAllAppointment();
+        setModalSuccessCancel(true);
+        setIsOpenCancel(false);
+      })
+      .catch(() => {
+        setIsOpenCancel(false);
+      });
   };
 
   const onViewAppointment = () => {

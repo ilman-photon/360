@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiBox-root css-17a7zap"
+        class="MuiBox-root css-1f3r6b9"
       >
         <div
           aria-label="Progress Bar"
@@ -261,7 +261,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiBox-root css-17a7zap"
+      class="MuiBox-root css-1f3r6b9"
     >
       <div
         aria-label="Progress Bar"
