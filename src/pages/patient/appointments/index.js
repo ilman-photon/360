@@ -43,14 +43,12 @@ export default function Appointments() {
     api
       .getUpcomingAppointment()
       .then((response) => {
-        if (response.count !== 0) {
-          const upcomingAppointment = [];
-          response.entities.map((data) => {
-            const mappedData = appointmentParser(data);
-            upcomingAppointment.push(mappedData);
-          });
-          setUpcomingAppointment(upcomingAppointment);
-        }
+        const upcomingAppointment = [];
+        response.entities.map((data) => {
+          const mappedData = appointmentParser(data);
+          upcomingAppointment.push(mappedData);
+        });
+        setUpcomingAppointment(upcomingAppointment);
         setIsRequestedUpcoming(true);
       })
       .catch(function () {
