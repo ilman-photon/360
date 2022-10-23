@@ -110,12 +110,14 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/Filters/i));
+      // await waitFor(() => container.getByText(/Filters/i));
     });
 
     then(
       "the Patient should see the filters for the below mentioned details",
       async (table) => {
+        await waitFor(() => container.getByText(/Filters/i));
+        await waitFor(() => container.getByTestId("menu-medication"));
         const filterBtn = container.getByText(/Filters/i);
         const medicationMenu = container.getByTestId("menu-medication");
         expect(filterBtn).toBeInTheDocument();

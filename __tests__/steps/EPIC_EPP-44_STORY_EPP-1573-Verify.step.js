@@ -461,27 +461,6 @@ defineFeature(feature, (test) => {
     await waitFor(() => container.getByText("Review Appointment Details"));
   };
 
-  const provideDetailsValid = () => {
-    const field1 = container.getByLabelText("First Name");
-    fireEvent.change(field1, { target: { value: "1" } });
-
-    const field2 = container.getByLabelText("Last Name");
-    fireEvent.change(field2, { target: { value: "2" } });
-
-    const field3 = container.getByLabelText("Mobile Number");
-    fireEvent.change(field3, { target: { value: "3" } });
-
-    const field4 = container.getByRole("textbox", { name: "Email" });
-    fireEvent.change(field4, { target: { value: "4" } });
-  };
-
-  const clickSaveAction = () => {
-    const saveButton = container.getByRole("button", {
-      name: "scheduleAppoinment",
-    });
-    fireEvent.click(saveButton);
-  };
-
   const clickHour = async () => {
     const hourButton = await waitFor(() =>
       container.getByTestId(SEARCH_PROVIDER_TEST_ID.hourButton)
@@ -492,32 +471,6 @@ defineFeature(feature, (test) => {
   const whosForButtons = () => {
     expect(container.getAllByText("myself")).toBeTruthy();
     expect(container.getAllByText("someoneElse")).toBeTruthy();
-  };
-
-  const confirmationPage = async () => {
-    const mockCallBack = jest.fn();
-    container.rerender(
-      <ModalConfirmation
-        isLoggedIn={true}
-        isOpen={true}
-        OnSetIsOpen={mockCallBack}
-        isDesktop={false}
-      />
-    );
-    await waitFor(() => container.getByText("You’re Scheduled!"));
-  };
-
-  const scheduleAppontment = () => {
-    reviewAppPage();
-    const continueButton = container.getAllByText("continue")[0];
-    fireEvent.click(continueButton);
-    const someoneElseButton = container.getByText("someoneElse");
-    fireEvent.click(someoneElseButton);
-    provideDetailsValid();
-    const submitButton = container.getByRole("button", {
-      name: "scheduleAppoinment",
-    });
-    fireEvent.click(submitButton);
   };
 
   test("EPIC_EPP-44_STORY_EPP-1573 - Verify user able to provide the details to schedule the appointment as a guest.", ({

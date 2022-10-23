@@ -1,5 +1,5 @@
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import UpcomingAppointment from "../../../components/organisms/UpcomingAppointment/upcomingAppointment";
 import { Typography, Box } from "@mui/material";
@@ -18,6 +18,7 @@ import ModalCancelScheduling from "../../../components/organisms/ScheduleAppoint
 import Cookies from "universal-cookie";
 import { addToCalendar } from "../../../utils/addToCalendar";
 import { appointmentParser } from "../../../utils/appointmentsModel";
+import { fetchAppointmentById } from "../../../store/appointment";
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
@@ -27,22 +28,27 @@ export default function Appointments() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [upcomingAppointment, setUpcomingAppointment] = useState([]);
   const [pastAppointment, setPastAppointment] = useState([]);
+  const [choosenAppointment, setChoosenAppointment] = useState({});
+
+  const dispatch = useDispatch();
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 992px)");
+
+  const appointmentStatus = useSelector((state) => {
+    return state.appointment.appointmentSchedule.appointmentInfo.status;
+  });
 
   const getAppointments = () => {
     const api = new Api();
     api
       .getUpcomingAppointment()
       .then((response) => {
-        if (response.count !== 0) {
-          const upcomingAppointment = [];
-          response.entities.map((data) => {
-            const mappedData = appointmentParser(data);
-            upcomingAppointment.push(mappedData);
-          });
-          setUpcomingAppointment(upcomingAppointment);
-        }
+        const upcomingAppointment = [];
+        response.entities.map((data) => {
+          const mappedData = appointmentParser(data);
+          upcomingAppointment.push(mappedData);
+        });
+        setUpcomingAppointment(upcomingAppointment);
         setIsRequestedUpcoming(true);
       })
       .catch(function () {
@@ -92,13 +98,42 @@ export default function Appointments() {
     }
   };
 
+  const onCancelClicked = (data) => {
+    setChoosenAppointment(data);
+    dispatch(fetchAppointmentById({ appointmentId: data.appointmentId }));
+    setModalCancel(true);
+  };
+
   const handleClose = () => {
     setModalCancel(false);
   };
 
   const handleCancelSchedule = (data) => {
-    setModalCancel(false);
-    setModalSuccessCancel(true);
+    const api = new Api();
+    const cancelReason =
+      data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
+    const postBody = {
+      current: {
+        state: choosenAppointment.appointmentInfo.state.state,
+        subState: choosenAppointment.appointmentInfo.state.subState.subState,
+      },
+      target: {
+        state: "CANCELLED",
+        subState: "NONE",
+      },
+      reason: cancelReason,
+      code: 2,
+    };
+    api
+      .cancelAppointment(choosenAppointment.appointmentId, postBody)
+      .then(() => {
+        getAppointments();
+        setModalSuccessCancel(true);
+        setModalCancel(false);
+      })
+      .catch(() => {
+        setModalCancel(false);
+      });
   };
 
   return (
@@ -118,9 +153,7 @@ export default function Appointments() {
               data={upcomingAppointment}
               isMobile={isMobile}
               onRescheduleClicked={onRescheduleClicked}
-              onCancelClicked={() => {
-                setModalCancel(true);
-              }}
+              onCancelClicked={onCancelClicked}
               onAddToCalendarClicked={addToCalendar}
             />
           )}

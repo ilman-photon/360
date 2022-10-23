@@ -49,7 +49,10 @@ export default function BaseHeader({
       !!cookies.get("accessToken");
     setUserLoged(isLogin);
 
-    const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
+    const userStorageData =
+      localStorage.getItem("userProfile") !== "undefined"
+        ? JSON.parse(localStorage.getItem("userProfile"))
+        : null;
     if (userStorageData) {
       dispatch(setUserData(userStorageData));
     }
