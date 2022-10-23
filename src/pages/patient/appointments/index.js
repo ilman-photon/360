@@ -34,10 +34,6 @@ export default function Appointments() {
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 992px)");
 
-  const appointmentStatus = useSelector((state) => {
-    return state.appointment.appointmentSchedule.appointmentInfo.status;
-  });
-
   const getAppointments = () => {
     const api = new Api();
     api

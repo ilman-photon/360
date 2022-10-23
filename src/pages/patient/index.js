@@ -1,6 +1,6 @@
 import { Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useGeolocated } from "react-geolocated";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import Cookies from "universal-cookie";
@@ -16,7 +16,6 @@ import {
   setFilterData,
   setIsFilterApplied,
   setProviderListData,
-  fetchAppointmentById,
 } from "../../store/appointment";
 import {
   getMondayOfCurrentWeek,
@@ -36,7 +35,6 @@ import { colors } from "../../styles/theme";
 import { appointmentParser } from "../../utils/appointmentsModel";
 import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
-import { fetchUser } from "../../store/user";
 
 export async function getStaticProps() {
   return {

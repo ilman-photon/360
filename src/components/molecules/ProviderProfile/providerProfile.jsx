@@ -4,7 +4,6 @@ import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 import { TEST_ID } from "../../../utils/constants";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 const renderSpecialistList = (providerData) => {

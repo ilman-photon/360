@@ -1,12 +1,11 @@
 import AccountLayout from "../../../components/templates/accountLayout";
 import PersonalInformation from "../../../components/organisms/PersonalInformation/personalInformation";
 import ContactInformation from "../../../components/organisms/ContactInformation/contactInformation";
-import { Box, Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
+import { Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { fetchUser, updateUser } from "../../../store/user";
 import store from "../../../store/store";
-import PropTypes from "prop-types";
 import { closePageMessage, setPageMessage } from "../../../store";
 import { useRouter } from "next/router";
 import { Api } from "../../api/api";
