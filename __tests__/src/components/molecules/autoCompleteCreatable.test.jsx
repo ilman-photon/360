@@ -74,4 +74,33 @@ describe("Auto Complete Creatable Components", () => {
     fireEvent.keyDown(autocomplete, { key: "ArrowDown" });
     fireEvent.keyDown(autocomplete, { key: "Enter" });
   });
+
+  it("Auto Complete Loading true", async () => {
+    const data = [];
+    container = render(
+      <AutoCompleteCreatable
+        isLoading={true}
+        onFetch={mocFetch}
+        options={data}
+        testId={"new-autocomplete"}
+        onChange={jest.fn}
+      />
+    );
+    const autocomplete = container.getByTestId("new-autocomplete");
+    const input = within(autocomplete).getByRole("combobox");
+    autocomplete.focus();
+    fireEvent.change(input, { target: { value: "test1" } });
+  });
+
+   it("Auto Complete No Props", async () => {
+     container = render(
+       <AutoCompleteCreatable />
+     );
+     expect(container).toMatchSnapshot();
+   });
+
+   it("Auto Complete With Error", async () => {
+     container = render(<AutoCompleteCreatable error={true} />);
+     expect(container).toMatchSnapshot();
+   });
 });
