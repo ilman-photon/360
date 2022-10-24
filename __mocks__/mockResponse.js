@@ -9201,6 +9201,7 @@ export const mockUserData = {
   title: 0,
   firstName: "dewo",
   lastName: "Simanjuntak",
+  nickName: "",
   dob: "12/12/1991",
   age: "30",
   sex: 0,
@@ -9214,10 +9215,10 @@ export const mockUserData = {
         type: 1,
         email: "patient123@gmail.com",
         _id: "69218e5a-dc72-4883-82c5-ea359b058c74",
-        _version: "8f2d0a2a-c528-441c-a598-61e5d76eef9c",
+        _version: "229ccfc8-5fda-47f7-8cd2-1c2f57df7b48",
         _created: "Oct 13, 2022, 4:31:42 PM",
-        _updated: "Oct 13, 2022, 4:31:42 PM",
-        _createdBy: {
+        _updated: "Oct 21, 2022, 4:32:36 PM",
+        _updatedBy: {
           _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
           _links: {
             self: {
@@ -9232,10 +9233,10 @@ export const mockUserData = {
       phone: false,
       text: false,
       email: false,
-      _id: "6132788a-1a30-4b7d-b099-0e2812a4a2b2",
-      _version: "7b45daa1-df05-4931-adbe-4018c9ba3bf3",
-      _created: "Oct 13, 2022, 4:31:42 PM",
-      _updated: "Oct 13, 2022, 4:31:42 PM",
+      _id: "2d83bdb9-0f09-407e-b0b7-89b8ededc390",
+      _version: "36666e42-78b4-47e4-8e82-61f36f1bbf17",
+      _created: "Oct 21, 2022, 4:32:36 PM",
+      _updated: "Oct 21, 2022, 4:32:36 PM",
       _createdBy: {
         _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
         _links: {
@@ -9244,10 +9245,10 @@ export const mockUserData = {
       },
     },
     _id: "ff408b85-1e4f-4dc8-9af9-64930cd3e904",
-    _version: "9863ac12-b6fd-4b35-8b04-9614c8745c0d",
+    _version: "81433c90-f7a6-4137-80bf-a7c90303f731",
     _created: "Oct 13, 2022, 4:31:42 PM",
-    _updated: "Oct 13, 2022, 4:31:42 PM",
-    _createdBy: {
+    _updated: "Oct 21, 2022, 4:32:36 PM",
+    _updatedBy: {
       _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
       _links: {
         self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
@@ -9255,34 +9256,48 @@ export const mockUserData = {
     },
   },
   patientDetails: {
+    stateIssuedId: {
+      digitalAsset: {
+        uid: "6c747058-c1a8-4b10-bec3-db9471ed8a32",
+        fileName: "MyCareTeam-Copy of Biography tree.jpg",
+        assetUrl: "/v1/patient",
+        _version: "78481ed0-d0e2-4642-89f1-a5403223b6a2",
+      },
+    },
+    stateIssuedIdBack: {
+      digitalAsset: {
+        uid: "e3f24f8d-014a-4fe8-9bb5-e246d4b71983",
+        fileName: "MyCareTeam-Biography tree.jpg",
+        assetUrl: "/v1/patient",
+        _version: "6a7dd383-f942-4028-86c6-767c74a3ed57",
+      },
+    },
     isFlagNew: true,
     isFlagInCollection: false,
     isFlagBadCheck: false,
     isFlagDeceased: false,
     isFlagChartless: true,
     _id: "8c2a42bd-b917-4ef4-8a43-d78baae992ca",
-    _version: "c8978b70-2ab5-4e89-90e4-00d03a690213",
+    _version: "544ecf20-9837-4f07-ba78-eabb8e1bb5b9",
     _created: "Oct 13, 2022, 4:31:42 PM",
-    _updated: "Oct 13, 2022, 4:31:42 PM",
-    _createdBy: {
+    _updated: "Oct 21, 2022, 4:32:36 PM",
+    _updatedBy: {
       _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
       _links: {
         self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
       },
     },
   },
-  alerts: [],
   familyMember: [],
-  status: "CREATED",
-  sources: [],
+  status: "UPDATED",
   isEmergencyContactAvailable: false,
   _links: {
     self: { href: "/v1/patients/f352a9fe-53a4-4be8-866f-851ce45331ff" },
   },
   _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
-  _version: "4a2be31b-96f8-4804-95df-a673c0801713",
+  _version: "7b276056-d8ba-414c-94bb-5228a9a00a6a",
   _created: "Oct 13, 2022, 4:31:42 PM",
-  _updated: "Oct 19, 2022, 4:09:50 PM",
+  _updated: "Oct 21, 2022, 4:32:36 PM",
   _createdBy: {
     _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
     _links: {
@@ -9296,6 +9311,280 @@ export const mockUserData = {
     },
   },
 };
+
+export const appointmentInfo = {
+  appointmentType: "",
+  date: new Date("2022-10-19T13:55:00.000Z"),
+  insuranceCarrier: "",
+  providerTemplate: { _id: "bf883ded-ed67-4679-9f9d-ea979fe8e5cc" },
+  office: { name: "Ballwin", id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078" },
+};
+
+export const providerInfoObj = {
+  providerId: "19f1c186-37a8-46ef-a731-0a1f022be782",
+  name: "Dr Steve Adam",
+  address: {
+    addressLine1: "",
+    addressLine2: "",
+    city: "",
+    state: "",
+    zipcode: "",
+  },
+  rating: "",
+  phoneNumber: "",
+  distance: "",
+  image: "",
+  from: "2022-10-17",
+  to: "2022-10-22",
+  location: { latitude: 0, longitude: 0 },
+  providerTemplateId: "bf883ded-ed67-4679-9f9d-ea979fe8e5cc",
+  office: { name: "Ballwin", id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078" },
+  availability: [
+    { date: "2022-10-17", list: [] },
+    { date: "2022-10-18", list: [] },
+    {
+      date: "2022-10-19",
+      list: [
+        { time: "08:50pm", key: "59e9a244-b7e6-47b4-99d6-acf2467e03e4" },
+        { time: "08:55pm", key: "4cb61844-0705-41f8-a49a-6e1834a8cf43" },
+        { time: "09:00pm", key: "a5db0f86-2cec-477b-bf25-829b3457bf8e" },
+        { time: "09:05pm", key: "c5c93827-c7ee-4304-b974-70928c217cf1" },
+        { time: "09:10pm", key: "2d5498ab-efe4-4b83-b201-c2023d1c01c5" },
+        { time: "09:15pm", key: "4907bafe-5281-4138-92b6-4a4df82a5c87" },
+        { time: "09:20pm", key: "e69c1683-58f7-4d20-93c5-852c9b6f0746" },
+        { time: "09:25pm", key: "115d36a7-d0ba-4f46-9c50-7ea22ca39786" },
+        { time: "09:30pm", key: "47a2b194-120c-43d5-9323-60ed186695de" },
+        { time: "09:35pm", key: "5144eaf5-15ca-4f01-8056-9a9606b2c247" },
+        { time: "09:40pm", key: "642ba5f1-c3a3-4915-9b3d-bacb09dbc174" },
+      ],
+    },
+    {
+      date: "2022-10-20",
+      list: [
+        { time: "09:45am", key: "d51b411f-f50d-4396-8f8f-38697306f4f6" },
+        { time: "09:50am", key: "a16dfe59-c00b-48c6-86b8-aadb1b15f8f7" },
+        { time: "09:55am", key: "8d3912cc-d11b-4d7b-8070-264bd7629030" },
+        { time: "10:00am", key: "d40809f9-6e67-45fb-a6a8-28784f60960d" },
+        { time: "04:00pm", key: "3ff35d73-a01f-41c8-a698-fe17888e6c5b" },
+        { time: "04:05pm", key: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf" },
+        { time: "04:10pm", key: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea" },
+        { time: "04:15pm", key: "42eee764-b78a-404e-9393-1fda66b06e73" },
+        { time: "04:20pm", key: "81be5e4d-d25d-422a-aa49-533236eccc46" },
+        { time: "04:25pm", key: "7a82bcbe-d58b-4448-933a-b2932032b489" },
+        { time: "04:30pm", key: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c" },
+        { time: "04:35pm", key: "f0c6a887-626f-46ed-b48b-be65ee21b150" },
+      ],
+    },
+    {
+      date: "2022-10-21",
+      list: [
+        { time: "09:40am", key: "0a25461e-5c62-47f3-bc18-4262f150809d" },
+        { time: "09:45am", key: "d51b411f-f50d-4396-8f8f-38697306f4f6" },
+        { time: "09:50am", key: "a16dfe59-c00b-48c6-86b8-aadb1b15f8f7" },
+        { time: "09:55am", key: "8d3912cc-d11b-4d7b-8070-264bd7629030" },
+        { time: "10:00am", key: "d40809f9-6e67-45fb-a6a8-28784f60960d" },
+        { time: "04:00pm", key: "3ff35d73-a01f-41c8-a698-fe17888e6c5b" },
+        { time: "04:05pm", key: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf" },
+        { time: "04:10pm", key: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea" },
+        { time: "04:15pm", key: "42eee764-b78a-404e-9393-1fda66b06e73" },
+        { time: "04:20pm", key: "81be5e4d-d25d-422a-aa49-533236eccc46" },
+        { time: "04:25pm", key: "7a82bcbe-d58b-4448-933a-b2932032b489" },
+        { time: "04:30pm", key: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c" },
+        { time: "04:35pm", key: "f0c6a887-626f-46ed-b48b-be65ee21b150" },
+      ],
+    },
+    { date: "2022-10-22", list: [] },
+  ],
+  coordinate: { latitude: "", longitude: "" },
+  filters: { isAvailableToday: false },
+  isAvailableToday: true,
+};
+
+export const mockAppointmentCreationData = [
+  {
+    appointmentType: {
+      code: "Clinical_Diagnosis",
+    },
+    patient: {
+      isEmergencyContactAvailable: false,
+      contactPrefrence: false,
+      _id: "7300529f-ce7e-4f8e-946b-92d498a4b03d",
+    },
+    provider: {
+      inHouse: false,
+      _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+    },
+    office: {
+      _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+    },
+    providerTemplate: {
+      _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
+    },
+    appointmentDate: "10/21/2022",
+    appointmentTime: "09:00",
+    appointmentEndTime: "09:05",
+    appointmentLength: 5,
+    appointmentSlots: [
+      {
+        appointmentType: {
+          code: "NO_APPOINTMENT",
+          name: "NO APPOINTMENT",
+          key: 1,
+          order: 1,
+          category: {
+            code: "Medical",
+            description: "Medical",
+          },
+          acronym: "NA",
+          color: "#8F8F8F",
+          slotLength: 5,
+          notes: "NO_APPOINTMENT is a default appointment type",
+        },
+        startHHMM: "09:00",
+        endHHMM: "09:05",
+        _id: "6b4a49c6-4caa-4e56-8647-1252b6114516",
+        _version: "7c605332-d4c2-4c4d-9cc7-1cabf4e742d9",
+        _created: "Apr 8, 2022, 8:37:38 AM",
+        _updated: "Sep 22, 2022, 10:24:08 AM",
+        _createdBy: {
+          _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+          _links: {
+            self: {
+              href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    notes: [
+      {
+        text: "qqqqqqqqqqqqqq",
+        _id: "41d12c33-d190-4324-9af5-35229a5f6691",
+        _version: "88016071-7e0b-4be1-881d-385c8f4bb405",
+        _created: "Sep 30, 2022, 7:26:00 AM",
+        _updated: "Sep 30, 2022, 7:26:00 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    isConfirmed: true,
+    confirmationDetail: {
+      confirmationDate: "09/20/2022",
+      confirmationTime: "18:06",
+      confirmationBy: "a677f406-56b3-4f25-b7a5-37d9266675ba",
+    },
+    appointmentHistory: [
+      {
+        state: "CONFIRMED",
+        office: {
+          _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        },
+        subState: {
+          subState: "CREATED",
+          _id: "eb3c1c4f-b635-4eb8-9311-d176a1a5a418",
+          _version: "5d1db8de-f7fd-40fa-bcad-c046ec981d84",
+          _created: "Sep 30, 2022, 7:26:00 AM",
+          _updated: "Sep 30, 2022, 7:26:00 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        _id: "3344a933-e97a-4005-8d25-e40fcdd8d77a",
+        _version: "bd896339-ba33-4696-9463-23c7c2eb4c1d",
+        _created: "Sep 30, 2022, 7:26:00 AM",
+        _updated: "Sep 30, 2022, 7:26:00 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    state: {
+      subState: {
+        subState: "CREATED",
+        _id: "9c884eaf-b2e1-4d78-a035-a19124c0eb5d",
+        _version: "5e81b567-0eb0-42e4-8f77-b5f84e99ce1d",
+        _created: "Sep 30, 2022, 7:26:00 AM",
+        _updated: "Sep 30, 2022, 7:26:00 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      state: "CONFIRMED",
+      _id: "fb6e2071-05d3-4d30-98b3-70909249d89c",
+      _version: "1b5dc551-e00b-4243-8bcc-77203dd78c87",
+      _created: "Sep 30, 2022, 7:26:00 AM",
+      _updated: "Sep 30, 2022, 7:26:00 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: {
+            href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          },
+        },
+      },
+    },
+    newPatient: false,
+    insurancePayers: [],
+    override: false,
+    allowCreate: false,
+    appointmentNo: 1000001092,
+    quickAppointmentflag: false,
+    isPrimaryMember: true,
+    paymentMethod: {
+      noInsuranceInformation: {},
+      insuranceInfoUsedForBilling: {
+        financialClassBasedInformation: {},
+      },
+    },
+    status: "CREATED",
+    _links: {
+      self: {
+        href: "/v1/appointments/27b6dad9-3245-43da-9ee8-a1037b60b4e9",
+      },
+    },
+    _id: "27b6dad9-3245-43da-9ee8-a1037b60b4e9",
+    _version: "18db911e-630f-4ee2-a87f-2492971d6854",
+    _created: "Sep 30, 2022, 7:26:00 AM",
+    _updated: "Sep 30, 2022, 7:26:00 AM",
+    _createdBy: {
+      _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+      _links: {
+        self: {
+          href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        },
+      },
+    },
+  },
+];
 export const mockUSState = {
   nhits: 56,
   parameters: {
@@ -26782,4 +27071,1210 @@ export const mockUSState = {
       ],
     },
   ],
+};
+
+export const upcomingAppointment = {
+  appointmentType: { code: "Cataract Eval", name: "Cataract Eval" },
+  patient: {
+    title: "0",
+    firstName: "dewo",
+    lastName: "Simanjuntak",
+    dob: "12/12/1991",
+    age: "30",
+    sex: "0",
+    address: [
+      {
+        addressLine1: "Limus Pratama Regency",
+        city: "Bogor Regency",
+        state: "MP",
+        zip: "16820",
+        preferred: false,
+        isBadAddress: false,
+        _id: "f396bfe7-c81d-4c28-b48f-34629f1868fd",
+        _version: "89f2a0cc-19d3-41ba-bdfc-955053f3d400",
+        _created: "Oct 21, 2022, 4:41:10 PM",
+        _updated: "Oct 23, 2022, 6:00:09 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    patientDetails: {
+      isFlagNew: false,
+      isFlagInCollection: false,
+      isFlagBadCheck: false,
+      isFlagDeceased: false,
+      isFlagChartless: true,
+      _id: "8c2a42bd-b917-4ef4-8a43-d78baae992ca",
+      _version: "6e9bfce4-82e0-47db-8d91-8eb69203aadd",
+      _created: "Oct 13, 2022, 4:31:42 PM",
+      _updated: "Oct 23, 2022, 6:00:30 AM",
+      _createdBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: {
+            href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+          },
+        },
+      },
+      _updatedBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: {
+            href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+          },
+        },
+      },
+    },
+    isEmergencyContactAvailable: false,
+    contactPrefrence: false,
+    status: "UPDATED",
+    contactInformation: {
+      phones: [{ type: 3.0, number: "(977) 623-4567" }],
+      emails: [
+        {
+          type: 1,
+          email: "patient123@gmail.com",
+          _id: "69218e5a-dc72-4883-82c5-ea359b058c74",
+          _version: "535ea575-b3b8-4bc8-b158-37800f5f2755",
+          _created: "Oct 13, 2022, 4:31:42 PM",
+          _updated: "Oct 23, 2022, 6:00:09 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+      ],
+      contactPreferenceDetail: {
+        phone: false,
+        text: false,
+        email: false,
+        _id: "06b48d34-a11a-4d72-b570-85d8cd2e9cc9",
+        _version: "c946b7b7-513d-4836-8876-0563e7b8e3bc",
+        _created: "Oct 23, 2022, 6:00:09 AM",
+        _updated: "Oct 23, 2022, 6:00:09 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      _id: "ff408b85-1e4f-4dc8-9af9-64930cd3e904",
+      _version: "208b061b-d120-47e2-9c43-4b11aeb78631",
+      _created: "Oct 13, 2022, 4:31:42 PM",
+      _updated: "Oct 23, 2022, 6:00:09 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: {
+            href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          },
+        },
+      },
+      _updatedBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: {
+            href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          },
+        },
+      },
+    },
+    _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+    _version: "b7aa20ea-24f7-4a69-b5e4-9bb099c9a275",
+    _created: "Oct 13, 2022, 4:31:42 PM",
+    _updated: "Oct 23, 2022, 6:00:30 AM",
+    _createdBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: {
+          href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+        },
+      },
+    },
+    _updatedBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: {
+          href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+        },
+      },
+    },
+  },
+  provider: {
+    firstName: "Steve",
+    lastName: "Adam",
+    designation: "Dr",
+    inHouse: false,
+    workPhone: "3219898898",
+    rating: 2,
+    profilePhoto: {
+      digitalAsset: {
+        uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+        fileName: "test",
+        assetUrl: "/v1/patient",
+        _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+      },
+    },
+    address: {
+      addressLine1: "800 14th St Apt B",
+      city: "Virginia Beach",
+      state: "VA",
+      zip: "23451",
+    },
+    _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+    _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+    _updated: "Oct 20, 2022, 10:51:39 AM",
+    _updatedBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: {
+          href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+        },
+      },
+    },
+  },
+  office: {
+    name: "Ballwin",
+    _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+    _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+    _updated: "Sep 17, 2022, 10:14:52 AM",
+    _updatedBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: {
+          href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+        },
+      },
+    },
+  },
+  appointmentDate: "10/27/2022",
+  appointmentTime: "09:45",
+  appointmentEndTime: "09:46",
+  appointmentLength: 1,
+  isConfirmed: false,
+  confirmationDetail: {
+    confirmationDate: "10/23/2022",
+    confirmationTime: "01:33",
+    confirmationBy: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+  },
+  appointmentHistory: [],
+  state: {
+    subState: {
+      subState: "RESCHEDULED",
+      _id: "e876e65e-7bc8-479b-b17f-971411c42aa8",
+      _version: "dc2af840-cfae-4d35-83b6-f7a83ba079d1",
+      _created: "Oct 23, 2022, 6:33:29 AM",
+      _updated: "Oct 23, 2022, 6:33:29 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: {
+            href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          },
+        },
+      },
+    },
+    state: "UNCONFIRMED",
+    _id: "099752c1-1f75-4886-83bc-dbd110e40d5a",
+    _version: "052768fb-83e9-415b-ab72-a7d443ef70ca",
+    _created: "Oct 23, 2022, 6:30:59 AM",
+    _updated: "Oct 23, 2022, 6:33:29 AM",
+    _createdBy: {
+      _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+      _links: {
+        self: {
+          href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        },
+      },
+    },
+    _updatedBy: {
+      _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+      _links: {
+        self: {
+          href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        },
+      },
+    },
+  },
+  notes: [],
+  allowCreate: false,
+  paymentMethod: {
+    noInsuranceInformation: {},
+    insuranceInfoUsedForBilling: { financialClassBasedInformation: {} },
+  },
+  appointmentNo: 1000001339,
+  newPatient: false,
+  insurancePayers: [],
+  override: false,
+  quickAppointmentflag: false,
+  isPrimaryMember: true,
+  status: "UPDATED",
+  _links: {
+    self: { href: "/v1/appointments/66c19bc9-7a87-4ead-9f8b-5599eba0b2c2" },
+  },
+  _id: "66c19bc9-7a87-4ead-9f8b-5599eba0b2c2",
+  _version: "95ff66fa-5e0b-4250-93cf-1de1aa6b9d2d",
+  _created: "Oct 23, 2022, 6:30:59 AM",
+  _updated: "Oct 23, 2022, 6:33:29 AM",
+  _createdBy: {
+    _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    _links: {
+      self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+    },
+  },
+  _updatedBy: {
+    _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    _links: {
+      self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+    },
+  },
+};
+
+export const upcomingResponse = {
+  count: 1,
+  entities: [{ ...upcomingAppointment }],
+  _links: { self: { href: "/appointments?pageNo=0&pageSize=100" } },
+};
+
+export const rescheduleDataPostbody = {
+  providerInfo: {
+    designation: "Dr",
+    firstName: "Steve",
+    lastName: "Adam",
+    nickName: "Ste",
+    employeeNumber: "12345678900",
+    mi: "Ad",
+    dob: "04/30/1973",
+    email: "test@test1.com",
+    sex: { key: 13, name: "UNK", order: 3, notes: "" },
+    id: "987654321234567",
+    available: true,
+    note: "Notes for adding user as a provider",
+    age: "49",
+    address: {
+      addressLine1: "",
+      addressLine2: "",
+      city: "",
+      state: "",
+      zipcode: "",
+    },
+    homePhone: "3218755867",
+    workPhone: "3219898898",
+    cellPhone: "3219876587",
+    inHouse: false,
+    providerDetails: {
+      isProvider: true,
+      isExternalProvider: false,
+      materialRate: "0",
+      directAddress: "direct@test.com",
+      drFirstCredentialDetails: {
+        drFirstCredential: true,
+        username: "indraku",
+        password: "Pass",
+        signature: "",
+      },
+      npi: "1134296023",
+      professionalEq: "1234",
+      opticalEq: "5678",
+      surgicalEq: "8989",
+      contactEq: "9876",
+      provider: "98127364555378",
+      onlineProvider: true,
+      license: [
+        {
+          licenseId: "1234567890",
+          state: "NY",
+          _id: "a44907e2-04e0-4e09-b5ac-533ee2d56d98",
+        },
+      ],
+      deaIds: [],
+      taxonomyCode: "207NI0002X",
+      classification: "Dermatology",
+      specialization: "Clinical & Laboratory Dermatological Immunology",
+      rating: 2,
+      about: "This provider is for OPH",
+      language1: "English",
+      language2: "Arabic",
+      language3: "Chinese",
+      inNetworkInsurance: "yes",
+      education: "MBA",
+      membershipAndAffiliation: "dummy",
+      profilePhoto: {
+        digitalAsset: {
+          uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+          fileName: "test",
+          assetUrl: "/v1/patient",
+          _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+        },
+      },
+    },
+    offices: [
+      { name: "Chicago", _id: "ed2a6123-5659-429f-97a2-610d86699068" },
+      {
+        name: "Ballwin",
+        addressLine1: "568 Allens Mill Rd",
+        city: "Yorktown",
+        state: "VA",
+        zip: "23692",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+      },
+    ],
+    status: "UPDATED",
+    managerialAdjustments: false,
+    overrideExpiredPromo: false,
+    sources: [],
+    _links: {
+      self: { href: "/v1/employees/19f1c186-37a8-46ef-a731-0a1f022be782" },
+    },
+    _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+    _version: "513947f2-eefe-4395-9482-5292daa6f2ed",
+    _created: "Apr 8, 2022, 8:34:41 AM",
+    _updated: "Oct 20, 2022, 10:51:39 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: { href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1" },
+      },
+    },
+    _updatedBy: {
+      _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+      _links: {
+        self: { href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c" },
+      },
+    },
+    providerId: "19f1c186-37a8-46ef-a731-0a1f022be782",
+    providerTemplateId: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+    office: { name: "Ballwin", id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078" },
+    rating: "",
+    name: "Dr Steve Adam",
+    phoneNumber: "",
+    distance: "",
+    image: "",
+    from: "2022-10-24",
+    to: "2022-10-29",
+    availability: [
+      { date: "2022-10-23", list: [] },
+      {
+        date: "2022-10-24",
+        list: [
+          {
+            time: "09:45am",
+            key: "d51b411f-f50d-4396-8f8f-38697306f4f6",
+            appointmentCode: "Cataract Eval",
+          },
+          {
+            time: "09:55am",
+            key: "8d3912cc-d11b-4d7b-8070-264bd7629030",
+            appointmentCode: "Cataract Eval",
+          },
+          {
+            time: "10:00am",
+            key: "d40809f9-6e67-45fb-a6a8-28784f60960d",
+            appointmentCode: "Cataract Eval",
+          },
+        ],
+      },
+      {
+        date: "2022-10-25",
+        list: [
+          {
+            time: "09:40am",
+            key: "0a25461e-5c62-47f3-bc18-4262f150809d",
+            appointmentCode: "Cataract Eval",
+          },
+          {
+            time: "09:50am",
+            key: "a16dfe59-c00b-48c6-86b8-aadb1b15f8f7",
+            appointmentCode: "Cataract Eval",
+          },
+          {
+            time: "09:55am",
+            key: "8d3912cc-d11b-4d7b-8070-264bd7629030",
+            appointmentCode: "Cataract Eval",
+          },
+          {
+            time: "10:00am",
+            key: "d40809f9-6e67-45fb-a6a8-28784f60960d",
+            appointmentCode: "Cataract Eval",
+          },
+        ],
+      },
+      {
+        date: "2022-10-26",
+        list: [
+          {
+            time: "09:40am",
+            key: "0a25461e-5c62-47f3-bc18-4262f150809d",
+            appointmentCode: "Cataract Eval",
+          },
+          {
+            time: "09:45am",
+            key: "d51b411f-f50d-4396-8f8f-38697306f4f6",
+            appointmentCode: "Cataract Eval",
+          },
+          {
+            time: "10:00am",
+            key: "d40809f9-6e67-45fb-a6a8-28784f60960d",
+            appointmentCode: "Cataract Eval",
+          },
+        ],
+      },
+      {
+        date: "2022-10-27",
+        list: [
+          {
+            time: "09:45am",
+            key: "d51b411f-f50d-4396-8f8f-38697306f4f6",
+            appointmentCode: "Cataract Eval",
+          },
+        ],
+      },
+      { date: "2022-10-28", list: [] },
+    ],
+    coordinate: { latitude: "", longitude: "" },
+    filters: { isAvailableToday: false },
+    isAvailableToday: false,
+  },
+  patientInfo: {
+    title: "0",
+    firstName: "dewo",
+    lastName: "Simanjuntak",
+    dob: "12/12/1991",
+    age: "30",
+    sex: "0",
+    address: [
+      {
+        addressLine1: "Limus Pratama Regency",
+        city: "Bogor Regency",
+        state: "MP",
+        zip: "16820",
+        preferred: false,
+        isBadAddress: false,
+        _id: "f396bfe7-c81d-4c28-b48f-34629f1868fd",
+        _version: "89f2a0cc-19d3-41ba-bdfc-955053f3d400",
+        _created: "Oct 21, 2022, 4:41:10 PM",
+        _updated: "Oct 23, 2022, 6:00:09 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    patientDetails: {
+      isFlagNew: false,
+      isFlagInCollection: false,
+      isFlagBadCheck: false,
+      isFlagDeceased: false,
+      isFlagChartless: true,
+      _id: "8c2a42bd-b917-4ef4-8a43-d78baae992ca",
+      _version: "6e9bfce4-82e0-47db-8d91-8eb69203aadd",
+      _created: "Oct 13, 2022, 4:31:42 PM",
+      _updated: "Oct 23, 2022, 6:00:30 AM",
+      _createdBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+      _updatedBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+    },
+    isEmergencyContactAvailable: false,
+    contactPrefrence: false,
+    status: "UPDATED",
+    contactInformation: {
+      phones: [{ type: 3, number: "(977) 623-4567" }],
+      emails: [
+        {
+          type: 1,
+          email: "patient123@gmail.com",
+          _id: "69218e5a-dc72-4883-82c5-ea359b058c74",
+          _version: "535ea575-b3b8-4bc8-b158-37800f5f2755",
+          _created: "Oct 13, 2022, 4:31:42 PM",
+          _updated: "Oct 23, 2022, 6:00:09 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+      ],
+      contactPreferenceDetail: {
+        phone: false,
+        text: false,
+        email: false,
+        _id: "06b48d34-a11a-4d72-b570-85d8cd2e9cc9",
+        _version: "c946b7b7-513d-4836-8876-0563e7b8e3bc",
+        _created: "Oct 23, 2022, 6:00:09 AM",
+        _updated: "Oct 23, 2022, 6:00:09 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      _id: "ff408b85-1e4f-4dc8-9af9-64930cd3e904",
+      _version: "208b061b-d120-47e2-9c43-4b11aeb78631",
+      _created: "Oct 13, 2022, 4:31:42 PM",
+      _updated: "Oct 23, 2022, 6:00:09 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+      _updatedBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+    _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+    _version: "b7aa20ea-24f7-4a69-b5e4-9bb099c9a275",
+    _created: "Oct 13, 2022, 4:31:42 PM",
+    _updated: "Oct 23, 2022, 6:00:30 AM",
+    _createdBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+      },
+    },
+    _updatedBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+      },
+    },
+  },
+  appointmentInfo: {
+    appointmentType: "Cataract Eval",
+    date: "2022-10-26T13:40:00.000Z",
+    id: "66c19bc9-7a87-4ead-9f8b-5599eba0b2c2",
+    providerTemplate: { _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9" },
+    office: { name: "Ballwin", id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078" },
+    state: {
+      subState: {
+        subState: "RESCHEDULED",
+        _id: "2e8a954b-2071-4a8f-9220-4364a02f77dd",
+        _version: "6051c1de-72b6-4cf6-853a-af44667fc22a",
+        _created: "Oct 23, 2022, 1:49:45 PM",
+        _updated: "Oct 23, 2022, 1:49:45 PM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      state: "UNCONFIRMED",
+      _id: "099752c1-1f75-4886-83bc-dbd110e40d5a",
+      _version: "d8fe6aab-4383-4424-ba53-68b6f97406f5",
+      _created: "Oct 23, 2022, 6:30:59 AM",
+      _updated: "Oct 23, 2022, 1:49:45 PM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+      _updatedBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+  },
+};
+
+export const rescheduleDataResponse = {
+  appointmentType: { code: "Cataract Eval", name: "Cataract Eval" },
+  patient: {
+    title: "0",
+    firstName: "dewo",
+    lastName: "Simanjuntak",
+    dob: "12/12/1991",
+    age: "30",
+    sex: "0",
+    address: [
+      {
+        addressLine1: "Limus Pratama Regency",
+        city: "Bogor Regency",
+        state: "MP",
+        zip: "16820",
+        preferred: false,
+        isBadAddress: false,
+        _id: "f396bfe7-c81d-4c28-b48f-34629f1868fd",
+        _version: "89f2a0cc-19d3-41ba-bdfc-955053f3d400",
+        _created: "Oct 21, 2022, 4:41:10 PM",
+        _updated: "Oct 23, 2022, 6:00:09 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    patientDetails: {
+      isFlagNew: false,
+      isFlagInCollection: false,
+      isFlagBadCheck: false,
+      isFlagDeceased: false,
+      isFlagChartless: true,
+      _id: "8c2a42bd-b917-4ef4-8a43-d78baae992ca",
+      _version: "6e9bfce4-82e0-47db-8d91-8eb69203aadd",
+      _created: "Oct 13, 2022, 4:31:42 PM",
+      _updated: "Oct 23, 2022, 6:00:30 AM",
+      _createdBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+      _updatedBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+    },
+    isEmergencyContactAvailable: false,
+    contactPrefrence: false,
+    status: "UPDATED",
+    contactInformation: {
+      phones: [{ type: 3.0, number: "(977) 623-4567" }],
+      emails: [
+        {
+          type: 1,
+          email: "patient123@gmail.com",
+          _id: "69218e5a-dc72-4883-82c5-ea359b058c74",
+          _version: "535ea575-b3b8-4bc8-b158-37800f5f2755",
+          _created: "Oct 13, 2022, 4:31:42 PM",
+          _updated: "Oct 23, 2022, 6:00:09 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+      ],
+      contactPreferenceDetail: {
+        phone: false,
+        text: false,
+        email: false,
+        _id: "06b48d34-a11a-4d72-b570-85d8cd2e9cc9",
+        _version: "c946b7b7-513d-4836-8876-0563e7b8e3bc",
+        _created: "Oct 23, 2022, 6:00:09 AM",
+        _updated: "Oct 23, 2022, 6:00:09 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      _id: "ff408b85-1e4f-4dc8-9af9-64930cd3e904",
+      _version: "208b061b-d120-47e2-9c43-4b11aeb78631",
+      _created: "Oct 13, 2022, 4:31:42 PM",
+      _updated: "Oct 23, 2022, 6:00:09 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+      _updatedBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+    _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+    _version: "b7aa20ea-24f7-4a69-b5e4-9bb099c9a275",
+    _created: "Oct 13, 2022, 4:31:42 PM",
+    _updated: "Oct 23, 2022, 6:00:30 AM",
+    _createdBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+      },
+    },
+    _updatedBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+      },
+    },
+  },
+  provider: {
+    firstName: "Steve",
+    lastName: "Adam",
+    designation: "Dr",
+    inHouse: false,
+    workPhone: "3219898898",
+    rating: 2,
+    profilePhoto: {
+      digitalAsset: {
+        uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+        fileName: "test",
+        assetUrl: "/v1/patient",
+        _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+      },
+    },
+    address: {
+      addressLine1: "800 14th St Apt B",
+      city: "Virginia Beach",
+      state: "VA",
+      zip: "23451",
+    },
+    _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+    _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+    _updated: "Oct 20, 2022, 10:51:39 AM",
+    _updatedBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+      },
+    },
+  },
+  office: {
+    name: "Ballwin",
+    _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+    _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+    _updated: "Sep 17, 2022, 10:14:52 AM",
+    _updatedBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+      },
+    },
+  },
+  providerTemplate: {
+    status: "UPDATED",
+    _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+    _version: "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
+    _created: "Oct 20, 2022, 7:48:23 AM",
+    _updated: "Oct 21, 2022, 9:43:32 AM",
+    _createdBy: {
+      _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+      _links: {
+        self: { href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c" },
+      },
+    },
+    _updatedBy: {
+      _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+      _links: {
+        self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+      },
+    },
+  },
+  appointmentDate: "10/26/2022",
+  appointmentTime: "09:40",
+  appointmentEndTime: "09:41",
+  appointmentLength: 1,
+  appointmentSlots: [
+    {
+      appointmentType: {
+        code: "Cataract Eval",
+        name: "Cataract Eval",
+        key: 105,
+        order: 105,
+        category: { code: "OPT/OPH", description: "OPT/OPH" },
+        acronym: "CAT",
+        color: "#0202F8",
+        slotLength: 5,
+        notes: "Cataract Eval",
+      },
+      startHHMM: "09:40",
+      endHHMM: "09:45",
+      _id: "0a25461e-5c62-47f3-bc18-4262f150809d",
+      _version: "dcdcd187-abad-448f-96f0-03d10952895d",
+      _created: "Oct 20, 2022, 7:48:23 AM",
+      _updated: "Oct 21, 2022, 9:43:32 AM",
+      _createdBy: {
+        _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+        _links: {
+          self: { href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c" },
+        },
+      },
+      _updatedBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+  ],
+  notes: [],
+  isConfirmed: false,
+  confirmationDetail: {
+    confirmationDate: "10/23/2022",
+    confirmationTime: "09:51",
+    confirmationBy: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+  },
+  appointmentHistory: [
+    {
+      state: "UNCONFIRMED",
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      subState: {
+        reason: "reschedule",
+        subState: "RESCHEDULED",
+        _id: "e045eace-ae31-4f6e-9a35-c791e7d64812",
+        _version: "851171a6-6cc7-41f4-99e1-1602e4962e78",
+        _created: "Oct 23, 2022, 1:51:03 PM",
+        _updated: "Oct 23, 2022, 1:51:03 PM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      _id: "549687e3-f7e5-4f82-acd2-63b37a6a701b",
+      _version: "ba720823-bdad-4cf2-bb07-92bc4052de41",
+      _created: "Oct 23, 2022, 1:51:03 PM",
+      _updated: "Oct 23, 2022, 1:51:03 PM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+    {
+      state: "UNCONFIRMED",
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      subState: {
+        reason: "reschedule",
+        subState: "RESCHEDULED",
+        _id: "e2a213a2-430e-40d5-9b92-8c676f6b922a",
+        _version: "bb6cc5f2-78b3-424c-b51b-d7a577ff5627",
+        _created: "Oct 23, 2022, 1:49:45 PM",
+        _updated: "Oct 23, 2022, 1:49:45 PM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      _id: "0cee358d-2126-41c3-afdc-573045f0f369",
+      _version: "8e4b56c6-8710-46b0-b0ac-7fd75ea02032",
+      _created: "Oct 23, 2022, 1:49:45 PM",
+      _updated: "Oct 23, 2022, 1:49:45 PM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+    {
+      state: "UNCONFIRMED",
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      subState: {
+        reason: "reschedule",
+        subState: "RESCHEDULED",
+        _id: "39a84faf-b6f8-488d-9303-27f59fb83bd8",
+        _version: "d4dc9877-cc3a-4c1f-9e06-408273a8e278",
+        _created: "Oct 23, 2022, 6:33:29 AM",
+        _updated: "Oct 23, 2022, 6:33:29 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      _id: "f6c391b8-9e74-400c-9f84-c59484afe262",
+      _version: "1144a901-0b1b-43b6-9d3e-0d575dda7e0b",
+      _created: "Oct 23, 2022, 6:33:29 AM",
+      _updated: "Oct 23, 2022, 6:33:29 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+    {
+      state: "UNCONFIRMED",
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      subState: {
+        reason: "reschedule",
+        subState: "RESCHEDULED",
+        _id: "072a5dcd-b16b-42a2-bbde-d44697049910",
+        _version: "9df492be-fe19-406f-a323-5b5480e1b9da",
+        _created: "Oct 23, 2022, 1:48:22 PM",
+        _updated: "Oct 23, 2022, 1:48:22 PM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      _id: "399bd43c-d844-40ec-8504-2b42b40107b1",
+      _version: "cfbbdfa4-adca-4c81-aaf5-8b04c1ec3d5d",
+      _created: "Oct 23, 2022, 1:48:22 PM",
+      _updated: "Oct 23, 2022, 1:48:22 PM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+    {
+      state: "UNCONFIRMED",
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      subState: {
+        subState: "CREATED",
+        _id: "96572819-36da-4171-afb7-6896298d570d",
+        _version: "75d8304a-01da-4e12-a871-3bb9a6992b13",
+        _created: "Oct 23, 2022, 6:30:59 AM",
+        _updated: "Oct 23, 2022, 6:30:59 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      _id: "978a665d-7870-4ece-8873-739ffb030971",
+      _version: "034c5bf1-cbc4-4e47-bf89-e4ba1c3be038",
+      _created: "Oct 23, 2022, 6:30:59 AM",
+      _updated: "Oct 23, 2022, 6:30:59 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+  ],
+  state: {
+    subState: {
+      subState: "RESCHEDULED",
+      _id: "0d02ba38-9217-4f8d-80d3-402ac07e2cfb",
+      _version: "f56c1113-ff06-407f-9871-6cf7c8418c45",
+      _created: "Oct 23, 2022, 1:51:03 PM",
+      _updated: "Oct 23, 2022, 1:51:03 PM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+    state: "UNCONFIRMED",
+    _id: "099752c1-1f75-4886-83bc-dbd110e40d5a",
+    _version: "8c432a06-09e3-4dd3-9ea8-bad8413040c4",
+    _created: "Oct 23, 2022, 6:30:59 AM",
+    _updated: "Oct 23, 2022, 1:51:03 PM",
+    _createdBy: {
+      _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+      _links: {
+        self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+      },
+    },
+    _updatedBy: {
+      _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+      _links: {
+        self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+      },
+    },
+  },
+  newPatient: false,
+  insurancePayers: [],
+  override: false,
+  allowCreate: false,
+  quickAppointmentflag: false,
+  isPrimaryMember: true,
+  paymentMethod: {
+    noInsuranceInformation: {},
+    insuranceInfoUsedForBilling: { financialClassBasedInformation: {} },
+  },
+  status: "UPDATED",
+  _links: {
+    self: { href: "/v1/appointments/66c19bc9-7a87-4ead-9f8b-5599eba0b2c2" },
+  },
+  _id: "66c19bc9-7a87-4ead-9f8b-5599eba0b2c2",
+  _version: "6f04c172-725f-456c-b766-30eebc4e7b5b",
+  _created: "Oct 23, 2022, 6:30:59 AM",
+  _updated: "Oct 23, 2022, 1:51:03 PM",
+  _createdBy: {
+    _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    _links: {
+      self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+    },
+  },
+  _updatedBy: {
+    _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    _links: {
+      self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+    },
+  },
 };

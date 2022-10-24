@@ -22,6 +22,10 @@ export const MESSAGES = {
     title: "Error",
     content: "Bad Request",
   },
+  500: {
+    title: "Error",
+    content: "ECP Connection Error :null",
+  },
 };
 
 export default MESSAGES;

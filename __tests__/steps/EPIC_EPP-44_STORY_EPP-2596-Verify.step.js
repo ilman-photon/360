@@ -1,50 +1,22 @@
-import "@testing-library/jest-dom/extend-expect";
-import {
-  act,
-  fireEvent,
-  render,
-  waitFor,
-  cleanup,
-} from "@testing-library/react";
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
+import { waitFor } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import ForgotPasswordPage from "../../src/pages/patient/forgot-password";
-import AuthPage from "../../src/pages/patient/login";
-import Cookies from "universal-cookie";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
-import HomePage from "../../src/pages/patient";
-import { Provider } from "react-redux";
-import store from "../../src/store/store";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
 import {
-  renderAppointmentDetail,
+  clickSearch,
+  createMatchMedia,
+  doLogin,
+  provideFilters,
+  renderLogin,
   renderScheduleAppointment,
 } from "../../__mocks__/commonSteps";
-import constants, { TEST_ID } from "../../src/utils/constants";
-import FilterHeading from "../../src/components/molecules/FilterHeading/filterHeading";
-import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
-import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
-import { navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
-import GMaps from "../../src/components/organisms/Google/Maps/gMaps";
-import {
-  GoogleMap,
-  MarkerF,
-  InfoWindowF,
-  useJsApiLoader,
-  useLoadScript,
-} from "@react-google-maps/api";
-
-import mediaQuery from "css-mediaquery";
-import ModalConfirmation from "../../src/components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
+import { TEST_ID } from "../../src/utils/constants";
 import {
   mockAppointmentTypes,
   mockInsurance,
   submitFilter,
 } from "../../__mocks__/mockResponse";
-import InfoWindowContent from "../../src/components/organisms/Google/Maps/infoWindowContent";
-import { CircularProgress } from "@mui/material";
-import ShallowRenderer from "react-shallow-renderer";
-import Appointment from "../../src/pages/patient/appointment";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2596.feature"
@@ -56,33 +28,64 @@ const defaultValidation = () => {
 
 defineFeature(feature, (test) => {
   let container;
-  const element = document.createElement("div");
+  const defaultValidation = () => {
+    expect(true).toBeTruthy();
+  };
   const mock = new MockAdapter(axios);
-  const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
+  const { FORGOT_TEST_ID, APPOINTMENT_TEST_ID } = TEST_ID;
+  afterEach(() => {
+    mock.reset();
+  });
+
+  beforeEach(() => {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn(),
+    };
+
+    mock
+      .onGet("/ecp/appointments/appointment-types", mockAppointmentTypes)
+      .reply(200, mockAppointmentTypes);
+    mock
+      .onGet("/ecp/appointments/insurance/allpayers", mockInsurance)
+      .reply(200, mockInsurance);
+    mock
+      .onPut("/ecp/appointments/available-slot?searchText=Texas")
+      .reply(200, submitFilter);
+    window.matchMedia = createMatchMedia("1920px");
+    global.navigator.geolocation = mockGeolocation;
+  });
+
   test('EPIC_EPP-44_STORY_EPP-1596-To verify whether the user is allowed to change the Date and Time in Appointment Review screen.', ({ given, when, and, then }) => {
-    given('user launch the Patient portal URL', () => {
-      defaultValidation()
+    given('user launch the Patient portal URL', async () => {
+      container = await renderLogin(container);
     });
 
-    when('user clicks on the Schedule Appointment button', () => {
-      defaultValidation()
+    when('user clicks on the Schedule Appointment button', async () => {
+      await doLogin(mock, container);
     });
 
-    and('user navigates to the schedule appointment screen', () => {
-      defaultValidation()
+    and('user navigates to the schedule appointment screen', async () => {
+      container = await renderScheduleAppointment();
     });
 
     and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      defaultValidation()
+      provideFilters(container);
     });
 
     and('click on Search button', () => {
-      defaultValidation()
+      clickSearch(container);
     });
 
-    and('user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit andInsurance carrier data', () => {
-      defaultValidation()
-    });
+    and('user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit andInsurance carrier data', async () => {
+      await waitFor(() =>
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
+    }
+  );
 
     and('try to update the Date and Time if already provided', () => {
       defaultValidation()
@@ -98,12 +101,12 @@ defineFeature(feature, (test) => {
   });
 
   test('EPIC_EPP-44_STORY_EPP-1596-Verify whether the user is able to review the Appointment details after updating the Date and Time.', ({ given, when, and, then }) => {
-    given('user launch the Patient portal URL', () => {
-      defaultValidation()
+    given('user launch the Patient portal URL',async () => {
+      container = await renderLogin(container);
     });
 
-    when('user clicks on the Schedule Appointment button', () => {
-      defaultValidation()
+    when('user clicks on the Schedule Appointment button', async () => {
+      await doLogin(mock, container);
     });
 
     and('user navigates to the schedule appointment screen', () => {
@@ -114,12 +117,12 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    and('click on Search button', () => {
-      defaultValidation()
+    and('click on Search button', async () => {
+      container = await renderScheduleAppointment();
     });
 
     and('user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit and Insurance carrier data', () => {
-      defaultValidation()
+      provideFilters(container);
     });
 
     and('try to update the Date and Time if already provided', () => {

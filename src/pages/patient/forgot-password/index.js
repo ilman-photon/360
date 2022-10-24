@@ -126,17 +126,40 @@ export default function ForgotPasswordPage() {
 
   const onCalledValidateAppointment = function ({ username }) {
     const postbody = {
-      patient: { userName: username },
+      username: username,
     };
     const api = new Api();
-    api
-      .validateGuestUser(postbody)
-      .then(() => {
-        onCalledOneTimeLinkSync(username);
-      })
-      .catch(() => {
-        setShowPostMessage(true);
-      });
+
+    {
+      isAppointment
+        ? api
+            .validateUserType(postbody)
+            .then(() => {
+              onCalledSendLinkSync(username);
+            })
+            .catch(() => {
+              setShowPostMessage(true);
+            })
+        : api
+            .validateUserName(postbody)
+            .then(() => {
+              setPatientData({
+                ...patientData,
+                username: username,
+                securityQuestionsSet:
+                  response.SecurityQuestions &&
+                  response.SecurityQuestions.length > 0,
+                securityQuestions: mappingSecurityData(
+                  response.SecurityQuestions[0]
+                ),
+                preferredComunication: response.PreferredComunication,
+              });
+              onContinueButtonClicked(showForm);
+            })
+            .catch(() => {
+              setShowPostMessage(true);
+            });
+    }
   };
 
   //Call API for check security question
@@ -269,6 +292,42 @@ export default function ForgotPasswordPage() {
           },
         };
         setShowPostMessage(true);
+      })
+      .catch(function () {
+        console.error("Something went wrong");
+      });
+  };
+
+  const onCalledSendLinkSync = (username) => {
+    setShowPostMessage(false);
+    const domain = window.location.origin;
+    const postbody = {
+      link: `${domain}/patient/sync/set-password`,
+      username: username,
+    };
+
+    const api = new Api();
+    api
+      .sendLinkSync(postbody)
+      .then(function () {
+        confirmationFormProps = {
+          pageTitle: "Schedule Your Appointment",
+          title: "Schedule Your Appointment",
+          subtitle,
+          postMessage,
+          postMessageTitle: "",
+          successPostMessage: true,
+          // buttonLabel: "Login with one-time link",
+          additional: null,
+          butttonMode: constants.PRIMARY,
+          // onCTAButtonClicked: () => onCalledOneTimeLinkSync(username),
+        };
+        setShowForgotPassword(false);
+        setShowSelectOption(false);
+        setShowPasswordSecurityQuestion(false);
+        setShowPasswordReset(false);
+        setShowPostMessage(true);
+        setShowOneTimeLink(true);
       })
       .catch(function () {
         console.error("Something went wrong");

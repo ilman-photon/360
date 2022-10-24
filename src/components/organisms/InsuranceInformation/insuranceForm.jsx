@@ -612,6 +612,7 @@ export default function InsuranceForm({
               return (
                 <>
                   <RowRadioButtonsGroup
+                    row={isDesktop ? true : false}
                     error={!!error}
                     value={value}
                     onChange={onChange}

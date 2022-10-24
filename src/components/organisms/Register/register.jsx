@@ -475,7 +475,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             data-testid={REGISTER_TEST_ID.loginlink}
             aria-label={`Login link`}
           >
-            <a style={styles.loginLink}>Login</a>
+            <a href="#" style={styles.loginLink}>
+              Login
+            </a>
           </Link>
         </Typography>
       </Stack>
