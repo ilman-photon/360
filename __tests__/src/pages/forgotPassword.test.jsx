@@ -10,7 +10,6 @@ import {
   createMatchMedia,
   renderForgotPassword,
 } from "../../../__mocks__/commonSteps";
-import { useRouter } from "next/router";
 
 describe("Forgot Password", () => {
   let container;

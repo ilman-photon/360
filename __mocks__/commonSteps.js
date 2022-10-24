@@ -861,3 +861,17 @@ export const clickSearch = async (container) => {
 export const defaultValidation = () => {
   expect(true).toBeTruthy();
 };
+
+export const expectPushRouter = (expectedPath) => {
+  const useRouter = jest.spyOn(require("next/router"), "useRouter");
+  useRouter.mockReturnValue({
+    back: jest.fn(),
+    asPath: "/patient",
+    push: (path) => {
+      expect(path).toEqual(expectedPath);
+    },
+    query: { assetId: "6376481f-e317-4e44-a852-5e0395446140" },
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+  });
+};
