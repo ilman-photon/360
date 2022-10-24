@@ -1,5 +1,4 @@
-import { render, fireEvent, within, act, getByText } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, fireEvent, within } from "@testing-library/react";
 
 import "@testing-library/jest-dom";
 import { AutoCompleteCreatable } from "../../../../src/components/molecules/AutoCompleteCreatable";
