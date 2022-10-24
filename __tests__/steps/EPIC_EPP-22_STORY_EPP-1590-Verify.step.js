@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import DashboardPage from "../../src/pages/patient/index";
 import { Login } from "../../src/components/organisms/Login/login";
 import store from "../../src/store/store";
-import constants from "../../src/utils/constants";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies()
