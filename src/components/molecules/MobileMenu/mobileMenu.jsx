@@ -11,7 +11,6 @@ import {
   ListItemIcon,
   ListItemText,
   SwipeableDrawer,
-  Typography,
 } from "@mui/material";
 import AutoAwesomeMosaicOutlinedIcon from "@mui/icons-material/AutoAwesomeMosaicOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
@@ -191,7 +190,11 @@ export default function MobileMenu({
                     </ListItemButton>
                   </AccordionSummary>
                   <AccordionDetails
-                    sx={{ padding: 0, backgroundColor: "#EEF5F7" }}
+                    sx={{
+                      padding: 0,
+                      paddingLeft: "24px",
+                      backgroundColor: "#EEF5F7",
+                    }}
                   >
                     <List sx={{ padding: 0 }}>
                       {submenu.map((item, index) => (

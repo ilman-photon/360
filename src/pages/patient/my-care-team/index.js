@@ -14,6 +14,8 @@ export default function MyCareTeamPage() {
   const [isRequested, setIsRequested] = useState(false);
   const [providerData, setProviderData] = useState();
 
+  let isRequest = false;
+
   const mapper = (responses) => {
     const data = [];
     responses.map((response) => {
@@ -22,7 +24,7 @@ export default function MyCareTeamPage() {
       }`;
 
       const providerItem = {
-        providerId: response.id || "",
+        providerId: response._id || "",
         image: response.providerDetails?.profilePhoto?.digitalAsset || "",
         name,
         email: response.email || "",
@@ -34,17 +36,23 @@ export default function MyCareTeamPage() {
       data.push(providerItem);
     });
 
+    isRequest = false;
     setProviderData(data);
     setIsRequested(true);
   };
 
-  useEffect(() => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getProviderList = () => {
     const api = new Api();
-    !isRequested &&
-      api.getProviderList().then((responses) => {
-        mapper(responses);
-      });
-  }, [isRequested]);
+    isRequest = true;
+    api.getProviderList().then((responses) => {
+      mapper(responses);
+    });
+  };
+
+  useEffect(() => {
+    !isRequest && !isRequested && getProviderList();
+  }, [getProviderList, isRequest, isRequested]);
 
   return (
     <>

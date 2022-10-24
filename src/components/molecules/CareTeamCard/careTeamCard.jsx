@@ -186,7 +186,7 @@ export default function CareTeamCard({ provider, onRemove }) {
       </Box>
       <Box className={styles.buttonContainer}>
         <Link
-          href={`/patient/bio/${provider.id}`}
+          href={`/patient/bio/${provider.providerId}`}
           className={styles.viewProfileLink}
         >
           View Profile

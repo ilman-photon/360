@@ -425,6 +425,11 @@ export class Api {
     }
   }
 
+  googleGeocode(address, apiKey) {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
+    return this.getResponse(url, {}, "get");
+  }
+
   getProviderList() {
     const url = `/ecp/appointments/getprovidelist/`;
     return Promise.resolve([

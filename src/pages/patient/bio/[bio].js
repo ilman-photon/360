@@ -27,18 +27,7 @@ export default function Bio({ embedApi, bio }) {
     googleMapsApiKey: embedApi,
   });
 
-  const getAddressQuery = (address) => {
-    const addressLine1 = address.addressLine1 || "";
-    const addressLine2 = address.addressLine2 || "";
-    const city = address.city || "";
-    const state = address.state || "";
-    const zipcode = address.zipcode || address.zip || "";
-
-    return `${addressLine1}+${addressLine2}+${city}+${state}+${zipcode}`.replace(
-      / /g,
-      "+"
-    );
-  };
+  let isRequest = false;
 
   const mapper = (response) => {
     const name = `${response.firstName || ""} ${response.lastName || ""}${
@@ -83,10 +72,14 @@ export default function Bio({ embedApi, bio }) {
       })
       .catch(() => {
         setProviderData(data);
+      })
+      .finally(() => {
+        isRequest = false;
       });
   };
 
   const getProviderData = () => {
+    isRequest = true;
     const api = new Api();
     !providerData &&
       api.getProviderDetails(bio).then((response) => {
@@ -95,9 +88,9 @@ export default function Bio({ embedApi, bio }) {
   };
 
   useEffect(() => {
-    getProviderData();
+    !isRequest && getProviderData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [providerData]);
+  }, [providerData, isRequest]);
 
   return (
     providerData &&
