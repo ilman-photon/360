@@ -58,7 +58,11 @@ const NotificationDrawer = ({
         <IconButton onClick={onDrawerClose} sx={{ ml: "auto", p: 0 }}>
           <CloseOutlinedIcon />
         </IconButton>
-        <Typography variant="headlineH3" color={colors.darkGreen}>
+        <Typography
+          variant="headlineH3"
+          color={colors.darkGreen}
+          data-testid="notification-drawer-title"
+        >
           Notifications and alerts
         </Typography>
       </Stack>
@@ -123,12 +127,14 @@ const NotificationDrawer = ({
                   textDecoration: "underline",
                 }}
                 onClick={onMarkAllAsRead}
+                data-testid="notification-mark-all-as-read-button"
               >
                 Mark all as read
               </Typography>
             )}
           </Stack>
 
+          {/* {JSON.stringify(notifications)} */}
           {notifications.length > 0 ? (
             <div
               style={{ flex: 1, overflow: "auto" }}

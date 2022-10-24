@@ -40,12 +40,12 @@ describe("NotificationItem", () => {
       />
     );
 
-    const isRead = container.getByTestId("notification-is-read")
+    const isRead = container.getByTestId("notification-is-new")
     expect(isRead.style.visibility).toBe("hidden")
   })
 
   it("renders new/unread notification item", async () => {
-    const isRead = container.getByTestId("notification-is-read")
+    const isRead = container.getByTestId("notification-is-new")
     expect(isRead).toBeVisible()
   })
 

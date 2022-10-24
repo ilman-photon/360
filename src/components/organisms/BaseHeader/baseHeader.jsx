@@ -205,6 +205,7 @@ export default function BaseHeader({
 
                 {/* notification badge */}
                 <IconButton
+                  data-testid="notification-badge-icon"
                   sx={{
                     px: { xs: 2, sm: 3 },
                     width: { xs: 24, md: 40 },

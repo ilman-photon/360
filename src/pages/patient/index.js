@@ -235,126 +235,126 @@ export default function HomePage({ googleApiKey }) {
 
   return (
     <>
-      {isAuthenticated && (
-        <Stack sx={{ width: "100%" }}>
-          {isDesktop ? (
-            <>
-              <Navbar isDashboard={true} />
-              <FilterHeading
-                isDesktop={isDesktop}
-                isTablet={false}
-                onSearchProvider={onSearchProvider}
-                isGeolocationEnabled={isGeolocationEnabled}
-                filterData={filterData}
-                purposeOfVisitData={filterSuggestionData.purposeOfVisit}
-                insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-                title={`${username}, Welcome to your dashboard`}
-                subtitle={"Search for a doctor"}
-                isFixed={false}
-                currentCity={currentCity}
-                onChangeLocation={fetchCurrentLocation}
-                isDashboard={true}
-              />
-            </>
-          ) : (
-            <Box
-              sx={{
-                marginTop: "-25px",
-                display: "flex",
-                width: "100%",
-                zIndex: "9",
+      {/* {isAuthenticated && ( */}
+      <Stack sx={{ width: "100%" }}>
+        {isDesktop ? (
+          <>
+            <Navbar isDashboard={true} />
+            <FilterHeading
+              isDesktop={isDesktop}
+              isTablet={false}
+              onSearchProvider={onSearchProvider}
+              isGeolocationEnabled={isGeolocationEnabled}
+              filterData={filterData}
+              purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+              insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+              title={`${username}, Welcome to your dashboard`}
+              subtitle={"Search for a doctor"}
+              isFixed={false}
+              currentCity={currentCity}
+              onChangeLocation={fetchCurrentLocation}
+              isDashboard={true}
+            />
+          </>
+        ) : (
+          <Box
+            sx={{
+              marginTop: "-25px",
+              display: "flex",
+              width: "100%",
+              zIndex: "9",
+            }}
+          >
+            <FilterResultHeading
+              isDesktop={false}
+              isTablet={false}
+              filterData={filterData}
+              onSearchProvider={onSearchProvider}
+              purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+              insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+              filter={[]}
+              onActivFilter={() => {
+                //this is intentional
               }}
-            >
-              <FilterResultHeading
-                isDesktop={false}
-                isTablet={false}
-                filterData={filterData}
-                onSearchProvider={onSearchProvider}
-                purposeOfVisitData={filterSuggestionData.purposeOfVisit}
-                insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-                filter={[]}
-                onActivFilter={() => {
-                  //this is intentional
-                }}
-                appliedFilter={[]}
-                title={`${username}, Welcome to your dashboard`}
-                subtitle={"Search for a doctor"}
-              />
-            </Box>
-          )}
+              appliedFilter={[]}
+              title={`${username}, Welcome to your dashboard`}
+              subtitle={"Search for a doctor"}
+            />
+          </Box>
+        )}
+        <Grid
+          container
+          columns={5}
+          spacing={3}
+          p={3}
+          sx={{
+            paddingTop: isDesktop ? "30px" : "46px",
+            paddingRight: { xs: "16px !important", md: "24px !important" },
+            flexDirection: !isDesktop ? "column-reverse" : "unset",
+            "@media print": {
+              paddingTop: "30px !important",
+            },
+          }}
+        >
           <Grid
-            container
-            columns={5}
-            spacing={3}
-            p={3}
+            item
+            xs={5}
+            sm={5}
+            md={2}
             sx={{
-              paddingTop: isDesktop ? "30px" : "46px",
-              paddingRight: { xs: "16px !important", md: "24px !important" },
-              flexDirection: !isDesktop ? "column-reverse" : "unset",
-              "@media print": {
-                paddingTop: "30px !important",
-              },
+              paddingLeft: { xs: "16px !important", md: "24px !important" },
             }}
           >
-            <Grid
-              item
-              xs={5}
-              sm={5}
-              md={2}
-              sx={{
-                paddingLeft: { xs: "16px !important", md: "24px !important" },
-              }}
-            >
-              <Prescriptions
-                prescriptionData={prescriptionData}
-                onViewPrescriptions={onViewPrescriptions}
-                renderRirstOnly={true}
-              />
-            </Grid>
-            <Grid
-              item
-              xs={5}
-              sm={5}
-              md={3}
-              sx={{
-                paddingLeft: { xs: "16px !important", md: "24px !important" },
-              }}
-            >
-              <AppointmentCard
-                appointmentData={appointmentData}
-                OnClickCancel={handleClickCancel}
-                onViewAppointment={onViewAppointment}
-                onClickReschedule={onClickReschedule}
-              />
-            </Grid>
+            <Prescriptions
+              prescriptionData={prescriptionData}
+              onViewPrescriptions={onViewPrescriptions}
+              renderRirstOnly={true}
+            />
           </Grid>
-          <CustomModal
-            buttonText={"OK"}
-            onClickButton={() => {
-              setModalSuccessCancel(false);
-            }}
-            open={modalSuccessCancel}
+          <Grid
+            item
+            xs={5}
+            sm={5}
+            md={3}
             sx={{
-              "& .MuiPaper-root": {
-                top: { xs: "0", md: "87px" },
-                position: { xs: "relative", md: "absolute" },
-              },
+              paddingLeft: { xs: "16px !important", md: "24px !important" },
             }}
           >
-            <Box display={"flex"} gap={"12px"}>
-              <CheckCircleIcon sx={{ color: colors.green }}></CheckCircleIcon>
-              <Typography sx={{ color: colors.darkGreen, fontSize: "22px" }}>
-                You’ve successfully cancelled this appointment
-              </Typography>
-            </Box>
-          </CustomModal>
-          <ModalCancelScheduling
-            isOpen={isOpenCancel}
-            OnClickCancel={handleClose}
-            OnCancelClicked={handleCancelSchedule}
-          />
-        </Stack>
-      )}
+            <AppointmentCard
+              appointmentData={appointmentData}
+              OnClickCancel={handleClickCancel}
+              onViewAppointment={onViewAppointment}
+              onClickReschedule={onClickReschedule}
+            />
+          </Grid>
+        </Grid>
+        <CustomModal
+          buttonText={"OK"}
+          onClickButton={() => {
+            setModalSuccessCancel(false);
+          }}
+          open={modalSuccessCancel}
+          sx={{
+            "& .MuiPaper-root": {
+              top: { xs: "0", md: "87px" },
+              position: { xs: "relative", md: "absolute" },
+            },
+          }}
+        >
+          <Box display={"flex"} gap={"12px"}>
+            <CheckCircleIcon sx={{ color: colors.green }}></CheckCircleIcon>
+            <Typography sx={{ color: colors.darkGreen, fontSize: "22px" }}>
+              You’ve successfully cancelled this appointment
+            </Typography>
+          </Box>
+        </CustomModal>
+        <ModalCancelScheduling
+          isOpen={isOpenCancel}
+          OnClickCancel={handleClose}
+          OnCancelClicked={handleCancelSchedule}
+        />
+      </Stack>
+      {/* )} */}
     </>
   );
 }

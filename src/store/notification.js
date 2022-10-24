@@ -41,7 +41,8 @@ export const notificationStore = createSlice({
       state.list = payload;
       state.status = "success";
     },
-    [fetchNotifications.rejected]: (state) => {
+    [fetchNotifications.rejected]: (state, action) => {
+      state.error = action;
       state.status = "failed";
     },
   },

@@ -137,7 +137,7 @@ const NotificationItem = ({ data = {}, isRead = true, onClick = () => {} }) => {
     >
       <Grid item xs={1}>
         <div
-          data-testid="notification-is-read"
+          data-testid="notification-is-new"
           style={{
             backgroundColor: "black",
             borderRadius: "50%",
@@ -170,6 +170,7 @@ const NotificationItem = ({ data = {}, isRead = true, onClick = () => {} }) => {
           variant="headlineH4"
           sx={{ fontWeight: 400 }}
           data-testid="notification-date"
+          value={data.createdAt}
         >
           {getTime()}
         </Typography>
