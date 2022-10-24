@@ -21,7 +21,6 @@ import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
-import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
@@ -179,18 +178,7 @@ export default function BaseHeader({
                   <MenuIcon />
                 </IconButton>
               </Box>
-              {isPrescription ? (
-                <MobileNavMenu
-                  navMenu={prescriptionMenus}
-                  isOpen={anchorElNav}
-                  onClose={() => {
-                    setAnchorElNav(false);
-                  }}
-                  onLogoutClicked={() => {
-                    OnLogoutClicked(router);
-                  }}
-                />
-              ) : (
+              {(
                 <AccountDrawer
                   onClose={() => {
                     setAnchorElNav(false);
@@ -262,19 +250,19 @@ export default function BaseHeader({
               </Box>
             </Toolbar>
           ) : (
-            <Toolbar disableGutters>
-              <Image
-                src={logo}
-                width="124px"
-                height="36px"
-                role={"img"}
-                quality={100}
-                style={styles.logoStyled}
-                aria-label={"Clarkson Eyecare logo"}
-                tabIndex={0}
-              ></Image>
-            </Toolbar>
-          )}
+              <Toolbar disableGutters>
+                <Image
+                  src={logo}
+                  width="124px"
+                  height="36px"
+                  role={"img"}
+                  quality={100}
+                  style={styles.logoStyled}
+                  aria-label={"Clarkson Eyecare logo"}
+                  tabIndex={0}
+                ></Image>
+              </Toolbar>
+            )}
         </Container>
       </AppBar>
       {backTitle && (

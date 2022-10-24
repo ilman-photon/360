@@ -29,8 +29,14 @@ function AppointmentDetailTable(alergies, isExpandAll) {
   useEffect(() => {
     setOpenAllergies(isExpandAll);
   }, [isExpandAll]);
-  const temp = Object.keys(alergies?.list?.[0] || {});
-  const isEmptyData = (alergies?.list?.length || 0) === 0;
+
+  let temp = {};
+  let isEmptyData = true;
+  if (alergies && alergies.list && alergies.list.length > 0) {
+    temp = Object.keys(alergies.list[0]);
+    isEmptyData = false;
+  }
+
   return (
     <Box sx={{ pt: 2 }}>
       <Box
