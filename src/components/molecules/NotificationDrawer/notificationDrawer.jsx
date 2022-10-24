@@ -33,7 +33,7 @@ const NotificationDrawer = ({
   onMarkAllAsRead = () => {
     // This is intentional
   },
-  onMarkAsRead = () => {
+  onItemClicked = () => {
     // This is intentional
   },
 }) => {
@@ -152,7 +152,7 @@ const NotificationDrawer = ({
                         key={index}
                         isRead={item.isRead}
                         data={item}
-                        onClick={() => onMarkAsRead(item.id)}
+                        onClick={() => onItemClicked(item)}
                       />
                     );
                   })}

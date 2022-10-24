@@ -119,8 +119,9 @@ export default function BaseHeader({
     dispatch(markAllAsRead());
   };
 
-  const handleMarkAsReadById = (id) => {
-    dispatch(markAsReadById(id));
+  const handleNotificationItemClicked = (data) => {
+    dispatch(markAsReadById(data.id));
+    console.log("redirect to:", data.type);
   };
 
   const prescriptionMenus = [
@@ -367,7 +368,7 @@ export default function BaseHeader({
         loading={isNotificationLoading}
         onDrawerClose={() => setNotificationDrawerOpened(false)}
         onMarkAllAsRead={handleMarkAllAsRead}
-        onMarkAsRead={handleMarkAsReadById}
+        onItemClicked={handleNotificationItemClicked}
         notifications={notifications}
       />
     </>
