@@ -147,6 +147,7 @@ export default function HomePage({ googleApiKey }) {
       .then(function (response) {
         const upcomingAppointment = [];
         response.entities.map((data) => {
+          const appointmentType = filterSuggestionData?.purposeOfVisit || [];
           const mappedData = appointmentParser(data);
           upcomingAppointment.push(mappedData);
         });
@@ -193,7 +194,7 @@ export default function HomePage({ googleApiKey }) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated]);
+  }, [isAuthenticated, filterSuggestionData]);
 
   useEffect(() => {
     onCalledGetAppointmentTypesAPI();
