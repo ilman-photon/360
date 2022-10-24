@@ -1,10 +1,14 @@
 import moment from "moment";
+import { Router } from "next/router";
+import { Api } from "../pages/api/api";
+import { setFilterBy, setProviderListData } from "../store/appointment";
 import constants from "./constants";
 import {
   convertTime24to12,
   mmddyyDateFormat,
   yyyymmddDateFormat,
 } from "./dateFormatter";
+import { useDispatch, useSelector } from "react-redux";
 
 function isValidDate(d) {
   return d instanceof Date && !isNaN(d);
@@ -742,4 +746,66 @@ export function parseProviderListData(response, startDate, endDate) {
   }
 
   return data;
+}
+
+export function onCalledGetAppointmentTypesAPI(insuranceCarrierList, callback) {
+  const api = new Api();
+  api
+    .getAppointmentTypes()
+    .then(function (response) {
+      console.log(parsePurposeOfVisit(response?.entities || []));
+      const filterSuggestion = {
+        purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
+        insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
+      };
+      callback(filterSuggestion);
+    })
+    .catch(function () {
+      //Handle error getsuggestion
+    });
+}
+
+export function onCallSubmitFilterAPI(
+  requestData,
+  filterSuggestionData,
+  dispatch,
+  router
+) {
+  const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
+    (element) => element.title === requestData.purposeOfVisit
+  );
+  const startDateRequest = getMondayOfCurrentWeek(requestData.date);
+  const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
+  const postBody = {
+    appointmentType: {
+      code: selectedAppointmentType?.id || "ALL",
+    },
+    currentDate: startDateRequest,
+    numDays: 6,
+    days: ["ALL"],
+    prefTime: "ALL",
+  };
+  const api = new Api();
+
+  api
+    .submitFilter(requestData.location, postBody)
+    .then(function (response) {
+      const parseProviderData = parseProviderListData(
+        response,
+        postBody.currentDate,
+        endDateRequest
+      );
+      if (response?.offices?.length > 0) {
+        dispatch(setProviderListData(parseProviderData?.listOfProvider));
+      } else {
+        dispatch(setProviderListData([]));
+      }
+      dispatch(setFilterBy(parseProviderData.filterbyData));
+    })
+    .catch(function () {
+      dispatch(setProviderListData([]));
+    })
+    .finally(function () {
+      router.push("/patient/appointment");
+    });
 }

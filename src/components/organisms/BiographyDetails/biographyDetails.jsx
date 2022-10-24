@@ -5,6 +5,7 @@ import { useRef, useState, useEffect } from "react";
 import constants from "../../../utils/constants";
 import GMaps from "../Google/Maps/gMaps";
 import { Api } from "../../../pages/api/api";
+import { formattedAddress } from "../../../utils/bioUtils";
 
 export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   const aboutRef = useRef(null);
@@ -84,7 +85,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   };
 
   const getAddressQuery = (address) => {
-    const addressLine1 = address.addressLine1.replace(/#/g, "") || "";
+    const addressLine1 = address.addressLine1?.replace(/#/g, "") || "";
     const addressLine2 = address.addressLine2 || "";
     const city = address.city || "";
     const state = address.state || "";
@@ -164,21 +165,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                 className={styles.mapAddress}
                 tabIndex={0}
               >
-                {newAddress && (
-                  <>
-                    {newAddress.addressLine1}
-                    <br />
-                    {newAddress.addressLine2 && (
-                      <>
-                        {newAddress.addressLine2}
-                        <br />
-                      </>
-                    )}
-                    {newAddress.city && `${newAddress.city},`}{" "}
-                    {newAddress.state && `${newAddress.state},`}{" "}
-                    {newAddress.zip}
-                  </>
-                )}
+                {newAddress && formattedAddress(newAddress)}
               </Typography>
               <Box className={styles.getDirectionLinkContainer}>
                 <DirectionsOutlinedIcon></DirectionsOutlinedIcon>

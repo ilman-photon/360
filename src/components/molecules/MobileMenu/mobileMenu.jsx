@@ -88,9 +88,15 @@ export default function MobileMenu({
     },
   ],
   open = false,
-  onClose = () => {},
-  onOpen = () => {},
-  onLogout = () => {},
+  onClose = () => {
+    //This is intentional
+  },
+  onOpen = () => {
+    //This is intentional
+  },
+  onLogout = () => {
+    //This is intentional
+  },
 }) {
   const router = useRouter();
   const typographyStyle = {

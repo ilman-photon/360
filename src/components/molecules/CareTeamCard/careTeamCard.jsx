@@ -6,7 +6,6 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import Image from "next/image";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import { StyledButton } from "../../atoms/Button/button";
@@ -14,15 +13,21 @@ import styles from "./styles.module.scss";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { useDispatch } from "react-redux";
-import { setFilterData } from "../../../store/appointment";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilterData, setIsFilterApplied } from "../../../store/appointment";
 import { useRouter } from "next/router";
 import ImageFallback from "../../atoms/Image/image";
+import moment from "moment";
+import {
+  onCalledGetAppointmentTypesAPI,
+  onCallSubmitFilterAPI,
+} from "../../../utils/appointment";
 
-export default function CareTeamCard({ provider, onRemove }) {
+export default function CareTeamCard({ provider }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();
+  const insuranceCarrierList = useSelector((state) => state.provider.list);
 
   const addressLine1 = provider.address.addressLine1
     ? `${provider.address.addressLine1} `
@@ -39,10 +44,15 @@ export default function CareTeamCard({ provider, onRemove }) {
   const navigateToScheduleAppointment = () => {
     const filterData = {
       location: state,
+      date: moment().format("MM/DD/YYYY"),
+      purposeOfVisit: provider.specialties,
     };
 
     dispatch(setFilterData(filterData));
-    router.push("/patient/appointment/");
+    dispatch(setIsFilterApplied(true));
+    onCalledGetAppointmentTypesAPI(insuranceCarrierList, (filterSuggestion) => {
+      onCallSubmitFilterAPI(filterData, filterSuggestion, dispatch, router);
+    });
   };
 
   const handleClick = (event) => {

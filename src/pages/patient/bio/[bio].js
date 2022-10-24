@@ -1,5 +1,5 @@
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import ProviderProfile from "../../../components/molecules/ProviderProfile/providerProfile";
 import BiographyDetails from "../../../components/organisms/BiographyDetails/biographyDetails";
@@ -9,6 +9,13 @@ import { Api } from "../../api/api";
 import { useEffect, useState } from "react";
 import { getLanguage, getArrayValue } from "../../../utils/bioUtils";
 import { useLoadScript } from "@react-google-maps/api";
+import { setFilterData, setIsFilterApplied } from "../../../store/appointment";
+import moment from "moment";
+import { useRouter } from "next/router";
+import {
+  onCalledGetAppointmentTypesAPI,
+  onCallSubmitFilterAPI,
+} from "../../../utils/appointment";
 
 export async function getServerSideProps(context) {
   const { bio } = context.query;
@@ -22,6 +29,10 @@ export async function getServerSideProps(context) {
 
 export default function Bio({ embedApi, bio }) {
   const [providerData, setProviderData] = useState();
+  const insuranceCarrierList = useSelector((state) => state.provider.list);
+
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: embedApi,
@@ -92,12 +103,39 @@ export default function Bio({ embedApi, bio }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerData, isRequest]);
 
+  const navigateToScheduleAppointment = (data) => {
+    console.log(data);
+    const address = data.address;
+    const addressData = Array.isArray(address) ? address[0] : address;
+    const specialties = Array.isArray(data.specialties)
+      ? data.specialties[0]
+      : data.specialties;
+    const state = addressData.state;
+    const filterData = {
+      location: state,
+      date: moment().format("MM/DD/YYYY"),
+      purposeOfVisit: specialties,
+    };
+
+    dispatch(setFilterData(filterData));
+    dispatch(setIsFilterApplied(true));
+    onCalledGetAppointmentTypesAPI(insuranceCarrierList, (filterSuggestion) => {
+      onCallSubmitFilterAPI(filterData, filterSuggestion, dispatch, router);
+    });
+  };
+
   return (
     providerData &&
     isLoaded && (
       <Box className={styles.bioPage}>
         <Box className={styles.shortBioContainer}>
-          <ProviderProfile providerData={providerData} variant={"bio"} />
+          <ProviderProfile
+            providerData={providerData}
+            variant={"bio"}
+            navigateToScheduleAppointment={(data) => {
+              navigateToScheduleAppointment(data);
+            }}
+          />
         </Box>
         <BiographyDetails googleApiKey={embedApi} providerData={providerData} />
       </Box>

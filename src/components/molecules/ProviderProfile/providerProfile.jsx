@@ -4,9 +4,9 @@ import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 import { TEST_ID } from "../../../utils/constants";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import { StyledButton } from "../../atoms/Button/button";
+import { formattedAddress } from "../../../utils/bioUtils";
 
 const renderSpecialistList = (providerData) => {
   return (
@@ -53,7 +53,9 @@ export default function ProviderProfile({
   imageSize = "large",
   bioContainerClass = "",
   addressClass = "",
-  isCard = false,
+  navigateToScheduleAppointment = () => {
+    //This is intentional
+  },
 }) {
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
@@ -63,25 +65,16 @@ export default function ProviderProfile({
 
   const router = useRouter();
 
-  const phoneNumber = providerData.phoneNumber;
-
   const getAddress = (address) => {
     const addressData = Array.isArray(address) ? address[0] : address;
     if (!addressData) return;
-    return (
-      <>
-        {addressData.addressLine1}
-        <br />
-        {address.addressLine2 && (
-          <>
-            {address.addressLine2}
-            <br />
-          </>
-        )}
-        {addressData.city}, {addressData.state},{" "}
-        {addressData.zipcode || addressData.zip}
-      </>
-    );
+    return formattedAddress(addressData);
+  };
+
+  const getAddressName = (address) => {
+    const addressData = Array.isArray(address) ? address[0] : address;
+    if (!addressData) return null;
+    return addressData.name;
   };
 
   function getNameFontSize() {
@@ -125,17 +118,23 @@ export default function ProviderProfile({
     return isNotBio ? "unset" : bioWidth;
   }
 
-  const navigateToScheduleAppointment = () => {
-    const address = providerData.address;
-    const addressData = Array.isArray(address) ? address[0] : address;
-    const state = addressData.state;
-    const filterData = {
-      location: state,
-    };
-
-    dispatch(setFilterData(filterData));
-    router.push("/patient/appointment/");
-  };
+  function renderRatingAndPhone() {
+    if (isShownPhoneAndRating) {
+      return (
+        <Box
+          className={isBio ? styles.ratingContainer : styles.phoneContainer}
+          sx={{ marginLeft: isMap ? "-67px" : "0" }}
+        >
+          {(isBio || isMap || (isViewSchedule && isShownRating)) && (
+            <StyledRating value={parseFloat(providerData.rating)} />
+          )}
+          <PhoneNumber phone={providerData.phoneNumber} />
+        </Box>
+      );
+    } else {
+      return null;
+    }
+  }
 
   return (
     <Box
@@ -174,7 +173,7 @@ export default function ProviderProfile({
           </Typography>
           {showPosition && (
             <Typography variant="h3" tabIndex={0}>
-              Scripps Eyecare
+              {getAddressName(providerData.address)}
             </Typography>
           )}
           <Box className={styles.detailContainer}>
@@ -200,19 +199,7 @@ export default function ProviderProfile({
                   {getAddress(providerData.address)}
                 </Typography>
               </Box>
-              {isShownPhoneAndRating && (
-                <Box
-                  className={
-                    isBio ? styles.ratingContainer : styles.phoneContainer
-                  }
-                  sx={{ marginLeft: isMap ? "-67px" : "0" }}
-                >
-                  {(isBio || isMap || (isViewSchedule && isShownRating)) && (
-                    <StyledRating value={parseFloat(providerData.rating)} />
-                  )}
-                  <PhoneNumber phone={phoneNumber} />
-                </Box>
-              )}
+              {renderRatingAndPhone()}
               {isBio && (
                 <Box marginTop={"10px"}>
                   <StyledButton
@@ -221,7 +208,7 @@ export default function ProviderProfile({
                     size={"small"}
                     gradient={false}
                     onClick={() => {
-                      navigateToScheduleAppointment();
+                      navigateToScheduleAppointment(providerData);
                     }}
                   >
                     Schedule Appointment
