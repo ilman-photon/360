@@ -22,7 +22,6 @@ import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
@@ -39,7 +38,6 @@ export default function BaseHeader({
   },
   backTitle,
   onBackClicked,
-  isPrescription = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
@@ -259,28 +257,15 @@ export default function BaseHeader({
                   </IconButton>
                 </Box>
 
-                {isPrescription ? (
-                  <MobileNavMenu
-                    navMenu={prescriptionMenus}
-                    isOpen={anchorElNav}
-                    onClose={() => {
-                      setAnchorElNav(false);
-                    }}
-                    onLogoutClicked={() => {
-                      OnLogoutClicked(router);
-                    }}
-                  />
-                ) : (
-                  <AccountDrawer
-                    onClose={() => {
-                      setAnchorElNav(false);
-                    }}
-                    opened={anchorElNav}
-                    onLogoutClicked={() => {
-                      OnLogoutClicked(router);
-                    }}
-                  />
-                )}
+                <AccountDrawer
+                  onClose={() => {
+                    setAnchorElNav(false);
+                  }}
+                  opened={anchorElNav}
+                  onLogoutClicked={() => {
+                    OnLogoutClicked(router);
+                  }}
+                />
 
                 {/* profile menu */}
                 <Box sx={styles.boxProfileMenuStyles}>
