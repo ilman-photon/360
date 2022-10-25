@@ -7673,7 +7673,7 @@ export const carePlan = {
   count: 2,
   entities: [
     {
-      name: "MEDICAL_CERTIFICATE_OF_FITNESS2",
+      name: "MEDICAL_CERTIFICATE_OF_FITNESS1",
       documentType: "application/pdf",
       category: "care-plan",
       uploadedBy: {
@@ -7752,7 +7752,56 @@ export const carePlan = {
       digital_assets: {
         _id: "23d9d6de-8689-48d0-9427-844087dde75e",
       },
-      _id: "1d06a57a-418f-479a-b800-f9eae273b51a",
+      _id: "1d06a57a-418f-479a-b800-f9eae273b51b",
+      _version: "53c0b7af-9bb6-4f86-8ac5-2cde8bcc84dd",
+      _created: "Oct 7, 2022, 10:00:34 AM",
+      _updated: "Oct 7, 2022, 10:00:34 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/patients/1d06a57a-418f-479a-b800-f9eae273b51a",
+        },
+      },
+    },
+    {
+      name: "MEDICAL_CERTIFICATE_OF_FITNESS3",
+      documentType: "application/pdf",
+      category: "care-plan",
+      uploadedBy: {
+        uid: "2818ef11-208b-4f43-b471-06ad495381f1",
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      patientId: "95090352-de7b-485b-8a7b-9c1255a15070",
+      status: "CREATED",
+      digital_assets: {
+        _id: "23d9d6de-8689-48d0-9427-844087dde75e",
+      },
+      _id: "1d06a57a-418f-479a-b800-f9eae273b51c",
       _version: "53c0b7af-9bb6-4f86-8ac5-2cde8bcc84dd",
       _created: "Oct 7, 2022, 10:00:34 AM",
       _updated: "Oct 7, 2022, 10:00:34 AM",
