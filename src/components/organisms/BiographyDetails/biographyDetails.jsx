@@ -7,7 +7,7 @@ import GMaps from "../Google/Maps/gMaps";
 import { Api } from "../../../pages/api/api";
 import { formattedAddress } from "../../../utils/bioUtils";
 
-export default function BiographyDetails({ providerData = {}, googleApiKey }) {
+export default function BiographyDetails({ providerData, googleApiKey }) {
   const aboutRef = useRef(null);
   const locationRef = useRef(null);
   const insurancesRef = useRef(null);
@@ -98,8 +98,9 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   };
 
   useEffect(() => {
-    !isRequest && Object.keys(providerData).length > 0 && getLocation();
-  }, [getLocation, isRequest, locations, providerData]);
+    !isRequest && providerData && getLocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRequest, locations, providerData]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getLocation = () => {

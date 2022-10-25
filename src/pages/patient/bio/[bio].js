@@ -63,7 +63,7 @@ export default function Bio({ embedApi, bio }) {
       gender,
       address,
       language,
-      networkInsurance: [],
+      networkInsurance: response.networkInsurance || [],
       education: getArrayValue(response.providerDetails?.education),
       membershipsAffiliation: getArrayValue(
         response.providerDetails?.membershipAndAffiliation

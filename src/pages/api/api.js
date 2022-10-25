@@ -455,7 +455,7 @@ export class Api {
   }
 
   getProviderList() {
-    const url = `/ecp/appointments/getprovidelist/`;
+    const url = `/ecp/appointments/getproviderlist/`;
     return Promise.resolve([
       {
         designation: "MBBS, MD",
