@@ -1,19 +1,12 @@
-import "@testing-library/jest-dom";
 import {
-  act,
-  cleanup,
-  fireEvent,
   render,
-  waitFor,
-  waitForElementToBeRemoved,
+  fireEvent,
 } from "@testing-library/react";
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
-import { Provider } from "react-redux";
-import store from "../../../src/store/store";
-import Cookies from "universal-cookie";
-import AppointmentDetails from "../../../src/pages/patient/appointments/detail-appoiments/[appointmentId]";
-import { TEST_ID } from "../../../src/utils/constants";
+import "@testing-library/jest-dom";
+
+import DetailAppointment from "../../../../src/components/organisms/DetailAppointment/detailAppointment";
+import { parseAppointmentDetails } from "../../../../src/utils/appointment";
+import { TEST_ID } from "../../../../src/utils/constants";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -28,10 +21,8 @@ jest.mock("universal-cookie", () => {
   return MockCookies;
 });
 
-describe("Render Appointment", () => {
-  let container;
-  const mock = new MockAdapter(axios);
-  const userData = {
+describe("Detail Appointment Organism", () => {
+  const mocData = {
     appointmentId: "1",
     providerInfo: {
       providerId: "1",
@@ -50,10 +41,7 @@ describe("Render Appointment", () => {
       image: "/doctor.png",
       from: "2022-07-18",
       to: "2022-07-23",
-      location: {
-        latitude: 32.751204,
-        longitude: -117.1641166,
-      },
+      location: { latitude: 32.751204, longitude: -117.1641166 },
     },
     patientInfo: {
       name: "Rebecca Chan",
@@ -258,16 +246,7 @@ describe("Render Appointment", () => {
             },
           ],
         },
-        {
-          type: "Implants",
-          list: [
-            {
-              id: "",
-              date: "",
-              authority: "",
-            },
-          ],
-        },
+        { type: "Implants", list: [{ id: "", date: "", authority: "" }] },
         {
           type: "Functional Status",
           list: [
@@ -282,12 +261,7 @@ describe("Render Appointment", () => {
         {
           type: "Mental Status",
           list: [
-            {
-              cognitive_finding: "",
-              observation: "",
-              date: "",
-              status: "",
-            },
+            { cognitive_finding: "", observation: "", date: "", status: "" },
           ],
         },
         {
@@ -330,66 +304,20 @@ describe("Render Appointment", () => {
             },
           ],
         },
-        {
-          type: "Assessments",
-          list: [
-            {
-              assessment: "",
-            },
-          ],
-        },
-        {
-          type: "Health Concerns",
-          list: [{}],
-        },
-        {
-          type: "Goals section",
-          list: [
-            {
-              goal: "",
-              value: "",
-              date: "",
-            },
-          ],
-        },
+        { type: "Assessments", list: [{ assessment: "" }] },
+        { type: "Health Concerns", list: [{}] },
+        { type: "Goals section", list: [{ goal: "", value: "", date: "" }] },
         {
           type: "Plan of Treatment",
           list: [
-            {
-              activity: "CVE 1 Year",
-              date: "",
-              status: "active",
-            },
-            {
-              activity: "CVE 1 Yr",
-              date: "",
-              status: "active",
-            },
-            {
-              activity: "CVE 1 Yr",
-              date: "",
-              status: "active",
-            },
-            {
-              activity: "Glasses",
-              date: "",
-              status: "active",
-            },
+            { activity: "CVE 1 Year", date: "", status: "active" },
+            { activity: "CVE 1 Yr", date: "", status: "active" },
+            { activity: "CVE 1 Yr", date: "", status: "active" },
+            { activity: "Glasses", date: "", status: "active" },
           ],
         },
-        {
-          type: "Reason for Referral",
-          list: [{}],
-        },
-        {
-          type: "Interventions",
-          list: [
-            {
-              resource: "",
-              date: "",
-            },
-          ],
-        },
+        { type: "Reason for Referral", list: [{}] },
+        { type: "Interventions", list: [{ resource: "", date: "" }] },
         {
           type: "Encounters",
           list: [
@@ -406,85 +334,51 @@ describe("Render Appointment", () => {
       ],
       documentation: {
         name: "Care Provision",
+        list: [
+          { name: "Date/Time", value: "Lorem Ipsum" },
+          { name: "Performer", value: "Lorem Ipsum" },
+          { name: "Performer", value: "Lorem Ipsum" },
+          { name: "Performer", value: "Lorem Ipsum" },
+          { name: "Performer", value: "Lorem Ipsum" },
+          { name: "Performer", value: "Lorem Ipsum" },
+          { name: "Performer", value: "Lorem Ipsum" },
+        ],
       },
     },
   };
-  const renderPage = () => {
-    act(() => {
-      container = render(
-        <Provider store={store}>
-          {AppointmentDetails.getLayout(<AppointmentDetails />)}
-        </Provider>
-      );
-    });
-  };
-  beforeEach(async () => {
-    mock
-      .onGet(
-        `${window.location.origin}/api/dummy/appointment/my-appointment/getAppointmentDetails`
-      )
-      .reply(200, userData);
+  let container;
+  const parseData = parseAppointmentDetails(mocData);
+  beforeEach(() => {
+    container = render(<DetailAppointment data={parseData} />);
   });
-
   afterAll(() => {
-    mock.reset();
     jest.resetAllMocks();
   });
 
-  test("is Appointment page render", async () => {
-    // Cookies.result = { authorized: true };
-    // const savePDF = jest.spyOn(require("@progress/kendo-react-pdf"), "savePDF");
-    // renderPage();
-    // await waitFor(() => container.getByText("No Know Allergies"));
-    // const allergies = container.getByText("No Know Allergies");
-    // expect(container.getByText(userData.providerInfo.name)).toBeInTheDocument();
-    // const buttonCollapseAll = container.getByTestId(
-    //   TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.expandCollapseAll
-    // );
-    // const buttonCollapseSection = container.getAllByTestId(
-    //   TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.expandCollapseSection
-    // );
-    // const buttonDownload = container.getByTestId(
-    //   TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.download
-    // );
-    // act(() => {
-    //   fireEvent.click(buttonCollapseAll);
-    // });
-    // await waitForElementToBeRemoved(() =>
-    //   container.getByText("No Know Allergies")
-    // );
-    expect(true).toBeTruthy();
-    // expect(allergies).not.toBeInTheDocument();
-    // act(() => {
-    //   fireEvent.click(buttonCollapseSection[0]);
-    // });
-    // await waitFor(() => container.getByText("No Know Allergies"));
-    // expect(container.getByText("No Know Allergies")).toBeInTheDocument();
-    // act(() => {
-    //   fireEvent.click(buttonDownload);
-    // });
-    // await waitFor(() => expect(savePDF).toBeCalled());
+  it("Render Appointment with true data", () => {
+    expect(container.getByText("Rebecca Chan")).toBeInTheDocument();
   });
 
-  test("is Appointment page render non login user", async () => {
-    Cookies.result = false;
-    renderPage();
-    await waitFor(() => container.getAllByTestId("subNavigation-link"));
-    expect(container.getByText("Back to Appointments")).toBeInTheDocument();
-  });
+  it("Handle Click Download", () => {
+    const downloadButton = container?.getByTestId(
+      TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.download
+    );
+    fireEvent.click(downloadButton);
+  }); 
 
-  test("is Appointment page render request failed", async () => {
-    mock
-      .onGet(
-        `${window.location.origin}/api/dummy/appointment/my-appointment/getAppointmentDetails`
-      )
-      .reply(500, userData);
-    renderPage();
-    await waitFor(() => container.getAllByTestId("subNavigation-link"));
-    expect(
-      container.getAllByTestId("subNavigation-link")[0]
-    ).toBeInTheDocument();
+  it("Handle Click Expand", () => {
+    const expandClick = container?.getByTestId(
+      TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.expandCollapseAll
+    );
+    fireEvent.click(expandClick);
+  }); 
 
-    fireEvent.click(container.getAllByTestId("subNavigation-link")[0]);
-  });
+  it("Handle Click Accordion Container", () => {
+    const expandSectionClick = container?.getAllByTestId(
+      TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.expandCollapseSection
+    )[0];
+    fireEvent.click(expandSectionClick);
+  }); 
+
+
 });

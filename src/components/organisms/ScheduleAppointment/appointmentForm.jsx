@@ -18,7 +18,9 @@ import Link from "@mui/material/Link";
 import { getLinkAria } from "../../../utils/viewUtil";
 import FormLabel from "@mui/material/FormLabel";
 import { useRouter } from "next/router";
+import FormMessage from "../../molecules/FormMessage/formMessage";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
+import { colors } from "../../../styles/theme";
 
 const DisclaimerText = (data) => {
   return (
@@ -52,6 +54,7 @@ export default function AppointmentForm({
   OnClickSignIn = () => {
     // This is intended
   },
+  formMessage = null,
 }) {
   const { handleSubmit, control, watch } = useForm({
     defaultValues: patientData,
@@ -65,7 +68,7 @@ export default function AppointmentForm({
   };
 
   const onSubmit = (data) => {
-    OnClickSchedule();
+    OnClickSchedule(data);
     OnSubmit(data);
   };
 
@@ -211,6 +214,16 @@ export default function AppointmentForm({
     }
   };
 
+  const formMessageComp = React.useRef(null);
+  React.useEffect(() => {
+    if (formMessageComp.current)
+      formMessageComp.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+  }, [formMessage]);
+
   return (
     <Stack spacing={2}>
       {/* <Stack spacing={2}> */}
@@ -227,6 +240,23 @@ export default function AppointmentForm({
         >
           {isForMyself ? t("selfTitle") : t("someoneElseTitle")}
         </Typography>
+
+        {formMessage?.content ? (
+          <FormMessage
+            ref={formMessageComp}
+            success={formMessage.success}
+            title={formMessage.title}
+            isBackToLogin={formMessage.isBackToLogin}
+            isSchedule
+            sx={{
+              width: "71%",
+            }}
+          >
+            {formMessage.content}
+          </FormMessage>
+        ) : (
+          ""
+        )}
         {isForMyself ? (
           <Box sx={{ mt: 2, display: "flex" }}>
             <Typography sx={styles.sigInInfoLabel} variant="h1">
@@ -542,8 +572,11 @@ export default function AppointmentForm({
             variant="contained"
             sx={{
               width: { xs: "100%", md: "222px" },
-              background: "#0095A9",
+              background: colors.primaryButton,
               mt: 2,
+              "&:hover": {
+                backgroundColor: colors.teal,
+              },
             }}
             style={styles.continueButton}
           >

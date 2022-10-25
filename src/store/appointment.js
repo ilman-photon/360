@@ -69,6 +69,7 @@ const buildAppointmentData = (payload) => {
       id: payload._id,
       providerTemplate: payload.providerTemplate,
       office: payload.office,
+      state: payload.state,
     },
   };
 };
@@ -78,7 +79,6 @@ const buildAppointmentData = (payload) => {
  * @param {*} payload
  */
 const buildAppointmentPostBody = (payload) => {
-  console.log("app post body", { payload });
   const patientInfoData = payload.patientInfo;
   const providerInfoData = payload.providerInfo;
   const appointmentInfoData = payload.appointmentInfo;
@@ -131,7 +131,6 @@ export const rescheduleAppointment = createAsyncThunk(
     const api = new Api();
     try {
       const postBody = buildAppointmentPostBody(payload);
-      console.log("postbody to be sent to API", postBody);
       const response = await api.getResponse(
         `/ecp/appointments/reschedule/${appointmentId}`,
         postBody,
@@ -161,6 +160,7 @@ const appointmentSlice = createSlice({
     providerListData: [],
     filterBy: [],
     activeFilterBy: [],
+    cancel: [],
   },
   reducers: {
     setAppointmentSchedule: (state, { payload }) => {
@@ -228,6 +228,9 @@ const appointmentSlice = createSlice({
     },
     setFilterBy: (state, { payload }) => {
       state.filterBy = payload;
+    },
+    setCancelSchedule: (state, { payload }) => {
+      state.cancel = payload;
     },
   },
   extraReducers: {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Divider, Grid, Stack, Typography } from "@mui/material";
 import ProviderProfile from "../../../molecules/ProviderProfile/providerProfile";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
