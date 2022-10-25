@@ -8,6 +8,7 @@ exports[`GMaps GMaps render 1`] = `
       "lng": -87.623177,
     }
   }
+  clickableIcons={true}
   mapContainerStyle={
     Object {
       "height": "100%",
@@ -19,6 +20,7 @@ exports[`GMaps GMaps render 1`] = `
   zoom={6}
 >
   <UNDEFINED
+    clickable={true}
     data-testid="schedule_appointment_maps_pin_marker"
     icon={
       Object {
