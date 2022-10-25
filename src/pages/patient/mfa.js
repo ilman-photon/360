@@ -5,7 +5,7 @@ import SetMultiFactorAuthentication from "../../components/organisms/MultiFactor
 import MultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
 import constants from "../../utils/constants";
 import SecurityQuestion from "../../components/organisms/SecurityQuestion/securityQuestion";
-import { Box, fabClasses, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Cookies from "universal-cookie";
 import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import FormMessage from "../../components/molecules/FormMessage/formMessage";

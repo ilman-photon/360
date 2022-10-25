@@ -2,7 +2,10 @@ import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
 import { viewAllAvailabilityLinkUI } from "../WeekAvailability/WeekAvailability";
 import { buttonSchedule } from "../DayAvailability/DayAvailability";
-import { parseScheduleDataDay } from "../../../utils/appointment";
+import {
+  getAppointmentTypeOnTimeSlot,
+  parseScheduleDataDay,
+} from "../../../utils/appointment";
 
 export const ScheduleAvailability = ({
   scheduleData = [],
@@ -56,7 +59,8 @@ export const ScheduleAvailability = ({
             idx,
             OnDayClicked,
             stringCurrentDate,
-            true
+            true,
+            getAppointmentTypeOnTimeSlot(scheduleData[currentDateIndex], option)
           );
         })}
       </Box>

@@ -124,10 +124,8 @@ export default function Appointment({ googleApiKey }) {
   );
 
   useEffect(() => {
-    console.log("maps is loaded");
     if (!window.google) return;
     const distanceService = new google.maps.DistanceMatrixService();
-    console.log({ distanceService });
     const orig = { lat: -6.8770974, lng: 107.6108204 };
     const dest = { lat: -6.8769662, lng: 107.6109715 };
     distanceService.getDistanceMatrix(
@@ -151,12 +149,6 @@ export default function Appointment({ googleApiKey }) {
             for (const element of results) {
               const distanceString = element.distance.text;
               const durationString = element.duration.text;
-              console.log({
-                dist: parseInt(distanceString, 10),
-                dur: {
-                  duration: parseInt(durationString, 10),
-                },
-              });
             }
           }
         }
@@ -351,10 +343,11 @@ export default function Appointment({ googleApiKey }) {
     (state) => state.appointment.appointmentSchedule.providerInfo
   );
 
-  const handleDayClicked = (appointmentDate, providerData) => {
+  const handleDayClicked = (appointment, providerData) => {
     const appointmentInfoObj = {
       ...appointmentInfo,
-      date: appointmentDate,
+      appointmentType: appointment.appointmentCode,
+      date: appointment.dateTime,
       providerTemplate: {
         _id: providerData.providerTemplateId,
       },

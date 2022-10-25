@@ -132,7 +132,7 @@ export default function ValidatePage({ query }) {
     };
     const api = new Api();
     api
-      .tokenValidation(postbody)
+      .tokenValidation(postbody, "oneTimeLink")
       .then(function (response) {
         cookies.set("username", postbody.username, { path: "/patient" });
         cookies.set("accessToken", response.access_token, { path: "/patient" });
@@ -153,7 +153,7 @@ export default function ValidatePage({ query }) {
     };
     const api = new Api();
     api
-      .tokenValidation(postbody, true)
+      .tokenValidation(postbody, "reset")
       .then(function (response) {
         //Navigate to Update
         router.push(`update-password?username=${queryParam.username}`);

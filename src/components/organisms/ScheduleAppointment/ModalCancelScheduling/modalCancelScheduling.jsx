@@ -22,7 +22,6 @@ export default function ModalCancelScheduling({
   const watchedRadio = watch("cancelSchedule");
 
   const onSubmit = (data) => {
-    console.log(data, "vw", watchedRadio);
     OnCancelClicked(data);
   };
 

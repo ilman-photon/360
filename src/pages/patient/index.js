@@ -35,7 +35,6 @@ import { colors } from "../../styles/theme";
 import { appointmentParser } from "../../utils/appointmentsModel";
 import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
-import { fetchUser } from "../../store/user";
 
 export async function getStaticProps() {
   return {
@@ -56,6 +55,7 @@ export default function HomePage({ googleApiKey }) {
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
+
   const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
@@ -214,9 +214,32 @@ export default function HomePage({ googleApiKey }) {
     setIsOpenCancel(false);
   };
 
-  const handleCancelSchedule = () => {
-    setIsOpenCancel(false);
-    setModalSuccessCancel(true);
+  const handleCancelSchedule = (data) => {
+    const api = new Api();
+    const cancelReason =
+      data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
+    const postBody = {
+      current: {
+        state: appointmentData[0].appointmentInfo.state.state,
+        subState: appointmentData[0].appointmentInfo.state.subState.subState,
+      },
+      target: {
+        state: "CANCELLED",
+        subState: "NONE",
+      },
+      reason: cancelReason,
+      code: 2,
+    };
+    api
+      .cancelAppointment(appointmentData[0].appointmentId, postBody)
+      .then(() => {
+        onCalledGetAllAppointment();
+        setModalSuccessCancel(true);
+        setIsOpenCancel(false);
+      })
+      .catch(() => {
+        setIsOpenCancel(false);
+      });
   };
 
   const onViewAppointment = () => {
@@ -362,7 +385,10 @@ export default function HomePage({ googleApiKey }) {
 HomePage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AppointmentLayout currentActivePage={"dashboard"}>
+      <AppointmentLayout
+        pageTitle="EyeCare Patient Portal - Dashboard"
+        currentActivePage={"dashboard"}
+      >
         {page}
       </AppointmentLayout>
     </Provider>

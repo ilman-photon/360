@@ -46,9 +46,7 @@ Object {
               id=":r0:"
             >
               <span
-                arialabel="You’re Scheduled!"
                 class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
-                tabindex="0"
               >
                 <svg
                   aria-hidden="true"
@@ -62,7 +60,12 @@ Object {
                   />
                 </svg>
                  
-                You’re Scheduled!
+                <div
+                  aria-label="You’re Scheduled!"
+                  tabindex="0"
+                >
+                  You’re Scheduled!
+                </div>
               </span>
               <button
                 aria-label="close option"
@@ -499,9 +502,7 @@ Object {
               id="customized-dialog-title"
             >
               <span
-                arialabel="You’re Scheduled!"
                 class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
-                tabindex="0"
               >
                 <svg
                   aria-hidden="true"
@@ -515,7 +516,12 @@ Object {
                   />
                 </svg>
                  
-                You’re Scheduled!
+                <div
+                  aria-label="You’re Scheduled!"
+                  tabindex="0"
+                >
+                  You’re Scheduled!
+                </div>
               </span>
               <button
                 aria-label="close option"

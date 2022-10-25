@@ -11,6 +11,7 @@ import store from "../../src/store/store";
 import { renderWithProviders } from "../src/utils/test-util";
 // import React, { useState as useStateMock } from "react";
 import { mockDocument } from "../../__mocks__/mockResponse";
+import { createMatchMedia } from "../../__mocks__/commonSteps";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 const feature = loadFeature(
@@ -30,13 +31,8 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
   beforeEach(async () => {
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve(expectedResult),
-      })
-    );
     const categoryId = "Intake-Forms";
-    const patientId = "8a94c00a-1bf6-47b7-8ff1-485fd469937f";
+    const patientId = "98f9404b-6ea8-4732-b14f-9c1a168d8066";
     mock
       .onGet(
         `/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=${categoryId}))`
@@ -48,7 +44,6 @@ defineFeature(feature, (test) => {
 
   afterEach(() => {
     mock.reset();
-    fetch.mockClear();
   });
 
   const defaultValidation = () => {
@@ -94,24 +89,34 @@ defineFeature(feature, (test) => {
       );
     });
     await waitFor(() => container.getByText("Choose a category"));
+    await waitFor(() =>
+      container.getByText((content, element) => {
+        return element.tagName.toLowerCase() === "clippath";
+      })
+    );
     const categorySelector = container.getByText("Choose a category");
     expect(categorySelector).toBeInTheDocument();
+    expect(
+      container.getByText((content, element) => {
+        return element.tagName.toLowerCase() === "clippath";
+      })
+    ).toBeInTheDocument();
   };
 
   const userSeeDocumentTable = async () => {
-    const emptyTable = await waitFor(() =>
-      container.getByText("There are no intake forms.")
+    const emptyTable = container.getByText(
+      "MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy"
     );
     expect(emptyTable).toBeInTheDocument();
   };
 
   const userSeeTableAndDownloadBtn = async () => {
-    // await waitFor(() => container.getByTestId("downloadPDFButton"));
-    // await waitFor(() => container.getByTestId("table-sort-header"));
-    // const tableDocument = container.getByTestId("table-sort-header");
-    // expect(tableDocument).toBeInTheDocument();
-    // const downloadBtn = container.getByTestId("downloadPDFButton");
-    // fireEvent.click(downloadBtn);
+    await waitFor(() => container.getByTestId("downloadPDFButton"));
+    await waitFor(() => container.getByTestId("table-sort-header"));
+    const tableDocument = container.getByTestId("table-sort-header");
+    expect(tableDocument).toBeInTheDocument();
+    const downloadBtn = container.getByTestId("downloadPDFButton");
+    fireEvent.click(downloadBtn);
   };
 
   test("EPIC_EPP-9_STORY_EPP-2714- Verify whether the user is able to view the list of documents that can be downloaded", ({
@@ -121,6 +126,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user Launch  the browser and enter the user portal URL", () => {
+      window.matchMedia = createMatchMedia("1290px");
       launchBrowser();
     });
 
@@ -138,10 +144,10 @@ defineFeature(feature, (test) => {
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
       async () => {
-        useRouter.mockReturnValue({
-          ...mockRouter,
-          query: { type: "document" },
-        });
+        // useRouter.mockReturnValue({
+        //   ...mockRouter,
+        //   query: { type: "document" },
+        // });
         await navigateToDocumentsPage();
       }
     );
@@ -240,10 +246,10 @@ defineFeature(feature, (test) => {
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
       async () => {
-        useRouter.mockReturnValue({
-          ...mockRouter,
-          query: { type: "health-record" },
-        });
+        // useRouter.mockReturnValue({
+        //   ...mockRouter,
+        //   query: { type: "health-record" },
+        // });
         await navigateToDocumentsPage();
       }
     );

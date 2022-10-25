@@ -99,7 +99,10 @@ export default function AccountDocumentsPage() {
         valueKey: "digital_assets._id",
         contentStyle: { padding: "16px" },
         icon: (
-          <IconButton sx={{ width: 24, height: 24, p: 0 }}>
+          <IconButton
+            sx={{ width: 24, height: 24, p: 0 }}
+            data-testid="downloadPDFButton"
+          >
             <FileDownloadIcon sx={{ fill: colors.darkGreen }} />
           </IconButton>
         ),
@@ -117,6 +120,7 @@ export default function AccountDocumentsPage() {
 
   useEffect(() => {
     dispatch(resetDocuments());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -144,7 +148,7 @@ export default function AccountDocumentsPage() {
       <Controller
         name="category"
         control={control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        render={({ field: { onChange, value } }) => {
           return (
             <StyledSelect
               options={categories}

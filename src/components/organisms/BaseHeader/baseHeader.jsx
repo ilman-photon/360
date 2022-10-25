@@ -49,7 +49,10 @@ export default function BaseHeader({
       !!cookies.get("accessToken");
     setUserLoged(isLogin);
 
-    const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
+    const userStorageData =
+      localStorage.getItem("userProfile") !== "undefined"
+        ? JSON.parse(localStorage.getItem("userProfile"))
+        : null;
     if (userStorageData) {
       dispatch(setUserData(userStorageData));
     }
@@ -196,27 +199,30 @@ export default function BaseHeader({
                   onClose={handleCloseUserMenu}
                 >
                   {/* <Stack spacing={2}> */}
-                  <MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      router.push("/patient/account/profile-info");
+                    }}
+                  >
                     <Button
                       variant="text"
                       sx={styles.buttonProfileMenu}
                       data-testid={HOME_TEST_ID.account}
-                      onClick={() => {
-                        router.push("/patient/account/profile-info");
-                      }}
                     >
                       Account
                     </Button>
                   </MenuItem>
-                  <MenuItem onClick={handleCloseNavMenu}>
+                  <MenuItem
+                    onClick={({ href }) => {
+                      handleCloseNavMenu({ href });
+                      OnLogoutClicked(router);
+                    }}
+                  >
                     <Button
                       variant="text"
                       sx={styles.buttonProfileMenu}
                       data-testid={HOME_TEST_ID.logout}
                       startIcon={<ExitToAppIcon />}
-                      onClick={() => {
-                        OnLogoutClicked(router);
-                      }}
                     >
                       Logout
                     </Button>

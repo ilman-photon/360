@@ -39,11 +39,12 @@ import {
 import { fetchUser } from "../../../store/user";
 import { Api } from "../../api/api";
 import MESSAGES from "../../../utils/responseCodes";
-import { setFormMessage } from "../../../store";
+import { setFormMessage, resetFormMessage } from "../../../store";
 import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
+import { mmddyyDateFormat, hourDateFormat } from "../../../utils/dateFormatter";
 import { addToCalendar } from "../../../utils/addToCalendar";
 
 const MobileTopBar = (data) => {
@@ -91,13 +92,15 @@ export const PageContent = ({
   OnClickSchedule = () => {
     // This is intentional
   },
+  guestRegister = () => {
+    // This is intentional
+  },
+  formMessage = null,
 }) => {
   const [selectedSelf, setSelectedSelf] = React.useState(null);
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
-
-  const api = new Api();
   const cookies = new Cookies();
 
   const getScheduleButtonText = () => {
@@ -117,27 +120,8 @@ export const PageContent = ({
         value: payload,
       })
     );
-  };
 
-  const createAccount = async function (postbody) {
-    try {
-      await api.getResponse("/ecp/patient/userregistration", postbody, "post");
-      cookies.set("authorized", true, { path: "/patient" });
-    } catch (err) {
-      console.error({ err });
-      if (err.ResponseCode) {
-        const errorMessage = MESSAGES[err.ResponseCode || 3500];
-
-        dispatch(
-          setFormMessage({
-            success: false,
-            title: errorMessage.title,
-            content: errorMessage.content,
-            isBackToLogin: errorMessage.isBackToLogin,
-          })
-        );
-      }
-    }
+    guestRegister(payload);
   };
 
   switch (activeStep) {
@@ -196,7 +180,7 @@ export const PageContent = ({
               }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
-              OnClickSchedule={OnClickSchedule}
+              formMessage={formMessage}
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
@@ -224,16 +208,15 @@ export const PageContent = ({
           >
             <AppointmentForm
               isForMyself={true}
-              OnClickSchedule={OnClickSchedule}
               patientData={appointmentScheduleData.patientInfo}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
-                createAccount(v);
                 OnClickSchedule(v);
               }}
               OnClickSignIn={() => {
                 cookies.set("dashboardState", true, { path: "/patient" });
               }}
+              formMessage={formMessage}
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
@@ -252,6 +235,12 @@ export const PageContent = ({
       return null;
   }
 };
+
+export async function getServerSideProps({ query }) {
+  return {
+    props: { query },
+  };
+}
 export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -259,11 +248,13 @@ export default function ScheduleAppointmentPage() {
   const [isReschedule, setIsReschedule] = React.useState(false);
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
+  const [patientId, setPatientId] = React.useState("");
 
   useLeavePageConfirm({ message: "Change that you made might not be saved." });
 
   const router = useRouter();
   const dispatch = useDispatch();
+  const api = new Api();
 
   React.useEffect(() => {
     if (activeStep === 2 || activeStep === 3) {
@@ -296,17 +287,14 @@ export default function ScheduleAppointmentPage() {
   const appointmentScheduleData = useSelector((state) => {
     return state.appointment.appointmentSchedule;
   });
-
-  React.useEffect(() => {
-    if (!appointmentScheduleData.providerInfo.providerId) {
-      router.replace("/patient/appointment");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appointmentScheduleData]);
+  const formMessage = useSelector((state) => state.index.formMessage);
 
   React.useEffect(() => {
     if (router.query.reschedule) {
       setIsReschedule(true);
+    }
+    if (!appointmentScheduleData.appointmentInfo.appointmentType) {
+      router.push("/patient/appointment");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
@@ -315,25 +303,22 @@ export default function ScheduleAppointmentPage() {
     router.push({ pathname: "/patient/appointment", query: router.query });
   };
 
-  const goToFinalStep = () => {
-    setActiveStep(4);
-    setIsOpen(true);
-  };
-
-  const handleClickSchedule = (data) => {
-    if (activeStep === 2 || !data?.password) {
-      router.push("/patient/schedule-appointment-confirmation");
-    } else {
-      goToFinalStep();
-    }
-  };
-
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
-  }, []);
+    const post = {
+      username: appointmentScheduleData.patientInfo.email,
+    };
+    {
+      isLogin &&
+        appointmentScheduleData?.patientInfo.email &&
+        api.getPatientId(post).then((response) => {
+          setPatientId(response.ecpPatientId || "");
+        });
+    }
+  }, [api, appointmentScheduleData]);
 
   React.useEffect(() => {
     dispatch(fetchUser());
@@ -352,7 +337,6 @@ export default function ScheduleAppointmentPage() {
             lastName: userData.lastName,
             dob: userData.dob,
             phoneNumber: userData.mobile,
-
             email: userData.email,
             preferredCommunication: userData.preferredCommunication,
           },
@@ -362,16 +346,125 @@ export default function ScheduleAppointmentPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
+  function getPatientId(postBody, patientDob) {
+    api
+      .getPatientId(postBody)
+      .then((response) => {
+        dispatch(fetchUser());
+        handleCreateAppointment(true, patientDob, response.ecpPatientId);
+      })
+      .catch((err) => {
+        console.error(err, "getPatientId error");
+      });
+  }
+
+  const handleGuestRegister = async function (data) {
+    const postBody = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dob: mmddyyDateFormat(data.dob),
+      email: data.email,
+      mobileNumber: data.mobile,
+      password: data.password,
+      preferredCommunication: data.preferredCommunication,
+      userType: "G",
+    };
+    dispatch(resetFormMessage());
+
+    try {
+      await api
+        .getResponse("/ecp/patient/userregistration", postBody, "post")
+        .then(() => {
+          getPatientId(
+            {
+              username: postBody.email,
+            },
+            mmddyyDateFormat(data.dob)
+          );
+        });
+    } catch (err) {
+      if (err.ResponseCode) {
+        const errorMessage = MESSAGES[err.ResponseCode || 3500];
+
+        dispatch(
+          setFormMessage({
+            success: false,
+            title: errorMessage.title,
+            content: errorMessage.content,
+            isBackToLogin: errorMessage.isBackToLogin,
+          })
+        );
+      }
+    }
+  };
+
+  const handleCreateAppointment = (
+    isGuest = false,
+    patientDob = "",
+    guestId = ""
+  ) => {
+    const dateNow = new Date();
+    const postBody = [
+      {
+        appointmentDate: mmddyyDateFormat(
+          appointmentScheduleData.appointmentInfo.date
+        ),
+        appointmentLength: 1,
+        office: {
+          _id: appointmentScheduleData.providerInfo.office.id,
+        },
+        providerTemplate: {
+          _id: appointmentScheduleData.providerInfo.providerTemplateId,
+        },
+        provider: {
+          _id: appointmentScheduleData.providerInfo.providerId,
+        },
+        appointmentTime: hourDateFormat(
+          appointmentScheduleData.appointmentInfo.date
+        ),
+        appointmentType: {
+          code: appointmentScheduleData.appointmentInfo.appointmentType,
+        },
+        patient: {
+          _id: guestId || patientId,
+        },
+        patientDob: patientDob
+          ? mmddyyDateFormat(patientDob)
+          : mmddyyDateFormat(appointmentScheduleData.patientInfo.dob),
+        confirmationDetail: {
+          confirmationDate: mmddyyDateFormat(dateNow),
+          confirmationTime: hourDateFormat(dateNow),
+          confirmationBy: guestId || patientId,
+        },
+        allowCreate: true,
+      },
+    ];
+
+    api
+      .createAppointment(postBody)
+      .then(() => {
+        if (isGuest) {
+          router.push("/patient/schedule-appointment-confirmation");
+        } else {
+          setActiveStep(4);
+          setIsOpen(true);
+        }
+      })
+      .catch(() => {
+        // setShowPostMessage(true);
+      });
+  };
+
   const handleSetActiveStep = (idx) => {
     if (isLoggedIn) {
       if (isReschedule) {
         setModalConfirmReschedule(true);
       } else {
-        setActiveStep(4);
-        setIsOpen(true);
+        handleCreateAppointment();
       }
     } else {
       setActiveStep(idx);
+      dispatch(resetFormMessage());
     }
   };
 
@@ -488,7 +581,8 @@ export default function ScheduleAppointmentPage() {
             OnsetActiveStep={handleSetActiveStep}
             appointmentScheduleData={appointmentScheduleData}
             OnEditClicked={handleEditSchedule}
-            OnClickSchedule={handleClickSchedule}
+            guestRegister={handleGuestRegister}
+            formMessage={formMessage}
           />
         </div>
       </Grid>
