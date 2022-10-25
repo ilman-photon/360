@@ -784,6 +784,103 @@ export const mockSubmitInsurance = {
   },
 };
 
+export const mockDeleteInsurance = [
+  { message: "SUCCESS", _id: "f0a26c02-4fad-48b3-837b-6c542fd2666b" },
+];
+
+export const mockUpdateInsurance = {
+  beneficiary: {
+    _links: {
+      self: { href: "/v1/patients/a86a757f-62ec-4a86-8b5b-85df1d0a421d" },
+    },
+    _id: "a86a757f-62ec-4a86-8b5b-85df1d0a421d",
+    _version: "63df22b4-ac9e-41a5-815e-56ad974d8cfb",
+    _created: "Oct 5, 2022, 6:51:31 AM",
+    _updated: "Oct 14, 2022, 11:22:41 AM",
+    status: "UPDATED",
+    _createdBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+      },
+    },
+    _updatedBy: {
+      _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+      _links: {
+        self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+      },
+    },
+  },
+  insuranceType: "VISION",
+  group: "",
+  priority: "PRIMARY",
+  subscriberRelation: 1,
+  archive: false,
+  active: false,
+  selected: false,
+  financialClass: "AUTO_ACCIDENT",
+  status: "UPDATED",
+  planAddress: "17795 W 106th ST., STE 202",
+  planCity: "OLATHE",
+  planName: "AUTO_ACCIDENT Plan",
+  planPhone: "9367284736",
+  planState: "KS",
+  planZip: "66061",
+  payer: {
+    name: "United Healthcare",
+    absentDigitalId: false,
+    _id: "45de1cbd-09f0-4e98-aa45-9e8f4b3f68fc",
+    _links: {
+      self: { href: "/v1/payers/45de1cbd-09f0-4e98-aa45-9e8f4b3f68fc" },
+    },
+  },
+  plan: {
+    name: "AUTO_ACCIDENT Plan",
+    _id: "711c588e-ceb8-4021-97ad-7b19100c634d",
+    _links: {
+      self: {
+        href: "/v1/payers/45de1cbd-09f0-4e98-aa45-9e8f4b3f68fc/plans/711c588e-ceb8-4021-97ad-7b19100c634d",
+      },
+    },
+  },
+  isPatientSubscriber: true,
+  subscriber: {
+    firstName: "patient1",
+    lastName: "patient1",
+    dob: "11/12/1997",
+    contactInformation: {
+      preferredContactMethod: 0,
+      phone: [{ type: 3, number: "(977) 620-0007" }],
+      email: [{ type: 1, email: "patient5@gmail.com" }],
+    },
+    title: 0,
+    gender: 4,
+    _id: "a86a757f-62ec-4a86-8b5b-85df1d0a421d",
+  },
+  _links: {
+    self: {
+      href: "/insurance/v1/beneficiaries/a86a757f-62ec-4a86-8b5b-85df1d0a421d/coverages/eb9083c3-b527-40ce-b8a3-6d388086f9a5",
+    },
+  },
+  digitalAssets: {},
+  _id: "eb9083c3-b527-40ce-b8a3-6d388086f9a5",
+  _version: "f4339af0-33e1-4f55-b6cb-d7e8e5f8e4a4",
+  _created: "Oct 12, 2022, 4:29:56 PM",
+  _updated: "Oct 25, 2022, 8:19:46 AM",
+  _createdBy: {
+    _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    _links: {
+      self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+    },
+  },
+  _updatedBy: {
+    _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    _links: {
+      self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+    },
+  },
+};
+
 export const submitFilter = {
   offices: [
     {
