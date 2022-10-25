@@ -49,6 +49,8 @@ export default function Notifications(req, res) {
     createData(37, false, "appointment", "09/10/2022 12:00"),
     createData(38, true, "prescription-refill", "08/08/2022 12:00"),
     createData(39, false, "invoice", "10/12/2022 12:00"),
+    createData(40, true, "appointment-one", "09/10/2022 12:00"),
+    createData(41, false, "appointment-one", "09/10/2022 12:00"),
   ];
 
   if (req.method === "GET") {

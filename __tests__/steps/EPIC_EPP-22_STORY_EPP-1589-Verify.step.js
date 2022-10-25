@@ -191,7 +191,7 @@ defineFeature(feature, (test) => {
       userClicksNotificationBadge()
     });
 
-    then('User should be able to view the unread alerts listed one below the other with an option against each to dismiss', async () => {
+    then('User should be able to view the unread alerts listed one below the other with an option against each to dismiss', () => {
       notificationDrawerOpened()
       userSeeNotificationListWithClickableToDismiss()
     });

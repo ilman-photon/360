@@ -109,10 +109,7 @@ export default function BaseHeader({
     setIsNotificationLoading(true);
     dispatch(fetchNotifications());
 
-    // simulate loading
-    setTimeout(() => {
-      setIsNotificationLoading(false);
-    }, 3000);
+    setIsNotificationLoading(false);
   };
 
   const handleMarkAllAsRead = () => {

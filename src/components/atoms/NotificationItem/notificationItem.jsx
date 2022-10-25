@@ -56,6 +56,12 @@ const NotificationItem = ({ data = {}, isRead = true, onClick = () => {} }) => {
             You have an <b>eye test appointment</b> in 3 days.
           </>
         );
+      case "appointment-one":
+        return (
+          <>
+            You have an <b>eye test appointment</b> tomorrow.
+          </>
+        );
       case "test-result":
         return (
           <>
