@@ -240,7 +240,7 @@ describe("InsuranceInformationPage Components", () => {
     await waitFor(() => container.getAllByText(/primary/i));
     expect(container.getAllByText(/primary/i)[0]).toBeInTheDocument();
     fireEvent.click(container.getAllByText(/primary/i)[0]);
-  }, 10000);
+  }, 50000);
 
   it("Remove Insurance", async () => {
     mock
@@ -299,8 +299,5 @@ describe("InsuranceInformationPage Components", () => {
     act(() => {
       fireEvent.click(editButtonSave);
     });
-    // await waitFor(() =>
-    //   container.getAllByText(/Insurance successfully removed/i)
-    // );
   }, 30000);
 });
