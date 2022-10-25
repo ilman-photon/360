@@ -133,6 +133,7 @@ export default function MobileMenu({
           padding: "0 8px",
         }}
         onClick={onClose}
+        data-testid="user-menu-nav-close"
       >
         <CloseOutlinedIcon />
       </IconButton>

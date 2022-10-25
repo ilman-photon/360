@@ -184,16 +184,14 @@ describe("Home", () => {
 
     await waitFor(() => getByTestId("user-menu-nav-open"));
     fireEvent.click(getByTestId("user-menu-nav-open"));
-    await waitFor(() => getByTestId("AutoAwesomeMosaicOutlinedIcon"));
-    expect(getByTestId("AutoAwesomeMosaicOutlinedIcon")).toBeInTheDocument();
+    await waitFor(() => getAllByTestId("AutoAwesomeMosaicOutlinedIcon")[0]);
+    expect(getAllByTestId("AutoAwesomeMosaicOutlinedIcon")[0]).toBeInTheDocument();
     expect(getAllByTestId("CalendarTodayOutlinedIcon")[0]).toBeInTheDocument();
     expect(getByTestId("CreateNewFolderOutlinedIcon")).toBeInTheDocument();
     expect(getByTestId("DescriptionOutlinedIcon")).toBeInTheDocument();
     fireEvent.click(getByTestId("CreateNewFolderOutlinedIcon"));
-    await waitFor(() => getByTestId("ArrowBackIosIcon"));
-    expect(getByTestId("ArrowBackIosIcon")).toBeInTheDocument();
-    fireEvent.click(getByText("Medical Record"));
-    await waitFor(() => getByTestId("AutoAwesomeMosaicOutlinedIcon"));
+    fireEvent.click(getByText("Health Chart"));
+    await waitFor(() => getAllByTestId("AutoAwesomeMosaicOutlinedIcon")[0]);
     fireEvent.click(getByTestId("DescriptionOutlinedIcon"));
     await waitFor(() => getByTestId("user-menu-nav-close"));
 
