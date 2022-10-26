@@ -22,6 +22,7 @@ export const logoutProps = {
     const postbody = {
       username: cookies.get("username"),
       refreshToken: cookies.get("refreshToken"),
+      patientType: JSON.parse(localStorage.getItem("userData")).userType,
     };
 
     return api

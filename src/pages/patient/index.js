@@ -66,6 +66,10 @@ export default function HomePage({ googleApiKey }) {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const isAdmin = () => {
+    return JSON.parse(localStorage.getItem("userData")).userType === "admin";
+  };
+
   function onCalledGetAppointmentTypesAPI() {
     const api = new Api();
     api
@@ -179,7 +183,7 @@ export default function HomePage({ googleApiKey }) {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && !isAdmin()) {
       onCalledAllPrescription();
       onCalledGetAllAppointment();
       dispatch(fetchAllPayers());
@@ -258,7 +262,7 @@ export default function HomePage({ googleApiKey }) {
 
   return (
     <>
-      {isAuthenticated && (
+      {isAuthenticated && !isAdmin() && (
         <Stack sx={{ width: "100%" }}>
           {isDesktop ? (
             <>
