@@ -42,9 +42,14 @@ export default function MyCareTeamPage() {
   const getProviderList = () => {
     const api = new Api();
     isRequest = true;
-    api.getProviderList().then((responses) => {
-      mapper(responses);
-    });
+    api
+      .getProviderList()
+      .then((responses) => {
+        mapper(responses.results);
+      })
+      .catch(() => {
+        //This is intentional
+      });
   };
 
   useEffect(() => {
