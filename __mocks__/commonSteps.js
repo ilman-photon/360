@@ -516,7 +516,7 @@ export async function navigateToPatientPortalHome() {
       </Provider>
     );
   });
-  await waitFor(() => container.getAllByText(/Welcome to your dashboard/i));
+  await waitFor(() => container.getAllByText(/Prescribed by/i));
   return { ...container, mock };
 }
 
