@@ -27,11 +27,25 @@ export function getCity(apiKey, coord, setCity) {
           }
         }
       }
-      console.info(city, state, country);
       setCity(city);
     },
     (error) => {
       console.error(error);
     }
   );
+}
+// Get latitude & longitude from address.
+export async function getCoords(apiKey, address) {
+  const joinedAddress = Object.values(address).join(", ");
+  Geocode.setApiKey(apiKey);
+  Geocode.setLanguage("en");
+  try {
+    const response = await Geocode.fromAddress(joinedAddress);
+    if (response) {
+      const { lat, lng } = response.results[0].geometry.location;
+      return { lat, lng };
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }

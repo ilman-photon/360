@@ -269,11 +269,12 @@ export default function Appointment({ googleApiKey }) {
     const api = new Api();
     api
       .submitFilter(requestData.location, postBody)
-      .then(function (response) {
-        const parseProviderData = parseProviderListData(
+      .then(async function (response) {
+        const parseProviderData = await parseProviderListData(
           response,
           postBody.currentDate,
-          endDateRequest
+          endDateRequest,
+          googleApiKey
         );
         const rangeDate = {
           startDate: startDateRequest,

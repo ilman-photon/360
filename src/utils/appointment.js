@@ -6,6 +6,7 @@ import {
   mmddyyDateFormat,
   yyyymmddDateFormat,
 } from "./dateFormatter";
+import { getCoords } from "./getCity";
 
 function isValidDate(d) {
   return d instanceof Date && !isNaN(d);
@@ -724,7 +725,12 @@ function addGenderFilter(sex, genderList) {
   return { genderList, gender };
 }
 
-export function parseProviderListData(response, startDate, endDate) {
+export async function parseProviderListData(
+  response,
+  startDate,
+  endDate,
+  googleApiKey
+) {
   startDate = yyyymmddDateFormat(startDate);
   endDate = yyyymmddDateFormat(endDate);
   let languageFilter = [];
@@ -778,8 +784,8 @@ export function parseProviderListData(response, startDate, endDate) {
           to: endDate,
           availability: [],
           coordinate: {
-            latitude: "",
-            longitude: "",
+            lat: "",
+            lng: "",
           },
           filters: {},
         };
@@ -795,6 +801,12 @@ export function parseProviderListData(response, startDate, endDate) {
         providerTemp.rating = provider.rating;
         providerTemp.phoneNumber = provider.workPhone;
         providerTemp.image = provider?.profilePhoto?.digitalAsset || null;
+
+        providerTemp.coordinate = await getCoords(
+          googleApiKey,
+          provider.address
+        );
+
         data.listOfProvider.push(providerTemp);
 
         const { languageList, filterLanguage } = addLanguageFilter(
@@ -847,5 +859,6 @@ export function parseProviderListData(response, startDate, endDate) {
       checklist: genderFilter,
     });
   }
+  console.log({ data });
   return data;
 }

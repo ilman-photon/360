@@ -141,6 +141,7 @@ export default function ProviderProfile({
           className={[styles.bioContainer, bioContainerClass].join(" ")}
           sx={{
             width: getWidtBioContainer(),
+            ml: isMap ? 1 : "inherit",
           }}
         >
           <Typography
