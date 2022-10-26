@@ -83,7 +83,7 @@ const FilterBy = ({
                   label={item.name}
                   key={index}
                   onChange={(target) => {
-                    onFilterChecked(target, item.type);
+                    onFilterChecked(target, item?.type);
                   }}
                   checked={() => {
                     return (
@@ -97,7 +97,7 @@ const FilterBy = ({
             <CustomCheckbox
               label={category.name}
               onChange={(target) => {
-                onFilterChecked(target, item.type);
+                onFilterChecked(target);
               }}
               checked={() => {
                 return (
