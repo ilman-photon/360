@@ -1,24 +1,34 @@
-import { act, cleanup, render, waitFor, within } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  render,
+  waitFor,
+  within,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import InsuranceInformationPage from "../../../src/pages/patient/account/insurance-info";
 
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
-import constants, { TEST_ID } from "../../../src/utils/constants";
+import constants from "../../../src/utils/constants";
 import { fireEvent } from "@storybook/testing-library";
 import * as util from "../../../__mocks__/util";
-import { resetUserInsuranceData, setStatus } from "../../../src/store/user";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import {
+  mockDeleteInsurance,
   mockExistingInsurance,
   mockInsurance,
   mockPlanInsurance,
   mockSubmitInsurance,
+  mockUpdateInsurance,
 } from "../../../__mocks__/mockResponse";
 
 describe("InsuranceInformationPage Components", () => {
   let container;
+  const mock = new MockAdapter(axios);
   const testAutoCreate = async (id, value) => {
     const provider = container.getByTestId(id);
     const input = within(provider).queryByRole("combobox");
@@ -32,7 +42,6 @@ describe("InsuranceInformationPage Components", () => {
   };
 
   beforeEach(async () => {
-    const mock = new MockAdapter(axios);
     mock
       .onGet(`/ecp/appointments/insurance/allpayers`)
       .reply(200, mockInsurance);
@@ -68,6 +77,16 @@ describe("InsuranceInformationPage Components", () => {
     // await store.dispatch(resetUserInsuranceData());
   });
 
+  const renderPage = () => {
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {InsuranceInformationPage.getLayout(<InsuranceInformationPage />)}
+        </Provider>
+      );
+    });
+  };
+
   afterEach(() => {
     jest.resetAllMocks();
   });
@@ -102,6 +121,7 @@ describe("InsuranceInformationPage Components", () => {
       }
     );
   };
+
   it("InsuranceInformationPage Input Test provider & subscriber", async () => {
     await inputProviderSubsId("EyeMed");
   }, 50000);
@@ -153,7 +173,6 @@ describe("InsuranceInformationPage Components", () => {
   }, 50000);
 
   it("InsuranceInformationPage existing data", async () => {
-    const mock = new MockAdapter(axios);
     mock
       .onGet(`/ecp/appointments/insurance/allpayers`)
       .reply(200, mockInsurance);
@@ -188,14 +207,97 @@ describe("InsuranceInformationPage Components", () => {
   it("InsuranceInformationPage upload back foto", async () => {
     global.URL.createObjectURL = jest.fn(() => "/details.png");
     const file = new File(["(⌐□_□)"], "chucknorris.png", { type: "image/png" });
-    const button = container.getByTestId(
-      constants.TEST_ID.INSURANCE_TEST_ID.uploadBackImage
-    );
-    act(() => {
-      fireEvent.click(button);
-    });
-    fireEvent.change(container.getAllByTestId("loc_uploadImage")[0], {
+    screen.debug(container.getAllByTestId("loc_uploadImage"), 300000);
+    fireEvent.change(container.getAllByTestId("loc_uploadImage")[1], {
       target: { files: [file] },
     });
   }, 10000);
+
+  const addInsuranceInfo = async () => {
+    await inputProviderSubsId("EyeMed");
+    await inputPlanGroup();
+
+    await waitFor(() => container.getByLabelText("Yes"));
+    fireEvent.click(container.getByLabelText("Yes"));
+    const addButton = await waitFor(() =>
+      container.getByTestId(constants.TEST_ID.INSURANCE_TEST_ID.save)
+    );
+    act(() => {
+      fireEvent.click(addButton);
+    });
+
+    mock
+      .onPost(
+        `/ecp/insurance/beneficiaries/98f9404b-6ea8-4732-b14f-9c1a168d8066/coverages/`
+      )
+      .reply(200, mockSubmitInsurance);
+
+    renderPage();
+  };
+
+  it("Add insurance with success response", async () => {
+    await addInsuranceInfo();
+    await waitFor(() => container.getAllByText(/primary/i));
+    expect(container.getAllByText(/primary/i)[0]).toBeInTheDocument();
+    fireEvent.click(container.getAllByText(/primary/i)[0]);
+  }, 50000);
+
+  it("Remove Insurance", async () => {
+    mock
+      .onPatch(
+        `/ecp/insurance/beneficiaries/98f9404b-6ea8-4732-b14f-9c1a168d8066/coverages`
+      )
+      .reply(200, mockDeleteInsurance);
+
+    await addInsuranceInfo();
+    await waitFor(() => container.getAllByText(/primary/i));
+    await waitFor(() => container.getAllByTestId(/ExpandMoreIcon/i));
+    fireEvent.click(container.getAllByTestId(/ExpandMoreIcon/i)[0]);
+
+    const editButton = await waitFor(() =>
+      container.getAllByText(/Remove Insurance/i)
+    );
+    act(() => {
+      fireEvent.click(editButton[0]);
+    });
+    await waitFor(() =>
+      container.getAllByText(/Are you sure you want to remove insurance?/i)
+    );
+    const removeButton = await waitFor(() =>
+      container.getByTestId(/remove-insurance/i)
+    );
+    act(() => {
+      fireEvent.click(removeButton);
+    });
+    await waitFor(() =>
+      container.getAllByText(/Insurance successfully removed/i)
+    );
+  }, 30000);
+
+  it("Edit Insurance", async () => {
+    const coverageId = "24bea5f6-146c-430d-9578-e024f4790afb";
+    const patientId = "98f9404b-6ea8-4732-b14f-9c1a168d8066";
+    mock
+      .onPut(
+        `/ecp/insurance/beneficiaries/${patientId}/coverages/${coverageId}`
+      )
+      .reply(200, mockUpdateInsurance);
+    await addInsuranceInfo();
+    await waitFor(() => container.getAllByText(/primary/i));
+    await waitFor(() => container.getAllByTestId(/ExpandMoreIcon/i));
+    fireEvent.click(container.getAllByTestId(/ExpandMoreIcon/i)[0]);
+
+    const editButton = await waitFor(() => container.getAllByText(/Edit/i));
+    act(() => {
+      fireEvent.click(editButton[0]);
+    });
+    await waitFor(() => container.getAllByText(/Save/i));
+    const editButtonSave = await waitFor(
+      () =>
+        container.getAllByTestId(constants.TEST_ID.INSURANCE_TEST_ID.save)[0]
+    );
+    act(() => {
+      fireEvent.click(editButtonSave);
+    });
+  }, 30000);
 });
