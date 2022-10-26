@@ -420,8 +420,33 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("User navigates to “Appointments” screen", () => {
-      defaultValidation();
+    and("User navigates to “Appointments” screen", async () => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+      });
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, history);
+
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => {
+        container.getByText(/Upcoming Appointments/i);
+      });
+
+      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming Appointments");
     });
 
     when("User lands on “Appointments” screen", () => {
@@ -431,14 +456,14 @@ defineFeature(feature, (test) => {
     then(
       "User should be able to view an option to schedule new appointments",
       () => {
-        defaultValidation();
+        expect(container.getByText(/Schedule New Appointment/i)).toBeInTheDocument();
       }
     );
 
     and(
       "User should be able to view Upcoming Appointments with an option to reschedule and cancel each of them",
       () => {
-        defaultValidation();
+        defaultValidation()
       }
     );
 

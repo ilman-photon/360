@@ -325,6 +325,75 @@ jest.mock("react-geocode", () => ({
   }),
 }));
 
+jest.mock("react-google-autocomplete/lib/usePlacesAutocompleteService", () => {
+  const originalModule = jest.requireActual(
+    "react-google-autocomplete/lib/usePlacesAutocompleteService"
+  );
+  const usePlaceService = {
+    __esModule: true,
+    ...originalModule,
+    default: jest.fn(() => {
+      return {
+        placesService: {
+          getDetails: (_, callback) => {
+            callback({
+              address_components: [
+                {
+                  long_name: "Jakarta",
+                  short_name: "Jakarta",
+                  types: ["administrative_area_level_2", "political"],
+                },
+                {
+                  long_name: "Jakarta",
+                  short_name: "Jakarta",
+                  types: ["administrative_area_level_1", "political"],
+                },
+                {
+                  long_name: "Jakarta",
+                  short_name: "Jakarta",
+                  types: ["street_number", "political"],
+                },
+                {
+                  long_name: "Jakarta",
+                  short_name: "Jakarta",
+                  types: ["route", "political"],
+                },
+                {
+                  long_name: "Jakarta",
+                  short_name: "Jakarta",
+                  types: ["postal_code", "political"],
+                },
+                {},
+              ],
+            });
+          },
+        },
+        placePredictions: [
+          {
+            description: "Jakarta, Indonesia",
+            matched_substrings: [{ length: 2, offset: 0 }],
+            place_id: "ChIJnUvjRenzaS4RoobX2g-_cVM",
+            reference: "ChIJnUvjRenzaS4RoobX2g-_cVM",
+            structured_formatting: {
+              main_text: "Jakarta",
+              main_text_matched_substrings: [{ length: 2, offset: 0 }],
+              secondary_text: "Indonesia",
+            },
+            terms: [
+              { offset: 0, value: "Jakarta" },
+              { offset: 9, value: "Indonesia" },
+            ],
+            types: ["colloquial_area", "locality", "political", "geocode"],
+          },
+        ],
+        getPlacePredictions: jest.fn(),
+      };
+    }),
+    tz: { setDefault: jest.fn() },
+  };
+  return usePlaceService;
+});
+
 // jest.mock("react-idle-timer", () => ({
 //   useIdleTimer: jest.fn().mockReturnValue({
 //     getRemainingTime: jest.fn(),
