@@ -17,23 +17,23 @@ export default function AppointmentLayout({
       <Head>
         <title>{pageTitle}</title>
       </Head>
-      <div className={styles.defaultLayout}>
-        <BaseHeader
-          backTitle={backTitle}
-          onBackClicked={() => {
-            if (typeof onBackClicked == "function") {
-              onBackClicked();
-            } else if (typeof onBackClicked == "string") {
-              router.push(onBackClicked);
-            } else {
-              router.back();
-            }
-          }}
-        />
-        <ThemeProvider theme={patientTypography}>
+      <ThemeProvider theme={patientTypography}>
+        <div className={styles.defaultLayout}>
+          <BaseHeader
+            backTitle={backTitle}
+            onBackClicked={() => {
+              if (typeof onBackClicked == "function") {
+                onBackClicked();
+              } else if (typeof onBackClicked == "string") {
+                router.push(onBackClicked);
+              } else {
+                router.back();
+              }
+            }}
+          />
           <div className={styles.defaultContainer}>{children}</div>
-        </ThemeProvider>
-      </div>
+        </div>
+      </ThemeProvider>
     </>
   );
 }

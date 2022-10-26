@@ -418,15 +418,11 @@ export default function InsuranceForm({
                       rules={{
                         validate: {
                           requiredIfSubscriber,
-                          isValidDate: (v) => {
-                            if (watchedSubscriber === "No") {
-                              return (
-                                (v instanceof Date && !isNaN(v)) ||
+                          isValidDate: (v) =>
+                            watchedSubscriber === "No"
+                              ? (v instanceof Date && !isNaN(v)) ||
                                 "Incorrect date format"
-                              );
-                            }
-                            return true;
-                          },
+                              : true,
                         },
                       }}
                     />

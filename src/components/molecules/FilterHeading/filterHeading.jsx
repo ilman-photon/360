@@ -829,7 +829,11 @@ const FilterHeading = ({
               <Typography tabIndex={0} className={styles.titleElement}>
                 {title}
               </Typography>
-              <Typography tabIndex={0} className={styles.subtitleElement}>
+              <Typography
+                tabIndex={0}
+                className={styles.subtitleElement}
+                data-testId="filter-heading-subtitle"
+              >
                 {subtitle}
               </Typography>
             </Stack>

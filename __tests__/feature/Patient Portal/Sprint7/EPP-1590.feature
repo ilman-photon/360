@@ -7,7 +7,6 @@ Feature: Patient Portal : Message/ Alerts - Receive alerts for the following
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view upcoming appointment types of alerts
-    Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view upcoming appointment types of alerts
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -25,7 +24,6 @@ Feature: Patient Portal : Message/ Alerts - Receive alerts for the following
   @Sprint6
   @Test_and_Procedure
   Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view test/ lab result is available types of alerts
-    Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view test/ lab result is available types of alerts
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -40,7 +38,6 @@ Feature: Patient Portal : Message/ Alerts - Receive alerts for the following
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view visit summary is available types of alerts
-    Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view visit summary is available types of alerts
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -55,7 +52,6 @@ Feature: Patient Portal : Message/ Alerts - Receive alerts for the following
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view prescription refill is available for download types of alerts
-    Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view prescription refill is available for download types of alerts
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -71,7 +67,6 @@ Feature: Patient Portal : Message/ Alerts - Receive alerts for the following
   @Regression
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new message is received types of alerts
-    Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new message is received types of alerts
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -86,7 +81,6 @@ Feature: Patient Portal : Message/ Alerts - Receive alerts for the following
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new glass or lens prescription is available types of alerts
-    Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new glass or lens prescription is available types of alerts
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -101,7 +95,6 @@ Feature: Patient Portal : Message/ Alerts - Receive alerts for the following
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new medication prescription is available types of alerts
-    Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new medication prescription is available types of alerts
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -116,7 +109,6 @@ Feature: Patient Portal : Message/ Alerts - Receive alerts for the following
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view contact lens or glasses is available for pick up types of alerts
-    Scenario: EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view contact lens or glasses is available for pick up types of alerts
 
     Given User launch Patient Portal url		
     When User is logged in to the application
