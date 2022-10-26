@@ -15,6 +15,8 @@ const NotificationItem = ({ data = {}, isRead = true, onClick = () => {} }) => {
     switch (data.type) {
       case "prescription-refill":
         return <PrescriptionIcon width={24} height={24} />;
+      case "appointment-first-reminder":
+      case "appointment-second-reminder":
       case "appointment":
         return <CalendarTodayIcon width={24} height={24} />;
       case "test-result":
@@ -50,12 +52,14 @@ const NotificationItem = ({ data = {}, isRead = true, onClick = () => {} }) => {
             Your <b>prescription refill</b> is available now
           </>
         );
+      case "appointment-first-reminder":
       case "appointment":
         return (
           <>
             You have an <b>eye test appointment</b> in 3 days.
           </>
         );
+      case "appointment-second-reminder":
       case "appointment-one":
         return (
           <>
