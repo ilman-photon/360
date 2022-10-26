@@ -14,7 +14,6 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { useTranslation } from "next-i18next";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
-import { Regex } from "../../../utils/regex";
 import { colors } from "../../../styles/theme";
 
 const constants = require("../../../utils/constants");
