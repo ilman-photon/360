@@ -14,7 +14,7 @@ export default function PrescriptionLayout({
 }) {
   const router = useRouter();
 
-  const headingTitle = () => {
+  const headingTitle = (isTitle = false) => {
     switch (router.query.type) {
       case "intake-forms":
         return "Intake Forms";
@@ -25,7 +25,7 @@ export default function PrescriptionLayout({
       case "test-lab-result":
         return "Test & Lab Results";
       case "care-plan-overview":
-        return "Care Plan Overview";
+        return isTitle ? "Care Plan" : "Care Plan Overview";
       case "prescriptions":
         return "Prescriptions";
       default:
@@ -39,7 +39,7 @@ export default function PrescriptionLayout({
   return (
     <>
       <Head>
-        <title>{pageTitle} Page</title>
+        <title>EyeCare Patient Portal - {headingTitle(true)} Page</title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader {...logoutProps} />

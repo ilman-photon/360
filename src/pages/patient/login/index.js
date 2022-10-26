@@ -27,6 +27,7 @@ function getUserData(postbody, callback) {
         const userData = {
           communicationMethod: response.communicationMethod,
           patientId,
+          userType: "patient",
         };
         localStorage.setItem("userData", JSON.stringify(userData));
         !isHasMfaAccessToken &&
@@ -57,46 +58,98 @@ export const loginProps = {
     api
       .login(postbody)
       .then(function (response) {
-        const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
-        const securityQuestions = response.isSecurityQuestionsSetUp;
-        cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
-        cookies.set("username", postbody.username, { path: "/patient" });
         cookies.set("accessToken", response.access_token, { path: "/patient" });
         cookies.set("refreshToken", response.refresh_token, {
           path: "/patient",
         });
-        cookies.set("securityQuestions", securityQuestions, {
-          path: "/patient",
-        });
 
-        getUserData(postbody, async (isNotNeedMfa) => {
-          if (isNotNeedMfa) {
-            cookies.set("authorized", true, { path: "/patient" });
-          } else {
-            cookies.set("mfa", true, { path: "/patient" });
-          }
-
-          try {
-            const userStorageData = JSON.parse(
-              localStorage.getItem("userData")
-            );
-            if (userStorageData) {
-              const response = await dispatch(
-                fetchUser({ patientId: userStorageData.patientId })
-              );
-              response?.payload &&
-                localStorage.setItem(
-                  "userProfile",
-                  JSON.stringify(response.payload)
-                );
+        if (response.patientType === "admin") {
+          cookies.set("username", postbody.username, { path: "/patient" });
+          cookies.set("authorized", true, { path: "/patient" });
+          localStorage.setItem(
+            "userProfile",
+            JSON.stringify({
+              title: 0,
+              firstName: postbody.username,
+              lastName: "",
+              nickName: "",
+              dob: "",
+              age: "",
+              sex: 0,
+              address: [],
+              smokingHistory: [],
+              contactPrefrence: true,
+              contactInformation: {
+                phones: [
+                  {
+                    type: 3,
+                    number: "",
+                  },
+                ],
+                emails: [
+                  {
+                    type: 1,
+                    email: "",
+                  },
+                ],
+                noEmail: false,
+                contactPreferenceDetail: {
+                  phone: false,
+                  text: false,
+                  email: false,
+                },
+              },
+              patientDetails: {
+                isFlagNew: false,
+                isFlagInCollection: false,
+                isFlagBadCheck: false,
+                isFlagDeceased: false,
+                isFlagChartless: true,
+              },
+            })
+          );
+          const adminData = {
+            userType: response.patientType,
+          };
+          localStorage.setItem("userData", JSON.stringify(adminData));
+          _router.push("/patient/");
+        } else {
+          cookies.set("username", postbody.username, { path: "/patient" });
+          const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
+          const securityQuestions = response.isSecurityQuestionsSetUp;
+          cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
+          cookies.set("securityQuestions", securityQuestions, {
+            path: "/patient",
+          });
+          getUserData(postbody, async (isNotNeedMfa) => {
+            if (isNotNeedMfa) {
+              cookies.set("authorized", true, { path: "/patient" });
+            } else {
+              cookies.set("mfa", true, { path: "/patient" });
             }
 
-            _router.push(isNotNeedMfa ? "/patient/" : "/patient/mfa/");
-            callback({ status: "success" });
-          } catch (error) {
-            console.error("something went wrong when logging in: ", error);
-          }
-        });
+            try {
+              const userStorageData = JSON.parse(
+                localStorage.getItem("userData")
+              );
+              if (userStorageData) {
+                const response = await dispatch(
+                  fetchUser({ patientId: userStorageData.patientId })
+                );
+                response?.payload &&
+                  localStorage.setItem(
+                    "userProfile",
+                    JSON.stringify(response.payload)
+                  );
+              }
+
+              _router.push(isNotNeedMfa ? "/patient/" : "/patient/mfa/");
+              callback({ status: "success" });
+            } catch (error) {
+              console.error("something went wrong when logging in: ", error);
+            }
+          });
+        }
       })
       .catch(function (err) {
         if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {

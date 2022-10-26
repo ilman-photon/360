@@ -67,6 +67,7 @@ const ConfirmationForm = ({
                 title={postMessageTitle}
                 tabIndex={0}
                 aria-label={postMessage}
+                aria-live={postMessage}
               >
                 {postMessage}
               </FormMessage>
@@ -77,7 +78,7 @@ const ConfirmationForm = ({
               <Typography
                 variant="bodyMedium"
                 style={styles.margin}
-                tabIndex="0"
+                tabIndex={0}
                 aria-label={subtitle}
               >
                 {subtitle}

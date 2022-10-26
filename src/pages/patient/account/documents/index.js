@@ -184,13 +184,7 @@ export default function AccountDocumentsPage() {
 AccountDocumentsPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <PrescriptionLayout
-        currentActivePage={"documents"}
-        pageTitle={"EyeCare Patient Portal - Documents"}
-        title={"Intake Forms"}
-      >
-        {page}
-      </PrescriptionLayout>
+      <PrescriptionLayout title={"Intake Forms"}>{page}</PrescriptionLayout>
     </Provider>
   );
 };
