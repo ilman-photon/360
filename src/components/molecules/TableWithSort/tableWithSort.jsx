@@ -43,8 +43,11 @@ const getComparator = (order, orderBy) => {
 };
 
 const ref = (row, key) => {
-  key.split(".").forEach((k) => (row ? (row = row[k]) : undefined));
-  return row;
+  let returnedRow;
+  key.split(".").forEach((k) => {
+    if (row) returnedRow = row[k];
+  });
+  return returnedRow;
 };
 
 // This method is created for cross-browser compatibility, if you don't
