@@ -6,7 +6,7 @@ import {
   mmddyyDateFormat,
   yyyymmddDateFormat,
 } from "./dateFormatter";
-import { getCoords } from "./getCity";
+import { getCoords, getDistanceMatrix } from "./getCity";
 
 function isValidDate(d) {
   return d instanceof Date && !isNaN(d);
@@ -729,7 +729,8 @@ export async function parseProviderListData(
   response,
   startDate,
   endDate,
-  googleApiKey
+  googleApiKey,
+  currentCoordinate
 ) {
   startDate = yyyymmddDateFormat(startDate);
   endDate = yyyymmddDateFormat(endDate);
@@ -807,6 +808,13 @@ export async function parseProviderListData(
           provider.address
         );
 
+        providerTemp.distance = await getDistanceMatrix(
+          // { lat: 36.8493937, lng: -76.0106753 }, // Testing from 1456 Reynard Dr, Virginia Beach, VA 23451, USA
+          // { lat: -6.2268686, lng: 106.8335146}, // Testing from Jakarta Selatan
+          currentCoordinate,
+          providerTemp.coordinate
+        );
+
         data.listOfProvider.push(providerTemp);
 
         const { languageList, filterLanguage } = addLanguageFilter(
@@ -859,6 +867,5 @@ export async function parseProviderListData(
       checklist: genderFilter,
     });
   }
-  console.log({ data });
   return data;
 }
