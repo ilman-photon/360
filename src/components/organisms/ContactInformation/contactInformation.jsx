@@ -70,8 +70,6 @@ export default function ContactInformation({
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
-      default:
-        return false;
     }
   };
 
@@ -93,7 +91,6 @@ export default function ContactInformation({
     usePlacesService({
       apiKey: googleAPIKey,
     });
-
   const resetAddressForm = () => {
     setValue("address", "");
     setValue("city", "");
@@ -104,6 +101,7 @@ export default function ContactInformation({
   const assignAddressFormValue = (oldValue) => {
     if (!placeDetailsState) return;
     const addressComponents = placeDetailsState.address_components;
+
     if (addressComponents) {
       resetAddressForm();
       let address1 = "";
@@ -161,7 +159,7 @@ export default function ContactInformation({
         }
       );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [placePredictions]);
+  }, [JSON.stringify(placePredictions)]);
 
   const showOrReturnEmpty = (data) => {
     return data || "-";
@@ -301,6 +299,7 @@ export default function ContactInformation({
                     label="Phone Number"
                     inputProps={{
                       "aria-label": "Phone Number field",
+                      "data-testId": "phone-input-test",
                     }}
                     value={value}
                     onChange={onChange}
@@ -344,6 +343,7 @@ export default function ContactInformation({
                     label="Email ID"
                     inputProps={{
                       "aria-label": "Email ID field",
+                      "data-testId": "email-input-test",
                     }}
                     value={value}
                     onChange={onChange}
@@ -391,6 +391,7 @@ export default function ContactInformation({
                     }}
                     value={value}
                     autoComplete={false}
+                    data-testId="address-autocomplete-test"
                     renderInput={(params) => (
                       <StyledRedditField
                         {...params}
@@ -445,6 +446,7 @@ export default function ContactInformation({
                     label="City"
                     inputProps={{
                       "aria-label": "City field",
+                      "data-testId": "city-input-test",
                     }}
                     autoComplete="address-level2"
                     value={value}
@@ -540,6 +542,7 @@ export default function ContactInformation({
                         inputProps={{
                           "aria-label": "Zip field",
                           maxLength: 5,
+                          "data-testId": "zip-input-test",
                         }}
                         autoComplete="postal-code"
                         value={value}
@@ -610,6 +613,7 @@ export default function ContactInformation({
                 fontSize: "14px",
                 fontWeight: 600,
               }}
+              data-testId="cancel-button"
             >
               Cancel
             </Button>
@@ -622,6 +626,7 @@ export default function ContactInformation({
                 fontSize: "14px",
                 fontWeight: 600,
               }}
+              data-testId="save-button"
             >
               Save
             </Button>

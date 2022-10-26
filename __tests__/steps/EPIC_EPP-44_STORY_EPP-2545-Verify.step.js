@@ -536,7 +536,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     when("user  clicks on Schedule Appointment menu", () => {
@@ -598,7 +598,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     when("user  clicks on Schedule Appointment menu", () => {

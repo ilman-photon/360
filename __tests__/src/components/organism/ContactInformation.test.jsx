@@ -1,15 +1,30 @@
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  fireEvent,
+  waitFor,
+  within,
+  screen,
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ContactInformation from "../../../../src/components/organisms/ContactInformation/contactInformation";
+import mediaQuery from "css-mediaquery";
 
 window.scrollTo = jest.fn();
+
+function createMatchMedia(width) {
+  return (query) => ({
+    matches: mediaQuery.match(query, { width }),
+    addListener: () => {},
+    removeListener: () => {},
+  });
+}
 
 describe("ContactInformation Components", () => {
   let container;
   const mockUserdata = {
     address: "100 River Road",
     age: 63,
-    city: "Banora Point",
+    city: "Johar baru",
     dob: "2022-08-18T13:08:18.012Z",
     email: "Justus4@gmail.com",
     firstName: "Karlie",
@@ -17,9 +32,9 @@ describe("ContactInformation Components", () => {
     issuedCardBack: "https://loremflickr.com/275/173",
     issuedCardFront: "https://loremflickr.com/275/173",
     lastName: "Ernser",
-    mobile: "(706) 509-6731",
+    mobile: "",
     name: "Rupert Jerde",
-    preferredCommunication: "email",
+    preferredCommunication: "both",
     preferredName: "---",
     profilePhoto: {
       name: "my-photo.jpg",
@@ -30,9 +45,8 @@ describe("ContactInformation Components", () => {
     title: "Mrs.",
     zip: "24861",
   };
-
+  const mockCallBack = jest.fn();
   beforeEach(async () => {
-    const mockCallBack = jest.fn();
     container = render(
       <ContactInformation
         isEditing={false}
@@ -42,8 +56,6 @@ describe("ContactInformation Components", () => {
         OnSaveClicked={mockCallBack}
       />
     );
-
-    await waitFor(() => container.getByText("Phone Number"));
   });
 
   it("PersonalInformation View render", () => {
@@ -59,126 +71,214 @@ describe("ContactInformation Components", () => {
 
     expect(container.getByText("Justus4@gmail.com")).toBeInTheDocument();
     expect(container.getByText("100 River Road")).toBeInTheDocument();
-    expect(container.getByText("Banora Point")).toBeInTheDocument();
     expect(container.getByText("FL")).toBeInTheDocument();
     expect(container.getByText("24861")).toBeInTheDocument();
   });
 
-  test("is edit button clicked", async () => {
-    // container.rerender(
-    //   <ContactInformation isEditing={true} userData={mockUserdata} />
-    // );
-
-    // const field1 = container.getByLabelText("Phone Number field");
-    // expect(field1.value).toEqual("(706) 509-6731");
-    // fireEvent.change(field1, { target: { value: "(123) 123-1234" } });
-    // expect(field1.value).toEqual("(123) 123-1234");
-
-    // const field2 = container.getByRole("textbox", { name: "Email ID field" });
-    // expect(field2.value).toEqual("Justus4@gmail.com");
-    // fireEvent.change(field2, { target: { value: "aa@aa.aa" } });
-    // expect(field2.value).toEqual("aa@aa.aa");
-
-    // await waitFor(() => container.getByText("Address"));
-    // await waitFor(() => container.getByText("645 Benedict Cliff"));
-
-    // const field4 = container.getByLabelText("City field");
-    // expect(field4.value).toEqual("Daphneeshire");
-    // fireEvent.change(field4, { target: { value: "Cities" } });
-    // expect(field4.value).toEqual("Cities");
-
-    // const field5 = await waitFor(() =>
-    //   container.getByTestId("styled-select-state")
-    // );
-    // expect(field5).toBeTruthy();
-
-    // const field6 = container.getByLabelText("Zip field");
-    // expect(field6.value).toEqual("03245");
-    // fireEvent.change(field6, { target: { value: "12345" } });
-    // expect(field6.value).toEqual("12345");
-
-    // const radioTitle = container.getByText(
-    //   "Preferred mode(s) of Communication"
-    // );
-    // expect("Preferred mode(s) of Communication").toEqual(
-    //   radioTitle.textContent
-    // );
-
-    // const communicationRadio = container.getByRole("radio", { name: /Both/i });
-    // fireEvent.click(communicationRadio);
-    // expect(communicationRadio.value).toEqual("both");
-
-    // const phoneRadio = container.getByRole("radio", { name: /Phone/i });
-    // fireEvent.click(phoneRadio);
-    // expect(phoneRadio.value).toEqual("phone");
-
-    // const emailRadio = container.getByRole("radio", { name: /Email/i });
-    // fireEvent.click(emailRadio);
-    // expect(emailRadio.value).toEqual("email");
-  });
-
-  test("is cancel button clicked", () => {
-    container.rerender(
-      <ContactInformation isEditing={true} userData={mockUserdata} />
+  it("is email isEmpty with preferred phone", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
     );
+    const email = container.getByTestId(/email-input-test/i);
+    const preferredPhone = container.getByTestId(/phone-test/i);
 
-    const field = container.container.querySelector("#zip");
-    //expect(field.value).toEqual("24861");
-    fireEvent.change(field, { target: { value: "12345" } });
-    expect(field.value).toEqual("12345");
-
-    const cancelButton = container.getByRole("button", { name: "Cancel" });
-    fireEvent.click(cancelButton);
-
-    expect(field.value).toEqual("24861");
+    fireEvent.change(email, { target: { value: "" } });
+    fireEvent.click(preferredPhone);
+    await waitFor(() => fireEvent.click(container.getByTestId(/save-button/i)));
   });
 
-  test("is save button clicked", () => {
-    container.rerender(
-      <ContactInformation isEditing={true} userData={mockUserdata} />
+  it("is email isEmpty with preferred email", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
     );
+    const email = container.getByTestId(/email-input-test/i);
+    const preferredEmail = container.getByTestId(/email-test/i);
 
-    const field = container.container.querySelector("#zip");
-    fireEvent.change(field, { target: { value: "12345" } });
-    expect(field.value).toEqual("12345");
-    const saveButton = container.getByRole("button", { name: "Save" });
-    fireEvent.click(saveButton);
-
-    expect(field.value).toEqual("12345");
+    fireEvent.change(email, { target: { value: "" } });
+    fireEvent.click(preferredEmail);
+    await waitFor(() => fireEvent.click(container.getByTestId(/save-button/i)));
   });
 
-  test("Fill Empty String on Mandatory Field", async () => {
-    // container.rerender(
-    //   <ContactInformation isEditing={true} userData={mockUserdata} />
-    // );
-    // const field1 = container.getByLabelText("Phone Number field");
-    // expect(field1.value).toEqual("(706) 509-6731");
-    // fireEvent.change(field1, { target: { value: "" } });
-    // expect(field1.value).toEqual("(");
+  it("is email isEmpty with email and mobile is fill", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+    const email = container.getByTestId(/email-input-test/i);
+    const phone = container.getByTestId(/phone-input-test/i);
+    const preferredBoth = container.getByTestId(/both-test/i);
 
-    // const field2 = container.getByRole("textbox", { name: "Email ID field" });
-    // expect(field2.value).toEqual("Justus4@gmail.com");
-    // fireEvent.change(field2, { target: { value: "" } });
-    // expect(field2.value).toEqual("");
+    fireEvent.change(email, { target: { value: "" } });
+    fireEvent.change(phone, { target: { value: "09090909090909" } });
+    fireEvent.click(preferredBoth);
 
-    // const emailRadio = container.getByRole("radio", { name: /Email/i });
-    // fireEvent.click(emailRadio);
-    // expect(emailRadio.value).toEqual("email");
+    await waitFor(() => fireEvent.click(container.getByTestId(/save-button/i)));
+  });
 
-    // const saveButton = container.getByRole("button", { name: "Save" });
-    // fireEvent.click(saveButton);
+  it("is email isEmpty with both selected", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+    const email = container.getByTestId(/email-input-test/i);
+    const preferredBoth = container.getByTestId(/both-test/i);
 
+    fireEvent.change(email, { target: { value: "" } });
+    fireEvent.click(preferredBoth);
+
+    await waitFor(() => fireEvent.click(container.getByTestId(/save-button/i)));
+  });
+
+  it("is email isEmpty with both selected", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+    const zip = container.getByTestId(/zip-input-test/i);
+    fireEvent.change(zip, { target: { value: "12620" } });
+    await waitFor(() => fireEvent.click(container.getByTestId(/save-button/i)));
+  });
+
+  it("is email isEmpty with both selected", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+    const cancelButton = container.getByTestId(/cancel-button/i);
+    await waitFor(() => fireEvent.click(cancelButton));
+  });
+
+  it("is city incorrect value", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+    const cityInput = container.getByTestId(/city-input-test/i);
+    fireEvent.change(cityInput, { target: { value: 12620 } });
+    await waitFor(() => fireEvent.click(container.getByTestId(/save-button/i)));
+  });
+
+  it("is city empty value", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+    const cityInput = container.getByTestId(/city-input-test/i);
+    fireEvent.change(cityInput, { target: { value: "" } });
+    await waitFor(() => fireEvent.click(container.getByTestId(/save-button/i)));
+  });
+
+  it("is zip empty value", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+    const zipInput = container.getByTestId(/zip-input-test/i);
+    fireEvent.keyDown(zipInput, { key: "Enter", code: "Enter", charCode: 13 });
     // await waitFor(() =>
-    //   container.getByText("Email ID or Mobile Number is required")
+    //   fireEvent.keyDown(container.getByTestId(/save-button/i))
     // );
-    // expect(
-    //   container.getByText("Email ID or Mobile Number is required")
-    // ).toBeInTheDocument();
+  });
 
-    // fireEvent.change(field2, { target: { value: "invalid@email" } });
-    // expect(field2.value).toEqual("invalid@email");
+  it("onChange autocomplete", async () => {
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+    const addressAutocomplete = container.getByTestId(
+      /address-autocomplete-test/i
+    );
+    const input = within(addressAutocomplete).getByRole("combobox");
+    addressAutocomplete.focus();
 
-    // await waitFor(() => container.getByText("Incorrect format"));
-    // expect(container.getByText("Incorrect format")).toBeInTheDocument();
-  }, 10000);
+    fireEvent.change(input, { target: { value: "jakarta" } });
+    fireEvent.keyDown(addressAutocomplete, { key: "ArrowDown" });
+    fireEvent.keyDown(addressAutocomplete, { key: "Enter" });
+  });
+
+  it("render with is desktop", async () => {
+    window.matchMedia = createMatchMedia("1920px");
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+  });
+
+  it("render with is empty user data", async () => {
+    window.matchMedia = createMatchMedia("1920px");
+    container = render(<ContactInformation isEditing={true} userData={{}} />);
+  });
+
+  it("render with mobile phone", async () => {
+    window.matchMedia = createMatchMedia("1920px");
+    container = render(
+      <ContactInformation
+        isEditing={true}
+        userData={{
+          mobile: "0999999999",
+          preferredCommunication: "",
+        }}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+  });
 });
