@@ -15,7 +15,6 @@ import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { Regex } from "../../../utils/regex";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
-
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
   subtitle: constants.EMPTY_STRING,
@@ -78,6 +77,8 @@ const backToLoginProps = {
   },
 };
 export default function ForgotPasswordPage() {
+  const NEXT_PUBLIC_SYNC_LINK = process.env.NEXT_PUBLIC_SYNC_LINK;
+  const NEXT_PUBLIC_ONE_TIME_LINK = process.env.NEXT_PUBLIC_ONE_TIME_LINK;
   const { t } = useTranslation("translation", {
     keyPrefix: "ForgotPasswordPage",
   });
@@ -209,7 +210,9 @@ export default function ForgotPasswordPage() {
 
   //Call API for reset password
   const onCalledResetPasswordAPI = function (modeOfCommuication) {
+    const domain = window.location.origin;
     const postbody = {
+      link: `${domain}${NEXT_PUBLIC_ONE_TIME_LINK}`,
       patient: { userName: patientData.username },
       preferredComunication: modeOfCommuication.toLowerCase(),
       resetPassword: true,
@@ -257,7 +260,9 @@ export default function ForgotPasswordPage() {
 
   //Call API for one time link
   const onCalledOneTimeLinkAPI = function () {
+    const domain = window.location.origin;
     const postbody = {
+      link: `${domain}${NEXT_PUBLIC_ONE_TIME_LINK}`,
       patient: { userName: patientData.username },
       oneTimeLinkEnable: true,
     };
@@ -302,7 +307,7 @@ export default function ForgotPasswordPage() {
     setShowPostMessage(false);
     const domain = window.location.origin;
     const postbody = {
-      link: `${domain}/patient/sync/set-password`,
+      link: `${domain}${NEXT_PUBLIC_SYNC_LINK}`,
       username: username,
     };
 
