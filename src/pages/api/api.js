@@ -73,8 +73,6 @@ export class Api {
         }
       };
 
-      console.log(url);
-
       switch (method) {
         case "get":
           return api.client.get(url, postbody).then(resolver).catch(rejecter);
