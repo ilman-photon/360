@@ -116,7 +116,7 @@ const EnhancedTableHead = (props) => {
                     aria-live={"polite"}
                     sx={{
                       ".MuiTableSortLabel-icon": {
-                        opacity: 1,
+                        opacity: "1 !important",
                         color: "#003B4A !important",
                       },
                       color: "#003B4A !important",
@@ -305,13 +305,15 @@ export default function TableWithSort({
                         <Grid xs={4} p={2}>
                           {row.orderBy}
                         </Grid>
-                        <Grid xs={4} p={2}>
+                        <Grid xs={4} p={2} sx={{ paddingLeft: "40px" }}>
                           {row.date}
                         </Grid>
                         <hr className={styles.hrTestLab} />
                         <Grid xs={12} p={2} textAlign={"end"}>
                           <Typography className={styles.statusText}>
-                            <span style={{ fontWeight: "600" }}>
+                            <span
+                              style={{ fontWeight: "600", color: "#003B4A" }}
+                            >
                               Test Status:
                             </span>{" "}
                             {row.status}
@@ -419,7 +421,14 @@ export default function TableWithSort({
                             >
                               <>
                                 <IconButton
-                                  sx={{ width: 24, height: 24, p: 0 }}
+                                  sx={{
+                                    width: 32,
+                                    height: 32,
+                                    p: 0,
+                                    color: "#003B4A",
+                                    background: "#EEF5F7",
+                                    borderRadius: "50%",
+                                  }}
                                   aria-label="more option"
                                   onClick={handleMenuClick}
                                   aria-haspopup="true"
@@ -430,6 +439,7 @@ export default function TableWithSort({
                                 </IconButton>
                                 <Menu
                                   sx={{ mt: "40px" }}
+                                  id="menu-more"
                                   anchorEl={anchorEl}
                                   keepMounted
                                   onClose={handleMoreMenu}
