@@ -210,6 +210,7 @@ export default function ProviderProfile({
                     onClick={() => {
                       navigateToScheduleAppointment(providerData);
                     }}
+                    data-testid="schedule-btn"
                   >
                     Schedule Appointment
                   </StyledButton>

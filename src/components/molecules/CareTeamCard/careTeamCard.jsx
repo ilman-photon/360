@@ -1,18 +1,9 @@
-import {
-  Box,
-  IconButton,
-  Link,
-  Menu,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { Box, IconButton, Link, Typography } from "@mui/material";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useState } from "react";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterData, setIsFilterApplied } from "../../../store/appointment";
 import { useRouter } from "next/router";
@@ -24,7 +15,6 @@ import {
 } from "../../../utils/appointment";
 
 export default function CareTeamCard({ provider }) {
-  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();
   const insuranceCarrierList = useSelector((state) => state.provider.list);
@@ -33,17 +23,18 @@ export default function CareTeamCard({ provider }) {
     ? `${provider.address.addressLine1} `
     : "";
   const addressLine2 = provider.address.addressLine2
-    ? `${provider.address.addressLine1}. `
+    ? `${provider.address.addressLine2}. `
     : ".";
   const city = provider.address.city ? `${provider.address.city}, ` : "";
-  const state = provider.address.state ? `${provider.address.state} ` : "";
+  const addressState = provider.address.state
+    ? `${provider.address.state} `
+    : "";
   const zip = provider.address.zip ? `${provider.address.zip}` : "";
-  const address = `${addressLine1}${addressLine2}${city}${state}${zip}`;
-  const open = Boolean(anchorEl);
+  const address = `${addressLine1}${addressLine2}${city}${addressState}${zip}`;
 
   const navigateToScheduleAppointment = () => {
     const filterData = {
-      location: state,
+      location: addressState,
       date: moment().format("MM/DD/YYYY"),
       purposeOfVisit: provider.specialties,
     };
@@ -55,25 +46,12 @@ export default function CareTeamCard({ provider }) {
     });
   };
 
-  const handleClick = (event) => {
-    //Disable based on BA confirmation
-    //setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <Box className={styles.careTeamContainer}>
       <Box>
         <IconButton
           aria-label="more"
           id="more-button"
-          aria-controls={open ? "more-menu" : undefined}
-          aria-expanded={open ? "true" : undefined}
-          aria-haspopup="true"
-          onClick={handleClick}
           sx={{
             position: "absolute",
             right: 0,
@@ -85,41 +63,6 @@ export default function CareTeamCard({ provider }) {
         >
           <MoreVertIcon />
         </IconButton>
-        <Menu
-          id="more-menu"
-          MenuListProps={{
-            "aria-labelledby": "more-button",
-          }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          sx={{
-            ".MuiMenu-list": {
-              padding: 0,
-              width: "131px",
-              height: "48px",
-              borderRadius: "8px",
-              display: "flex",
-            },
-          }}
-        >
-          <MenuItem
-            onClick={handleClose}
-            sx={{
-              fontSize: "14px",
-              color: "#323338",
-              flex: 1,
-              gap: "12px",
-              "& .MuiSvgIcon-root": {
-                fontSize: "24px",
-                color: "#757575",
-              },
-            }}
-          >
-            <DeleteOutlineIcon />
-            Remove
-          </MenuItem>
-        </Menu>
       </Box>
       <Box className={styles.bioContainer}>
         <Box className={styles.careTeamImage}>
@@ -182,7 +125,7 @@ export default function CareTeamCard({ provider }) {
             Phone
           </Typography>
           <PhoneNumber
-            phone={provider.phone}
+            phone={provider.phone || "-"}
             sx={{
               "&.MuiTypography-body2": {
                 fontSize: {
@@ -209,6 +152,7 @@ export default function CareTeamCard({ provider }) {
           onClick={() => {
             navigateToScheduleAppointment();
           }}
+          data-testid="schedule-btn"
         >
           Schedule Appointment
         </StyledButton>

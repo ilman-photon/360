@@ -2,15 +2,12 @@ import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import CareTeamCard from "../../../components/molecules/CareTeamCard/careTeamCard";
-import CustomModal from "../../../components/molecules/CustomModal/customModal";
-import FloatingMessage from "../../../components/molecules/FloatingMessage/floatingMessage";
 import MyCareTeamLayout from "../../../components/templates/myCareTeam";
 import store from "../../../store/store";
 import { getArrayValue } from "../../../utils/bioUtils";
 import { Api } from "../../api/api";
 
 export default function MyCareTeamPage() {
-  const [isRemoved, setIsRemoved] = useState(false);
   const [isRequested, setIsRequested] = useState(false);
   const [providerData, setProviderData] = useState();
 
@@ -123,43 +120,6 @@ export default function MyCareTeamPage() {
           )}
         </Box>
       )}
-
-      <FloatingMessage
-        text="Doctor successfully removed"
-        autoHideDuration={2000}
-        onOpen={isRemoved}
-        onClose={(removed) => {
-          setIsRemoved(!removed);
-        }}
-      />
-
-      <CustomModal
-        buttonText={"Remove"}
-        onClickButton={() => {
-          setModalErrorRequest(false);
-        }}
-        secondaryButtonText={"Cancel"}
-        onClickSecondaryButton={() => {}}
-        onClickCloseButton={() => {}}
-        open={false}
-        sx={{
-          "& .MuiPaper-root": {
-            top: { xs: "0", md: "100px" },
-            position: { xs: "relative", md: "absolute" },
-          },
-        }}
-      >
-        <Box marginBottom={"16px"}>
-          <Typography
-            sx={{
-              fontSize: "22px",
-              marginBottom: "19px",
-            }}
-          >
-            Are you sure you want to remove doctor?
-          </Typography>
-        </Box>
-      </CustomModal>
     </>
   );
 }

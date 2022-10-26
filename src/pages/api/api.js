@@ -613,10 +613,7 @@ export class Api {
         offices: [
           {
             name: "Ballwin",
-            addressLine1: "568 Allens Mill Rd",
-            city: "Yorktown",
-            state: "VA",
-            zip: "23692",
+            addressLine2: "568 Allens Mill Rd",
             _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
           },
           {

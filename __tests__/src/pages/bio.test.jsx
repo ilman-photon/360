@@ -7,6 +7,11 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import constants from "../../../src/utils/constants";
 import { Marker, useLoadScript } from "@react-google-maps/api";
+import {
+  mockAppointmentTypes,
+  mockInsurance,
+  submitFilter,
+} from "../../../__mocks__/mockResponse";
 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
@@ -151,6 +156,7 @@ describe("Render Bio", () => {
   beforeEach(async () => {
     useRouter.mockReturnValue({
       back: jest.fn(),
+      push: jest.fn()
     });
     window.scrollTo = jest.fn();
     mock
@@ -169,6 +175,16 @@ describe("Render Bio", () => {
         `https://maps.googleapis.com/maps/api/geocode/json?address=568+Allens+Mill+Rd++Yorktown+VA+23692&key=undefined`
       )
       .reply(200, map);
+
+    mock
+      .onGet("/ecp/appointments/appointment-types", mockAppointmentTypes)
+      .reply(200, mockAppointmentTypes);
+    mock
+      .onGet("/ecp/appointments/insurance/allpayers", mockInsurance)
+      .reply(200, mockInsurance);
+    mock
+      .onPut("/ecp/appointments/available-slot?searchText=VA")
+      .reply(200, submitFilter);
 
     const contex = {
       query: {
@@ -236,4 +252,9 @@ describe("Render Bio", () => {
     expect(container.getByTestId(TEST_ID.viewAll)).toBeInTheDocument();
     fireEvent.click(container.getByTestId(TEST_ID.viewAll));
   });
+
+  test("Click schedule button", () => {
+    expect(container.getByTestId("schedule-btn")).toBeInTheDocument();
+    fireEvent.click(container.getByTestId("schedule-btn"));
+});
 });

@@ -84,12 +84,12 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
     );
   };
 
-  const getAddressQuery = (address) => {
-    const addressLine1 = address.addressLine1?.replace(/#/g, "") || "";
-    const addressLine2 = address.addressLine2 || "";
-    const city = address.city || "";
-    const state = address.state || "";
-    const zipcode = address.zipcode || address.zip || "";
+  const getAddressQuery = (item) => {
+    const addressLine1 = item.addressLine1?.replace(/#/g, "") || "";
+    const addressLine2 = item.addressLine2 || "";
+    const city = item.city || "";
+    const state = item.state || "";
+    const zipcode = item.zipcode || item.zip || "";
 
     return `${addressLine1}+${addressLine2}+${city}+${state}+${zipcode}`.replace(
       / /g,
@@ -100,22 +100,22 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
   useEffect(() => {
     !isRequest && providerData && getLocation();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isRequest, locations, providerData]);
+  }, [isRequest, providerData]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getLocation = () => {
     if (locations === undefined) {
       isRequest = true;
       const api = new Api();
-      const locations = [];
+      const locationsArray = [];
       const locationsList = [];
-      const address = providerData.address;
-      address.map((item) => {
+      const addressArray = providerData.address;
+      addressArray.map((item) => {
         const query = getAddressQuery(item);
-        locations.push(api.googleGeocode(query, googleApiKey));
+        locationsArray.push(api.googleGeocode(query, googleApiKey));
       });
 
-      Promise.all(locations).then((values) => {
+      Promise.all(locationsArray).then((values) => {
         values.map((item) => {
           if (item.status === "OK") {
             const location = item.results[0]?.geometry?.location;
