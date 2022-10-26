@@ -126,17 +126,40 @@ export default function ForgotPasswordPage() {
 
   const onCalledValidateAppointment = function ({ username }) {
     const postbody = {
-      patient: { userName: username },
+      username: username,
     };
     const api = new Api();
-    api
-      .validateGuestUser(postbody)
-      .then(() => {
-        onCalledOneTimeLinkSync(username);
-      })
-      .catch(() => {
-        setShowPostMessage(true);
-      });
+
+    {
+      isAppointment
+        ? api
+            .validateUserType(postbody)
+            .then(() => {
+              onCalledSendLinkSync(username);
+            })
+            .catch(() => {
+              setShowPostMessage(true);
+            })
+        : api
+            .validateUserName(postbody)
+            .then(() => {
+              setPatientData({
+                ...patientData,
+                username: username,
+                securityQuestionsSet:
+                  response.SecurityQuestions &&
+                  response.SecurityQuestions.length > 0,
+                securityQuestions: mappingSecurityData(
+                  response.SecurityQuestions[0]
+                ),
+                preferredComunication: response.PreferredComunication,
+              });
+              onContinueButtonClicked(showForm);
+            })
+            .catch(() => {
+              setShowPostMessage(true);
+            });
+    }
   };
 
   //Call API for check security question
@@ -275,6 +298,42 @@ export default function ForgotPasswordPage() {
       });
   };
 
+  const onCalledSendLinkSync = (username) => {
+    setShowPostMessage(false);
+    const domain = window.location.origin;
+    const postbody = {
+      link: `${domain}/patient/sync/set-password`,
+      username: username,
+    };
+
+    const api = new Api();
+    api
+      .sendLinkSync(postbody)
+      .then(function () {
+        confirmationFormProps = {
+          pageTitle: "Schedule Your Appointment",
+          title: "Schedule Your Appointment",
+          subtitle,
+          postMessage,
+          postMessageTitle: "",
+          successPostMessage: true,
+          // buttonLabel: "Login with one-time link",
+          additional: null,
+          butttonMode: constants.PRIMARY,
+          // onCTAButtonClicked: () => onCalledOneTimeLinkSync(username),
+        };
+        setShowForgotPassword(false);
+        setShowSelectOption(false);
+        setShowPasswordSecurityQuestion(false);
+        setShowPasswordReset(false);
+        setShowPostMessage(true);
+        setShowOneTimeLink(true);
+      })
+      .catch(function () {
+        console.error("Something went wrong");
+      });
+  };
+
   const onCalledOneTimeLinkSync = (username) => {
     setShowPostMessage(false);
     const postbody = {
@@ -286,7 +345,6 @@ export default function ForgotPasswordPage() {
     const subtitle = isEmail
       ? `Check ${username}  for an email to set up your password.`
       : `Check ${username} for a link to set up your password.`;
-    console.log(subtitle, "sub ");
     const postMessage = isEmail
       ? `Link sent to your email`
       : `Link sent to your phone number`;
@@ -296,8 +354,8 @@ export default function ForgotPasswordPage() {
       .oneTimeLink(postbody)
       .then(function () {
         confirmationFormProps = {
-          pageTitle: "Schedule Your Appointment",
-          title: "Schedule Your Appointment",
+          pageTitle: "Sync Your Appointment",
+          title: "Sync Your Appointment",
           subtitle,
           postMessage,
           postMessageTitle: "",

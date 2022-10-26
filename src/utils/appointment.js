@@ -93,6 +93,18 @@ export function parseScheduleDataWeek(availability) {
   return scheduleData;
 }
 
+export function getAppointmentTypeOnTimeSlot(scheduleData, timeSlot) {
+  let appointmentType = "";
+  for (let index = 0; index < scheduleData.list.length; index++) {
+    if (scheduleData.list[index]?.time === timeSlot) {
+      appointmentType = scheduleData.list[index].appointmentCode;
+      break;
+    }
+  }
+
+  return appointmentType;
+}
+
 export function parseDateWeekList(availability) {
   const dateList = [];
   for (let index = 0; index < availability.length; index++) {
@@ -625,6 +637,7 @@ function parseTimeSlotAppointment(timeSlotList) {
     let slotTemp = {
       time: convertTime24to12(`${timeSlot.startHHMM}`),
       key: timeSlot._id,
+      appointmentCode: timeSlot?.appointmentType?.code,
     };
     list.push(slotTemp);
   }

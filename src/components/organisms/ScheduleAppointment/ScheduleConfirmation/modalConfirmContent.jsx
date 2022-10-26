@@ -117,20 +117,20 @@ export default function ModalConfirmContent({
         sx={{ textAlign: "center", fontSize: "22px" }}
         isPage={isPage}
       >
-        <Typography
-          tabIndex={0}
-          ariaLabel={
-            isReschedule
-              ? "Reschedule Appointment Successful"
-              : "You’re Scheduled!"
-          }
-          variant="bodyMedium"
-          className={styles.scheduledText}
-        >
+        <Typography variant="bodyMedium" className={styles.scheduledText}>
           <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />{" "}
-          {isReschedule
-            ? "Reschedule Appointment Successful"
-            : "You’re Scheduled!"}
+          <div
+            tabIndex={0}
+            aria-label={
+              isReschedule
+                ? "Reschedule Appointment Successful"
+                : "You’re Scheduled!"
+            }
+          >
+            {isReschedule
+              ? "Reschedule Appointment Successful"
+              : "You’re Scheduled!"}
+          </div>
         </Typography>
       </BootstrapDialogTitle>
       <DialogContent

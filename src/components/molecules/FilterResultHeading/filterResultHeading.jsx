@@ -333,6 +333,7 @@ export const FilterResultHeading = ({
             />
             <Box
               className={styles.mobileFilterTitleContainer}
+              data-testid={"open-filter-modal"}
               onClick={handleOpenDialog}
             >
               <Button

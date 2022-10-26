@@ -4,7 +4,6 @@ import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 import { TEST_ID } from "../../../utils/constants";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import ImageFallback from "../../atoms/Image/image";
 
@@ -126,37 +125,15 @@ export default function ProviderProfile({
     >
       <Box className={styles.displayFlex}>
         <Box className={getImageContainerStyle()}>
-          {providerData.image ? (
-            <ImageFallback
-              data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
-              width={100}
-              height={100}
-              source={providerData.image}
-              alt="front"
-              aria-label="Image"
-              tabIndex={0}
-            />
-          ) : (
-            <AccountCircleIcon
-              sx={{
-                width: isCard
-                  ? "61px"
-                  : { xs: "70px", sm: "100px", md: "unset" },
-                height: isCard
-                  ? "61px"
-                  : { xs: "70px", sm: "100px", md: "unset" },
-                color: "#b5b5b5",
-                "@media (max-width: 767px)": {
-                  width: { xs: "50px" },
-                  height: { xs: "50px" },
-                },
-              }}
-              data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
-              className={styles.profilePhoto}
-              alt="Doctor Image"
-              tabIndex={0}
-            />
-          )}
+          <Image
+            src={providerData.image || "/cardImage.png"}
+            data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
+            width={100}
+            height={100}
+            className={styles.profilePhoto}
+            alt="Doctor Image"
+            tabIndex={0}
+          />
         </Box>
         <Box
           className={[styles.bioContainer, bioContainerClass].join(" ")}
@@ -201,7 +178,7 @@ export default function ProviderProfile({
                   sx={{ marginLeft: isMap ? "-67px" : "0" }}
                 >
                   {(isBio || isMap || (isViewSchedule && isShownRating)) && (
-                    <StyledRating value={parseInt(providerData.rating)} />
+                    <StyledRating value={parseFloat(providerData.rating)} />
                   )}
                   <PhoneNumber phone={phoneNumber} />
                 </Box>

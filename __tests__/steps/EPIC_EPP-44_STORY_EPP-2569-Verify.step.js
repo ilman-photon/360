@@ -56,9 +56,434 @@ const defaultValidation = () => {
 
 defineFeature(feature, (test) => {
   let container;
-  const element = document.createElement("div");
-  const mock = new MockAdapter(axios);
-  const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
+  const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
+  
+  const providerList = [
+    {
+      providerId: "1",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: "5",
+      name: "Paul Wagner Md",
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: "2022-09-19",
+      to: "2022-09-24",
+      availability: [
+        {
+          date: "2022-09-19",
+          list: [
+            {
+              time: "11:30am",
+              key: 12222,
+            },
+          ],
+        },
+        {
+          date: "2022-09-20",
+          list: [
+            {
+              time: "08:00am",
+              key: 12223,
+            },
+            {
+              time: "10:30am",
+              key: 12224,
+            },
+            {
+              time: "11:00am",
+              key: 12225,
+            },
+            {
+              time: "12:00pm",
+              key: 12226,
+            },
+            {
+              time: "13:00pm",
+              key: 12227,
+            },
+            {
+              time: "14:00pm",
+              key: 12228,
+            },
+          ],
+        },
+        {
+          date: "2022-09-21",
+          list: [
+            {
+              time: "08:30am",
+              key: 12229,
+            },
+            {
+              time: "10:30am",
+              key: 12230,
+            }
+          ],
+        },
+        {
+          date: "2022-09-22",
+          list: [
+            {
+              time: "09:30am",
+              key: 12237,
+            },
+            {
+              time: "11:00am",
+              key: 12238,
+            },
+          ],
+        },
+        {
+          date: "2022-09-23",
+          list: [
+            {
+              time: "09:30am",
+              key: 12239,
+            },
+          ],
+        },
+        {
+          date: "2022-09-24",
+          list: [
+            {
+              time: "09:30am",
+              key: 12240,
+            },
+          ],
+        },
+      ],
+      coordinate: {
+        latitude: 32.751204,
+        longitude: -117.1641166,
+      },
+    },
+    {
+      providerId: "2",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: "5",
+      name: "Paul Wagner Md",
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: "2022-09-19",
+      to: "2022-09-24",
+      availability: [
+        {
+          date: "2022-09-19",
+          list: [
+            {
+              time: "11:30am",
+              key: 12222,
+            },
+          ],
+        },
+        {
+          date: "2022-09-20",
+          list: [
+            {
+              time: "08:00am",
+              key: 12223,
+            },
+            {
+              time: "10:30am",
+              key: 12224,
+            },
+            {
+              time: "11:00am",
+              key: 12225,
+            },
+            {
+              time: "12:00pm",
+              key: 12226,
+            },
+            {
+              time: "13:00pm",
+              key: 12227,
+            },
+            {
+              time: "14:00pm",
+              key: 12228,
+            },
+          ],
+        },
+        {
+          date: "2022-09-21",
+          list: [
+            {
+              time: "08:30am",
+              key: 12229,
+            },
+          ],
+        },
+        {
+          date: "2022-09-22",
+          list: [
+            {
+              time: "09:30am",
+              key: 12237,
+            },
+            {
+              time: "11:00am",
+              key: 12238,
+            },
+          ],
+        },
+        {
+          date: "2022-09-23",
+          list: [
+            {
+              time: "09:30am",
+              key: 12239,
+            },
+          ],
+        },
+        {
+          date: "2022-09-24",
+          list: [
+            {
+              time: "09:30am",
+              key: 12240,
+            },
+          ],
+        },
+      ],
+      coordinate: {
+        latitude: 32.751204,
+        longitude: -117.1641166,
+      },
+    },
+    {
+      providerId: "3",
+      name: "Paul Wagner Md",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: "5",
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: "2022-09-19",
+      to: "2022-09-24",
+      availability: [
+        {
+          date: "2022-09-19",
+          list: [
+            {
+              time: "11:30am",
+              key: 12222,
+            },
+          ],
+        },
+        {
+          date: "2022-09-20",
+          list: [
+            {
+              time: "08:00am",
+              key: 12223,
+            },
+            {
+              time: "10:30am",
+              key: 12224,
+            },
+            {
+              time: "11:00am",
+              key: 12225,
+            },
+            {
+              time: "12:00pm",
+              key: 12226,
+            },
+            {
+              time: "13:00pm",
+              key: 12227,
+            },
+            {
+              time: "14:00pm",
+              key: 12228,
+            },
+          ],
+        },
+        {
+          date: "2022-09-21",
+          list: [
+            {
+              time: "08:30am",
+              key: 12229,
+            },
+            {
+              time: "10:30am",
+              key: 12230,
+            }
+          ],
+        },
+        {
+          date: "2022-09-22",
+          list: [
+            {
+              time: "09:30am",
+              key: 12237,
+            },
+            {
+              time: "11:00am",
+              key: 12238,
+            },
+          ],
+        },
+        {
+          date: "2022-09-23",
+          list: [
+            {
+              time: "09:30am",
+              key: 12239,
+            },
+          ],
+        },
+        {
+          date: "2022-09-24",
+          list: [
+            {
+              time: "09:30am",
+              key: 12240,
+            },
+          ],
+        },
+      ],
+      coordinate: {
+        latitude: 32.751204,
+        longitude: -117.1641166,
+      },
+    },
+  ]
+
+  function createMatchMedia(width) {
+    return query => ({
+        matches: mediaQuery.match(query, { width }),
+        addListener: () => { },
+        removeListener: () => { },
+    });
+  }
+
+  const searchScreen = () => {
+    window.matchMedia = createMatchMedia('1920px');
+    const mockFilterData = {
+        date: null,
+        location: "",
+        insuranceCarrier: "",
+        purposeOfVisit: "",
+      }
+        container = render(<FilterHeading 
+        isDesktop={true}
+        isTablet={false}
+        onSearchProvider={() => {
+          jest.fn();
+        }}
+        onSwapButtonClicked={() => {
+          jest.fn();
+        }}
+        isGeolocationEnabled={false}
+        filterData={mockFilterData}
+        purposeOfVisitData={[]}
+        insuranceCarrierData={[]} />);
+  }
+
+  const inputLocation = async () => {
+    const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
+    act(() => {
+      fireEvent.change(locationInput, { target: { value: "Texas" } });
+    });
+  }
+
+  const inputDate = async () => {
+    const dateInput = await waitFor(() => container.getByLabelText("Date"))
+    act(() => {
+      fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
+    });
+  }
+
+  const inputPurpose = async () => {
+    const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
+    act(() => {
+      fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+    });
+  }
+
+  const inputInsurance = async () => {
+    const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
+    act(() => {
+      fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+    });
+  }
+
+  const clickSearch = async () => {
+    const searchBtn = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.searchbtn))
+    fireEvent.click(searchBtn)
+  }
+
+  const provideFilters = () => {
+    inputLocation();
+    inputDate();
+    inputPurpose();
+    inputInsurance();
+    clickSearch();
+  };
+
+  const reviewAppPage = async () => {
+    container.rerender(<Provider store={store}>{ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}</Provider>);
+    await waitFor(() => container.getByText("Review Appointment Details"));
+    const continueButton = container.getAllByText("continue")[0];
+    fireEvent.click(continueButton);
+  }
+
+  const clickMyself = async () => {
+    await waitFor(() => container.getByText("myself"));
+    expect(container.getAllByText("myself")).toBeTruthy();
+    expect(container.getAllByText("someoneElse")).toBeTruthy();
+    const myselfButton = container.getByText("myself");
+    fireEvent.click(myselfButton);
+    const continueButton = container.getAllByText("continue")[0];
+    fireEvent.click(continueButton);
+  };
+
+  const provideFirstLastNameValid = async () => {
+    await waitFor(() => container.getByText("First Name"));
+    const field1 = container.getByLabelText("First Name");
+    fireEvent.change(field1, { target: { value: "first" } });
+
+    const field2 = container.getByLabelText("Last Name");
+    fireEvent.change(field2, { target: { value: "last" } });
+  };
+
+  const clickSaveAction = () => {
+    const saveButton = container.getByRole("button", {
+      name: "scheduleAppoinment",
+    });
+    fireEvent.click(saveButton);
+  };
+
+  const errorEmailPhone = async () => {
+    await waitFor(() => container.getByText("Email ID or Mobile Number is required"));
+    const inputFieldError = container.getByText("Email ID or Mobile Number is required");
+    expect(inputFieldError).toBeTruthy();
+    expect("Email ID or Mobile Number is required").toEqual(inputFieldError.textContent);
+  };
+
   test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is not allowing the Maximum limit -1 (Need to confirm)', ({ given, when, and, then }) => {
     given('user launch the Marketing Site url', () => {
       defaultValidation()
@@ -69,15 +494,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -89,23 +515,26 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument()
     });
 
     and('enter the Email ID', () => {
-      defaultValidation()
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
-    and('enter the Mobile number', (arg0) => {
-      defaultValidation()
+    and('enter the Mobile number', () => {
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "3" } });
+  
     });
 
     and('click the Continue button.', () => {
-      defaultValidation()
+      clickSaveAction()
     });
 
     then('it should not display the error message for mobile', () => {
@@ -123,15 +552,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -143,23 +573,25 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument()
     });
 
     and('enter the Email ID', () => {
-      defaultValidation()
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
     and('enter the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "3" } });
     });
 
     and('click the Continue button.', () => {
-      defaultValidation()
+      clickSaveAction()
     });
 
     then('it should not display the error message for mobile', () => {
@@ -177,15 +609,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -197,23 +630,25 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument()
     });
 
     and('enter the Email ID', () => {
-      defaultValidation()
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
     and('enter many special characters inbetween Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "^&*%$" } });
     });
 
     and('click the Continue button.', () => {
-      defaultValidation()
+      clickSaveAction()
     });
 
     then('it should display the error message Incorrect mobile number', () => {
@@ -231,15 +666,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -251,15 +687,16 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Email ID', () => {
-      defaultValidation()
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
     and('enter the alphabet inbetween Mobile number', () => {
@@ -285,15 +722,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -319,15 +757,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -339,19 +778,21 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
     and('select the Preferred mode of communication = Email', () => {
-      defaultValidation()
+      const communicationRadio = container.getByRole("radio", { name: /Email/i });
+      fireEvent.click(communicationRadio);
     });
 
     and('click the Continue button.', () => {
@@ -373,15 +814,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -393,27 +835,29 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "" } });
     });
 
     and('select the Preferred mode of communication = Phone', () => {
-      defaultValidation()
+      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
+      fireEvent.click(communicationRadio);
     });
 
     and('click the Continue button.', () => {
-      defaultValidation()
+      clickSaveAction();
     });
 
     then('Mobile number should ask for the mandatory.', () => {
-      defaultValidation()
+      errorEmailPhone();
     });
   });
 
@@ -427,15 +871,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -447,35 +892,39 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Email', () => {
-      defaultValidation()
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
     and('without entering the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "" } });
     });
 
     and('select the Preferred mode of communication = Email', () => {
-      defaultValidation()
+      const communicationRadio = container.getByRole("radio", { name: /Email/i });
+      fireEvent.click(communicationRadio);
     });
 
     and('change the Preferred mode of communication = Phone', () => {
-      defaultValidation()
+      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
+      fireEvent.click(communicationRadio);
     });
 
     and('click the Continue button.', () => {
-      defaultValidation()
+      clickSaveAction();
     });
 
-    then('mandatory error message should display for the Mobile number field.', () => {
-      defaultValidation()
+    then('mandatory error message should display for the Mobile number field.', async () => {
+      errorEmailPhone();
     });
   });
 
@@ -489,15 +938,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -509,11 +959,11 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Email', () => {
@@ -525,15 +975,17 @@ defineFeature(feature, (test) => {
     });
 
     and('select the Preferred mode of communication = Email', () => {
-      defaultValidation()
+      const communicationRadio = container.getByRole("radio", { name: /Email/i });
+      fireEvent.click(communicationRadio);
     });
 
     and('change the Preferred mode of communication = Phone', () => {
-      defaultValidation()
+      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
+      fireEvent.click(communicationRadio);
     });
 
     and('click the Continue button.', () => {
-      defaultValidation()
+      clickSaveAction();
     });
 
     then('mandatory error message should display for the Mobile number field.', () => {
@@ -551,15 +1003,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -571,11 +1024,11 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Email', () => {
@@ -605,15 +1058,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -625,23 +1079,25 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
     and('select the Preferred mode of communication = Phone', () => {
-      defaultValidation()
+      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
+      fireEvent.click(communicationRadio);
     });
 
     and('click the Continue button.', () => {
-      defaultValidation()
+      clickSaveAction();
     });
 
     then('Message should trigger to the Mobile number.(Need to confirm)', () => {
@@ -659,15 +1115,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -679,15 +1136,16 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "" } });
     });
 
     and('select the Preferred mode of communication = Email', () => {
@@ -717,15 +1175,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -737,7 +1196,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Progress bar is displaying for the stages of Appointment', ({ given, when, and, then }) => {
+  test.only('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Progress bar is displaying for the stages of Appointment', ({ given, when, and, then }) => {
     given('user launch the Marketing Site url', () => {
       defaultValidation()
     });
@@ -747,15 +1206,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -767,19 +1227,21 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
     and('select the Preferred mode of communication = Phone', () => {
-      defaultValidation()
+      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
+      fireEvent.click(communicationRadio);
     });
 
     and('click the Continue button.', () => {
@@ -787,7 +1249,11 @@ defineFeature(feature, (test) => {
     });
 
     then('user should see the Progress bar with Location,  Review, Appointment details, Contact Info, Confirm', () => {
-      defaultValidation()
+      expect(container.getByText("Location")).toBeInTheDocument();
+      expect(container.getByText("Review")).toBeInTheDocument();
+      expect(container.getByText("Appointment Details")).toBeInTheDocument();
+      expect(container.getByText("Contact Info")).toBeInTheDocument();
+      expect(container.getByText("Confirm")).toBeInTheDocument();
     });
   });
 
@@ -801,15 +1267,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -821,15 +1288,16 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
     and('select the Preferred mode of communication =Email', () => {
@@ -855,15 +1323,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -875,11 +1344,11 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('without entering the Email and Mobile number', () => {
@@ -905,15 +1374,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -925,11 +1395,11 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the mentioned Email ID', () => {
@@ -955,15 +1425,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -994,15 +1465,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1032,15 +1504,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1070,15 +1543,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1108,15 +1582,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1146,15 +1621,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1184,15 +1660,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1222,15 +1699,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1260,15 +1738,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1298,15 +1777,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1336,15 +1816,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1378,15 +1859,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1416,15 +1898,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1436,7 +1919,7 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the invalid Date of Birth.', () => {
@@ -1448,7 +1931,7 @@ defineFeature(feature, (test) => {
     });
 
     then('Guest user should see the error message Invalid date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
   });
 
@@ -1462,15 +1945,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1482,7 +1966,7 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the invalid Date of Birth format.', () => {
@@ -1508,15 +1992,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1528,7 +2013,7 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the future Date of birth.', () => {
@@ -1554,15 +2039,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1574,7 +2060,7 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the Date of birth more than maximum age limit.', () => {
@@ -1600,15 +2086,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1620,7 +2107,7 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the Date of birth less than minimum age limit.', () => {
@@ -1646,15 +2133,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1666,11 +2154,11 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('click Continue button.', () => {
@@ -1692,15 +2180,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1712,15 +2201,16 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('without entering the Email and enter the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
     and('click Continue button.', () => {
@@ -1742,15 +2232,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1762,11 +2253,11 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('without entering the Mobile number and enter the Email', () => {
@@ -1792,15 +2283,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {
@@ -1812,19 +2304,21 @@ defineFeature(feature, (test) => {
     });
 
     and('enter the First name, Last name.', () => {
-      defaultValidation()
+      provideFirstLastNameValid();
     });
 
     and('enter the valid Date of birth', () => {
-      defaultValidation()
+      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
     });
 
     and('enter the Email ID', () => {
-      defaultValidation()
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
     and('enter the Mobile number', () => {
-      defaultValidation()
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
     and('click the Continue button.', () => {
@@ -1846,15 +2340,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     then('user should see the below mentioned fields', (table) => {
@@ -1872,15 +2367,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     then('user should see the Continue as Guest button.', () => {
@@ -1898,15 +2394,16 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      defaultValidation()
+      searchScreen();
+      provideFilters();
     });
 
     and('user review the appointments.', () => {
-      defaultValidation()
+      reviewAppPage();
     });
 
     and('select the Appointment for Myself.', () => {
-      defaultValidation()
+      clickMyself();
     });
 
     and('click the Continue as a Guest button.', () => {

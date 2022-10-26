@@ -28,7 +28,7 @@ describe("Set Password", () => {
       //   {SetPasswordPage.getLayout(<SetPasswordPage {...serverProps.props} />)}
       // </Provider>
     );
-    await waitFor(() => container.getByText(/Set Password/i));
+    await waitFor(() => container.getAllByText(/Set Password/i)[0]);
   };
   beforeEach(async () => {
     mock
@@ -42,25 +42,25 @@ describe("Set Password", () => {
 
   test("check no valid email", async () => {
     await renderSetPassword();
-    const title = container.getByText(/Set Password/i);
+    const title = container.getAllByText(/Set Password/i)[0];
     expect("Set Password").toEqual(title.textContent);
   });
 
   test("check valid phonenumber", async () => {
     await renderSetPassword("1234567890");
-    const title = container.getByText(/Set Password/i);
+    const title = container.getAllByText(/Set Password/i)[0];
     expect("Set Password").toEqual(title.textContent);
   });
 
   test("check valid email", async () => {
     await renderSetPassword("smith1@photon.com");
-    const title = container.getByText(/Set Password/i);
+    const title = container.getAllByText(/Set Password/i)[0];
     expect("Set Password").toEqual(title.textContent);
   });
 
   test("click reset password success", async () => {
     await renderSetPassword("smith1@photon.com");
-    await waitFor(() => container.getByText(/Set Password/i));
+    await waitFor(() => container.getAllByText(/Set Password/i)[0]);
     const password = container.container.querySelector("#password");
     fireEvent.change(password, { target: { value: "user123@A" } });
     expect(password.value).toEqual("user123@A");
@@ -70,7 +70,7 @@ describe("Set Password", () => {
     expect(confirmPassword.value).toEqual("user123@A");
 
     const submitbutton = container.getByRole("button", {
-      name: /Create Account/i,
+      name: /Set Password/i,
     });
     fireEvent.click(submitbutton);
     await sleep(4000);
@@ -81,9 +81,9 @@ describe("Set Password", () => {
   test("click reset password failed", async () => {
     mock
       .onPost("/ecp/patient/registrationsetpassword")
-      .reply(401, { ResponseCode: 3002 });
+      .reply(400, { ResponseCode: 3500 });
     await renderSetPassword("smith1@photon.com");
-    await waitFor(() => container.getByText(/Set Password/i));
+    await waitFor(() => container.getAllByText(/Set Password/i)[0]);
     const password = container.container.querySelector("#password");
     fireEvent.change(password, { target: { value: "user123@A" } });
     expect(password.value).toEqual("user123@A");
@@ -93,12 +93,10 @@ describe("Set Password", () => {
     expect(confirmPassword.value).toEqual("user123@A");
 
     const submitbutton = container.getByRole("button", {
-      name: /Create Account/i,
+      name: /Set Password/i,
     });
     fireEvent.click(submitbutton);
     await waitFor(() => container.getByTestId("submission-message"));
-    await waitFor(() => container.getByText(/Back to home/i));
-    expect(container.getByText(/Back to home/i)).toBeInTheDocument();
   });
 
   test("click reset password failed invalid length", async () => {
@@ -106,7 +104,7 @@ describe("Set Password", () => {
       .onPost("/ecp/patient/registrationsetpassword")
       .reply(401, { ResponseCode: 3002 });
     await renderSetPassword("smith1@photon.com");
-    await waitFor(() => container.getByText(/Set Password/i));
+    await waitFor(() => container.getAllByText(/Set Password/i)[0]);
     const password = container.container.querySelector("#password");
     fireEvent.change(password, { target: { value: "user123" } });
     expect(password.value).toEqual("user123");
@@ -116,19 +114,17 @@ describe("Set Password", () => {
     expect(confirmPassword.value).toEqual("user123");
 
     const submitbutton = container.getByRole("button", {
-      name: /Create Account/i,
+      name: /Set Password/i,
     });
     fireEvent.click(submitbutton);
-    await waitFor(() => container.getByText(/Back to home/i));
-    expect(container.getByText(/Back to home/i)).toBeInTheDocument();
   });
 
   test("click reset password failed contain whitespace", async () => {
     mock
       .onPost("/ecp/patient/registrationsetpassword")
-      .reply(401, { ResponseCode: 3002 });
+      .reply(400, { ResponseCode: 3500 });
     await renderSetPassword("smith1@photon.com");
-    await waitFor(() => container.getByText(/Set Password/i));
+    await waitFor(() => container.getAllByText(/Set Password/i)[0]);
     const password = container.container.querySelector("#password");
     fireEvent.change(password, { target: { value: "user12345" } });
     expect(password.value).toEqual("user12345");
@@ -138,10 +134,8 @@ describe("Set Password", () => {
     expect(confirmPassword.value).toEqual("user12345 ");
 
     const submitbutton = container.getByRole("button", {
-      name: /Create Account/i,
+      name: /Set Password/i,
     });
     fireEvent.click(submitbutton);
-    await waitFor(() => container.getByText(/Back to home/i));
-    expect(container.getByText(/Back to home/i)).toBeInTheDocument();
   });
 });

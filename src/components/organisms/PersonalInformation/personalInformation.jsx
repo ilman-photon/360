@@ -25,6 +25,7 @@ import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ImageFallback from "../../atoms/Image/image";
 import FormMessage from "../../molecules/FormMessage/formMessage";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function PersonalInformation({
   userData = {},
@@ -227,7 +228,12 @@ export default function PersonalInformation({
           <div>
             <Typography
               variant="h3"
-              sx={{ pb: 2, color: colors.black, fontSize: "26px" }}
+              sx={{
+                pb: 2,
+                color: colors.black,
+                fontSize: "26px",
+                fontWeight: 500,
+              }}
             >
               State Issued ID
             </Typography>
@@ -394,6 +400,9 @@ export default function PersonalInformation({
                         color: "#A5A5AC",
                       },
                     }}
+                    SelectProps={{
+                      IconComponent: KeyboardArrowDownIcon,
+                    }}
                   />
                 );
               }}
@@ -475,6 +484,9 @@ export default function PersonalInformation({
                         fontWeight: "700",
                         fontFamily: "Roboto",
                       },
+                    }}
+                    SelectProps={{
+                      IconComponent: KeyboardArrowDownIcon,
                     }}
                   />
                 );

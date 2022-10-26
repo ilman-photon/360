@@ -56,10 +56,11 @@ const ConfirmationForm = ({
             <HeadingTitle
               variant={constants.H2}
               tabIndex={0}
-              aria-label={"Sync Your Appointment heading"}
-              title={"Sync Your Appointment"}
+              aria-label={title}
+              title={title}
               sx={{ fontSize: "32px" }}
             />
+            ``
             {showPostMessage ? (
               <FormMessage
                 success={isSuccessPostMessage}
@@ -67,6 +68,7 @@ const ConfirmationForm = ({
                 title={postMessageTitle}
                 tabIndex={0}
                 aria-label={postMessage}
+                aria-live={postMessage}
               >
                 {postMessage}
               </FormMessage>
@@ -77,7 +79,7 @@ const ConfirmationForm = ({
               <Typography
                 variant="bodyMedium"
                 style={styles.margin}
-                tabIndex="0"
+                tabIndex={0}
                 aria-label={subtitle}
               >
                 {subtitle}

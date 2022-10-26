@@ -49,6 +49,7 @@ const CustomSelect = (props) => {
         data-testid={`styled-select-${props.id}`}
         MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
         inputProps={props.inputProps}
+        {...props.SelectProps}
       >
         {options.map((option, idx) => {
           return (

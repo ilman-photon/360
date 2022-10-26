@@ -229,6 +229,7 @@ export default function MedicalRecordPage() {
 
   useEffect(() => {
     dispatch(resetDocuments());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

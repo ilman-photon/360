@@ -26,9 +26,9 @@ import {
 } from "../../../utils/appointment";
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
-import Image from "next/image";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { getLinkAria } from "../../../utils/viewUtil";
+import ImageFallback from "../../atoms/Image/image";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -72,10 +72,10 @@ export default function AppointmentCard({
             </Typography>
           </Box>
         )}
-        {address.city && address.state && address.zipcode ? (
+        {address.city || address.state || address.zip ? (
           <Box>
             <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-              {address.city}, {address.state}, {address.zipcode}
+              {address.city || ""}, {address.state || ""}, {address.zip || ""}
             </Typography>
           </Box>
         ) : (
@@ -219,13 +219,14 @@ export default function AppointmentCard({
                 }}
               >
                 {appointment?.providerInfo?.image ? (
-                  <Image
+                  <ImageFallback
                     src={appointment.providerInfo.image}
                     style={{ borderRadius: "50%" }}
                     alt={`${appointment.providerInfo?.name} image`}
                     width="90px"
                     height="90px"
                     tabIndex={0}
+                    fallbackSrc={"/cardImage.png"}
                   />
                 ) : (
                   <AccountCircleIcon

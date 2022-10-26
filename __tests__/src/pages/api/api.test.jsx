@@ -129,7 +129,7 @@ describe("Api test", () => {
       const api = new Api();
       const result = await api.tokenValidation({
         oneTimeToken: "123",
-      });
+      }, "oneTimeLink");
       expect(result).toEqual(expectedResult);
     });
 
@@ -143,8 +143,7 @@ describe("Api test", () => {
       const result = await api.tokenValidation(
         {
           resetPasswordToken: "123",
-        },
-        true
+        }, "reset"
       );
       expect(result).toEqual(expectedResult);
     });
@@ -212,7 +211,7 @@ describe("Api test", () => {
       const api = new Api();
       const result = await api.tokenValidation({
         oneTimeToken: "123",
-      });
+      }, "oneTimeLink");
       expect(result).toEqual(expectedResult);
     });
 
@@ -225,7 +224,7 @@ describe("Api test", () => {
           {
             resetPasswordToken: "123",
           },
-          true
+          'reset'
         )
         .catch((response) => {
           expect(response.request.responseURL).toEqual(
@@ -243,7 +242,7 @@ describe("Api test", () => {
           {
             resetPasswordToken: "123",
           },
-          true
+          'reset'
         )
         .catch((response) => {
           expect(response.request.responseURL).toEqual(
@@ -282,7 +281,7 @@ describe("Api test", () => {
           {
             resetPasswordToken: "123",
           },
-          true
+          'reset'
         )
         .catch((response) => {
           expect(response).toEqual(expectedResult);
@@ -292,7 +291,6 @@ describe("Api test", () => {
     it("create client error", async () => {
       const expectedResult = new Error("Request failed with status code 404");
       const api = new Api();
-      console.log({ api });
       api
         .getResponse(
           `/ecp/patient/resetPasswordToken`,

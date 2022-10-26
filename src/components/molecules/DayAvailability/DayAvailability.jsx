@@ -7,6 +7,7 @@ import constants, { TEST_ID } from "../../../utils/constants";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
+  getAppointmentTypeOnTimeSlot,
   getDates,
   isPrevArrowDisable,
   parseDateWeekList,
@@ -24,8 +25,10 @@ export const buttonSchedule = (
     // This is intended
   },
   date = "",
-  isScheduleAvailability = false
+  isScheduleAvailability = false,
+  appointmentType = ""
 ) => {
+  const appointmentCode = appointmentType;
   const parseDate = new moment(date).format("YYYY-MM-DD");
   const isNextAvailabilityLabel =
     isScheduleAvailability && label.indexOf("Next availability is") > -1;
@@ -54,7 +57,7 @@ export const buttonSchedule = (
         }
         onClick={() => {
           if (!isScheduleAvailability || !isNextAvailabilityLabel) {
-            OnDayClicked(dateTime);
+            OnDayClicked({ dateTime, appointmentCode });
           }
         }}
       >
@@ -177,7 +180,14 @@ export const DayAvailability = ({
         }}
       >
         {value.map((option, idx) => {
-          return buttonSchedule(option, idx, OnDayClicked, dateWeekList[index]);
+          return buttonSchedule(
+            option,
+            idx,
+            OnDayClicked,
+            dateWeekList[index],
+            false,
+            getAppointmentTypeOnTimeSlot(scheduleData[index], option)
+          );
         })}
       </Box>
     );

@@ -72,7 +72,9 @@ describe("App", () => {
       );
     });
     await waitFor(() => container.getAllByText(/Schedule an eye exam/i));
-    expect(container.getByText(/Schedule an eye exam/i)).toBeInTheDocument();
+    expect(
+      container.getAllByText(/Schedule an eye exam/i)[0]
+    ).toBeInTheDocument();
 
     const locationField = container.getAllByText(/City, state, or zip/i)[1];
     fireEvent.change(locationField, { value: "Texas" });

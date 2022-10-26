@@ -106,7 +106,6 @@ export default function ContactInformation({
 
   const assignAddressFormValue = (oldValue) => {
     if (!placeDetailsState) return;
-    console.log({ placeDetailsState });
     const addressComponents = placeDetailsState.address_components;
     if (addressComponents) {
       resetAddressForm();
@@ -415,6 +414,18 @@ export default function ContactInformation({
                   />
                 );
               }}
+              rules={{
+                validate: {
+                  incorrectFormat: (value) => {
+                    if (value) {
+                      return (
+                        Regex.atLeastOneAlphabet.test(value) ||
+                        "Incorrect Format"
+                      );
+                    } else return true;
+                  },
+                },
+              }}
             />
 
             <Controller
@@ -446,6 +457,18 @@ export default function ContactInformation({
                     }}
                   />
                 );
+              }}
+              rules={{
+                validate: {
+                  incorrectFormat: (value) => {
+                    if (value) {
+                      return (
+                        Regex.atLeastOneAlphabet.test(value) ||
+                        "Incorrect Format"
+                      );
+                    } else return true;
+                  },
+                },
               }}
             />
 

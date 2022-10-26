@@ -39,7 +39,7 @@
     "backButtonLink": "Back to Log in",
     "backSignIn": "Back to Sign-In",
     "syncButton": "Sync",
-    "syncTitle" : "Sync your appointment",
+    "syncTitle" : "Sync Your Appointment",
     "syncContent": "Enter the email or phone number you provided when you scheduled your appointment.",
     "syncTextContent" : "Enter the email or phone number you provided when you scheduled your appointment",
     "syncErrorTitle" : "Existing User",

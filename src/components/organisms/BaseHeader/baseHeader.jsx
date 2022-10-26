@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -21,7 +21,6 @@ import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
-import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
@@ -49,7 +48,10 @@ export default function BaseHeader({
       !!cookies.get("accessToken");
     setUserLoged(isLogin);
 
-    const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
+    const userStorageData =
+      localStorage.getItem("userProfile") !== "undefined"
+        ? JSON.parse(localStorage.getItem("userProfile"))
+        : null;
     if (userStorageData) {
       dispatch(setUserData(userStorageData));
     }
@@ -104,6 +106,7 @@ export default function BaseHeader({
           boxShadow: "none",
           borderBottom: "1px solid #E0E0E0",
           height: 64,
+          zIndex: 10,
         }}
       >
         <Container maxWidth="xl">
@@ -175,18 +178,7 @@ export default function BaseHeader({
                   <MenuIcon />
                 </IconButton>
               </Box>
-              {isPrescription ? (
-                <MobileNavMenu
-                  navMenu={prescriptionMenus}
-                  isOpen={anchorElNav}
-                  onClose={() => {
-                    setAnchorElNav(false);
-                  }}
-                  onLogoutClicked={() => {
-                    OnLogoutClicked(router);
-                  }}
-                />
-              ) : (
+              {
                 <AccountDrawer
                   onClose={() => {
                     setAnchorElNav(false);
@@ -196,7 +188,7 @@ export default function BaseHeader({
                     OnLogoutClicked(router);
                   }}
                 />
-              )}
+              }
               {/* profile menu */}
               <Box sx={styles.boxProfileMenuStyles}>
                 <Tooltip title="Username dropdown">
@@ -225,27 +217,30 @@ export default function BaseHeader({
                   onClose={handleCloseUserMenu}
                 >
                   {/* <Stack spacing={2}> */}
-                  <MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      router.push("/patient/account/profile-info");
+                    }}
+                  >
                     <Button
                       variant="text"
                       sx={styles.buttonProfileMenu}
                       data-testid={HOME_TEST_ID.account}
-                      onClick={() => {
-                        router.push("/patient/account/profile-info");
-                      }}
                     >
                       Account
                     </Button>
                   </MenuItem>
-                  <MenuItem onClick={handleCloseNavMenu}>
+                  <MenuItem
+                    onClick={({ href }) => {
+                      handleCloseNavMenu({ href });
+                      OnLogoutClicked(router);
+                    }}
+                  >
                     <Button
                       variant="text"
                       sx={styles.buttonProfileMenu}
                       data-testid={HOME_TEST_ID.logout}
                       startIcon={<ExitToAppIcon />}
-                      onClick={() => {
-                        OnLogoutClicked(router);
-                      }}
                     >
                       Logout
                     </Button>
