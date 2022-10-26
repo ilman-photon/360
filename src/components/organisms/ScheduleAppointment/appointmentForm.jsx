@@ -138,6 +138,10 @@ export default function AppointmentForm({
       validate: watchedPassword.indexOf(watchedEmail || watchedMobile) > -1,
       mandatory: true,
     },
+    {
+      label: "New password must not match current password",
+      validate: false,
+    },
   ];
   const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
