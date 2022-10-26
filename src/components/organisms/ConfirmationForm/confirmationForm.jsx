@@ -60,7 +60,6 @@ const ConfirmationForm = ({
               title={title}
               sx={{ fontSize: "32px" }}
             />
-            ``
             {showPostMessage ? (
               <FormMessage
                 success={isSuccessPostMessage}
