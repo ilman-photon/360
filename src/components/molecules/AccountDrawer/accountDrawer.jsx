@@ -138,6 +138,12 @@ export const AccountDrawer = ({
               <ListItemText
                 primary={getMenuTitle()}
                 onClick={() => setActiveMenu(null)}
+                sx={{
+                  textAlign: "center",
+                  ".css-10hburv-MuiTypography-root": {
+                    fontWeight: "500",
+                  },
+                }}
                 primaryTypographyProps={{
                   sx: { textAlign: "center", fontWeight: 600 },
                 }}
