@@ -164,16 +164,16 @@ export default function MedicalRecordPage() {
         type: "text",
         primary: true,
         valueKey: "name",
-        // cellProps: { padding: "none" },
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
       {
-        type: "text",
+        type: "date",
         valueKey: "_created",
         cellProps: { align: "left", component: "th", padding: "none" },
         contentStyle: {
           padding: isDesktop ? "12px 0" : "8px 0",
           fontSize: isDesktop ? "unset" : "12px",
+          fontWeight: "500",
         },
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
@@ -326,11 +326,7 @@ export default function MedicalRecordPage() {
 MedicalRecordPage.getLayout = function getLayout(page, store, router) {
   return (
     <Provider store={store}>
-      <PrescriptionLayout
-        currentActivePage={"medical-record"}
-        pageTitle={"EyeCare Patient Portal - Medical Records"}
-        title={"Test & Lab Result"}
-      >
+      <PrescriptionLayout title={"Test & Lab Result"}>
         {page}
       </PrescriptionLayout>
     </Provider>
