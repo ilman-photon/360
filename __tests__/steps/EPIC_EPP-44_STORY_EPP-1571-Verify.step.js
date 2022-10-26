@@ -299,7 +299,7 @@ defineFeature(feature, (test) => {
         defaultValidation();
       }
     );
-  });
+  }, 20000);
 
   test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Continue as Guest" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({
     given,

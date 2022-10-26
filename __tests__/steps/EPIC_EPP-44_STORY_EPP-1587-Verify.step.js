@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
@@ -9,15 +9,60 @@ import {
   createMatchMedia,
   defaultValidation,
   renderAppointmentDetail,
+  renderLogin,
 } from "../../__mocks__/commonSteps";
 import {
   mockAppointmentTypes,
   submitFilter,
+  MOCK_SUGESTION,
+  MOCK_APPOINTMENT,
+  MOCK_PRESCRIPTION,
 } from "../../__mocks__/mockResponse";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
+import Appointment from "../../src/pages/patient/appointment";
+import Cookies from "universal-cookie";
+import HomePage from "../../src/pages/patient";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1587.feature"
 );
+
+const navigateToPatientPortalHome = async () => {
+  cleanup()
+  let container;
+  const element = document.createElement("div");
+  const mock = new MockAdapter(axios);
+  Cookies.result = "true";
+  const expectedResult = {
+    ResponseCode: 2005,
+    ResponseType: "success",
+  };
+  const domain = window.location.origin;
+  mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+  mock
+    .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
+    .reply(200, MOCK_SUGESTION);
+  mock
+    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
+    .reply(200, MOCK_APPOINTMENT);
+  mock
+    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
+    .reply(200, MOCK_PRESCRIPTION);
+
+  const mockGeolocation = {
+    getCurrentPosition: jest.fn(),
+    watchPosition: jest.fn(),
+  };
+  global.navigator.geolocation = mockGeolocation;
+  Cookies.result = false;
+  act(() => {
+    container = render(
+      <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+    );
+  });
+  await waitFor(() => container.getByLabelText(/Appointments/i));
+};
 
 defineFeature(feature, (test) => {
   let container;
@@ -38,7 +83,7 @@ defineFeature(feature, (test) => {
     global.navigator.geolocation = mockGeolocation;
     window.matchMedia = createMatchMedia("1920px");
   });
-  test("EPIC_EPP-44_STORY_EPP-1587- Verify whether the system is automatically taking the current location if enabled.", ({}) => {});
+  test("EPIC_EPP-44_STORY_EPP-1587- Verify whether the system is automatically taking the current location if enabled.", ({ }) => { });
 
   test("EPIC_EPP-44_STORY_EPP-1587- Verify whether the user is able to search the location using City", ({
     given,
@@ -52,15 +97,19 @@ defineFeature(feature, (test) => {
 
     when(
       "a user provides a valid Email or Phone Number and password",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      }
     );
 
     and("user clicks on the Login button", () => {
-      defaultValidation();
+      const login = container.getByRole("button", { name: /Login/i });
+      fireEvent.click(login);
     });
 
-    then("user navigates to the Patient Portal home page", () => {
-      defaultValidation();
+    then("user navigates to the Patient Portal home page", async () => {
+      navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -92,15 +141,19 @@ defineFeature(feature, (test) => {
 
     when(
       "a user provides a valid Email or Phone Number and password",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      }
     );
 
     and("user clicks on the Login button", () => {
-      defaultValidation();
+      fireEvent.click(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn))
+      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
 
-    then("user navigates to the Patient Portal home page", () => {
-      defaultValidation();
+    then("user navigates to the Patient Portal home page", async () => {
+      navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -108,16 +161,36 @@ defineFeature(feature, (test) => {
     });
 
     then("User lands on the Schedule Appointment screen", () => {
-      defaultValidation();
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+      const domain = window.location.origin;
+      window = Object.assign(window, { innerWidth: 700 });
+
+      global.navigator.geolocation = mockGeolocation;
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {Appointment.getLayout(<Appointment />)}
+          </Provider>
+        );
+      });
+      waitFor(() => {
+        container.getByLabelText(/Schedule an eye exam/i);
+      });
     });
 
     and("Enter a state name and clicks on the search button", () => {
-      defaultValidation();
+      expect(container.getByTestId(/locationInput/i)).toBeInTheDocument();
+      const srcBtn = container.getByTestId(/searchbtn/i);
+      fireEvent.click(srcBtn)
     });
 
     then(
       "the user should see the list of locations based upon State.",
-      () => {}
+      () => { }
     );
   });
 
@@ -133,15 +206,19 @@ defineFeature(feature, (test) => {
 
     when(
       "a user provides a valid Email or Phone Number and password",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      }
     );
 
     and("user clicks on the Login button", () => {
-      defaultValidation();
+      fireEvent.click(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn))
+      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
 
-    then("user navigates to the Patient Portal home page", () => {
-      defaultValidation();
+    then("user navigates to the Patient Portal home page", async () => {
+      navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -173,15 +250,19 @@ defineFeature(feature, (test) => {
 
     when(
       "a user provides a valid Email or Phone Number and password",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      }
     );
 
     and("user clicks on the Login button", () => {
-      defaultValidation();
+      fireEvent.click(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn))
+      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
 
-    then("user navigates to the Patient Portal home page", () => {
-      defaultValidation();
+    then("user navigates to the Patient Portal home page", async () => {
+      navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -213,15 +294,19 @@ defineFeature(feature, (test) => {
 
     when(
       "a user provides a valid Email or Phone Number and password",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      }
     );
 
     and("user clicks on the Login button", () => {
-      defaultValidation();
+      fireEvent.click(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn))
+      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
 
-    then("user navigates to the Patient Portal home page", () => {
-      defaultValidation();
+    then("user navigates to the Patient Portal home page", async () => {
+      navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -261,15 +346,19 @@ defineFeature(feature, (test) => {
 
     when(
       "a user provides a valid Email or Phone Number and password",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      }
     );
 
     and("user clicks on the Login button", () => {
-      defaultValidation();
+      fireEvent.click(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn))
+      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
 
-    then("user navigates to the Patient Portal home page", () => {
-      defaultValidation();
+    then("user navigates to the Patient Portal home page", async () => {
+      navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -282,7 +371,7 @@ defineFeature(feature, (test) => {
 
     then(
       "user should see the location, date of appointment, Purpose of the visit, Insurance name",
-      () => {}
+      () => { }
     );
   });
 });
