@@ -119,25 +119,6 @@ export default function BaseHeader({
     console.log("redirect to:", data.type);
   };
 
-  const prescriptionMenus = [
-    {
-      name: "Dashboard",
-      imgSrc: "/icon-carePlan.png",
-    },
-    {
-      name: "Appointments",
-      imgSrc: "/icon-carePlan.png",
-    },
-    {
-      name: "Medical Report",
-      imgSrc: "/iconHealthRecord.png",
-    },
-    {
-      name: "Documents",
-      imgSrc: "/iconintakeFoms.png",
-    },
-  ];
-
   return (
     <>
       <AppBar
@@ -214,19 +195,23 @@ export default function BaseHeader({
                     setNotificationDrawerOpened(true);
                   }}
                 >
-                  <Badge
-                    color="error"
-                    badgeContent={notifications.length > 0 ? " " : null}
-                    overlap="circular"
-                    sx={{
-                      ".MuiBadge-badge": {
-                        minWidth: 13.33,
-                        height: 13.33,
-                      },
-                    }}
-                  >
+                  {notifications.some((v) => !v.isRead) ? (
+                    <Badge
+                      color="error"
+                      badgeContent={notifications.length > 0 ? " " : null}
+                      overlap="circular"
+                      sx={{
+                        ".MuiBadge-badge": {
+                          minWidth: 13.33,
+                          height: 13.33,
+                        },
+                      }}
+                    >
+                      <NotificationsIcon sx={{ fill: colors.darkGreen }} />
+                    </Badge>
+                  ) : (
                     <NotificationsIcon sx={{ fill: colors.darkGreen }} />
-                  </Badge>
+                  )}
                 </IconButton>
 
                 {/* Menu Mobile*/}
