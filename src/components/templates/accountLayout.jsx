@@ -11,7 +11,7 @@ import store from "../../store/store";
 import { logoutProps } from "../../utils/authetication";
 
 function AccountLayout({
-  pageMessage = { content: null },
+  pageMessage,
   theme = "patient",
   currentActivePage = "",
   children,
