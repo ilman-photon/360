@@ -107,10 +107,6 @@ export function Login({
                   }}
                   rules={{
                     required: t("thisFieldRequired"),
-                    pattern: {
-                      value: Regex.usernameValidation,
-                      message: t("emailRequiredLabel"),
-                    },
                   }}
                 />
                 <Controller
