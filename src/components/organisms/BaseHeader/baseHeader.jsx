@@ -178,7 +178,7 @@ export default function BaseHeader({
                   <MenuIcon />
                 </IconButton>
               </Box>
-              {(
+              {
                 <AccountDrawer
                   onClose={() => {
                     setAnchorElNav(false);
@@ -188,7 +188,7 @@ export default function BaseHeader({
                     OnLogoutClicked(router);
                   }}
                 />
-              )}
+              }
               {/* profile menu */}
               <Box sx={styles.boxProfileMenuStyles}>
                 <Tooltip title="Username dropdown">
@@ -250,19 +250,19 @@ export default function BaseHeader({
               </Box>
             </Toolbar>
           ) : (
-              <Toolbar disableGutters>
-                <Image
-                  src={logo}
-                  width="124px"
-                  height="36px"
-                  role={"img"}
-                  quality={100}
-                  style={styles.logoStyled}
-                  aria-label={"Clarkson Eyecare logo"}
-                  tabIndex={0}
-                ></Image>
-              </Toolbar>
-            )}
+            <Toolbar disableGutters>
+              <Image
+                src={logo}
+                width="124px"
+                height="36px"
+                role={"img"}
+                quality={100}
+                style={styles.logoStyled}
+                aria-label={"Clarkson Eyecare logo"}
+                tabIndex={0}
+              ></Image>
+            </Toolbar>
+          )}
         </Container>
       </AppBar>
       {backTitle && (
