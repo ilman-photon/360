@@ -232,6 +232,7 @@ Object {
                                 </span>
                                 <img
                                   alt="Doctor Image"
+                                  aria-label="Doctor Image"
                                   class="profilePhoto"
                                   data-nimg="intrinsic"
                                   data-testid="appointment_provider_profile_image"
@@ -244,7 +245,7 @@ Object {
                               </span>
                             </div>
                             <div
-                              class="bioContainer  MuiBox-root css-1oovyp6"
+                              class="bioContainer  MuiBox-root css-swc8jv"
                             >
                               <h2
                                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
@@ -688,6 +689,7 @@ Object {
                                 </span>
                                 <img
                                   alt="Doctor Image"
+                                  aria-label="Doctor Image"
                                   class="profilePhoto"
                                   data-nimg="intrinsic"
                                   data-testid="appointment_provider_profile_image"
@@ -700,7 +702,7 @@ Object {
                               </span>
                             </div>
                             <div
-                              class="bioContainer  MuiBox-root css-1oovyp6"
+                              class="bioContainer  MuiBox-root css-swc8jv"
                             >
                               <h2
                                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"

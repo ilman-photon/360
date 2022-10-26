@@ -35,7 +35,7 @@ export function getCity(apiKey, coord, setCity) {
   );
 }
 // Get latitude & longitude from address.
-export async function getCoords(apiKey, address) {
+export async function getCoords(apiKey, address = {}) {
   const joinedAddress = Object.values(address).join(", ");
   Geocode.setApiKey(apiKey);
   Geocode.setLanguage("en");
