@@ -145,12 +145,15 @@ const InfoWindowContent = ({
                             onClick={() => {
                               if (!item) return;
                               OnTimeClicked(
-                                new Date(
-                                  `${v.date} ${item.time.substring(
-                                    0,
-                                    item.time.length - 2
-                                  )}`
-                                ),
+                                {
+                                  appointmentCode: item.appointmentCode,
+                                  dateTime: new Date(
+                                    `${v.date} ${item.time.substring(
+                                      0,
+                                      item.time.length - 2
+                                    )}`
+                                  ),
+                                },
                                 data[counter - 1]
                               );
                             }}

@@ -22,16 +22,16 @@ function GMaps({
   const [activeMarker, setActiveMarker] = React.useState(null);
   const markers = [];
   providerListData.forEach((provider) => {
-    if (provider?.coordinate?.latitude && provider?.coordinate?.longitude) {
+    if (provider?.coordinate?.lat && provider?.coordinate?.lng) {
       const foundIndex = markers.findIndex((v) => {
         return (
-          v.coordinate.latitude === provider.coordinate.latitude &&
-          v.coordinate.longitude === provider.coordinate.longitude
+          v.coordinate.lat === provider.coordinate.lat &&
+          v.coordinate.lng === provider.coordinate.lng
         );
       });
       const latlngObj = {
-        lat: provider.coordinate.latitude,
-        lng: provider.coordinate.longitude,
+        lat: provider.coordinate.lat,
+        lng: provider.coordinate.lng,
       };
       const obj = {
         ...provider,

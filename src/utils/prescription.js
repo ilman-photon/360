@@ -165,6 +165,7 @@ export function parsePrescriptions(glassesData, contactsData, mediactionData) {
       date: mediaction?.CreatedDate,
       expiredDate: mediaction?.StopDate,
       providerNPI,
+      drug: mediaction?.Sig?.Drug || {},
       type:
         isValidDate(new Date(mediaction?.StopDate)) &&
         new Date(mediaction?.StopDate) > new Date()

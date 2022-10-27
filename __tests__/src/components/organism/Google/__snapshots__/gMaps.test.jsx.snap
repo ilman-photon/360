@@ -17,23 +17,5 @@ exports[`GMaps GMaps render 1`] = `
   onClick={[Function]}
   onLoad={[Function]}
   zoom={6}
->
-  <UNDEFINED
-    data-testid="schedule_appointment_maps_pin_marker"
-    icon={
-      Object {
-        "url": "/provider-pin.svg",
-      }
-    }
-    onClick={[Function]}
-    position={
-      Object {
-        "lat": 32.751204,
-        "lng": -117.1641166,
-      }
-    }
-  >
-    
-  </UNDEFINED>
-</GoogleMap>
+/>
 `;

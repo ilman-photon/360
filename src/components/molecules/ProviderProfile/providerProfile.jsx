@@ -5,6 +5,7 @@ import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 import { TEST_ID } from "../../../utils/constants";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
+import ImageFallback from "../../atoms/Image/image";
 
 const renderSpecialistList = (providerData) => {
   return (
@@ -124,20 +125,23 @@ export default function ProviderProfile({
     >
       <Box className={styles.displayFlex}>
         <Box className={getImageContainerStyle()}>
-          <Image
-            src={providerData.image || "/cardImage.png"}
+          <ImageFallback
+            src={providerData.image}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
             width={100}
             height={100}
+            tabIndex={0}
             className={styles.profilePhoto}
             alt="Doctor Image"
-            tabIndex={0}
+            fallbackSrc={"/cardImage.png"}
+            aria-label="Doctor Image"
           />
         </Box>
         <Box
           className={[styles.bioContainer, bioContainerClass].join(" ")}
           sx={{
             width: getWidtBioContainer(),
+            ml: isMap ? 1 : "inherit",
           }}
         >
           <Typography

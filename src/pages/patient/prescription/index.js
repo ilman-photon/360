@@ -57,8 +57,8 @@ export default function PrescriptionPage() {
         });
     } else {
       const refillRequestBody = {
-        subject: "PhotonTesting checking",
-        bodyNote: "Please refill the medicine",
+        subject: "Refill request",
+        bodyNote: `${prescriptionData.medications[index]?.drug?.DrugDescription}, ${prescriptionData.medications[index]?.drug?.NDCID}, ${prescriptionData.medications[index].id}`,
         bodyReferences: [
           {
             code: "PATIENT",
