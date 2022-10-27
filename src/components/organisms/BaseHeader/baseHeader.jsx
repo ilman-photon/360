@@ -114,9 +114,57 @@ export default function BaseHeader({
     dispatch(markAllAsRead());
   };
 
+  const actionNotificationRedirect = (data) => {
+    console.log("redirect to:", data.type);
+    let path = "#";
+    switch (data.type) {
+      case "prescription-refill":
+        path = "/patient/prescription";
+        break;
+      case "appointment-first-reminder":
+      case "appointment":
+      case "appointment-second-reminder":
+      case "appointment-one":
+        path = `/patient/appointments/detail-appointments/${data.details?.appointmentData?.appointmentId}`;
+        break;
+      case "test-result":
+        path = "/patient/account/medical-records?type=test-lab-result";
+        break;
+      case "message":
+        path = "/patient/message?conversationId=1234";
+        break;
+      case "invoice":
+        break;
+      case "appointment-summary":
+        break;
+      case "prescription-glasses":
+        path = "/patient/prescription?activeTab=0";
+        break;
+      case "prescription-contact":
+        path = "/patient/prescription?activeTab=1";
+        break;
+      case "prescription-aspirin":
+        path = "/patient/prescription?activeTab=2";
+        break;
+      case "contact-lens":
+        path = "/patient/prescription?activeTab=1";
+        break;
+      case "glasses":
+        path = "/patient/prescription?activeTab=0";
+        break;
+      case "aspirin":
+        path = "/patient/prescription?activeTab=2";
+        break;
+      default:
+        return <>-</>;
+    }
+    router.push(path);
+  };
+
   const handleNotificationItemClicked = (data) => {
     dispatch(markAsReadById(data.id));
-    console.log("redirect to:", data.type);
+    actionNotificationRedirect(data);
+    setNotificationDrawerOpened(false);
   };
 
   return (

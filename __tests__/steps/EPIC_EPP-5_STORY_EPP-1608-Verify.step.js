@@ -9,7 +9,7 @@ import store from "../../src/store/store";
 import { act } from "react-dom/test-utils";
 import Cookies from "universal-cookie";
 import Appointments from "../../src/pages/patient/appointments";
-import AppointmentDetails from "../../src/pages/patient/appointments/detail-appoiments/[appointmentId]";
+import AppointmentDetails from "../../src/pages/patient/appointments/detail-appointments/[appointmentId]";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {

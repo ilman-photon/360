@@ -41,18 +41,18 @@ export default function PrescriptionLayout({
       <Head>
         <title>EyeCare Patient Portal - {headingTitle(true)} Page</title>
       </Head>
-      <div className={styles.defaultLayout}>
-        <BaseHeader {...logoutProps} />
-        <Navbar />
-        <AccountTitleHeading
-          title={headingTitle()}
-          sxContainer={{ marginTop: "0px" }}
-          sx={{ fontWeight: "400", maxWidth: "1477px", margin: "0 auto" }}
-        />
-        <ThemeProvider theme={patientTypography}>
+      <ThemeProvider theme={patientTypography}>
+        <div className={styles.defaultLayout}>
+          <BaseHeader {...logoutProps} />
+          <Navbar />
+          <AccountTitleHeading
+            title={headingTitle()}
+            sxContainer={{ marginTop: "0px" }}
+            sx={{ fontWeight: "400", maxWidth: "1477px", margin: "0 auto" }}
+          />
           <div className={styles.defaultContainer}>{children}</div>
-        </ThemeProvider>
-      </div>
+        </div>
+      </ThemeProvider>
     </>
   );
 }
