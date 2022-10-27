@@ -73,7 +73,7 @@ export default function MyCareTeamPage() {
             margin: "0 auto 0 auto",
           }}
         >
-          {providerData.length !== 0 ? (
+          {providerData && providerData.length !== 0 ? (
             <Grid
               container
               spacing={{ xs: 2, md: 2 }}

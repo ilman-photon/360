@@ -116,7 +116,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
       });
 
       Promise.all(locationsArray).then((values) => {
-        values.map((item) => {
+        values.forEach((item) => {
           if (item.status === "OK") {
             const location = item.results[0]?.geometry?.location;
             if (location) {
