@@ -75,8 +75,9 @@ export default function AppointmentLocation({
               source={
                 providerData.image ||
                 providerData.profilePhoto ||
-                "/transparent.png"
+                "/cardImage.png"
               }
+              fallbackSrc={"/cardImage.png"}
               width={105}
               height={105}
               style={{ borderRadius: "50%" }}

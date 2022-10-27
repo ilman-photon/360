@@ -237,22 +237,31 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see a time slot of the provider", async () => {
+      const searchBtn = container.getByTestId(
+        TEST_ID.APPOINTMENT_TEST_ID.searchbtn
+      );
+      act(() => {
+        fireEvent.click(searchBtn);
+      });
+      const filter = await waitFor(() => container.getByText(/Filter/i))
+      expect(filter).toBeInTheDocument
+      const timeslots = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll))
       expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+        timeslots[0]
       ).toBeInTheDocument();
     });
 
     when("User selects a time slot of the provider", async () => {
       const timeSlotButton = await waitFor(
         () =>
-          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)
       );
       act(() => {
-        fireEvent.click(timeSlotButton);
+        fireEvent.click(timeSlotButton[0]);
       });
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // expect(
+      //   timeSlotButton[0]
+      // ).toBeInTheDocument();
     });
 
     then("User should navigated to review the appointment details", () => {
@@ -356,22 +365,23 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see a time slot of the provider", async () => {
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // const timeslots = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll))
+      // expect(
+      //   timeslots[0]
+      // ).toBeInTheDocument();
     });
 
     when("User selects a time slot of the provider", async () => {
       const timeSlotButton = await waitFor(
         () =>
-          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)
       );
       act(() => {
-        fireEvent.click(timeSlotButton);
+        fireEvent.click(timeSlotButton[0]);
       });
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // expect(
+      //   timeSlotButton[0]
+      // ).toBeInTheDocument();
     });
 
     then(
@@ -508,22 +518,23 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see a time slot of the provider", async () => {
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // const timeslots = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll))
+      // expect(
+      //   timeslots[0]
+      // ).toBeInTheDocument();
     });
 
     when("User selects a time slot of the provider", async () => {
       const timeSlotButton = await waitFor(
         () =>
-          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)
       );
       act(() => {
-        fireEvent.click(timeSlotButton);
+        fireEvent.click(timeSlotButton[0]);
       });
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // expect(
+      //   timeSlotButton[0]
+      // ).toBeInTheDocument();
     });
 
     and(/^User should see page load within "(.*)"$/, (arg0) => {
@@ -630,22 +641,23 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see a time slot of the provider", async () => {
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // const timeslots = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll))
+      // expect(
+      //   timeslots[0]
+      // ).toBeInTheDocument();
     });
 
     when("User selects a time slot of the provider", async () => {
       const timeSlotButton = await waitFor(
         () =>
-          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)
       );
       act(() => {
-        fireEvent.click(timeSlotButton);
+        fireEvent.click(timeSlotButton[0]);
       });
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // expect(
+      //   timeSlotButton[0]
+      // ).toBeInTheDocument();
     });
 
     and(/^User should see page load within "(.*)"$/, (arg0) => {
@@ -761,22 +773,23 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see a time slot of the provider", async () => {
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // const timeslots = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll))
+      // expect(
+      //   timeslots[0]
+      // ).toBeInTheDocument();
     });
 
     when("User selects a time slot of the provider", async () => {
       const timeSlotButton = await waitFor(
         () =>
-          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)
       );
       act(() => {
-        fireEvent.click(timeSlotButton);
+        fireEvent.click(timeSlotButton[0]);
       });
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // expect(
+      //   timeSlotButton[0]
+      // ).toBeInTheDocument();
     });
 
     then("The Internet service is unavailable", () => {
@@ -879,22 +892,23 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see a time slot of the provider", async () => {
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // const timeslots = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll))
+      // expect(
+      //   timeslots[0]
+      // ).toBeInTheDocument();
     });
 
     when("User selects a time slot of the provider", async () => {
       const timeSlotButton = await waitFor(
         () =>
-          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+          container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)
       );
       act(() => {
-        fireEvent.click(timeSlotButton);
+        fireEvent.click(timeSlotButton[0]);
       });
-      expect(
-        container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
-      ).toBeInTheDocument();
+      // expect(
+      //   timeSlotButton[0]
+      // ).toBeInTheDocument();
     });
 
     then("The service is unavailable", () => {
