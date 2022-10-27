@@ -22,7 +22,8 @@ function GMaps({
   const [activeMarker, setActiveMarker] = React.useState(null);
   const markers = [];
   providerListData.forEach((provider) => {
-    if (provider?.coordinate?.latitude && provider?.coordinate?.longitude) {
+    const { latitude, longitude } = provider?.coordinate || false;
+    if (latitude && longitude) {
       const foundIndex = markers.findIndex((v) => {
         return (
           v.coordinate.latitude === provider.coordinate.latitude &&
@@ -50,16 +51,14 @@ function GMaps({
   });
 
   const handleActiveMarker = (marker) => {
-    if (marker === activeMarker) {
-      return;
-    }
     setActiveMarker(marker);
   };
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new google.maps.LatLngBounds();
+
     markers.forEach(({ position }) => bounds.extend(position));
-    map.fitBounds(bounds);
+    map?.fitBounds(bounds);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
