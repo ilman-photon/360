@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import CareTeamCard from "../../../components/molecules/CareTeamCard/careTeamCard";
-import MyCareTeamLayout from "../../../components/templates/myCareTeam";
+import MyCareTeamLayout from "../../../components/templates/myCareTeamLayout";
 import store from "../../../store/store";
 import { getArrayValue } from "../../../utils/bioUtils";
 import { Api } from "../../api/api";
@@ -16,9 +16,12 @@ export default function MyCareTeamPage() {
   const mapper = (responses) => {
     const data = [];
     responses.map((response) => {
-      const name = `${response.firstName || ""} ${response.lastName || ""}${
-        response.designation ? `, ${response.designation}` : ""
-      }`;
+      const designation = response.designation
+        ? `, ${response.designation}`
+        : "";
+      const name = `${response.firstName || ""} ${
+        response.lastName || ""
+      }${designation}`;
 
       const providerItem = {
         providerId: response._id || "",

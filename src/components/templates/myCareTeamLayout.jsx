@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "./myCareTeam.module.scss";
+import styles from "./myCareTeamLayout.module.scss";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import { ThemeProvider } from "@mui/material/styles";
 import { patientTypography } from "../../styles/theme";

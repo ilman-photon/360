@@ -41,9 +41,10 @@ export default function Bio({ embedApi, bio }) {
   let isRequest = false;
 
   const mapper = (response) => {
-    const name = `${response.firstName || ""} ${response.lastName || ""}${
-      response.designation ? `, ${response.designation}` : ""
-    }`;
+    const designation = response.designation ? `, ${response.designation}` : "";
+    const name = `${response.firstName || ""} ${
+      response.lastName || ""
+    }${designation}`;
     const genderCode = response.sex?.key;
     const femaleGender = genderCode === "3" ? "Female" : "-";
     const gender = genderCode === "6" ? "Male" : femaleGender;

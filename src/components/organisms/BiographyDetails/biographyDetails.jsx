@@ -92,7 +92,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
     const zipcode = addressPayload.zipcode || addressPayload.zip || "";
 
     return `${addressLine1}+${addressLine2}+${city}+${state}+${zipcode}`.replace(
-      / /g,
+      / |#/g,
       "+"
     );
   };
