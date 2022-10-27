@@ -18,6 +18,9 @@ beforeAll(() => {
     MAPBOX_API_TOKEN:
       "pk.eyJ1Ijoia3VydWt1cnVydXUiLCJhIjoiY2w2dWdteXhlMDM4eTNkczh3ZnA4c2N6NSJ9.ilTZ5K51DsrAXlnJBuD_tw",
     GOOGLE_API_KEY: "AIzaSyC-qQiijvHAdB0Ag8z4r3vZoWdPViV-wfQ",
+    NEXT_PUBLIC_EMBED_API: "123",
+    NEXT_PUBLIC_SYNC_LINK: "/patient/sync/set-password",
+    NEXT_PUBLIC_ONE_TIME_LINK: "/patient/validate",
   };
 });
 

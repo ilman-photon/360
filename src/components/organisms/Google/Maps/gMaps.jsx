@@ -15,6 +15,7 @@ const center = {
 
 function GMaps({
   providerListData = [],
+  disable = false,
   OnTimeClicked = () => {
     // This is intended
   },
@@ -22,17 +23,17 @@ function GMaps({
   const [activeMarker, setActiveMarker] = React.useState(null);
   const markers = [];
   providerListData.forEach((provider) => {
-    const { latitude, longitude } = provider?.coordinate || false;
-    if (latitude && longitude) {
+    const { lat, lng } = provider?.coordinate || false;
+    if (lat && lng) {
       const foundIndex = markers.findIndex((v) => {
         return (
-          v.coordinate.latitude === provider.coordinate.latitude &&
-          v.coordinate.longitude === provider.coordinate.longitude
+          v.coordinate.lat === provider.coordinate.lat &&
+          v.coordinate.lng === provider.coordinate.lng
         );
       });
       const latlngObj = {
-        lat: provider.coordinate.latitude,
-        lng: provider.coordinate.longitude,
+        lat: provider.coordinate.lat,
+        lng: provider.coordinate.lng,
       };
       const obj = {
         ...provider,
@@ -69,6 +70,7 @@ function GMaps({
       zoom={6}
       onLoad={onLoad}
       onClick={() => handleActiveMarker(null)}
+      clickableIcons={!disable}
     >
       {/* Child components, such as markers, info windows, etc. */}
       {markers.map((marker, idx) => (
@@ -80,8 +82,9 @@ function GMaps({
           icon={{
             url: "/provider-pin.svg",
           }}
+          clickable={!disable}
         >
-          {activeMarker === idx ? (
+          {activeMarker === idx && !disable ? (
             <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
               <InfoWindowContent
                 data={marker.providerData}

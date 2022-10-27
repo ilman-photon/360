@@ -21,7 +21,7 @@ export function appointmentParser(data = {}) {
       address: data.provider?.address || "",
       rating: data.provider?.rating / 2 || "",
       phoneNumber: data.provider?.workPhone || "",
-      image: data.provider?.profilePhoto?.digitalAsset.uid || "",
+      image: data.provider?.profilePhoto?.digitalAsset || "",
     },
     patientInfo: {
       name: `${data.patient?.firstName || ``}${
