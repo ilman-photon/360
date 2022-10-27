@@ -314,7 +314,7 @@ defineFeature(feature, (test) => {
     const renderList = async (providerList, isMockImage = true, status = 200) => {
         //TODO: Remove
         const domain = window.location.origin;
-        const url = `${domain}/api/dummy/appointment/biography/getProviderList`;
+        const url = `${domain}/api/dummy/appointment/biography/getProviderList?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`;
 
         mock
             .onGet(
@@ -345,7 +345,7 @@ defineFeature(feature, (test) => {
             .onGet("/ecp/appointments/insurance/allpayers", mockInsurance)
             .reply(200, mockInsurance);
         mock
-            .onPut("/ecp/appointments/available-slot?searchText=VA")
+            .onPut("/ecp/appointments/available-slot?searchText=Yorktown")
             .reply(200, submitFilter);
 
         act(() => {
