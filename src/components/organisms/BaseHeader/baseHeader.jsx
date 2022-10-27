@@ -114,6 +114,10 @@ export default function BaseHeader({
     dispatch(markAllAsRead());
   };
 
+  const getPathToPrescriptionPage = (tab) => {
+    return `/patient/prescription?activeTab=${tab}`;
+  };
+
   const actionNotificationRedirect = (data) => {
     console.log("redirect to:", data.type);
     let path = "#";
@@ -138,22 +142,16 @@ export default function BaseHeader({
       case "appointment-summary":
         break;
       case "prescription-glasses":
-        path = "/patient/prescription?activeTab=0";
+      case "glasses":
+        path = getPathToPrescriptionPage(0);
         break;
       case "prescription-contact":
-        path = "/patient/prescription?activeTab=1";
+      case "contact-lens":
+        path = getPathToPrescriptionPage(1);
         break;
       case "prescription-aspirin":
-        path = "/patient/prescription?activeTab=2";
-        break;
-      case "contact-lens":
-        path = "/patient/prescription?activeTab=1";
-        break;
-      case "glasses":
-        path = "/patient/prescription?activeTab=0";
-        break;
       case "aspirin":
-        path = "/patient/prescription?activeTab=2";
+        path = getPathToPrescriptionPage(2);
         break;
       default:
         return <>-</>;
