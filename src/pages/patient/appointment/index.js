@@ -81,6 +81,10 @@ export default function Appointment({ googleApiKey }) {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isReschedule, setIsReschedule] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
+  const [currentCoordinate, setCurrentCoordinate] = useState({
+    lat: 0,
+    lng: 0,
+  });
   const [firstLoad, setFirstLoad] = useState(true);
   const [filterProviderData, setFilterProviderData] = useState([]);
 
@@ -216,6 +220,18 @@ export default function Appointment({ googleApiKey }) {
       if (filter.name === "Available Today" && filter.checked) {
         filterResult = filterResult.filter((v) => v.filters.isAvailableToday);
       }
+
+      if (filter.type === "languange") {
+        filterResult = filterResult.filter(
+          (v) => v.filters.language.indexOf(filter.name) > -1
+        );
+      }
+
+      if (filter.type === "gender") {
+        filterResult = filterResult.filter(
+          (v) => v.filters.gender === filter.name
+        );
+      }
     }
 
     if (filterApplied.length === 0) {
@@ -257,11 +273,13 @@ export default function Appointment({ googleApiKey }) {
     const api = new Api();
     api
       .submitFilter(requestData.location, postBody)
-      .then(function (response) {
-        const parseProviderData = parseProviderListData(
+      .then(async function (response) {
+        const parseProviderData = await parseProviderListData(
           response,
           postBody.currentDate,
-          endDateRequest
+          endDateRequest,
+          googleApiKey,
+          currentCoordinate
         );
         const rangeDate = {
           startDate: startDateRequest,
@@ -397,7 +415,7 @@ export default function Appointment({ googleApiKey }) {
   const fetchCurrentLocation = () => {
     if (coords) {
       setCurrentCity("");
-      getCity(googleApiKey, coords, setCurrentCity);
+      getCity(googleApiKey, coords, setCurrentCity, setCurrentCoordinate);
     }
   };
 

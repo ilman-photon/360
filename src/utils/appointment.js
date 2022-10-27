@@ -1,5 +1,4 @@
 import moment from "moment";
-import { Router } from "next/router";
 import { Api } from "../pages/api/api";
 import { setFilterBy, setProviderListData } from "../store/appointment";
 import constants from "./constants";
@@ -8,7 +7,7 @@ import {
   mmddyyDateFormat,
   yyyymmddDateFormat,
 } from "./dateFormatter";
-import { useDispatch, useSelector } from "react-redux";
+import { getCoords, getDistanceMatrix } from "./getCity";
 
 function isValidDate(d) {
   return d instanceof Date && !isNaN(d);
@@ -419,6 +418,7 @@ function parsePrescriptionItemMedication(medications) {
       "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
     medicationData.type = element.type;
     medicationData.providerNPI = element.providerNPI;
+    medicationData.drug = element.drug;
 
     if (medicationData.type === "active") {
       active.push(medicationData);
@@ -670,14 +670,79 @@ function setAvailableToday(dateSchedule) {
   return dateSchedule === newDate;
 }
 
-export function parseProviderListData(response, startDate, endDate) {
+function getProviderAddres(providerAddress) {
+  return {
+    addressLine1: providerAddress?.addressLine1 || "",
+    addressLine2: "",
+    city: providerAddress?.city || "",
+    state: providerAddress?.state || "",
+    zipcode: providerAddress?.zip || "",
+  };
+}
+
+function addLanguageFilter(provider, languageList) {
+  const languageKeyList = ["language1", "language2", "language3"];
+  const filterLanguage = [];
+  for (const key of languageKeyList) {
+    const language = provider[key];
+    const isSameData = languageList.find((item) => item.name === language);
+    if (!isSameData && language) {
+      languageList.push({
+        name: language,
+        type: "languange",
+        checked: false,
+      });
+    }
+
+    if (language) {
+      filterLanguage.push(language);
+    }
+  }
+
+  return { languageList, filterLanguage };
+}
+
+function addGenderFilter(sex, genderList) {
+  let gender = "";
+  if (sex) {
+    if (sex === "M") {
+      gender = "Male";
+    } else if (sex === "F") {
+      gender = "Female";
+    } else {
+      gender = "Non-Binary";
+    }
+
+    const isSameData = genderList.find((item) => item.name === gender);
+
+    if (!isSameData) {
+      genderList.push({
+        name: gender,
+        type: "gender",
+        checked: false,
+      });
+    }
+  }
+  return { genderList, gender };
+}
+
+export async function parseProviderListData(
+  response,
+  startDate,
+  endDate,
+  googleApiKey,
+  currentCoordinate
+) {
   startDate = yyyymmddDateFormat(startDate);
   endDate = yyyymmddDateFormat(endDate);
+  let languageFilter = [];
+  let genderFilter = [];
   const data = {
     listOfProvider: [],
     filterbyData: [
       {
         name: "Available Today",
+        type: "general",
         checked: false,
       },
     ],
@@ -696,6 +761,7 @@ export function parseProviderListData(response, startDate, endDate) {
       const currentProvider = data.listOfProvider
         ? data.listOfProvider.find((item) => item.providerId === providerId)
         : [];
+
       if (data.listOfProvider.length === 0 || !currentProvider) {
         const providerTemp = {
           providerId: "",
@@ -720,8 +786,8 @@ export function parseProviderListData(response, startDate, endDate) {
           to: endDate,
           availability: [],
           coordinate: {
-            latitude: "",
-            longitude: "",
+            lat: "",
+            lng: "",
           },
           filters: {},
         };
@@ -733,7 +799,38 @@ export function parseProviderListData(response, startDate, endDate) {
         providerTemp.filters["isAvailableToday"] = setAvailableToday(
           availabilityDate.date
         );
+        providerTemp.address = getProviderAddres(provider.address);
+        providerTemp.rating = provider.rating;
+        providerTemp.phoneNumber = provider.workPhone;
+        providerTemp.image = provider?.profilePhoto?.digitalAsset || null;
+
+        providerTemp.coordinate = await getCoords(
+          googleApiKey,
+          provider.address
+        );
+
+        providerTemp.distance = await getDistanceMatrix(
+          // { lat: 36.8493937, lng: -76.0106753 }, // Testing from 1456 Reynard Dr, Virginia Beach, VA 23451, USA
+          // { lat: -6.2268686, lng: 106.8335146}, // Testing from Jakarta Selatan
+          currentCoordinate,
+          providerTemp.coordinate
+        );
+
         data.listOfProvider.push(providerTemp);
+
+        const { languageList, filterLanguage } = addLanguageFilter(
+          provider,
+          languageFilter
+        );
+        const { genderList, gender } = addGenderFilter(
+          provider?.sex?.name,
+          genderFilter
+        );
+        languageFilter = languageList;
+        genderFilter = genderList;
+
+        providerTemp.filters["language"] = filterLanguage;
+        providerTemp.filters["gender"] = gender;
       } else if (data.listOfProvider.length > 0 && currentProvider) {
         const isSameDate = currentProvider.availability.find(
           (item) => item.date === availabilityDate.date
@@ -758,6 +855,19 @@ export function parseProviderListData(response, startDate, endDate) {
     );
   }
 
+  if (languageFilter.length > 0) {
+    data.filterbyData.push({
+      name: "Language",
+      checklist: languageFilter,
+    });
+  }
+
+  if (genderFilter.length > 0) {
+    data.filterbyData.push({
+      name: "Gender",
+      checklist: genderFilter,
+    });
+  }
   return data;
 }
 
