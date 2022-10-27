@@ -1,5 +1,8 @@
 export default function getProviderList(req, res) {
-  if (req.method === "GET") {
+  if (
+    req.method === "GET" &&
+    req.query.patientId !== "2e73ad0d-c959-4130-ab3b-fcdd5cb10505"
+  ) {
     res.status(200).json({
       results: [
         {
@@ -274,6 +277,10 @@ export default function getProviderList(req, res) {
           _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
         },
       ],
+    });
+  } else {
+    res.status(200).json({
+      results: [],
     });
   }
 }

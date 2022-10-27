@@ -179,7 +179,7 @@ describe("Render Bio", () => {
       .onGet("/ecp/appointments/insurance/allpayers", mockInsurance)
       .reply(200, mockInsurance);
     mock
-      .onPut("/ecp/appointments/available-slot?searchText=VA")
+      .onPut("/ecp/appointments/available-slot?searchText=Yorktown")
       .reply(200, submitFilter);
 
     const contex = {

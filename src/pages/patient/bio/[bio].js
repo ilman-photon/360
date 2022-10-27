@@ -41,9 +41,10 @@ export default function Bio({ embedApi, bio }) {
   let isRequest = false;
 
   const mapper = (response) => {
-    const name = `${response.firstName || ""} ${response.lastName || ""}${
-      response.designation ? `, ${response.designation}` : ""
-    }`;
+    const designation = response.designation ? `, ${response.designation}` : "";
+    const name = `${response.firstName || ""} ${
+      response.lastName || ""
+    }${designation}`;
     const genderCode = response.sex?.key;
     const femaleGender = genderCode === "3" ? "Female" : "-";
     const gender = genderCode === "6" ? "Male" : femaleGender;
@@ -110,9 +111,19 @@ export default function Bio({ embedApi, bio }) {
     const specialties = Array.isArray(data.specialties)
       ? data.specialties[0]
       : data.specialties;
-    const state = addressData.state;
+
+    let location = "";
+
+    if (addressData.city) {
+      location = addressData.city;
+    } else if (addressData.state) {
+      location = addressData.state;
+    } else if (addressData.zip) {
+      location = addressData.zip;
+    }
+
     const filterData = {
-      location: state,
+      location,
       date: moment().format("MM/DD/YYYY"),
       purposeOfVisit: specialties,
     };

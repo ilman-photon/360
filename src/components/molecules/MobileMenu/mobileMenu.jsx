@@ -177,7 +177,7 @@ export default function MobileMenu({
                       margin: 0,
                     },
                     "& .Mui-expanded": {
-                      margin: 0,
+                      margin: "0 !important",
                     },
                   }}
                 >
@@ -204,18 +204,18 @@ export default function MobileMenu({
                     }}
                   >
                     <List sx={{ padding: 0 }}>
-                      {submenu.map((item, index) => (
-                        <ListItem disablePadding key={index}>
+                      {submenu.map((subItem, subIndex) => (
+                        <ListItem disablePadding key={subIndex}>
                           <ListItemButton
                             onClick={() => {
-                              router.push(item.href);
+                              router.push(subItem.href);
                             }}
                           >
                             <ListItemIcon sx={iconStyle}>
-                              {item.icon}
+                              {subItem.icon}
                             </ListItemIcon>
                             <ListItemText
-                              primary={item.label}
+                              primary={subItem.label}
                               sx={{
                                 "& .MuiTypography-root": typographyStyle,
                               }}

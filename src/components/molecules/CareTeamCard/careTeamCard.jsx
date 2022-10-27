@@ -33,8 +33,18 @@ export default function CareTeamCard({ provider }) {
   const address = `${addressLine1}${addressLine2}${city}${addressState}${zip}`;
 
   const navigateToScheduleAppointment = () => {
+    let location = "";
+
+    if (provider.address.city) {
+      location = provider.address.city;
+    } else if (provider.address.state) {
+      location = provider.address.state;
+    } else if (provider.address.zip) {
+      location = provider.address.zip;
+    }
+
     const filterData = {
-      location: addressState,
+      location,
       date: moment().format("MM/DD/YYYY"),
       purposeOfVisit: provider.specialties,
     };

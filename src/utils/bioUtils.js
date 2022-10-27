@@ -17,7 +17,7 @@ export function getArrayValue(data) {
     const isMultipleValue = Array.isArray(data);
     return !isMultipleValue ? [data] : data;
   } else {
-    return "";
+    return [];
   }
 }
 
