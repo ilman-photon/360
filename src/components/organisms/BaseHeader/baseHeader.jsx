@@ -17,7 +17,6 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import constants from "../../../utils/constants";
-import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +24,8 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
+import Navbar from "../../molecules/Navbar/Navbar";
+import MobileMenu from "../../molecules/MobileMenu/mobileMenu";
 import NotificationDrawer from "../../molecules/NotificationDrawer/notificationDrawer";
 import {
   fetchNotifications,
@@ -38,6 +39,7 @@ export default function BaseHeader({
   },
   backTitle,
   onBackClicked,
+  showNavbar = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
@@ -242,15 +244,15 @@ export default function BaseHeader({
                   </IconButton>
                 </Box>
 
-                <AccountDrawer
+                <MobileMenu
                   onClose={() => {
                     setAnchorElNav(false);
                   }}
-                  opened={anchorElNav}
-                  onLogoutClicked={() => {
+                  open={anchorElNav}
+                  onLogout={() => {
                     OnLogoutClicked(router);
                   }}
-                />
+                ></MobileMenu>
 
                 {/* profile menu */}
                 <Box sx={styles.boxProfileMenuStyles}>
@@ -325,6 +327,7 @@ export default function BaseHeader({
           )}
         </Container>
       </AppBar>
+      {showNavbar && isUserLoged && <Navbar />}
       {backTitle && (
         <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
       )}

@@ -448,4 +448,16 @@ export class Api {
       console.error({ error });
     }
   }
+
+  googleGeocode(address, apiKey) {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getProviderList() {
+    //TODO: const url = `/ecp/appointments/getproviderlist/`;
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/biography/getProviderList`;
+    return this.getResponse(url, {}, "get");
+  }
 }

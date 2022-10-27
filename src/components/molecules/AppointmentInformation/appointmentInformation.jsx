@@ -25,7 +25,7 @@ export default function AppointmentInformation({ data }) {
     <Box className={styles.appointmentInformation}>
       <Box className={styles.imageContainer}>
         <ImageFallback
-          src={data.providerInfo.image}
+          source={data.providerInfo.image}
           layout="fill"
           tabIndex={0}
           className={styles.profilePhoto}

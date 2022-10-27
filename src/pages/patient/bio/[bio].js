@@ -1,5 +1,5 @@
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import ProviderProfile from "../../../components/molecules/ProviderProfile/providerProfile";
 import BiographyDetails from "../../../components/organisms/BiographyDetails/biographyDetails";
@@ -7,7 +7,15 @@ import { Box } from "@mui/material";
 import styles from "./styles.module.scss";
 import { Api } from "../../api/api";
 import { useEffect, useState } from "react";
-import getLanguage from "../../../utils/getLanguage";
+import { getLanguage, getArrayValue } from "../../../utils/bioUtils";
+import { useLoadScript } from "@react-google-maps/api";
+import { setFilterData, setIsFilterApplied } from "../../../store/appointment";
+import moment from "moment";
+import { useRouter } from "next/router";
+import {
+  onCalledGetAppointmentTypesAPI,
+  onCallSubmitFilterAPI,
+} from "../../../utils/appointment";
 
 export async function getServerSideProps(context) {
   const { bio } = context.query;
@@ -21,15 +29,16 @@ export async function getServerSideProps(context) {
 
 export default function Bio({ embedApi, bio }) {
   const [providerData, setProviderData] = useState();
+  const insuranceCarrierList = useSelector((state) => state.provider.list);
 
-  const getArrayValue = (data) => {
-    if (data) {
-      const isMultipleValue = Array.isArray(data);
-      return !isMultipleValue ? [data] : data;
-    } else {
-      return "";
-    }
-  };
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: embedApi,
+  });
+
+  let isRequest = false;
 
   const mapper = (response) => {
     const name = `${response.firstName || ""} ${response.lastName || ""}${
@@ -38,11 +47,7 @@ export default function Bio({ embedApi, bio }) {
     const genderCode = response.sex?.key;
     const femaleGender = genderCode === "3" ? "Female" : "-";
     const gender = genderCode === "6" ? "Male" : femaleGender;
-    const address = [];
-    const primaryAddress = response.address || "";
-    const secondaryAddress = (response.offices && response.offices[0]) || "";
-    primaryAddress !== "" && address.push(primaryAddress);
-    secondaryAddress !== "" && address.push(secondaryAddress);
+    const address = response.offices;
     const language = getLanguage(response.providerDetails);
 
     const data = {
@@ -58,7 +63,7 @@ export default function Bio({ embedApi, bio }) {
       gender,
       address,
       language,
-      networkInsurance: [],
+      networkInsurance: response.networkInsurance || [],
       education: getArrayValue(response.providerDetails?.education),
       membershipsAffiliation: getArrayValue(
         response.providerDetails?.membershipAndAffiliation
@@ -78,10 +83,14 @@ export default function Bio({ embedApi, bio }) {
       })
       .catch(() => {
         setProviderData(data);
+      })
+      .finally(() => {
+        isRequest = false;
       });
   };
 
   const getProviderData = () => {
+    isRequest = true;
     const api = new Api();
     !providerData &&
       api.getProviderDetails(bio).then((response) => {
@@ -90,15 +99,43 @@ export default function Bio({ embedApi, bio }) {
   };
 
   useEffect(() => {
-    getProviderData();
+    !isRequest && getProviderData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [providerData]);
+  }, [providerData, isRequest]);
+
+  const navigateToScheduleAppointment = (data) => {
+    console.log(data);
+    const address = data.address;
+    const addressData = Array.isArray(address) ? address[0] : address;
+    const specialties = Array.isArray(data.specialties)
+      ? data.specialties[0]
+      : data.specialties;
+    const state = addressData.state;
+    const filterData = {
+      location: state,
+      date: moment().format("MM/DD/YYYY"),
+      purposeOfVisit: specialties,
+    };
+
+    dispatch(setFilterData(filterData));
+    dispatch(setIsFilterApplied(true));
+    onCalledGetAppointmentTypesAPI(insuranceCarrierList, (filterSuggestion) => {
+      onCallSubmitFilterAPI(filterData, filterSuggestion, dispatch, router);
+    });
+  };
 
   return (
-    providerData && (
+    providerData &&
+    isLoaded && (
       <Box className={styles.bioPage}>
         <Box className={styles.shortBioContainer}>
-          <ProviderProfile providerData={providerData} variant={"bio"} />
+          <ProviderProfile
+            providerData={providerData}
+            variant={"bio"}
+            navigateToScheduleAppointment={(data) => {
+              navigateToScheduleAppointment(data);
+            }}
+          />
         </Box>
         <BiographyDetails googleApiKey={embedApi} providerData={providerData} />
       </Box>
@@ -111,8 +148,9 @@ Bio.getLayout = function getLayout(page) {
     <Provider store={store}>
       <AppointmentLayout
         currentActivePage={"bio"}
-        backTitle="Back to search"
+        backTitle="Back"
         pageTitle="Doctor Biography"
+        showNavbar={true}
       >
         {page}
       </AppointmentLayout>
