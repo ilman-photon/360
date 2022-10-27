@@ -125,6 +125,13 @@ export default function ForgotPasswordPage() {
     } else setAppointment(false);
   }, [router]);
 
+  useEffect(() => {
+    //Bug fix EPP-4639
+    router.replace({
+      pathname: router.pathname,
+    });
+  }, []);
+
   const onCalledValidateAppointment = function ({ username }) {
     const postbody = {
       username: username,
@@ -382,6 +389,17 @@ export default function ForgotPasswordPage() {
       });
   };
 
+  /**
+   * Bug fixing EPP-4639
+   * @param {*} query as String
+   */
+  const replaceUrl = (query) => {
+    router.replace({
+      pathname: router.pathname,
+      query: { step: query.toLocaleLowerCase() },
+    });
+  };
+
   //Handle show/hide form in forgot password
   const onContinueButtonClicked = function (form, routerIns) {
     setShowPostMessage(false);
@@ -393,8 +411,10 @@ export default function ForgotPasswordPage() {
 
     if (form === constants.SELECT_OPTION) {
       setShowSelectOption(true);
+      replaceUrl(constants.SELECT_OPTION);
     } else if (form === constants.SECURITY_QUESTION) {
       setShowPasswordSecurityQuestion(true);
+      replaceUrl(constants.SECURITY_QUESTION);
     } else if (form === constants.PASSWORD_RESET) {
       //TO DO: handle showing the reset password form
       if (
@@ -424,6 +444,7 @@ export default function ForgotPasswordPage() {
         onCalledResetPasswordAPI(patientData.preferredComunication);
       }
       setShowPasswordReset(true);
+      replaceUrl(constants.PASSWORD_RESET);
     } else if (form === constants.ONE_TIME_LINK) {
       if (
         patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH
@@ -448,6 +469,7 @@ export default function ForgotPasswordPage() {
         onCalledOneTimeLinkAPI();
       }
       setShowOneTimeLink(true);
+      replaceUrl(constants.ONE_TIME_LINK);
     } else if (form === "updatePassword") {
       routerIns.push(
         `/patient/update-password?username=${patientData.username}`
