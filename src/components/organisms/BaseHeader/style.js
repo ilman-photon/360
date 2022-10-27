@@ -32,7 +32,6 @@ export const styles = {
     color: "#003B4A",
   },
   boxStyledMobile: {
-    flexGrow: 1,
     display: { xs: "flex", md: "none" },
     justifyContent: "flex-end",
     "@media print": {

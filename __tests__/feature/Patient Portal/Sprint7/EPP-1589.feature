@@ -7,7 +7,6 @@ Feature: Patient Portal : Message/ Alerts - View
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view the unread alerts listed one below the other with an option against each to dismiss
-    Scenario: EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view the unread alerts listed one below the other with an option against each to dismiss
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -21,7 +20,6 @@ Feature: Patient Portal : Message/ Alerts - View
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1589 - Verify User should see list unread alerts on how recent they are i.e. recent alerts will be on top
-    Scenario: EPIC_EPP-22_STORY_EPP-1589 - Verify User should see list unread alerts on how recent they are i.e. recent alerts will be on top
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -37,7 +35,6 @@ Feature: Patient Portal : Message/ Alerts - View
   @Regression
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1589 - Verify User should have the option to clear all alerts
-    Scenario: EPIC_EPP-22_STORY_EPP-1589 - Verify User should have the option to clear all alerts
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -53,7 +50,6 @@ Feature: Patient Portal : Message/ Alerts - View
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view alerts being removed from the list of alerts as and when they are read
-    Scenario: EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view alerts being removed from the list of alerts as and when they are read
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -69,7 +65,6 @@ Feature: Patient Portal : Message/ Alerts - View
   @Patient_Portal
   @Sprint7
   Scenario: EPIC_EPP-22_STORY_EPP-1589 -Negative Test Cases-Verify  when the service is unavailable
-    Scenario: EPIC_EPP-22_STORY_EPP-1589 -Negative Test Cases-Verify  when the service is unavailable
 
     Given User launch Patient Portal url		
     When User is logged in to the application
