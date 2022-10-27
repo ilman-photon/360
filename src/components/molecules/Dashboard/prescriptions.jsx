@@ -69,6 +69,7 @@ export function renderCTAIcon(
         className={styles.butttonIconContainer}
         onClick={onClickPrint}
         aria-label={"Print option"}
+        data-testid={"print-icon"}
       >
         <LocalPrintshopOutlinedIcon
           sx={{
