@@ -3,23 +3,24 @@ import "@testing-library/jest-dom";
 import ModalCancelScheduling from "../../../../src/components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 
 describe("App", () => {
-    let container;
-    const mockCallBack = jest.fn();
-    beforeEach(() => {
-      container = render(<ModalCancelScheduling isOpen={true} OnClickCancel={mockCallBack} OnCancelClicked={mockCallBack} />);
-    });
-  
-    it("ModalCancelScheduling render", () => {
-        expect(container).toMatchSnapshot();
-    });
-  
-    it("ModalCancelScheduling UI", async () => {
-      await waitFor(() => container.getByText(/cancelTitle/i));
+  let container;
+  const mockCallBack = jest.fn();
+  beforeEach(() => {
+    container = render(
+      <ModalCancelScheduling
+        isOpen={true}
+        OnClickCancel={mockCallBack}
+        OnCancelClicked={mockCallBack}
+      />
+    );
+  });
 
-      expect(container.getByText(/cancelReason/i)).toBeInTheDocument();
-      
+  it("ModalCancelScheduling UI", async () => {
+    await waitFor(() => container.getByText(/cancelTitle/i));
 
-      const otherRadio = container.getByRole("radio", { name: /Other/i });
+    expect(container.getByText(/cancelReason/i)).toBeInTheDocument();
+
+    const otherRadio = container.getByRole("radio", { name: /Other/i });
     fireEvent.click(otherRadio);
     expect(otherRadio.value).toEqual("other");
 
@@ -31,7 +32,5 @@ describe("App", () => {
     const KeepButton = container.getByRole("button", { name: /btnKeep/i });
     expect(KeepButton).toBeTruthy();
     fireEvent.click(cancelButton);
-    });
-    
+  });
 });
-  
