@@ -27,7 +27,7 @@ beforeAll(() => {
     maps: {
       DistanceMatrixService: jest.fn().mockReturnValue({
         getDistanceMatrix: (config, callback) => {
-          callback(mockDistance, "OK");
+          callback && callback(mockDistance, "OK");
         },
       }),
       UnitSystem: { METRIC: 1, IMPERIAL: 0.0 },
