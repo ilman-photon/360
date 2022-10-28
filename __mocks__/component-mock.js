@@ -51,7 +51,7 @@ jest.mock("@fontsource/libre-franklin", () => {
 });
 jest.mock("@progress/kendo-react-pdf", () => {
   return {
-    savePDF: (component, options, callback) => {
+    savePDF: (component, options, callback = jest.fn()) => {
       callback();
     },
   };
@@ -95,7 +95,7 @@ jest.mock("next/router", () => ({
 jest.mock("next-i18next", () => ({
   use: () => {
     return {
-      init: () => {},
+      init: () => { },
     };
   },
   t: (k) => k,
@@ -107,7 +107,7 @@ jest.mock("next-i18next", () => ({
       t: (str) => str,
       ready: true,
       i18n: {
-        changeLanguage: () => new Promise(() => {}),
+        changeLanguage: () => new Promise(() => { }),
       },
     };
   },
