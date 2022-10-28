@@ -11,7 +11,7 @@ import "@testing-library/jest-dom";
 import store from "../src/store/store";
 import { TEST_ID } from "../src/utils/constants";
 import ForgotPasswordPage from "../src/pages/patient/forgot-password";
-import Appointment from "../src/pages/patient/appointment/index";
+import * as AppointmentPage from "../src/pages/patient/appointment/index";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import mediaQuery from "css-mediaquery";
@@ -29,6 +29,7 @@ import {
 } from "./component-mock";
 import {
   mockAppointmentTypes,
+  mockInsurance,
   prescriptionContact,
   prescriptionGlasses,
   prescriptionMedication,
@@ -414,7 +415,7 @@ export async function clickContinueForgot(container, mock) {
   return container;
 }
 
-export async function renderScheduleAppointment() {
+export async function renderScheduleAppointment(mock) {
   let container;
   const mockGeolocation = {
     getCurrentPosition: jest.fn(),
@@ -422,6 +423,18 @@ export async function renderScheduleAppointment() {
   };
   global.navigator.geolocation = mockGeolocation;
   window.matchMedia = createMatchMedia("1920px");
+
+  mock
+    .onGet("/ecp/appointments/appointment-types", mockAppointmentTypes)
+    .reply(200, mockAppointmentTypes);
+  mock
+    .onGet("/ecp/appointments/insurance/allpayers", mockInsurance)
+    .reply(200, mockInsurance);
+  mock
+    .onPut("/ecp/appointments/available-slot?searchText=Texas")
+    .reply(200, submitFilter);
+  const Appointment = AppointmentPage.default;
+  const server = await AppointmentPage.getStaticProps();
   act(() => {
     container = render(
       <Provider store={store}>
@@ -431,7 +444,7 @@ export async function renderScheduleAppointment() {
   });
   await waitFor(() => container.getByText("Purpose of Visit"));
   expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-  return container;
+  return { ...container, mock };
 }
 
 export async function renderResultsScreen() {

@@ -57,7 +57,7 @@ export default function PrescriptionMedication({
   const isMobile = useMediaQuery("(max-width: 768px)");
   const iconMedication = "/icon-medication.png";
 
-  const downloadPDF = (medicationType, index = -1) => {
+  const downloadPDF = (medicationType, index) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -69,14 +69,18 @@ export default function PrescriptionMedication({
       containerSelector.current.querySelector(
         `[data-testid=medication-${medicationType}-container-${index}]`
       ) || document.body;
-    savePDF(element, {
-      paperSize: "auto",
-      margin: 40,
-      fileName: `Prescription Medication Don John`,
-    });
+    savePDF(
+      element,
+      {
+        paperSize: "auto",
+        margin: 40,
+        fileName: `Prescription Medication Don John`,
+      },
+      () => {}
+    );
   };
 
-  const printHTML = (medicationType, index = -1) => {
+  const printHTML = (medicationType, index) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -93,13 +97,13 @@ export default function PrescriptionMedication({
       "",
       "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
     );
-    WinPrint.document.write(element.innerHTML);
+    WinPrint?.document.write(element.innerHTML);
     headStyles.forEach((st) => {
-      WinPrint.document.head.appendChild(st.cloneNode(true));
+      WinPrint?.document.head.appendChild(st.cloneNode(true));
     });
-    WinPrint.document.close();
-    WinPrint.focus();
-    WinPrint.print();
+    WinPrint?.document.close();
+    WinPrint?.focus();
+    WinPrint?.print();
     setTimeout(() => {
       WinPrint.close();
     }, 500);
@@ -505,6 +509,7 @@ export default function PrescriptionMedication({
                 mode={constants.SECONDARY}
                 onClick={() => onRequestCancelRefill(data, true)}
                 className={styles.requestButton}
+                data-testid={"cancel-refill-button"}
               >
                 Cancel Refill Request
               </StyledButton>
