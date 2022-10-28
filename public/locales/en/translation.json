@@ -20,7 +20,7 @@
     "alreadyHaveAnAppointment" : "Already have an appointment?",
     "errorAysncUser": "Login",
     "errorLoginLockedTitle": "Account Locked",
-    "errorLoginLockedMessage": "Your account has been locked. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
+    "errorLoginLockedMessage": "Your account has been locked after too many failed attempts. An email/ text message with password reset link has been sent to your preferred mode of communication to login",
     "errorFailedLogin": "Invalid Username or Password"
   },
   "Input": {
