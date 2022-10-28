@@ -779,14 +779,19 @@ const FilterHeading = ({
                     backgroundColor: "#fff",
                     "&.Mui-focused": {
                       boxShadow: "none",
+                      color: "#003B4A",
                     },
                   },
                   ".MuiInputLabel-filled": {
                     fontWeight: "400",
                     fontSize: "16px",
-                    color: "#303030",
                     lineHeight: "24px",
                     fontStyle: "normal",
+                    color: "#303030",
+                  },
+                  ".MuiInputLabel-shrink": {
+                    color: "#003B4A !important",
+                    fontWeight: "600",
                   },
                 }}
                 ariaLabel={"Purpose of Visit dropdown"}
