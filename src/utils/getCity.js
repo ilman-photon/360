@@ -61,14 +61,16 @@ export async function getDistanceMatrix(
   const orig = origin;
   const dest = destination;
   let distanceResult;
-  const response = await distanceService.getDistanceMatrix({
-    origins: [orig],
-    destinations: [dest],
-    travelMode: "BICYCLING", // "WALKING" | "BICYCLING" | "TRANSIT"
-    unitSystem: google.maps.UnitSystem.IMPERIAL, // "METRIC"
-    avoidHighways: false,
-    avoidTolls: false,
-  });
+  const response = distanceService?.getDistanceMatrixawait
+    ? distanceService?.getDistanceMatrix({
+        origins: [orig],
+        destinations: [dest],
+        travelMode: "BICYCLING", // "WALKING" | "BICYCLING" | "TRANSIT"
+        unitSystem: google.maps.UnitSystem.IMPERIAL, // "METRIC"
+        avoidHighways: false,
+        avoidTolls: false,
+      })
+    : null;
 
   if (response) {
     const origins = response.originAddresses;
