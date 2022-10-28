@@ -266,10 +266,11 @@ export default function ForgotPasswordPage() {
   };
 
   //Call API for one time link
-  const onCalledOneTimeLinkAPI = function () {
+  const onCalledOneTimeLinkAPI = function (modeOfCommuication) {
     const domain = window.location.origin;
     const postbody = {
       link: `${domain}${NEXT_PUBLIC_ONE_TIME_LINK}`,
+      preferredComunication: modeOfCommuication.toLowerCase(),
       patient: { userName: patientData.username },
       oneTimeLinkEnable: true,
     };
@@ -461,12 +462,16 @@ export default function ForgotPasswordPage() {
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );
         confirmationFormProps.butttonMode = constants.PRIMARY;
-        confirmationFormProps.onCTAButtonClicked = function () {
-          onCalledOneTimeLinkAPI();
+        confirmationFormProps.onCTAButtonClicked = function ({ data }) {
+          const modeComunication =
+            data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
+              ? "email"
+              : "phone";
+          onCalledOneTimeLinkAPI(modeComunication);
         };
       } else {
         //Call service for one time link
-        onCalledOneTimeLinkAPI();
+        onCalledOneTimeLinkAPI(patientData.preferredComunication);
       }
       setShowOneTimeLink(true);
       replaceUrl(constants.ONE_TIME_LINK);
