@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import ForgotPasswordPage from "../../src/pages/patient/forgot-password";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
-import constants from "../../src/utils/constants";
 import { renderLogin } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
@@ -41,6 +40,7 @@ defineFeature(feature, (test) => {
         back: jest.fn(),
         asPath: "/patient/sync",
         push: jest.fn(),
+        replace: jest.fn(),
       });
       act(() => {
         container = render(
@@ -93,6 +93,7 @@ defineFeature(feature, (test) => {
         back: jest.fn(),
         asPath: "/patient/sync",
         push: jest.fn(),
+        replace: jest.fn(),
       });
       act(() => {
         container = render(
@@ -181,6 +182,7 @@ defineFeature(feature, (test) => {
         back: jest.fn(),
         asPath: "/patient/sync",
         push: jest.fn(),
+        replace: jest.fn(),
       });
       act(() => {
         container = render(
@@ -265,6 +267,7 @@ defineFeature(feature, (test) => {
         back: jest.fn(),
         asPath: "/patient/sync",
         push: jest.fn(),
+        replace: jest.fn(),
       });
       act(() => {
         container = render(
