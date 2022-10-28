@@ -5,6 +5,21 @@ import { injectStore } from "../src/pages/api/api";
 import store from "../src/store/store";
 import { mockDistance } from "./mockResponse";
 
+export const mockGoogleWindow = (mockData = mockDistance) => {
+  window.google = {
+    maps: {
+      DistanceMatrixService: jest.fn().mockReturnValue({
+        getDistanceMatrix: (config, callback) => {
+          callback && callback(mockData, "OK");
+        },
+      }),
+      UnitSystem: { METRIC: 1, IMPERIAL: 0.0 },
+      LatLngBounds: jest.fn().mockReturnValue({
+        extend: jest.fn(),
+      }),
+    },
+  };
+};
 beforeAll(() => {
   createMocks();
   global.MessageChannel = MessageChannel;
@@ -23,19 +38,7 @@ beforeAll(() => {
     NEXT_PUBLIC_SYNC_LINK: "/patient/sync/set-password",
     NEXT_PUBLIC_ONE_TIME_LINK: "/patient/validate",
   };
-  window.google = {
-    maps: {
-      DistanceMatrixService: jest.fn().mockReturnValue({
-        getDistanceMatrix: (config, callback) => {
-          callback && callback(mockDistance, "OK");
-        },
-      }),
-      UnitSystem: { METRIC: 1, IMPERIAL: 0.0 },
-      LatLngBounds: jest.fn().mockReturnValue({
-        extend: jest.fn(),
-      }),
-    },
-  };
+  mockGoogleWindow();
 });
 
 afterAll(cleanup);
