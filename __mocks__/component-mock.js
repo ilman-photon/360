@@ -3,6 +3,7 @@ import { MessageChannel } from "worker_threads";
 import { cleanup } from "@testing-library/react";
 import { injectStore } from "../src/pages/api/api";
 import store from "../src/store/store";
+import { mockDistance } from "./mockResponse";
 
 beforeAll(() => {
   createMocks();
@@ -21,6 +22,19 @@ beforeAll(() => {
     NEXT_PUBLIC_EMBED_API: "123",
     NEXT_PUBLIC_SYNC_LINK: "/patient/sync/set-password",
     NEXT_PUBLIC_ONE_TIME_LINK: "/patient/validate",
+  };
+  window.google = {
+    maps: {
+      DistanceMatrixService: jest.fn().mockReturnValue({
+        getDistanceMatrix: (config, callback) => {
+          callback(mockDistance, "OK");
+        },
+      }),
+      UnitSystem: { METRIC: 1, IMPERIAL: 0.0 },
+      LatLngBounds: jest.fn().mockReturnValue({
+        extend: jest.fn(),
+      }),
+    },
   };
 });
 
@@ -325,6 +339,29 @@ jest.mock("react-geocode", () => ({
       },
     ],
     status: "OK",
+  }),
+  fromAddress: jest.fn().mockResolvedValue({
+    result: [
+      {
+        geometry: {
+          location: {
+            lat: -6.3590351,
+            lng: 106.9684472,
+          },
+          location_type: "ROOFTOP",
+          viewport: {
+            northeast: {
+              lat: -6.357686119708498,
+              lng: 106.9697961802915,
+            },
+            southwest: {
+              lat: -6.360384080291502,
+              lng: 106.9670982197085,
+            },
+          },
+        },
+      },
+    ],
   }),
 }));
 

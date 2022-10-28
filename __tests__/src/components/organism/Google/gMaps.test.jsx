@@ -817,7 +817,7 @@ jest.mock("@react-google-maps/api", () => ({
     onClick();
     children[0]?.props.onClick();
     onLoad();
-    return <div />;
+    return <div data-testid="gmaps-mock" />;
   },
   Marker: ({ onClick }) => {
     return <div />;
