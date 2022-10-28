@@ -56,81 +56,103 @@ defineFeature(feature, (test) => {
     global.navigator.geolocation = mockGeolocation;
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1596-To verify whether the user is allowed to change the Date and Time in Appointment Review screen.', ({ given, when, and, then }) => {
-    given('user launch the Patient portal URL', async () => {
+  test("EPIC_EPP-44_STORY_EPP-1596-To verify whether the user is allowed to change the Date and Time in Appointment Review screen.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient portal URL", async () => {
       container = await renderLogin(container);
     });
 
-    when('user clicks on the Schedule Appointment button', async () => {
+    when("user clicks on the Schedule Appointment button", async () => {
       await doLogin(mock, container);
     });
 
-    and('user navigates to the schedule appointment screen', async () => {
-      container = await renderScheduleAppointment();
+    and("user navigates to the schedule appointment screen", async () => {
+      container = await renderScheduleAppointment(mock);
     });
 
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters(container);
-    });
+    and(
+      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
+      () => {
+        provideFilters(container);
+      }
+    );
 
-    and('click on Search button', () => {
+    and("click on Search button", () => {
       clickSearch(container);
     });
 
-    and('user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit andInsurance carrier data', async () => {
-      await waitFor(() =>
-        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
-      );
-      expect(
-        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
-      ).toBeInTheDocument();
-    }
-  );
+    and(
+      "user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit andInsurance carrier data",
+      async () => {
+        await waitFor(() =>
+          container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+        );
+        expect(
+          container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('try to update the Date and Time if already provided', () => {
-      defaultValidation()
+    and("try to update the Date and Time if already provided", () => {
+      defaultValidation();
     });
 
-    then('user should allow to update the Date and Time.', () => {
-      defaultValidation()
+    then("user should allow to update the Date and Time.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1596-Verify whethet the user is able to select the Date and Time, if not selected in Previous page.', ({ }) => {
+  test("EPIC_EPP-44_STORY_EPP-1596-Verify whethet the user is able to select the Date and Time, if not selected in Previous page.", ({}) => {});
 
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1596-Verify whether the user is able to review the Appointment details after updating the Date and Time.', ({ given, when, and, then }) => {
-    given('user launch the Patient portal URL',async () => {
+  test("EPIC_EPP-44_STORY_EPP-1596-Verify whether the user is able to review the Appointment details after updating the Date and Time.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient portal URL", async () => {
       container = await renderLogin(container);
     });
 
-    when('user clicks on the Schedule Appointment button', async () => {
+    when("user clicks on the Schedule Appointment button", async () => {
       await doLogin(mock, container);
     });
 
-    and('user navigates to the schedule appointment screen', () => {
-      defaultValidation()
+    and("user navigates to the schedule appointment screen", () => {
+      defaultValidation();
     });
 
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      defaultValidation()
+    and(
+      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    and("click on Search button", async () => {
+      container = await renderScheduleAppointment(mock);
     });
 
-    and('click on Search button', async () => {
-      container = await renderScheduleAppointment();
+    and(
+      "user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit and Insurance carrier data",
+      () => {
+        provideFilters(container);
+      }
+    );
+
+    and("try to update the Date and Time if already provided", () => {
+      defaultValidation();
     });
 
-    and('user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit and Insurance carrier data', () => {
-      provideFilters(container);
-    });
-
-    and('try to update the Date and Time if already provided', () => {
-      defaultValidation()
-    });
-
-    then('it should allow to review once again the changed Date and Time in Appointment review screen.', () => {
-      defaultValidation()
-    });
+    then(
+      "it should allow to review once again the changed Date and Time in Appointment review screen.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 });

@@ -444,7 +444,7 @@ export async function renderScheduleAppointment(mock) {
   });
   await waitFor(() => container.getByText("Purpose of Visit"));
   expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-  return container;
+  return { ...container, mock };
 }
 
 export async function renderResultsScreen() {
