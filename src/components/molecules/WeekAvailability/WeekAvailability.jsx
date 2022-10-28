@@ -70,7 +70,7 @@ export const WeekAvailability = ({
       setDateWeekList(parseDateWeekList(scheduleData));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scheduleData]);
+  }, [JSON.stringify(scheduleData)]);
 
   function renderScheduleData() {
     let renderUI = [];
@@ -98,12 +98,12 @@ export const WeekAvailability = ({
   }
 
   function buttonSchedule(
-    label = "",
-    gridArea = "",
-    isTypeMore = false,
-    index = "",
-    date = "",
-    appointmentType = ""
+    label,
+    gridArea,
+    isTypeMore,
+    index,
+    date,
+    appointmentType
   ) {
     if (label) {
       const appointmentCode = appointmentType;

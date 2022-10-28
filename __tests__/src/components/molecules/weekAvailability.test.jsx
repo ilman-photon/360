@@ -110,13 +110,16 @@ const provider_data = [
       },
     ],
   },
-]
+];
 
 describe("WeekAvailability Components", () => {
   let container;
   beforeEach(() => {
     container = render(
-      <WeekAvailability onClickViewAllAvailability={jest.fn()} scheduleData={provider_data}/>
+      <WeekAvailability
+        onClickViewAllAvailability={jest.fn()}
+        scheduleData={provider_data}
+      />
     );
   });
 
@@ -125,5 +128,22 @@ describe("WeekAvailability Components", () => {
       container.getAllByText(/more/i);
     });
     expect(container.getAllByText(/more/i)[0]).toBeInTheDocument();
+  });
+
+  it("WeekAvailability render without data", async () => {
+    container = render(<WeekAvailability />);
+    expect(container.getAllByText(/more/i)[0]).toBeInTheDocument();
+  });
+
+  it("WeekAvailability onclick hour button", async () => {
+    const button = container.getAllByTestId(
+      constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.hourButton
+    );
+    expect(button[0]).toBeInTheDocument();
+    await waitFor(() => fireEvent.click(button[0]));
+
+    const buttonMore = container.getByText(/3 more/i);
+    expect(buttonMore).toBeInTheDocument();
+    await waitFor(() => fireEvent.click(buttonMore));
   });
 });
