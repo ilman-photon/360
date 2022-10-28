@@ -876,7 +876,6 @@ export function onCalledGetAppointmentTypesAPI(insuranceCarrierList, callback) {
   api
     .getAppointmentTypes()
     .then(function (response) {
-      console.log(parsePurposeOfVisit(response?.entities || []));
       const filterSuggestion = {
         purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
         insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
@@ -888,7 +887,7 @@ export function onCalledGetAppointmentTypesAPI(insuranceCarrierList, callback) {
     });
 }
 
-export function onCallSubmitFilterAPI(
+export async function onCallSubmitFilterAPI(
   requestData,
   filterSuggestionData,
   dispatch,
@@ -912,11 +911,13 @@ export function onCallSubmitFilterAPI(
 
   api
     .submitFilter(requestData.location, postBody)
-    .then(function (response) {
-      const parseProviderData = parseProviderListData(
+    .then(async function (response) {
+      const parseProviderData = await parseProviderListData(
         response,
         postBody.currentDate,
-        endDateRequest
+        endDateRequest,
+        googleApiKey,
+        currentCoordinate
       );
       if (response?.offices?.length > 0) {
         dispatch(setProviderListData(parseProviderData?.listOfProvider));
