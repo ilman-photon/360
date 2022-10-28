@@ -870,22 +870,6 @@ export async function parseProviderListData(
   return data;
 }
 
-export function onCalledGetAppointmentTypesAPI(insuranceCarrierList, callback) {
-  const api = new Api();
-  api
-    .getAppointmentTypes()
-    .then(function (response) {
-      const filterSuggestion = {
-        purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
-        insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
-      };
-      callback(filterSuggestion);
-    })
-    .catch(function () {
-      //Handle error getsuggestion
-    });
-}
-
 export async function onCallSubmitFilterAPI(
   requestData,
   filterSuggestionData,

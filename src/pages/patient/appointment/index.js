@@ -402,16 +402,6 @@ export default function Appointment({ googleApiKey }) {
     userDecisionTimeout: 5000,
   });
 
-  useEffect(() => {
-    if (filterData.location === "Use my current location") {
-      setDataFilter({
-        ...dataFilter,
-        location: "",
-        coords: { lat: coords?.latitude, long: coords?.longitude },
-      });
-    }
-  }, [filterData, coords]);
-
   const fetchCurrentLocation = () => {
     if (coords) {
       setCurrentCity("");
