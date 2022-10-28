@@ -52,6 +52,10 @@ export default function HomePage({ googleApiKey }) {
   const [currentCity, setCurrentCity] = React.useState("");
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
   const [username, setUsername] = React.useState("");
+  const [currentCoordinate, setCurrentCoordinate] = React.useState({
+    lat: 0,
+    lng: 0,
+  });
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
@@ -87,7 +91,7 @@ export default function HomePage({ googleApiKey }) {
   }
 
   //Call API for submitFilter
-  function onCallSubmitFilterAPI(requestData) {
+  async function onCallSubmitFilterAPI(requestData) {
     const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
       (element) => element.title === requestData.purposeOfVisit
     );
@@ -105,11 +109,13 @@ export default function HomePage({ googleApiKey }) {
     const api = new Api();
     api
       .submitFilter(requestData.location, postBody)
-      .then(function (response) {
-        const parseProviderData = parseProviderListData(
+      .then(async function (response) {
+        const parseProviderData = await parseProviderListData(
           response,
           postBody.currentDate,
-          endDateRequest
+          endDateRequest,
+          googleApiKey,
+          currentCoordinate
         );
         if (response?.offices?.length > 0) {
           dispatch(setProviderListData(parseProviderData?.listOfProvider));
@@ -168,7 +174,7 @@ export default function HomePage({ googleApiKey }) {
   const fetchCurrentLocation = () => {
     if (coords) {
       setCurrentCity("");
-      getCity(googleApiKey, coords, setCurrentCity);
+      getCity(googleApiKey, coords, setCurrentCity, setCurrentCoordinate);
     }
   };
 
