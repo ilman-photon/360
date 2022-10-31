@@ -157,7 +157,10 @@ export default function HomePage({ googleApiKey }) {
       .then(function (response) {
         const upcomingAppointment = [];
         response.entities.map((data) => {
-          const mappedData = appointmentParser(data);
+          const mappedData = appointmentParser(
+            data,
+            filterSuggestionData.purposeOfVisit
+          );
           upcomingAppointment.push(mappedData);
         });
         setAppointmentData(upcomingAppointment);
@@ -191,8 +194,8 @@ export default function HomePage({ googleApiKey }) {
   useEffect(() => {
     if (isAuthenticated && !isAdmin()) {
       onCalledAllPrescription();
-      onCalledGetAllAppointment();
       dispatch(fetchAllPayers());
+      // onCalledGetAllAppointment();
     }
     const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
     if (userStorageData) {
@@ -204,6 +207,10 @@ export default function HomePage({ googleApiKey }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    onCalledGetAllAppointment();
+  }, [filterSuggestionData.purposeOfVisit]);
 
   useEffect(() => {
     onCalledGetAppointmentTypesAPI();

@@ -249,7 +249,6 @@ describe("Forgot Password", () => {
     fireEvent.change(usernameField, { target: { value: "12345" } });
     expect(usernameField.value).toEqual("12345");
     fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.continueBtn));
-    await waitFor(() => container.getByText("syncErrorTitle"));
     fireEvent.change(usernameField, { target: { value: "12345678" } });
     expect(usernameField.value).toEqual("12345678");
     const button = container.getByTestId(FORGOT_TEST_ID.loginLink);

@@ -16,6 +16,7 @@ import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { colors } from "../../../styles/theme";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 
 const cardContentStyle = {
   display: "flex",
@@ -242,6 +243,20 @@ const SetPasswordComponent = ({
       });
   }, [formMessage]);
 
+  const isEmail = Regex.isEmailCorrect.test(username);
+  const mailFormat =
+    username &&
+    username.replace(
+      Regex.maskingEmail,
+      (_, a, b, c) => a + b.replace(/./g, "*") + c
+    );
+  const maskedUsername = isEmail
+    ? mailFormat
+    : formatPhoneNumber(username, true, true);
+  useEffect(() => {
+    setValue("maskedUsername", maskedUsername);
+  }, [username]);
+
   const onChangePasswordValue = function () {
     if (showPostMessage) {
       setShowPostMessage(false);
@@ -297,9 +312,10 @@ const SetPasswordComponent = ({
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+              <Controller name="username" control={control} render={() => {}} />
               {!isUpdatePassword ? (
                 <Controller
-                  name="username"
+                  name="maskedUsername"
                   control={control}
                   defaultValue=""
                   render={({
