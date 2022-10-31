@@ -373,7 +373,6 @@ describe("Store User", () => {
     let result = store.dispatch(
       setAppointmentSchedule(mockAppointmentCreationData)
     );
-    console.log(result);
     expect(result).not.toBeNull();
     const rescheduleData = {
       appointmentId: rescheduleDataPostbody.appointmentInfo.id,

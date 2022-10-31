@@ -25,11 +25,15 @@ export function UpcomingAppointmentCard({
   const isDesktop = useMediaQuery("(min-width: 993px)");
 
   const visitDate = new Date(data.appointmentInfo.date);
+  const appointment = data;
   let hideHour = 0;
-  if (data.appointmentInfo.appointmentType === "Eye Exam") {
+  if (
+    appointment.appointmentInfo.appointmentTypeCategory === "OPT" ||
+    appointment.appointmentInfo.appointmentTypeCategory === "OPT/OPH"
+  ) {
     hideHour = 4;
   }
-  if (data.appointmentInfo.appointmentType === "Comprehensive") {
+  if (appointment.appointmentInfo.appointmentTypeCategory === "OPH") {
     hideHour = 24;
   }
 
