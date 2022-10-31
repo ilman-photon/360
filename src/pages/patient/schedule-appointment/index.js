@@ -254,6 +254,7 @@ export default function ScheduleAppointmentPage() {
 
   const router = useRouter();
   const dispatch = useDispatch();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const api = new Api();
 
   React.useEffect(() => {

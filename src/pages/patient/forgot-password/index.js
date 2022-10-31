@@ -130,6 +130,7 @@ export default function ForgotPasswordPage() {
     router.replace({
       pathname: router.pathname,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onCalledValidateAppointment = function ({ username }) {
