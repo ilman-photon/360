@@ -13,6 +13,7 @@ export const removeAuthCookies = () => {
   cookies.remove("isStay", { path: "/patient" });
   cookies.remove("IdleTimeOut", { path: "/patient" });
   cookies.remove("isSecurityQuestionStep", { path: "/patient" });
+  cookies.remove("mfaPreferredMode", { path: "/patient" });
   localStorage.removeItem("userData");
 };
 
