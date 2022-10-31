@@ -11,8 +11,8 @@ const originalEnv = process.env;
 const mockMarkerData = [
   {
     coordinate: {
-      latitude: 32.751204,
-      longitude: -117.1641166,
+      lat: 32.751204,
+      lng: -117.1641166,
     },
     position: {
       lat: 32.751204,
@@ -398,8 +398,8 @@ const mockMarkerData = [
   },
   {
     coordinate: {
-      latitude: 32.751204,
-      longitude: -117.1641166,
+      lat: 32.751204,
+      lng: -117.1641166,
     },
     position: {
       lat: 32.751204,
