@@ -114,7 +114,7 @@ export default function Appointment({ googleApiKey }) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [providerListData]);
+  }, [JSON.stringify(providerListData)]);
 
   const pendingAppointment =
     cookies.get("dashboardState", { path: "/patient" }) === "true";
