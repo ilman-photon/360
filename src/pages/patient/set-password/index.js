@@ -9,7 +9,6 @@ import globalStyles from "../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
 import constants from "../../../utils/constants";
 import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { Regex } from "../../../utils/regex";
 import MESSAGES from "../../../utils/responseCodes";
 import { useRouter } from "next/router";
@@ -28,18 +27,6 @@ export async function getServerSideProps({ query }) {
 export default function SetPasswordPage({ username, token }) {
   const dispatch = useDispatch();
   const router = useRouter();
-  const isEmail = Regex.isEmailCorrect.test(username);
-  const mailFormat =
-    username &&
-    username.replace(
-      Regex.maskingEmail,
-      (_, a, b, c) => a + b.replace(/./g, "*") + c
-    );
-
-  const maskedUsername = isEmail
-    ? mailFormat
-    : formatPhoneNumber(username, true, true);
-
   const formMessage = useSelector((state) => state.index.formMessage);
   const [showPostMessage, setShowPostMessage] = useState(false);
   const [isAppointment, setAppointment] = useState(true);
@@ -186,7 +173,7 @@ export default function SetPasswordPage({ username, token }) {
         <SetPasswordComponent
           title={"Set Password"}
           subtitle={"Enter a password to setup your account."}
-          username={maskedUsername}
+          username={username}
           formMessage={formMessage}
           onSetPasswordClicked={OnSetPasswordClicked}
           showBackToLogin={false}
