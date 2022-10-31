@@ -123,13 +123,16 @@ export default function ForgotPasswordPage() {
     if (router.asPath === "/patient/sync") {
       setAppointment(true);
     } else setAppointment(false);
-  }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     //Bug fix EPP-4639
-    router.replace({
-      pathname: router.pathname,
-    });
+    !isAppointment &&
+      router.replace({
+        pathname: router.pathname,
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onCalledValidateAppointment = function ({ username }) {
