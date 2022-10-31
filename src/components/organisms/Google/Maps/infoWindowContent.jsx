@@ -138,7 +138,7 @@ const InfoWindowContent = ({
                             mode={constants.PRIMARY}
                             size={constants.SMALL}
                             gradient={false}
-                            data-testId={
+                            data-testid={
                               constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
                                 .MAPS.infoWindow.timeslot
                             }

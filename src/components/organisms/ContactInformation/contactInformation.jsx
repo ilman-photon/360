@@ -164,6 +164,39 @@ export default function ContactInformation({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(placePredictions)]);
 
+  const accountCardActionContent = () => {
+    return isDesktop ? (
+      <Button
+        onClick={OnEditClicked}
+        variant="text"
+        className={styles.editButton}
+        tabIndex={0}
+        aria-label="Edit option"
+      >
+        <EditOutlinedIcon sx={{ width: 20, height: 20, color: colors.link }} />
+        <div
+          className={styles.actionText}
+          style={{ marginLeft: 4, color: "#008294" }}
+          tabIndex={0}
+          aria-label="Edit option"
+        >
+          Edit
+        </div>
+      </Button>
+    ) : (
+      <StyledButton
+        mode="primary"
+        size="small"
+        onClick={OnEditClicked}
+        sx={{ my: 4 }}
+        tabIndex={0}
+        aria-label="Edit option"
+      >
+        Edit
+      </StyledButton>
+    );
+  };
+
   return (
     <AccountCard
       tabIndex={0}
@@ -173,43 +206,7 @@ export default function ContactInformation({
       textStyle={{
         fontWeight: "700",
       }}
-      // OnEditClicked={OnEditClicked}
-      actionContent={
-        isDesktop ? (
-          <Button
-            onClick={OnEditClicked}
-            variant="text"
-            className={styles.editButton}
-            tabIndex={0}
-            aria-label="Edit option"
-            data-testId="edit-button"
-          >
-            <EditOutlinedIcon
-              sx={{ width: 20, height: 20, color: colors.link }}
-            />
-            <div
-              className={styles.actionText}
-              style={{ marginLeft: 4, color: "#008294" }}
-              tabIndex={0}
-              aria-label="Edit option"
-            >
-              Edit
-            </div>
-          </Button>
-        ) : (
-          <StyledButton
-            mode="primary"
-            size="small"
-            onClick={OnEditClicked}
-            sx={{ my: 4 }}
-            tabIndex={0}
-            aria-label="Edit option"
-            data-testId="edit-button"
-          >
-            Edit
-          </StyledButton>
-        )
-      }
+      actionContent={accountCardActionContent()}
       label={"Contact Information heading"}
       ariaLabel={"Contact Information heading"}
     >
@@ -298,7 +295,7 @@ export default function ContactInformation({
                     label="Phone Number"
                     inputProps={{
                       "aria-label": "Phone Number field",
-                      "data-testId": "phone-input-test",
+                      "data-testid": "phone-input-test",
                     }}
                     value={value}
                     onChange={onChange}
@@ -342,7 +339,7 @@ export default function ContactInformation({
                     label="Email ID"
                     inputProps={{
                       "aria-label": "Email ID field",
-                      "data-testId": "email-input-test",
+                      "data-testid": "email-input-test",
                     }}
                     value={value}
                     onChange={onChange}
@@ -390,7 +387,7 @@ export default function ContactInformation({
                     }}
                     value={value}
                     autoComplete={false}
-                    data-testId="address-autocomplete-test"
+                    data-testid="address-autocomplete-test"
                     renderInput={(params) => (
                       <StyledRedditField
                         {...params}
@@ -445,7 +442,7 @@ export default function ContactInformation({
                     label="City"
                     inputProps={{
                       "aria-label": "City field",
-                      "data-testId": "city-input-test",
+                      "data-testid": "city-input-test",
                     }}
                     autoComplete="address-level2"
                     value={value}
@@ -541,7 +538,7 @@ export default function ContactInformation({
                         inputProps={{
                           "aria-label": "Zip field",
                           maxLength: 5,
-                          "data-testId": "zip-input-test",
+                          "data-testid": "zip-input-test",
                         }}
                         autoComplete="postal-code"
                         value={value}
@@ -607,8 +604,12 @@ export default function ContactInformation({
               onClick={handleCancel}
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
-              sx={{ ...buttonWidth, fontSize: "14px", fontWeight: 600 }}
-              data-testId="cancel-button"
+              sx={{
+                width: { xs: "100%", md: "unset" },
+                fontSize: "14px",
+                fontWeight: 600,
+              }}
+              data-testid="cancel-button"
             >
               Cancel
             </Button>
@@ -616,8 +617,12 @@ export default function ContactInformation({
               type="submit"
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
-              sx={{ ...buttonWidth, fontSize: "14px", fontWeight: 600 }}
-              data-testId="save-button"
+              sx={{
+                width: { xs: "100%", md: "unset" },
+                fontSize: "14px",
+                fontWeight: 600,
+              }}
+              data-testid="save-button"
             >
               Save
             </Button>
