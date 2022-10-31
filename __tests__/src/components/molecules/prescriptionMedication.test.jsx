@@ -117,7 +117,17 @@ describe("Prescription Medication test", () => {
   beforeEach(() => {
     window.matchMedia = createMatchMedia("1920px");
     const spyWindowOpen = jest.spyOn(window, "open");
-    spyWindowOpen.mockImplementation(jest.fn());
+    spyWindowOpen.mockImplementation(jest.fn()).mockReturnValue({
+      focus: jest.fn(),
+      print: jest.fn(),
+      document: {
+        write: jest.fn(),
+        head: {
+          appendChild: jest.fn(),
+        },
+        close: jest.fn(),
+      },
+    });
 
     container = renderWithData(mockData);
   });

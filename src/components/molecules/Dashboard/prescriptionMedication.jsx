@@ -97,11 +97,11 @@ export default function PrescriptionMedication({
       "",
       "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
     );
-    WinPrint?.document.write(element.innerHTML);
+    WinPrint?.document?.write(element.innerHTML);
     headStyles.forEach((st) => {
       WinPrint?.document.head.appendChild(st.cloneNode(true));
     });
-    WinPrint?.document.close();
+    WinPrint?.document?.close();
     WinPrint?.focus();
     WinPrint?.print();
     setTimeout(() => {
