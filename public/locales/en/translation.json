@@ -175,6 +175,9 @@
     "btnCancel": "Cancel appointment",
     "btnKeep": "Keep appointment"
   },
+  "medicalRecord": {
+    "labelAvaible": "Your lab results are available. Please reach out to your provider. "
+  },
   "appointment": {
     "baseText": "Enter a city, state, or zip code to view results"
   }
