@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import App from "../../../src/pages/_app";
 import ScheduleAppointmentPage, {
   getServerSideProps,
+  PageContent,
 } from "../../../src/pages/patient/schedule-appointment";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
@@ -10,6 +11,7 @@ import {
   appointmentInfo,
   mockAppointmentCreationData,
   mockUserData,
+  MOCK_APPOINTMENT,
   providerInfoObj,
 } from "../../../__mocks__/mockResponse";
 import { createMatchMedia } from "../../../__mocks__/commonSteps";
@@ -19,6 +21,18 @@ import store from "../../../src/store/store";
 import { TEST_ID } from "../../../src/utils/constants";
 import { fireEvent } from "@storybook/testing-library";
 
+jest.mock("next/router", () => ({
+  useRouter() {
+    return {
+      pathname: "",
+      query: {
+        reschedule: true,
+      },
+      push: jest.fn(),
+      // ... whatever else you you call on `router`
+    };
+  },
+}));
 describe("App", () => {
   beforeEach(() => {
     const mock = new MockAdapter(axios);
@@ -99,7 +113,9 @@ describe("App", () => {
   it("Create appointment no login desktop", async () => {
     window.matchMedia = createMatchMedia("1920px");
     const container = render(<App Component={ScheduleAppointmentPage} />);
-    expect(container.getByText("Review Appointment Details")).toBeInTheDocument();
+    expect(
+      container.getByText("Review Appointment Details")
+    ).toBeInTheDocument();
     await fillForm(container);
     await waitFor(() => container.getByText("scheduleAppoinment"));
     fireEvent.click(container.getByText("scheduleAppoinment"));
@@ -123,5 +139,63 @@ describe("App", () => {
     await fillForm(container);
     await waitFor(() => container.getByText("signIn"));
     fireEvent.click(container.getByText("signIn"));
+  });
+
+  it("Render Page Content", async () => {
+    const containerPageContent = render(
+      <PageContent
+        activeStep={1}
+        isLoggedIn={true}
+        isReschedule={true}
+        appointmentScheduleData={MOCK_APPOINTMENT.appointmentList}
+      />
+    );
+    expect(
+      containerPageContent.getAllByText(/Reschedule Appointment/i)[0]
+    ).toBeInTheDocument();
+  });
+
+  it("Render Page Content", async () => {
+    const containerPageContent = render(
+      <PageContent
+        activeStep={1}
+        isLoggedIn={true}
+        isReschedule={true}
+        appointmentScheduleData={MOCK_APPOINTMENT.appointmentList}
+      />
+    );
+    expect(
+      containerPageContent.getAllByText(/Reschedule Appointment/i)[0]
+    ).toBeInTheDocument();
+  });
+
+  it("Render Page Content scheduleAppoinment button", async () => {
+    const containerPageContent = render(
+      <PageContent
+        activeStep={1}
+        isLoggedIn={true}
+        isReschedule={false}
+        appointmentScheduleData={MOCK_APPOINTMENT.appointmentList}
+      />
+    );
+    expect(
+      containerPageContent.getAllByText(/scheduleAppoinment/i)[0]
+    ).toBeInTheDocument();
+  });
+
+  it("Render Page Content with else active content", async () => {
+    const containerPageContent = render(
+      <PageContent
+        activeStep={5}
+        isLoggedIn={true}
+        isReschedule={false}
+        appointmentScheduleData={MOCK_APPOINTMENT.appointmentList}
+      />
+    );
+  });
+
+  it("Render Page Content submit button", async () => {
+    const container = render(<App Component={ScheduleAppointmentPage} />);
+    expect(container.getByText("Review")).toBeInTheDocument();
   });
 });
