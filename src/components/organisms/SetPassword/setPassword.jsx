@@ -250,9 +250,11 @@ const SetPasswordComponent = ({
       Regex.maskingEmail,
       (_, a, b, c) => a + b.replace(/./g, "*") + c
     );
+  const maskedUsername = isEmail
+    ? mailFormat
+    : formatPhoneNumber(username, true, true);
   useEffect(() => {
     setValue("maskedUsername", maskedUsername);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
 
   const onChangePasswordValue = function () {
