@@ -38,6 +38,7 @@ export default function FloatingMessage({
       <Alert
         icon={<CheckCircleOutlineIcon />}
         onClose={handleClose}
+        data-testId="floating-message-close"
         variant="filled"
         severity="success"
         sx={{
