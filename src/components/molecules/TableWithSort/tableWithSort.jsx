@@ -46,10 +46,11 @@ const getComparator = (order, orderBy) => {
 };
 
 const ref = (row, key) => {
-  let returnedRow;
+  let returnedRow = row;
   key.split(".").forEach((k) => {
-    if (row) returnedRow = row[k];
+    if (returnedRow) returnedRow = returnedRow[k];
   });
+
   return returnedRow;
 };
 
@@ -164,6 +165,7 @@ export default function TableWithSort({
   const [page] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage] = React.useState(5);
+  const [activeMenuData, setActiveMenuData] = React.useState({})
 
   const handleRequestSort = (_event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -233,8 +235,9 @@ export default function TableWithSort({
       ariaLabel: "print option",
     },
   ];
-  const handleMenuClick = (event) => {
+  const handleMenuClick = (event, row) => {
     setAnchorEl(event.currentTarget);
+    setActiveMenuData(row)
   };
   const isMenuOpen = Boolean(anchorEl);
   const handleMoreMenu = async (action, row) => {
@@ -243,12 +246,12 @@ export default function TableWithSort({
       title: row.name,
       text: row.name,
       url: row.digital_assets
-        ? `${window.location.origin}/patient/download/${row.digital_assets._id}`
+        ? `${window.location.origin}/patient/download/${ref(row, "digital_assets._id")}`
         : "/",
     };
     switch (action) {
       case "download":
-        onAssetDownload(ref(row, "digital_assets._id"));
+        onAssetDownload(ref(row, "digital_assets._id")); 
         break;
       case "print":
         onAssetDownload(ref(row, "digital_assets._id"), true);
@@ -380,7 +383,7 @@ export default function TableWithSort({
                                   role="button"
                                   aria-label={`download`}
                                   onClick={() => {
-                                    const assetId = ref(row, cell.valueKey);
+                                    const assetId = ref(row, "digital_assets._id")
                                     onAssetDownload(assetId);
                                   }}
                                 >
@@ -440,7 +443,7 @@ export default function TableWithSort({
                                     borderRadius: "50%",
                                   }}
                                   aria-label="more option"
-                                  onClick={handleMenuClick}
+                                  onClick={(e) => handleMenuClick(e,row)}
                                   aria-haspopup="true"
                                   aria-controls="menu-appbar"
                                   data-testid="more-vert-button"
@@ -459,8 +462,8 @@ export default function TableWithSort({
                                   {MyOptions.map((more, moreIdx) => (
                                     <MenuItem
                                       key={`menu-${moreIdx}`}
-                                      onClick={() =>
-                                        handleMoreMenu(more.id, row)
+                                      onClick={() => 
+                                        handleMoreMenu(more.id, activeMenuData)
                                       }
                                       aria-label={`${more.ariaLabel}`}
                                       aria-live="polite"
