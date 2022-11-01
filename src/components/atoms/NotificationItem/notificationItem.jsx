@@ -11,7 +11,13 @@ import LensIcon from "../../../assets/icons/LensIcon";
 import MedicationIcon from "../../../assets/icons/MedicationIcon";
 import AlarmIcon from "../../../assets/icons/AlarmIcon";
 
-const NotificationItem = ({ data = {}, isRead = true, onClick = () => {} }) => {
+const NotificationItem = ({
+  data = {},
+  isRead = true,
+  onClick = () => {
+    //this is intentional
+  },
+}) => {
   const getIcon = () => {
     switch (data.type) {
       case "prescription-refill":

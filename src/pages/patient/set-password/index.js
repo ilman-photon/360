@@ -9,7 +9,6 @@ import globalStyles from "../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
 import constants from "../../../utils/constants";
 import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
-import { Regex } from "../../../utils/regex";
 import MESSAGES from "../../../utils/responseCodes";
 import { useRouter } from "next/router";
 import { loginProps } from "../login";

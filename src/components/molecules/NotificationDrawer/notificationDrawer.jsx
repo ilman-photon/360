@@ -11,10 +11,9 @@ import {
 } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { colors } from "../../../styles/theme";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import NotificationItem from "../../atoms/NotificationItem/notificationItem";
-import { useEffect } from "react";
 
 const StyledTab = styled((props) => <Tab disableRipple {...props} />)(() => ({
   textTransform: "none",

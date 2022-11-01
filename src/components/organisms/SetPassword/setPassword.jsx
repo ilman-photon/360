@@ -312,7 +312,13 @@ const SetPasswordComponent = ({
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-              <Controller name="username" control={control} render={() => {}} />
+              <Controller
+                name="username"
+                control={control}
+                render={() => {
+                  //this is intentional
+                }}
+              />
               {!isUpdatePassword ? (
                 <Controller
                   name="maskedUsername"

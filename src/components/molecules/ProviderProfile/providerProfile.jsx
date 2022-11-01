@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Typography, Box, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";

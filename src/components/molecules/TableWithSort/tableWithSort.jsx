@@ -13,12 +13,10 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Icon,
 } from "@mui/material";
 import React from "react";
 import { visuallyHidden } from "@mui/utils";
 import styles from "./styles.module.scss";
-import { colors } from "../../../styles/theme";
 
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ReplyIcon from "@mui/icons-material/Reply";
@@ -165,7 +163,7 @@ export default function TableWithSort({
   const [page] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage] = React.useState(5);
-  const [activeMenuData, setActiveMenuData] = React.useState({})
+  const [activeMenuData, setActiveMenuData] = React.useState({});
 
   const handleRequestSort = (_event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -237,7 +235,7 @@ export default function TableWithSort({
   ];
   const handleMenuClick = (event, row) => {
     setAnchorEl(event.currentTarget);
-    setActiveMenuData(row)
+    setActiveMenuData(row);
   };
   const isMenuOpen = Boolean(anchorEl);
   const handleMoreMenu = async (action, row) => {
@@ -246,12 +244,15 @@ export default function TableWithSort({
       title: row.name,
       text: row.name,
       url: row.digital_assets
-        ? `${window.location.origin}/patient/download/${ref(row, "digital_assets._id")}`
+        ? `${window.location.origin}/patient/download/${ref(
+            row,
+            "digital_assets._id"
+          )}`
         : "/",
     };
     switch (action) {
       case "download":
-        onAssetDownload(ref(row, "digital_assets._id")); 
+        onAssetDownload(ref(row, "digital_assets._id"));
         break;
       case "print":
         onAssetDownload(ref(row, "digital_assets._id"), true);
@@ -383,7 +384,10 @@ export default function TableWithSort({
                                   role="button"
                                   aria-label={`download`}
                                   onClick={() => {
-                                    const assetId = ref(row, "digital_assets._id")
+                                    const assetId = ref(
+                                      row,
+                                      "digital_assets._id"
+                                    );
                                     onAssetDownload(assetId);
                                   }}
                                 >
@@ -443,7 +447,7 @@ export default function TableWithSort({
                                     borderRadius: "50%",
                                   }}
                                   aria-label="more option"
-                                  onClick={(e) => handleMenuClick(e,row)}
+                                  onClick={(e) => handleMenuClick(e, row)}
                                   aria-haspopup="true"
                                   aria-controls="menu-appbar"
                                   data-testid="more-vert-button"
@@ -462,7 +466,7 @@ export default function TableWithSort({
                                   {MyOptions.map((more, moreIdx) => (
                                     <MenuItem
                                       key={`menu-${moreIdx}`}
-                                      onClick={() => 
+                                      onClick={() =>
                                         handleMoreMenu(more.id, activeMenuData)
                                       }
                                       aria-label={`${more.ariaLabel}`}

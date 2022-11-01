@@ -76,7 +76,9 @@ export default function PrescriptionMedication({
         margin: 40,
         fileName: `Prescription Medication Don John`,
       },
-      () => {}
+      () => {
+        //this is intentional
+      }
     );
   };
 
