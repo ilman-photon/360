@@ -250,7 +250,6 @@ export default function TableWithSort({
     };
     switch (action) {
       case "download":
-        console.log(row, 'fsh')
         onAssetDownload(row.digital_assets._id);
         break;
       case "print":
@@ -383,7 +382,7 @@ export default function TableWithSort({
                                   role="button"
                                   aria-label={`download`}
                                   onClick={() => {
-                                    const assetId = ref(row, cell.valueKey);
+                                    const assetId = row.digital_assets._id
                                     onAssetDownload(assetId);
                                   }}
                                 >
