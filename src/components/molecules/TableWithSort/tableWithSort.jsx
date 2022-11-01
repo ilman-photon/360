@@ -46,10 +46,11 @@ const getComparator = (order, orderBy) => {
 };
 
 const ref = (row, key) => {
-  let returnedRow;
+  let returnedRow = row;
   key.split(".").forEach((k) => {
-    if (row) returnedRow = row[k];
+    if (returnedRow) returnedRow = returnedRow[k];
   });
+
   return returnedRow;
 };
 
@@ -250,10 +251,12 @@ export default function TableWithSort({
     };
     switch (action) {
       case "download":
-        onAssetDownload(row.digital_assets._id);
+        // onAssetDownload(row.digital_assets._id);
+        onAssetDownload(ref(row, "digital_assets._id")); 
         break;
       case "print":
-        onAssetDownload(row.digital_assets._id, true);
+        // onAssetDownload(row.digital_assets._id, true);
+        onAssetDownload(ref(row, "digital_assets._id")); 
         break;
       case "share":
         if (navigator.share) {
