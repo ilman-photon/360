@@ -128,9 +128,12 @@ export default function ForgotPasswordPage() {
 
   useEffect(() => {
     //Bug fix EPP-4639
-    router.replace({
-      pathname: router.pathname,
-    });
+
+    if (router.asPath !== "/patient/sync") {
+      router.replace({
+        pathname: router.pathname,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
