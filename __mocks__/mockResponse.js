@@ -9571,10 +9571,14 @@ export const mockAppointmentCreationData = [
       isEmergencyContactAvailable: false,
       contactPrefrence: false,
       _id: "7300529f-ce7e-4f8e-946b-92d498a4b03d",
+      email: "test@gmail.com",
     },
     provider: {
       inHouse: false,
       _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+      office: {
+        id: "123490",
+      },
     },
     office: {
       _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
