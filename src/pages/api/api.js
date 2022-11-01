@@ -262,28 +262,6 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  getProviderAvailibility() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/create-appointment/getProviderAvailibility`;
-    return this.getResponse(url, {}, "post");
-  }
-
-  getSugestion() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/create-appointment/getSugestion`;
-    return this.getResponse(url, {}, "get");
-  }
-
-  getAllAppointment() {
-    const domain = window.location.origin;
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = `/${userData?.patientId}`;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
-      userData?.patientId ? patientId : ""
-    }`;
-    return this.getResponse(url, {}, "get");
-  }
-
   getUpcomingAppointment() {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `/${userData?.patientId}`;
@@ -315,28 +293,6 @@ export class Api {
   getAppointmentDetails() {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
-    return this.getResponse(url, {}, "get");
-  }
-
-  updateAppointment(postbody) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/updateAppointment`;
-    return this.getResponse(url, postbody, "post");
-  }
-
-  postForm(postbody, method) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/review-details/postForm`;
-    return this.getResponse(url, postbody, method);
-  }
-
-  getAllPrescriptions() {
-    const domain = window.location.origin;
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = `?patientId=${userData?.patientId}`;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions${
-      userData && userData.patientId ? patientId : ""
-    }`;
     return this.getResponse(url, {}, "get");
   }
 
