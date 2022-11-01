@@ -24,6 +24,7 @@ const ForgotPassword = ({
   onCalledValidateAppointment,
   title = "",
   isAppointment = true,
+  isRegistered = false,
 }) => {
   const isMobile = useMediaQuery("(max-width: 833px)");
   const router = useRouter();
@@ -63,7 +64,7 @@ const ForgotPassword = ({
       });
     }
   };
-  const errorMessage = isAppointment ? "syncError" : "errorUsernameNotFound";
+  const errorMessage = isRegistered ? "syncError" : "errorUsernameNotFound";
   return (
     <>
       <Head>
@@ -100,7 +101,7 @@ const ForgotPassword = ({
               <FormMessage
                 success={false}
                 sx={styles.postMessage}
-                title={isAppointment && t("syncErrorTitle")}
+                title={isRegistered && t("syncErrorTitle")}
               >
                 {t(errorMessage)}
               </FormMessage>

@@ -455,7 +455,7 @@ export default function InsuranceInfoPage() {
               mode="error"
               onClick={OnConfirmRemoveInsurance}
               sx={{ fontSize: "14px" }}
-              data-testId="remove-insurance"
+              data-testid="remove-insurance"
             >
               Yes, remove Insurance
             </StyledButton>

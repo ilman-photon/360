@@ -41,6 +41,7 @@ export default function SetMultiFactorAuthentication({
         </Typography>
       );
     } else {
+      selectedCommunication === "" && setSelectedCommunication("email");
       return (
         <FormControl>
           <Typography

@@ -9,6 +9,7 @@ import TestTubeIcon from "../../../assets/icons/TestTubeIcon";
 import GlassesIcon from "../../../assets/icons/GlassesIcon";
 import LensIcon from "../../../assets/icons/LensIcon";
 import MedicationIcon from "../../../assets/icons/MedicationIcon";
+import AlarmIcon from "../../../assets/icons/AlarmIcon";
 
 const NotificationItem = ({ data = {}, isRead = true, onClick = () => {} }) => {
   const getIcon = () => {
@@ -38,7 +39,7 @@ const NotificationItem = ({ data = {}, isRead = true, onClick = () => {} }) => {
       case "glasses":
         return <GlassesIcon width={24} height={24} />;
       case "aspirin":
-        return <MedicationIcon width={24} height={24} />;
+        return <AlarmIcon width={24} height={24} />;
       default:
         return <>-</>;
     }

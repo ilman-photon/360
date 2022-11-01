@@ -15,13 +15,16 @@ import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
 import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
 import { fetchDocuments, resetDocuments } from "../../../../store/document";
 import { DOCUMENT_STATUS } from "../../../../utils/constants";
+import { useTranslation } from "next-i18next";
 
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const router = useRouter();
   const dispatch = useDispatch();
   const [isHideDisclaimer, setIsHideDisclaimer] = React.useState(false);
-
+  const { t } = useTranslation("translation", {
+    keyPrefix: "medicalRecord",
+  });
   const categories = [
     { id: 0, label: "Care Plan", value: "care-plan-overview" },
     // { id: 1, label: "Prescriptions", value: "test-lab-result" },
@@ -38,14 +41,14 @@ export default function MedicalRecordPage() {
     header: [
       {
         type: "text",
-        id: "name",
+        id: "data.testingOrder.orderDetails.testType._id",
         numeric: false,
         disablePadding: false,
         label: "Test Name",
       },
       {
         type: "text",
-        id: "orderBy",
+        id: "data.testingOrder.orderDetails.orderingProvider.firstName",
         numeric: false,
         disablePadding: true,
         label: "Ordered by",
@@ -277,7 +280,11 @@ export default function MedicalRecordPage() {
       {!isHideDisclaimer && watchedCategory === "test-lab-result" && (
         <div className={styles.disclaimerWrapper}>
           <div className={styles.disclaimerText}>
-            <span className={styles.infoLabel}>
+            <span
+              tabIndex={0}
+              aria-label={t("labelAvaible")}
+              className={styles.infoLabel}
+            >
               <InfoOutlinedIcon
                 sx={{
                   width: "18px",
@@ -287,7 +294,7 @@ export default function MedicalRecordPage() {
                 }}
                 role={"alert"}
               />{" "}
-              Your lab results are available. Please reach out to your provider.
+              {t("labelAvaible")}
             </span>
             <IconButton
               data-testid={"close-disclaimer-icon"}

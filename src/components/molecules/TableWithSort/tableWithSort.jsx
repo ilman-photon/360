@@ -13,6 +13,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Icon,
 } from "@mui/material";
 import React from "react";
 import { visuallyHidden } from "@mui/utils";
@@ -27,10 +28,12 @@ import { TEST_ID } from "../../../utils/constants";
 import moment from "moment";
 
 function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
+  const refA = ref(a, orderBy);
+  const refB = ref(b, orderBy);
+  if (refB < refA) {
     return -1;
   }
-  if (b[orderBy] > a[orderBy]) {
+  if (refB > refA) {
     return 1;
   }
   return 0;
@@ -43,10 +46,11 @@ const getComparator = (order, orderBy) => {
 };
 
 const ref = (row, key) => {
-  let returnedRow;
+  let returnedRow = row;
   key.split(".").forEach((k) => {
-    if (row) returnedRow = row[k];
+    if (returnedRow) returnedRow = returnedRow[k];
   });
+
   return returnedRow;
 };
 
@@ -72,18 +76,11 @@ const EnhancedTableHead = (props) => {
   const isDesc = order === "desc";
   return (
     <TableHead
-      sx={{
-        backgroundColor: "#F3F5F6",
-      }}
+      tabIndex={-1}
+      aria-hidden={false}
+      sx={{ backgroundColor: "#F3F5F6" }}
     >
-      <TableRow
-        sx={{
-          whiteSpace: "nowrap",
-          ".MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon": {
-            color: colors.darkGreen,
-          },
-        }}
-      >
+      <TableRow tabIndex={-1} aria-hidden={false} sx={{ whiteSpace: "nowrap" }}>
         {props.config.map((headCell, headIdx) => {
           switch (headCell.type) {
             case "empty":
@@ -98,6 +95,8 @@ const EnhancedTableHead = (props) => {
               return (
                 <TableCell
                   key={`head-${headIdx}`}
+                  tabIndex={-1}
+                  aria-hidden={false}
                   align={headCell.numeric ? "right" : "left"}
                   padding={headCell.disablePadding ? "none" : "normal"}
                   sortDirection={orderBy === headCell.id ? order : false}
@@ -112,11 +111,12 @@ const EnhancedTableHead = (props) => {
                   }}
                 >
                   <TableSortLabel
+                    tabIndex={0}
+                    aria-label={headCell.label}
                     active={orderBy === headCell.id}
                     direction={orderBy === headCell.id ? order : "asc"}
                     data-testid={"table-header-sort"}
                     onClick={createSortHandler(headCell.id)}
-                    aria-live={"polite"}
                     sx={{
                       ".MuiTableSortLabel-icon": {
                         opacity: "1 !important",
@@ -125,9 +125,17 @@ const EnhancedTableHead = (props) => {
                       color: "#003B4A !important",
                     }}
                   >
-                    <b tabIndex={0}>{headCell.label}</b>
+                    <b
+                      aria-label={
+                        isDesc
+                          ? headCell.label + " sorted descending"
+                          : headCell.label + " sorted ascending"
+                      }
+                    >
+                      {headCell.label}
+                    </b>
                     {orderBy === headCell.id ? (
-                      <Box component="span" sx={visuallyHidden}>
+                      <Box tabIndex={-1} component="span" sx={visuallyHidden}>
                         {isDesc ? "sorted descending" : "sorted ascending"}
                       </Box>
                     ) : null}
@@ -157,6 +165,7 @@ export default function TableWithSort({
   const [page] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage] = React.useState(5);
+  const [activeMenuData, setActiveMenuData] = React.useState({})
 
   const handleRequestSort = (_event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -226,8 +235,9 @@ export default function TableWithSort({
       ariaLabel: "print option",
     },
   ];
-  const handleMenuClick = (event) => {
+  const handleMenuClick = (event, row) => {
     setAnchorEl(event.currentTarget);
+    setActiveMenuData(row)
   };
   const isMenuOpen = Boolean(anchorEl);
   const handleMoreMenu = async (action, row) => {
@@ -236,12 +246,12 @@ export default function TableWithSort({
       title: row.name,
       text: row.name,
       url: row.digital_assets
-        ? `${window.location.origin}/patient/download/${row.digital_assets._id}`
+        ? `${window.location.origin}/patient/download/${ref(row, "digital_assets._id")}`
         : "/",
     };
     switch (action) {
       case "download":
-        onAssetDownload(ref(row, "digital_assets._id"));
+        onAssetDownload(ref(row, "digital_assets._id")); 
         break;
       case "print":
         onAssetDownload(ref(row, "digital_assets._id"), true);
@@ -302,7 +312,7 @@ export default function TableWithSort({
                   <TableRow>
                     <TableCell colspan={3}>
                       <Grid container spacing={2}>
-                        <Grid xs={4} p={2}>
+                        <Grid tabIndex={0} xs={4} p={2}>
                           {row.name}
                         </Grid>
                         <Grid xs={4} p={2}>
@@ -373,7 +383,7 @@ export default function TableWithSort({
                                   role="button"
                                   aria-label={`download`}
                                   onClick={() => {
-                                    const assetId = ref(row, cell.valueKey);
+                                    const assetId = ref(row, "digital_assets._id")
                                     onAssetDownload(assetId);
                                   }}
                                 >
@@ -433,7 +443,7 @@ export default function TableWithSort({
                                     borderRadius: "50%",
                                   }}
                                   aria-label="more option"
-                                  onClick={handleMenuClick}
+                                  onClick={(e) => handleMenuClick(e,row)}
                                   aria-haspopup="true"
                                   aria-controls="menu-appbar"
                                   data-testid="more-vert-button"
@@ -452,8 +462,8 @@ export default function TableWithSort({
                                   {MyOptions.map((more, moreIdx) => (
                                     <MenuItem
                                       key={`menu-${moreIdx}`}
-                                      onClick={() =>
-                                        handleMoreMenu(more.id, row)
+                                      onClick={() => 
+                                        handleMoreMenu(more.id, activeMenuData)
                                       }
                                       aria-label={`${more.ariaLabel}`}
                                       aria-live="polite"
