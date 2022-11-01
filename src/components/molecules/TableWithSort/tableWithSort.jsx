@@ -246,17 +246,15 @@ export default function TableWithSort({
       title: row.name,
       text: row.name,
       url: row.digital_assets
-        ? `${window.location.origin}/patient/download/${row.digital_assets._id}`
+        ? `${window.location.origin}/patient/download/${ref(row, "digital_assets._id")}`
         : "/",
     };
     switch (action) {
       case "download":
-        // onAssetDownload(row.digital_assets._id);
         onAssetDownload(ref(row, "digital_assets._id")); 
         break;
       case "print":
-        // onAssetDownload(row.digital_assets._id, true);
-        onAssetDownload(ref(row, "digital_assets._id")); 
+        onAssetDownload(ref(row, "digital_assets._id"), true);
         break;
       case "share":
         if (navigator.share) {
@@ -385,7 +383,7 @@ export default function TableWithSort({
                                   role="button"
                                   aria-label={`download`}
                                   onClick={() => {
-                                    const assetId = row.digital_assets._id
+                                    const assetId = ref(row, "digital_assets._id")
                                     onAssetDownload(assetId);
                                   }}
                                 >
