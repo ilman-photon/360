@@ -19,6 +19,7 @@ const renderSpecialistList = (providerData) => {
     >
       <Typography
         variant="subtitle1"
+        aria-label={"Specialties and Sub-specialties"}
         className={styles.specialistTitle}
         tabIndex={0}
       >
@@ -33,6 +34,7 @@ const renderSpecialistList = (providerData) => {
                   variant="body2"
                   className={index === 3 ? styles.newColumn : ""}
                   tabIndex={0}
+                  aria-label={item}
                 >
                   {item}
                 </Typography>
@@ -164,15 +166,16 @@ export default function ProviderProfile({
         >
           <Typography
             variant={isMap ? "cutomH4" : "h2"}
+            tabIndex={0}
             fontSize={getNameFontSize()}
+            aria-label={providerData.name}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name}
             onClick={() => {
               router.push(`/patient/bio/${providerData.providerId}`);
             }}
             className={getDoctorNameStyle()}
-            tabIndex={"0"}
           >
-            <span className={styles.doctorName}>{providerData.name} </span>
+            <span className={styles.doctorName}>{providerData.name}</span>
           </Typography>
           {showPosition && (
             <Typography variant="h3" tabIndex={0}>
@@ -209,6 +212,8 @@ export default function ProviderProfile({
                     theme={"patient"}
                     mode={"primary"}
                     size={"small"}
+                    tabIndex={0}
+                    aria-label={"Schedule Appointment"}
                     gradient={false}
                     onClick={() => {
                       navigateToScheduleAppointment(providerData);
