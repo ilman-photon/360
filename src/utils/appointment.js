@@ -278,7 +278,7 @@ export function getProvideOverlay(
     }
   }
 
-  if (listOfProvider?.length === 0) {
+  if (listOfProvider.length === 0) {
     const getRangeDate = getDates(
       new Date(startDate),
       new Date(endDate),
@@ -322,7 +322,7 @@ export function updateProviderTimeSchedule(
   return updateProviderList;
 }
 
-function parsePrescriptionItemData(prescriptionData, key) {
+export function parsePrescriptionItemData(prescriptionData, key) {
   const data = [];
   let latestDate = "";
   for (const itemData of prescriptionData) {
@@ -578,7 +578,7 @@ export function parseAppointmentDetails(appointmentDetails) {
     },
   ];
 
-  for (let i = 0; i < data.appointmentInfo.contents; i++) {
+  for (let i = 0; i < data.appointmentInfo.contents.length; i++) {
     let headers = [];
     switch (data.appointmentInfo.contents[i].type.toLowerCase()) {
       case "allergies":
@@ -680,7 +680,7 @@ function getProviderAddres(providerAddress) {
   };
 }
 
-function addLanguageFilter(provider, languageList) {
+export function addLanguageFilter(provider, languageList) {
   const languageKeyList = ["language1", "language2", "language3"];
   const filterLanguage = [];
   for (const key of languageKeyList) {
@@ -702,7 +702,7 @@ function addLanguageFilter(provider, languageList) {
   return { languageList, filterLanguage };
 }
 
-function addGenderFilter(sex, genderList) {
+export function addGenderFilter(sex, genderList) {
   let gender = "";
   if (sex) {
     if (sex === "M") {
