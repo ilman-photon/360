@@ -1,4 +1,10 @@
-import { fireEvent, render, waitFor, within } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Appointment, {
   getStaticProps,
@@ -58,8 +64,14 @@ describe("App", () => {
       .onGet("/ecp/appointments/insurance/allpayers", mockInsurance)
       .reply(200, mockInsurance);
     mock
-      .onPut("/ecp/appointments/available-slot?searchText=Texas")
+      .onPut("/ecp/appointments/available-slot?searchText=Kabupaten Bogor")
       .reply(200, submitFilter);
+    mock.onGet("/api/dummy/notification").reply(200, []);
+    mock
+      .onGet(
+        "https://maps.googleapis.com/maps/api/mapsjs/gen_204?csp_test=true"
+      )
+      .reply(200, {});
     window.matchMedia = createMatchMedia("1920px");
     global.navigator.geolocation = mockGeolocation;
     const server = await getStaticProps();
@@ -140,7 +152,7 @@ describe("App", () => {
     expect(container.getAllByTestId("gmaps-mock")[0]).toBeInTheDocument();
   });
 
-  it("on Submit filter", async () => {
+  const flowSubmitFilter = async () => {
     const autocomplete = container.getByTestId(
       TEST_ID.APPOINTMENT_TEST_ID.locationInput
     );
@@ -149,11 +161,73 @@ describe("App", () => {
     fireEvent.change(input, { target: { value: "Use" } });
     fireEvent.keyDown(autocomplete, { key: "ArrowDown" });
     fireEvent.keyDown(autocomplete, { key: "Enter" });
-    act(async () => {
-      await fireEvent.click(
+    await waitFor(() => container.getByDisplayValue("Kabupaten Bogor"));
+    act(() => {
+      fireEvent.click(
         container.getAllByTestId(TEST_ID.APPOINTMENT_TEST_ID.searchbtn)[0]
       );
     });
-    await waitFor(() => container.getAllByText("baseText"));
-  }, 10000);
+    await waitFor(() =>
+      container.getAllByTestId("appointment_provider_profile_name")
+    );
+    await waitFor(() =>
+      container.getAllByLabelText("Navigate to next week option")
+    );
+    fireEvent.click(
+      container.getAllByLabelText("Navigate to next week option")[0]
+    );
+    await waitFor(() =>
+      container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)
+    );
+    fireEvent.click(
+      container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+    );
+  };
+
+  it("on Submit filter", flowSubmitFilter, 20000);
+  it("on Submit filter on tablet", async () => {
+    window.matchMedia = createMatchMedia("1420px");
+    cleanup();
+    const server = await getStaticProps();
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+    await flowSubmitFilter();
+    // fireEvent.click(container.getAllByRole("tab")[1]);
+    // await waitFor(() => container.getAllByTestId("gmaps-mock"));
+  }, 20000);
+
+  it("on Submit filter on mobile", async () => {
+    window.matchMedia = createMatchMedia("700px");
+    cleanup();
+    const server = await getStaticProps();
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+    fireEvent.click(container.getAllByTestId("open-filter-modal")[0]);
+    await waitFor(() => container.getAllByTestId("dialogModal"));
+    const autocomplete = container.getAllByTestId("dialogModal")[0];
+    const input = within(autocomplete).getAllByRole("textbox")[0];
+    fireEvent.change(input, { target: { value: "Kabupaten Bogor" } });
+    fireEvent.keyDown(autocomplete, { key: "Enter" });
+
+    act(() => {
+      fireEvent.click(
+        container.getAllByTestId(TEST_ID.APPOINTMENT_TEST_ID.searchbtn)[0]
+      );
+    });
+    await waitFor(() =>
+      container.getAllByTestId(
+        TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.timeslotButton
+      )
+    );
+  }, 20000);
 });
