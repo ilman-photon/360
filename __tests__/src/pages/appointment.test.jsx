@@ -88,6 +88,39 @@ describe("App", () => {
       .reply(200, {});
     window.matchMedia = createMatchMedia("1920px");
     global.navigator.geolocation = mockGeolocation;
+
+    window.google = {
+      maps: {
+        DistanceMatrixService: jest.fn().mockReturnValue({
+          getDistanceMatrix: (_, callback) => {
+            callback(
+              {
+                originAddresses: ["1"],
+                rows: [
+                  {
+                    elements: [
+                      {
+                        distance: {
+                          text: "001",
+                        },
+                        duration: {
+                          text: "0022",
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+              "OK"
+            );
+          },
+        }),
+        LatLngBounds: jest.fn().mockReturnValue({ extend: jest.fn() }),
+        UnitSystem: {
+          METRIC: "",
+        },
+      },
+    };
     const server = await getStaticProps();
     container = render(
       <Provider store={store}>
@@ -245,8 +278,43 @@ describe("App", () => {
     );
   }, 20000);
 
-  it.only("Handle filterSuggestionData purposeOfVisit", async () => {
+  it("Handle filterSuggestionData purposeOfVisit", async () => {
+    const server = await getStaticProps();
+    await waitFor(() =>
+      useRouter.mockReturnValue({
+        query: {
+          reschedule: true,
+        },
+      })
+    );
+
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+    await waitFor(() =>
+      container.getAllByLabelText("Navigate to next week option")
+    );
+  }, 20000);
+
+  it("Is Loaded use effect", async () => {
     cleanup();
+    window.google = {
+      maps: {
+        DistanceMatrixService: jest.fn().mockReturnValue({
+          getDistanceMatrix: (_, callback) => {
+            callback(_, "YES");
+          },
+        }),
+        LatLngBounds: jest.fn().mockReturnValue({ extend: jest.fn() }),
+        UnitSystem: {
+          METRIC: "",
+        },
+      },
+    };
     const server = await getStaticProps();
     await waitFor(() =>
       useRouter.mockReturnValue({
@@ -266,10 +334,5 @@ describe("App", () => {
     await waitFor(() =>
       container.getAllByLabelText("Navigate to next week option")
     );
-    // const isApplied = await waitFor(
-    //   () => store.getState().appointment.isFilterApplied
-    // );
-
-    // console.log("isApplied", isApplied);
-  }, 10000000);
+  });
 });
