@@ -2,7 +2,6 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import SessionExpiredModal from "../../src/components/organisms/SessionExpiredModal/sessionExpiredModal";
-import Cookies from "universal-cookie";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-274.feature",
@@ -11,49 +10,8 @@ const feature = loadFeature(
   }
 );
 
-jest.mock("universal-cookie", () => {
-  class MockCookies {
-    static result = {};
-    get() {
-      return MockCookies.result;
-    }
-    remove() {
-      return jest.fn();
-    }
-  }
-  return MockCookies;
-});
-
 defineFeature(feature, (test) => {
-  let props, container;
-
-  beforeEach(() => {
-    props = {
-      timeout: undefined,
-      promptTimeout: undefined,
-      element: undefined,
-      events: undefined,
-      timers: undefined,
-      immediateEvents: undefined,
-      onPrompt: undefined,
-      onActive: undefined,
-      onAction: undefined,
-      onMessage: undefined,
-      debounce: undefined,
-      throttle: undefined,
-      eventsThrottle: undefined,
-      startOnMount: undefined,
-      startManually: undefined,
-      stopOnIdle: undefined,
-      capture: undefined,
-      passive: undefined,
-      crossTab: undefined,
-      name: undefined,
-      syncTimers: undefined,
-      leaderElection: undefined,
-    };
-  });
-
+  let container;
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
@@ -92,10 +50,9 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      Cookies.result = { IdleTimeOut: 200, authorized: true, mfa: "123" };
-      props.idleTimer = 200;
-      props.promptTimeout = 2000;
-      container = render(<SessionExpiredModal />);
+      container = render(
+        <SessionExpiredModal showModal={true} remaining={60} />
+      );
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -143,7 +100,7 @@ defineFeature(feature, (test) => {
 
     then("user should be prompted regarding session time out.", async () => {
       container = render(
-        <SessionExpiredModal />
+        <SessionExpiredModal showModal={true} remaining={60} />
       );
       await waitFor(() =>
         container.getByText(
@@ -204,7 +161,7 @@ defineFeature(feature, (test) => {
 
     then("user should be prompted regarding session time out.", async () => {
       container = render(
-        <SessionExpiredModal />
+        <SessionExpiredModal showModal={true} remaining={60} />
       );
       await waitFor(() =>
         container.getByText(
@@ -239,7 +196,13 @@ defineFeature(feature, (test) => {
     then(
       /^user should validate the message "(.*)" with  "(.*)" Button$/,
       async (arg0, arg1) => {
-        container = render(<SessionExpiredModal />);
+        container = render(
+          <SessionExpiredModal
+            showModal={true}
+            isExpired={true}
+            remaining={0}
+          />
+        );
         await waitFor(() =>
           container.getByText(/Your session expired. Please login again/i)
         );
@@ -281,7 +244,7 @@ defineFeature(feature, (test) => {
 
     then("user should be prompted regarding session time out.", async () => {
       container = render(
-        <SessionExpiredModal />
+        <SessionExpiredModal showModal={true} remaining={60} />
       );
       await waitFor(() =>
         container.getByText(
@@ -317,7 +280,11 @@ defineFeature(feature, (test) => {
       /^user should validate the message "(.*)" with  "(.*)" Button$/,
       async (arg0, arg1) => {
         container = render(
-          <SessionExpiredModal />
+          <SessionExpiredModal
+            showModal={true}
+            isExpired={true}
+            remaining={0}
+          />
         );
         await waitFor(() =>
           container.getByText(/Your session expired. Please login again/i)
@@ -368,7 +335,7 @@ defineFeature(feature, (test) => {
 
     then("user should be prompted regarding session time out.", async () => {
       container = render(
-        <SessionExpiredModal />
+        <SessionExpiredModal showModal={true} remaining={60} />
       );
       await waitFor(() =>
         container.getByText(

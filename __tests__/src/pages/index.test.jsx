@@ -20,6 +20,7 @@ import {
   upcomingResponse,
 } from "../../../__mocks__/mockResponse";
 import { TEST_ID } from "../../../src/utils/constants";
+import { mockGoogleWindow } from "../../../__mocks__/component-mock";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -131,6 +132,7 @@ describe("Home", () => {
   });
 
   const renderHome = async () => {
+    mockGoogleWindow();
     const mock = new MockAdapter(axios);
     mock.reset();
     jest.useFakeTimers("modern");
@@ -184,16 +186,16 @@ describe("Home", () => {
 
     await waitFor(() => getByTestId("user-menu-nav-open"));
     fireEvent.click(getByTestId("user-menu-nav-open"));
-    await waitFor(() => getByTestId("AutoAwesomeMosaicOutlinedIcon"));
-    expect(getByTestId("AutoAwesomeMosaicOutlinedIcon")).toBeInTheDocument();
+    await waitFor(() => getAllByTestId("AutoAwesomeMosaicOutlinedIcon")[0]);
+    expect(
+      getAllByTestId("AutoAwesomeMosaicOutlinedIcon")[0]
+    ).toBeInTheDocument();
     expect(getAllByTestId("CalendarTodayOutlinedIcon")[0]).toBeInTheDocument();
     expect(getByTestId("CreateNewFolderOutlinedIcon")).toBeInTheDocument();
     expect(getByTestId("DescriptionOutlinedIcon")).toBeInTheDocument();
     fireEvent.click(getByTestId("CreateNewFolderOutlinedIcon"));
-    await waitFor(() => getByTestId("ArrowBackIosIcon"));
-    expect(getByTestId("ArrowBackIosIcon")).toBeInTheDocument();
-    fireEvent.click(getByText("Medical Record"));
-    await waitFor(() => getByTestId("AutoAwesomeMosaicOutlinedIcon"));
+    fireEvent.click(getByText("Health Chart"));
+    await waitFor(() => getAllByTestId("AutoAwesomeMosaicOutlinedIcon")[0]);
     fireEvent.click(getByTestId("DescriptionOutlinedIcon"));
     await waitFor(() => getByTestId("user-menu-nav-close"));
 

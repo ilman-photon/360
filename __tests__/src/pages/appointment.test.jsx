@@ -6,7 +6,9 @@ import {
   within,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Appointment from "../../../src/pages/patient/appointment";
+import Appointment, {
+  getStaticProps,
+} from "../../../src/pages/patient/appointment";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
 import MockAdapter from "axios-mock-adapter";
@@ -19,24 +21,42 @@ import {
   submitFilter,
 } from "../../../__mocks__/mockResponse";
 import { TEST_ID } from "../../../src/utils/constants";
-function createMatchMedia(width) {
-  return (query) => ({
-    matches: mediaQuery.match(query, { width }),
-    addListener: () => {},
-    removeListener: () => {},
-  });
-}
+import { createMatchMedia } from "../../../__mocks__/commonSteps";
+const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
+
+jest.mock("@react-google-maps/api", () => ({
+  useLoadScript: () => ({
+    isLoaded: true,
+    loadError: null,
+  }),
+  GoogleMap: ({ onClick, children, onLoad }) => {
+    children[0]?.props.onClick();
+    onLoad();
+    return <div data-testid="gmaps-mock" onClick />;
+  },
+  Marker: ({ onClick }) => {
+    return <div />;
+  },
+  MarkerF: ({ onClick }) => {
+    return <div />;
+  },
+  InfoWindowF: ({ onClick }) => {
+    return <div />;
+  },
+}));
+
 describe("App", () => {
   let container;
   const mock = new MockAdapter(axios);
-  beforeEach(() => {
-    jest.useFakeTimers("modern");
-    jest.setSystemTime(new Date(2022, 3, 1));
+  beforeEach(async () => {
     const mockGeolocation = {
       getCurrentPosition: jest.fn(),
       watchPosition: jest.fn(),
     };
-
+    useGeolocated.mockReturnValue({
+      coords: { latitude: "123", longitude: "456" },
+      isGeolocationEnabled: true,
+    });
     mock
       .onGet("/ecp/appointments/appointment-types", mockAppointmentTypes)
       .reply(200, mockAppointmentTypes);
@@ -54,9 +74,10 @@ describe("App", () => {
       .reply(200, {});
     window.matchMedia = createMatchMedia("1920px");
     global.navigator.geolocation = mockGeolocation;
+    const server = await getStaticProps();
     container = render(
       <Provider store={store}>
-        {Appointment.getLayout(<Appointment />)}
+        {Appointment.getLayout(<Appointment {...server.props} />)}
       </Provider>
     );
   });
@@ -76,10 +97,11 @@ describe("App", () => {
 
   it("on render mobile view", async () => {
     window.matchMedia = createMatchMedia("700px");
+    const server = await getStaticProps();
     act(() => {
       container = render(
         <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
+          {Appointment.getLayout(<Appointment {...server.props} />)}
         </Provider>
       );
     });
@@ -126,13 +148,8 @@ describe("App", () => {
   }, 30000);
 
   it("on render tablet view", async () => {
-    window = Object.assign(window, { innerWidth: 1000 });
-    setTimeout(async () => {
-      await waitFor(() => {
-        container.getByText(/Map/i);
-        expect(container.getByText(/Map/i)).toBeInTheDocument();
-      });
-    }, 1000);
+    await waitFor(() => container.getAllByTestId("gmaps-mock"));
+    expect(container.getAllByTestId("gmaps-mock")[0]).toBeInTheDocument();
   });
 
   const flowSubmitFilter = async () => {

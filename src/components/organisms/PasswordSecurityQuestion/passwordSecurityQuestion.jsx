@@ -89,11 +89,7 @@ const PasswordSecurityQuestion = ({
             ) : (
               <></>
             )}
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              style={styles.form}
-              noValidate
-            >
+            <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
               {securityQuestionData.map(function (question, i) {
                 return (
                   <Controller
@@ -121,7 +117,6 @@ const PasswordSecurityQuestion = ({
                             }
                           }}
                           error={!!error}
-                          required
                           helperText={error ? error.message : null}
                           sx={{ ".MuiInputLabel-root": { fontSize: "14px" } }}
                         />
@@ -150,11 +145,6 @@ const PasswordSecurityQuestion = ({
                 ...styles.link,
               }}
               color={colors.link}
-              onKeyPress={(event) => {
-                if (event.key === "Enter") {
-                  router.push("/patient/login");
-                }
-              }}
               data-testid={FORGOT_TEST_ID.loginLink}
               onClick={function () {
                 onBackToLoginClicked(router);

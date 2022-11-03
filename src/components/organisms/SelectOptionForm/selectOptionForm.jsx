@@ -94,11 +94,6 @@ const SelectOptionForm = ({
                 onBackToLoginClicked(router);
               }}
               {...getLinkAria(t("backButtonLink"))}
-              onKeyPress={(event) => {
-                if (event.key === "Enter") {
-                  router.push("/patient/login");
-                }
-              }}
             >
               {t("backButtonLink")}
             </Link>

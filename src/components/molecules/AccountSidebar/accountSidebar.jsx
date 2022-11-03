@@ -19,23 +19,23 @@ export const AccountSidebar = ({ ...props }, ref) => {
     {
       label: "Profile Information",
       href: "/patient/account/profile-info",
-      icon: <AccountCircleOutlinedIcon sx={{ margin: "5px" }} />,
+      icon: <AccountCircleOutlinedIcon />,
     },
-    // {
-    //   label: "Care Plan",
-    //   href: "#",
-    //   icon: <AccountCircleOutlinedIcon />,
-    // },
-    // {
-    //   label: "Prescriptions",
-    //   href: "/patient/prescription",
-    //   icon: <AccountCircleOutlinedIcon />,
-    // },
-    // {
-    //   label: "Test & Lab Results",
-    //   href: "#",
-    //   icon: <AssignmentTurnedInOutlinedIcon />,
-    // },
+    {
+      label: "Care Plan",
+      href: "#",
+      icon: <AccountCircleOutlinedIcon />,
+    },
+    {
+      label: "Prescriptions",
+      href: "/patient/prescription",
+      icon: <AccountCircleOutlinedIcon />,
+    },
+    {
+      label: "Test & Lab Results",
+      href: "#",
+      icon: <AssignmentTurnedInOutlinedIcon />,
+    },
     // {
     //   label: "Documents",
     //   child: [
@@ -53,12 +53,12 @@ export const AccountSidebar = ({ ...props }, ref) => {
     {
       label: "Insurance documents",
       href: "/patient/account/insurance-info",
-      icon: <DescriptionOutlinedIcon sx={{ margin: "5px" }} />,
+      icon: <DescriptionOutlinedIcon />,
     },
     {
       label: "Multi factor authentication",
       href: "#",
-      icon: <LockOutlinedIcon sx={{ margin: "5px" }} />,
+      icon: <LockOutlinedIcon />,
     },
   ];
 
@@ -89,10 +89,8 @@ export const AccountSidebar = ({ ...props }, ref) => {
               flexDirection="row"
               alignItems="center"
               color={colors.iconGrey}
-              sx={{ width: "100%" }}
             >
               <SidebarLink router={router} href={link.href} child={link.child}>
-                {link.icon}
                 {link.label}
               </SidebarLink>
             </Stack>

@@ -128,11 +128,6 @@ const ConfirmationForm = ({
                 data-testid={FORGOT_TEST_ID.loginLink}
                 color={colors.link}
                 tabIndex={0}
-                onKeyPress={(event) => {
-                  if (event.key === "Enter") {
-                    router.push("/patient/login");
-                  }
-                }}
                 aria-label={"Back to Log in link"}
                 onClick={function () {
                   onBackToLoginClicked(router);

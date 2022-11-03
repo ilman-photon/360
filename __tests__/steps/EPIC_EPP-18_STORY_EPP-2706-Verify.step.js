@@ -90,8 +90,10 @@ defineFeature(feature, (test) => {
     });
 
     then("patient should see the option to Refill the Prescription.", async () => {
-      
-      expect(true).toBeTruthy();
+      const medicationMenu = container.getByTestId("menu-medication");
+      fireEvent.click(medicationMenu)
+      await waitFor(()=> container.getByText(/Active Medications/i));
+      expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
   });
 

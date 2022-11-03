@@ -591,7 +591,7 @@ export default function Appointment({ googleApiKey }) {
           }}
         >
           <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
-            {providerListData.length > 0 ? (
+            {providerListData?.length > 0 ? (
               <FilterResult
                 onNextScheduleClicked={onNextScheduleClicked}
                 onPrevScheduleClicked={onPrevScheduleClicked}

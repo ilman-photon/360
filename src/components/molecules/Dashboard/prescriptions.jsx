@@ -69,6 +69,7 @@ export function renderCTAIcon(
         className={styles.butttonIconContainer}
         onClick={onClickPrint}
         aria-label={"Print option"}
+        data-testid={"print-icon"}
       >
         <LocalPrintshopOutlinedIcon
           sx={{
@@ -145,7 +146,7 @@ export default function Prescriptions({
         `[data-testid=${type}-container-${index}]`
       ) || document.body;
     const headStyles = Array.from(document.head.querySelectorAll("style"));
-    var WinPrint = window.open(
+    const WinPrint = window.open(
       "",
       "",
       "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
