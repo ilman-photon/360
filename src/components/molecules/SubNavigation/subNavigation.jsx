@@ -5,20 +5,22 @@ import constants from "../../../utils/constants";
 
 export default function SubNavigation({ backTitle, onClick }) {
   return (
-    <Box className={styles.backHeader}>
-      <ChevronLeftIcon className={styles.arrowIcon} />
-      <Link
-        className={styles.link}
-        data-testid={constants.TEST_ID.SUBNAVIGATION}
-        aria-roledescription="Link"
-        aria-label={`${backTitle} link`}
-        tabIndex={0}
-        onClick={() => {
-          onClick();
-        }}
-      >
-        {backTitle}
-      </Link>
+    <Box className={styles.wrapper}>
+      <Box className={styles.backHeader}>
+        <ChevronLeftIcon className={styles.arrowIcon} />
+        <Link
+          className={styles.link}
+          data-testid={constants.TEST_ID.SUBNAVIGATION}
+          aria-roledescription="Link"
+          aria-label={`${backTitle} link`}
+          tabIndex={0}
+          onClick={() => {
+            onClick();
+          }}
+        >
+          {backTitle}
+        </Link>
+      </Box>
     </Box>
   );
 }

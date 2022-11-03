@@ -73,7 +73,7 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const usernameField = container.getByLabelText("emailUserLabel");
       expect(usernameField.id).toEqual("username");
     });
 
@@ -143,13 +143,13 @@ defineFeature(feature, (test) => {
 
     and("user should view the questions fields", () => {
       const question1 = container.getByLabelText(
-        /Where did you go the first time you flew on a plane?/i
+        "Where did you go the first time you flew on a plane?"
       );
       const question2 = container.getByLabelText(
-        /Who is your all-time favorite movie character/i
+        "Who is your all-time favorite movie character"
       );
       const question3 = container.getByLabelText(
-        /In what city or town did your parents meet?/i
+        "In what city or town did your parents meet?"
       );
       expect(question1).toBeTruthy();
       expect(question2).toBeTruthy();
@@ -160,13 +160,13 @@ defineFeature(feature, (test) => {
       'user fills in "Question1Ans" and "Question2Ans" for the security questions they set up',
       () => {
         const question1 = container.getByLabelText(
-          /Where did you go the first time you flew on a plane?/i
+          "Where did you go the first time you flew on a plane?"
         );
         const question2 = container.getByLabelText(
-          /Who is your all-time favorite movie character/i
+          "Who is your all-time favorite movie character"
         );
         const question3 = container.getByLabelText(
-          /In what city or town did your parents meet?/i
+          "In what city or town did your parents meet?"
         );
 
         fireEvent.change(question1, { target: { value: "America" } });
@@ -222,7 +222,7 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const usernameField = container.getByLabelText("emailUserLabel");
       expect(usernameField.id).toEqual("username");
     });
 
@@ -292,13 +292,13 @@ defineFeature(feature, (test) => {
 
     and("user should view the questions fields", () => {
       const question1 = container.getByLabelText(
-        /Where did you go the first time you flew on a plane?/i
+        "Where did you go the first time you flew on a plane?"
       );
       const question2 = container.getByLabelText(
-        /Who is your all-time favorite movie character/i
+        "Who is your all-time favorite movie character"
       );
       const question3 = container.getByLabelText(
-        /In what city or town did your parents meet?/i
+        "In what city or town did your parents meet?"
       );
       expect(question1).toBeTruthy();
       expect(question2).toBeTruthy();
@@ -309,13 +309,13 @@ defineFeature(feature, (test) => {
       'user does not fills in "Question1Ans" and "Question2Ans"for the security questions they set up',
       () => {
         const question1 = container.getByLabelText(
-          /Where did you go the first time you flew on a plane?/i
+          "Where did you go the first time you flew on a plane?"
         );
         const question2 = container.getByLabelText(
-          /Who is your all-time favorite movie character/i
+          "Who is your all-time favorite movie character"
         );
         const question3 = container.getByLabelText(
-          /In what city or town did your parents meet?/i
+          "In what city or town did your parents meet?"
         );
 
         fireEvent.change(question1, { target: { value: "" } });

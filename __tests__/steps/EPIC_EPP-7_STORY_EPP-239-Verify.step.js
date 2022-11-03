@@ -181,22 +181,22 @@ defineFeature(feature, (test) => {
 
     and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
       expect(
-        container.getByLabelText("passwordPlaceHolder *")
+        container.getByLabelText("passwordPlaceHolder")
       ).toBeInTheDocument();
       expect(
-        container.getByLabelText("confirmPasswordPlaceHolder *")
+        container.getByLabelText("confirmPasswordPlaceHolder")
       ).toBeInTheDocument();
     });
 
     when(/^User should fill invalid (.*) field$/, (arg0) => {
-      const password = container.getByLabelText("passwordPlaceHolder *");
+      const password = container.getByLabelText("passwordPlaceHolder");
       fireEvent.change(password, { target: { value: "user12" } });
       expect(password.value).toEqual("user12");
     });
 
     and(/^User should fill invalid (.*) field$/, (arg0) => {
       const confirmPassword = container.getByLabelText(
-        "confirmPasswordPlaceHolder *"
+        "confirmPasswordPlaceHolder"
       );
       fireEvent.change(confirmPassword, { target: { value: "user12" } });
       expect(confirmPassword.value).toEqual("user12");
@@ -220,10 +220,10 @@ defineFeature(feature, (test) => {
       const continueId = container.getByRole("button", {
         name: /ctaButtonLabel/i,
       });
-      fireEvent.change(container.getByLabelText("confirmPasswordPlaceHolder *"), {
+      fireEvent.change(container.getByLabelText("confirmPasswordPlaceHolder"), {
         target: { value: "user12" },
       });
-      fireEvent.change(container.getByLabelText("passwordPlaceHolder *"), {
+      fireEvent.change(container.getByLabelText("passwordPlaceHolder"), {
         target: { value: "user12" },
       });
       await fireEvent.click(continueId);
@@ -378,22 +378,22 @@ defineFeature(feature, (test) => {
 
     and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
       expect(
-        container.getByLabelText("passwordPlaceHolder *")
+        container.getByLabelText("passwordPlaceHolder")
       ).toBeInTheDocument();
       expect(
-        container.getByLabelText("confirmPasswordPlaceHolder *")
+        container.getByLabelText("confirmPasswordPlaceHolder")
       ).toBeInTheDocument();
     });
 
     when(/^User should fill valid (.*) field$/, (arg0) => {
-      const password = container.getByLabelText("passwordPlaceHolder *");
+      const password = container.getByLabelText("passwordPlaceHolder");
       fireEvent.change(password, { target: { value: "Password@123" } });
       expect(password.value).toEqual("Password@123");
     });
 
     and(/^User should fill valid (.*) field$/, (arg0) => {
       const confirmPassword = container.getByLabelText(
-        "confirmPasswordPlaceHolder *"
+        "confirmPasswordPlaceHolder"
       );
       fireEvent.change(confirmPassword, { target: { value: "Password@123" } });
       expect(confirmPassword.value).toEqual("Password@123");

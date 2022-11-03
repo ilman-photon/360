@@ -31,7 +31,6 @@ export default function InsuranceForm({
   planList = [],
   isEditing = true,
   isAutocompleteLoading = false,
-  isSecondary = false,
   memberId,
   OnProviderChanged = () => {
     // this is intended
@@ -51,18 +50,13 @@ export default function InsuranceForm({
   const isMobile = useMediaQuery("(max-width: 768px)");
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
+  // Later will be used for edit
   useEffect(() => {
     if (formData && !isError) {
       reset(formData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
-
-  useEffect(() => {
-    if (isSecondary) {
-      setValue("priority", "SECONDARY");
-    }
-  });
 
   const isSubscriberOptions = [
     { label: "Yes", value: "Yes" },
@@ -125,7 +119,8 @@ export default function InsuranceForm({
   };
 
   const onSubmit = (data) => {
-    OnSaveClicked(data, reset);
+    OnSaveClicked(data);
+    if (isError !== false) reset(formData);
   };
 
   const DisclaimerText = (data) => {
@@ -200,9 +195,6 @@ export default function InsuranceForm({
                       helperText={error ? error.message : null}
                     />
                   );
-                }}
-                rules={{
-                  required: "This field is required",
                 }}
               />
             </Grid>
@@ -426,15 +418,11 @@ export default function InsuranceForm({
                       rules={{
                         validate: {
                           requiredIfSubscriber,
-                          isValidDate: (v) => {
-                            if (watchedSubscriber === "No") {
-                              return (
-                                (v instanceof Date && !isNaN(v)) ||
+                          isValidDate: (v) =>
+                            watchedSubscriber === "No"
+                              ? (v instanceof Date && !isNaN(v)) ||
                                 "Incorrect date format"
-                              );
-                            }
-                            return true;
-                          },
+                              : true,
                         },
                       }}
                     />

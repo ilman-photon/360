@@ -26,7 +26,6 @@ const INITIAL_STATE = {
   isBackToLogin: false,
   genericErrorMessage: null,
   accessToken: null,
-  isShowModalError: false,
 };
 
 export const indexStore = createSlice({
@@ -57,9 +56,6 @@ export const indexStore = createSlice({
     setGenericErrorMessage: (state, { payload }) => {
       state.genericErrorMessage = payload;
     },
-    setShowModalError: (state, { payload }) => {
-      state.isShowModalError = payload;
-    },
   },
   extraReducers: {
     [fetchToken.pending]: (state) => {
@@ -85,7 +81,6 @@ export const {
   closePageMessage,
   resetPageMessage,
   setGenericErrorMessage,
-  setShowModalError,
 } = indexStore.actions;
 
 export default indexStore.reducer;

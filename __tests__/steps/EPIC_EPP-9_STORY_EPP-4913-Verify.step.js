@@ -66,8 +66,8 @@ defineFeature(feature, (test) => {
   };
 
   const enterValidUsername = () => {
-    const usernameField = container.getByLabelText(/emailUserLabel/i);
-    const passwordField = container.getByLabelText(/passwordLabel/i);
+    const usernameField = container.getByLabelText("emailUserLabel");
+    const passwordField = container.getByLabelText("passwordLabel");
     fireEvent.change(usernameField, {
       target: { value: "wrongUserName@email.cc" },
     });

@@ -48,8 +48,8 @@ const landOnPatientPortalScreen = () => {
 
 const passwordAndUserView = () => {
   launchURL();
-  const usernameField = container.getByLabelText(/emailUserLabel/i);
-  const passwordField = container.getByLabelText(/passwordLabel/i);
+  const usernameField = container.getByLabelText("emailUserLabel");
+  const passwordField = container.getByLabelText("passwordLabel");
   expect(usernameField.id).toEqual("username");
   expect(passwordField.id).toEqual("password");
 };
@@ -104,13 +104,13 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
     then("entered password should be masked.", () => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const passwordField = container.getByLabelText("passwordLabel");
       expect(passwordField.type).toEqual("password");
     });
   });
@@ -138,28 +138,28 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
     then("entered password should be masked.", () => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const passwordField = container.getByLabelText("passwordLabel");
       expect(passwordField.type).toEqual("password");
     });
     and("user should view unmask option", () => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const passwordField = container.getByLabelText("passwordLabel");
       fireEvent.click(passwordField);
       // expect(passwordField.type).toEqual("text");
     });
     when(`user click the Unmask icon`, () => {
-      const button = container.getByLabelText(/passwordLabel/i);
+      const button = container.getByLabelText("passwordLabel");
       // fireEvent.click(button);
       // expect(passwordField.type).toEqual("text");
     });
 
     then("entered password should get visible to the user", () => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const passwordField = container.getByLabelText("passwordLabel");
       expect(passwordField.type).toEqual("password");
     });
   });
@@ -329,8 +329,8 @@ defineFeature(feature, (test) => {
           });
         });
         container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-        const usernameField = container.getByLabelText(/emailUserLabel/i);
-        const passwordField = container.getByLabelText(/passwordLabel/i);
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
         expect(usernameField.id).toEqual("username");
         expect(passwordField.id).toEqual("password");
       }
@@ -341,7 +341,7 @@ defineFeature(feature, (test) => {
       expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
     then("user should view the error message 'This field is required'", () => {
-      expect(container.getByText(/passwordLabel/i)).toBeInTheDocument();
+      expect(container.getByText("passwordLabel")).toBeInTheDocument();
     });
   });
   test("EPIC_EPP-4_STORY_EPP-206- Verify whether the inline error message is displayed if password not filled", ({
@@ -371,8 +371,8 @@ defineFeature(feature, (test) => {
           });
         });
         container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-        const usernameField = container.getByLabelText(/emailUserLabel/i);
-        const passwordField = container.getByLabelText(/passwordLabel/i);
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
         expect(usernameField.id).toEqual("username");
         expect(passwordField.id).toEqual("password");
       }
@@ -383,7 +383,7 @@ defineFeature(feature, (test) => {
       expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
     then("user should view the error message 'This field is required'", () => {
-      expect(container.getByText(/passwordLabel/i)).toBeInTheDocument();
+      expect(container.getByText("passwordLabel")).toBeInTheDocument();
     });
   });
   test("EPIC_EPP-4_STORY_EPP-206- Verify whether the admin user is not able to see the Patient Login page with Continue as a guest button, Don’t have an account?” verbiage along with ‘Create Account button and Forgot password link and see Login Button", ({
@@ -450,8 +450,8 @@ defineFeature(feature, (test) => {
           });
         });
         container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-        const usernameField = container.getByLabelText(/emailUserLabel/i);
-        const passwordField = container.getByLabelText(/passwordLabel/i);
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
         expect(usernameField.id).toEqual("username");
         expect(passwordField.id).toEqual("password");
       }
@@ -462,8 +462,8 @@ defineFeature(feature, (test) => {
       expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
     then("user should view the error message 'This field is required'", () => {
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -480,8 +480,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp();
     });
     then("user/ admin user should view appropriate error message", () => {
-      const usernameField = container.getByText(/emailUserLabel/i);
-      const passwordField = container.getByText(/passwordLabel/i);
+      const usernameField = container.getByText("emailUserLabel");
+      const passwordField = container.getByText("passwordLabel");
       expect(usernameField).toBeInTheDocument();
       expect(passwordField).toBeInTheDocument();
     });
@@ -505,26 +505,26 @@ defineFeature(feature, (test) => {
     });
 
     and('Admin provides "<username>" and "<password>"', () => {
-      const usernameField = container.getByText(/emailUserLabel/i);
-      const passwordField = container.getByText(/passwordLabel/i);
+      const usernameField = container.getByText("emailUserLabel");
+      const passwordField = container.getByText("passwordLabel");
       expect(usernameField).toBeInTheDocument();
       expect(passwordField).toBeInTheDocument();
     });
 
     then("Admin password should be masked.", () => {
-      const passwordField = container.getByText(/passwordLabel/i);
+      const passwordField = container.getByText("passwordLabel");
       expect(passwordField).toBeInTheDocument();
     });
     and("Admin should view unmask option", () => {
-      const passwordField = container.getByText(/passwordLabel/i);
+      const passwordField = container.getByText("passwordLabel");
       expect(passwordField).toBeInTheDocument();
     });
     when(`Admin click the Unmask icon`, () => {
-      const passwordField = container.getByText(/passwordLabel/i);
+      const passwordField = container.getByText("passwordLabel");
       expect(passwordField).toBeInTheDocument();
     });
     then("entered password should get visible to the Admin", () => {
-      const passwordField = container.getByText(/passwordLabel/i);
+      const passwordField = container.getByText("passwordLabel");
       expect(passwordField).toBeInTheDocument();
     });
   });
@@ -556,8 +556,8 @@ defineFeature(feature, (test) => {
           });
         });
         container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-        const usernameField = container.getByLabelText(/emailUserLabel/i);
-        const passwordField = container.getByLabelText(/passwordLabel/i);
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
         expect(usernameField.id).toEqual("username");
         expect(passwordField.id).toEqual("password");
       }
@@ -674,14 +674,14 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     then("entered password should be masked.", (table) => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const passwordField = container.getByLabelText("passwordLabel");
       expect(passwordField.id).toEqual("password");
     });
   });

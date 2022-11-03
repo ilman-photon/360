@@ -3,7 +3,23 @@ import { MessageChannel } from "worker_threads";
 import { cleanup } from "@testing-library/react";
 import { injectStore } from "../src/pages/api/api";
 import store from "../src/store/store";
+import { mockDistance } from "./mockResponse";
 
+export const mockGoogleWindow = (mockData = mockDistance) => {
+  window.google = {
+    maps: {
+      DistanceMatrixService: jest.fn().mockReturnValue({
+        getDistanceMatrix: (config, callback) => {
+          callback && callback(mockData, "OK");
+        },
+      }),
+      UnitSystem: { METRIC: 1, IMPERIAL: 0.0 },
+      LatLngBounds: jest.fn().mockReturnValue({
+        extend: jest.fn(),
+      }),
+    },
+  };
+};
 beforeAll(() => {
   createMocks();
   global.MessageChannel = MessageChannel;
@@ -18,7 +34,11 @@ beforeAll(() => {
     MAPBOX_API_TOKEN:
       "pk.eyJ1Ijoia3VydWt1cnVydXUiLCJhIjoiY2w2dWdteXhlMDM4eTNkczh3ZnA4c2N6NSJ9.ilTZ5K51DsrAXlnJBuD_tw",
     GOOGLE_API_KEY: "AIzaSyC-qQiijvHAdB0Ag8z4r3vZoWdPViV-wfQ",
+    NEXT_PUBLIC_EMBED_API: "123",
+    NEXT_PUBLIC_SYNC_LINK: "/patient/sync/set-password",
+    NEXT_PUBLIC_ONE_TIME_LINK: "/patient/validate",
   };
+  mockGoogleWindow();
 });
 
 afterAll(cleanup);
@@ -322,6 +342,29 @@ jest.mock("react-geocode", () => ({
       },
     ],
     status: "OK",
+  }),
+  fromAddress: jest.fn().mockResolvedValue({
+    result: [
+      {
+        geometry: {
+          location: {
+            lat: -6.3590351,
+            lng: 106.9684472,
+          },
+          location_type: "ROOFTOP",
+          viewport: {
+            northeast: {
+              lat: -6.357686119708498,
+              lng: 106.9697961802915,
+            },
+            southwest: {
+              lat: -6.360384080291502,
+              lng: 106.9670982197085,
+            },
+          },
+        },
+      },
+    ],
   }),
 }));
 

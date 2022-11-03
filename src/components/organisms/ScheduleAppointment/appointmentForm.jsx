@@ -520,7 +520,7 @@ export default function AppointmentForm({
                   return (
                     <StyledInput
                       id="password"
-                      data-testid={SCHEDULE_GUEST_TEST_ID.password}
+                      data-testid={SCHEDULE_GUEST_TEST_ID.passwordField}
                       label={t("passwordLabel")}
                       type={constants.INPUT_PASSWORD}
                       size={constants.SMALL}

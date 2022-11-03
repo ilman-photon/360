@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const mockAppointmentTypes = {
   count: 5,
   entities: [
@@ -881,6 +883,17 @@ export const mockUpdateInsurance = {
   },
 };
 
+const time = new moment(new Date()).day(1).toDate().getTime();
+
+const days = (i, t) => {
+  return new Date(t + i * 60 * 60 * 24 * 1000);
+};
+const from = new moment(days(1, time)).format("MM-DD-YYYY");
+const day2 = new moment(days(2, time)).format("YYYY-MM-DD");
+const day3 = new moment(days(3, time)).format("YYYY-MM-DD");
+const day4 = new moment(days(4, time)).format("YYYY-MM-DD");
+const day5 = new moment(days(5, time)).format("YYYY-MM-DD");
+const to = new moment(days(6, time)).format("YYYY-MM-DD");
 export const submitFilter = {
   offices: [
     {
@@ -1196,7 +1209,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
           _version: "7c6e09ea-9159-4bfe-aa18-395f5c30ea4b",
@@ -1338,7 +1351,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "af473975-2e0d-40cb-a88e-9e975d58dd51",
           _version: "18f55599-781d-4da2-a45e-1567b9e3773c",
@@ -1515,7 +1528,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "4e8156e3-94b9-4b9e-8516-730c34fd9dd2",
           _version: "d070230c-a6ed-49f8-9100-6d7110c643e5",
@@ -1692,7 +1705,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "9c089446-7193-4585-813b-5dfbd59f9ef0",
           _version: "d3a32b93-f842-4a77-8123-75126d927919",
@@ -2954,7 +2967,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "5e6a9c25-e247-4d39-a0d1-e9de46b3a725",
           _version: "526f0fcd-35c1-43f3-8f5c-c4e5d9ea7433",
@@ -3411,7 +3424,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
           _version: "7c6e09ea-9159-4bfe-aa18-395f5c30ea4b",
@@ -3553,7 +3566,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "af473975-2e0d-40cb-a88e-9e975d58dd51",
           _version: "18f55599-781d-4da2-a45e-1567b9e3773c",
@@ -3695,7 +3708,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "4e8156e3-94b9-4b9e-8516-730c34fd9dd2",
           _version: "d070230c-a6ed-49f8-9100-6d7110c643e5",
@@ -3802,7 +3815,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "9c089446-7193-4585-813b-5dfbd59f9ef0",
           _version: "d3a32b93-f842-4a77-8123-75126d927919",
@@ -5064,7 +5077,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "5e6a9c25-e247-4d39-a0d1-e9de46b3a725",
           _version: "526f0fcd-35c1-43f3-8f5c-c4e5d9ea7433",
@@ -5136,7 +5149,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "42248991-3385-4164-9d75-eec7945cb6a9",
           _version: "f48ceb6a-3048-4c30-b931-ac90ec2956e1",
@@ -5243,7 +5256,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "42248991-3385-4164-9d75-eec7945cb6a9",
           _version: "f48ceb6a-3048-4c30-b931-ac90ec2956e1",
@@ -5420,7 +5433,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "4e8156e3-94b9-4b9e-8516-730c34fd9dd2",
           _version: "d070230c-a6ed-49f8-9100-6d7110c643e5",
@@ -5562,7 +5575,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "9c089446-7193-4585-813b-5dfbd59f9ef0",
           _version: "d3a32b93-f842-4a77-8123-75126d927919",
@@ -6824,7 +6837,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "5e6a9c25-e247-4d39-a0d1-e9de46b3a725",
           _version: "526f0fcd-35c1-43f3-8f5c-c4e5d9ea7433",
@@ -7281,7 +7294,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
           _version: "7c6e09ea-9159-4bfe-aa18-395f5c30ea4b",
@@ -7423,7 +7436,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "af473975-2e0d-40cb-a88e-9e975d58dd51",
           _version: "18f55599-781d-4da2-a45e-1567b9e3773c",
@@ -14913,10 +14926,13 @@ export const MOCK_PRESCRIPTION = {
     ],
     medications: [
       {
+        id: "0001",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
+        type: "active",
       },
       {
+        id: "0002",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
       },
@@ -15406,7 +15422,7 @@ export const TEMP_DATA_MEDICATION = [
     CreatedDate: "12/05/2022 03:40:57 EDT",
     CompletedDate: "",
     SignedDate: "",
-    StopDate: "10/05/2023",
+    StopDate: "10/05/2022",
     LastModifiedBy: "pclarksoneyecare",
     LastModifiedDate: "10/05/2022 03:41:00 EDT",
     Height: "",
@@ -15443,7 +15459,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Philips",
+      FirstName: "Provider",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -15489,7 +15505,7 @@ export const TEMP_DATA_MEDICATION = [
     CreatedDate: "12/05/2022 03:40:57 EDT",
     CompletedDate: "",
     SignedDate: "",
-    StopDate: "11/05/2023",
+    StopDate: "10/05/2022",
     LastModifiedBy: "pclarksoneyecare",
     LastModifiedDate: "10/05/2022 03:41:00 EDT",
     Height: "",
@@ -15526,7 +15542,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Delip",
+      FirstName: "Provider",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -15572,7 +15588,7 @@ export const TEMP_DATA_MEDICATION = [
     CreatedDate: "12/05/2022 03:40:57 EDT",
     CompletedDate: "",
     SignedDate: "",
-    StopDate: "12/05/2023",
+    StopDate: "10/05/2022",
     LastModifiedBy: "pclarksoneyecare",
     LastModifiedDate: "10/05/2022 03:41:00 EDT",
     Height: "",
@@ -15609,7 +15625,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "David",
+      FirstName: "Provider",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -15692,7 +15708,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Ivan",
+      FirstName: "Provider",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -15775,7 +15791,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Capi",
+      FirstName: "Provider",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -15858,7 +15874,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Opa",
+      FirstName: "Provider",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -35364,1504 +35380,1651 @@ export const prescriptionMedication = [
       },
     },
   },
+  {
+    Voided: "n",
+    RcopiaID: "SB-263536464821",
+    Patient: {
+      RcopiaPracticeID: "2225319421",
+      FirstName: "FirstNikitaDhan",
+      ExternalID: "",
+      RcopiaID: "26151571631",
+      LastName: "Dr",
+    },
+    NeedsReview: "n",
+    Provider: {
+      DEA: "AP3864421",
+      Username: "pclarksoneyecare",
+      NPI: "1741791705",
+      FirstName: "Provider",
+      ExternalID: "",
+      RcopiaID: "2642957631",
+      LastName: "ClarksonEyeCare",
+    },
+    Preparer: {
+      RcopiaID: "2642957631",
+      ExternalID: "",
+      FirstName: "Provider",
+      LastName: "ClarksonEyeCare",
+    },
+    Sig: {
+      Drug: {
+        NDCID: "00378070901",
+        BrandName: "D-Penamine",
+        GenericName: "penicillamine",
+        Form: "tablet",
+        Strength: "125 mg",
+        RcopiaID: "12100000098779",
+        FirstDataBankMedID: "585251",
+        DrugDescription: "D-Penamine 200 mg tablet",
+        Schedule: "nonscheduled",
+        BrandType: "brand",
+        Route: "oral",
+        LegendStatus: "rx",
+      },
+      DoseUnit: "tablet",
+      DoseTiming: "twice a day",
+      Duration: "",
+      Route: "by mouth",
+      Quantity: "1",
+      QuantityUnit: "tablet",
+      Refills: "0",
+      SubstitutionPermitted: "y",
+      OtherNotes: "",
+      PatientNotes: "as directed",
+      Dose: "3",
+      Action: "Take",
+      Comments: "",
+      MaximumDailyDoseUnit: "",
+      DoseOther: "as directed",
+      MaximumDailyDose: "",
+    },
+    CreatedDate: "10/05/2022 03:40:57 EDT",
+    CompletedDate: "",
+    SignedDate: "",
+    StopDate: "10/05/2023",
+    LastModifiedBy: "pclarksoneyecare",
+    LastModifiedDate: "10/05/2022 03:41:00 EDT",
+    Height: "",
+    Weight: "",
+    IntendedUse: "",
+    Denied: "n",
+    patientRcopiaID: "26151571631",
+    _id: "323498f1-dff7-47b6-b3af-2dcc432f65ce",
+    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008e",
+    _created: "Oct 5, 2022, 7:41:50 AM",
+    _updated: "Oct 5, 2022, 7:41:50 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: {
+          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+        },
+      },
+    },
+  },
 ];
 
 export const mockSubmitFilterReal = {
-  "offices": [
-      {
-          "office": {
-              "name": "Ballwin",
-              "_id": "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
-              "_version": "0c381712-420e-4705-bb6d-f0226ceb5b12",
-              "_updated": "Sep 17, 2022, 10:14:52 AM",
-              "_updatedBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              },
-              "_links": {
-                  "self": {
-                      "href": "/v1/offices/4cd970a0-8529-4b44-a4c5-99c9f4e8d078"
-                  }
-              }
+  offices: [
+    {
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
           },
-          "providerTemplate": [
-              {
-                  "name": "NEURO",
-                  "templateType": {
-                      "code": "USER",
-                      "description": "User template type"
-                  },
-                  "provider": {
-                      "firstName": "Steve",
-                      "lastName": "Adam",
-                      "designation": "Dr",
-                      "inHouse": false,
-                      "workPhone": "3219898898",
-                      "rating": 2,
-                      "profilePhoto": {
-                          "digitalAsset": {
-                              "uid": "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
-                              "fileName": "test",
-                              "assetUrl": "/v1/patient",
-                              "_version": "d72b0b16-99ab-4ae4-aba3-13b81930b77a"
-                          }
-                      },
-                      "address": {
-                          "addressLine1": "800 14th St Apt B",
-                          "city": "Virginia Beach",
-                          "state": "VA",
-                          "zip": "23451"
-                      },
-                      "_id": "19f1c186-37a8-46ef-a731-0a1f022be782",
-                      "_version": "403a6428-9a69-4fe5-b186-e5549f4eeecc",
-                      "_updated": "Oct 20, 2022, 10:51:39 AM",
-                      "_updatedBy": {
-                          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                          "_links": {
-                              "self": {
-                                  "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                              }
-                          }
-                      }
-                  },
-                  "slots": [
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:00",
-                          "endHHMM": "16:05",
-                          "_id": "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
-                          "_version": "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:05",
-                          "endHHMM": "16:10",
-                          "_id": "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
-                          "_version": "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:10",
-                          "endHHMM": "16:15",
-                          "_id": "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
-                          "_version": "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:15",
-                          "endHHMM": "16:20",
-                          "_id": "42eee764-b78a-404e-9393-1fda66b06e73",
-                          "_version": "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:20",
-                          "endHHMM": "16:25",
-                          "_id": "81be5e4d-d25d-422a-aa49-533236eccc46",
-                          "_version": "87629eb5-538c-4500-8885-15eb8df1fadc",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:25",
-                          "endHHMM": "16:30",
-                          "_id": "7a82bcbe-d58b-4448-933a-b2932032b489",
-                          "_version": "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:30",
-                          "endHHMM": "16:35",
-                          "_id": "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
-                          "_version": "872c560e-93f6-4979-812f-035bfde93a44",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:35",
-                          "endHHMM": "16:40",
-                          "_id": "f0c6a887-626f-46ed-b48b-be65ee21b150",
-                          "_version": "c4d7a99d-1548-4554-a701-ae30ca705250",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      }
-                  ],
-                  "scheduleDate": "10/25/2022",
-                  "status": "UPDATED",
-                  "_id": "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
-                  "_version": "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
-                  "_created": "Oct 20, 2022, 7:48:23 AM",
-                  "_updated": "Oct 21, 2022, 9:43:32 AM",
-                  "_createdBy": {
-                      "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                      "_links": {
-                          "self": {
-                              "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                          }
-                      }
-                  },
-                  "_updatedBy": {
-                      "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                      "_links": {
-                          "self": {
-                              "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                          }
-                      }
-                  }
+        },
+        _links: {
+          self: {
+            href: "/v1/offices/4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+          },
+        },
+      },
+      providerTemplate: [
+        {
+          name: "NEURO",
+          templateType: {
+            code: "USER",
+            description: "User template type",
+          },
+          provider: {
+            firstName: "Steve",
+            lastName: "Adam",
+            designation: "Dr",
+            inHouse: false,
+            workPhone: "3219898898",
+            rating: 2,
+            profilePhoto: {
+              digitalAsset: {
+                uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+                fileName: "test",
+                assetUrl: "/v1/patient",
+                _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
               },
-              {
-                  "name": "NEURO",
-                  "templateType": {
-                      "code": "USER",
-                      "description": "User template type"
-                  },
-                  "provider": {
-                      "firstName": "Steve",
-                      "lastName": "Adam",
-                      "designation": "Dr",
-                      "inHouse": false,
-                      "workPhone": "3219898898",
-                      "rating": 2,
-                      "profilePhoto": {
-                          "digitalAsset": {
-                              "uid": "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
-                              "fileName": "test",
-                              "assetUrl": "/v1/patient",
-                              "_version": "d72b0b16-99ab-4ae4-aba3-13b81930b77a"
-                          }
-                      },
-                      "address": {
-                          "addressLine1": "800 14th St Apt B",
-                          "city": "Virginia Beach",
-                          "state": "VA",
-                          "zip": "23451"
-                      },
-                      "_id": "19f1c186-37a8-46ef-a731-0a1f022be782",
-                      "_version": "403a6428-9a69-4fe5-b186-e5549f4eeecc",
-                      "_updated": "Oct 20, 2022, 10:51:39 AM",
-                      "_updatedBy": {
-                          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                          "_links": {
-                              "self": {
-                                  "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                              }
-                          }
-                      }
-                  },
-                  "slots": [
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:00",
-                          "endHHMM": "16:05",
-                          "_id": "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
-                          "_version": "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:05",
-                          "endHHMM": "16:10",
-                          "_id": "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
-                          "_version": "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:10",
-                          "endHHMM": "16:15",
-                          "_id": "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
-                          "_version": "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:15",
-                          "endHHMM": "16:20",
-                          "_id": "42eee764-b78a-404e-9393-1fda66b06e73",
-                          "_version": "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:20",
-                          "endHHMM": "16:25",
-                          "_id": "81be5e4d-d25d-422a-aa49-533236eccc46",
-                          "_version": "87629eb5-538c-4500-8885-15eb8df1fadc",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:25",
-                          "endHHMM": "16:30",
-                          "_id": "7a82bcbe-d58b-4448-933a-b2932032b489",
-                          "_version": "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:30",
-                          "endHHMM": "16:35",
-                          "_id": "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
-                          "_version": "872c560e-93f6-4979-812f-035bfde93a44",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:35",
-                          "endHHMM": "16:40",
-                          "_id": "f0c6a887-626f-46ed-b48b-be65ee21b150",
-                          "_version": "c4d7a99d-1548-4554-a701-ae30ca705250",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      }
-                  ],
-                  "scheduleDate": "10/26/2022",
-                  "status": "UPDATED",
-                  "_id": "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
-                  "_version": "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
-                  "_created": "Oct 20, 2022, 7:48:23 AM",
-                  "_updated": "Oct 21, 2022, 9:43:32 AM",
-                  "_createdBy": {
-                      "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                      "_links": {
-                          "self": {
-                              "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                          }
-                      }
-                  },
-                  "_updatedBy": {
-                      "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                      "_links": {
-                          "self": {
-                              "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                          }
-                      }
-                  }
+            },
+            address: {
+              addressLine1: "800 14th St Apt B",
+              city: "Virginia Beach",
+              state: "VA",
+              zip: "23451",
+            },
+            _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+            _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+            _updated: "Oct 20, 2022, 10:51:39 AM",
+            _updatedBy: {
+              _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              _links: {
+                self: {
+                  href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+                },
               },
-              {
-                  "name": "NEURO",
-                  "templateType": {
-                      "code": "USER",
-                      "description": "User template type"
-                  },
-                  "provider": {
-                      "firstName": "Steve",
-                      "lastName": "Adam",
-                      "designation": "Dr",
-                      "inHouse": false,
-                      "workPhone": "3219898898",
-                      "rating": 2,
-                      "profilePhoto": {
-                          "digitalAsset": {
-                              "uid": "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
-                              "fileName": "test",
-                              "assetUrl": "/v1/patient",
-                              "_version": "d72b0b16-99ab-4ae4-aba3-13b81930b77a"
-                          }
-                      },
-                      "address": {
-                          "addressLine1": "800 14th St Apt B",
-                          "city": "Virginia Beach",
-                          "state": "VA",
-                          "zip": "23451"
-                      },
-                      "_id": "19f1c186-37a8-46ef-a731-0a1f022be782",
-                      "_version": "403a6428-9a69-4fe5-b186-e5549f4eeecc",
-                      "_updated": "Oct 20, 2022, 10:51:39 AM",
-                      "_updatedBy": {
-                          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                          "_links": {
-                              "self": {
-                                  "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                              }
-                          }
-                      }
-                  },
-                  "slots": [
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:00",
-                          "endHHMM": "16:05",
-                          "_id": "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
-                          "_version": "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:05",
-                          "endHHMM": "16:10",
-                          "_id": "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
-                          "_version": "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:10",
-                          "endHHMM": "16:15",
-                          "_id": "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
-                          "_version": "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:15",
-                          "endHHMM": "16:20",
-                          "_id": "42eee764-b78a-404e-9393-1fda66b06e73",
-                          "_version": "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:20",
-                          "endHHMM": "16:25",
-                          "_id": "81be5e4d-d25d-422a-aa49-533236eccc46",
-                          "_version": "87629eb5-538c-4500-8885-15eb8df1fadc",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:25",
-                          "endHHMM": "16:30",
-                          "_id": "7a82bcbe-d58b-4448-933a-b2932032b489",
-                          "_version": "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:30",
-                          "endHHMM": "16:35",
-                          "_id": "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
-                          "_version": "872c560e-93f6-4979-812f-035bfde93a44",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:35",
-                          "endHHMM": "16:40",
-                          "_id": "f0c6a887-626f-46ed-b48b-be65ee21b150",
-                          "_version": "c4d7a99d-1548-4554-a701-ae30ca705250",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      }
-                  ],
-                  "scheduleDate": "10/27/2022",
-                  "status": "UPDATED",
-                  "_id": "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
-                  "_version": "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
-                  "_created": "Oct 20, 2022, 7:48:23 AM",
-                  "_updated": "Oct 21, 2022, 9:43:32 AM",
-                  "_createdBy": {
-                      "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                      "_links": {
-                          "self": {
-                              "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                          }
-                      }
-                  },
-                  "_updatedBy": {
-                      "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                      "_links": {
-                          "self": {
-                              "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                          }
-                      }
-                  }
+            },
+          },
+          slots: [
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
               },
-              {
-                  "name": "NEURO",
-                  "templateType": {
-                      "code": "USER",
-                      "description": "User template type"
+              startHHMM: "16:00",
+              endHHMM: "16:05",
+              _id: "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
+              _version: "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
                   },
-                  "provider": {
-                      "firstName": "Steve",
-                      "lastName": "Adam",
-                      "designation": "Dr",
-                      "inHouse": false,
-                      "workPhone": "3219898898",
-                      "rating": 2,
-                      "profilePhoto": {
-                          "digitalAsset": {
-                              "uid": "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
-                              "fileName": "test",
-                              "assetUrl": "/v1/patient",
-                              "_version": "d72b0b16-99ab-4ae4-aba3-13b81930b77a"
-                          }
-                      },
-                      "address": {
-                          "addressLine1": "800 14th St Apt B",
-                          "city": "Virginia Beach",
-                          "state": "VA",
-                          "zip": "23451"
-                      },
-                      "_id": "19f1c186-37a8-46ef-a731-0a1f022be782",
-                      "_version": "403a6428-9a69-4fe5-b186-e5549f4eeecc",
-                      "_updated": "Oct 20, 2022, 10:51:39 AM",
-                      "_updatedBy": {
-                          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                          "_links": {
-                              "self": {
-                                  "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                              }
-                          }
-                      }
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
                   },
-                  "slots": [
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:00",
-                          "endHHMM": "16:05",
-                          "_id": "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
-                          "_version": "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:05",
-                          "endHHMM": "16:10",
-                          "_id": "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
-                          "_version": "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:10",
-                          "endHHMM": "16:15",
-                          "_id": "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
-                          "_version": "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:15",
-                          "endHHMM": "16:20",
-                          "_id": "42eee764-b78a-404e-9393-1fda66b06e73",
-                          "_version": "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:20",
-                          "endHHMM": "16:25",
-                          "_id": "81be5e4d-d25d-422a-aa49-533236eccc46",
-                          "_version": "87629eb5-538c-4500-8885-15eb8df1fadc",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:25",
-                          "endHHMM": "16:30",
-                          "_id": "7a82bcbe-d58b-4448-933a-b2932032b489",
-                          "_version": "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:30",
-                          "endHHMM": "16:35",
-                          "_id": "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
-                          "_version": "872c560e-93f6-4979-812f-035bfde93a44",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      },
-                      {
-                          "appointmentType": {
-                              "code": "Charity",
-                              "name": "Charity",
-                              "key": 107,
-                              "order": 107,
-                              "category": {
-                                  "code": "OPH",
-                                  "description": "OPH"
-                              },
-                              "acronym": "CHA",
-                              "color": "#F19D69",
-                              "slotLength": 5,
-                              "notes": "Charity"
-                          },
-                          "startHHMM": "16:35",
-                          "endHHMM": "16:40",
-                          "_id": "f0c6a887-626f-46ed-b48b-be65ee21b150",
-                          "_version": "c4d7a99d-1548-4554-a701-ae30ca705250",
-                          "_created": "Oct 20, 2022, 7:48:23 AM",
-                          "_updated": "Oct 21, 2022, 9:43:32 AM",
-                          "_createdBy": {
-                              "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                                  }
-                              }
-                          },
-                          "_updatedBy": {
-                              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                              "_links": {
-                                  "self": {
-                                      "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                                  }
-                              }
-                          }
-                      }
-                  ],
-                  "scheduleDate": "10/28/2022",
-                  "status": "UPDATED",
-                  "_id": "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
-                  "_version": "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
-                  "_created": "Oct 20, 2022, 7:48:23 AM",
-                  "_updated": "Oct 21, 2022, 9:43:32 AM",
-                  "_createdBy": {
-                      "_id": "d9724501-1226-4b42-b9d5-f26faae03d6c",
-                      "_links": {
-                          "self": {
-                              "href": "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c"
-                          }
-                      }
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:05",
+              endHHMM: "16:10",
+              _id: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
+              _version: "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
                   },
-                  "_updatedBy": {
-                      "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-                      "_links": {
-                          "self": {
-                              "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                          }
-                      }
-                  }
-              }
-          ]
-      }
-  ]
-}
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:10",
+              endHHMM: "16:15",
+              _id: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
+              _version: "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:15",
+              endHHMM: "16:20",
+              _id: "42eee764-b78a-404e-9393-1fda66b06e73",
+              _version: "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:20",
+              endHHMM: "16:25",
+              _id: "81be5e4d-d25d-422a-aa49-533236eccc46",
+              _version: "87629eb5-538c-4500-8885-15eb8df1fadc",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:25",
+              endHHMM: "16:30",
+              _id: "7a82bcbe-d58b-4448-933a-b2932032b489",
+              _version: "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:30",
+              endHHMM: "16:35",
+              _id: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
+              _version: "872c560e-93f6-4979-812f-035bfde93a44",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:35",
+              endHHMM: "16:40",
+              _id: "f0c6a887-626f-46ed-b48b-be65ee21b150",
+              _version: "c4d7a99d-1548-4554-a701-ae30ca705250",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          scheduleDate: day4,
+          status: "UPDATED",
+          _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+          _version: "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
+          _created: "Oct 20, 2022, 7:48:23 AM",
+          _updated: "Oct 21, 2022, 9:43:32 AM",
+          _createdBy: {
+            _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            _links: {
+              self: {
+                href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        {
+          name: "NEURO",
+          templateType: {
+            code: "USER",
+            description: "User template type",
+          },
+          provider: {
+            firstName: "Steve",
+            lastName: "Adam",
+            designation: "Dr",
+            inHouse: false,
+            workPhone: "3219898898",
+            rating: 2,
+            profilePhoto: {
+              digitalAsset: {
+                uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+                fileName: "test",
+                assetUrl: "/v1/patient",
+                _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+              },
+            },
+            address: {
+              addressLine1: "800 14th St Apt B",
+              city: "Virginia Beach",
+              state: "VA",
+              zip: "23451",
+            },
+            _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+            _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+            _updated: "Oct 20, 2022, 10:51:39 AM",
+            _updatedBy: {
+              _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              _links: {
+                self: {
+                  href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+                },
+              },
+            },
+          },
+          slots: [
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:00",
+              endHHMM: "16:05",
+              _id: "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
+              _version: "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:05",
+              endHHMM: "16:10",
+              _id: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
+              _version: "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:10",
+              endHHMM: "16:15",
+              _id: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
+              _version: "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:15",
+              endHHMM: "16:20",
+              _id: "42eee764-b78a-404e-9393-1fda66b06e73",
+              _version: "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:20",
+              endHHMM: "16:25",
+              _id: "81be5e4d-d25d-422a-aa49-533236eccc46",
+              _version: "87629eb5-538c-4500-8885-15eb8df1fadc",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:25",
+              endHHMM: "16:30",
+              _id: "7a82bcbe-d58b-4448-933a-b2932032b489",
+              _version: "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:30",
+              endHHMM: "16:35",
+              _id: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
+              _version: "872c560e-93f6-4979-812f-035bfde93a44",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:35",
+              endHHMM: "16:40",
+              _id: "f0c6a887-626f-46ed-b48b-be65ee21b150",
+              _version: "c4d7a99d-1548-4554-a701-ae30ca705250",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          scheduleDate: "10/26/2022",
+          status: "UPDATED",
+          _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+          _version: "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
+          _created: "Oct 20, 2022, 7:48:23 AM",
+          _updated: "Oct 21, 2022, 9:43:32 AM",
+          _createdBy: {
+            _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            _links: {
+              self: {
+                href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        {
+          name: "NEURO",
+          templateType: {
+            code: "USER",
+            description: "User template type",
+          },
+          provider: {
+            firstName: "Steve",
+            lastName: "Adam",
+            designation: "Dr",
+            inHouse: false,
+            workPhone: "3219898898",
+            rating: 2,
+            profilePhoto: {
+              digitalAsset: {
+                uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+                fileName: "test",
+                assetUrl: "/v1/patient",
+                _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+              },
+            },
+            address: {
+              addressLine1: "800 14th St Apt B",
+              city: "Virginia Beach",
+              state: "VA",
+              zip: "23451",
+            },
+            _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+            _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+            _updated: "Oct 20, 2022, 10:51:39 AM",
+            _updatedBy: {
+              _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              _links: {
+                self: {
+                  href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+                },
+              },
+            },
+          },
+          slots: [
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:00",
+              endHHMM: "16:05",
+              _id: "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
+              _version: "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:05",
+              endHHMM: "16:10",
+              _id: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
+              _version: "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:10",
+              endHHMM: "16:15",
+              _id: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
+              _version: "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:15",
+              endHHMM: "16:20",
+              _id: "42eee764-b78a-404e-9393-1fda66b06e73",
+              _version: "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:20",
+              endHHMM: "16:25",
+              _id: "81be5e4d-d25d-422a-aa49-533236eccc46",
+              _version: "87629eb5-538c-4500-8885-15eb8df1fadc",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:25",
+              endHHMM: "16:30",
+              _id: "7a82bcbe-d58b-4448-933a-b2932032b489",
+              _version: "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:30",
+              endHHMM: "16:35",
+              _id: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
+              _version: "872c560e-93f6-4979-812f-035bfde93a44",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:35",
+              endHHMM: "16:40",
+              _id: "f0c6a887-626f-46ed-b48b-be65ee21b150",
+              _version: "c4d7a99d-1548-4554-a701-ae30ca705250",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          scheduleDate: "10/27/2022",
+          status: "UPDATED",
+          _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+          _version: "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
+          _created: "Oct 20, 2022, 7:48:23 AM",
+          _updated: "Oct 21, 2022, 9:43:32 AM",
+          _createdBy: {
+            _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            _links: {
+              self: {
+                href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        {
+          name: "NEURO",
+          templateType: {
+            code: "USER",
+            description: "User template type",
+          },
+          provider: {
+            firstName: "Steve",
+            lastName: "Adam",
+            designation: "Dr",
+            inHouse: false,
+            workPhone: "3219898898",
+            rating: 2,
+            profilePhoto: {
+              digitalAsset: {
+                uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+                fileName: "test",
+                assetUrl: "/v1/patient",
+                _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+              },
+            },
+            address: {
+              addressLine1: "800 14th St Apt B",
+              city: "Virginia Beach",
+              state: "VA",
+              zip: "23451",
+            },
+            _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+            _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+            _updated: "Oct 20, 2022, 10:51:39 AM",
+            _updatedBy: {
+              _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              _links: {
+                self: {
+                  href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+                },
+              },
+            },
+          },
+          slots: [
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:00",
+              endHHMM: "16:05",
+              _id: "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
+              _version: "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:05",
+              endHHMM: "16:10",
+              _id: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
+              _version: "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:10",
+              endHHMM: "16:15",
+              _id: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
+              _version: "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:15",
+              endHHMM: "16:20",
+              _id: "42eee764-b78a-404e-9393-1fda66b06e73",
+              _version: "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:20",
+              endHHMM: "16:25",
+              _id: "81be5e4d-d25d-422a-aa49-533236eccc46",
+              _version: "87629eb5-538c-4500-8885-15eb8df1fadc",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:25",
+              endHHMM: "16:30",
+              _id: "7a82bcbe-d58b-4448-933a-b2932032b489",
+              _version: "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:30",
+              endHHMM: "16:35",
+              _id: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
+              _version: "872c560e-93f6-4979-812f-035bfde93a44",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:35",
+              endHHMM: "16:40",
+              _id: "f0c6a887-626f-46ed-b48b-be65ee21b150",
+              _version: "c4d7a99d-1548-4554-a701-ae30ca705250",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          scheduleDate: "10/28/2022",
+          status: "UPDATED",
+          _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+          _version: "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
+          _created: "Oct 20, 2022, 7:48:23 AM",
+          _updated: "Oct 21, 2022, 9:43:32 AM",
+          _createdBy: {
+            _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            _links: {
+              self: {
+                href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+      ],
+    },
+  ],
+};
+
+export const mockDistance = {
+  originAddresses: [
+    "Greenwich, Greater London, UK",
+    "13 Great Carleton Square, Edinburgh, City of Edinburgh EH16 4, UK",
+  ],
+  destinationAddresses: [
+    "Stockholm County, Sweden",
+    "Dlouhá 609/2, 110 00 Praha-Staré Město, Česká republika",
+  ],
+  rows: [
+    {
+      elements: [
+        {
+          status: "OK",
+          duration: {
+            value: 70778,
+            text: "19 hours 40 mins",
+          },
+          distance: {
+            value: 1887508,
+            text: "1173 mi",
+          },
+        },
+        {
+          status: "OK",
+          duration: {
+            value: 44476,
+            text: "12 hours 21 mins",
+          },
+          distance: {
+            value: 1262780,
+            text: "785 mi",
+          },
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          status: "OK",
+          duration: {
+            value: 96000,
+            text: "1 day 3 hours",
+          },
+          distance: {
+            value: 2566737,
+            text: "1595 mi",
+          },
+        },
+        {
+          status: "OK",
+          duration: {
+            value: 69698,
+            text: "19 hours 22 mins",
+          },
+          distance: {
+            value: 1942009,
+            text: "1207 mi",
+          },
+        },
+      ],
+    },
+  ],
+};

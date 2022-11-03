@@ -1,6 +1,7 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import FilterResult from "../../../../src/components/molecules/FilterResult/filterResult";
+import { createMatchMedia } from "../../../../__mocks__/commonSteps";
 
 window.scrollTo = jest.fn();
 const providerList = [
@@ -398,7 +399,7 @@ const providerList = [
 
 describe("FilterResult Components", () => {
   let container;
-  const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" };
+  const rangeDate = { startDate: "2024-01-01", endDate: "2025-10-15" };
   beforeEach(() => {
     container = render(
       <FilterResult
@@ -409,6 +410,10 @@ describe("FilterResult Components", () => {
     );
   });
 
+  it("Filter Result with empty data", () => {
+    container = render(<FilterResult />);
+    expect(true).toBeTruthy();
+  });
   it("FilterResult render", () => {
     expect(container.getByText("3 In-network providers")).toBeInTheDocument();
   });
@@ -431,6 +436,92 @@ describe("FilterResult Components", () => {
         }}
       />
     );
+    expect(container.getByText("3 In-network providers")).toBeInTheDocument();
+  });
+
+  it("Filter Result Render in mobile", () => {
+    window.matchMedia = createMatchMedia("800px");
+    container = render(
+      <FilterResult
+        isDesktop={false}
+        providerList={providerList}
+        rangeDate={rangeDate}
+      />
+    );
+  });
+
+  it("Filter Result Render in desktop", () => {
+    container = render(
+      <FilterResult isDesktop={true} providerList={{}} rangeDate={rangeDate} />
+    );
+    expect(true).toBeTruthy();
+  });
+
+  it("Filter Result Render in desktop with providerList is null", () => {
+    container = render(
+      <FilterResult
+        isDesktop={true}
+        providerList={null}
+        rangeDate={rangeDate}
+      />
+    );
+    expect(true).toBeTruthy();
+  });
+
+  it("Filter Result with OnDayClicked", async () => {
+    const dayButton = container.getAllByTestId(/loc_hourButton/i);
+    await waitFor(() => fireEvent.click(dayButton[0]));
+    expect(container.getByText("3 In-network providers")).toBeInTheDocument();
+  });
+
+  it("Filter Result with next button click in mobile view is loading", async () => {
+    container = render(
+      <FilterResult
+        isDesktop={false}
+        providerList={[]}
+        rangeDate={rangeDate}
+        isLoading={true}
+      />
+    );
+    const nextButton = container.getByTestId(
+      /filter-result-arrow-button-next/i
+    );
+    const prevButton = container.getByTestId(
+      /filter-result-arrow-button-prev/i
+    );
+    await waitFor(() => fireEvent.click(nextButton));
+    await waitFor(() => fireEvent.click(prevButton));
+
+    expect(container.getByText("3 In-network providers")).toBeInTheDocument();
+  });
+
+  it("Filter Result with next button click in mobile view", async () => {
+    container = render(
+      <FilterResult
+        isDesktop={false}
+        providerList={providerList}
+        rangeDate={rangeDate}
+      />
+    );
+    const nextButton = container.getByTestId(
+      /filter-result-arrow-button-next/i
+    );
+    const prevButton = container.getByTestId(
+      /filter-result-arrow-button-prev/i
+    );
+    await waitFor(() => fireEvent.click(nextButton));
+    await waitFor(() => fireEvent.click(prevButton));
+
+    await waitFor(() => fireEvent.click(nextButton));
+    await waitFor(() => fireEvent.click(prevButton));
+    await waitFor(() => fireEvent.click(prevButton));
+    await waitFor(() => fireEvent.click(prevButton));
+
+    await waitFor(() => fireEvent.click(nextButton));
+    await waitFor(() => fireEvent.click(nextButton));
+    await waitFor(() => fireEvent.click(nextButton));
+    await waitFor(() => fireEvent.click(nextButton));
+
     expect(container.getByText("3 In-network providers")).toBeInTheDocument();
   });
 });

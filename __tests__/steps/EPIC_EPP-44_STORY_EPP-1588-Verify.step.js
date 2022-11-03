@@ -4,7 +4,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
 import Appointment from "../../src/pages/patient/appointment";
 import store from "../../src/store/store";
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import constants, { TEST_ID } from "../../src/utils/constants";
 import { act } from "react-dom/test-utils";
 import mediaQuery from "css-mediaquery";
@@ -12,6 +12,7 @@ import AuthPage from "../../src/pages/patient/login";
 import { renderWithProviders } from "../src/utils/test-util";
 import Cookies from "universal-cookie";
 import HomePage from "../../src/pages/patient";
+import { renderLogin } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1588.feature",
@@ -504,10 +505,46 @@ defineFeature(feature, (test) => {
   function createMatchMedia(width) {
     return (query) => ({
       matches: mediaQuery.match(query, { width }),
-      addListener: () => {},
-      removeListener: () => {},
+      addListener: () => { },
+      removeListener: () => { },
     });
   }
+
+  const navigateToPatientPortalHome = async () => {
+    cleanup()
+    let container;
+    const element = document.createElement("div");
+    const mock = new MockAdapter(axios);
+    Cookies.result = "true";
+    const expectedResult = {
+      ResponseCode: 2005,
+      ResponseType: "success",
+    };
+    const domain = window.location.origin;
+    mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+    mock
+      .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
+      .reply(200, MOCK_SUGESTION);
+    mock
+      .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
+      .reply(200, MOCK_APPOINTMENT);
+    mock
+      .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
+      .reply(200, MOCK_PRESCRIPTION);
+
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn(),
+    };
+    global.navigator.geolocation = mockGeolocation;
+    Cookies.result = false;
+    act(() => {
+      container = render(
+        <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+      );
+    });
+    await waitFor(() => container.getByLabelText(/Appointments/i));
+  };
 
   test('EPIC_EPP-44_STORY_EPP-1588- Verify if the user sees an error message "No results found. Please try again with a different search criteria" when user enters an incorrect city name', ({
     given,
@@ -624,12 +661,14 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user clicks on the Login button", () => {
-      defaultValidation();
+    and("user clicks on the Login button", async () => {
+      container = await renderLogin()
+      fireEvent.click(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn))
+      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
 
-    then("user navigates to the Patient Portal home page", () => {
-      defaultValidation();
+    then("user navigates to the Patient Portal home page", async () => {
+      navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {

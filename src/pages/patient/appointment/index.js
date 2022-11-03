@@ -48,7 +48,6 @@ import { fetchAllPayers } from "../../../store/provider";
 import NearMeOutlinedIcon from "@mui/icons-material/NearMeOutlined";
 import { useTranslation } from "next-i18next";
 import { getCity } from "../../../utils/getCity";
-import { mmddyyDateFormat } from "../../../utils/dateFormatter";
 
 export async function getStaticProps() {
   return {
@@ -246,10 +245,6 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
-  function compareDate(date) {
-    return new Date() > new Date(date);
-  }
-
   function onCallSubmitFilterAPI(
     requestData,
     activeFilterByData = [],
@@ -267,9 +262,7 @@ export default function Appointment({ googleApiKey }) {
       appointmentType: {
         code: selectedAppointmentType?.id || "ALL",
       },
-      currentDate: compareDate(startDateRequest)
-        ? mmddyyDateFormat(new Date())
-        : startDateRequest,
+      currentDate: startDateRequest,
       numDays: 6,
       days: ["ALL"],
       prefTime: "ALL",
@@ -283,7 +276,7 @@ export default function Appointment({ googleApiKey }) {
       .then(async function (response) {
         const parseProviderData = await parseProviderListData(
           response,
-          startDateRequest,
+          postBody.currentDate,
           endDateRequest,
           googleApiKey,
           currentCoordinate
@@ -598,7 +591,7 @@ export default function Appointment({ googleApiKey }) {
           }}
         >
           <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
-            {providerListData.length > 0 ? (
+            {providerListData?.length > 0 ? (
               <FilterResult
                 onNextScheduleClicked={onNextScheduleClicked}
                 onPrevScheduleClicked={onPrevScheduleClicked}

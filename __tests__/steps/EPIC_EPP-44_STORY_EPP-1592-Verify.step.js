@@ -585,8 +585,8 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i)
-      const passwordField = container.getByLabelText(/passwordLabel/i);
+      const usernameField = container.getByLabelText("emailUserLabel")
+      const passwordField = container.getByLabelText("passwordLabel");
       act(() => {
         fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
