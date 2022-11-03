@@ -9,6 +9,7 @@ import TestTubeIcon from "../../../assets/icons/TestTubeIcon";
 import GlassesIcon from "../../../assets/icons/GlassesIcon";
 import LensIcon from "../../../assets/icons/LensIcon";
 import MedicationIcon from "../../../assets/icons/MedicationIcon";
+import { colors } from "../../../styles/theme";
 import AlarmIcon from "../../../assets/icons/AlarmIcon";
 
 const NotificationItem = ({
@@ -76,7 +77,7 @@ const NotificationItem = ({
       case "test-result":
         return (
           <>
-            You <b>lab test test results</b> are available now.
+            Your <b>lab test results</b> are available now.
           </>
         );
       case "message":
@@ -156,7 +157,7 @@ const NotificationItem = ({
         <div
           data-testid="notification-is-new"
           style={{
-            backgroundColor: "black",
+            backgroundColor: colors.darkGreen,
             borderRadius: "50%",
             width: 10,
             height: 10,
