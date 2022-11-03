@@ -22,6 +22,9 @@ import {
 } from "../../../__mocks__/mockResponse";
 import { TEST_ID } from "../../../src/utils/constants";
 import { createMatchMedia } from "../../../__mocks__/commonSteps";
+import { useRouter } from "next/router";
+import { setFilterData } from "../../../src/store/appointment";
+
 const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
 
 jest.mock("@react-google-maps/api", () => ({
@@ -45,6 +48,10 @@ jest.mock("@react-google-maps/api", () => ({
   },
 }));
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
 describe("App", () => {
   let container;
   const mock = new MockAdapter(axios);
@@ -53,6 +60,13 @@ describe("App", () => {
       getCurrentPosition: jest.fn(),
       watchPosition: jest.fn(),
     };
+    useRouter.mockReturnValue({
+      query: {
+        reschedule: false,
+      },
+      push: jest.fn(),
+    });
+
     useGeolocated.mockReturnValue({
       coords: { latitude: "123", longitude: "456" },
       isGeolocationEnabled: true,
@@ -230,4 +244,32 @@ describe("App", () => {
       )
     );
   }, 20000);
+
+  it.only("Handle filterSuggestionData purposeOfVisit", async () => {
+    cleanup();
+    const server = await getStaticProps();
+    await waitFor(() =>
+      useRouter.mockReturnValue({
+        query: {
+          reschedule: true,
+        },
+      })
+    );
+    store.dispatch(setFilterData({ location: "Kabupaten Bogor" }));
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+    await waitFor(() =>
+      container.getAllByLabelText("Navigate to next week option")
+    );
+    // const isApplied = await waitFor(
+    //   () => store.getState().appointment.isFilterApplied
+    // );
+
+    // console.log("isApplied", isApplied);
+  }, 10000000);
 });
