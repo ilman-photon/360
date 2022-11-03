@@ -37,6 +37,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
               return (
                 <li key={index}>
                   <Typography
+                    aria-label={item}
                     variant="body2"
                     className={index === splitedIndex ? styles.newColumn : ""}
                     tabIndex={0}
@@ -49,6 +50,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
               return (
                 <li key={index}>
                   <Typography
+                    aria-label={item}
                     variant="body2"
                     className={index === 2 ? styles.newColumn : ""}
                     tabIndex={0}
@@ -157,7 +159,11 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
               }
             >
               {idx === 0 && (
-                <Typography className={styles.addressTitle}>
+                <Typography
+                  tabIndex={0}
+                  aria-label={"Primary Address"}
+                  className={styles.addressTitle}
+                >
                   Primary Address
                 </Typography>
               )}
@@ -175,6 +181,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
                   href={`https://www.google.com/maps/search/?api=1&query=${addressQuery}`}
                   target="_blank"
                   rel="noopener"
+                  tabIndex={0}
                 >
                   Get directions
                 </Link>
@@ -340,7 +347,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
           </Box>
         )}
 
-        <Typography variant="h3" tabIndex={0}>
+        <Typography tabIndex={0} aria-label={"Languages heading"} variant="h3">
           Languages
         </Typography>
         <Typography variant="body2" tabIndex={0}>
@@ -354,12 +361,22 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
               }
             })}
         </Typography>
-        <Typography variant="h3" ref={insurancesRef} tabIndex={0}>
+        <Typography
+          variant="h3"
+          aria-label={"In-network insurances heading"}
+          ref={insurancesRef}
+          tabIndex={0}
+        >
           In-network insurances
         </Typography>
         {providerData.networkInsurance && renderInsurances()}
 
-        <Typography variant="h3" ref={educationRef} tabIndex={0}>
+        <Typography
+          variant="h3"
+          ref={educationRef}
+          tabIndex={0}
+          aria-label={"Education heading"}
+        >
           Education
         </Typography>
         <Box className={styles.educationContainer}>
@@ -373,7 +390,11 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             })}
         </Box>
 
-        <Typography variant="h3" tabIndex={0}>
+        <Typography
+          variant="h3"
+          tabIndex={0}
+          aria-label={"Memberships and Afilliations"}
+        >
           Memberships and Afilliations
         </Typography>
         <Box className={styles.educationContainer}>

@@ -165,7 +165,7 @@ defineFeature(feature, (test) => {
       case "appointment-one":
         return getAllByTextWithMarkup('You have an eye test appointment tomorrow.')
       case "test-result":
-        return getAllByTextWithMarkup("You lab test test results are available now.")
+        return getAllByTextWithMarkup("Your lab test results are available now.")
       case "appointment-summary":
         return getAllByTextWithMarkup("Your visit summary for your appointment on Tuesday, May 15 is available now.")
       case "prescription-refill":
