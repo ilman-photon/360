@@ -25,15 +25,6 @@ const pages = [
   { href: "/patient/appointments", label: "Appointments" },
 ];
 
-const pagesNext = [
-  {
-    href: "/patient/my-care-team",
-    additional: "/patient/bio/",
-    label: "My Care Team",
-  },
-  { href: "/patient/messaging", label: "Messaging" },
-];
-
 const documents = [
   {
     icon: iconintakeFoms,
@@ -71,31 +62,33 @@ const medical = [
 ];
 
 const Navbar = ({ isDashboard = false }) => {
-  const [anchorHealth, setAnchorHealth] = React.useState(null);
-  const [anchorDocument, setAnchorDocument] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const router = useRouter();
 
   const isCurrentPath = (href) => {
-    return (
-      router.pathname === href ||
-      (router.pathname.includes(href) && href !== "/patient")
-    );
+    return router.pathname === href;
   };
   (function prefetchPages() {
     if (typeof window !== "undefined") router.prefetch(router.pathname);
   })();
 
-  const handleOpenHealth = (event) => {
-    setAnchorHealth(event.currentTarget);
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
   };
-  const handleOpenDocument = (event) => {
-    setAnchorDocument(event.currentTarget);
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseMenu = (href) => {
-    setAnchorHealth(null);
-    setAnchorDocument(null);
+  const handleCloseNavMenu = (href) => {
+    setAnchorElNav(null);
+    if (typeof href === "string") router.push(href);
+  };
+
+  const handleCloseUserMenu = (href) => {
+    setAnchorElNav(null);
+    setAnchorElUser(null);
     if (typeof href === "string") router.push(href);
   };
 
@@ -103,7 +96,11 @@ const Navbar = ({ isDashboard = false }) => {
     return (
       <MenuItem
         key={itemIdx}
-        onClick={() => handleCloseMenu(item.href)}
+        onClick={() =>
+          item.href.includes("medical-record")
+            ? handleCloseNavMenu(item.href)
+            : handleCloseUserMenu(item.href)
+        }
         aria-label={`${item.label} menu`}
       >
         <Image alt="" src={item.icon} width={"16px"} height={"16px"} />
@@ -137,19 +134,7 @@ const Navbar = ({ isDashboard = false }) => {
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ minHeight: "43px !important" }}>
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "none", sm: "flex" },
-                justifyContent: {
-                  sm: "space-between",
-                  md: "normal",
-                },
-                gap: {
-                  md: "16px",
-                },
-              }}
-            >
+            <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
               {pages.map((page, pageIdx) => (
                 <Button
                   key={pageIdx}
@@ -172,12 +157,11 @@ const Navbar = ({ isDashboard = false }) => {
                   {page.label}
                 </Button>
               ))}
-
               <Box>
                 <Button
-                  key={"Health Chart"}
-                  onClick={handleOpenHealth}
-                  aria-label={`Health Chart menu`}
+                  key={"Medical Record"}
+                  onClick={handleOpenNavMenu}
+                  aria-label={`Medical Record menu`}
                   sx={{
                     my: 2,
                     color: "white",
@@ -196,12 +180,12 @@ const Navbar = ({ isDashboard = false }) => {
                   }}
                   endIcon={<ExpandMoreIcon />}
                 >
-                  Health Chart
+                  Medical Record
                 </Button>
                 <Menu
                   sx={{ mt: "40px" }}
                   id="menu-appbar"
-                  anchorEl={anchorHealth}
+                  anchorEl={anchorElNav}
                   anchorOrigin={{
                     vertical: "top",
                     horizontal: "right",
@@ -211,42 +195,17 @@ const Navbar = ({ isDashboard = false }) => {
                     vertical: "top",
                     horizontal: "right",
                   }}
-                  open={Boolean(anchorHealth)}
-                  onClose={handleCloseMenu}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}
                 >
                   {medical.map((med, medIdx) => MenuItemLabel(med, medIdx))}
                 </Menu>
               </Box>
-
-              {pagesNext.map((page, pageIdx) => (
-                <Button
-                  key={pageIdx}
-                  onClick={() => router.push(page.href)}
-                  aria-label={`${page.label} menu`}
-                  sx={{
-                    my: 2,
-                    color: "white",
-                    textTransform: "none",
-                    display: "block",
-                    margin: "0 !important",
-                    borderRadius: "2px 2px 0px 0px",
-                    borderTop: "solid 4px transparent",
-                    paddingBottom: "1px",
-                    borderBottom:
-                      isCurrentPath(page.href) || isCurrentPath(page.additional)
-                        ? "solid 4px #D9D9D9"
-                        : "solid 4px transparent",
-                  }}
-                >
-                  {page.label}
-                </Button>
-              ))}
-
               <Box>
                 <Button
                   key={"Documents"}
                   aria-label={`Documents menu`}
-                  onClick={handleOpenDocument}
+                  onClick={handleOpenUserMenu}
                   sx={{
                     my: 2,
                     color: "white",
@@ -267,7 +226,7 @@ const Navbar = ({ isDashboard = false }) => {
                 <Menu
                   sx={{ mt: "40px" }}
                   id="menu-appbar"
-                  anchorEl={anchorDocument}
+                  anchorEl={anchorElUser}
                   anchorOrigin={{
                     vertical: "top",
                     horizontal: "right",
@@ -277,8 +236,8 @@ const Navbar = ({ isDashboard = false }) => {
                     vertical: "top",
                     horizontal: "right",
                   }}
-                  open={Boolean(anchorDocument)}
-                  onClose={handleCloseMenu}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
                 >
                   {documents.map((doc, docIdx) => MenuItemLabel(doc, docIdx))}
                 </Menu>

@@ -13,8 +13,7 @@ export class Regex {
   static noSpecialRegex = /^[a-z0-9]+$/gi;
   static nameValidation = /^(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
   static isEmailCorrect = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i;
-  static emailValidation =
-    /^[\w%\+\-]+(\.[\w%\+\-]+)*@[\w%\+\-]+(\.[\w%\+\-]+)+$/;
+  static emailValidation = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
   static REGEX_PHONE_NUMBER = /^\d{10,}$/;
   static REGEX_PHONE_NUMBER_ONLY = /^\d{10,10}$/;
   static noWhitespaceRegex = /[^\s-]/;

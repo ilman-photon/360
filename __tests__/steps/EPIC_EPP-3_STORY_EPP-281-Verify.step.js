@@ -82,7 +82,7 @@ defineFeature(feature, (test) => {
         });
 
         and(/^user should fill valid (.*) field$/, async (arg0) => {
-          const passwordField = container.getByLabelText("passwordLabel");
+          const passwordField = container.getByLabelText(/passwordLabel/i);
           fireEvent.change(passwordField, { target: { value: "validPassword" } });
           expect(passwordField.value).toEqual("validPassword");
         });

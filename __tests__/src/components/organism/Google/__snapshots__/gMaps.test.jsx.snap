@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GMaps GMaps render 1`] = `
+<GoogleMap
+  center={
+    Object {
+      "lat": 41.881832,
+      "lng": -87.623177,
+    }
+  }
+  mapContainerStyle={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+  onClick={[Function]}
+  onLoad={[Function]}
+  zoom={6}
+/>
+`;

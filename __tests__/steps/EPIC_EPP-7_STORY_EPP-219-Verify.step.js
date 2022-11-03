@@ -79,7 +79,7 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       expect(usernameField.id).toEqual("username");
     });
 
@@ -177,12 +177,12 @@ defineFeature(feature, (test) => {
     when(
       'User should fill the valid "New Password" and "Confirm New Password" fields',
       () => {
-        const password = container.getByLabelText("New Password");
+        const password = container.getByLabelText("New Password *");
         fireEvent.change(password, { target: { value: "user123@A" } });
         expect(password.value).toEqual("user123@A");
 
         const confirmPassword = container.getByLabelText(
-          "Confirm New Password"
+          "Confirm New Password *"
         );
         fireEvent.change(confirmPassword, { target: { value: "user123@A" } });
         expect(confirmPassword.value).toEqual("user123@A");

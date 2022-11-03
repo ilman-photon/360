@@ -1,22 +1,13 @@
 import { Typography, Box, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
-import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 import { TEST_ID } from "../../../utils/constants";
-import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
-import { StyledButton } from "../../atoms/Button/button";
-import { formattedAddress } from "../../../utils/bioUtils";
 import ImageFallback from "../../atoms/Image/image";
+import { StyledButton } from "../../atoms/Button/button";
 
 const renderSpecialistList = (providerData) => {
   return (
-    <Box
-      sx={{
-        width: {
-          sm: "60%",
-        },
-      }}
-    >
+    <Box>
       <Typography
         variant="subtitle1"
         aria-label={"Specialties and Sub-specialties"}
@@ -55,28 +46,35 @@ export default function ProviderProfile({
   imageSize = "large",
   bioContainerClass = "",
   addressClass = "",
-  navigateToScheduleAppointment = () => {
-    //This is intentional
-  },
+  isCard = false,
 }) {
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
   const isMap = variant === "map";
-  const isMobile = useMediaQuery("(max-width: 600px)");
+  const isMobile = useMediaQuery("(max-width: 992px)");
 
   const router = useRouter();
+
+  const phoneNumber = providerData.phoneNumber;
 
   const getAddress = (address) => {
     const addressData = Array.isArray(address) ? address[0] : address;
     if (!addressData) return;
-    return formattedAddress(addressData);
-  };
-
-  const getAddressName = (address) => {
-    const addressData = Array.isArray(address) ? address[0] : address;
-    if (!addressData) return null;
-    return addressData.name;
+    return (
+      <>
+        {addressData.addressLine1}
+        <br />
+        {address.addressLine2 && (
+          <>
+            {address.addressLine2}
+            <br />
+          </>
+        )}
+        {addressData.city}, {addressData.state},{" "}
+        {addressData.zipcode || addressData.zip}
+      </>
+    );
   };
 
   function getNameFontSize() {
@@ -120,24 +118,6 @@ export default function ProviderProfile({
     return isNotBio ? "unset" : bioWidth;
   }
 
-  function renderRatingAndPhone() {
-    if (isShownPhoneAndRating) {
-      return (
-        <Box
-          className={isBio ? styles.ratingContainer : styles.phoneContainer}
-          sx={{ marginLeft: isMap ? "-67px" : "0" }}
-        >
-          {(isBio || isMap || (isViewSchedule && isShownRating)) && (
-            <StyledRating value={parseFloat(providerData.rating)} />
-          )}
-          <PhoneNumber phone={providerData.phoneNumber} />
-        </Box>
-      );
-    } else {
-      return null;
-    }
-  }
-
   return (
     <Box
       className={isBio ? styles.shortBio : styles.appointment}
@@ -179,22 +159,11 @@ export default function ProviderProfile({
           </Typography>
           {showPosition && (
             <Typography variant="h3" tabIndex={0}>
-              {getAddressName(providerData.address)}
+              Scripps Eyecare
             </Typography>
           )}
           <Box className={styles.detailContainer}>
-            <Box
-              sx={
-                isBio && {
-                  width: {
-                    sm: "40%",
-                  },
-                  maxWidth: {
-                    sm: "280px",
-                  },
-                }
-              }
-            >
+            <Box>
               <Box aria-label="Doctor Address">
                 <Typography
                   variant="body2"

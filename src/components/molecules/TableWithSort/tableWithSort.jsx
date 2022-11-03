@@ -513,6 +513,10 @@ export default function TableWithSort({
                                 {new moment(ref(row, cell.valueKey)).format(
                                   "MM/DD/YYYY"
                                 )}
+                                <br />
+                                {new moment(ref(row, cell.valueKey)).format(
+                                  "hh:mmA"
+                                )}
                               </div>
                             </TableCell>
                           );

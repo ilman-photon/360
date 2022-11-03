@@ -45,7 +45,7 @@
     .pageContainer {
       grid-column: span 5 / span 5;
       padding: 40px 24px;
-      height: calc(100vh - 64px - 80px);
+      // height: calc(100vh - 64px - 80px);
       overflow: auto;
       transition: max-height 0.5s ease-in-out;
 

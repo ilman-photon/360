@@ -128,7 +128,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment(container);
     });
 
     and(
@@ -175,7 +175,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment(container);
     });
 
     and(
@@ -222,7 +222,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment(container);
     });
 
     and(

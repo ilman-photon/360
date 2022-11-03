@@ -57,6 +57,8 @@ defineFeature(feature, (test) => {
     global.navigator.geolocation = mockGeolocation;
   });
 
+
+
   const resultsScreen = async () => {
     const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" };
     container.rerender(
@@ -82,363 +84,251 @@ defineFeature(feature, (test) => {
     ).toBeInTheDocument();
   };
 
-  test("EPIC_EPP-44_STORY_EPP-1595-To verify whether the user is allowed to change the Location in Appointment Review screen.", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", async () => {
+  test('EPIC_EPP-44_STORY_EPP-1595-To verify whether the user is allowed to change the Location in Appointment Review screen.', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', async () => {
       container = await renderLogin(container);
     });
 
-    when("user clicks on the Schedule Appointment button", async () => {
+    when('user clicks on the Schedule Appointment button', async () => {
       await doLogin(mock, container);
     });
 
-    and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+    and('user navigates to the schedule appointment screen', async () => {
+      container = await renderScheduleAppointment();
     });
 
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters(container);
-      }
-    );
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters(container);
+    });
 
-    and("click on Search button", () => {
+    and('click on Search button', () => {
       clickSearch(container);
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
-      async () => {
-        const filterResult = await waitFor(() =>
-          container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
-        );
-        expect(filterResult).toBeInTheDocument();
-      }
-    );
-
-    and("try to update the location if already provided", () => {
-      defaultValidation();
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      const filterResult = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))
+      expect(filterResult).toBeInTheDocument()
     });
 
-    then("user should allow to update the location.", () => {
-      defaultValidation();
+    and('try to update the location if already provided', () => {
+      defaultValidation()
+    });
+
+    then('user should allow to update the location.', () => {
+      defaultValidation()
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1595-Verify whethet the user is able to select the Location, if not selected in Previous page.", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", async () => {
+  test('EPIC_EPP-44_STORY_EPP-1595-Verify whethet the user is able to select the Location, if not selected in Previous page.', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', async () => {
       container = await renderLogin(container);
     });
 
-    when("user clicks on the Schedule Appointment button", async () => {
+    when('user clicks on the Schedule Appointment button', async () => {
       await doLogin(mock, container);
     });
 
-    and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+    and('user navigates to the schedule appointment screen', async () => {
+      container = await renderScheduleAppointment();
     });
 
-    and(
-      "user should select the Date of Appointment, Purpose of visit, Insurance carrier and without selecting location.",
-      () => {
-        defaultValidation();
-      }
-    );
+    and('user should select the Date of Appointment, Purpose of visit, Insurance carrier and without selecting location.', () => {
+      defaultValidation()
+    });
 
-    and("click on Search button", () => {
+    and('click on Search button', () => {
       clickSearch(container);
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with blank selected location, date, Purpose of visit and Insurance carrier data",
-      async () => {
-        const filterResult = await waitFor(() =>
-          container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
-        );
-        expect(filterResult).toBeInTheDocument();
-      }
-    );
-
-    and("try to add the location", () => {
-      defaultValidation();
+    and('user should lands on Schedule Appointment Review screen with blank selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      const filterResult = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))
+      expect(filterResult).toBeInTheDocument()
     });
 
-    then("user should allow to add the Location.", () => {
-      defaultValidation();
+    and('try to add the location', () => {
+      defaultValidation()
+    });
+
+    then('user should allow to add the Location.', () => {
+      defaultValidation()
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the already selected data are getting removed if we update the other Location if not supported.", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", async () => {
+  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the already selected data are getting removed if we update the other Location if not supported.', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', async () => {
       container = await renderLogin(container);
     });
 
-    when("user clicks on the Schedule Appointment button", async () => {
+    when('user clicks on the Schedule Appointment button', async () => {
       await doLogin(mock, container);
     });
 
-    and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+    and('user navigates to the schedule appointment screen', async () => {
+      container = await renderScheduleAppointment();
     });
 
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters(container);
-      }
-    );
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters(container);
+    });
 
-    and("click on Search button", () => {
+    and('click on Search button', () => {
       clickSearch(container);
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
-      async () => {
-        const filterResult = await waitFor(() =>
-          container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
-        );
-        expect(filterResult).toBeInTheDocument();
-      }
-    );
-
-    and("try to update the Location, which is not supported.", () => {
-      defaultValidation();
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      const filterResult = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))
+      expect(filterResult).toBeInTheDocument()
     });
 
-    then(
-      "already selected  Date of Appointment, Insurance carrier, purpose of visit should get removed.",
-      () => {
-        defaultValidation();
-      }
-    );
+    and('try to update the Location, which is not supported.', () => {
+      defaultValidation()
+    });
+
+    then('already selected  Date of Appointment, Insurance carrier, purpose of visit should get removed.', () => {
+      defaultValidation()
+    });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to review the Appointment details after updating the Location.", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", async () => {
+  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to review the Appointment details after updating the Location.', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', async () => {
       container = await renderLogin(container);
     });
 
-    when("user clicks on the Schedule Appointment button", async () => {
+    when('user clicks on the Schedule Appointment button', async () => {
       await doLogin(mock, container);
     });
 
-    and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+    and('user navigates to the schedule appointment screen', async () => {
+      container = await renderScheduleAppointment();
     });
 
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters(container);
-      }
-    );
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters(container);
+    });
 
-    and("click on Search button", () => {
+    and('click on Search button', () => {
       clickSearch(container);
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit andInsurance carrier data",
-      async () => {
-        const filterResult = await waitFor(() =>
-          container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
-        );
-        expect(filterResult).toBeInTheDocument();
-      }
-    );
-
-    and("try to update the Location if already provided", () => {
-      defaultValidation();
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit andInsurance carrier data', async () => {
+      const filterResult = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))
+      expect(filterResult).toBeInTheDocument()
     });
 
-    then(
-      "it should allow to review once again the changed Location in Appointment review screen.",
-      () => {
-        defaultValidation();
-      }
-    );
+    and('try to update the Location if already provided', () => {
+      defaultValidation()
+    });
+
+    then('it should allow to review once again the changed Location in Appointment review screen.', () => {
+      defaultValidation()
+    });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by City", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", async () => {
+  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by City', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', async () => {
       container = await renderLogin(container);
     });
 
-    when("user clicks on the Schedule Appointment button", async () => {
+    when('user clicks on the Schedule Appointment button', async () => {
       await doLogin(mock, container);
     });
 
-    and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+    and('user navigates to the schedule appointment screen', async () => {
+      container = await renderScheduleAppointment();
     });
 
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters(container);
-      }
-    );
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters(container);
+    });
 
-    and("click on Search button", () => {
+    and('click on Search button', () => {
       clickSearch(container);
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
-      async () => {
-        const filterResult = await waitFor(() =>
-          container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
-        );
-        expect(filterResult).toBeInTheDocument();
-      }
-    );
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      const filterResult = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))
+      expect(filterResult).toBeInTheDocument()
+    });
 
-    and(
-      "try to update the location using Search by City and select any other location.",
-      () => {
-        defaultValidation();
-      }
-    );
+    and('try to update the location using Search by City and select any other location.', () => {
+      defaultValidation()
+    });
 
-    then("user should allow to update the location.", () => {
-      defaultValidation();
+    then('user should allow to update the location.', () => {
+      defaultValidation()
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by State", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", async () => {
+  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by State', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', async () => {
       container = await renderLogin(container);
     });
 
-    when("user clicks on the Schedule Appointment button", async () => {
+    when('user clicks on the Schedule Appointment button', async () => {
       await doLogin(mock, container);
     });
 
-    and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+    and('user navigates to the schedule appointment screen', async () => {
+      container = await renderScheduleAppointment();
     });
 
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters(container);
-      }
-    );
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters(container);
+    });
 
-    and("click on Search button", () => {
+    and('click on Search button', () => {
       clickSearch(container);
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
-      async () => {
-        const filterResult = await waitFor(() =>
-          container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
-        );
-        expect(filterResult).toBeInTheDocument();
-      }
-    );
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      const filterResult = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))
+      expect(filterResult).toBeInTheDocument()
+    });
 
-    and(
-      "try to update the location using Search by State and select any other location.",
-      () => {
-        defaultValidation();
-      }
-    );
+    and('try to update the location using Search by State and select any other location.', () => {
+      defaultValidation()
+    });
 
-    then("user should allow to update the location.", () => {
-      defaultValidation();
+    then('user should allow to update the location.', () => {
+      defaultValidation()
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by Zipcode", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", async () => {
+  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by Zipcode', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', async () => {
       container = await renderLogin(container);
     });
 
-    when("user clicks on the Schedule Appointment button", async () => {
+    when('user clicks on the Schedule Appointment button', async () => {
       await doLogin(mock, container);
     });
 
-    and("user navigates to the schedule appointment screen", async () => {
-      container = await renderScheduleAppointment(mock);
+    and('user navigates to the schedule appointment screen', async () => {
+      container = await renderScheduleAppointment();
       expect(container.getByLabelText("Date")).toBeInTheDocument();
       expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(
-        container.getByLabelText("City, state, or zip code")
-      ).toBeInTheDocument();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
 
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters(container);
-      }
-    );
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters(container);
+    });
 
-    and("click on Search button", () => {
+    and('click on Search button', () => {
       clickSearch(container);
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
-      async () => {
-        const filterResult = await waitFor(() =>
-          container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
-        );
-        expect(filterResult).toBeInTheDocument();
-      }
-    );
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      const filterResult = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))
+      expect(filterResult).toBeInTheDocument()
+    });
 
-    and(
-      "try to update the location using Search by Zipcode and select any other location.",
-      () => {
-        expect(
-          container.getByLabelText("City, state, or zip code")
-        ).toBeInTheDocument();
-      }
-    );
+    and('try to update the location using Search by Zipcode and select any other location.', () => {
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+    });
 
-    then("user should allow to update the location.", () => {
-      expect(
-        container.getByLabelText("City, state, or zip code")
-      ).toBeInTheDocument();
+    then('user should allow to update the location.', () => {
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
   });
 });

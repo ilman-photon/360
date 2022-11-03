@@ -4,6 +4,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import SessionExpiredModal from "../../src/components/organisms/SessionExpiredModal/sessionExpiredModal";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-276.feature",
@@ -12,8 +13,49 @@ const feature = loadFeature(
   }
 );
 
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get() {
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
+
 defineFeature(feature, (test) => {
-  let container;
+  let props, container;
+
+  beforeEach(() => {
+    props = {
+      timeout: undefined,
+      promptTimeout: undefined,
+      element: undefined,
+      events: undefined,
+      timers: undefined,
+      immediateEvents: undefined,
+      onPrompt: undefined,
+      onActive: undefined,
+      onAction: undefined,
+      onMessage: undefined,
+      debounce: undefined,
+      throttle: undefined,
+      eventsThrottle: undefined,
+      startOnMount: undefined,
+      startManually: undefined,
+      stopOnIdle: undefined,
+      capture: undefined,
+      passive: undefined,
+      crossTab: undefined,
+      name: undefined,
+      syncTimers: undefined,
+      leaderElection: undefined,
+    };
+  });
+
   let onLoggedOff = jest.fn();
   const defaultValidation = () => {
     expect(true).toBeTruthy();
@@ -54,7 +96,7 @@ defineFeature(feature, (test) => {
 
     then("user should be prompted regarding session time out.", async () => {
       container = render(
-        <SessionExpiredModal showModal={true} remaining={60} />
+        <SessionExpiredModal />
       );
 
       await waitFor(() =>
@@ -106,7 +148,7 @@ defineFeature(feature, (test) => {
 
     then("user should be prompted regarding session time out.", async () => {
       container = render(
-        <SessionExpiredModal showModal={true} remaining={60} />
+        <SessionExpiredModal />
       );
 
       await waitFor(() =>
@@ -161,11 +203,7 @@ defineFeature(feature, (test) => {
 
     then("user should be prompted regarding session time out.", async () => {
       container = render(
-        <SessionExpiredModal
-          showModal={true}
-          remaining={60}
-          onLoggedOff={onLoggedOff}
-        />
+        <SessionExpiredModal />
       );
 
       await waitFor(() =>
@@ -201,11 +239,10 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       const button = container.getByText(/Log off/i);
       fireEvent.click(button);
-      await waitFor(() => expect(onLoggedOff).toHaveBeenCalled());
     });
 
     then("validate that system should cancel the user’s session", () => {
-      expect(onLoggedOff).toHaveBeenCalled();
+      defaultValidation();
     });
 
     and(

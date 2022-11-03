@@ -108,7 +108,11 @@ const ForgotPassword = ({
             ) : (
               <></>
             )}
-            <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              style={styles.form}
+              noValidate
+            >
               <Controller
                 name="username"
                 control={control}
@@ -143,6 +147,7 @@ const ForgotPassword = ({
                           fontSize: "12px",
                         },
                       }}
+                      required
                       error={!!error}
                       helperText={error ? error.message : null}
                     />
@@ -175,6 +180,11 @@ const ForgotPassword = ({
                     : t("backButtonLink") + " Link"
                 }
                 data-testid={FORGOT_TEST_ID.loginLink}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    onBackToLoginClicked(router);
+                  }
+                }}
                 onClick={function () {
                   onBackToLoginClicked(router);
                 }}

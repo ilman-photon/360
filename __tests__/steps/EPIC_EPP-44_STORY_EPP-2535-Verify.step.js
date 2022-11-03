@@ -71,7 +71,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -124,7 +124,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -175,7 +175,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -226,7 +226,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -277,7 +277,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -335,7 +335,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -397,7 +397,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -463,7 +463,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -533,7 +533,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -607,7 +607,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -653,7 +653,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -699,7 +699,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -819,7 +819,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -918,7 +918,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -1021,7 +1021,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -1124,7 +1124,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -1249,7 +1249,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -1373,7 +1373,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(

@@ -3,8 +3,6 @@ import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
 
 const constants = require("../../../utils/constants");
 
@@ -12,11 +10,6 @@ export default function CustomModal({
   children,
   buttonText,
   onClickButton,
-  secondaryButtonText,
-  onClickSecondaryButton,
-  onClickCloseButton,
-  ariaLabelledBy = "",
-  ariaDescribedBy = "",
   open,
   sx,
 }) {
@@ -24,11 +17,11 @@ export default function CustomModal({
     <Dialog
       open={open}
       data-testid={"customModal"}
-      aria-labelledby={ariaLabelledBy}
-      aria-describedby={ariaDescribedBy}
+      aria-labelledby="no-inernet-dialog-title"
+      aria-describedby="no-inernet-dialog-description"
       sx={{
         ".MuiPaper-root": {
-          width: { xs: "auto", sm: "500px", md: "637px" },
+          width: { xs: "auto", sm: "500px" },
           borderRadius: "8px",
           "& .MuiDialogContent-root": {
             padding: "18px",
@@ -38,39 +31,8 @@ export default function CustomModal({
       }}
     >
       <DialogContent>
-        {onClickCloseButton && (
-          <IconButton
-            onClick={onClickCloseButton}
-            sx={{
-              position: "absolute",
-              right: "14px",
-              top: "14px",
-              padding: 0,
-            }}
-          >
-            <CloseIcon
-              sx={{
-                width: "24px",
-                height: "24px",
-                color: "#000000",
-              }}
-            ></CloseIcon>
-          </IconButton>
-        )}
         <Box>{children}</Box>
         <Box className={styles.buttonContainer}>
-          {onClickSecondaryButton && (
-            <StyledButton
-              theme={constants.PATIENT}
-              mode={constants.SECONDARY}
-              type="button"
-              size={constants.SMALL}
-              gradient={false}
-              onClick={onClickSecondaryButton}
-            >
-              {secondaryButtonText}
-            </StyledButton>
-          )}
           <StyledButton
             theme={constants.PATIENT}
             mode={constants.PRIMARY}

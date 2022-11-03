@@ -80,12 +80,7 @@ export default function MenuList({
 
   return (
     <div>
-      <Box
-        aria-label="More option"
-        onClick={handleClick}
-        tabIndex={0}
-        data-testId="more-option-test"
-      >
+      <Box aria-label="More option" onClick={handleClick} tabIndex={0}>
         <MoreHorizIcon
           id="demo-customized-button"
           aria-controls={open ? "demo-customized-menu" : undefined}
@@ -105,7 +100,6 @@ export default function MenuList({
         id="demo-customized-menu"
         MenuListProps={{
           "aria-labelledby": "demo-customized-button",
-          "data-testId": "menu-list-test",
         }}
         anchorEl={anchorEl}
         open={open}
@@ -119,7 +113,6 @@ export default function MenuList({
             onClickDownloadButton();
             handleClose();
           }}
-          data-testId="menu-download-test"
         >
           <Box className={"MuiSvgIcon-root"}>
             <Image alt="" src={iconDownload} width={15} height={15} />
@@ -132,7 +125,6 @@ export default function MenuList({
             handleClose();
           }}
           className={styles.menuItem}
-          data-testId="menu-share-test"
           disableRipple
         >
           <Box className={"MuiSvgIcon-root"}>
@@ -145,7 +137,6 @@ export default function MenuList({
             onClickPrintButton();
             handleClose();
           }}
-          data-testId="menu-print-test"
           className={styles.menuItem}
           disableRipple
         >

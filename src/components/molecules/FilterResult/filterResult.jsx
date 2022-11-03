@@ -73,7 +73,7 @@ export const FilterResult = ({
 
   function renderItemResult() {
     const indents = [];
-    for (let i = 0; i < providerList?.length; i++) {
+    for (let i = 0; i < providerList.length; i++) {
       indents.push(
         <Box key={i}>
           <ItemResult
@@ -160,6 +160,7 @@ export const FilterResult = ({
                 if (isLoading) {
                   return;
                 }
+
                 if (
                   !isPrevArrowDisable(
                     dateList,
@@ -184,7 +185,6 @@ export const FilterResult = ({
                 color: "#003b4a",
               }}
               aria-label={"Navigate to previous week option"}
-              data-testId="filter-result-arrow-button-prev"
             >
               <ArrowBackIosIcon
                 sx={{
@@ -228,11 +228,11 @@ export const FilterResult = ({
             </Box>
             <Button
               role={"button"}
-              data-testId="filter-result-arrow-button-next"
               onClick={() => {
                 if (isLoading) {
                   return;
                 }
+
                 if (currentDateIndex >= 5) {
                   const date = new Date(dateList.dateRange[5]);
                   date.setDate(date.getDate() + 7);

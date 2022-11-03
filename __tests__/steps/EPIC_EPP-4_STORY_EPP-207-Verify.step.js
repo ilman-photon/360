@@ -80,8 +80,8 @@ defineFeature(feature, (test) => {
     and(
       'user provides valid "<Email or Phone Number>" and valid "<password>"',
       () => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
         expect(usernameField.value).not.toEqual("validUsername");
@@ -132,8 +132,8 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
     and('user provides valid "<Email>" and valid"<password>"', () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(usernameField.value).not.toEqual("validUsername");
@@ -186,8 +186,8 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
