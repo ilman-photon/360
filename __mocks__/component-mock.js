@@ -9,9 +9,11 @@ export const mockGoogleWindow = (mockData = mockDistance) => {
   window.google = {
     maps: {
       DistanceMatrixService: jest.fn().mockReturnValue({
-        getDistanceMatrix: (config, callback) => {
-          callback && callback(mockData, "OK");
-        },
+        getDistanceMatrixawait: { data: "test" },
+        // getDistanceMatrix: (config, callback) => {
+        //   callback && callback(mockData, "OK");
+        // },
+        getDistanceMatrix: jest.fn().mockReturnValue(mockDistance)
       }),
       UnitSystem: { METRIC: 1, IMPERIAL: 0.0 },
       LatLngBounds: jest.fn().mockReturnValue({
@@ -344,7 +346,7 @@ jest.mock("react-geocode", () => ({
     status: "OK",
   }),
   fromAddress: jest.fn().mockResolvedValue({
-    result: [
+    results: [
       {
         geometry: {
           location: {
