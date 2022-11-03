@@ -30,7 +30,6 @@ export const colors = {
   primaryButton: "#007e8f",
   link: "#008294",
   iconGrey: "#757575",
-  dark1: "#d4d4d4",
   grayscaleBlack: "#292929",
 };
 
@@ -243,13 +242,6 @@ export const patientTypography = createTheme({
       color: colors.foundationBlue,
       fontWeight: "500",
       fontSize: 16,
-    },
-    headlineH3: {
-      fontamily: "Bw Nista Geometric DEMO",
-      fontStyle: "normal",
-      fontWeight: 400,
-      fontSize: "26px",
-      lineHeight: "32px",
     },
     headlineH4: {
       fontFamily: "Bw Nista Geometric DEMO",

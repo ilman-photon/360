@@ -4,18 +4,12 @@
   margin-left: 12vw;
   padding: 16px 0 32px 0;
 
-  @media (max-width: 600px) {
+  @media (max-width: 992px) {
     width: auto;
     max-width: 552px;
     flex-direction: column;
     margin: unset;
     padding: 16px 16px 0;
-  }
-
-  @media (min-width: 600px) and (max-width: 1200px) {
-    width: auto;
-    margin-left: 16px;
-    max-width: unset;
   }
 }
 
@@ -30,21 +24,17 @@
   letter-spacing: 0.0016em;
   width: 362px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 992px) {
     width: auto;
     font-size: 14px !important;
-  }
-
-  @media (min-width: 600px) and (max-width: 1200px) {
-    width: auto;
   }
 }
 
 .specialistTitle {
   font-weight: 700 !important;
   font-size: 16px !important;
-  width: auto;
-  @media (max-width: 600px) {
+  min-width: 250px;
+  @media (max-width: 992px) {
     margin-bottom: 12px;
     margin-top: 8px;
   }
@@ -76,19 +66,16 @@
   margin-left: 12px;
   margin-right: 25px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 992px) {
     width: auto;
     margin-right: unset;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
   }
 }
 
 .shortBio h2 {
+  font-family: "Inter", sans-serif;
   font-style: normal;
-  font-size: 32px;
-  @media (max-width: 600px) {
+  @media (max-width: 992px) {
     font-weight: 700;
     font-size: 18px;
     line-height: 28px;
@@ -142,10 +129,7 @@
 
 .ratingContainer {
   margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  @media (max-width: 1024px) {
+  @media (max-width: 992px) {
     margin-top: 12px;
   }
 }
@@ -157,7 +141,7 @@
 .specialistList > li > p {
   width: 200px;
   line-height: 24px;
-  @media (max-width: 600px) {
+  @media (max-width: 992px) {
     width: unset;
   }
 }
@@ -174,16 +158,16 @@
 .detailContainer {
   display: flex;
   margin-top: 10px;
-  @media (max-width: 600px) {
+  @media (max-width: 992px) {
     flex-direction: column;
-    flex: 1;
+    width: 198px;
   }
 }
 
 .imageContainer {
-  width: 90px;
+  width: 100px;
   margin-right: 10px;
-  @media (max-width: 600px) {
+  @media (max-width: 992px) {
     width: 70px;
   }
 }

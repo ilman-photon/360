@@ -57,7 +57,7 @@ export default function PrescriptionMedication({
   const isMobile = useMediaQuery("(max-width: 768px)");
   const iconMedication = "/icon-medication.png";
 
-  const downloadPDF = (medicationType, index) => {
+  const downloadPDF = (medicationType, index = -1) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -82,7 +82,7 @@ export default function PrescriptionMedication({
     );
   };
 
-  const printHTML = (medicationType, index) => {
+  const printHTML = (medicationType, index = -1) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -94,14 +94,14 @@ export default function PrescriptionMedication({
         `[data-testid=medication-${medicationType}-container-${index}]`
       ) || document.body;
     const headStyles = Array.from(document.head.querySelectorAll("style"));
-    const WinPrint = window.open(
+    let WinPrint = window.open(
       "",
       "",
       "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
     );
     WinPrint?.document?.write(element.innerHTML);
     headStyles.forEach((st) => {
-      WinPrint?.document.head.appendChild(st.cloneNode(true));
+      WinPrint.document.head.appendChild(st.cloneNode(true));
     });
     WinPrint?.document?.close();
     WinPrint?.focus();
@@ -511,7 +511,6 @@ export default function PrescriptionMedication({
                 mode={constants.SECONDARY}
                 onClick={() => onRequestCancelRefill(data, true)}
                 className={styles.requestButton}
-                data-testid={"cancel-refill-button"}
               >
                 Cancel Refill Request
               </StyledButton>

@@ -39,7 +39,8 @@ export default function ContactInformation({
   },
 }) {
   const { handleSubmit, control, watch, reset, setValue } = useForm({
-    defaultValues: userData,
+    // defaultValues: DEFAULT_CONTACT_INFO,
+    defaultValues: userData, // Object.assign({}, userData),
   });
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -85,6 +86,8 @@ export default function ContactInformation({
   const onSubmit = (data) => {
     OnSaveClicked(data);
   };
+
+  const buttonWidth = isDesktop ? {} : { width: "100%" };
 
   // GAPI autocomplete
   const { placesService, placePredictions, getPlacePredictions } =
@@ -161,10 +164,6 @@ export default function ContactInformation({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(placePredictions)]);
 
-  const showOrReturnEmpty = (data) => {
-    return data || "-";
-  };
-
   const accountCardActionContent = () => {
     return isDesktop ? (
       <Button
@@ -222,39 +221,36 @@ export default function ContactInformation({
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
-            <div tabIndex={0} aria-label={showOrReturnEmpty(userData.email)}>
-              {showOrReturnEmpty(userData.email)}
+            <div tabIndex={0} aria-label={userData.email || "-"}>
+              {userData.email || "-"}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Address" label="Address">
-            <div tabIndex={0} aria-label={showOrReturnEmpty(userData.address)}>
-              {showOrReturnEmpty(userData.address)}
+            <div tabIndex={0} aria-label={userData.address || "-"}>
+              {userData.address || "-"}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="City" label="City">
-            <div tabIndex={0} aria-label={showOrReturnEmpty(userData.city)}>
-              {showOrReturnEmpty(userData.city)}
+            <div tabIndex={0} aria-label={userData.city || "-"}>
+              {userData.city || "-"}
             </div>
           </LabelWithInfo>
 
           <Grid container>
             <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo tabIndex={0} ariaLabel="State" label="State">
-                <div
-                  tabIndex={0}
-                  aria-label={showOrReturnEmpty(userData.state)}
-                >
-                  {showOrReturnEmpty(userData.state)}
+                <div tabIndex={0} aria-label={userData.state || "-"}>
+                  {userData.state || "-"}
                 </div>
               </LabelWithInfo>
             </Grid>
 
             <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo label="Zip" tabIndex={0} ariaLabel="Zip">
-                <div tabIndex={0} aria-label={showOrReturnEmpty(userData.zip)}>
-                  {showOrReturnEmpty(userData.zip)}
+                <div tabIndex={0} aria-label={userData.zip || "-"}>
+                  {userData.zip || "-"}
                 </div>
               </LabelWithInfo>
             </Grid>
@@ -271,12 +267,12 @@ export default function ContactInformation({
                 aria-label={
                   userData.preferredCommunication === "both"
                     ? "Mobile, Email"
-                    : showOrReturnEmpty(userData.preferredCommunication)
+                    : userData.preferredCommunication || "-"
                 }
               >
                 {userData.preferredCommunication === "both"
                   ? "Mobile, Email"
-                  : showOrReturnEmpty(userData.preferredCommunication)}
+                  : userData.preferredCommunication || "-"}
               </div>
             </span>
           </LabelWithInfo>
@@ -478,7 +474,7 @@ export default function ContactInformation({
             />
 
             <Grid container columnSpacing={2}>
-              <Grid item xs={5.5} md={7} style={{ paddingLeft: 0 }}>
+              <Grid item xs={isDesktop ? 7 : 5.5} style={{ paddingLeft: 0 }}>
                 <Controller
                   name="state"
                   control={control}
@@ -518,7 +514,7 @@ export default function ContactInformation({
                 />
               </Grid>
 
-              <Grid item xs={6} md={4} p={0}>
+              <Grid item xs={isDesktop ? 4.5 : 6} p={0}>
                 <Controller
                   name="zip"
                   control={control}
@@ -600,7 +596,7 @@ export default function ContactInformation({
           </Stack>
           <Stack
             direction="row"
-            justifyContent={{ xs: "space-between", md: "flex-end" }}
+            justifyContent={isDesktop ? "flex-end" : "space-between"}
             spacing={2}
             sx={{ p: 2, mt: 2 }}
           >

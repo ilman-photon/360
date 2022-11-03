@@ -2,16 +2,14 @@
   max-width: 942px;
   margin-left: 12vw;
   padding-bottom: 80px;
-  @media (max-width: 1024px) {
+  @media (max-width: 992px) {
     width: 100vw;
-    margin-left: unset;
-  }
-  @media (max-width: 600px) {
     margin-left: unset;
   }
 }
 
 .detailedBio > div > h3 {
+  font-family: "Inter", sans-serif;
   font-style: normal;
   font-size: 26px;
   font-weight: 500;
@@ -39,16 +37,10 @@
   margin-left: -12vw;
   padding-left: 12vw;
 
-  @media (max-width: 1024px) {
-    margin-left: 24px;
-    margin-right: 24px;
+  @media (max-width: 992px) {
+    margin-left: unset;
     padding-left: unset;
     max-width: unset;
-    width: unset;
-  }
-
-  @media (max-width: 600px) {
-    margin-left: unset;
     width: 100vw;
   }
 }
@@ -56,9 +48,6 @@
 .menu hr {
   width: 942px;
   @media (max-width: 992px) {
-    width: 100%;
-  }
-  @media (max-width: 600px) {
     width: 100vw;
   }
 }
@@ -145,12 +134,8 @@
   @media (max-width: 992px) {
     gap: 44px;
     display: flex;
-  }
-
-  @media (max-width: 600px) {
     justify-content: center;
   }
-
   @media (max-width: 360px) {
     gap: 22px;
     display: flex;
@@ -192,7 +177,7 @@
 
 .mapContainer {
   display: flex;
-  @media (max-width: 600px) {
+  @media (max-width: 992px) {
     margin-top: 8px !important;
     display: flex;
     flex-direction: column;
@@ -200,32 +185,27 @@
 }
 
 .map {
-  width: 516px;
-  height: auto;
-  min-height: 472px;
+  width: 471px;
+  min-height: 320px;
   background-color: skyblue;
-
-  @media (max-width: 600px) {
+  @media (max-width: 556px) {
     width: 100%;
-    height: 222px;
-    min-height: unset;
+    height: 128px;
     margin-bottom: 8px;
   }
-  @media (min-width: 601px) and (max-width: 1024px) {
-    width: 496px;
-    min-height: 320px;
+  @media (max-width: 992px) {
+    width: 100%;
+    height: 256px;
+    margin-bottom: 8px;
   }
 }
 
 .mapAddressContainer {
   margin-left: 24px;
-  max-width: 315px;
-  flex: 1;
-  @media (max-width: 600px) {
+  width: 315px;
+  @media (max-width: 992px) {
     margin-left: unset;
     width: unset;
-    margin-top: 18px;
-    padding-top: 18px;
   }
 }
 
@@ -240,10 +220,13 @@
   align-items: center;
   gap: 9px;
   margin-top: 8px;
+  @media (max-width: 992px) {
+    justify-content: center;
+  }
 }
 
 .getDirectionLink {
-  font-family: "Libre Franklin", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -255,11 +238,8 @@
 }
 
 .detailedBioContainer {
-  @media (max-width: 600px) {
+  @media (max-width: 992px) {
     margin: 0 16px;
-  }
-  @media (min-width: 600px) and (max-width: 1024px) {
-    margin: 0 24px;
   }
 }
 
@@ -282,11 +262,4 @@
   font-size: 16px !important;
   line-height: 24px !important;
   letter-spacing: 0.0016em !important;
-}
-
-.addressWrapper {
-  flex: 1;
-  @media (max-width: 600px) {
-    margin-top: -24px;
-  }
 }

@@ -402,7 +402,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
@@ -462,7 +462,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on to the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     when(
@@ -528,15 +528,13 @@ defineFeature(feature, (test) => {
 
     then("User lands on to the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and(
       "user should see the current location as default, if location is enabled.",
       async () => {
-        expect(
-          container.getByLabelText("City, state, or zip code")
-        ).toBeInTheDocument();
+        expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
       }
     );
   });
@@ -585,7 +583,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on to the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and("search the location using City option", async () => {
@@ -595,9 +593,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the list of locations based upon City.", () => {
-      expect(
-        container.getByLabelText("City, state, or zip code")
-      ).toBeInTheDocument();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
   });
 
@@ -645,7 +641,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on to the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and("search the location using State option.", async () => {
@@ -655,9 +651,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the list of locations based upon State.", () => {
-      expect(
-        container.getByLabelText("City, state, or zip code")
-      ).toBeInTheDocument();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
   });
 
@@ -705,7 +699,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and("search the location using the Zipcode option.", async () => {
@@ -717,9 +711,7 @@ defineFeature(feature, (test) => {
     then(
       "the user should see the list of locations based upon Zipcode.",
       () => {
-        expect(
-          container.getByLabelText("City, state, or zip code")
-        ).toBeInTheDocument();
+        expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
       }
     );
   });
@@ -768,21 +760,17 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and("click the option such as use my current location link", () => {
-      expect(
-        container.getByLabelText("City, state, or zip code")
-      ).toBeInTheDocument();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
 
     then(
       "the user sees the his/her current location in location field.",
       () => {
-        expect(
-          container.getByLabelText("City, state, or zip code")
-        ).toBeInTheDocument();
+        expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
       }
     );
   });
@@ -831,7 +819,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     then(
@@ -887,7 +875,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     then(
@@ -943,13 +931,11 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment(mock);
+      container = await renderScheduleAppointment();
     });
 
     and("the user should select the location", () => {
-      expect(
-        container.getByLabelText("City, state, or zip code")
-      ).toBeInTheDocument();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
 
     and("the user should select the Date of Appointment", () => {
@@ -968,11 +954,11 @@ defineFeature(feature, (test) => {
     });
 
     and("click on the Search button", async () => {
-      cleanup();
+      cleanup()
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
+        watchPosition: jest.fn()
       };
 
       const domain = window.location.origin;
@@ -996,9 +982,7 @@ defineFeature(feature, (test) => {
       expect(insuranceField).toBeInTheDocument();
       expect(pusposeField).toBeInTheDocument();
       expect(dateField).toBeInTheDocument();
-      expect(
-        container.getByLabelText("City, state, or zip code")
-      ).toBeInTheDocument();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
   });
 });

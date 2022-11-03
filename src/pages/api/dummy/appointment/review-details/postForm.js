@@ -17,7 +17,7 @@ export default function postForm(req, res) {
       dob: "12/12/2022",
       phoneNumber: "1234567890",
       communicationPreference: "Both",
-      // password: "Password@123",
+      password: "Password@123",
     },
   };
   if (req.method === "GET") {

@@ -6,7 +6,6 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
 import Bio, { getServerSideProps } from "../../src/pages/patient/bio/[bio]";
 import store from "../../src/store/store";
-import { Marker, useLoadScript } from "@react-google-maps/api";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 
@@ -16,15 +15,6 @@ const feature = loadFeature(
     tagFilter: "@included and not @excluded",
   }
 );
-
-jest.mock("@react-google-maps/api", () => ({
-  useLoadScript: () => ({
-    isLoaded: true,
-    loadError: null
-  }),
-  GoogleMap: () => <div></div>,
-  Marker: () => <Marker />
-}));
 
 defineFeature(feature, (test) => {
   let container;
@@ -97,30 +87,9 @@ defineFeature(feature, (test) => {
         }
       }
     },
-    "networkInsurance": [
-      "insurance1",
-      "insurance2",
-      "insurance3",
-      "insurance4",
-      "insurance5",
-      "insurance6",
-      "insurance7",
-      "insurance8",
-      "insurance9",
-      "insurance10",
-      "insurance111",
-    ],
     "offices": [
       {
         "name": "Ballwin",
-        "addressLine1": "568 Allens Mill Rd",
-        "city": "Yorktown",
-        "state": "VA",
-        "zip": "23692",
-        "_id": "4cd970a0-8529-4b44-a4c5-99c9f4e8d078"
-      },
-      {
-        "name": "Ballwin 2",
         "addressLine1": "568 Allens Mill Rd",
         "city": "Yorktown",
         "state": "VA",
@@ -143,21 +112,6 @@ defineFeature(feature, (test) => {
     },
     "presignedUrl": "https://dgassets-bucket1.s3.amazonaws.com/1ffaf737-57ac-4660-8a32-f0650e2285ae?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221003T051746Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Credential=AKIAQ2MAPFH4C64PCZO6%2F20221003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=80e799bb9072758f67f3abd71e3ae8d8f8248cf8378fd7412d1e725cf4f88c96",
   }
-
-  const imageMockUndefined = `{"_errors":[{"code":"","severity":"HIGH","description":"Invalid UUID : {}"}]}`
-
-  const map = {
-    status: "OK",
-    results: [{
-      geometry: {
-        location: {
-          lat: "31.000000",
-          lng: "-100.000000"
-        }
-      }
-    }]
-  }
-
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
@@ -237,23 +191,11 @@ defineFeature(feature, (test) => {
           `/ecp/digital-asset/v1/asset/d72b0b16-99ab-4ae4-aba3-13b81930b68a`
         )
         .reply(200, imageMock);
-
-      mock
-        .onGet(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=568+Allens+Mill+Rd++Yorktown+VA+23692&key=undefined`
-        )
-        .reply(200, map);
-
       const contex = {
         query: {
           bio: "56bafbaf-6bc6-47d2-b3ab-5cee17cf7e30"
         }
       }
-
-      const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "123"
-      });
-
       await getServerSideProps(contex);
       act(() => {
         container = render(
@@ -263,10 +205,6 @@ defineFeature(feature, (test) => {
 
       await waitFor(() => {
         container.getByTestId(TEST_ID.about);
-      });
-
-      await waitFor(() => {
-        container.getByText(/Primary Address/i);
       });
     });
   });
@@ -334,22 +272,12 @@ defineFeature(feature, (test) => {
         .onGet(
           `/ecp/digital-asset/v1/asset/d72b0b16-99ab-4ae4-aba3-13b81930b68a`
         )
-        .reply(400, imageMockUndefined);
-      mock
-        .onGet(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=568+Allens+Mill+Rd++Yorktown+VA+23692&key=undefined`
-        )
-        .reply(200, map);
+        .reply(200, imageMock);
       const contex = {
         query: {
           bio: "56bafbaf-6bc6-47d2-b3ab-5cee17cf7e30"
         }
       }
-
-      const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "123"
-      });
-
       await getServerSideProps(contex);
       act(() => {
         container = render(
@@ -360,11 +288,6 @@ defineFeature(feature, (test) => {
       await waitFor(() => {
         container.getByTestId(TEST_ID.about);
       });
-
-      await waitFor(() => {
-        container.getByText(/Primary Address/i);
-      });
-
       expect(container.getByTestId(TEST_ID.about)).toBeInTheDocument();
       expect(container.getByTestId(TEST_ID.location)).toBeInTheDocument();
       expect(container.getByTestId(TEST_ID.insurance)).toBeInTheDocument();
@@ -461,22 +384,11 @@ defineFeature(feature, (test) => {
           `/ecp/digital-asset/v1/asset/d72b0b16-99ab-4ae4-aba3-13b81930b68a`
         )
         .reply(200, imageMock);
-
-      mock
-        .onGet(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=568+Allens+Mill+Rd++Yorktown+VA+23692&key=undefined`
-        )
-        .reply(200, map);
       const contex = {
         query: {
           bio: "56bafbaf-6bc6-47d2-b3ab-5cee17cf7e30"
         }
       }
-
-      const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "123"
-      });
-
       await getServerSideProps(contex);
       act(() => {
         container = render(
@@ -486,10 +398,6 @@ defineFeature(feature, (test) => {
 
       await waitFor(() => {
         container.getByTestId(TEST_ID.about);
-      });
-
-      await waitFor(() => {
-        container.getByText(/Primary Address/i);
       });
 
       const providerName = await container.getByText(/About PortalTesting PHOTON, MD/i);
@@ -561,23 +469,11 @@ defineFeature(feature, (test) => {
           `/ecp/digital-asset/v1/asset/d72b0b16-99ab-4ae4-aba3-13b81930b68a`
         )
         .reply(200, imageMock);
-
-      mock
-        .onGet(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=568+Allens+Mill+Rd++Yorktown+VA+23692&key=undefined`
-        )
-        .reply(200, map);
-
       const contex = {
         query: {
           bio: "56bafbaf-6bc6-47d2-b3ab-5cee17cf7e30"
         }
       }
-
-      const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "123"
-      });
-
       await getServerSideProps(contex);
       act(() => {
         container = render(
@@ -587,10 +483,6 @@ defineFeature(feature, (test) => {
 
       await waitFor(() => {
         container.getByTestId(TEST_ID.about);
-      });
-
-      await waitFor(() => {
-        container.getByText(/Primary Address/i);
       });
 
       const data = await container.getByText(/Specialties/i);
@@ -662,23 +554,11 @@ defineFeature(feature, (test) => {
           `/ecp/digital-asset/v1/asset/d72b0b16-99ab-4ae4-aba3-13b81930b68a`
         )
         .reply(200, imageMock);
-
-      mock
-        .onGet(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=568+Allens+Mill+Rd++Yorktown+VA+23692&key=undefined`
-        )
-        .reply(200, map);
-
       const contex = {
         query: {
           bio: "56bafbaf-6bc6-47d2-b3ab-5cee17cf7e30"
         }
       }
-
-      const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "123"
-      });
-
       await getServerSideProps(contex);
       act(() => {
         container = render(
@@ -688,10 +568,6 @@ defineFeature(feature, (test) => {
 
       await waitFor(() => {
         container.getByTestId(TEST_ID.about);
-      });
-
-      await waitFor(() => {
-        container.getByText(/Primary Address/i);
       });
 
       const data = await container.getByText(/Gender/i);
@@ -763,23 +639,11 @@ defineFeature(feature, (test) => {
           `/ecp/digital-asset/v1/asset/d72b0b16-99ab-4ae4-aba3-13b81930b68a`
         )
         .reply(200, imageMock);
-
-      mock
-        .onGet(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=568+Allens+Mill+Rd++Yorktown+VA+23692&key=undefined`
-        )
-        .reply(200, map);
-
       const contex = {
         query: {
           bio: "56bafbaf-6bc6-47d2-b3ab-5cee17cf7e30"
         }
       }
-
-      const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "123"
-      });
-
       await getServerSideProps(contex);
       act(() => {
         container = render(
@@ -789,10 +653,6 @@ defineFeature(feature, (test) => {
 
       await waitFor(() => {
         container.getByTestId(TEST_ID.about);
-      });
-
-      await waitFor(() => {
-        container.getByText(/Primary Address/i);
       });
 
       const data = await container.getByText(/Languages/i);
@@ -864,22 +724,11 @@ defineFeature(feature, (test) => {
           `/ecp/digital-asset/v1/asset/d72b0b16-99ab-4ae4-aba3-13b81930b68a`
         )
         .reply(200, imageMock);
-      mock
-        .onGet(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=568+Allens+Mill+Rd++Yorktown+VA+23692&key=undefined`
-        )
-        .reply(200, map);
-        
       const contex = {
         query: {
           bio: "56bafbaf-6bc6-47d2-b3ab-5cee17cf7e30"
         }
       }
-
-      const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "123"
-      });
-
       await getServerSideProps(contex);
       act(() => {
         container = render(
@@ -889,10 +738,6 @@ defineFeature(feature, (test) => {
 
       await waitFor(() => {
         container.getByTestId(TEST_ID.about);
-      });
-
-      await waitFor(() => {
-        container.getByText(/Primary Address/i);
       });
 
       const providerInsurance = await container.getAllByText(/In-network insurances/i);

@@ -136,7 +136,7 @@ export default function ProfileInformationPage({
           borderRadius: "0px",
           justifyContent: "center",
           position: "absolute",
-          top: "-48px",
+          top: "-44px",
           left: 0,
           width: "100%",
           transition: "0.3 s ease-in-out",

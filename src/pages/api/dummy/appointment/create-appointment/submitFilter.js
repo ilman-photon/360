@@ -474,8 +474,8 @@ export default function submitFilter(req, res) {
   } else if (req.method === "POST") {
     const time = new moment(reqDate).day(1).toDate().getTime();
 
-    const days = (i, t) => {
-      return new Date(t + i * 60 * 60 * 24 * 1000);
+    const days = (i, time) => {
+      return new Date(time + i * 60 * 60 * 24 * 1000);
     };
     const from = new moment(days(1, time)).format("YYYY-MM-DD");
     const day2 = new moment(days(2, time)).format("YYYY-MM-DD");

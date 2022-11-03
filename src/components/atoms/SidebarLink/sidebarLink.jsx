@@ -16,7 +16,14 @@ const SidebarLink = ({ router, href, isLeftSideBar = false, children }) => {
   })();
 
   return (
-    <Stack flexDirection="row" alignItems="center">
+    <Stack
+      flexDirection="row"
+      alignItems="center"
+      sx={{
+        background: isCurrentPath ? "#EFEFEF" : "transparent",
+        width: "97%",
+      }}
+    >
       <Divider
         orientation="vertical"
         variant="middle"
@@ -31,7 +38,9 @@ const SidebarLink = ({ router, href, isLeftSideBar = false, children }) => {
         <Typography
           variant="allVariants"
           sx={{
-            color: isCurrentPath ? colors.darkGreen : null,
+            color: isCurrentPath ? colors.darkGreen : "#757575",
+            display: "flex",
+            alignItems: "center",
           }}
         >
           {children}

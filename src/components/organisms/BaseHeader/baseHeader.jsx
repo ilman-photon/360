@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Badge, Button, Stack, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -17,21 +17,13 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import constants from "../../../utils/constants";
+import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
-import Navbar from "../../molecules/Navbar/Navbar";
-import MobileMenu from "../../molecules/MobileMenu/mobileMenu";
-import NotificationDrawer from "../../molecules/NotificationDrawer/notificationDrawer";
-import {
-  fetchNotifications,
-  markAllAsRead,
-  markAsReadById,
-} from "../../../store/notification";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -39,7 +31,7 @@ export default function BaseHeader({
   },
   backTitle,
   onBackClicked,
-  showNavbar = false,
+  isPrescription = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
@@ -63,19 +55,6 @@ export default function BaseHeader({
     if (userStorageData) {
       dispatch(setUserData(userStorageData));
     }
-
-    // notifications
-    // fetch for every 3 minutes
-    const notificationId = setInterval(() => {
-      fetchUserNotifications();
-    }, 180000);
-
-    // fetch for first time
-    fetchUserNotifications();
-
-    // clear interval after unMount
-    return () => clearInterval(notificationId);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -85,12 +64,6 @@ export default function BaseHeader({
 
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [notificationDrawerOpened, setNotificationDrawerOpened] =
-    React.useState(false);
-  const [isNotificationLoading, setIsNotificationLoading] =
-    React.useState(false);
-
-  const notifications = useSelector((state) => state.notification.list);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -105,26 +78,28 @@ export default function BaseHeader({
     setAnchorElUser(null);
   };
 
-  const fetchUserNotifications = () => {
-    setIsNotificationLoading(true);
-    dispatch(fetchNotifications());
-
-    setIsNotificationLoading(false);
-  };
-
-  const handleMarkAllAsRead = () => {
-    dispatch(markAllAsRead());
-  };
-
-  const handleNotificationItemClicked = (data) => {
-    dispatch(markAsReadById(data.id));
-    console.log("redirect to:", data.type);
-  };
+  const prescriptionMenus = [
+    {
+      name: "Dashboard",
+      imgSrc: "/icon-carePlan.png",
+    },
+    {
+      name: "Appointments",
+      imgSrc: "/icon-carePlan.png",
+    },
+    {
+      name: "Medical Report",
+      imgSrc: "/iconHealthRecord.png",
+    },
+    {
+      name: "Documents",
+      imgSrc: "/iconintakeFoms.png",
+    },
+  ];
 
   return (
     <>
       <AppBar
-        data-testid={HOME_TEST_ID.header.index}
         position="relative"
         sx={{
           backgroundColor: "white",
@@ -136,7 +111,7 @@ export default function BaseHeader({
       >
         <Container maxWidth="xl">
           {isUserLoged ? (
-            <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+            <Toolbar disableGutters>
               <Image
                 src={logo}
                 width={124}
@@ -146,169 +121,133 @@ export default function BaseHeader({
                 title="Your Account"
                 tabIndex={0}
                 role={"img"}
-                data-testid={HOME_TEST_ID.header.logo}
               ></Image>
-              <Stack flexDirection="row" alignItems="center">
-                {/* Menu Desktop*/}
-                <Stack
-                  flexDirection={"row"}
-                  flex={1}
-                  justifyContent={"flex-end"}
-                  sx={{
-                    display: { xs: "none", sm: "flex" },
-                  }}
-                >
-                  <IconButton
-                    sx={{
-                      px: "20px",
-                      py: "8px",
-                      backgroundColor: colors.teal15,
-                      borderRadius: "30px",
-                    }}
-                  >
-                    <Image
-                      src="/contact-shop-icon.png"
-                      alt={"marketplace"}
-                      width={16}
-                      height={16}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: 14,
-                        fontWeight: 600,
-                        lineHeight: "18px",
-                      }}
-                    >
-                      Shop for Contacts
-                    </Typography>
-                    <ArrowRightAltIcon />
-                  </IconButton>
-                </Stack>
-
-                {/* notification badge */}
+              {/* Menu Desktop*/}
+              <Box sx={styles.boxStyled}>
                 <IconButton
-                  data-testid="notification-badge-icon"
                   sx={{
-                    px: { xs: 2, sm: 3 },
-                    width: { xs: 24, md: 40 },
-                    height: { xs: 24, md: 40 },
-                  }}
-                  onClick={() => {
-                    setNotificationDrawerOpened(true);
+                    display: "flex",
+                    px: "20px",
+                    py: "8px",
+                    mr: 5,
+                    backgroundColor: colors.teal15,
+                    borderRadius: "30px",
                   }}
                 >
-                  {notifications.some((v) => !v.isRead) ? (
-                    <Badge
-                      color="error"
-                      badgeContent={notifications.length > 0 ? " " : null}
-                      overlap="circular"
-                      sx={{
-                        ".MuiBadge-badge": {
-                          minWidth: 13.33,
-                          height: 13.33,
-                        },
-                      }}
-                    >
-                      <NotificationsIcon sx={{ fill: colors.darkGreen }} />
-                    </Badge>
-                  ) : (
-                    <NotificationsIcon sx={{ fill: colors.darkGreen }} />
-                  )}
-                </IconButton>
-
-                {/* Menu Mobile*/}
-                <Box sx={styles.boxStyledMobile}>
-                  <Avatar
-                    data-testid={HOME_TEST_ID.header.userAvatar}
-                    sx={{
-                      background: "#003B4A",
-                      alignSelf: "center",
-                      width: "24px",
-                      height: "24px",
-                      mx: 2,
-                    }}
-                    onClick={handleOpenUserMenu}
+                  <Image
+                    src="/contact-shop-icon.png"
+                    alt={"marketplace"}
+                    width={16}
+                    height={16}
                   />
-                  <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    data-testid="user-menu-nav-open"
-                    onClick={() => {
-                      setAnchorElNav(true);
+                  <Typography
+                    sx={{
+                      fontSize: 14,
+                      fontWeight: 600,
+                      lineHeight: "18px",
+                      ml: 1,
+                      mr: "12px",
                     }}
-                    sx={{ p: 0 }}
                   >
-                    <MenuIcon />
-                  </IconButton>
-                </Box>
+                    Shop for Contacts
+                  </Typography>
+                  <ArrowRightAltIcon />
+                </IconButton>
+              </Box>
 
-                <MobileMenu
+              {/* Menu Mobile*/}
+              <Box sx={styles.boxStyledMobile}>
+                <Avatar
+                  sx={{
+                    background: "#003B4A",
+                    alignSelf: "center",
+                    width: "24px",
+                    height: "24px",
+                  }}
+                />
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  data-testid="user-menu-nav-open"
+                  onClick={() => {
+                    setAnchorElNav(true);
+                  }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Box>
+              {
+                <AccountDrawer
                   onClose={() => {
                     setAnchorElNav(false);
                   }}
-                  open={anchorElNav}
-                  onLogout={() => {
+                  opened={anchorElNav}
+                  onLogoutClicked={() => {
                     OnLogoutClicked(router);
                   }}
-                ></MobileMenu>
-
-                {/* profile menu */}
-                <Box sx={styles.boxProfileMenuStyles}>
-                  <Tooltip title="Username dropdown">
+                />
+              }
+              {/* profile menu */}
+              <Box sx={styles.boxProfileMenuStyles}>
+                <Tooltip title="Username dropdown">
+                  <Button
+                    variant="text"
+                    sx={[styles.boxButtonStyles, styles.userText]}
+                    startIcon={<Avatar sx={{ background: "#003B4A" }} />}
+                    data-testid="user-menu-open"
+                    endIcon={<ExpandMoreIcon />}
+                    onClick={handleOpenUserMenu}
+                  >
+                    {user.name}
+                  </Button>
+                </Tooltip>
+                <Menu
+                  sx={styles.menuProfileMenu}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  open={Boolean(anchorElUser)}
+                  data-testid="user-menu-close"
+                  onClose={handleCloseUserMenu}
+                >
+                  {/* <Stack spacing={2}> */}
+                  <MenuItem
+                    onClick={() => {
+                      router.push("/patient/account/profile-info");
+                    }}
+                  >
                     <Button
                       variant="text"
-                      sx={[styles.boxButtonStyles, styles.userText]}
-                      startIcon={<Avatar sx={{ background: "#003B4A" }} />}
-                      data-testid="user-menu-open"
-                      endIcon={<ExpandMoreIcon />}
-                      onClick={handleOpenUserMenu}
+                      sx={styles.buttonProfileMenu}
+                      data-testid={HOME_TEST_ID.account}
                     >
-                      {user.name}
+                      Account
                     </Button>
-                  </Tooltip>
-                  <Menu
-                    sx={styles.menuProfileMenu}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "left",
+                  </MenuItem>
+                  <MenuItem
+                    onClick={({ href }) => {
+                      handleCloseNavMenu({ href });
+                      OnLogoutClicked(router);
                     }}
-                    keepMounted
-                    open={Boolean(anchorElUser)}
-                    data-testid="user-menu-close"
-                    onClose={handleCloseUserMenu}
                   >
-                    <MenuItem sx={{ mb: 1 }}>
-                      <Button
-                        variant="text"
-                        sx={styles.buttonProfileMenu}
-                        data-testid={HOME_TEST_ID.account}
-                        onClick={() => {
-                          router.push("/patient/account/profile-info");
-                        }}
-                      >
-                        Account
-                      </Button>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Button
-                        variant="text"
-                        sx={styles.buttonProfileMenu}
-                        data-testid={HOME_TEST_ID.logout}
-                        startIcon={<ExitToAppIcon />}
-                        onClick={() => {
-                          OnLogoutClicked(router);
-                        }}
-                      >
-                        Logout
-                      </Button>
-                    </MenuItem>
-                  </Menu>
-                </Box>
-              </Stack>
+                    <Button
+                      variant="text"
+                      sx={styles.buttonProfileMenu}
+                      data-testid={HOME_TEST_ID.logout}
+                      startIcon={<ExitToAppIcon />}
+                    >
+                      Logout
+                    </Button>
+                  </MenuItem>
+                  {/* </Stack> */}
+                </Menu>
+              </Box>
             </Toolbar>
           ) : (
             <Toolbar disableGutters>
@@ -321,26 +260,14 @@ export default function BaseHeader({
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 tabIndex={0}
-                data-testid={HOME_TEST_ID.header.logo}
               ></Image>
             </Toolbar>
           )}
         </Container>
       </AppBar>
-      {showNavbar && isUserLoged && <Navbar />}
       {backTitle && (
         <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
       )}
-
-      {/* notification drawer */}
-      <NotificationDrawer
-        opened={notificationDrawerOpened}
-        loading={isNotificationLoading}
-        onDrawerClose={() => setNotificationDrawerOpened(false)}
-        onMarkAllAsRead={handleMarkAllAsRead}
-        onItemClicked={handleNotificationItemClicked}
-        notifications={notifications}
-      />
     </>
   );
 }

@@ -11,13 +11,7 @@ export default function CustomCheckbox({ onChange, label, checked }) {
 
   return (
     <FormControlLabel
-      control={
-        <Checkbox
-          value={label}
-          checked={isChecked}
-          data-testId={`${label}-test`}
-        />
-      }
+      control={<Checkbox value={label} checked={isChecked} />}
       label={label}
       onChange={(event) => {
         setChecked(event.target.checked);

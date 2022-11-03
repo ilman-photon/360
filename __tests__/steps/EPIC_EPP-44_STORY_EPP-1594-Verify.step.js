@@ -1,10 +1,4 @@
-import {
-  act,
-  fireEvent,
-  render,
-  waitFor,
-  cleanup,
-} from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import axios from "axios";
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
@@ -24,7 +18,7 @@ import { PageContent } from "../../src/pages/patient/schedule-appointment";
 import { renderScheduleAppointment } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint4/EPP-1594.feature"
+  "./__tests__/feature/Patient Portal/Sprint4/EPP-1594.feature",
 );
 
 const MOCK_SUGGESTION_DATA = {
@@ -175,7 +169,7 @@ const MOCK_SUGGESTION_DATA = {
       ],
     },
   ],
-};
+}
 
 const provideFilters = () => {
   inputLocation();
@@ -192,7 +186,7 @@ const inputLocation = async () => {
   act(() => {
     fireEvent.change(locationInput, { target: { value: "Texas" } });
   });
-  expect(locationInput).toBeInTheDocument();
+  expect(locationInput).toBeInTheDocument()
 };
 
 const inputDate = async () => {
@@ -200,7 +194,7 @@ const inputDate = async () => {
   act(() => {
     fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
   });
-  expect(dateInput).toBeInTheDocument();
+  expect(dateInput).toBeInTheDocument()
 };
 
 const inputPurpose = async () => {
@@ -210,7 +204,7 @@ const inputPurpose = async () => {
   act(() => {
     fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
   });
-  expect(purposeInput).toBeInTheDocument();
+  expect(purposeInput).toBeInTheDocument()
 };
 
 const inputInsurance = async () => {
@@ -220,7 +214,7 @@ const inputInsurance = async () => {
   act(() => {
     fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
   });
-  expect(insuranceInput).toBeInTheDocument();
+  expect(insuranceInput).toBeInTheDocument()
 };
 
 const clickSearch = async () => {
@@ -228,7 +222,7 @@ const clickSearch = async () => {
     container.getByTestId(APPOINTMENT_TEST_ID.searchbtn)
   );
   fireEvent.click(searchBtn);
-  expect(searchBtn).toBeInTheDocument();
+  expect(searchBtn).toBeInTheDocument()
 };
 
 const defaultValidation = () => {
@@ -236,7 +230,7 @@ const defaultValidation = () => {
 };
 
 const launchURL = () => {
-  let container;
+  let container
   const mockOnLoginClicked = jest.fn((callback) => {
     callback({
       status: "success",
@@ -246,41 +240,26 @@ const launchURL = () => {
 };
 
 defineFeature(feature, (test) => {
-  let container;
-
-  const mock = new MockAdapter(axios);
-  test("EPIC_EPP-44_STORY_EPP-1594-To verify whether the user is allowed to change the Purpose of visit in Appointment Review screen.", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", () => {
-      launchURL();
+  let container
+  test('EPIC_EPP-44_STORY_EPP-1594-To verify whether the user is allowed to change the Purpose of visit in Appointment Review screen.', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', () => {
+      launchURL()
     });
 
-    when("user clicks on the Schedule Appointment button", () => {
-      defaultValidation();
+    when('user clicks on the Schedule Appointment button', () => {
+      defaultValidation()
     });
 
-    and("user navigates to the schedule appointment screen", () => {
+    and('user navigates to the schedule appointment screen', () => {
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
+        watchPosition: jest.fn()
       };
 
       const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGGESTION_DATA);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
+      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
+      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
       global.navigator.geolocation = mockGeolocation;
       container = render(
         <Provider store={store}>
@@ -289,68 +268,49 @@ defineFeature(feature, (test) => {
       );
     });
 
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters();
-      }
-    );
-
-    and("click on Search button", () => {
-      clickSearch();
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters();
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit andInsurance carrier data",
-      async () => {
-        cleanup();
-        container = await renderScheduleAppointment(mock);
-      }
-    );
+    and('click on Search button', () => {
+      clickSearch()
+    });
 
-    and("try to update the Purpose of visit if already provided", async () => {
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit andInsurance carrier data', async () => {
+      cleanup()
+      container = await renderScheduleAppointment()
+    });
+
+    and('try to update the Purpose of visit if already provided', async() => {
       await waitFor(() => container.getByText("Purpose of Visit"));
       expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
-    then("user should allow to update the Purpose of visit.", async () => {
+    then('user should allow to update the Purpose of visit.', async() => {
       await waitFor(() => container.getByText("Purpose of Visit"));
       expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1594-Verify whether the user is able to select the Purpose of visit, if not selected in Previous page.", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", () => {
-      launchURL();
+  test('EPIC_EPP-44_STORY_EPP-1594-Verify whether the user is able to select the Purpose of visit, if not selected in Previous page.', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', () => {
+      launchURL()
     });
 
-    when("user clicks on the Schedule Appointment button", () => {
-      defaultValidation();
+    when('user clicks on the Schedule Appointment button', () => {
+      defaultValidation()
     });
 
-    and("user navigates to the schedule appointment screen", () => {
+    and('user navigates to the schedule appointment screen', () => {
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
+        watchPosition: jest.fn()
       };
 
       const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGGESTION_DATA);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
+      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
+      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
       global.navigator.geolocation = mockGeolocation;
       container = render(
         <Provider store={store}>
@@ -359,68 +319,49 @@ defineFeature(feature, (test) => {
       );
     });
 
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters();
-      }
-    );
-
-    and("click on Search button", () => {
-      clickSearch();
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters();
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
-      async () => {
-        cleanup();
-        container = await renderScheduleAppointment(mock);
-      }
-    );
+    and('click on Search button', () => {
+      clickSearch()
+    });
 
-    and("try to add the Purpose of visit", async () => {
-      await waitFor(() => container.getByText("Purpose of Visit"));
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      cleanup()
+      container = await renderScheduleAppointment()
+    });
+
+    and('try to add the Purpose of visit', async () => {
+      await waitFor(() => container.getByText("Purpose of Visit"));      
       expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
-    then("user should allow to add the Purpose of visit.", async () => {
+    then('user should allow to add the Purpose of visit.',async () => {
       await waitFor(() => container.getByText("Purpose of Visit"));
       expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1594-Verify whether the already selected data are getting removed if we update the other Purpose of visit if not supported.", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", () => {
-      launchURL();
+  test('EPIC_EPP-44_STORY_EPP-1594-Verify whether the already selected data are getting removed if we update the other Purpose of visit if not supported.', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', () => {
+      launchURL()
     });
 
-    when("user clicks on the Schedule Appointment button", () => {
-      defaultValidation();
+    when('user clicks on the Schedule Appointment button', () => {
+      defaultValidation()
     });
 
-    and("user navigates to the schedule appointment screen", () => {
+    and('user navigates to the schedule appointment screen', () => {
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
+        watchPosition: jest.fn()
       };
 
       const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGGESTION_DATA);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
+      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
+      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
       global.navigator.geolocation = mockGeolocation;
       container = render(
         <Provider store={store}>
@@ -429,112 +370,78 @@ defineFeature(feature, (test) => {
       );
     });
 
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters();
-      }
-    );
-
-    and("click on Search button", () => {
-      clickSearch();
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters();
     });
 
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
-      async () => {
-        cleanup();
-        container = await renderScheduleAppointment(mock);
-      }
-    );
-
-    and(
-      "try to update the Purpose of visit, which is not supported.",
-      async () => {
-        await waitFor(() => container.getByText("Purpose of Visit"));
-        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      }
-    );
-
-    then(
-      "already selected  Location, Date of Appointment, Insurance carrier should get removed.",
-      async () => {
-        await waitFor(() => container.getByText("Purpose of Visit"));
-        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      }
-    );
-  });
-
-  test("EPIC_EPP-44_STORY_EPP-1594-Verify whether the user is able to review the Appointment details after updating the Purpose of visit.", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch the Patient portal URL", () => {
-      launchURL();
+    and('click on Search button', () => {
+      clickSearch()
     });
 
-    when("user clicks on the Schedule Appointment button", () => {
-      defaultValidation();
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      cleanup()
+      container = await renderScheduleAppointment()
     });
 
-    and("user navigates to the schedule appointment screen", () => {
-      const mock = new MockAdapter(axios);
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGGESTION_DATA);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
-    });
-
-    and(
-      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
-      () => {
-        provideFilters();
-      }
-    );
-
-    and("click on Search button", () => {
-      clickSearch();
-    });
-
-    and(
-      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
-      async () => {
-        cleanup();
-        container = await renderScheduleAppointment(mock);
-      }
-    );
-
-    and("try to update the Purpose of visit if already provided", async () => {
+    and('try to update the Purpose of visit, which is not supported.', async() => {
       await waitFor(() => container.getByText("Purpose of Visit"));
       expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
-    then(
-      "it should allow to review once again the changed Purpose of visit in Appointment review screen.",
-      async () => {
-        await waitFor(() => container.getByText("Purpose of Visit"));
-        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      }
-    );
+    then('already selected  Location, Date of Appointment, Insurance carrier should get removed.', async() => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+    });
+  });
+
+  test('EPIC_EPP-44_STORY_EPP-1594-Verify whether the user is able to review the Appointment details after updating the Purpose of visit.', ({ given, when, and, then }) => {
+    given('user launch the Patient portal URL', () => {
+      launchURL()
+    });
+
+    when('user clicks on the Schedule Appointment button', () => {
+      defaultValidation()
+    });
+
+    and('user navigates to the schedule appointment screen', () => {
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn()
+      };
+
+      const domain = window.location.origin;
+      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
+      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
+    });
+
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+      provideFilters();
+    });
+
+    and('click on Search button', () => {
+      clickSearch()
+    });
+
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      cleanup()
+      container = await renderScheduleAppointment()
+    });
+
+    and('try to update the Purpose of visit if already provided',async () => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+    });
+
+    then('it should allow to review once again the changed Purpose of visit in Appointment review screen.',async () => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+    });
   });
 });

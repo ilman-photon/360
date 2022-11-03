@@ -1,11 +1,14 @@
 import "@testing-library/jest-dom/extend-expect";
-import { act, fireEvent, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  waitFor,
+} from "@testing-library/react";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { TEST_ID } from "../../src/utils/constants";
-import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
-import {
+import FilterResult from "../../src/components/molecules/FilterResult/filterResult";import {
   clickSearch,
   createMatchMedia,
   doLogin,
@@ -79,113 +82,108 @@ defineFeature(feature, (test) => {
     ).toBeInTheDocument();
   };
 
-  test("EPIC_EPP-44_STORY_EPP-2550 - Verify the user able to change the provider while reviewing the appointment from patient portal.", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given("user launch Patient Portal url", async () => {
+  test('EPIC_EPP-44_STORY_EPP-2550 - Verify the user able to change the provider while reviewing the appointment from patient portal.', ({ given, when, and, then }) => {
+    given('user launch Patient Portal url', async () => {
       container = await renderLogin(container);
     });
 
-    when("user is logged in to the application", async () => {
+    when('user is logged in to the application', async () => {
       await doLogin(mock, container);
     });
 
-    and("user clicks to Appointments menu", () => {
-      defaultValidation();
+    and('user clicks to Appointments menu', () => {
+      defaultValidation()
     });
 
-    then("user navigates to Appointments screen", () => {
-      defaultValidation();
+    then('user navigates to Appointments screen', () => {
+      defaultValidation()
     });
 
-    and("user lands on 'Appointments' screen", () => {
-      defaultValidation();
+    and('user lands on \'Appointments\' screen', () => {
+      defaultValidation()
     });
 
-    and("user views the schedule new appointments link", () => {
-      defaultValidation();
+    and('user views the schedule new appointments link', () => {
+      defaultValidation()
     });
 
-    and("user clicks on the schedule new appointments", () => {
-      defaultValidation();
+    and('user clicks on the schedule new appointments', () => {
+      defaultValidation()
     });
 
-    then("user navigates to the search screen", async () => {
-      container = await renderScheduleAppointment(mock);
+    then('user navigates to the search screen', async () => {
+      container = await renderScheduleAppointment();
     });
 
-    and("user enters the location", () => {
-      inputLocation(container);
+    and('user enters the location', () => {
+      inputLocation(container)
     });
 
-    and("user selects the date of appointment", () => {
-      defaultValidation();
+    and('user selects the date of appointment', () => {
+      defaultValidation()
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose(container);
+    and('user chooses the purpose of the visit', () => {
+      inputPurpose(container)
     });
 
-    and("user enters the insurance name", async () => {
+    and('user enters the insurance name', async () => {
       const insuranceInput = await waitFor(() =>
-        container.getByLabelText("Insurance Carrier")
-      );
-      act(() => {
-        fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
-      });
+      container.getByLabelText("Insurance Carrier")
+    );
+    act(() => {
+      fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+    });
     });
 
-    and("user clicks on the Search button", () => {
+    and('user clicks on the Search button', () => {
       clickSearch(container);
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+    and('user views the results in the Schedule Appointments screen', () => {
+      defaultValidation()
     });
 
-    and("user selects the Provider", () => {
-      defaultValidation();
+    and('user selects the Provider', () => {
+      defaultValidation()
     });
 
-    and("user selected a time slot", () => {
-      defaultValidation();
+    and('user selected a time slot', () => {
+      defaultValidation()
     });
 
-    and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+    and('user lands on the review of the appointment details', () => {
+      defaultValidation()
     });
 
-    and("user views the Location section", () => {
+    and('user views the Location section', () => {
       expect(
         container.getAllByLabelText("City, state, or zip code")[0].value
       ).toEqual("Texas");
     });
 
-    and("user views the selected Provider and time slot", () => {
-      defaultValidation();
+    and('user views the selected Provider and time slot', () => {
+      defaultValidation()
     });
 
-    and("user clicks on the Location section Edit link", () => {
-      defaultValidation();
+    and('user clicks on the Location section Edit link', () => {
+      defaultValidation()
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+    and('user views the results in the Schedule Appointments screen', () => {
+      defaultValidation()
     });
 
-    and("user selects the Provider", () => {
-      defaultValidation();
+    and('user selects the Provider', () => {
+      defaultValidation()
     });
 
-    and("user selects the time slot", () => {
-      defaultValidation();
+    and('user selects the time slot', () => {
+      defaultValidation()
     });
 
-    and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+    and('user lands on the review of the appointment details', () => {
+      defaultValidation()
     });
   });
 });

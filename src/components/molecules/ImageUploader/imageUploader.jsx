@@ -118,10 +118,10 @@ export const ImageUploader = ({
       const slicedFileTypeFromFilePath = file.name.slice(
         fileTypeDotIndexPosition
       );
-      let errorMessage = {};
+      let error = {};
 
       if (file.size > maxSize) {
-        errorMessage = {
+        error = {
           success: false,
           title: null,
           content: `File size limit is ${max} MB`,
@@ -131,7 +131,7 @@ export const ImageUploader = ({
         !Regex.isImageFile.test(fileType) &&
         !Regex.isImageFile.test(slicedFileTypeFromFilePath)
       ) {
-        errorMessage = {
+        error = {
           success: false,
           title: null,
           content: "Invalid file type",
@@ -152,7 +152,7 @@ export const ImageUploader = ({
           setLoading(false);
         }
       }
-      OnInputError(errorMessage);
+      OnInputError(error);
     }
   };
   return (
