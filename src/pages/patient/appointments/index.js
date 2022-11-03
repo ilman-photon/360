@@ -238,7 +238,7 @@ export default function Appointments() {
 Appointments.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AppointmentLayout currentActivePage={"appointments"}>
+      <AppointmentLayout currentActivePage={"appointments"} showNavbar={true}>
         {page}
       </AppointmentLayout>
     </Provider>
