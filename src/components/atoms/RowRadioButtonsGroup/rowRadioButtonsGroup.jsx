@@ -88,11 +88,11 @@ export default function RowRadioButtonsGroup({
               value={option.value}
               aria-label={`${option.label} Radio Button`}
               tabindex={0}
-              data-testId={`${option.value}-test`}
+              data-testid={`${option.value}-test`}
               control={
                 <Radio
                   checked={props.value === option.value}
-                  data-testid={props.testId}
+                  data-testid={option.testId}
                   sx={{
                     ".MuiSvgIcon-root": {
                       width: iconSize,

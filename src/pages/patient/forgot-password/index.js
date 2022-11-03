@@ -94,6 +94,7 @@ export default function ForgotPasswordPage() {
     preferredComunication: "Both",
   });
   const [showPostMessage, setShowPostMessage] = useState(false);
+  const [isRegistered, setRegistered] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(true);
   const [showSelectOption, setShowSelectOption] = useState(false);
   const [showPasswordSecurityQuestion, setShowPasswordSecurityQuestion] =
@@ -123,13 +124,18 @@ export default function ForgotPasswordPage() {
     if (router.asPath === "/patient/sync") {
       setAppointment(true);
     } else setAppointment(false);
-  }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     //Bug fix EPP-4639
-    router.replace({
-      pathname: router.pathname,
-    });
+
+    if (router.asPath !== "/patient/sync") {
+      router.replace({
+        pathname: router.pathname,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onCalledValidateAppointment = function ({ username }) {
@@ -142,10 +148,16 @@ export default function ForgotPasswordPage() {
       isAppointment
         ? api
             .validateUserType(postbody)
-            .then(() => {
-              onCalledSendLinkSync(username);
+            .then((res) => {
+              if (res.patientType === "R") {
+                setRegistered(true);
+                setShowPostMessage(true);
+              } else if (res.patientType === "G") {
+                onCalledSendLinkSync(username);
+              }
             })
             .catch(() => {
+              setRegistered(false);
               setShowPostMessage(true);
             })
         : api
@@ -183,7 +195,7 @@ export default function ForgotPasswordPage() {
     const api = new Api();
     api
       .validateSecurityQuestion(postbody)
-      .then(function (response) {
+      .then(function () {
         onContinueButtonClicked("updatePassword", routerIns);
       })
       .catch(function (error) {
@@ -266,10 +278,11 @@ export default function ForgotPasswordPage() {
   };
 
   //Call API for one time link
-  const onCalledOneTimeLinkAPI = function () {
+  const onCalledOneTimeLinkAPI = function (modeOfCommuication) {
     const domain = window.location.origin;
     const postbody = {
       link: `${domain}${NEXT_PUBLIC_ONE_TIME_LINK}`,
+      preferredComunication: modeOfCommuication.toLowerCase(),
       patient: { userName: patientData.username },
       oneTimeLinkEnable: true,
     };
@@ -318,41 +331,6 @@ export default function ForgotPasswordPage() {
       username: username,
     };
 
-    const api = new Api();
-    api
-      .sendLinkSync(postbody)
-      .then(function () {
-        confirmationFormProps = {
-          pageTitle: "Schedule Your Appointment",
-          title: "Schedule Your Appointment",
-          subtitle,
-          postMessage,
-          postMessageTitle: "",
-          successPostMessage: true,
-          // buttonLabel: "Login with one-time link",
-          additional: null,
-          butttonMode: constants.PRIMARY,
-          // onCTAButtonClicked: () => onCalledOneTimeLinkSync(username),
-        };
-        setShowForgotPassword(false);
-        setShowSelectOption(false);
-        setShowPasswordSecurityQuestion(false);
-        setShowPasswordReset(false);
-        setShowPostMessage(true);
-        setShowOneTimeLink(true);
-      })
-      .catch(function () {
-        console.error("Something went wrong");
-      });
-  };
-
-  const onCalledOneTimeLinkSync = (username) => {
-    setShowPostMessage(false);
-    const postbody = {
-      patient: { userName: username },
-      oneTimeLinkEnable: true,
-    };
-
     const isEmail = username.match(Regex.isEmailCorrect);
     const subtitle = isEmail
       ? `Check ${username}  for an email to set up your password.`
@@ -360,22 +338,24 @@ export default function ForgotPasswordPage() {
     const postMessage = isEmail
       ? `Link sent to your email`
       : `Link sent to your phone number`;
+    const confirmationTitle = isAppointment
+      ? `Sync Your Appointment`
+      : `Schedule Your Appointment`;
 
     const api = new Api();
     api
-      .oneTimeLink(postbody)
+      .sendLinkSync(postbody)
       .then(function () {
         confirmationFormProps = {
-          pageTitle: "Sync Your Appointment",
-          title: "Sync Your Appointment",
+          pageTitle: confirmationTitle,
+          title: confirmationTitle,
           subtitle,
           postMessage,
           postMessageTitle: "",
           successPostMessage: true,
-          buttonLabel: "Login with one-time link",
           additional: null,
           butttonMode: constants.PRIMARY,
-          onCTAButtonClicked: () => onCalledOneTimeLinkSync(username),
+          isSendLink: true,
         };
         setShowForgotPassword(false);
         setShowSelectOption(false);
@@ -461,12 +441,16 @@ export default function ForgotPasswordPage() {
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );
         confirmationFormProps.butttonMode = constants.PRIMARY;
-        confirmationFormProps.onCTAButtonClicked = function () {
-          onCalledOneTimeLinkAPI();
+        confirmationFormProps.onCTAButtonClicked = function ({ data }) {
+          const modeComunication =
+            data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
+              ? "email"
+              : "phone";
+          onCalledOneTimeLinkAPI(modeComunication);
         };
       } else {
         //Call service for one time link
-        onCalledOneTimeLinkAPI();
+        onCalledOneTimeLinkAPI(patientData.preferredComunication);
       }
       setShowOneTimeLink(true);
       replaceUrl(constants.ONE_TIME_LINK);
@@ -489,6 +473,7 @@ export default function ForgotPasswordPage() {
           onCalledValidateAppointment={onCalledValidateAppointment}
           title={"Forgot Password Page"}
           isAppointment={isAppointment}
+          isRegistered={isRegistered}
         />
       ) : (
         <></>

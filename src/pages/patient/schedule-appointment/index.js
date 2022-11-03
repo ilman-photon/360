@@ -132,6 +132,7 @@ export const PageContent = ({
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
             sx={{ width: { xs: "100%", md: "952px" } }}
+            data-testId="container-step-1"
           >
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
@@ -164,12 +165,12 @@ export const PageContent = ({
     case 2:
       return (
         <>
-          {" "}
           <Grid
             xs={12}
             md={8}
             pr={2}
             className={styles.examForComponent}
+            data-testId="container-step-2"
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
             <ScheduleAppointment
@@ -198,7 +199,6 @@ export const PageContent = ({
     case 3:
       return (
         <>
-          {" "}
           <Grid
             xs={12}
             md={8}
@@ -241,6 +241,7 @@ export async function getServerSideProps({ query }) {
     props: { query },
   };
 }
+
 export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -254,6 +255,7 @@ export default function ScheduleAppointmentPage() {
 
   const router = useRouter();
   const dispatch = useDispatch();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const api = new Api();
 
   React.useEffect(() => {
@@ -293,9 +295,9 @@ export default function ScheduleAppointmentPage() {
     if (router.query.reschedule) {
       setIsReschedule(true);
     }
-    if (!appointmentScheduleData.appointmentInfo.appointmentType) {
-      router.push("/patient/appointment");
-    }
+    // if (!appointmentScheduleData.appointmentInfo.appointmentType) {
+    //   router.push("/patient/appointment");
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
@@ -446,6 +448,7 @@ export default function ScheduleAppointmentPage() {
         if (isGuest) {
           router.push("/patient/schedule-appointment-confirmation");
         } else {
+          console.log("::Masuk jank");
           setActiveStep(4);
           setIsOpen(true);
         }
@@ -478,7 +481,6 @@ export default function ScheduleAppointmentPage() {
   };
 
   const handleCancelReschedule = () => {
-    // dispatch(resetFilterData()); // Forgot why is this here but will not delete this for now.
     setModalConfirmReschedule(false);
   };
 
@@ -489,6 +491,8 @@ export default function ScheduleAppointmentPage() {
         payload: appointmentScheduleData,
       })
     );
+    console.log("::payload", payload);
+
     if (payload.success) {
       setActiveStep(4);
       setIsOpen(true);
@@ -512,7 +516,7 @@ export default function ScheduleAppointmentPage() {
       />
     );
   };
-
+  console.log("::activestep", activeStep);
   return (
     <section>
       <BaseHeader />
@@ -551,6 +555,7 @@ export default function ScheduleAppointmentPage() {
             sx={{
               borderRadius: "46px",
             }}
+            data-testId="back-button-test"
             onClick={() => {
               if (activeStep - 1 < 1 || activeStep > 3) {
                 handleEditSchedule();

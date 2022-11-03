@@ -32,6 +32,7 @@ const ConfirmationForm = ({
   primaryButtonTestId,
   formStyle = additional ? styles.margin : styles.marginDescription,
   pageTitle = "",
+  isSendLink = false,
 }) => {
   const router = useRouter();
   const { t, ready } = useTranslation("translation", {
@@ -98,21 +99,23 @@ const ConfirmationForm = ({
                   {description}
                 </Typography>
               )}
-              <StyledButton
-                type={constants.SUBMIT}
-                theme={constants.PATIENT}
-                mode={butttonMode}
-                size={constants.SMALL}
-                gradient={false}
-                data-testid={primaryButtonTestId}
-                style={{
-                  ...styles.margin,
-                  marginTop: "5%",
-                }}
-              >
-                {buttonIcon}
-                {buttonLabel}
-              </StyledButton>
+              {!isSendLink && (
+                <StyledButton
+                  type={constants.SUBMIT}
+                  theme={constants.PATIENT}
+                  mode={butttonMode}
+                  size={constants.SMALL}
+                  gradient={false}
+                  data-testid={primaryButtonTestId}
+                  style={{
+                    ...styles.margin,
+                    marginTop: "5%",
+                  }}
+                >
+                  {buttonIcon}
+                  {buttonLabel}
+                </StyledButton>
+              )}
             </form>
             {butttonMode !== constants.SECONDARY ? (
               <Link

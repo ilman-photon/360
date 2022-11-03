@@ -10,7 +10,7 @@ export default function AppointmentInformation({ data }) {
     const addressLine1 = address.addressLine1 || "";
     const addressLine2 = address.addressLine2 || "";
     const state = address.state || "";
-    const zipcode = address.zipcode || address.zipcode || "";
+    const zipcode = address.zipcode || "";
     const city = address.city || "";
 
     const addressQuery =
