@@ -55,8 +55,8 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -114,8 +114,8 @@ defineFeature(feature, (test) => {
       container = await renderLogin()
     });
     and('Admin provides valid "<Phone number>" and valid "<password>"', () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "validUsername@mail.com" },
       });

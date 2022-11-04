@@ -70,7 +70,7 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       expect(usernameField.id).toEqual("username");
     });
 
@@ -146,13 +146,13 @@ defineFeature(feature, (test) => {
 
     and("user should view the questions fields", () => {
       const question1 = container.getByLabelText(
-        "Where did you go the first time you flew on a plane?"
+        "Where did you go the first time you flew on a plane? *"
       );
       const question2 = container.getByLabelText(
-        "Who is your all-time favorite movie character"
+        "Who is your all-time favorite movie character *"
       );
       const question3 = container.getByLabelText(
-        "In what city or town did your parents meet?"
+        "In what city or town did your parents meet? *"
       );
       expect(question1).toBeTruthy();
       expect(question2).toBeTruthy();
@@ -171,13 +171,13 @@ defineFeature(feature, (test) => {
           name: /continueButton/i,
         });
         const question1 = container.getByLabelText(
-          "Where did you go the first time you flew on a plane?"
+          "Where did you go the first time you flew on a plane? *"
         );
         const question2 = container.getByLabelText(
-          "Who is your all-time favorite movie character"
+          "Who is your all-time favorite movie character *"
         );
         const question3 = container.getByLabelText(
-          "In what city or town did your parents meet?"
+          "In what city or town did your parents meet? *"
         );
 
         fireEvent.change(question1, { target: { value: "abc" } });

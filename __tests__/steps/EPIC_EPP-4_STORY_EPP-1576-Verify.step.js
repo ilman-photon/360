@@ -88,8 +88,8 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the user name and Password fields", () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -144,8 +144,8 @@ defineFeature(feature, (test) => {
     });
 
     and("admin views the user name and Password fields", () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
