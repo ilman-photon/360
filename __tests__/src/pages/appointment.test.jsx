@@ -4,6 +4,7 @@ import {
   render,
   waitFor,
   within,
+  screen,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Appointment, {
@@ -23,7 +24,7 @@ import {
 import { TEST_ID } from "../../../src/utils/constants";
 import { createMatchMedia } from "../../../__mocks__/commonSteps";
 import { useRouter } from "next/router";
-import { setFilterData } from "../../../src/store/appointment";
+import { setFilterBy, setFilterData } from "../../../src/store/appointment";
 
 const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
 
@@ -121,6 +122,7 @@ describe("App", () => {
         },
       },
     };
+
     const server = await getStaticProps();
     container = render(
       <Provider store={store}>
@@ -334,5 +336,103 @@ describe("App", () => {
     await waitFor(() =>
       container.getAllByLabelText("Navigate to next week option")
     );
+  });
+
+  it("Close Modal View all Availability", async () => {
+    const buttonViewAll = container.getAllByTestId("loc_viewAll");
+    await waitFor(() => fireEvent.click(buttonViewAll[0]));
+    const closeIcon = container.getByTestId("CloseIcon");
+    expect(closeIcon).toBeInTheDocument();
+    await waitFor(() => fireEvent.click(closeIcon));
+    expect(true).toBeTruthy();
+  });
+
+  it("Filter Click", async () => {
+    store.dispatch(
+      setFilterBy([
+        { name: "Available Today", type: "general", checked: false },
+        { name: "Language", type: "languange", checked: false },
+        { name: "Gender", type: "gender", checked: false },
+      ])
+    );
+    const filterBy = store.getState().appointment.filterBy;
+
+    console.log(":::filterBy", filterBy);
+    // const server = await getStaticProps();
+    // act(() => {
+    //   container = render(
+    //     <Provider store={store}>
+    //       {Appointment.getLayout(<Appointment {...server.props} />)}
+    //     </Provider>
+    //   );
+    // });
+    const filterButton = container.getByTestId("filterbtn");
+    await waitFor(() => fireEvent.click(filterButton));
+    const checkboxFilter = container.getByTestId(/Available Today-test/i);
+    const checkboxFilter2 = container.getByTestId(/Gender-test/i);
+    const checkboxFilter3 = container.getByTestId(/Language-test/i);
+    expect(checkboxFilter).toBeInTheDocument();
+
+    const doneButton = container.getByText(/Done/i);
+
+    // await waitFor(() => fireEvent.click(checkboxFilter));
+    await waitFor(() => fireEvent.click(checkboxFilter2));
+    // await waitFor(() => fireEvent.click(checkboxFilter3));
+    const filterContainer = container.getByTestId(
+      "appointment_filter_component_drawer"
+    );
+    screen.debug(filterContainer, Infinity);
+    await waitFor(() => fireEvent.click(doneButton));
+  });
+
+  it("Filter Click Table", async () => {
+    cleanup();
+    window.matchMedia = createMatchMedia("1029px");
+    const server = await getStaticProps();
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+    await waitFor(() => flowSubmitFilter());
+    const filterButton = container.getByTestId("filterbtn");
+
+    await waitFor(() => fireEvent.click(filterButton));
+    const checkboxFilter = container.getByTestId(/Available Today-test/i);
+
+    expect(checkboxFilter).toBeInTheDocument();
+    const filterContainer = container.getByTestId(
+      "appointment_filter_component_drawer"
+    );
+    const doneButton = container.getByText(/Done/i);
+    await waitFor(() => fireEvent.click(checkboxFilter));
+    await waitFor(() => fireEvent.click(doneButton));
+  });
+
+  it("Filter Click Mobile", async () => {
+    // cleanup();
+    window.matchMedia = createMatchMedia("600px");
+    const server = await getStaticProps();
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+    // await waitFor(() => flowSubmitFilter());
+    const filterButton = container.getAllByTestId("filter-button-mobile");
+    expect(filterButton[0]).toBeInTheDocument();
+    await waitFor(() => fireEvent.click(filterButton[0]));
+    const checkboxFilter = container.getByTestId(/Available Today-test/i);
+    expect(checkboxFilter).toBeInTheDocument();
+    // const filterContainer = container.getByTestId(
+    //   "appointment_filter_component_drawer"
+    // );
+    const doneButton = container.getByText(/Done/i);
+    await waitFor(() => fireEvent.click(checkboxFilter));
+    await waitFor(() => fireEvent.click(doneButton));
   });
 });

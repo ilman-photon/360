@@ -363,6 +363,7 @@ export const FilterResultHeading = ({
               {!(title && subtitle) && (
                 <Button
                   aria-label={"Filter"}
+                  data-testId="filter-button-mobile"
                   sx={{
                     width: "31px",
                     minWidth: "31px",
