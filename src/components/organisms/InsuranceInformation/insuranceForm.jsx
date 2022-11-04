@@ -43,7 +43,6 @@ export default function InsuranceForm({
     // This is intended
   },
   testIds = constants.TEST_ID.INSURANCE_TEST_ID,
-  isError,
 }) {
   const { handleSubmit, control, watch, reset, setValue } = useForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
@@ -51,10 +50,15 @@ export default function InsuranceForm({
   const isMobile = useMediaQuery("(max-width: 768px)");
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
+  const resetFormData = () => {
+    reset(formData);
+    setValue("memberID", memberId);
+  };
+
   // Later will be used for edit
   useEffect(() => {
-    if (formData && !isError) {
-      reset(formData);
+    if (formData) {
+      resetFormData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
@@ -120,7 +124,7 @@ export default function InsuranceForm({
 
   const handleCancel = () => {
     OnCancelClicked();
-    reset(formData);
+    resetFormData();
     setFormCardFrontState(DEFAULT_FORM_FIELD_STATE);
     setFormCardBackState(DEFAULT_FORM_FIELD_STATE);
   };

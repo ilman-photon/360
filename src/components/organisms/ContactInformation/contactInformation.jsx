@@ -70,6 +70,12 @@ export default function ContactInformation({
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
+      case "address":
+        if (value.length > 2) return true;
+        break;
+      case "city":
+        if (value.length > 2) return true;
+        break;
     }
   };
 

@@ -13,7 +13,7 @@ export const styles = {
   containerWrapper: {
     maxWidth: "xl",
   },
-  logoStyled: { mr: 1 },
+  logoStyled: { mr: 1, cursor: "pointer" },
   boxStyled: {
     flexGrow: 1,
     display: { xs: "none", md: "flex" },

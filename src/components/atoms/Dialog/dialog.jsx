@@ -42,7 +42,7 @@ const BootstrapDialogTitle = (props) => {
             fontSize: "14px",
             lineHeight: "18px",
             marginTop: "10px",
-            color: colors.primaryButton,
+            color: closeLabel === "Cancel" ? colors.primaryButton : "",
           }}
         >
           {closeLabel}

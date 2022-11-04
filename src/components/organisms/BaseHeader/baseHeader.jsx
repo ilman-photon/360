@@ -32,6 +32,7 @@ import {
   markAllAsRead,
   markAsReadById,
 } from "../../../store/notification";
+import Link from "next/link";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -137,17 +138,19 @@ export default function BaseHeader({
         <Container maxWidth="xl">
           {isUserLoged ? (
             <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
-              <Image
-                src={logo}
-                width={124}
-                height={36}
-                style={styles.logoStyled}
-                aria-label={"Clarkson Eyecare logo"}
-                title="Your Account"
-                tabIndex={0}
-                role={"img"}
-                data-testid={HOME_TEST_ID.header.logo}
-              ></Image>
+              <Link href={"/patient"} role={"none"} tabIndex={0}>
+                <Image
+                  src={logo}
+                  width={124}
+                  height={36}
+                  style={styles.logoStyled}
+                  aria-label={"Clarkson Eyecare logo"}
+                  title="Your Account"
+                  tabIndex={0}
+                  role={"img"}
+                  data-testid={HOME_TEST_ID.header.logo}
+                ></Image>
+              </Link>
               <Stack flexDirection="row" alignItems="center">
                 {/* Menu Desktop*/}
                 <Stack
@@ -312,17 +315,19 @@ export default function BaseHeader({
             </Toolbar>
           ) : (
             <Toolbar disableGutters>
-              <Image
-                src={logo}
-                width="124px"
-                height="36px"
-                role={"img"}
-                quality={100}
-                style={styles.logoStyled}
-                aria-label={"Clarkson Eyecare logo"}
-                tabIndex={0}
-                data-testid={HOME_TEST_ID.header.logo}
-              ></Image>
+              <Link href={"/patient"} role={"none"} tabIndex={0}>
+                <Image
+                  src={logo}
+                  width="124px"
+                  height="36px"
+                  role={"img"}
+                  quality={100}
+                  style={styles.logoStyled}
+                  aria-label={"Clarkson Eyecare logo"}
+                  tabIndex={0}
+                  data-testid={HOME_TEST_ID.header.logo}
+                ></Image>
+              </Link>
             </Toolbar>
           )}
         </Container>

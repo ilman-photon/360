@@ -338,7 +338,10 @@ export const FilterResultHeading = ({
             >
               <Button
                 aria-label={filterData.location}
-                className={styles.mobileFilterButton}
+                className={[
+                  styles.mobileFilterStyles,
+                  styles.mobileFilterButton,
+                ].join(" ")}
               >
                 <Typography
                   variant={"bodyMedium"}
