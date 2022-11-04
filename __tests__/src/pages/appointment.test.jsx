@@ -396,7 +396,7 @@ describe("App", () => {
         </Provider>
       );
     });
-    await waitFor(() => flowSubmitFilter());
+    await waitFor(async () => await flowSubmitFilter());
     const filterButton = container.getByTestId("filterbtn");
 
     await waitFor(() => fireEvent.click(filterButton));
