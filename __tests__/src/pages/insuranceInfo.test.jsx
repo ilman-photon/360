@@ -12,7 +12,7 @@ import InsuranceInformationPage from "../../../src/pages/patient/account/insuran
 
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
-import constants from "../../../src/utils/constants";
+import constants, { TEST_ID } from "../../../src/utils/constants";
 import { fireEvent } from "@storybook/testing-library";
 import * as util from "../../../__mocks__/util";
 import MockAdapter from "axios-mock-adapter";
@@ -25,6 +25,7 @@ import {
   mockSubmitInsurance,
   mockUpdateInsurance,
 } from "../../../__mocks__/mockResponse";
+import { createMatchMedia } from "../../../__mocks__/commonSteps";
 
 describe("InsuranceInformationPage Components", () => {
   let container;
@@ -42,6 +43,7 @@ describe("InsuranceInformationPage Components", () => {
   };
 
   beforeEach(async () => {
+    window.matchMedia = createMatchMedia("800px");
     mock
       .onGet(`/ecp/appointments/insurance/allpayers`)
       .reply(200, mockInsurance);
@@ -172,7 +174,7 @@ describe("InsuranceInformationPage Components", () => {
     expect(container.getByText(/Primary/i)).toBeInTheDocument();
   }, 50000);
 
-  it("InsuranceInformationPage existing data", async () => {
+  it("InsuranceInformationPage existing data 2 items", async () => {
     mock
       .onGet(`/ecp/appointments/insurance/allpayers`)
       .reply(200, mockInsurance);
@@ -181,7 +183,14 @@ describe("InsuranceInformationPage Components", () => {
       .onGet(
         `/ecp/insurance/beneficiaries/98f9404b-6ea8-4732-b14f-9c1a168d8066/coverages`
       )
-      .reply(200, mockExistingInsurance);
+      .reply(200, {
+        count: 0,
+        entities: [
+          mockExistingInsurance.entities[0],
+          mockExistingInsurance.entities[0],
+        ],
+        _links: { self: { href: "/api?pageNo=0&pageSize=100" } },
+      });
     mock
       .onGet(
         `ecp/appointments/insurancepayers/2a7601c4-f9e7-4698-ae56-bbe44dee0c9a/plans?pageNo=0&pageSize=500`
@@ -202,6 +211,65 @@ describe("InsuranceInformationPage Components", () => {
     await waitFor(() => container.getAllByText(/primary/i));
     expect(container.getAllByText(/primary/i)[0]).toBeInTheDocument();
     fireEvent.click(container.getAllByText(/primary/i)[0]);
+    await waitFor(() =>
+      container.getAllByTestId(TEST_ID.INSURANCE_TEST_ID.addButton)
+    );
+    fireEvent.click(
+      container.getAllByTestId(TEST_ID.INSURANCE_TEST_ID.addButton)[0]
+    );
+  });
+
+  it("InsuranceInformationPage existing data 5 items", async () => {
+    mock
+      .onGet(`/ecp/appointments/insurance/allpayers`)
+      .reply(200, mockInsurance);
+
+    mock
+      .onGet(
+        `/ecp/insurance/beneficiaries/98f9404b-6ea8-4732-b14f-9c1a168d8066/coverages`
+      )
+      .reply(200, {
+        count: 0,
+        entities: [
+          mockExistingInsurance.entities[0],
+          mockExistingInsurance.entities[0],
+          mockExistingInsurance.entities[0],
+          mockExistingInsurance.entities[0],
+          mockExistingInsurance.entities[0],
+        ],
+        _links: { self: { href: "/api?pageNo=0&pageSize=100" } },
+      });
+    mock
+      .onGet(
+        `ecp/appointments/insurancepayers/2a7601c4-f9e7-4698-ae56-bbe44dee0c9a/plans?pageNo=0&pageSize=500`
+      )
+      .reply(200, mockPlanInsurance);
+
+    mock
+      .onPost(
+        `/ecp/insurance/beneficiaries/f352a9fe-53a4-4be8-866f-851ce45331ff/coverages/`
+      )
+      .reply(200, mockSubmitInsurance);
+
+    container = render(
+      <Provider store={store}>
+        {InsuranceInformationPage.getLayout(<InsuranceInformationPage />)}
+      </Provider>
+    );
+    await waitFor(() => container.getAllByText(/primary/i));
+    expect(container.getAllByText(/primary/i)[0]).toBeInTheDocument();
+    fireEvent.click(container.getAllByText(/primary/i)[0]);
+    await waitFor(() =>
+      container.getAllByTestId(TEST_ID.INSURANCE_TEST_ID.addButton)
+    );
+    fireEvent.click(
+      container.getAllByTestId(TEST_ID.INSURANCE_TEST_ID.addButton)[0]
+    );
+    await waitFor(() =>
+      container.getAllByText(
+        /Cannot add any more insurances. Maximum limit has been reached/i
+      )
+    );
   });
 
   it("InsuranceInformationPage upload back foto", async () => {

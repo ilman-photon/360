@@ -10,7 +10,7 @@ export default function MyCareTeamLayout({ children }) {
   return (
     <>
       <Head>
-        <title>My Care Team</title>
+        <title>My Care Team page</title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader {...logoutProps} showNavbar={true} />

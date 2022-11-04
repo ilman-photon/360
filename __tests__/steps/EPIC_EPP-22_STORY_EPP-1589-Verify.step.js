@@ -162,7 +162,7 @@ defineFeature(feature, (test) => {
 
   async function userReadANotificationAndRemoved() {
     const notificationItem = await waitFor(() => container.getAllByTestId("notification-item")[0])
-    expect(notificationItem).toHaveTextContent("You lab test test results are available now.1mo")
+    expect(notificationItem).toHaveTextContent("Your lab test results are available now.1mo")
     act(() => {
       fireEvent.click(notificationItem)
     })

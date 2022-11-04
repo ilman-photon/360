@@ -83,11 +83,16 @@ export default function CareTeamCard({ provider }) {
             tabIndex={0}
             alt="Doctor Image"
             fallbackSrc={"/defaultImageMyCare.png"}
-            aria-label="Doctor Image"
+            aria-label="Doctor/Optometrist image"
           />
         </Box>
         <Box className={styles.addressContainer}>
-          <Typography className={styles.providerNameText} variant="h1">
+          <Typography
+            tabIndex={0}
+            aria-label={provider.name}
+            className={styles.providerNameText}
+            variant="h1"
+          >
             {provider.name}
           </Typography>
           <Box display="flex" flexDirection="row">
@@ -100,30 +105,57 @@ export default function CareTeamCard({ provider }) {
                 margin: "auto 0",
               }}
             />
-            <Typography className={styles.addressNameText} variant="body2">
+            <Typography
+              tabIndex={0}
+              aria-label={provider.address.name}
+              className={styles.addressNameText}
+              variant="body2"
+            >
               {provider.address.name}
             </Typography>
           </Box>
-          <Typography className={styles.addressText} variant="body2">
+          <Typography
+            tabIndex={0}
+            aria-label={address}
+            className={styles.addressText}
+            variant="body2"
+          >
             {address}
           </Typography>
         </Box>
       </Box>
       <Box className={styles.infoContainer}>
         <Box>
-          <Typography className={styles.headingText} variant="body2">
+          <Typography
+            tabIndex={0}
+            aria-label={"Specialties"}
+            className={styles.headingText}
+            variant="body2"
+          >
             Specialties
           </Typography>
-          <Typography className={styles.text} variant="body2">
+          <Typography
+            tabIndex={0}
+            aria-label={provider.specialties}
+            className={styles.text}
+            variant="body2"
+          >
             {provider.specialties}
           </Typography>
         </Box>
         <Box>
-          <Typography className={styles.headingText} variant="body2">
+          <Typography
+            tabIndex={0}
+            aria-label={"email"}
+            className={styles.headingText}
+            variant="body2"
+          >
             Email
           </Typography>
           <Link
             className={styles.link}
+            tabIndex={0}
+            aria-label={provider.email}
             variant="body2"
             href={`mailto:${provider.email}`}
           >
@@ -131,7 +163,12 @@ export default function CareTeamCard({ provider }) {
           </Link>
         </Box>
         <Box>
-          <Typography className={styles.headingText} variant="body2">
+          <Typography
+            tabIndex={0}
+            aria-label={"phone"}
+            className={styles.headingText}
+            variant="body2"
+          >
             Phone
           </Typography>
           <PhoneNumber
@@ -149,12 +186,16 @@ export default function CareTeamCard({ provider }) {
       </Box>
       <Box className={styles.buttonContainer}>
         <Link
+          tabIndex={0}
+          aria-label={"View Profile"}
           href={`/patient/bio/${provider.providerId}`}
           className={styles.viewProfileLink}
         >
           View Profile
         </Link>
         <StyledButton
+          tabIndex={0}
+          aria-label={"Schedule Appointment"}
           theme={"patient"}
           mode={"primary"}
           size={"small"}

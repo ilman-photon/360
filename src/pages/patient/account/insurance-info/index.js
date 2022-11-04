@@ -188,7 +188,7 @@ export default function InsuranceInfoPage() {
   useEffect(() => {
     if (newInsuranceComp.current && focusToNewInsurance) {
       setTimeout(() => {
-        newInsuranceComp.current.scrollIntoView({
+        newInsuranceComp?.current?.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
