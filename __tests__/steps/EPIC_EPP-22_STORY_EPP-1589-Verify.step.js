@@ -7,10 +7,10 @@ import { Provider } from "react-redux";
 import DashboardPage from "../../src/pages/patient/index";
 import { Login } from "../../src/components/organisms/Login/login";
 import store from "../../src/store/store";
-import mediaQuery from 'css-mediaquery';
+import mediaQuery from "css-mediaquery";
 import Cookies from "universal-cookie";
 
-const cookies = new Cookies()
+const cookies = new Cookies();
 
 const createData = (id, isRead, type, createdAt, data) => {
   return {
@@ -71,16 +71,16 @@ global.fetch = jest.fn(() =>
 );
 
 const feature = loadFeature(
-	"./__tests__/feature/Patient Portal/Sprint7/EPP-1589.feature"
+  "./__tests__/feature/Patient Portal/Sprint7/EPP-1589.feature"
 );
 
 defineFeature(feature, (test) => {
-	let container;
-	const mock = new MockAdapter(axios);
-  
+  let container;
+  const mock = new MockAdapter(axios);
+
   const defaultValidation = () => {
-		expect(true).toBeTruthy();
-	};
+    expect(true).toBeTruthy();
+  };
 
   function userIsLoggedIn() {
     const mockOnLoginClicked = jest.fn((data, route, callback) => {
@@ -91,8 +91,8 @@ defineFeature(feature, (test) => {
     act(() => {
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
     });
-    const usernameField = container.getByLabelText("emailUserLabel");
-    const passwordField = container.getByLabelText("passwordLabel");
+    const usernameField = container.getByLabelText(/emailUserLabel/i);
+    const passwordField = container.getByLabelText(/passwordLabel/i);
     act(() => {
       fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
@@ -113,218 +113,307 @@ defineFeature(feature, (test) => {
   async function userLandsToDashboard() {
     const mockGeolocation = {
       getCurrentPosition: jest.fn(),
-      watchPosition: jest.fn()
+      watchPosition: jest.fn(),
     };
-    
+
     global.navigator.geolocation = mockGeolocation;
-    cookies.set("authorized", true)
-    cookies.set("accessToken", "1234")
-    
+    cookies.set("authorized", true);
+    cookies.set("accessToken", "1234");
+
     act(() => {
-      container.rerender(<Provider store={store}>{DashboardPage.getLayout(<DashboardPage />)}</Provider>);
+      container.rerender(
+        <Provider store={store}>
+          {DashboardPage.getLayout(<DashboardPage />)}
+        </Provider>
+      );
     });
 
-    const subtitle = await waitFor(() => container.getByText("Search for a doctor"))
-    expect(subtitle).toBeInTheDocument()
+    const subtitle = await waitFor(() =>
+      container.getByText("Search for a doctor")
+    );
+    expect(subtitle).toBeInTheDocument();
   }
 
   async function userSeeNotificationBadge() {
-    const notificationButton = await waitFor(() => container.getByTestId("notification-badge-icon"))
-    expect(notificationButton).toBeInTheDocument()
+    const notificationButton = await waitFor(() =>
+      container.getByTestId("notification-badge-icon")
+    );
+    expect(notificationButton).toBeInTheDocument();
   }
 
   async function userClicksNotificationBadge() {
-    const notificationButton = await waitFor(() => container.getByTestId("notification-badge-icon"))
+    const notificationButton = await waitFor(() =>
+      container.getByTestId("notification-badge-icon")
+    );
     act(() => {
-      fireEvent.click(notificationButton)
-    })
+      fireEvent.click(notificationButton);
+    });
   }
 
   async function notificationDrawerOpened() {
-    const notificationDrawer = await waitFor(() => container.getByTestId("notification-drawer-title"))
-    expect(notificationDrawer).toBeInTheDocument()
+    const notificationDrawer = await waitFor(() =>
+      container.getByTestId("notification-drawer-title")
+    );
+    expect(notificationDrawer).toBeInTheDocument();
   }
 
   async function userSeeNotificationListWithClickableToDismiss() {
-    const isReadNotificationItem = await waitFor(() => container.getAllByTestId("notification-is-new")) 
-    expect(isReadNotificationItem[0]).toBeInTheDocument()
+    const isReadNotificationItem = await waitFor(() =>
+      container.getAllByTestId("notification-is-new")
+    );
+    expect(isReadNotificationItem[0]).toBeInTheDocument();
   }
 
   async function userSeeTopNotificationItemAsMostRecent() {
-    const isMostRecent = MOCK_NOTIFICATIONS[0].createdAt > MOCK_NOTIFICATIONS[1].createdAt
-    expect(isMostRecent).toBeTruthy()
+    const isMostRecent =
+      MOCK_NOTIFICATIONS[0].createdAt > MOCK_NOTIFICATIONS[1].createdAt;
+    expect(isMostRecent).toBeTruthy();
   }
 
   async function userSeeMarkAllAsRead() {
-    const markAllAsReadButton = await waitFor(() => container.getByTestId("notification-mark-all-as-read-button"))
-    expect(markAllAsReadButton).toBeInTheDocument()
+    const markAllAsReadButton = await waitFor(() =>
+      container.getByTestId("notification-mark-all-as-read-button")
+    );
+    expect(markAllAsReadButton).toBeInTheDocument();
   }
 
   async function userReadANotificationAndRemoved() {
-    const notificationItem = await waitFor(() => container.getAllByTestId("notification-item")[0])
-    expect(notificationItem).toHaveTextContent("Your lab test results are available now.1mo")
+    const notificationItem = await waitFor(
+      () => container.getAllByTestId("notification-item")[0]
+    );
+    expect(notificationItem).toHaveTextContent(
+      "Your lab test results are available now.1mo"
+    );
     act(() => {
-      fireEvent.click(notificationItem)
-    })
-    const newNotificationItem = await waitFor(() => container.getAllByTestId("notification-item")[0])
-    expect(newNotificationItem).toHaveTextContent("Your prescription refill is available now1mo")
+      fireEvent.click(notificationItem);
+    });
+    const newNotificationItem = await waitFor(
+      () => container.getAllByTestId("notification-item")[0]
+    );
+    expect(newNotificationItem).toHaveTextContent(
+      "Your prescription refill is available now1mo"
+    );
   }
 
-  test('EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view the unread alerts listed one below the other with an option against each to dismiss', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test("EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view the unread alerts listed one below the other with an option against each to dismiss", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', async (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', async () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      async () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", async () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', async() => {
-      userClicksNotificationBadge()
-    });
-
-    then('User should be able to view the unread alerts listed one below the other with an option against each to dismiss', () => {
-      notificationDrawerOpened()
-      userSeeNotificationListWithClickableToDismiss()
-    });
+    then(
+      "User should be able to view the unread alerts listed one below the other with an option against each to dismiss",
+      () => {
+        notificationDrawerOpened();
+        userSeeNotificationListWithClickableToDismiss();
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1589 - Verify User should see list unread alerts on how recent they are i.e. recent alerts will be on top', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test("EPIC_EPP-22_STORY_EPP-1589 - Verify User should see list unread alerts on how recent they are i.e. recent alerts will be on top", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
+    then(
+      "User should be able to view the unread alerts listed one below the other with an option against each to dismiss",
+      () => {
+        notificationDrawerOpened();
+        userSeeNotificationListWithClickableToDismiss();
+      }
+    );
 
-    then('User should be able to view the unread alerts listed one below the other with an option against each to dismiss', () => {
-      notificationDrawerOpened()
-      userSeeNotificationListWithClickableToDismiss()
-    });
-
-    and('User should see list unread alerts on how recent they are i.e. recent alerts will be on top', async() => {
-      userSeeTopNotificationItemAsMostRecent()
-    });
+    and(
+      "User should see list unread alerts on how recent they are i.e. recent alerts will be on top",
+      async () => {
+        userSeeTopNotificationItemAsMostRecent();
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1589 - Verify User should have the option to clear all alerts', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test("EPIC_EPP-22_STORY_EPP-1589 - Verify User should have the option to clear all alerts", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
+    then(
+      "User should be able to view the unread alerts listed one below the other with an option against each to dismiss",
+      () => {
+        notificationDrawerOpened();
+        userSeeNotificationListWithClickableToDismiss();
+      }
+    );
 
-    then('User should be able to view the unread alerts listed one below the other with an option against each to dismiss', () => {
-      notificationDrawerOpened()
-      userSeeNotificationListWithClickableToDismiss()
-    });
+    and(
+      "User should see list unread alerts on how recent they are i.e. recent alerts will be on top",
+      () => {
+        userSeeTopNotificationItemAsMostRecent();
+      }
+    );
 
-    and('User should see list unread alerts on how recent they are i.e. recent alerts will be on top', () => {
-      userSeeTopNotificationItemAsMostRecent()
-    });
-
-    and('User should have the option to clear all alerts', () => {
-      userSeeMarkAllAsRead()
+    and("User should have the option to clear all alerts", () => {
+      userSeeMarkAllAsRead();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view alerts being removed from the list of alerts as and when they are read', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test("EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view alerts being removed from the list of alerts as and when they are read", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
+    then(
+      "User should be able to view the unread alerts listed one below the other with an option against each to dismiss",
+      () => {
+        notificationDrawerOpened();
+        userSeeNotificationListWithClickableToDismiss();
+      }
+    );
 
-    then('User should be able to view the unread alerts listed one below the other with an option against each to dismiss', () => {
-      notificationDrawerOpened()
-      userSeeNotificationListWithClickableToDismiss()
-    });
+    and(
+      "User should see list unread alerts on how recent they are i.e. recent alerts will be on top",
+      () => {
+        userSeeTopNotificationItemAsMostRecent();
+      }
+    );
 
-    and('User should see list unread alerts on how recent they are i.e. recent alerts will be on top', () => {
-      userSeeTopNotificationItemAsMostRecent()
-    });
-
-    and('User should be able to view alerts being removed from the list of alerts as and when they are read', () => {
-      userReadANotificationAndRemoved()
-    });
+    and(
+      "User should be able to view alerts being removed from the list of alerts as and when they are read",
+      () => {
+        userReadANotificationAndRemoved();
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1589 -Negative Test Cases-Verify  when the service is unavailable', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test("EPIC_EPP-22_STORY_EPP-1589 -Negative Test Cases-Verify  when the service is unavailable", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
+    and("the service is unavailable", () => {
+      defaultValidation();
     });
 
-    and('the service is unavailable', () => {
-      defaultValidation()
-    });
-
-    then('user should see the appropriate error message', () => {
+    then("user should see the appropriate error message", () => {
       defaultValidation();
     });
   });
-})
+});
