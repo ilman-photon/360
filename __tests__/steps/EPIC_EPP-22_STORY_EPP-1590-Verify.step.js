@@ -8,9 +8,9 @@ import DashboardPage from "../../src/pages/patient/index";
 import { Login } from "../../src/components/organisms/Login/login";
 import store from "../../src/store/store";
 import Cookies from "universal-cookie";
-import { withMarkup } from "../src/utils/test-util"
+import { withMarkup } from "../src/utils/test-util";
 
-const cookies = new Cookies()
+const cookies = new Cookies();
 
 const createData = (id, isRead, type, createdAt, data) => {
   return {
@@ -71,16 +71,16 @@ global.fetch = jest.fn(() =>
 );
 
 const feature = loadFeature(
-	"./__tests__/feature/Patient Portal/Sprint7/EPP-1590.feature"
+  "./__tests__/feature/Patient Portal/Sprint7/EPP-1590.feature"
 );
 
 defineFeature(feature, (test) => {
-	let container;
-	const mock = new MockAdapter(axios);
+  let container;
+  const mock = new MockAdapter(axios);
 
   const defaultValidation = () => {
-		expect(true).toBeTruthy();
-	};
+    expect(true).toBeTruthy();
+  };
 
   function userIsLoggedIn() {
     const mockOnLoginClicked = jest.fn((data, route, callback) => {
@@ -91,8 +91,8 @@ defineFeature(feature, (test) => {
     act(() => {
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
     });
-    const usernameField = container.getByLabelText("emailUserLabel");
-    const passwordField = container.getByLabelText("passwordLabel");
+    const usernameField = container.getByLabelText(/emailUserLabel/i);
+    const passwordField = container.getByLabelText(/passwordLabel/i);
     act(() => {
       fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
@@ -113,277 +113,395 @@ defineFeature(feature, (test) => {
   async function userLandsToDashboard() {
     const mockGeolocation = {
       getCurrentPosition: jest.fn(),
-      watchPosition: jest.fn()
+      watchPosition: jest.fn(),
     };
-    
+
     global.navigator.geolocation = mockGeolocation;
-    cookies.set("authorized", true)
-    cookies.set("accessToken", "1234")
-    
+    cookies.set("authorized", true);
+    cookies.set("accessToken", "1234");
+
     act(() => {
-      container.rerender(<Provider store={store}>{DashboardPage.getLayout(<DashboardPage />)}</Provider>);
+      container.rerender(
+        <Provider store={store}>
+          {DashboardPage.getLayout(<DashboardPage />)}
+        </Provider>
+      );
     });
 
-    const subtitle = await waitFor(() => container.getByText("Search for a doctor"))
-    expect(subtitle).toBeInTheDocument()
+    const subtitle = await waitFor(() =>
+      container.getByText("Search for a doctor")
+    );
+    expect(subtitle).toBeInTheDocument();
   }
 
   async function userSeeNotificationBadge() {
-    const notificationButton = await waitFor(() => container.getByTestId("notification-badge-icon"))
-    expect(notificationButton).toBeInTheDocument()
+    const notificationButton = await waitFor(() =>
+      container.getByTestId("notification-badge-icon")
+    );
+    expect(notificationButton).toBeInTheDocument();
   }
 
   async function userClicksNotificationBadge() {
-    const notificationButton = await waitFor(() => container.getByTestId("notification-badge-icon"))
+    const notificationButton = await waitFor(() =>
+      container.getByTestId("notification-badge-icon")
+    );
     act(() => {
-      fireEvent.click(notificationButton)
-    })
+      fireEvent.click(notificationButton);
+    });
   }
 
   const getByType = async (type) => {
-    const getAllByTextWithMarkup = withMarkup(container.getAllByText)
+    const getAllByTextWithMarkup = withMarkup(container.getAllByText);
 
     switch (type) {
       case "appointment":
-        return getAllByTextWithMarkup('You have an eye test appointment in 3 days.')
+        return getAllByTextWithMarkup(
+          "You have an eye test appointment in 3 days."
+        );
       case "test-lab-result":
-        return getAllByTextWithMarkup("Your lab test results are available now.")
+        return getAllByTextWithMarkup(
+          "Your lab test results are available now."
+        );
       case "visit-summary":
-        return getAllByTextWithMarkup("Your visit summary for your appointment on Tuesday, May 15 is available now.")
+        return getAllByTextWithMarkup(
+          "Your visit summary for your appointment on Tuesday, May 15 is available now."
+        );
       case "prescription-refill":
-        return getAllByTextWithMarkup("Your prescription refill is available now")
+        return getAllByTextWithMarkup(
+          "Your prescription refill is available now"
+        );
       case "message":
-        return getAllByTextWithMarkup("You have received a new message from John Roe, O.D.")
+        return getAllByTextWithMarkup(
+          "You have received a new message from John Roe, O.D."
+        );
       case "prescription-glasses":
-        return getAllByTextWithMarkup("You have your glasses prescription available now.")
+        return getAllByTextWithMarkup(
+          "You have your glasses prescription available now."
+        );
       case "prescription-contact":
-        return getAllByTextWithMarkup("You have your contact lens prescription available now.")
+        return getAllByTextWithMarkup(
+          "You have your contact lens prescription available now."
+        );
       case "prescription-aspirin":
-        return getAllByTextWithMarkup("Your Aspirin prescription is now available.")
+        return getAllByTextWithMarkup(
+          "Your Aspirin prescription is now available."
+        );
       case "contact-lens":
-        return getAllByTextWithMarkup("Your Contact Lens are available for pickup.")
+        return getAllByTextWithMarkup(
+          "Your Contact Lens are available for pickup."
+        );
       case "glasses":
-        return getAllByTextWithMarkup("Your Glasses are available for pickup.")
+        return getAllByTextWithMarkup("Your Glasses are available for pickup.");
     }
-  }
+  };
 
   const userSeeAlertByType = async (type) => {
-    const notificationDrawer = await waitFor(() => container.getByTestId("notification-drawer-title"))
-    expect(notificationDrawer).toBeInTheDocument()
+    const notificationDrawer = await waitFor(() =>
+      container.getByTestId("notification-drawer-title")
+    );
+    expect(notificationDrawer).toBeInTheDocument();
 
-    await waitFor(() => container.getAllByTestId("notification-description"))
+    await waitFor(() => container.getAllByTestId("notification-description"));
 
-    const notificationItems = await getByType(type)
-    expect(notificationItems.length).toBeTruthy()
-  }
+    const notificationItems = await getByType(type);
+    expect(notificationItems.length).toBeTruthy();
+  };
 
-  test('EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view upcoming appointment types of alerts', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view upcoming appointment types of alerts", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
-    });
-
-    then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
-    });
-
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
-    });
-
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
-
-    then('User should be able to view upcoming appointment types of alerts', async () => {
-      userSeeAlertByType("appointment")
-    });
-  });
-
-  test('EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view test/ lab result is available types of alerts', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
-    });
-
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
-
-    then('User should be able to view test/ lab result is available types of alerts', async (table) => {
-      userSeeAlertByType("test-lab-result")
-    });
+    then(
+      "User should be able to view upcoming appointment types of alerts",
+      async () => {
+        userSeeAlertByType("appointment");
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view visit summary is available types of alerts', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view test/ lab result is available types of alerts", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
-
-    then('User should be able to view visit summary is available types of alerts', (table) => {
-      userSeeAlertByType("visit-summary")
-    });
+    then(
+      "User should be able to view test/ lab result is available types of alerts",
+      async (table) => {
+        userSeeAlertByType("test-lab-result");
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view prescription refill is available for download types of alerts', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view visit summary is available types of alerts", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
-
-    then('User should be able to view prescription refill is available for download types of alerts', (table) => {
-      userSeeAlertByType("prescription-refill")
-    });
+    then(
+      "User should be able to view visit summary is available types of alerts",
+      (table) => {
+        userSeeAlertByType("visit-summary");
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new message is received types of alerts', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view prescription refill is available for download types of alerts", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
-
-    then('User should be able to view new message is received types of alerts', (table) => {
-      userSeeAlertByType("message")
-    });
+    then(
+      "User should be able to view prescription refill is available for download types of alerts",
+      (table) => {
+        userSeeAlertByType("prescription-refill");
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new glass or lens prescription is available types of alerts', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new message is received types of alerts", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
-
-    then('User should be able to view new glass or lens prescription is available types of alerts', async (table) => {
-      userSeeAlertByType("prescription-glasses")
-      userSeeAlertByType("prescription-contact")
-    });
+    then(
+      "User should be able to view new message is received types of alerts",
+      (table) => {
+        userSeeAlertByType("message");
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new medication prescription is available types of alerts', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new glass or lens prescription is available types of alerts", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
-
-    then('User should be able to view new medication prescription is available types of alerts', (table) => {
-      userSeeAlertByType("prescription-aspirin")
-    });
+    then(
+      "User should be able to view new glass or lens prescription is available types of alerts",
+      async (table) => {
+        userSeeAlertByType("prescription-glasses");
+        userSeeAlertByType("prescription-contact");
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view contact lens or glasses is available for pick up types of alerts', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new medication prescription is available types of alerts", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User is able to view the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on the alerts option', () => {
-      userClicksNotificationBadge()
-    });
-
-    then('User should be able to view contact lens or glasses is available for pick up types of alerts', async (table) => {
-      userSeeAlertByType("glasses")
-      userSeeAlertByType("contact-lens")
-    });
+    then(
+      "User should be able to view new medication prescription is available types of alerts",
+      (table) => {
+        userSeeAlertByType("prescription-aspirin");
+      }
+    );
   });
-})
+
+  test("EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view contact lens or glasses is available for pick up types of alerts", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
+    });
+
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
+    });
+
+    then('User lands to the "Dashboard" screen', (arg0) => {
+      userLandsToDashboard();
+    });
+
+    and(
+      "User is able to view the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on the alerts option", () => {
+      userClicksNotificationBadge();
+    });
+
+    then(
+      "User should be able to view contact lens or glasses is available for pick up types of alerts",
+      async (table) => {
+        userSeeAlertByType("glasses");
+        userSeeAlertByType("contact-lens");
+      }
+    );
+  });
+});

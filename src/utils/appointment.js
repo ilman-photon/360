@@ -434,11 +434,16 @@ function parsePrescriptionItemMedication(medications) {
     } else {
       past.push(medicationData);
     }
-    filterProvider.push({
-      name: element.providerName,
-      checked: false,
-      type: "provider",
-    });
+    const fProvider = filterProvider.find(
+      (item) => item.name === element.providerName
+    );
+    if (!fProvider) {
+      filterProvider.push({
+        name: element.providerName,
+        checked: false,
+        type: "provider",
+      });
+    }
   }
   filterData[1].checklist.push(...filterProvider);
   return { active, past, latestDateMedic, filterProvider: filterData };

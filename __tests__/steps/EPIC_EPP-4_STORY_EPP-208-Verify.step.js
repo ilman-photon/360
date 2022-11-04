@@ -83,8 +83,8 @@ defineFeature(feature, (test) => {
     and(
       'user provides invalid  "<Email or Phone Number>" and valid "<password>"',
       () => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -102,8 +102,8 @@ defineFeature(feature, (test) => {
     then(
       'user should see the error message "Invalid Username or Password"',
       () => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         expect(usernameField.id).toEqual("username");
         expect(passwordField.id).toEqual("password");
       }
@@ -170,7 +170,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "validUsername@mail.com" },
       });
@@ -178,7 +178,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -235,7 +235,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid  (.*) and Invalid (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "validUsername@mail.com" },
       });
@@ -286,8 +286,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides Invalid  (.*) and Invalid (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -345,8 +345,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^admin provides Invalid  (.*) and valid (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -460,8 +460,8 @@ defineFeature(feature, (test) => {
     and(
       /^admin provides Registered Invalid  (.*) and Invalid (.*)$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -511,8 +511,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides invalid  (.*) and valid (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -562,8 +562,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid  (.*) and Invalid (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -613,8 +613,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides Invalid  (.*) and Invalid (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -671,8 +671,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^admin provides Invalid  (.*) and valid (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -731,8 +731,8 @@ defineFeature(feature, (test) => {
     and(
       /^admin provides Registered valid  (.*) and Invalid (.*)$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -791,8 +791,8 @@ defineFeature(feature, (test) => {
     and(
       /^admin user provides Invalid  (.*) and Invalid (.*)$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -842,8 +842,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides (.*) with space "(.*)"$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: " " },
       });
@@ -900,8 +900,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides (.*) without @ symbol "(.*)"$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName" },
       });
@@ -960,7 +960,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email with two @ symbol like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -969,7 +969,7 @@ defineFeature(feature, (test) => {
     );
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1020,7 +1020,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email without text before @ symbol like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName" },
         });
@@ -1029,7 +1029,7 @@ defineFeature(feature, (test) => {
     );
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1080,7 +1080,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email without Domain name like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -1088,7 +1088,7 @@ defineFeature(feature, (test) => {
       });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1137,12 +1137,12 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides (.*) Email without .com like "(.*)"$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1193,7 +1193,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email without dot after domain name like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -1201,7 +1201,7 @@ defineFeature(feature, (test) => {
       });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1252,7 +1252,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email with consecutive dots at Email starting like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -1260,7 +1260,7 @@ defineFeature(feature, (test) => {
       });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1311,7 +1311,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email with consecutive dots at middle for the Email ID like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -1319,7 +1319,7 @@ defineFeature(feature, (test) => {
       });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1370,7 +1370,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email with consecutive dots in domain portion like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -1378,7 +1378,7 @@ defineFeature(feature, (test) => {
       });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1429,7 +1429,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email with Special Characters like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -1437,8 +1437,8 @@ defineFeature(feature, (test) => {
       });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -1493,7 +1493,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email starts with dot like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -1501,7 +1501,7 @@ defineFeature(feature, (test) => {
       });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1552,7 +1552,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email ends with dot like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -1560,7 +1560,7 @@ defineFeature(feature, (test) => {
       });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1611,7 +1611,7 @@ defineFeature(feature, (test) => {
     and(
       /^user provides (.*) Email with garbage values like "(.*)"$/,
       (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUserName@email.cc" },
         });
@@ -1619,7 +1619,7 @@ defineFeature(feature, (test) => {
       });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1668,7 +1668,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -1676,7 +1676,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -1727,7 +1727,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -1735,7 +1735,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1784,7 +1784,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -1792,7 +1792,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1886,7 +1886,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -1894,7 +1894,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -1940,7 +1940,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -1950,7 +1950,7 @@ defineFeature(feature, (test) => {
     and(
       /^enter the Password without (\d+) Upper case letter with other mandatory Password constraints.$/,
       (arg0) => {
-        const passwordField = container.getByLabelText("passwordLabel");
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
         expect(passwordField.value).toEqual("validPassword");
       });
@@ -1999,7 +1999,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -2009,7 +2009,7 @@ defineFeature(feature, (test) => {
     and(
       /^enter the Password without (\d+) Lower case letter with other mandatory Password constraints.$/,
       (arg0) => {
-        const passwordField = container.getByLabelText("passwordLabel");
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
         expect(passwordField.value).toEqual("validPassword");
       }
@@ -2059,7 +2059,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -2069,7 +2069,7 @@ defineFeature(feature, (test) => {
     and(
       /^enter the Password without (\d+) Number with other mandatory Password constraints.$/,
       (arg0) => {
-        const passwordField = container.getByLabelText("passwordLabel");
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
         expect(passwordField.value).toEqual("validPassword");
       }
@@ -2119,7 +2119,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -2129,7 +2129,7 @@ defineFeature(feature, (test) => {
     and(
       /^enter the Password without (\d+) Special character with other mandatory Password constraints.$/,
       (arg0) => {
-        const passwordField = container.getByLabelText("passwordLabel");
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
         expect(passwordField.value).toEqual("validPassword");
       });
@@ -2178,7 +2178,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -2188,7 +2188,7 @@ defineFeature(feature, (test) => {
     and(
       "user enter the Password with Upper case, Lower case, Numbers and Special characters",
       () => {
-        const passwordField = container.getByLabelText("passwordLabel");
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
         expect(passwordField.value).toEqual("validPassword");
       });
@@ -2335,7 +2335,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides (.*) Email with consecutive dots before @ symbol like "(.*)"$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, {
         target: { value: "wrongUserName@email.cc" },
       });
@@ -2343,7 +2343,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });

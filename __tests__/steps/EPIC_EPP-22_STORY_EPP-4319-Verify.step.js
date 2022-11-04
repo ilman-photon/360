@@ -9,10 +9,10 @@ import Cookies from "universal-cookie";
 import { withMarkup } from "../src/utils/test-util";
 import App from "../../src/pages/_app";
 
-const cookies = new Cookies()
+const cookies = new Cookies();
 
 const feature = loadFeature(
-	"./__tests__/feature/Patient Portal/Sprint7/EPP-4319.feature"
+  "./__tests__/feature/Patient Portal/Sprint7/EPP-4319.feature"
 );
 
 const setInternetOffline = async () => {
@@ -23,7 +23,7 @@ const setInternetOffline = async () => {
   await waitFor(() => container.getByText(/No Internet Connection/i));
   const text = container.getByText(/No Internet Connection/i);
   expect(text).toBeInTheDocument();
-}
+};
 
 const createData = (id, isRead, type, createdAt, data) => {
   return {
@@ -86,12 +86,12 @@ global.fetch = jest.fn(() =>
 );
 
 defineFeature(feature, (test) => {
-	let container;
-	const mock = new MockAdapter(axios);
+  let container;
+  const mock = new MockAdapter(axios);
 
   const defaultValidation = () => {
-		expect(true).toBeTruthy();
-	};
+    expect(true).toBeTruthy();
+  };
 
   function userIsLoggedIn() {
     const mockOnLoginClicked = jest.fn((data, route, callback) => {
@@ -102,8 +102,8 @@ defineFeature(feature, (test) => {
     act(() => {
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
     });
-    const usernameField = container.getByLabelText("emailUserLabel");
-    const passwordField = container.getByLabelText("passwordLabel");
+    const usernameField = container.getByLabelText(/emailUserLabel/i);
+    const passwordField = container.getByLabelText(/passwordLabel/i);
     act(() => {
       fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
@@ -124,530 +124,707 @@ defineFeature(feature, (test) => {
   async function userLandsToDashboard() {
     const mockGeolocation = {
       getCurrentPosition: jest.fn(),
-      watchPosition: jest.fn()
+      watchPosition: jest.fn(),
     };
-    
+
     global.navigator.geolocation = mockGeolocation;
-    cookies.set("authorized", true)
-    cookies.set("accessToken", "1234")
-    
+    cookies.set("authorized", true);
+    cookies.set("accessToken", "1234");
+
     act(() => {
       container.rerender(<App Component={DashboardPage} />);
     });
 
-    const subtitle = await waitFor(() => container.getByText("Search for a doctor"))
-    expect(subtitle).toBeInTheDocument()
+    const subtitle = await waitFor(() =>
+      container.getByText("Search for a doctor")
+    );
+    expect(subtitle).toBeInTheDocument();
   }
 
   async function userSeeNotificationBadge() {
-    const notificationButton = await waitFor(() => container.getByTestId("notification-badge-icon"))
-    expect(notificationButton).toBeInTheDocument()
+    const notificationButton = await waitFor(() =>
+      container.getByTestId("notification-badge-icon")
+    );
+    expect(notificationButton).toBeInTheDocument();
   }
 
   async function userClicksNotificationBadge() {
-    const notificationButton = await waitFor(() => container.getByTestId("notification-badge-icon"))
+    const notificationButton = await waitFor(() =>
+      container.getByTestId("notification-badge-icon")
+    );
     act(() => {
-      fireEvent.click(notificationButton)
-    })
+      fireEvent.click(notificationButton);
+    });
   }
 
   async function notificationDrawerOpened() {
-    const notificationDrawer = await waitFor(() => container.getByTestId("notification-drawer-title"))
-    expect(notificationDrawer).toBeInTheDocument()
+    const notificationDrawer = await waitFor(() =>
+      container.getByTestId("notification-drawer-title")
+    );
+    expect(notificationDrawer).toBeInTheDocument();
   }
 
   const getByType = async (type) => {
-    const getAllByTextWithMarkup = withMarkup(container.getAllByText)
+    const getAllByTextWithMarkup = withMarkup(container.getAllByText);
 
     switch (type) {
       case "appointment":
-        return getAllByTextWithMarkup('You have an eye test appointment in 3 days.')
+        return getAllByTextWithMarkup(
+          "You have an eye test appointment in 3 days."
+        );
       case "appointment-one":
-        return getAllByTextWithMarkup('You have an eye test appointment tomorrow.')
+        return getAllByTextWithMarkup(
+          "You have an eye test appointment tomorrow."
+        );
       case "test-result":
-        return getAllByTextWithMarkup("Your lab test results are available now.")
+        return getAllByTextWithMarkup(
+          "Your lab test results are available now."
+        );
       case "appointment-summary":
-        return getAllByTextWithMarkup("Your visit summary for your appointment on Tuesday, May 15 is available now.")
+        return getAllByTextWithMarkup(
+          "Your visit summary for your appointment on Tuesday, May 15 is available now."
+        );
       case "prescription-refill":
-        return getAllByTextWithMarkup("Your prescription refill is available now")
+        return getAllByTextWithMarkup(
+          "Your prescription refill is available now"
+        );
       case "message":
-        return getAllByTextWithMarkup("You have received a new message from John Roe, O.D.")
+        return getAllByTextWithMarkup(
+          "You have received a new message from John Roe, O.D."
+        );
       case "invoice":
-        return getAllByTextWithMarkup("There’s a new outstanding invoice")
+        return getAllByTextWithMarkup("There’s a new outstanding invoice");
       case "prescription-glasses":
-        return getAllByTextWithMarkup("You have your glasses prescription available now.")
+        return getAllByTextWithMarkup(
+          "You have your glasses prescription available now."
+        );
       case "prescription-contact":
-        return getAllByTextWithMarkup("You have your contact lens prescription available now.")
+        return getAllByTextWithMarkup(
+          "You have your contact lens prescription available now."
+        );
       case "prescription-aspirin":
-        return getAllByTextWithMarkup("Your Aspirin prescription is now available.")
+        return getAllByTextWithMarkup(
+          "Your Aspirin prescription is now available."
+        );
       case "contact-lens":
-        return getAllByTextWithMarkup("Your Contact Lens are available for pickup.")
+        return getAllByTextWithMarkup(
+          "Your Contact Lens are available for pickup."
+        );
       case "glasses":
-        return getAllByTextWithMarkup("Your Glasses are available for pickup.")
+        return getAllByTextWithMarkup("Your Glasses are available for pickup.");
       default:
-        return []
+        return [];
     }
-  }
+  };
 
   const userSeeAlertByType = async (type) => {
-    const notificationDrawer = await waitFor(() => container.getByTestId("notification-drawer-title"))
-    expect(notificationDrawer).toBeInTheDocument()
+    const notificationDrawer = await waitFor(() =>
+      container.getByTestId("notification-drawer-title")
+    );
+    expect(notificationDrawer).toBeInTheDocument();
 
-    await waitFor(() => container.getAllByTestId("notification-description"))
+    await waitFor(() => container.getAllByTestId("notification-description"));
 
-    const notificationItems = await getByType(type)
-    expect(notificationItems.length).toBeTruthy()
-  }
+    const notificationItems = await getByType(type);
+    expect(notificationItems.length).toBeTruthy();
+  };
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "You have an <purpose of visit/ test/ procedure> appointment in 3 days" (3 Days before)', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "You have an <purpose of visit/ test/ procedure> appointment in 3 days" (3 Days before)', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
+    and("there is an upcoming appointment for 3 days before", (arg0) => {
+      expect(
+        MOCK_NOTIFICATIONS.some((v) => v.type === "appointment")
+      ).toBeTruthy();
     });
 
-    and('there is an upcoming appointment for 3 days before', (arg0) => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="appointment")).toBeTruthy()
-    });
+    then(
+      'User should be able to see the alert verbiage as "You have an <purpose of visit/ test/ procedure> appointment in 3 days"',
+      async (arg0, arg1) => {
+        userSeeAlertByType("appointment");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "You have an <purpose of visit/ test/ procedure> appointment in 3 days"', async (arg0, arg1) => {
-      userSeeAlertByType("appointment")
-    });
-
-    and('Redirection to that particular appointment', () => {
-      defaultValidation()
+    and("Redirection to that particular appointment", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage " You have an <purpose of visit/ test/ procedure> appointment tomorrow." (1 Day before)', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage " You have an <purpose of visit/ test/ procedure> appointment tomorrow." (1 Day before)', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
+    and("there is an upcoming appointment for 1 day before", (arg0) => {
+      expect(
+        MOCK_NOTIFICATIONS.some((v) => v.type === "appointment-one")
+      ).toBeTruthy();
     });
 
-    and('there is an upcoming appointment for 1 day before', (arg0) => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="appointment-one")).toBeTruthy()
-    });
+    then(
+      'User should be able to see the alert verbiage as "You have an <purpose of visit/ test/ procedure> appointment tomorrow."',
+      (arg0) => {
+        userSeeAlertByType("appointment-one");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "You have an <purpose of visit/ test/ procedure> appointment tomorrow."', (arg0) => {
-      userSeeAlertByType("appointment-one")
-    });
-
-    and('Redirection to that particular appointment', () => {
-      defaultValidation()
+    and("Redirection to that particular appointment", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your <test/ lab name> test results are available now"', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your <test/ lab name> test results are available now"', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("test/ lab result is available", () => {
+      expect(
+        MOCK_NOTIFICATIONS.some((v) => v.type === "test-result")
+      ).toBeTruthy();
     });
 
-    and('test/ lab result is available', () => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="test-result")).toBeTruthy()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
-    });
+    then(
+      'User should be able to see the alert verbiage as "Your <test/ lab name> test results are available now"',
+      (arg0) => {
+        userSeeAlertByType("test-result");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "Your <test/ lab name> test results are available now"', (arg0) => {
-      userSeeAlertByType("test-result")
-    });
-
-    and('Redirection to that particular test/ lab result', () => {
-      defaultValidation()
+    and("Redirection to that particular test/ lab result", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your prescription refill is available now"', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your prescription refill is available now"', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("a prescription refill is available for download", () => {
+      expect(
+        MOCK_NOTIFICATIONS.some((v) => v.type === "prescription-refill")
+      ).toBeTruthy();
     });
 
-    and('a prescription refill is available for download', () => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="prescription-refill")).toBeTruthy()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
-    });
+    then(
+      'User should be able to see the alert verbiage as "Your prescription refill is available now"',
+      (arg0) => {
+        userSeeAlertByType("prescription-refill");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "Your prescription refill is available now"', (arg0) => {
-      userSeeAlertByType("prescription-refill")
-    });
-
-    and('Redirection to that particular prescription', () => {
-      defaultValidation()
+    and("Redirection to that particular prescription", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "You have received a new message from <Provider name>"', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "You have received a new message from <Provider name>"', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("a new message is received", () => {
+      expect(MOCK_NOTIFICATIONS.some((v) => v.type === "message")).toBeTruthy();
     });
 
-    and('a new message is received', () => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="message")).toBeTruthy()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
-    });
+    then(
+      'User should be able to see the alert verbiage as "You have received a new message from <Provider name>"',
+      (arg0) => {
+        userSeeAlertByType("message");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "You have received a new message from <Provider name>"', (arg0) => {
-      userSeeAlertByType("message")
-    });
-
-    and('Redirection to that particular message', () => {
-      defaultValidation()
+    and("Redirection to that particular message", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your visit summary for your appointment on <appointment date> is available now."', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your visit summary for your appointment on <appointment date> is available now."', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("a visit summary is available", () => {
+      expect(
+        MOCK_NOTIFICATIONS.some((v) => v.type === "appointment-summary")
+      ).toBeTruthy();
     });
 
-    and('a visit summary is available', () => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="appointment-summary")).toBeTruthy()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
-    });
+    then(
+      'User should be able to see the alert verbiage as "Your visit summary for your appointment on <appointment date> is available now."',
+      (arg0) => {
+        userSeeAlertByType("appointment-summary");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "Your visit summary for your appointment on <appointment date> is available now."', (arg0) => {
-      userSeeAlertByType("appointment-summary")
-    });
-
-    and('Redirection to that particular past appointment', () => {
-      defaultValidation()
+    and("Redirection to that particular past appointment", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "There is a new outstanding invoice"', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "There is a new outstanding invoice"', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("a new outstanding invoice is generated", () => {
+      expect(MOCK_NOTIFICATIONS.some((v) => v.type === "invoice")).toBeTruthy();
     });
 
-    and('a new outstanding invoice is generated', () => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="invoice")).toBeTruthy()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
-    });
+    then(
+      'User should be able to see the alert verbiage as "There is a new outstanding invoice"',
+      (arg0) => {
+        userSeeAlertByType("invoice");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "There is a new outstanding invoice"', (arg0) => {
-      userSeeAlertByType("invoice")
-    });
-
-    and('Redirection to that particular invoice', () => {
-      defaultValidation()
+    and("Redirection to that particular invoice", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "You have your <Glasses/ Contact Lens> prescription available now."', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "You have your <Glasses/ Contact Lens> prescription available now."', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("a new glass or lens prescription is available", () => {
+      expect(
+        MOCK_NOTIFICATIONS.some((v) => v.type === "prescription-contact")
+      ).toBeTruthy();
+      expect(
+        MOCK_NOTIFICATIONS.some((v) => v.type === "prescription-glasses")
+      ).toBeTruthy();
     });
 
-    and('a new glass or lens prescription is available', () => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="prescription-contact")).toBeTruthy()
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="prescription-glasses")).toBeTruthy()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
-    });
+    then(
+      'User should be able to see the alert verbiage as "You have your <Glasses/ Contact Lens> prescription available now."',
+      (arg0) => {
+        userSeeAlertByType("prescription-contact");
+        userSeeAlertByType("prescription-glasses");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "You have your <Glasses/ Contact Lens> prescription available now."', (arg0) => {
-      userSeeAlertByType("prescription-contact")
-      userSeeAlertByType("prescription-glasses")
-    });
-
-    and('Redirection to that particular prescription', () => {
-      defaultValidation()
+    and("Redirection to that particular prescription", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your <medication name> prescription is now available. Frequency ?"', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your <medication name> prescription is now available. Frequency ?"', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("a new medication prescription is available", () => {
+      expect(
+        MOCK_NOTIFICATIONS.some((v) => v.type === "prescription-aspirin")
+      ).toBeTruthy();
     });
 
-    and('a new medication prescription is available', () => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="prescription-aspirin")).toBeTruthy()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
-    });
+    then(
+      'User should be able to see the alert verbiage as "Your <medication name> prescription is now available. Frequency ?"',
+      (arg0) => {
+        userSeeAlertByType("prescription-aspirin");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "Your <medication name> prescription is now available. Frequency ?"', (arg0) => {
-      userSeeAlertByType("prescription-aspirin")
-    });
-
-    and('Redirection to that particular prescription', () => {
-      defaultValidation()
+    and("Redirection to that particular prescription", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your <Contact Lens/ Glasses> are available for pickup."', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test('EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your <Contact Lens/ Glasses> are available for pickup."', ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("a contact lens or glasses is available for pick up", () => {
+      expect(
+        MOCK_NOTIFICATIONS.some((v) => v.type === "contact-lens")
+      ).toBeTruthy();
+      expect(MOCK_NOTIFICATIONS.some((v) => v.type === "glasses")).toBeTruthy();
     });
 
-    and('a contact lens or glasses is available for pick up', () => {
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="contact-lens")).toBeTruthy()
-      expect(MOCK_NOTIFICATIONS.some(v=>v.type==="glasses")).toBeTruthy()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
-    });
+    then(
+      'User should be able to see the alert verbiage as "Your <Contact Lens/ Glasses> are available for pickup."',
+      (arg0) => {
+        userSeeAlertByType("contact-lens");
+        userSeeAlertByType("glasses");
+      }
+    );
 
-    then('User should be able to see the alert verbiage as "Your <Contact Lens/ Glasses> are available for pickup."', (arg0) => {
-      userSeeAlertByType("contact-lens")
-      userSeeAlertByType("glasses")
-    });
-
-    and('Where to redirect ? - Redirect to practise address like Clarkson eyecare', () => {
-      defaultValidation()
-    });
+    and(
+      "Where to redirect ? - Redirect to practise address like Clarkson eyecare",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User get Alerts to be triggered', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test("EPIC_EPP-22_STORY_EPP-4319 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User get Alerts to be triggered", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
+    and("the internet service is unavailable", async () => {
+      setInternetOffline();
     });
 
-    and('the internet service is unavailable', async () => {
-      setInternetOffline()
-    });
-
-    then('user should see the appropriate error message', () => {
-      defaultValidation()
+    then("user should see the appropriate error message", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-22_STORY_EPP-4319 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when User get Alerts to be triggered', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
+  test("EPIC_EPP-22_STORY_EPP-4319 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when User get Alerts to be triggered", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      userIsLoggedIn()
+    when("User is logged in to the application", () => {
+      userIsLoggedIn();
     });
 
     then('User lands to the "Dashboard" screen', (arg0) => {
-      userLandsToDashboard()
+      userLandsToDashboard();
     });
 
-    and('User should see the alerts option on the global header (like notifications)', () => {
-      userSeeNotificationBadge()
+    and(
+      "User should see the alerts option on the global header (like notifications)",
+      () => {
+        userSeeNotificationBadge();
+      }
+    );
+
+    when("User clicks on any of the alert as listed", () => {
+      userClicksNotificationBadge();
     });
 
-    when('User clicks on any of the alert as listed', () => {
-      userClicksNotificationBadge()
+    and("User should get Alerts to be triggered", async () => {
+      notificationDrawerOpened();
     });
 
-    and('User should get Alerts to be triggered', async() => {
-      notificationDrawerOpened()
+    and("the service is unavailable", () => {
+      defaultValidation();
     });
 
-    and('the service is unavailable', () => {
-      defaultValidation()
-    });
-
-    then('user should see the appropriate error message', () => {
-      defaultValidation()
+    then("user should see the appropriate error message", () => {
+      defaultValidation();
     });
   });
-})
+});

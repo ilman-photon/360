@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
   addUserInsuranceData,
+  DEFAULT_INSURANCE_DATA,
   deleteInsurance,
   fetchInsurance,
   postInsurance,
@@ -45,7 +46,6 @@ import { useRouter } from "next/router";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
-  const [focusToNewInsurance, setFocusToNewInsurance] = useState(false);
   const [confirmationDeleteDialog, setConfirmationDeleteDialog] =
     useState(false);
   const { INSURANCE_TEST_ID } = constants.TEST_ID;
@@ -88,7 +88,7 @@ export default function InsuranceInfoPage() {
     }, 5000);
   };
 
-  const OnCreateInsurance = async (postBody) => {
+  const OnCreateInsurance = async (postBody, reset) => {
     const { backCard, frontCard } = postBody;
     if (
       (backCard !== "" && frontCard === "") ||
@@ -113,6 +113,7 @@ export default function InsuranceInfoPage() {
         setOpenNewInsuranceForm(false);
         setIsShowErrorNew(false);
         setIsShowError(false);
+        reset(DEFAULT_INSURANCE_DATA);
       }
     }
   };
@@ -173,7 +174,6 @@ export default function InsuranceInfoPage() {
   const OnAddNewInsurance = () => {
     if (userInsuranceData.length < 5) {
       setOpenNewInsuranceForm(true);
-      setFocusToNewInsurance(true);
     } else {
       dispatch(
         setPageMessage({
@@ -186,15 +186,16 @@ export default function InsuranceInfoPage() {
     }
   };
   useEffect(() => {
-    if (newInsuranceComp.current && focusToNewInsurance) {
-      setTimeout(() => {
+    setTimeout(() => {
+      // add delay to gives new form to render first.
+      if (newInsuranceComp.current) {
         newInsuranceComp?.current?.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
-      }, 5000);
-    }
-  }, [openNewInsuranceForm, focusToNewInsurance]);
+      }
+    }, 1000);
+  }, [openNewInsuranceForm]);
 
   useEffect(() => {
     const userStorageData = JSON.parse(localStorage.getItem("userData"));
@@ -235,7 +236,7 @@ export default function InsuranceInfoPage() {
           borderRadius: "0px",
           justifyContent: "center",
           position: "absolute",
-          top: "-48px",
+          top: "-44px",
           zIndex: "1",
           left: 0,
           width: "100%",
@@ -246,17 +247,13 @@ export default function InsuranceInfoPage() {
         {pageMessage.content}
       </FormMessage>
       {loadingInsurance === "loading" ? (
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 16,
-          }}
+        <Stack
+          alignItems={"center"}
+          justifyContent={"center"}
+          minHeight={"200px"}
         >
           <CircularProgress />
-        </div>
+        </Stack>
       ) : (
         <>
           <Fade in={userInsuranceData.length > 0} unmountOnExit>
@@ -347,7 +344,7 @@ export default function InsuranceInfoPage() {
                     />
 
                     {/* add more insurance data */}
-                    <Collapse in={openNewInsuranceForm}>
+                    <Collapse in={openNewInsuranceForm} unmountOnExit>
                       <Accordion
                         defaultExpanded
                         sx={{
@@ -372,6 +369,12 @@ export default function InsuranceInfoPage() {
                         </AccordionSummary>
                         <AccordionDetails>
                           <InsuranceForm
+                            isSecondary={
+                              userInsuranceData.length > 0 &&
+                              userInsuranceData.some(
+                                (v) => v.priority === "PRIMARY"
+                              )
+                            }
                             testIds={INSURANCE_TEST_ID}
                             memberId={patientId}
                             providerList={providerList}
@@ -381,7 +384,6 @@ export default function InsuranceInfoPage() {
                             OnSaveClicked={OnCreateInsurance}
                             OnCancelClicked={() => {
                               setOpenNewInsuranceForm(false);
-                              setFocusToNewInsurance(false);
                             }}
                             isError={isShowError}
                           />

@@ -31,6 +31,7 @@ export default function InsuranceForm({
   planList = [],
   isEditing = true,
   isAutocompleteLoading = false,
+  isSecondary = false,
   memberId,
   OnProviderChanged = () => {
     // this is intended
@@ -57,6 +58,12 @@ export default function InsuranceForm({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
+
+  useEffect(() => {
+    if (isSecondary) {
+      setValue("priority", "SECONDARY");
+    }
+  });
 
   const isSubscriberOptions = [
     { label: "Yes", value: "Yes" },
@@ -119,8 +126,7 @@ export default function InsuranceForm({
   };
 
   const onSubmit = (data) => {
-    OnSaveClicked(data);
-    if (isError !== false) reset(formData);
+    OnSaveClicked(data, reset);
   };
 
   const DisclaimerText = (data) => {
@@ -195,6 +201,9 @@ export default function InsuranceForm({
                       helperText={error ? error.message : null}
                     />
                   );
+                }}
+                rules={{
+                  required: "This field is required",
                 }}
               />
             </Grid>

@@ -48,13 +48,13 @@ defineFeature(feature, (test) => {
     });
 
     when('the user enters a valid username in the username test field', () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
       expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
     and('User enters an invalid password in a password in the password field', () => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
       expect(passwordField.value).not.toEqual("validPassword");
     });
@@ -96,13 +96,13 @@ defineFeature(feature, (test) => {
     });
 
     when('the user enters a valid username in the username test field', () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
       expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
     and(/^User enters consecutively (\d+)th time an invalid password in the password field$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
       expect(passwordField.value).not.toEqual("validPassword");
     });
@@ -144,13 +144,13 @@ defineFeature(feature, (test) => {
     });
 
     when('the user enters a valid username in the username test field', () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
       expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
     and(/^User enters consecutively (\d+)th time an invalid password in the password field$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
       expect(passwordField.value).not.toEqual("validPassword");
     });
@@ -191,13 +191,13 @@ defineFeature(feature, (test) => {
     });
 
     when('the user enters a valid username in the username test field', () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
       expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
     and(/^User enters consecutively (\d+)th time an invalid password in the password field$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
       expect(passwordField.value).not.toEqual("validPassword");
     });
@@ -246,13 +246,13 @@ defineFeature(feature, (test) => {
     });
 
     when('the user enters a valid username in the username test field', () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
       expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
     and(/^User enters consecutively (\d+)th time an invalid password in the password field$/, (arg0) => {
-      const passwordField = container.getByLabelText("passwordLabel");
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
       expect(passwordField.value).not.toEqual("validPassword");
     });
