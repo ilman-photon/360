@@ -120,7 +120,7 @@ export default function ValidatePage({ query }) {
         getPatientId(post, callBack);
       })
       .catch(() => {
-        onShowErrorPostMessage(postbody);
+        //error user data
       });
   }
 

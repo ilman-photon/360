@@ -400,7 +400,6 @@ describe("App", () => {
     Cookies.result = { IdleTimeOut: 200, authorized: true, mfa: "123" };
     props.idleTimer = 200;
     props.promptTimeout = 2000;
-    const { result } = idleTimer();
     act(() => {
       container = render(<App Component={HomePage} />);
     });
@@ -422,12 +421,10 @@ describe("App", () => {
     Cookies.result = { IdleTimeOut: 200, authorized: true, mfa: "123" };
     props.idleTimer = 200;
     props.promptTimeout = 2000;
-    const { result } = idleTimer();
     act(() => {
       container = render(<App Component={HomePage} />);
     });
     await waitFor(() => container.getByLabelText(headerText));
-    await util.sleep(200);
     await waitFor(() =>
       container.getByText(/Your session is about to time-out./i)
     );

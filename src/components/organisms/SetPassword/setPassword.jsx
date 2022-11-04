@@ -311,7 +311,11 @@ const SetPasswordComponent = ({
               )}
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              style={styles.form}
+              noValidate
+            >
               <Controller
                 name="username"
                 control={control}
@@ -373,6 +377,7 @@ const SetPasswordComponent = ({
                         onChangePasswordValue();
                       }}
                       error={!!error}
+                      required
                       helperText={error ? error.message : null}
                     />
                   );
@@ -412,6 +417,7 @@ const SetPasswordComponent = ({
                         onChangePasswordValue();
                       }}
                       error={!!error}
+                      required
                       helperText={error ? error.message : null}
                     />
                   );
@@ -446,6 +452,11 @@ const SetPasswordComponent = ({
               <Link
                 style={{ ...styles.margin, ...styles.link }}
                 color={colors.link}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    router.push("/patient/login");
+                  }
+                }}
                 onClick={function () {
                   onBackToLoginClicked(router);
                 }}

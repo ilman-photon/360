@@ -100,6 +100,7 @@ export function Login({
                           onChange(val);
                         }}
                         error={!!error}
+                        required
                         helperText={error ? error.message : null}
                       />
                     );
@@ -136,6 +137,7 @@ export function Login({
                         }}
                         error={!!error}
                         aria
+                        required
                         helperText={error ? error.message : null}
                       />
                     );
