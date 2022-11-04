@@ -409,7 +409,7 @@ describe("App", () => {
     const doneButton = container.getByText(/Done/i);
     await waitFor(() => fireEvent.click(checkboxFilter));
     await waitFor(() => fireEvent.click(doneButton));
-  });
+  }, 20000);
 
   it("Filter Click Mobile", async () => {
     // cleanup();
