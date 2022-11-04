@@ -396,7 +396,11 @@ describe("App", () => {
         </Provider>
       );
     });
-    await waitFor(async () => await flowSubmitFilter());
+
+    await waitFor(() => {
+      flowSubmitFilter();
+    }, 20000);
+
     const filterButton = container.getByTestId("filterbtn");
 
     await waitFor(() => fireEvent.click(filterButton));
@@ -409,7 +413,7 @@ describe("App", () => {
     const doneButton = container.getByText(/Done/i);
     await waitFor(() => fireEvent.click(checkboxFilter));
     await waitFor(() => fireEvent.click(doneButton));
-  }, 20000);
+  }, 30000);
 
   it("Filter Click Mobile", async () => {
     // cleanup();
