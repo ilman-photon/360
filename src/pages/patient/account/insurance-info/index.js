@@ -66,8 +66,6 @@ export default function InsuranceInfoPage() {
     (state) => state.user.userInsuranceData
   );
 
-  const [isShowError, setIsShowError] = useState(false);
-  const [isShowErrorNew, setIsShowErrorNew] = useState(false);
   const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -88,33 +86,38 @@ export default function InsuranceInfoPage() {
     }, 5000);
   };
 
-  const OnCreateInsurance = async (postBody, reset) => {
+  const checkInsuranceCardCompletion = (postBody) => {
     const { backCard, frontCard } = postBody;
-    if (
-      (backCard !== "" && frontCard === "") ||
-      (backCard === "" && frontCard !== "")
-    ) {
-      setIsShowErrorNew(true);
-      setIsShowError(true);
-    } else {
-      const { payload } = await dispatch(
-        postInsurance({ patientId, payload: postBody })
+    if (!backCard || !frontCard) {
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          error: true,
+          content: "Please upload both sides of your insurance card.",
+        })
       );
+      return false;
+    } else return true;
+  };
 
-      if (payload.success) {
-        // after effect to add state of rawuserinsuranceData manually and rebuild
-        dispatch(addUserInsuranceData(payload.response));
-        dispatch(
-          setPageMessage({
-            isShow: true,
-            content: "Insurance successfully added",
-          })
-        );
-        setOpenNewInsuranceForm(false);
-        setIsShowErrorNew(false);
-        setIsShowError(false);
-        reset(DEFAULT_INSURANCE_DATA);
-      }
+  const OnCreateInsurance = async (postBody) => {
+    if (!postBody) return;
+    if (!checkInsuranceCardCompletion(postBody)) return;
+
+    const { payload } = await dispatch(
+      postInsurance({ patientId, payload: postBody })
+    );
+
+    if (payload.success) {
+      // after effect to add state of rawuserinsuranceData manually and rebuild
+      dispatch(addUserInsuranceData(payload.response));
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          content: "Insurance successfully added",
+        })
+      );
+      setOpenNewInsuranceForm(false);
     }
   };
 
@@ -150,9 +153,9 @@ export default function InsuranceInfoPage() {
   };
 
   const OnEditInsurance = async (postBody) => {
-    if (!postBody) {
-      return;
-    }
+    if (!postBody) return;
+    if (!checkInsuranceCardCompletion(postBody)) return;
+
     const { payload } = await dispatch(
       updateInsurance({
         patientId: patientId,
@@ -216,13 +219,14 @@ export default function InsuranceInfoPage() {
     }
   };
 
-  const uploadBothError = (style, onClose) => {
-    return (
-      <FormMessage success={false} sx={style} onClick={onClose}>
-        Please upload both sides of your insurance card.
-      </FormMessage>
-    );
-  };
+  // const uploadBothError = (style, onClose) => {
+  //   return (
+  //     <FormMessage success={false} sx={style} onClick={onClose}>
+  //       Please upload both sides of your insurance card.
+  //     </FormMessage>
+  //   );
+  // };
+
   return (
     <section>
       <FormMessage
@@ -290,10 +294,6 @@ export default function InsuranceInfoPage() {
                   )
                 }
               >
-                {isShowError &&
-                  uploadBothError({ marginBottom: "16px" }, () =>
-                    setIsShowError(false)
-                  )}
                 <Collapse in={isEditing}>
                   <Box>
                     <InsuranceForm
@@ -308,7 +308,6 @@ export default function InsuranceInfoPage() {
                       OnCancelClicked={() => {
                         setIsEditing(false);
                       }}
-                      isError={isShowError}
                     />
                   </Box>
                 </Collapse>
@@ -385,7 +384,6 @@ export default function InsuranceInfoPage() {
                             OnCancelClicked={() => {
                               setOpenNewInsuranceForm(false);
                             }}
-                            isError={isShowError}
                           />
                         </AccordionDetails>
                       </Accordion>
@@ -406,10 +404,6 @@ export default function InsuranceInfoPage() {
                 isAutocompleteLoading={isAutocompleteLoading}
                 OnProviderChanged={handleFetchPlans}
                 OnCreateInsurance={OnCreateInsurance}
-                FormMessageEl={uploadBothError(null, () =>
-                  setIsShowErrorNew(false)
-                )}
-                isShowError={isShowErrorNew}
               />
             </Box>
           </Fade>

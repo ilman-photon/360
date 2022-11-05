@@ -641,7 +641,10 @@ export default function PrescriptionMedication({
   return (
     <Box className={styles.medicationDetailContainer}>
       {requestRefillResponseData && (
-        <FormMessage success={true} sx={{ margin: "20px 10px 10px 10px" }}>
+        <FormMessage
+          success={true}
+          sx={{ margin: "20px 10px 10px 10px", color: "#ffffff" }}
+        >
           <Typography className={styles.formMessageText}>
             {requestRefillResponseData.message}
           </Typography>

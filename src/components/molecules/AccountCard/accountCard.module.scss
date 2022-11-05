@@ -3,6 +3,18 @@
 .card {
   border-radius: 0;
 
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    border: none;
+  }
+
+  @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+    border: none;
+  }
+
+  @media only screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
+    border: none;
+  }
+
   .dashboardHeader {
     background: #ffffff !important;
     border-bottom: 1px solid #dadada;

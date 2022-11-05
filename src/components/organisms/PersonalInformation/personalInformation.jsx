@@ -251,7 +251,11 @@ export default function PersonalInformation({
                 label="Front Card"
                 tabIndex={0}
                 ariaLabel="Front Card"
-                helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
+                helperText={
+                  userData.issuedCardFront === null
+                    ? "JPG or PNG file formats only. (File size limit is 4 MB)"
+                    : ""
+                }
               >
                 <div className={styles.issuedCardContainer}>
                   <ImageFallback
@@ -268,7 +272,11 @@ export default function PersonalInformation({
                 label="Back Card"
                 ariaLabel="Back Card"
                 tabIndex={0}
-                helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
+                helperText={
+                  userData.issuedCardBack === null
+                    ? "JPG or PNG file formats only. (File size limit is 4 MB)"
+                    : ""
+                }
               >
                 <div className={styles.issuedCardContainer}>
                   <ImageFallback
