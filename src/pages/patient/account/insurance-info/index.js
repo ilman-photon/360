@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
   addUserInsuranceData,
-  DEFAULT_INSURANCE_DATA,
   deleteInsurance,
   fetchInsurance,
   postInsurance,
@@ -218,14 +217,6 @@ export default function InsuranceInfoPage() {
       dispatch(fetchPlans({ token: cookies.get("accessToken"), payerId }));
     }
   };
-
-  // const uploadBothError = (style, onClose) => {
-  //   return (
-  //     <FormMessage success={false} sx={style} onClick={onClose}>
-  //       Please upload both sides of your insurance card.
-  //     </FormMessage>
-  //   );
-  // };
 
   return (
     <section>

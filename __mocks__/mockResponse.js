@@ -37028,3 +37028,796 @@ export const mockDistance = {
     },
   ],
 };
+
+export const pastAppointmentResponse = {
+  count: 4,
+  entities: [
+    {
+      appointmentType: { code: "Charity", name: "Charity" },
+      patient: {
+        title: "0",
+        firstName: "dewoPatient",
+        lastName: "Simanjuntak",
+        dob: "02/26/1990",
+        age: "32",
+        sex: "0",
+        address: [],
+        patientDetails: {
+          isFlagNew: false,
+          isFlagInCollection: false,
+          isFlagBadCheck: false,
+          isFlagDeceased: false,
+          isFlagChartless: false,
+          _id: "17ad4082-9d55-4df7-aaff-992a388e6592",
+          _version: "b3cc4bd3-9fc2-4d7a-b7fb-2a6ed3885d9f",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        isEmergencyContactAvailable: false,
+        contactPrefrence: false,
+        status: "UPDATED",
+        contactInformation: {
+          phones: [{ type: 3.0, number: "(123) 434-5566", isPreferred: true }],
+          emails: [
+            {
+              type: 1,
+              isPreferred: true,
+              email: "patient123@mailinator.com",
+              _id: "7f0c7363-8a46-4cc6-9fa0-f647275630ba",
+              _version: "8718c073-b767-413e-9f73-60e7464f492a",
+              _created: "Oct 26, 2022, 12:48:48 PM",
+              _updated: "Nov 3, 2022, 11:15:34 AM",
+              _createdBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          contactPreferenceDetail: {
+            phone: false,
+            text: true,
+            email: true,
+            _id: "c8e63eba-7baf-45d7-83bf-3b8658762773",
+            _version: "887c0d39-ea76-4fa8-bb45-4d6124ca51ff",
+            _created: "Oct 26, 2022, 12:48:48 PM",
+            _updated: "Nov 3, 2022, 11:15:34 AM",
+            _createdBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          noEmail: false,
+          _id: "6aee049d-6255-4418-8b93-1aa97868dd00",
+          _version: "1b7a78c8-71f3-4f08-9903-b0ef42d7f619",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        _id: "761c3d8f-6236-43ae-80c1-06aa9e86eb1f",
+        _version: "0f723c6b-bbd9-4ef5-83ff-9da0fff7ab4d",
+        _created: "Oct 26, 2022, 12:48:48 PM",
+        _updated: "Nov 3, 2022, 11:15:34 AM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      provider: {
+        firstName: "Steve",
+        lastName: "Adam",
+        designation: "Dr",
+        inHouse: false,
+        workPhone: "3219898898",
+        address: {
+          addressLine1: "800 14th St Apt B",
+          city: "Virginia Beach",
+          state: "VA",
+          zip: "23451",
+        },
+        sex: { key: 11, name: "M", order: 1, notes: "" },
+        taxonomyCode: "207NI0002X",
+        classification: "Dermatology",
+        specialization: "Clinical & Laboratory Dermatological Immunology",
+        directAddress: "direct@test.com",
+        _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+        _version: "2a9e2afd-f26e-4af8-82b1-1415c2b29140",
+        _updated: "Nov 4, 2022, 1:16:17 PM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      appointmentDate: "07/03/2022",
+      appointmentTime: "09:55",
+      appointmentEndTime: "09:56",
+      appointmentLength: 1,
+      isConfirmed: false,
+      appointmentHistory: [],
+      state: {
+        subState: {
+          subState: "UPDATED",
+          _id: "135965e7-2b24-4548-b59b-1f405c31fdd6",
+          _version: "ee36b406-9608-498a-8d41-0a4802809c5e",
+          _created: "Nov 3, 2022, 10:00:01 AM",
+          _updated: "Nov 3, 2022, 10:00:01 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        state: "NO_SHOW",
+        _id: "a4ee0634-691b-41ed-b0ff-cb3be41610db",
+        _version: "32f72bd4-b1e2-4818-ad20-340baa8882fd",
+        _created: "Nov 3, 2022, 7:45:45 AM",
+        _updated: "Nov 3, 2022, 10:00:01 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      notes: [],
+      allowCreate: false,
+      paymentMethod: {
+        noInsuranceInformation: {},
+        insuranceInfoUsedForBilling: {
+          financialClassBasedInformation: {},
+          active: false,
+          archive: false,
+          selected: false,
+        },
+      },
+      appointmentNo: 1000001550,
+      newPatient: false,
+      insurancePayers: [],
+      override: false,
+      quickAppointmentflag: false,
+      isPrimaryMember: true,
+      status: "UPDATED",
+      _links: {
+        self: { href: "/v1/appointments/9a00f73a-e139-4c0a-8deb-3cf3968764ee" },
+      },
+      _id: "9a00f73a-e139-4c0a-8deb-3cf3968764ee",
+      _version: "e9b20ed9-abae-490c-9030-7c9ef5961e09",
+      _created: "Nov 3, 2022, 7:45:45 AM",
+      _updated: "Nov 3, 2022, 10:00:01 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+      _updatedBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+    },
+    {
+      appointmentType: { code: "Charity", name: "Charity" },
+      patient: {
+        title: "0",
+        firstName: "dewoPatient",
+        lastName: "Simanjuntak",
+        dob: "02/26/1990",
+        age: "32",
+        sex: "0",
+        address: [],
+        patientDetails: {
+          isFlagNew: false,
+          isFlagInCollection: false,
+          isFlagBadCheck: false,
+          isFlagDeceased: false,
+          isFlagChartless: false,
+          _id: "17ad4082-9d55-4df7-aaff-992a388e6592",
+          _version: "b3cc4bd3-9fc2-4d7a-b7fb-2a6ed3885d9f",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        isEmergencyContactAvailable: false,
+        contactPrefrence: false,
+        status: "UPDATED",
+        contactInformation: {
+          phones: [{ type: 3.0, number: "(123) 434-5566", isPreferred: true }],
+          emails: [
+            {
+              type: 1,
+              isPreferred: true,
+              email: "patient123@mailinator.com",
+              _id: "7f0c7363-8a46-4cc6-9fa0-f647275630ba",
+              _version: "8718c073-b767-413e-9f73-60e7464f492a",
+              _created: "Oct 26, 2022, 12:48:48 PM",
+              _updated: "Nov 3, 2022, 11:15:34 AM",
+              _createdBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          contactPreferenceDetail: {
+            phone: false,
+            text: true,
+            email: true,
+            _id: "c8e63eba-7baf-45d7-83bf-3b8658762773",
+            _version: "887c0d39-ea76-4fa8-bb45-4d6124ca51ff",
+            _created: "Oct 26, 2022, 12:48:48 PM",
+            _updated: "Nov 3, 2022, 11:15:34 AM",
+            _createdBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          noEmail: false,
+          _id: "6aee049d-6255-4418-8b93-1aa97868dd00",
+          _version: "1b7a78c8-71f3-4f08-9903-b0ef42d7f619",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        _id: "761c3d8f-6236-43ae-80c1-06aa9e86eb1f",
+        _version: "0f723c6b-bbd9-4ef5-83ff-9da0fff7ab4d",
+        _created: "Oct 26, 2022, 12:48:48 PM",
+        _updated: "Nov 3, 2022, 11:15:34 AM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      provider: {
+        firstName: "Steve",
+        lastName: "Adam",
+        designation: "Dr",
+        inHouse: false,
+        workPhone: "3219898898",
+        address: {
+          addressLine1: "800 14th St Apt B",
+          city: "Virginia Beach",
+          state: "VA",
+          zip: "23451",
+        },
+        sex: { key: 11, name: "M", order: 1, notes: "" },
+        taxonomyCode: "207NI0002X",
+        classification: "Dermatology",
+        specialization: "Clinical & Laboratory Dermatological Immunology",
+        directAddress: "direct@test.com",
+        _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+        _version: "2a9e2afd-f26e-4af8-82b1-1415c2b29140",
+        _updated: "Nov 4, 2022, 1:16:17 PM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      appointmentDate: "07/03/2022",
+      appointmentTime: "09:30",
+      appointmentEndTime: "09:31",
+      appointmentLength: 1,
+      isConfirmed: false,
+      appointmentHistory: [],
+      state: {
+        subState: {
+          subState: "UPDATED",
+          _id: "2eed7570-e2f3-491d-b244-de2219eb1066",
+          _version: "7364c91b-9f03-4741-9c47-c1b58f32cf6e",
+          _created: "Nov 3, 2022, 10:00:00 AM",
+          _updated: "Nov 3, 2022, 10:00:00 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        state: "NO_SHOW",
+        _id: "5b46846a-812f-4d51-9737-a8a412f8af8d",
+        _version: "977fc489-f3a1-48aa-bf27-b175e8136867",
+        _created: "Nov 1, 2022, 3:39:02 PM",
+        _updated: "Nov 3, 2022, 10:00:00 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      notes: [],
+      allowCreate: false,
+      paymentMethod: {
+        noInsuranceInformation: {},
+        insuranceInfoUsedForBilling: {
+          financialClassBasedInformation: {},
+          active: false,
+          archive: false,
+          selected: false,
+        },
+      },
+      appointmentNo: 1000001483,
+      newPatient: false,
+      insurancePayers: [],
+      override: false,
+      quickAppointmentflag: false,
+      isPrimaryMember: true,
+      status: "UPDATED",
+      _links: {
+        self: { href: "/v1/appointments/a4d72c3c-a3a8-42e8-ab00-0add17a0be21" },
+      },
+      _id: "a4d72c3c-a3a8-42e8-ab00-0add17a0be21",
+      _version: "6d982f26-0d5e-45fb-8b5f-d4549d37245c",
+      _created: "Nov 1, 2022, 3:39:02 PM",
+      _updated: "Nov 3, 2022, 10:00:00 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+      _updatedBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+    },
+    {
+      appointmentType: { code: "Charity", name: "Charity" },
+      patient: {
+        title: "0",
+        firstName: "dewoPatient",
+        lastName: "Simanjuntak",
+        dob: "02/26/1990",
+        age: "32",
+        sex: "0",
+        address: [],
+        patientDetails: {
+          isFlagNew: false,
+          isFlagInCollection: false,
+          isFlagBadCheck: false,
+          isFlagDeceased: false,
+          isFlagChartless: false,
+          _id: "17ad4082-9d55-4df7-aaff-992a388e6592",
+          _version: "b3cc4bd3-9fc2-4d7a-b7fb-2a6ed3885d9f",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        isEmergencyContactAvailable: false,
+        contactPrefrence: false,
+        status: "UPDATED",
+        contactInformation: {
+          phones: [{ type: 3.0, number: "(123) 434-5566", isPreferred: true }],
+          emails: [
+            {
+              type: 1,
+              isPreferred: true,
+              email: "patient123@mailinator.com",
+              _id: "7f0c7363-8a46-4cc6-9fa0-f647275630ba",
+              _version: "8718c073-b767-413e-9f73-60e7464f492a",
+              _created: "Oct 26, 2022, 12:48:48 PM",
+              _updated: "Nov 3, 2022, 11:15:34 AM",
+              _createdBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          contactPreferenceDetail: {
+            phone: false,
+            text: true,
+            email: true,
+            _id: "c8e63eba-7baf-45d7-83bf-3b8658762773",
+            _version: "887c0d39-ea76-4fa8-bb45-4d6124ca51ff",
+            _created: "Oct 26, 2022, 12:48:48 PM",
+            _updated: "Nov 3, 2022, 11:15:34 AM",
+            _createdBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          noEmail: false,
+          _id: "6aee049d-6255-4418-8b93-1aa97868dd00",
+          _version: "1b7a78c8-71f3-4f08-9903-b0ef42d7f619",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        _id: "761c3d8f-6236-43ae-80c1-06aa9e86eb1f",
+        _version: "0f723c6b-bbd9-4ef5-83ff-9da0fff7ab4d",
+        _created: "Oct 26, 2022, 12:48:48 PM",
+        _updated: "Nov 3, 2022, 11:15:34 AM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      provider: {
+        firstName: "Steve",
+        lastName: "Adam",
+        designation: "Dr",
+        inHouse: false,
+        workPhone: "3219898898",
+        address: {
+          addressLine1: "800 14th St Apt B",
+          city: "Virginia Beach",
+          state: "VA",
+          zip: "23451",
+        },
+        sex: { key: 11, name: "M", order: 1, notes: "" },
+        taxonomyCode: "207NI0002X",
+        classification: "Dermatology",
+        specialization: "Clinical & Laboratory Dermatological Immunology",
+        directAddress: "direct@test.com",
+        _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+        _version: "2a9e2afd-f26e-4af8-82b1-1415c2b29140",
+        _updated: "Nov 4, 2022, 1:16:17 PM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      appointmentDate: "07/02/2022",
+      appointmentTime: "09:25",
+      appointmentEndTime: "09:26",
+      appointmentLength: 1,
+      isConfirmed: false,
+      appointmentHistory: [],
+      state: {
+        subState: {
+          subState: "UPDATED",
+          _id: "234b173c-b041-4e4b-96ca-7732ef577e0a",
+          _version: "5f687043-8b84-4849-852d-7ffa96368717",
+          _created: "Nov 2, 2022, 9:30:01 AM",
+          _updated: "Nov 2, 2022, 9:30:01 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        state: "NO_SHOW",
+        _id: "524bf856-eed2-4e68-98c7-ec13f930c6de",
+        _version: "efd3dd2a-37e4-4e55-b488-2aff8a0ca1e3",
+        _created: "Nov 1, 2022, 3:43:10 PM",
+        _updated: "Nov 2, 2022, 9:30:01 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      notes: [],
+      allowCreate: false,
+      paymentMethod: {
+        noInsuranceInformation: {},
+        insuranceInfoUsedForBilling: {
+          financialClassBasedInformation: {},
+          active: false,
+          archive: false,
+          selected: false,
+        },
+      },
+      appointmentNo: 1000001484,
+      newPatient: false,
+      insurancePayers: [],
+      override: false,
+      quickAppointmentflag: false,
+      isPrimaryMember: true,
+      status: "UPDATED",
+      _links: {
+        self: { href: "/v1/appointments/0ecf162e-4040-471c-adf6-5d00f21229c1" },
+      },
+      _id: "0ecf162e-4040-471c-adf6-5d00f21229c1",
+      _version: "37b04074-1eae-44d1-88d1-4119c6b7b391",
+      _created: "Nov 1, 2022, 3:43:10 PM",
+      _updated: "Nov 2, 2022, 9:30:01 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+      _updatedBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+    }
+  ],
+  _links: { self: { href: "/appointments?pageNo=0&pageSize=500" } },
+};

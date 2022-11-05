@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 import store from "../store/store";
 import "../../styles/globals.scss";
 import React, { useState, useEffect } from "react";
-import { useIdleTimer } from "react-idle-timer";
 
 import { appWithTranslation } from "next-i18next";
 import nextI18nConfig from "../../next-i18next.config";
