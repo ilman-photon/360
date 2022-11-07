@@ -251,6 +251,7 @@ export const CustomInput = styled(({ ...props }) => {
               onPaste={handleMouseDownPassword}
               value={props.value}
               required={props.required}
+              inputRef={props.inputRef}
             />
           </CustomFormControl>
         </>

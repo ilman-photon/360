@@ -216,6 +216,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="text"
                   id="firstName"
                   label="First Name"
+                  inputProps={{
+                    "aria-label": `First Name - required -`,
+                  }}
                   value={value}
                   data-testid={REGISTER_TEST_ID.firstname}
                   onChange={onChange}
@@ -248,6 +251,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="text"
                   id="lastName"
                   label="Last Name"
+                  inputProps={{
+                    "aria-label": `Last Name - required -`,
+                  }}
                   data-testid={REGISTER_TEST_ID.lastname}
                   value={value}
                   onChange={onChange}
@@ -283,6 +289,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   InputProps={{ "data-testid": REGISTER_TEST_ID.dateofbirth }}
                   data-testid={REGISTER_TEST_ID.dateofbirth}
                   label="Date of Birth"
+                  aria-label="Date of Birth - required -"
+                  inputProps={{
+                    "aria-label": `Date of Birth - required -`,
+                  }}
                   variant="filled"
                   value={value}
                   onChange={onChange}
@@ -310,6 +320,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="text"
                   id="email"
                   label="Email"
+                  inputProps={{
+                    "aria-label": `Email - required -`,
+                  }}
                   value={value}
                   data-testid={REGISTER_TEST_ID.email}
                   onChange={onChange}
@@ -347,6 +360,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   id="mobileNumber"
                   data-testid={REGISTER_TEST_ID.mobilenumber}
                   label="Mobile Number"
+                  inputProps={{
+                    "aria-label": `Mobile Number - required -`,
+                  }}
                   value={value}
                   onChange={onChange}
                   error={!!error}
@@ -385,7 +401,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="password"
                   id="password"
                   label="Password"
-                  data-testid={REGISTER_TEST_ID.passwordField}
+                  inputProps={{
+                    "aria-label": `Password - required -`,
+                  }}
+                  data-testid={REGISTER_TEST_ID.password}
                   value={value}
                   onChange={onChange}
                   error={!!error}
@@ -442,6 +461,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       value={value}
                       onChange={onChange}
                       label="Preferred mode of Communication"
+                      inputProps={{
+                        "aria-label": `Preferred mode of Communication - required -`,
+                      }}
                       options={options}
                       helperText={error ? error.message : null}
                       isRegistrationForm={true}

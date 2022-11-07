@@ -73,7 +73,7 @@ export function Login({
           />
           {renderFromMessage()}
           <Stack spacing={2}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
               <Stack spacing={2}>
                 <Controller
                   name="username"

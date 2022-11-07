@@ -442,7 +442,7 @@ export function renderInsuranceCarrier(
             }}
             value={value}
             onChange={(_e, data) => {
-              onChange(data.name);
+              onChange(data);
               if (!isDesktop) {
                 handleCloseDialog();
               }

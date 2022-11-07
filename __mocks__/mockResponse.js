@@ -14833,7 +14833,20 @@ export const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
+          },
+        ],
       },
     },
     {
@@ -14870,7 +14883,20 @@ export const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
+          },
+        ],
       },
     },
   ],
@@ -15874,7 +15900,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "Opa",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -37943,7 +37969,7 @@ export const pastAppointmentResponse = {
           self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
         },
       },
-    }
+    },
   ],
   _links: { self: { href: "/appointments?pageNo=0&pageSize=500" } },
 };

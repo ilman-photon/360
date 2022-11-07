@@ -310,17 +310,7 @@ export default function ScheduleAppointmentPage() {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
-    const post = {
-      username: appointmentScheduleData.patientInfo.email,
-    };
-    {
-      isLogin &&
-        appointmentScheduleData?.patientInfo.email &&
-        api.getPatientId(post).then((response) => {
-          setPatientId(response.ecpPatientId || "");
-        });
-    }
-  }, [api, appointmentScheduleData]);
+  }, [appointmentScheduleData]);
 
   React.useEffect(() => {
     dispatch(fetchUser());
@@ -406,6 +396,9 @@ export default function ScheduleAppointmentPage() {
     guestId = ""
   ) => {
     const dateNow = new Date();
+    const insurancePayers =
+      appointmentScheduleData.appointmentInfo.insuranceCarrier.id || "";
+    const userData = JSON.parse(localStorage.getItem("userData"));
     const postBody = [
       {
         appointmentDate: mmddyyDateFormat(
@@ -428,7 +421,7 @@ export default function ScheduleAppointmentPage() {
           code: appointmentScheduleData.appointmentInfo.appointmentType,
         },
         patient: {
-          _id: guestId || patientId,
+          _id: guestId || userData?.patientId,
         },
         patientDob: patientDob
           ? mmddyyDateFormat(patientDob)
@@ -436,8 +429,11 @@ export default function ScheduleAppointmentPage() {
         confirmationDetail: {
           confirmationDate: mmddyyDateFormat(dateNow),
           confirmationTime: hourDateFormat(dateNow),
-          confirmationBy: guestId || patientId,
+          confirmationBy: guestId || userData?.patientId,
         },
+        insurancePayers: insurancePayers
+          ? [{ _id: insurancePayers || "" }]
+          : [],
         allowCreate: true,
       },
     ];

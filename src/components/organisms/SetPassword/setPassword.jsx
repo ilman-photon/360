@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { StyledInput } from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import globalStyles from "../../../styles/Global.module.scss";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import { styles } from "./style";
 import { useTranslation } from "next-i18next";
 import FormMessage from "../../molecules/FormMessage/formMessage";
@@ -66,6 +66,20 @@ const SetPasswordComponent = ({
   });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
   const [showValidation, setShowValidation] = useState(isUpdatePassword);
+  const inputRef = React.useRef(null);
+  const confirmRef = React.useRef(null);
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
+  React.useEffect(() => {
+    if (errors.password) {
+      inputRef.current.focus();
+    } else if (errors.confirmPassword) {
+      confirmRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   const validateErrorPassword = (
     errors1 = [],
@@ -255,6 +269,7 @@ const SetPasswordComponent = ({
     : formatPhoneNumber(username, true, true);
   useEffect(() => {
     setValue("maskedUsername", maskedUsername);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
 
   const onChangePasswordValue = function () {
@@ -372,6 +387,7 @@ const SetPasswordComponent = ({
                       label={passwordPlaceHolder}
                       type="password"
                       value={value}
+                      inputRef={inputRef}
                       onChange={(event) => {
                         onChange(event);
                         onChangePasswordValue();
@@ -411,6 +427,7 @@ const SetPasswordComponent = ({
                       label={confirmPasswordPlaceHolder}
                       type="password"
                       value={value}
+                      inputRef={confirmRef}
                       // style={styles.margin}
                       onChange={(event) => {
                         onChange(event);

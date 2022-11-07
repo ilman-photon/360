@@ -80,13 +80,16 @@ export function yyyymmddDateFormat(date) {
   return momentDate.format("YYYY-MM-DD");
 }
 
-export function fullDateFormat(date) {
-  const timezone = date.substring(date.length - 3);
-  const dateObj = new Date(date);
-  const momentDate = new moment(dateObj);
-  const time = momentDate.format("h:mm a");
-  const formatedDateTime = momentDate.format("ddd, MMM DD, YYYY");
-  return `${time} ${timezone}, ${formatedDateTime}`;
+export function fullDateFormat(data) {
+  if (!data) {
+    return "-";
+  } else {
+    const date = new Date(data);
+    const momentDate = new moment(date);
+    const timezone = moment.tz.guess();
+    const dateTimezone = momentDate.tz(timezone);
+    return dateTimezone.format("h:mm a z, ddd, MMM D, YYYY");
+  }
 }
 
 export function hourDateFormat(date) {
@@ -133,7 +136,8 @@ export const upcomingAppointmentDate = (data) => {
   } else {
     const date = new Date(data);
     const momentDate = new moment(date);
-    const americaTimezone = momentDate.tz("America/New_York");
+    const timezone = moment.tz.guess();
+    const americaTimezone = momentDate.tz(timezone);
     return americaTimezone.format("dddd, MMM DD - h:mmA z");
   }
 };
