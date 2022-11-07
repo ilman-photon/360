@@ -54,11 +54,11 @@ defineFeature(feature, (test) => {
         });
 
         and('User views the \'Message Center\' menu present as part of the global header', () => {
-            expect(container.getByText('Messaging')).toBeInTheDocument();
+            expect(container.getAllByText('Messaging')[0]).toBeInTheDocument();
         });
 
         and('User Clicks on Message Center Option', async () => {
-            await fireEvent.click(container.getByText('Messaging'))
+            await fireEvent.click(container.getAllByText('Messaging')[0])
         });
     });
 
@@ -73,7 +73,7 @@ defineFeature(feature, (test) => {
         });
 
         and('User views the \'Message Center\' menu present as part of the global header', async () => {
-            expect(container.getByText('Messaging')).toBeInTheDocument();
+            expect(container.getAllByText('Messaging')[0]).toBeInTheDocument();
         });
     });
 });
