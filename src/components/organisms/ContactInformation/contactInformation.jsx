@@ -71,6 +71,12 @@ export default function ContactInformation({
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
+      case "address":
+        if (value.length > 2) return true;
+        break;
+      case "city":
+        if (value.length > 2) return true;
+        break;
     }
   };
 
@@ -220,7 +226,7 @@ export default function ContactInformation({
             {userData.mobile && <PhoneNumber phone={userData.mobile} />}
           </LabelWithInfo>
 
-          <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
+          <LabelWithInfo tabIndex={0} ariaLabel="Email Id" label="Email Id">
             <div tabIndex={0} aria-label={userData.email || "-"}>
               {userData.email || "-"}
             </div>

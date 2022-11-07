@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
+import Link from "next/link";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -112,16 +113,18 @@ export default function BaseHeader({
         <Container maxWidth="xl">
           {isUserLoged ? (
             <Toolbar disableGutters>
-              <Image
-                src={logo}
-                width={124}
-                height={36}
-                style={styles.logoStyled}
-                aria-label={"Clarkson Eyecare logo"}
-                title="Your Account"
-                tabIndex={0}
-                role={"img"}
-              ></Image>
+              <Link href={"/patient"} role={"none"} tabIndex={0}>
+                <Image
+                  src={logo}
+                  width={124}
+                  height={36}
+                  style={styles.logoStyled}
+                  aria-label={"Clarkson Eyecare logo"}
+                  title="Your Account"
+                  tabIndex={0}
+                  role={"img"}
+                ></Image>
+              </Link>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
                 <IconButton
@@ -251,16 +254,18 @@ export default function BaseHeader({
             </Toolbar>
           ) : (
             <Toolbar disableGutters>
-              <Image
-                src={logo}
-                width="124px"
-                height="36px"
-                role={"img"}
-                quality={100}
-                style={styles.logoStyled}
-                aria-label={"Clarkson Eyecare logo"}
-                tabIndex={0}
-              ></Image>
+              <Link href={"/patient"} role={"none"} tabIndex={0}>
+                <Image
+                  src={logo}
+                  width="124px"
+                  height="36px"
+                  role={"img"}
+                  quality={100}
+                  style={styles.logoStyled}
+                  aria-label={"Clarkson Eyecare logo"}
+                  tabIndex={0}
+                ></Image>
+              </Link>
             </Toolbar>
           )}
         </Container>

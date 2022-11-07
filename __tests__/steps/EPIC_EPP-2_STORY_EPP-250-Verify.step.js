@@ -4,9 +4,9 @@ import LoginPage from "../../src/pages/patient/login";
 import RegisterPage from "../../src/pages/patient/auth/create-account";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
-import { TRUE } from "sass";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import constants from "../../src/utils/constants";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-250.feature"
@@ -205,17 +205,17 @@ defineFeature(feature, (test) => {
       "user provide the details to the field Last Name, Date Of Birth, Email, Mobile number, User Name, Password, Preferred mode(s) of communication",
       () => {
         const lastnameField = container.getByLabelText(/Last Name/i);
-        const emailField = container.getByRole("textbox", { name: "Email" });
+        const emailField = container.getAllByLabelText(/Email/i);
         const mobileField = container.getByLabelText(/Mobile Number/i);
         const passwordField = container.getByLabelText("Password *");
         const communicationRadio = container.getByRole("radio", { name: /Both/i });
         fireEvent.change(lastnameField, { target: { value: "username" } });
-        fireEvent.change(emailField, { target: { value: "a@aa.aa" } });
+        fireEvent.change(emailField[0], { target: { value: "a@aa.aa" } });
         fireEvent.change(mobileField, { target: { value: "(123) 456-789" } });
         fireEvent.change(passwordField, { target: { value: "password" } });
         fireEvent.click(communicationRadio);
         expect(lastnameField.value).toEqual("username");
-        expect(emailField.value).toEqual("a@aa.aa");
+        expect(emailField[0].value).toEqual("a@aa.aa");
         expect(mobileField.value).toEqual("(123) 456-789");
         expect(passwordField.value).toEqual("password");
         expect(communicationRadio.value).toEqual("both");
@@ -339,17 +339,17 @@ defineFeature(feature, (test) => {
       "user provide the details to the field First Name, Date Of Birth, Email, Mobile number, User Name, Password, Preferred mode(s) of communication",
       () => {
         const firstnameField = container.getByLabelText(/Last Name/i);
-        const emailField = container.getByRole("textbox", { name: "Email" });
+        const emailField = container.getAllByLabelText(/Email/i);
         const mobileField = container.getByLabelText(/Mobile Number/i);
         const passwordField = container.getByLabelText("Password *");
         const communicationRadio = container.getByRole("radio", { name: /Both/i });
         fireEvent.change(firstnameField, { target: { value: "username" } });
-        fireEvent.change(emailField, { target: { value: "a@aa.aa" } });
+        fireEvent.change(emailField[0], { target: { value: "a@aa.aa" } });
         fireEvent.change(mobileField, { target: { value: "(123) 456-789" } });
         fireEvent.change(passwordField, { target: { value: "password" } });
         fireEvent.click(communicationRadio);
         expect(firstnameField.value).toEqual("username");
-        expect(emailField.value).toEqual("a@aa.aa");
+        expect(emailField[0].value).toEqual("a@aa.aa");
         expect(mobileField.value).toEqual("(123) 456-789");
         expect(passwordField.value).toEqual("password");
         expect(communicationRadio.value).toEqual("both");
@@ -442,9 +442,9 @@ defineFeature(feature, (test) => {
 
 
     when("user enter invalid format in Email field", () => {
-      const emailField = container.getByRole('textbox', { name: 'Email' })
-      fireEvent.change(emailField, { target: { value: "invalid@email" } });
-      expect(emailField.value).toEqual("invalid@email");
+      const emailField = container.getAllByLabelText(/Email/i);
+      fireEvent.change(emailField[0], { target: { value: "invalid@email" } });
+      expect(emailField[0].value).toEqual("invalid@email");
 
       const register = container.getByRole("button", { name: /REGISTER/i });
       fireEvent.click(register);

@@ -48,8 +48,8 @@ defineFeature(feature, (test) => {
       });
 
       and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -69,8 +69,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -89,8 +89,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -110,8 +110,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -200,8 +200,8 @@ defineFeature(feature, (test) => {
       });
 
       and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -219,8 +219,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -239,8 +239,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -259,8 +259,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -279,8 +279,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -303,8 +303,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides invalid  (.*) and (.*)$/, (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongUsername.cc" },
         });
@@ -354,8 +354,8 @@ defineFeature(feature, (test) => {
       });
 
       and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -374,8 +374,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -393,8 +393,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -408,8 +408,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -428,8 +428,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -452,8 +452,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides Invalid  (.*) and valid (.*)$/, (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "wrongdUsername.cc" },
         });
@@ -503,8 +503,8 @@ defineFeature(feature, (test) => {
       });
 
       and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -523,8 +523,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -543,8 +543,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -563,8 +563,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -583,8 +583,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });
@@ -607,8 +607,8 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides valid  (.*) and invalid (.*)$/, (arg0, arg1) => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
         fireEvent.change(usernameField, {
           target: { value: "validUsername@mail.com" },
         });

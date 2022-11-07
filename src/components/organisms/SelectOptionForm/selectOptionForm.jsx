@@ -31,14 +31,14 @@ const SelectOptionForm = ({
         <title>{title}</title>
       </Head>
       {ready && (
-        <Card className={globalStyles.container} style={styles.cardStyle}>
+        <Card
+          className={globalStyles.container}
+          style={styles.cardStyle}
+          tabIndex={0}
+          aria-label={`${t("title")} view`}
+        >
           <CardContent style={styles.cardContentStyle}>
-            <HeadingTitle
-              variant={constants.H2}
-              title={t("title")}
-              aria-label={t("title")}
-              tabIndex="0"
-            />
+            <HeadingTitle variant={constants.H2} title={t("title")} />
             <StyledButton
               theme={constants.PATIENT}
               mode={constants.PRIMARY}
@@ -94,6 +94,11 @@ const SelectOptionForm = ({
                 onBackToLoginClicked(router);
               }}
               {...getLinkAria(t("backButtonLink"))}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  router.push("/patient/login");
+                }
+              }}
             >
               {t("backButtonLink")}
             </Link>

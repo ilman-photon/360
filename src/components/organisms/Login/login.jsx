@@ -74,7 +74,7 @@ export function Login({
           />
           {renderFromMessage()}
           <Stack spacing={2}>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
               <Stack spacing={2}>
                 <Controller
                   name="username"
@@ -101,6 +101,7 @@ export function Login({
                           onChange(value);
                         }}
                         error={!!error}
+                        required
                         helperText={error ? error.message : null}
                       />
                     );
@@ -137,6 +138,7 @@ export function Login({
                         }}
                         error={!!error}
                         aria
+                        required
                         helperText={error ? error.message : null}
                       />
                     );

@@ -542,8 +542,8 @@ export async function doLogin(mock, container) {
     userType: "patient",
   };
   mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
-  const usernameField = container.getByLabelText("emailUserLabel");
-  const passwordField = container.getByLabelText("passwordLabel");
+  const usernameField = container.getByLabelText(/emailUserLabel/i);
+  const passwordField = container.getByLabelText(/passwordLabel/i);
   fireEvent.change(usernameField, {
     target: { value: "patient1@email.com" },
   });

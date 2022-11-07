@@ -31,6 +31,7 @@ export default function InsuranceForm({
   planList = [],
   isEditing = true,
   isAutocompleteLoading = false,
+  isSecondary = false,
   memberId,
   OnProviderChanged = () => {
     // this is intended
@@ -42,7 +43,6 @@ export default function InsuranceForm({
     // This is intended
   },
   testIds = constants.TEST_ID.INSURANCE_TEST_ID,
-  isError,
 }) {
   const { handleSubmit, control, watch, reset, setValue } = useForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
@@ -50,13 +50,24 @@ export default function InsuranceForm({
   const isMobile = useMediaQuery("(max-width: 768px)");
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
+  const resetFormData = () => {
+    reset(formData);
+    setValue("memberID", memberId);
+  };
+
   // Later will be used for edit
   useEffect(() => {
-    if (formData && !isError) {
-      reset(formData);
+    if (formData) {
+      resetFormData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
+
+  useEffect(() => {
+    if (isSecondary) {
+      setValue("priority", "SECONDARY");
+    }
+  });
 
   const isSubscriberOptions = [
     { label: "Yes", value: "Yes" },
@@ -113,14 +124,13 @@ export default function InsuranceForm({
 
   const handleCancel = () => {
     OnCancelClicked();
-    reset(formData);
+    resetFormData();
     setFormCardFrontState(DEFAULT_FORM_FIELD_STATE);
     setFormCardBackState(DEFAULT_FORM_FIELD_STATE);
   };
 
   const onSubmit = (data) => {
     OnSaveClicked(data);
-    if (isError !== false) reset(formData);
   };
 
   const DisclaimerText = (data) => {
@@ -195,6 +205,9 @@ export default function InsuranceForm({
                       helperText={error ? error.message : null}
                     />
                   );
+                }}
+                rules={{
+                  required: "This field is required",
                 }}
               />
             </Grid>

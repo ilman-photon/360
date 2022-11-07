@@ -48,6 +48,7 @@ import { fetchAllPayers } from "../../../store/provider";
 import NearMeOutlinedIcon from "@mui/icons-material/NearMeOutlined";
 import { useTranslation } from "next-i18next";
 import { getCity } from "../../../utils/getCity";
+import { mmddyyDateFormat } from "../../../utils/dateFormatter";
 
 export async function getStaticProps() {
   return {
@@ -245,6 +246,10 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
+  function compareDate(date) {
+    return new Date() > new Date(date);
+  }
+
   function onCallSubmitFilterAPI(
     requestData,
     activeFilterByData = [],
@@ -262,7 +267,9 @@ export default function Appointment({ googleApiKey }) {
       appointmentType: {
         code: selectedAppointmentType?.id || "ALL",
       },
-      currentDate: startDateRequest,
+      currentDate: compareDate(startDateRequest)
+        ? mmddyyDateFormat(new Date())
+        : startDateRequest,
       numDays: 6,
       days: ["ALL"],
       prefTime: "ALL",
@@ -276,7 +283,7 @@ export default function Appointment({ googleApiKey }) {
       .then(async function (response) {
         const parseProviderData = await parseProviderListData(
           response,
-          postBody.currentDate,
+          startDateRequest,
           endDateRequest,
           googleApiKey,
           currentCoordinate

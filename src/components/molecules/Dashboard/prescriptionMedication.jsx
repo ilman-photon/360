@@ -585,9 +585,9 @@ export default function PrescriptionMedication({
   }
 
   function renderMedication(medicationList, medicationType) {
-    return medications?.active?.length > 0 ? (
+    return medicationList?.length > 0 ? (
       <Box ref={containerActive}>
-        {renderPrescriptionTabUI(medications.active, medicationType)}
+        {renderPrescriptionTabUI(medicationList, medicationType)}
       </Box>
     ) : (
       <Box
@@ -634,7 +634,10 @@ export default function PrescriptionMedication({
   return (
     <Box className={styles.medicationDetailContainer}>
       {requestRefillResponseData && (
-        <FormMessage success={true} sx={{ margin: "20px 10px 10px 10px" }}>
+        <FormMessage
+          success={true}
+          sx={{ margin: "20px 10px 10px 10px", color: "#ffffff" }}
+        >
           <Typography className={styles.formMessageText}>
             {requestRefillResponseData.message}
           </Typography>
@@ -662,8 +665,8 @@ export default function PrescriptionMedication({
           } heading`}
         >
           {isFilterApplied ? "Medications" : "Active Medications"}{" "}
-          {medications?.active?.length > 0
-            ? `(${medications?.active?.length})`
+          {filterMedicationData.length > 0
+            ? `(${filterMedicationData.length})`
             : ``}
         </Typography>
         {renderUIFilter()}

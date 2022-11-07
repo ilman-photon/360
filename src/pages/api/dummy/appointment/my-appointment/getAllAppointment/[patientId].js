@@ -39,7 +39,20 @@ export default function getAllAppointment(req, res) {
           appointmentInfo: {
             appointmentType: "Eye Exam",
             date: "Wed, 20 Nov 2022 07:30:00 EST",
-            insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+            insuranceCarrier: [
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "ECP Vision",
+              },
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "BlueCare Vision",
+              },
+            ],
           },
         },
         {
@@ -76,7 +89,20 @@ export default function getAllAppointment(req, res) {
           appointmentInfo: {
             appointmentType: "Comprehensive",
             date: "Wed, 20 Sep 2022 07:30:00 EST",
-            insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+            insuranceCarrier: [
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "ECP Vision",
+              },
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "BlueCare Vision",
+              },
+            ],
           },
         },
       ],
@@ -122,7 +148,20 @@ export default function getAllAppointment(req, res) {
         appointmentInfo: {
           appointmentType: "Eye Exam",
           date: "",
-          insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+          insuranceCarrier: [
+            {
+              category: "all",
+              divider: false,
+              id: "1",
+              name: "ECP Vision",
+            },
+            {
+              category: "all",
+              divider: false,
+              id: "1",
+              name: "BlueCare Vision",
+            },
+          ],
         },
       };
       responseData = {
@@ -195,7 +234,20 @@ export default function getAllAppointment(req, res) {
             appointmentInfo: {
               appointmentType: "Eye Exam",
               date: eyeCare.toUTCString(),
-              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+              insuranceCarrier: [
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "ECP Vision",
+                },
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "BlueCare Vision",
+                },
+              ],
             },
           },
           {
@@ -232,7 +284,20 @@ export default function getAllAppointment(req, res) {
             appointmentInfo: {
               appointmentType: "Comprehensive",
               date: comprehensive.toUTCString(),
-              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+              insuranceCarrier: [
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "ECP Vision",
+                },
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "BlueCare Vision",
+                },
+              ],
             },
           },
         ],
@@ -287,7 +352,20 @@ export default function getAllAppointment(req, res) {
             appointmentInfo: {
               appointmentType: "Test or Procedure",
               date: comprehensive.toUTCString(),
-              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+              insuranceCarrier: [
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "ECP Vision",
+                },
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "BlueCare Vision",
+                },
+              ],
             },
           },
           {
@@ -324,7 +402,20 @@ export default function getAllAppointment(req, res) {
             appointmentInfo: {
               appointmentType: "Eye Exam",
               date: eyeCare.toUTCString(),
-              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+              insuranceCarrier: [
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "ECP Vision",
+                },
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "BlueCare Vision",
+                },
+              ],
             },
           },
           {
@@ -361,7 +452,20 @@ export default function getAllAppointment(req, res) {
             appointmentInfo: {
               appointmentType: "Comprehensive",
               date: comprehensive.toUTCString(),
-              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+              insuranceCarrier: [
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "ECP Vision",
+                },
+                {
+                  category: "all",
+                  divider: false,
+                  id: "1",
+                  name: "BlueCare Vision",
+                },
+              ],
             },
           },
         ],
