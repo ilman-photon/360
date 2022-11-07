@@ -204,6 +204,7 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
 }));
 
 export const CustomInput = styled(({ ...props }) => {
+  console.log(props);
   const [values, setValues] = React.useState({
     value: "",
     showPassword: false,
@@ -250,6 +251,7 @@ export const CustomInput = styled(({ ...props }) => {
               onPaste={handleMouseDownPassword}
               value={props.value}
               required={props.required}
+              inputRef={props.inputRef}
             />
           </CustomFormControl>
         </>

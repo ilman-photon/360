@@ -401,9 +401,33 @@ export class Api {
   getProviderList() {
     //TODO: const url = `/ecp/appointments/getproviderlist/`;
     const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = userData.patientId;
+    const patientId = userData?.patientId;
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/biography/getProviderList?patientId=${patientId}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getAllMessages() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/messaging/getAllMessages`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getSentMessages() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/messaging/getSentMessages`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getDraftMessages() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/messaging/getDraftMessages`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getDeleteMessages() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/messaging/getDeleteMessages`;
     return this.getResponse(url, {}, "get");
   }
 }

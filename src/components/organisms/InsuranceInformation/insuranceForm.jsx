@@ -130,7 +130,7 @@ export default function InsuranceForm({
   };
 
   const onSubmit = (data) => {
-    OnSaveClicked(data, reset);
+    OnSaveClicked(data);
   };
 
   const DisclaimerText = (data) => {

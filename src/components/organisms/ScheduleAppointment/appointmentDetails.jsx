@@ -107,8 +107,8 @@ export default function AppointmentDetails({
               sx={{ color: colors.darkGreen }}
               tabIndex={"0"}
             >
-              {appointmentData.insuranceCarrier
-                ? appointmentData.insuranceCarrier
+              {appointmentData.insuranceCarrier?.name
+                ? appointmentData.insuranceCarrier?.name
                 : "No Insurance provided"}
             </Typography>
           </LabelWithInfo>

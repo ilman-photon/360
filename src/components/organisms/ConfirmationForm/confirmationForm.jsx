@@ -52,12 +52,15 @@ const ConfirmationForm = ({
         <title>{`EyeCare Patient Portal - ${pageTitle}`}</title>
       </Head>
       {ready && (
-        <Card className={globalStyles.container} style={styles.cardStyle}>
+        <Card
+          className={globalStyles.container}
+          style={styles.cardStyle}
+          tabIndex={0}
+          aria-label={`${title} view`}
+        >
           <CardContent style={styles.cardContentStyle}>
             <HeadingTitle
               variant={constants.H2}
-              tabIndex={0}
-              aria-label={title}
               title={title}
               sx={{ fontSize: "32px" }}
             />

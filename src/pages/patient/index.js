@@ -210,6 +210,7 @@ export default function HomePage({ googleApiKey }) {
 
   useEffect(() => {
     onCalledGetAllAppointment();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterSuggestionData.purposeOfVisit]);
 
   useEffect(() => {

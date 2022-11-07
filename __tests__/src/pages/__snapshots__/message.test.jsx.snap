@@ -1,0 +1,1682 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu Components menu render 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="container"
+      >
+        <header
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionRelative css-1gg3l1a-MuiPaper-root-MuiAppBar-root"
+          data-testid="header"
+        >
+          <div
+            class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+          >
+            <div
+              class="MuiToolbar-root MuiToolbar-regular css-r6ewbb-MuiToolbar-root"
+            >
+              <span
+                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+              >
+                <span
+                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27124%27%20height=%2736%27/%3e"
+                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                  />
+                </span>
+                <img
+                  aria-label="Clarkson Eyecare logo"
+                  data-nimg="intrinsic"
+                  data-testid="header_logo"
+                  decoding="async"
+                  role="img"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="cursor: pointer; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                  tabindex="0"
+                />
+                <noscript />
+              </span>
+            </div>
+          </div>
+        </header>
+        <header
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-1abnk3s-MuiPaper-root-MuiAppBar-root"
+        >
+          <div
+            class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+          >
+            <div
+              class="MuiToolbar-root MuiToolbar-regular css-1dqxys0-MuiToolbar-root"
+            >
+              <div
+                class="MuiBox-root css-824gnf"
+              >
+                <button
+                  aria-label="Dashboard menu"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Dashboard
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <button
+                  aria-label="Appointments menu"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Appointments
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <button
+                  aria-label="Messaging menu"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Messaging
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <div
+                  class="MuiBox-root css-0"
+                >
+                  <button
+                    aria-label="Health Chart menu"
+                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-13b1qyo-MuiButtonBase-root-MuiButton-root"
+                    tabindex="0"
+                    type="button"
+                  >
+                    Health Chart
+                    <span
+                      class="MuiButton-endIcon MuiButton-iconSizeMedium css-9tj150-MuiButton-endIcon"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jxdcj3-MuiSvgIcon-root"
+                        data-testid="ExpandMoreIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+                <button
+                  aria-label="My Care Team menu"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  My Care Team
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <button
+                  aria-label="Messaging menu"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Messaging
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <div
+                  class="MuiBox-root css-0"
+                >
+                  <button
+                    aria-label="Documents menu"
+                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-13b1qyo-MuiButtonBase-root-MuiButton-root"
+                    tabindex="0"
+                    type="button"
+                  >
+                    Documents
+                    <span
+                      class="MuiButton-endIcon MuiButton-iconSizeMedium css-9tj150-MuiButton-endIcon"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jxdcj3-MuiSvgIcon-root"
+                        data-testid="ExpandMoreIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div
+          aria-label="messagingText heading"
+          class="titleHeadingWrapper"
+          style="position: relative;"
+          tabindex="0"
+        >
+          <p
+            aria-hidden="true"
+            class="MuiTypography-root MuiTypography-body1 title css-t1fajd-MuiTypography-root"
+          >
+            messagingText
+          </p>
+        </div>
+        <div
+          class="messageContainer"
+        >
+          <div
+            class="searchContainer MuiBox-root css-0"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 MuiGrid-spacing-md-3 css-pgf6vc-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5.5 MuiGrid-grid-md-4 MuiGrid-grid-lg-5 css-ksbu53-MuiGrid-root"
+              >
+                <div
+                  class="searchContent MuiBox-root css-0"
+                >
+                  <div
+                    class="searchIcon MuiBox-root css-0"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-18snff6-MuiSvgIcon-root"
+                      data-testId="message-search-icon"
+                      data-testid="SearchIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1yqcnti-MuiFormControl-root-MuiTextField-root"
+                    data-testid="message-search-input"
+                    maxlength="100"
+                    tabindex="0"
+                    withicon="true"
+                  >
+                    <div
+                      class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1ye1xzc-MuiInputBase-root-MuiOutlinedInput-root"
+                    >
+                      <input
+                        aria-invalid="false"
+                        class="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+                        id="searchField"
+                        placeholder="searchText"
+                        type="default"
+                        value=""
+                      />
+                      <fieldset
+                        aria-hidden="true"
+                        class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                      >
+                        <legend
+                          class="css-hdw1oc"
+                        >
+                          <span
+                            class="notranslate"
+                          >
+                            ​
+                          </span>
+                        </legend>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-0.5 MuiGrid-grid-md-2 MuiGrid-grid-lg-1 css-5adcqd-MuiGrid-root"
+              >
+                <button
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-14n94s4-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1fm24xi-MuiSvgIcon-root"
+                    data-testid="FilterListIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="messageContent MuiBox-root css-0"
+            data-testid="message-content-view"
+          >
+            <div
+              class="tabsContent MuiBox-root css-0"
+            >
+              <div
+                class="MuiTabs-root css-1gsznmx-MuiTabs-root"
+              >
+                <div
+                  class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+                  style="overflow: hidden; margin-bottom: 0px;"
+                >
+                  <div
+                    class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+                    role="tablist"
+                  >
+                    <button
+                      aria-controls="full-width-tabpanel-0"
+                      aria-selected="true"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1jexnfj-MuiButtonBase-root-MuiTab-root"
+                      data-testid="inbox-tab"
+                      id="full-width-tab-0"
+                      role="tab"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <div
+                        class="MuiTab-iconWrapper MuiBox-root css-0"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1pamts2-MuiSvgIcon-root"
+                          data-testid="MailOutlineIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"
+                          />
+                        </svg>
+                      </div>
+                      inboxText (3)
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                    <button
+                      aria-controls="full-width-tabpanel-1"
+                      aria-selected="false"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit MuiTab-fullWidth css-1jexnfj-MuiButtonBase-root-MuiTab-root"
+                      data-testid="sent-tab"
+                      id="full-width-tab-1"
+                      role="tab"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <div
+                        class="MuiTab-iconWrapper MuiBox-root css-0"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1w1vbbt-MuiSvgIcon-root"
+                          data-testid="SendOutlinedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="m4.01 6.03 7.51 3.22-7.52-1 .01-2.22m7.5 8.72L4 17.97v-2.22l7.51-1M2.01 3 2 10l15 2-15 2 .01 7L23 12 2.01 3z"
+                          />
+                        </svg>
+                      </div>
+                      sentText
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                    <button
+                      aria-controls="full-width-tabpanel-2"
+                      aria-selected="false"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit MuiTab-fullWidth css-1jexnfj-MuiButtonBase-root-MuiTab-root"
+                      data-testid="draft-tab"
+                      id="full-width-tab-2"
+                      role="tab"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <div
+                        class="MuiTab-iconWrapper MuiBox-root css-0"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-iuzmfl-MuiSvgIcon-root"
+                          data-testid="ModeOutlinedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="m14.06 9.02.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
+                          />
+                        </svg>
+                      </div>
+                      draftText
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                    <button
+                      aria-controls="full-width-tabpanel-3"
+                      aria-selected="false"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit MuiTab-fullWidth css-1jexnfj-MuiButtonBase-root-MuiTab-root"
+                      data-testid="deleted-tab"
+                      id="full-width-tab-3"
+                      role="tab"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <div
+                        class="MuiTab-iconWrapper MuiBox-root css-0"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ct4urr-MuiSvgIcon-root"
+                          data-testid="DeleteOutlinedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
+                          />
+                        </svg>
+                      </div>
+                      deletedText
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
+                  <span
+                    class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+                    style="left: 0px; width: 0px; background: rgb(0, 149, 169); color: red;"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="messagingListContainer MuiBox-root css-0"
+              data-testid="message-list-container"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-6 MuiGrid-grid-lg-3 css-1ge5rjy-MuiGrid-root"
+                >
+                  <div
+                    class="listContainer"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mobileNewMessageContainer MuiBox-root css-1hyfx7x"
+      >
+        <form>
+          <div
+            class="MuiDialogContent-root css-khm3vs-MuiDialogContent-root"
+          >
+            <div
+              class="MuiBox-root css-1xfij6p"
+            >
+              <p
+                class="MuiDialogContentText-root MuiTypography-root MuiTypography-body1 css-zkadmv-MuiTypography-root-MuiDialogContentText-root"
+                id="alert-dialog-description"
+              >
+                newMessageTitle
+              </p>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testId="close-new-message"
+                data-testid="CloseIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
+              </svg>
+            </div>
+            <div
+              class="typeNameContainer MuiBox-root css-1siwms0"
+            >
+              <div
+                class="searchIcon MuiBox-root css-0"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-14jj0oj-MuiSvgIcon-root"
+                  data-testid="SearchIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  />
+                </svg>
+              </div>
+              <div
+                class=" css-1wrbfzd"
+              >
+                <div
+                  aria-autocomplete="list"
+                  aria-expanded="false"
+                  aria-label="Type a Name"
+                  autocapitalize="none"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-13hwcd7-MuiFormControl-root-MuiTextField-root"
+                  maxlength="254"
+                  role="combobox"
+                  spellcheck="false"
+                  tabindex="0"
+                  withicon="true"
+                >
+                  <label
+                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="false"
+                    for="name"
+                    id="name-label"
+                  >
+                    typeName*
+                  </label>
+                  <div
+                    class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      autocomplete="off"
+                      class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                      id="name"
+                      placeholder=""
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span
+              class="MuiTypography-root MuiTypography-bodyMedium errorText css-yats0r-MuiTypography-root"
+            >
+              This field is required
+            </span>
+            <div
+              aria-label="Subject"
+              class="MuiFormControl-root MuiTextField-root custom-input css-13ckzdv-MuiFormControl-root-MuiTextField-root"
+              maxlength="254"
+              tabindex="0"
+              withicon="true"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for="subject"
+                id="subject-label"
+              >
+                subject*
+              </label>
+              <div
+                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                  id="subject"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="messagesTextAreaContent MuiBox-root css-3t7mf8"
+            >
+              <div
+                aria-label="Write a message"
+                class="MuiFormControl-root MuiTextField-root custom-input css-xwhco4-MuiFormControl-root-MuiTextField-root"
+                maxlength="254"
+                tabindex="0"
+                withicon="true"
+              >
+                <label
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for="message"
+                  id="message-label"
+                >
+                  writeMessages*
+                </label>
+                <div
+                  class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                    id="message"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <span
+              class="MuiTypography-root MuiTypography-bodyMedium errorText css-yats0r-MuiTypography-root"
+            >
+              This field is required
+            </span>
+          </div>
+          <div
+            class="MuiDialogActions-root MuiDialogActions-spacing css-ztvbsz-MuiDialogActions-root"
+          >
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1owc8j6-MuiButtonBase-root-MuiButton-root"
+              data-testid="new-message-add-attachment-button"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1p1vdoo-MuiSvgIcon-root"
+                data-testid="AttachmentOutlinedIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M18.5 16H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h12.5c1.38 0 2.5 1.12 2.5 2.5S20.88 13 19.5 13H9c-.55 0-1-.45-1-1s.45-1 1-1h9.5V9.5H9c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5h10.5c2.21 0 4-1.79 4-4s-1.79-4-4-4H7c-3.04 0-5.5 2.46-5.5 5.5s2.46 5.5 5.5 5.5h11.5V16z"
+                />
+              </svg>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-qzoyem-MuiTypography-root"
+              >
+                addAttachments
+              </p>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <div
+              class="MuiBox-root css-18a8izt"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-14eyd29-MuiButtonBase-root-MuiButton-root"
+                data-testid="draft-new-message"
+                tabindex="0"
+                type="button"
+              >
+                moveToDraft
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1p251cc-MuiButtonBase-root-MuiButton-root"
+                data-testid="send-new-message"
+                tabindex="0"
+                type="submit"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="SendOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m4.01 6.03 7.51 3.22-7.52-1 .01-2.22m7.5 8.72L4 17.97v-2.22l7.51-1M2.01 3 2 10l15 2-15 2 .01 7L23 12 2.01 3z"
+                  />
+                </svg>
+                sendText
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        class="MuiBox-root css-1e58e3w"
+      >
+        <button
+          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1poohah-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1mrkhgv-MuiSvgIcon-root"
+            data-testid="AddOutlinedIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+            />
+          </svg>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-dolljf-MuiTypography-root"
+          >
+            newMessage
+          </p>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <input
+        data-testid="loc_uploadImage"
+        hidden=""
+        type="file"
+      />
+    </div>
+    <div
+      aria-hidden="true"
+      class="MuiPopover-root MuiMenu-root MuiModal-root MuiModal-hidden css-9y6v1g-MuiModal-root-MuiPopover-root-MuiMenu-root"
+      id="menu-appbar"
+      role="presentation"
+    >
+      <div
+        aria-hidden="true"
+        class="MuiBackdrop-root MuiBackdrop-invisible css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
+        style="opacity: 0; visibility: hidden;"
+      />
+      <div
+        data-test="sentinelStart"
+        tabindex="0"
+      />
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiMenu-paper MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper"
+        style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        tabindex="-1"
+      >
+        <ul
+          class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list"
+          role="menu"
+          tabindex="-1"
+        >
+          <li
+            aria-label="Care Plan menu"
+            class="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-1u31c1f-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="0"
+          >
+            <span
+              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+            >
+              <span
+                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2716%27%20height=%2716%27/%3e"
+                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                />
+              </span>
+              <img
+                alt=""
+                data-nimg="intrinsic"
+                decoding="async"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </span>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-wsp0y9-MuiTypography-root"
+            >
+              Care Plan
+            </p>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <li
+            aria-label="Prescriptions menu"
+            class="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-1u31c1f-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <span
+              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+            >
+              <span
+                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2716%27%20height=%2716%27/%3e"
+                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                />
+              </span>
+              <img
+                alt=""
+                data-nimg="intrinsic"
+                decoding="async"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </span>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-wsp0y9-MuiTypography-root"
+            >
+              Prescriptions
+            </p>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+          <li
+            aria-label="Test & Lab Results menu"
+            class="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-1u31c1f-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <span
+              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+            >
+              <span
+                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2716%27%20height=%2716%27/%3e"
+                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                />
+              </span>
+              <img
+                alt=""
+                data-nimg="intrinsic"
+                decoding="async"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </span>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-wsp0y9-MuiTypography-root"
+            >
+              Test & Lab Results
+            </p>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+        </ul>
+      </div>
+      <div
+        data-test="sentinelEnd"
+        tabindex="0"
+      />
+    </div>
+    <div
+      aria-hidden="true"
+      class="MuiPopover-root MuiMenu-root MuiModal-root MuiModal-hidden css-9y6v1g-MuiModal-root-MuiPopover-root-MuiMenu-root"
+      id="menu-appbar"
+      role="presentation"
+    >
+      <div
+        aria-hidden="true"
+        class="MuiBackdrop-root MuiBackdrop-invisible css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
+        style="opacity: 0; visibility: hidden;"
+      />
+      <div
+        data-test="sentinelStart"
+        tabindex="0"
+      />
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiMenu-paper MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper"
+        style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        tabindex="-1"
+      >
+        <ul
+          class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list"
+          role="menu"
+          tabindex="-1"
+        >
+          <li
+            aria-label="Intake Forms menu"
+            class="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-1u31c1f-MuiButtonBase-root-MuiMenuItem-root"
+            role="menuitem"
+            tabindex="0"
+          >
+            <span
+              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+            >
+              <span
+                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2716%27%20height=%2716%27/%3e"
+                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                />
+              </span>
+              <img
+                alt=""
+                data-nimg="intrinsic"
+                decoding="async"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </span>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-wsp0y9-MuiTypography-root"
+            >
+              Intake Forms
+            </p>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </li>
+        </ul>
+      </div>
+      <div
+        data-test="sentinelEnd"
+        tabindex="0"
+      />
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="container"
+    >
+      <header
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionRelative css-1gg3l1a-MuiPaper-root-MuiAppBar-root"
+        data-testid="header"
+      >
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+        >
+          <div
+            class="MuiToolbar-root MuiToolbar-regular css-r6ewbb-MuiToolbar-root"
+          >
+            <span
+              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+            >
+              <span
+                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27124%27%20height=%2736%27/%3e"
+                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                />
+              </span>
+              <img
+                aria-label="Clarkson Eyecare logo"
+                data-nimg="intrinsic"
+                data-testid="header_logo"
+                decoding="async"
+                role="img"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style="cursor: pointer; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                tabindex="0"
+              />
+              <noscript />
+            </span>
+          </div>
+        </div>
+      </header>
+      <header
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-1abnk3s-MuiPaper-root-MuiAppBar-root"
+      >
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+        >
+          <div
+            class="MuiToolbar-root MuiToolbar-regular css-1dqxys0-MuiToolbar-root"
+          >
+            <div
+              class="MuiBox-root css-824gnf"
+            >
+              <button
+                aria-label="Dashboard menu"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Dashboard
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <button
+                aria-label="Appointments menu"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Appointments
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <button
+                aria-label="Messaging menu"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Messaging
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <div
+                class="MuiBox-root css-0"
+              >
+                <button
+                  aria-label="Health Chart menu"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-13b1qyo-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Health Chart
+                  <span
+                    class="MuiButton-endIcon MuiButton-iconSizeMedium css-9tj150-MuiButton-endIcon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jxdcj3-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+              <button
+                aria-label="My Care Team menu"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                My Care Team
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <button
+                aria-label="Messaging menu"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-6j5pn9-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Messaging
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <div
+                class="MuiBox-root css-0"
+              >
+                <button
+                  aria-label="Documents menu"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-13b1qyo-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  Documents
+                  <span
+                    class="MuiButton-endIcon MuiButton-iconSizeMedium css-9tj150-MuiButton-endIcon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jxdcj3-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div
+        aria-label="messagingText heading"
+        class="titleHeadingWrapper"
+        style="position: relative;"
+        tabindex="0"
+      >
+        <p
+          aria-hidden="true"
+          class="MuiTypography-root MuiTypography-body1 title css-t1fajd-MuiTypography-root"
+        >
+          messagingText
+        </p>
+      </div>
+      <div
+        class="messageContainer"
+      >
+        <div
+          class="searchContainer MuiBox-root css-0"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 MuiGrid-spacing-md-3 css-pgf6vc-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5.5 MuiGrid-grid-md-4 MuiGrid-grid-lg-5 css-ksbu53-MuiGrid-root"
+            >
+              <div
+                class="searchContent MuiBox-root css-0"
+              >
+                <div
+                  class="searchIcon MuiBox-root css-0"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-18snff6-MuiSvgIcon-root"
+                    data-testId="message-search-icon"
+                    data-testid="SearchIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="MuiFormControl-root MuiTextField-root custom-input css-1yqcnti-MuiFormControl-root-MuiTextField-root"
+                  data-testid="message-search-input"
+                  maxlength="100"
+                  tabindex="0"
+                  withicon="true"
+                >
+                  <div
+                    class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1ye1xzc-MuiInputBase-root-MuiOutlinedInput-root"
+                  >
+                    <input
+                      aria-invalid="false"
+                      class="MuiOutlinedInput-input MuiInputBase-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
+                      id="searchField"
+                      placeholder="searchText"
+                      type="default"
+                      value=""
+                    />
+                    <fieldset
+                      aria-hidden="true"
+                      class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="css-hdw1oc"
+                      >
+                        <span
+                          class="notranslate"
+                        >
+                          ​
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-0.5 MuiGrid-grid-md-2 MuiGrid-grid-lg-1 css-5adcqd-MuiGrid-root"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-14n94s4-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1fm24xi-MuiSvgIcon-root"
+                  data-testid="FilterListIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="messageContent MuiBox-root css-0"
+          data-testid="message-content-view"
+        >
+          <div
+            class="tabsContent MuiBox-root css-0"
+          >
+            <div
+              class="MuiTabs-root css-1gsznmx-MuiTabs-root"
+            >
+              <div
+                class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+                style="overflow: hidden; margin-bottom: 0px;"
+              >
+                <div
+                  class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+                  role="tablist"
+                >
+                  <button
+                    aria-controls="full-width-tabpanel-0"
+                    aria-selected="true"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1jexnfj-MuiButtonBase-root-MuiTab-root"
+                    data-testid="inbox-tab"
+                    id="full-width-tab-0"
+                    role="tab"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <div
+                      class="MuiTab-iconWrapper MuiBox-root css-0"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1pamts2-MuiSvgIcon-root"
+                        data-testid="MailOutlineIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"
+                        />
+                      </svg>
+                    </div>
+                    inboxText (3)
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <button
+                    aria-controls="full-width-tabpanel-1"
+                    aria-selected="false"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit MuiTab-fullWidth css-1jexnfj-MuiButtonBase-root-MuiTab-root"
+                    data-testid="sent-tab"
+                    id="full-width-tab-1"
+                    role="tab"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <div
+                      class="MuiTab-iconWrapper MuiBox-root css-0"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1w1vbbt-MuiSvgIcon-root"
+                        data-testid="SendOutlinedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="m4.01 6.03 7.51 3.22-7.52-1 .01-2.22m7.5 8.72L4 17.97v-2.22l7.51-1M2.01 3 2 10l15 2-15 2 .01 7L23 12 2.01 3z"
+                        />
+                      </svg>
+                    </div>
+                    sentText
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <button
+                    aria-controls="full-width-tabpanel-2"
+                    aria-selected="false"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit MuiTab-fullWidth css-1jexnfj-MuiButtonBase-root-MuiTab-root"
+                    data-testid="draft-tab"
+                    id="full-width-tab-2"
+                    role="tab"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <div
+                      class="MuiTab-iconWrapper MuiBox-root css-0"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-iuzmfl-MuiSvgIcon-root"
+                        data-testid="ModeOutlinedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="m14.06 9.02.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
+                        />
+                      </svg>
+                    </div>
+                    draftText
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <button
+                    aria-controls="full-width-tabpanel-3"
+                    aria-selected="false"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit MuiTab-fullWidth css-1jexnfj-MuiButtonBase-root-MuiTab-root"
+                    data-testid="deleted-tab"
+                    id="full-width-tab-3"
+                    role="tab"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <div
+                      class="MuiTab-iconWrapper MuiBox-root css-0"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ct4urr-MuiSvgIcon-root"
+                        data-testid="DeleteOutlinedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
+                        />
+                      </svg>
+                    </div>
+                    deletedText
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+                <span
+                  class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+                  style="left: 0px; width: 0px; background: rgb(0, 149, 169); color: red;"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="messagingListContainer MuiBox-root css-0"
+            data-testid="message-list-container"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-sm-6 MuiGrid-grid-lg-3 css-1ge5rjy-MuiGrid-root"
+              >
+                <div
+                  class="listContainer"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mobileNewMessageContainer MuiBox-root css-1hyfx7x"
+    >
+      <form>
+        <div
+          class="MuiDialogContent-root css-khm3vs-MuiDialogContent-root"
+        >
+          <div
+            class="MuiBox-root css-1xfij6p"
+          >
+            <p
+              class="MuiDialogContentText-root MuiTypography-root MuiTypography-body1 css-zkadmv-MuiTypography-root-MuiDialogContentText-root"
+              id="alert-dialog-description"
+            >
+              newMessageTitle
+            </p>
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testId="close-new-message"
+              data-testid="CloseIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              />
+            </svg>
+          </div>
+          <div
+            class="typeNameContainer MuiBox-root css-1siwms0"
+          >
+            <div
+              class="searchIcon MuiBox-root css-0"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-14jj0oj-MuiSvgIcon-root"
+                data-testid="SearchIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                />
+              </svg>
+            </div>
+            <div
+              class=" css-1wrbfzd"
+            >
+              <div
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-label="Type a Name"
+                autocapitalize="none"
+                class="MuiFormControl-root MuiTextField-root custom-input css-13hwcd7-MuiFormControl-root-MuiTextField-root"
+                maxlength="254"
+                role="combobox"
+                spellcheck="false"
+                tabindex="0"
+                withicon="true"
+              >
+                <label
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for="name"
+                  id="name-label"
+                >
+                  typeName*
+                </label>
+                <div
+                  class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    autocomplete="off"
+                    class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                    id="name"
+                    placeholder=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <span
+            class="MuiTypography-root MuiTypography-bodyMedium errorText css-yats0r-MuiTypography-root"
+          >
+            This field is required
+          </span>
+          <div
+            aria-label="Subject"
+            class="MuiFormControl-root MuiTextField-root custom-input css-13ckzdv-MuiFormControl-root-MuiTextField-root"
+            maxlength="254"
+            tabindex="0"
+            withicon="true"
+          >
+            <label
+              class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+              data-shrink="false"
+              for="subject"
+              id="subject-label"
+            >
+              subject*
+            </label>
+            <div
+              class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                id="subject"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="messagesTextAreaContent MuiBox-root css-3t7mf8"
+          >
+            <div
+              aria-label="Write a message"
+              class="MuiFormControl-root MuiTextField-root custom-input css-xwhco4-MuiFormControl-root-MuiTextField-root"
+              maxlength="254"
+              tabindex="0"
+              withicon="true"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for="message"
+                id="message-label"
+              >
+                writeMessages*
+              </label>
+              <div
+                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                  id="message"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <span
+            class="MuiTypography-root MuiTypography-bodyMedium errorText css-yats0r-MuiTypography-root"
+          >
+            This field is required
+          </span>
+        </div>
+        <div
+          class="MuiDialogActions-root MuiDialogActions-spacing css-ztvbsz-MuiDialogActions-root"
+        >
+          <button
+            class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1owc8j6-MuiButtonBase-root-MuiButton-root"
+            data-testid="new-message-add-attachment-button"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1p1vdoo-MuiSvgIcon-root"
+              data-testid="AttachmentOutlinedIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18.5 16H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h12.5c1.38 0 2.5 1.12 2.5 2.5S20.88 13 19.5 13H9c-.55 0-1-.45-1-1s.45-1 1-1h9.5V9.5H9c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5h10.5c2.21 0 4-1.79 4-4s-1.79-4-4-4H7c-3.04 0-5.5 2.46-5.5 5.5s2.46 5.5 5.5 5.5h11.5V16z"
+              />
+            </svg>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-qzoyem-MuiTypography-root"
+            >
+              addAttachments
+            </p>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+          <div
+            class="MuiBox-root css-18a8izt"
+          >
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-14eyd29-MuiButtonBase-root-MuiButton-root"
+              data-testid="draft-new-message"
+              tabindex="0"
+              type="button"
+            >
+              moveToDraft
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1p251cc-MuiButtonBase-root-MuiButton-root"
+              data-testid="send-new-message"
+              tabindex="0"
+              type="submit"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="SendOutlinedIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m4.01 6.03 7.51 3.22-7.52-1 .01-2.22m7.5 8.72L4 17.97v-2.22l7.51-1M2.01 3 2 10l15 2-15 2 .01 7L23 12 2.01 3z"
+                />
+              </svg>
+              sendText
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      class="MuiBox-root css-1e58e3w"
+    >
+      <button
+        class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1poohah-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1mrkhgv-MuiSvgIcon-root"
+          data-testid="AddOutlinedIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+          />
+        </svg>
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-dolljf-MuiTypography-root"
+        >
+          newMessage
+        </p>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+    <input
+      data-testid="loc_uploadImage"
+      hidden=""
+      type="file"
+    />
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

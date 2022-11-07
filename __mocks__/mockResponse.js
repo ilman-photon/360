@@ -14833,7 +14833,20 @@ export const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
+          },
+        ],
       },
     },
     {
@@ -14870,7 +14883,20 @@ export const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
+          },
+        ],
       },
     },
   ],
@@ -15874,7 +15900,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "Opa",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -15940,6 +15966,130 @@ export const TEMP_DATA_MEDICATION = [
         },
       },
     },
+  },
+];
+
+export const MOCK_MESSAGING = [
+  {
+    id: 6783,
+    subject: "Follow-up from past visit/message",
+    name: "Jodi Berzak, D.O.",
+    modifiedAt: "09/09/2022 12:00PM",
+    messages: [
+      {
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: null,
+      },
+    ],
+  },
+  {
+    id: 2333,
+    subject: "Your lab results",
+    name: "Dr Chang Yoo",
+    modifiedAt: "09/10/2022 14:00PM",
+    messages: [
+      {
+        name: "Barnard Don, D.O.",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+  },
+  {
+    id: 3423,
+    subject: "Follow-up from past visit/message",
+    name: "Jodi Berzak, D.O.",
+    modifiedAt: "09/12/2022 17:00PM",
+    messages: [
+      {
+        name: "Jodi Berzak, D.O.",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "James Bond, D.O.",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
   },
 ];
 export const mockUserData = {
@@ -35151,6 +35301,7 @@ export const prescriptionContact = {
     },
   },
 };
+
 export const prescriptionGlasses = {
   count: 2,
   entities: [
@@ -35296,6 +35447,7 @@ export const prescriptionGlasses = {
     },
   },
 };
+
 export const prescriptionMedication = [
   {
     Deleted: "n",
@@ -37817,7 +37969,7 @@ export const pastAppointmentResponse = {
           self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
         },
       },
-    }
+    },
   ],
   _links: { self: { href: "/appointments?pageNo=0&pageSize=500" } },
 };
