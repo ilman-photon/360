@@ -1,0 +1,78 @@
+.container {
+  background: #f4f4f4;
+  padding-bottom: 30px;
+  height: auto;
+
+  @media (min-width: 992px) and (max-height: 720px) {
+    height: 100vh;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    height: 100vh;
+  }
+
+  @media only screen and (max-width: 767px) {
+    height: 100vh;
+  }
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 1434px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 32px 24px 24px;
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    padding: 16px;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 16px;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    padding: 16px;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 16px;
+  }
+}
+
+.messageContent {
+  border: 1px solid #bdbdbd;
+  padding: 10px 0 15px;
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    border: unset;
+    padding: 0;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    border: unset;
+    padding: 0;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    border: unset;
+    padding: 0;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    border: unset;
+    padding: 0;
+  }
+}
+
+.messagingListContainer {
+  height: 702px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.noMessagesContainer {
+  padding: 32px 16px;
+  width: 100%;
+}

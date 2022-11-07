@@ -15942,6 +15942,130 @@ export const TEMP_DATA_MEDICATION = [
     },
   },
 ];
+
+export const MOCK_MESSAGING = [
+  {
+    id: 6783,
+    subject: "Follow-up from past visit/message",
+    name: "Jodi Berzak, D.O.",
+    modifiedAt: "09/09/2022 12:00PM",
+    messages: [
+      {
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: null,
+      },
+    ],
+  },
+  {
+    id: 2333,
+    subject: "Your lab results",
+    name: "Dr Chang Yoo",
+    modifiedAt: "09/10/2022 14:00PM",
+    messages: [
+      {
+        name: "Barnard Don, D.O.",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+  },
+  {
+    id: 3423,
+    subject: "Follow-up from past visit/message",
+    name: "Jodi Berzak, D.O.",
+    modifiedAt: "09/12/2022 17:00PM",
+    messages: [
+      {
+        name: "Jodi Berzak, D.O.",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "James Bond, D.O.",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+  },
+];
 export const mockUserData = {
   title: 0,
   firstName: "dewo",
@@ -35151,6 +35275,7 @@ export const prescriptionContact = {
     },
   },
 };
+
 export const prescriptionGlasses = {
   count: 2,
   entities: [
@@ -35296,6 +35421,7 @@ export const prescriptionGlasses = {
     },
   },
 };
+
 export const prescriptionMedication = [
   {
     Deleted: "n",

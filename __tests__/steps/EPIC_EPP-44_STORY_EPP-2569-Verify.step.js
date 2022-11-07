@@ -1196,7 +1196,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test.only('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Progress bar is displaying for the stages of Appointment', ({ given, when, and, then }) => {
+  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Progress bar is displaying for the stages of Appointment', ({ given, when, and, then }) => {
     given('user launch the Marketing Site url', () => {
       defaultValidation()
     });

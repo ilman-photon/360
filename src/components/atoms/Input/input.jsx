@@ -204,6 +204,7 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
 }));
 
 export const CustomInput = styled(({ ...props }) => {
+  console.log(props);
   const [values, setValues] = React.useState({
     value: "",
     showPassword: false,

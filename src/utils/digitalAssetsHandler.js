@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Api } from "../pages/api/api";
 const api = new Api();
 
@@ -26,17 +27,17 @@ export default class DigitalAssetsHandler {
     this.bufferFile = await this.file.arrayBuffer();
   };
 
-  fetchURLFromDigitalAsset = () => {
+  fetchURLFromDigitalAsset = async () => {
     if (!this.source._id && !this.source.uid) {
       return;
     }
-    return api.getURLDigitalAsset(this.source._id || this.source.uid);
+    return await api.getURLDigitalAsset(this.source._id || this.source.uid);
   };
-  fetchSourceURL = () => {
+  fetchSourceURL = async () => {
     if (!this.source) {
       return;
     }
-    return this.fetchURLFromDigitalAsset();
+    return await this.fetchURLFromDigitalAsset();
   };
 
   createDigitalAsset = () => {
@@ -55,5 +56,11 @@ export default class DigitalAssetsHandler {
       this.status = success ? "success" : "failed";
       this.source = await this.fetchSourceURL();
     }
+  };
+
+  fetchBlob = async (url) => {
+    const response = await axios.get(url, { responseType: "blob" });
+    const blobURL = URL.createObjectURL(response.data);
+    return blobURL;
   };
 }

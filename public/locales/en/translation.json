@@ -180,5 +180,38 @@
   },
   "appointment": {
     "baseText": "Enter a city, state, or zip code to view results"
+  },
+  "messaging": {
+    "messagingText": "Messaging",
+    "inboxText": "Inbox",
+    "sentText": "Sent",
+    "draftText": "Drafts",
+    "deletedText": "Deleted",
+    "newMessage": "New Message",
+    "filterByText": "Filter By:",
+    "allText": "All",
+    "unreadText": "Unread",
+    "searchText": "Search",
+    "noResultMessage": "No results found. Please try again with a different search criteria.",
+    "noReceivedMessages": "You have no received messages",
+    "noSentMessages": "You have no sent messages",
+    "noDraftMessages": "You have no draft messages",
+    "noDeletedMessages": "You have no deleted messages",
+    "titleNoSelectedMessage": "Select an item to read",
+    "subTitleNoSelectedMessage": "Nothing is selected",
+    "downloadAllAttachmentText": "Download All Attachments",
+    "addAttachments": "Add Attachments",
+    "writeMessages": "Write a message",
+    "deleteMessage": "Are you sure you want to delete message?",
+    "cancelBtn": "Cancel",
+    "deleteBtn": "Delete",
+    "newMessageTitle": "New Message",
+    "typeName": "Type a Name",
+    "subject": "Subject",
+    "moveToDraft": "Move to drafts",
+    "sendText": "Send",
+    "floatingMsgSendSuccess": "All your messages have been successfully deleted",
+    "thisFieldRequired": "This field is required",
+    "discardBtn": "Discard"
   }
 }
