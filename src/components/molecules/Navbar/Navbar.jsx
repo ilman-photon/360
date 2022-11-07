@@ -23,7 +23,6 @@ const iconTestLabResults = "/icon-testLabResults.png";
 const pages = [
   { href: "/patient", label: "Dashboard" },
   { href: "/patient/appointments", label: "Appointments" },
-  { href: "/patient/message", label: "Messaging" },
 ];
 
 const pagesNext = [
