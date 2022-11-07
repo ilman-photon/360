@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MessagingPage from "../../../src/pages/patient/messaging";
 import { Provider } from "react-redux";
@@ -13,7 +13,8 @@ describe("Menu Components", () => {
       </Provider>
     );
   });
-  it("menu render", () => {
-    expect(container).toMatchSnapshot();
+  it("menu render", async () => {
+    await waitFor(() => container.getAllByText("moveToDraft"));
+    expect(container.getAllByText("moveToDraft")[0]).toBeInTheDocument();
   });
 });
