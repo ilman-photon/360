@@ -4,6 +4,7 @@ import {
   render,
   waitFor,
   within,
+  screen,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Appointment, {
@@ -22,6 +23,9 @@ import {
 } from "../../../__mocks__/mockResponse";
 import { TEST_ID } from "../../../src/utils/constants";
 import { createMatchMedia } from "../../../__mocks__/commonSteps";
+import { useRouter } from "next/router";
+import { setFilterBy, setFilterData } from "../../../src/store/appointment";
+
 const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
 
 jest.mock("@react-google-maps/api", () => ({
@@ -45,6 +49,10 @@ jest.mock("@react-google-maps/api", () => ({
   },
 }));
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
 describe("App", () => {
   let container;
   const mock = new MockAdapter(axios);
@@ -53,6 +61,13 @@ describe("App", () => {
       getCurrentPosition: jest.fn(),
       watchPosition: jest.fn(),
     };
+    useRouter.mockReturnValue({
+      query: {
+        reschedule: false,
+      },
+      push: jest.fn(),
+    });
+
     useGeolocated.mockReturnValue({
       coords: { latitude: "123", longitude: "456" },
       isGeolocationEnabled: true,
@@ -74,6 +89,40 @@ describe("App", () => {
       .reply(200, {});
     window.matchMedia = createMatchMedia("1920px");
     global.navigator.geolocation = mockGeolocation;
+
+    window.google = {
+      maps: {
+        DistanceMatrixService: jest.fn().mockReturnValue({
+          getDistanceMatrix: (_, callback) => {
+            callback(
+              {
+                originAddresses: ["1"],
+                rows: [
+                  {
+                    elements: [
+                      {
+                        distance: {
+                          text: "001",
+                        },
+                        duration: {
+                          text: "0022",
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+              "OK"
+            );
+          },
+        }),
+        LatLngBounds: jest.fn().mockReturnValue({ extend: jest.fn() }),
+        UnitSystem: {
+          METRIC: "",
+        },
+      },
+    };
+
     const server = await getStaticProps();
     container = render(
       <Provider store={store}>
@@ -230,4 +279,164 @@ describe("App", () => {
       )
     );
   }, 20000);
+
+  it("Handle filterSuggestionData purposeOfVisit", async () => {
+    const server = await getStaticProps();
+    await waitFor(() =>
+      useRouter.mockReturnValue({
+        query: {
+          reschedule: true,
+        },
+      })
+    );
+
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+    await waitFor(() =>
+      container.getAllByLabelText("Navigate to next week option")
+    );
+  }, 20000);
+
+  it("Is Loaded use effect", async () => {
+    cleanup();
+    window.google = {
+      maps: {
+        DistanceMatrixService: jest.fn().mockReturnValue({
+          getDistanceMatrix: (_, callback) => {
+            callback(_, "YES");
+          },
+        }),
+        LatLngBounds: jest.fn().mockReturnValue({ extend: jest.fn() }),
+        UnitSystem: {
+          METRIC: "",
+        },
+      },
+    };
+    const server = await getStaticProps();
+    await waitFor(() =>
+      useRouter.mockReturnValue({
+        query: {
+          reschedule: true,
+        },
+      })
+    );
+    store.dispatch(setFilterData({ location: "Kabupaten Bogor" }));
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+    await waitFor(() =>
+      container.getAllByLabelText("Navigate to next week option")
+    );
+  });
+
+  it("Close Modal View all Availability", async () => {
+    const buttonViewAll = container.getAllByTestId("loc_viewAll");
+    await waitFor(() => fireEvent.click(buttonViewAll[0]));
+    const closeIcon = container.getByTestId("CloseIcon");
+    expect(closeIcon).toBeInTheDocument();
+    await waitFor(() => fireEvent.click(closeIcon));
+    expect(true).toBeTruthy();
+  });
+
+  it("Filter Click", async () => {
+    store.dispatch(
+      setFilterBy([
+        { name: "Available Today", type: "general", checked: false },
+        { name: "Language", type: "languange", checked: false },
+        { name: "Gender", type: "gender", checked: false },
+      ])
+    );
+    const filterBy = store.getState().appointment.filterBy;
+
+    console.log(":::filterBy", filterBy);
+    // const server = await getStaticProps();
+    // act(() => {
+    //   container = render(
+    //     <Provider store={store}>
+    //       {Appointment.getLayout(<Appointment {...server.props} />)}
+    //     </Provider>
+    //   );
+    // });
+    const filterButton = container.getByTestId("filterbtn");
+    await waitFor(() => fireEvent.click(filterButton));
+    const checkboxFilter = container.getByTestId(/Available Today-test/i);
+    const checkboxFilter2 = container.getByTestId(/Gender-test/i);
+    const checkboxFilter3 = container.getByTestId(/Language-test/i);
+    expect(checkboxFilter).toBeInTheDocument();
+
+    const doneButton = container.getByText(/Done/i);
+
+    // await waitFor(() => fireEvent.click(checkboxFilter));
+    await waitFor(() => fireEvent.click(checkboxFilter2));
+    // await waitFor(() => fireEvent.click(checkboxFilter3));
+    const filterContainer = container.getByTestId(
+      "appointment_filter_component_drawer"
+    );
+    screen.debug(filterContainer, Infinity);
+    await waitFor(() => fireEvent.click(doneButton));
+  });
+
+  it("Filter Click Table", async () => {
+    cleanup();
+    window.matchMedia = createMatchMedia("1029px");
+    const server = await getStaticProps();
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+
+    await waitFor(() => {
+      flowSubmitFilter();
+    }, 20000);
+
+    const filterButton = container.getByTestId("filterbtn");
+
+    await waitFor(() => fireEvent.click(filterButton));
+    const checkboxFilter = container.getByTestId(/Available Today-test/i);
+
+    expect(checkboxFilter).toBeInTheDocument();
+    const filterContainer = container.getByTestId(
+      "appointment_filter_component_drawer"
+    );
+    const doneButton = container.getByText(/Done/i);
+    await waitFor(() => fireEvent.click(checkboxFilter));
+    await waitFor(() => fireEvent.click(doneButton));
+  }, 30000);
+
+  it("Filter Click Mobile", async () => {
+    // cleanup();
+    window.matchMedia = createMatchMedia("600px");
+    const server = await getStaticProps();
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment {...server.props} />)}
+        </Provider>
+      );
+    });
+    // await waitFor(() => flowSubmitFilter());
+    const filterButton = container.getAllByTestId("filter-button-mobile");
+    expect(filterButton[0]).toBeInTheDocument();
+    await waitFor(() => fireEvent.click(filterButton[0]));
+    const checkboxFilter = container.getByTestId(/Available Today-test/i);
+    expect(checkboxFilter).toBeInTheDocument();
+    // const filterContainer = container.getByTestId(
+    //   "appointment_filter_component_drawer"
+    // );
+    const doneButton = container.getByText(/Done/i);
+    await waitFor(() => fireEvent.click(checkboxFilter));
+    await waitFor(() => fireEvent.click(doneButton));
+  });
 });
