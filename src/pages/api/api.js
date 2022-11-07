@@ -29,7 +29,7 @@ export class Api {
     return (
       err &&
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
-        err?.response?.data?.ResponseCode === undefined) ||
+        err.response?.data?.ResponseCode === undefined) ||
         err.code === constants.ERROR_CODE.NETWORK_ERR ||
         [500].indexOf(err.response?.status) !== -1) &&
       [400].indexOf(err.response?.status) === -1
@@ -190,13 +190,12 @@ export class Api {
         url = "/ecp/patient/oneTimeLinkToken";
         break;
     }
+
     return new Promise((resolve, reject) => {
       this.getResponse(url, postbody, "post")
         .then(function (data) {
           if (data) {
             resolve(data);
-          } else {
-            reject(data);
           }
         })
         .catch(function (err) {
@@ -225,19 +224,6 @@ export class Api {
   submitSecurityQuestion(postbody) {
     const url = "/ecp/patient/saveSecurityQuestions";
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
-  }
-
-  getIpAddress() {
-    return new Promise((resolve, reject) => {
-      axios
-        .get("https://api.ipify.org?format=json")
-        .then((response) => {
-          resolve(response.data.ip);
-        })
-        .catch(() => {
-          reject();
-        });
-    });
   }
 
   async getUSListOfStates() {
@@ -314,6 +300,8 @@ export class Api {
   doMedicationCancelRequestRefill(postBody) {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/prescription/cancelRequestRefill`;
+    console.log("domain--", url);
+
     return this.getResponse(url, postBody, "post");
   }
 
