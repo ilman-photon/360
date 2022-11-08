@@ -210,10 +210,10 @@ defineFeature(feature, (test) => {
       const filterBtn = container.getByText(/Filter/i);
       expect(filterBtn).toBeInTheDocument();
       fireEvent.click(filterBtn);
-      await waitFor(
-        () => container.getAllByText(/Provider ClarksonEyeCare/i)[0]
-      );
-      fireEvent.click(container.getByText(/Done/i));
+      // await waitFor(
+      //   () => container.getAllByText(/Provider ClarksonEyeCare/i)[0]
+      // );
+      // fireEvent.click(container.getByText(/Done/i));
     });
 
     then("patient should able to see the correct filter result.", () => {

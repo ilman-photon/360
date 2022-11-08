@@ -202,7 +202,7 @@ defineFeature(feature, (test) => {
         expect(screen.getAllByText("Phone Number")[0]).toBeInTheDocument()
       );
       await waitFor(() =>
-        expect(screen.getAllByText("Email Id")[0]).toBeInTheDocument()
+        expect(screen.getAllByText("Email ID")[0]).toBeInTheDocument()
       );
       await waitFor(() =>
         expect(screen.getAllByText("Address")[0]).toBeInTheDocument()
@@ -312,7 +312,7 @@ defineFeature(feature, (test) => {
           expect(screen.getAllByText("Phone Number")[0]).toBeInTheDocument()
         );
         await waitFor(() =>
-          expect(screen.getAllByText("Email Id")[0]).toBeInTheDocument()
+          expect(screen.getAllByText("Email ID")[0]).toBeInTheDocument()
         );
         await waitFor(() =>
           expect(screen.getAllByText("Address")[0]).toBeInTheDocument()
