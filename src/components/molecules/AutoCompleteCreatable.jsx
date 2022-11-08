@@ -194,16 +194,17 @@ export const AutoCompleteCreatable = ({
           );
         }}
       />
-      <Typography
-        variant={"lightError"}
-        sx={{
-          visibility: props.error ? "visible" : "hidden",
-          ml: 1.75,
-          mt: 0.5,
-        }}
-      >
-        {props.helperText}
-      </Typography>
+      {props.error && (
+        <Typography
+          variant={"lightError"}
+          sx={{
+            ml: 1.75,
+            mt: 0.5,
+          }}
+        >
+          {props.helperText}
+        </Typography>
+      )}
     </>
   );
 };

@@ -35,6 +35,10 @@ export const AccountCard = ({
                 : styles.cardHeader
             }
             sx={{
+              borderTop: "2px solid",
+              borderLeft: "2px solid",
+              borderRight: "2px solid",
+              borderColor: "#F3F3F3",
               ".MuiCardHeader-action": {
                 margin: 0,
               },
@@ -65,7 +69,16 @@ export const AccountCard = ({
             action={!isEditing ? actionContent : ""}
           />
         )}
-        <CardContent sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
+        <CardContent
+          sx={{
+            borderLeft: "2px solid",
+            borderRight: "2px solid",
+            borderBottom: "2px solid",
+            borderColor: "#F3F3F3",
+            px: { xs: 2, md: 4 },
+            py: { xs: 2, md: 4 },
+          }}
+        >
           {children}
         </CardContent>
       </Card>

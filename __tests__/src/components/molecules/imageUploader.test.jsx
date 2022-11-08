@@ -41,10 +41,11 @@ describe("ImageUploader Components", () => {
         label="Upload Front"
         width="100%"
         alt=""
+        changeLabel={"Change file"}
       />
     );
 
-    await waitFor(() => container.getByText("Change file"));
-    expect(container.getByText("Change file")).toBeInTheDocument();
+    await waitFor(() => container.getByText(/Change file/i));
+    expect(container.getByText(/Change file/i)).toBeInTheDocument();
   });
 });

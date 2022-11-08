@@ -60,7 +60,7 @@ describe("ContactInformation Components", () => {
 
   it("PersonalInformation View render", () => {
     expect(container.getByText("Phone Number")).toBeInTheDocument();
-    expect(container.getByText("Email ID")).toBeInTheDocument();
+    expect(container.getByText("Email Id")).toBeInTheDocument();
     expect(container.getByText("Address")).toBeInTheDocument();
     expect(container.getByText("City")).toBeInTheDocument();
     expect(container.getByText("State")).toBeInTheDocument();
