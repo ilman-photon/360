@@ -397,7 +397,12 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
+                  <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    sx={{ display: { xs: "none", md: "flex" } }}
+                  />
 
                   <Grid
                     item
@@ -445,8 +450,18 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
-                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
+                  <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    sx={{ display: { xs: "none", md: "flex" } }}
+                  />
+                  <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    sx={{ display: { xs: "none", md: "flex" } }}
+                  />
 
                   <Grid
                     item
@@ -484,21 +499,21 @@ export default function InsuranceForm({
                     />
                   </Grid>
                 </Grid>
+                <DisclaimerText label="(Optional)" />
               </Box>
-
-              <DisclaimerText label="Optional" />
-
-              <Divider />
             </Stack>
           </Collapse>
+
+          <Divider />
 
           <Typography
             variant="headlineH4"
             component="div"
             sx={{
               fontFamily: "Libre Franklin",
-              fontWeight: 700,
+              fontWeight: 500,
               color: colors.grayscaleBlack,
+              fontSize: { xs: "22px", md: "18px" },
             }}
           >
             Upload images of your insurance
@@ -520,7 +535,7 @@ export default function InsuranceForm({
               xs={12}
               sm={5}
               lg={4}
-              sx={{ position: "relative", pl: "-8px" }}
+              sx={{ position: "relative", pl: "-8px", mb: { xs: 3, md: 0 } }}
             >
               <div
                 style={{ position: "absolute", width: "100%", top: "-25px" }}
@@ -534,6 +549,17 @@ export default function InsuranceForm({
                   </FormMessage>
                 </Collapse>
               </div>
+              <Typography
+                variant="bodyLarge"
+                component="div"
+                sx={{
+                  display: { sm: "none" },
+                  mb: "12px",
+                  // color: colors.grayscaleBlack,
+                }}
+              >
+                Insurance Card - Front
+              </Typography>
               <Controller
                 name="frontCard"
                 control={control}
@@ -549,6 +575,7 @@ export default function InsuranceForm({
                       source={value}
                       // preview={value?.presignedUrl}
                       label="Upload Front"
+                      changeLabel="Change photo"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -576,6 +603,17 @@ export default function InsuranceForm({
                   </FormMessage>
                 </Collapse>
               </div>
+              <Typography
+                variant="bodyLarge"
+                component="div"
+                sx={{
+                  display: { sm: "none" },
+                  mb: "12px",
+                  // color: colors.grayscaleBlack,
+                }}
+              >
+                Insurance Card - Back
+              </Typography>
               <Controller
                 name="backCard"
                 control={control}
@@ -591,6 +629,7 @@ export default function InsuranceForm({
                       // preview={value?.presignedUrl}
                       testIds={testIds.uploadBackImage}
                       label="Upload Back"
+                      changeLabel="Change photo"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -648,10 +687,10 @@ export default function InsuranceForm({
           <Divider />
 
           <Stack
-            direction="row"
             justifyContent="flex-end"
-            spacing={2}
+            gap={2}
             sx={{
+              flexDirection: { sm: "row" },
               width: { xs: "100%", md: "fit-content" },
               alignSelf: { xs: "center", md: "flex-end" },
               p: 2,
@@ -666,7 +705,7 @@ export default function InsuranceForm({
               sx={{
                 width: {
                   xs: "100%",
-                  md: "fit-content",
+                  // md: "fit-content",
                   textTransform: "none",
                   borderRadius: 30,
                 },
@@ -682,7 +721,7 @@ export default function InsuranceForm({
               sx={{
                 width: {
                   xs: "100%",
-                  md: "fit-content",
+                  // md: "fit-content",
                   textTransform: "none",
                   borderRadius: 30,
                 },

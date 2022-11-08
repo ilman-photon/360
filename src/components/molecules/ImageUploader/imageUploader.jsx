@@ -16,6 +16,7 @@ import Image from "next/image";
 
 export const ImageUploader = ({
   label,
+  changeLabel,
   helperText = false,
   source,
   OnUpload = () => {
@@ -204,7 +205,7 @@ export const ImageUploader = ({
             inputImage.current.click();
           }}
         >
-          Change file
+          {changeLabel}
         </Button>
       ) : (
         ""

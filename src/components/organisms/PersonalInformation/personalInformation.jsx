@@ -579,6 +579,7 @@ export default function PersonalInformation({
                           OnInputError={onFormIssuedFrontError}
                           source={value}
                           label="Upload Front"
+                          changeLabel="Change file"
                         />
                       </>
                     );
@@ -627,6 +628,7 @@ export default function PersonalInformation({
                           OnInputError={onFormIssuedBackError}
                           source={value}
                           label="Upload Back"
+                          changeLabel="Change file"
                         />
                       </>
                     );
@@ -636,10 +638,9 @@ export default function PersonalInformation({
             </Stack>
           </Stack>
           <Stack
-            direction="row"
             justifyContent="space-between"
-            spacing={2}
-            sx={{ p: 2, mt: 2 }}
+            gap={2}
+            sx={{ flexDirection: { sm: "row" }, p: 2, mt: 2 }}
           >
             <Button
               onClick={handleCancel}

@@ -29,7 +29,7 @@ export default function InsuranceInformationNew({
       >
         <Stack spacing={2}>
           <Typography variant="bodyLarge">
-            You have no insurance on file
+            You have no insurance on file.
           </Typography>
           <InsuranceForm
             providerList={providerList}

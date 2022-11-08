@@ -61,7 +61,6 @@ export default function InsuranceInfoPage() {
   const isAutocompleteLoading = useSelector(
     (state) => state.provider.status === "loading"
   );
-
   const userInsuranceData = useSelector(
     (state) => state.user.userInsuranceData
   );
