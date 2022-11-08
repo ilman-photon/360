@@ -34,9 +34,6 @@ export const MessagingDetailContentView = ({
     });
     return message;
   };
-  console.log(
-    data?.messages?.length > 1 || data?.messages[0]?.isDraft === undefined
-  );
   return (
     <Box className={styles.detailViewContainer}>
       {(data?.messages?.length > 1 || data?.messages?.length == 1) &&

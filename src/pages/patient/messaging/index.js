@@ -176,21 +176,15 @@ export default function MessagingPage() {
       setShownMessages(mail);
     }
   }, [dataMessages, query]);
-
   /**
    * Catch the new data based on filter to set the data into state.
    */
   useEffect(() => {
-    let mail = [];
     if (filterRead === "unread") {
       setShownMessages(dataMessages);
     } else {
-      dataMessages.filter((post) => {
-        if (post.unRead) {
-          return mail.push(post);
-        }
-      });
-      setShownMessages(mail);
+      const readData = dataMessages.filter((post) => post.unRead);
+      setShownMessages(readData);
     }
   }, [dataMessages, filterRead]);
 
@@ -198,31 +192,33 @@ export default function MessagingPage() {
    * Please delete this after service available
    */
   function modifyData(data, key) {
+    let modifyData = data;
     switch (key) {
       case "inbox":
-        console.log(storageData);
-        storageData?.delete?.map((store) => {
-          data?.map((item, index) => {
-            if (item.id === store?.id) {
-              data.splice(index, 1);
-            }
-          });
-        });
-        setDataMessages(data);
+        const filterInboxData = [];
+        const inboxData = JSON.parse(JSON.stringify(data));
+        for (const item in inboxData) {
+          const id = inboxData[item].id;
+          const hasDataInLocalStorage = storageData?.delete?.find(
+            (strData) => strData?.id === id
+          );
+          !hasDataInLocalStorage && filterInboxData.push(inboxData[item]);
+        }
+
         setIsSelectedMessage({
           active: false,
           id: null,
         });
+        modifyData = filterInboxData;
         break;
       case "deleted":
-        storageData?.delete?.map((item) => {
-          data.push(item);
-        });
-        setDataMessages(data);
+        const deletedData = data.concat(storageData?.delete);
+        modifyData = deletedData;
         break;
       default:
         break;
     }
+    return modifyData;
   }
 
   /**
@@ -238,12 +234,11 @@ export default function MessagingPage() {
           api
             .getAllMessages()
             .then(function (response) {
+              let newResponse = response;
               if (Object.keys(storageData).length !== 0) {
-                modifyData(response, "inbox");
-              } else {
-                setDataMessages(response);
+                newResponse = modifyData(newResponse, "inbox");
               }
-              setHandleShowDataUI(response, "inbox");
+              setHandleShowDataUI(newResponse, "inbox");
             })
             .catch(function () {
               //Handle error getAllAppointment
@@ -291,12 +286,11 @@ export default function MessagingPage() {
           api
             .getDeleteMessages()
             .then(function (response) {
+              let newResponse = response;
               if (Object.keys(storageData).length !== 0) {
-                modifyData(response, "deleted");
-              } else {
-                setDataMessages(response);
+                newResponse = modifyData(response, "deleted");
               }
-              setHandleShowDataUI(response, "deleted");
+              setHandleShowDataUI(newResponse, "deleted");
             })
             .catch(function () {
               //Handle error getAllAppointment
@@ -526,11 +520,9 @@ export default function MessagingPage() {
   };
 
   const providerFieldFocus = () => {
-    console.log("sini");
     const dummyEl = document.getElementById("name");
     // check for focus
     const isFocused = document.activeElement === dummyEl;
-    console.log(isFocused);
     setIsFocus(isFocused);
   };
 

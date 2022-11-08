@@ -78,7 +78,6 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
             height: "46px",
             fontSize: "16px",
             backgroundColor: "#007E8F",
-            fontSize: "16px",
             fontStyle: "normal",
             ":hover": {
               backgroundColor: "#007E8F",
