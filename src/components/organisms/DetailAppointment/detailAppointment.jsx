@@ -330,7 +330,7 @@ export default function DetailAppointment({ data }) {
                       ariaLabel={insurance}
                       variant="regularDarkGreen"
                     >
-                      {insurance}
+                      {insurance.name}
                     </Typography>
                   </Box>
                 ))}
