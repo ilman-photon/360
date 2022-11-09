@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   Divider,
+  Grid,
   InputAdornment,
   Link,
   MenuItem,
@@ -218,7 +219,7 @@ export function onRenderInputInsurance(
             fontWeight: "400",
             color: "#303030",
             fontSize: "16px",
-            lineHeight: "24px",
+            lineHeight: "18px",
           },
         }}
         onKeyDown={(e) => {
@@ -489,7 +490,7 @@ const FilterHeading = ({
                         fontStyle: "normal",
                         fontWeight: "400",
                         fontSize: "16px",
-                        lineHeight: "24px",
+                        lineHeight: "18px",
                         color: "#303030",
                       },
                     }}
@@ -559,7 +560,7 @@ const FilterHeading = ({
                     fontWeight: "400",
                     fontSize: "16px",
                     color: "#303030",
-                    lineHeight: "24px",
+                    lineHeight: "18px",
                     fontStyle: "normal",
                   },
                 }}
@@ -618,7 +619,7 @@ const FilterHeading = ({
                   ".MuiInputLabel-filled": {
                     fontWeight: "400",
                     fontSize: "16px",
-                    lineHeight: "24px",
+                    lineHeight: "18px",
                     fontStyle: "normal",
                     color: "#303030",
                   },
@@ -717,7 +718,9 @@ const FilterHeading = ({
                   cursor: "pointer",
                 }}
               >
-                <SearchIcon sx={{ color: colors.darkGreen, width: 26 }} />
+                <SearchIcon
+                  sx={{ color: colors.darkGreen, width: 26, height: 26 }}
+                />
               </StyledButton>
             </form>
             {isTablet && (
@@ -733,23 +736,39 @@ const FilterHeading = ({
               </Stack>
             )}
           </Stack>
-          <Box className={styles.centeredField}>
-            {renderMandatoryFieldError()}
-            <Typography
-              className={styles.optionalPurposeText}
-              variant={"bodyTinyRegular"}
-              sx={{ top: title && subtitle ? "89%" : "77%" }}
+          <Grid container className={styles.centeredField}>
+            <Grid
+              item
+              xs={isDashboard ? 6 : 5.7}
+              lg={isDashboard ? 5.45 : 5.2}
+              xl={isDashboard ? 5.5 : 5.47}
             >
-              (Optional)
-            </Typography>
-            <Typography
-              className={styles.optionalInsuranceText}
-              variant={"bodyTinyRegular"}
-              sx={{ top: title && subtitle ? "89%" : "77%" }}
+              {renderMandatoryFieldError()}
+            </Grid>
+            <Grid
+              item
+              xs={isDashboard ? 3.1 : 3}
+              lg={isDashboard ? 2.9 : 2.77}
+              xl={2.9}
             >
-              (Optional)
-            </Typography>
-          </Box>
+              <Typography
+                className={styles.optionalPurposeText}
+                variant={"bodyTinyRegular"}
+                sx={{ top: title && subtitle ? "89%" : "77%" }}
+              >
+                (Optional)
+              </Typography>
+            </Grid>
+            <Grid item lg={2}>
+              <Typography
+                className={styles.optionalInsuranceText}
+                variant={"bodyTinyRegular"}
+                sx={{ top: title && subtitle ? "89%" : "77%" }}
+              >
+                (Optional)
+              </Typography>
+            </Grid>
+          </Grid>
         </Box>
       </Box>
     );
