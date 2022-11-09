@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
   addUserInsuranceData,
+  DEFAULT_INSURANCE_DATA,
   deleteInsurance,
   fetchInsurance,
   postInsurance,
@@ -60,7 +61,6 @@ export default function InsuranceInfoPage() {
   const isAutocompleteLoading = useSelector(
     (state) => state.provider.status === "loading"
   );
-
   const userInsuranceData = useSelector(
     (state) => state.user.userInsuranceData
   );

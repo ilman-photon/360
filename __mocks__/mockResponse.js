@@ -15402,7 +15402,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "Ivan",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
