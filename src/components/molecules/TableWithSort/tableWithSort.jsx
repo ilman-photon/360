@@ -347,7 +347,20 @@ export default function TableWithSort({
                     tabIndex={-1}
                     key={`row-${rowIdx}`}
                     selected={isItemSelected}
-                    sx={{ border: "2px solid #F3F3F3" }}
+                    sx={{
+                      border: "2px solid #F3F3F3",
+                      "&.Mui-selected": {
+                        backgroundColor: "#fff",
+                        "&:hover": {
+                          backgroundColor: "transparent",
+                        },
+                      },
+                      "&.MuiTableRow-hover": {
+                        ":hover": {
+                          backgroundColor: "transparent",
+                        },
+                      },
+                    }}
                   >
                     {config?.cells?.map((cell, cellIdx) => {
                       switch (cell.type) {

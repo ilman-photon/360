@@ -357,12 +357,17 @@ Object {
                       style="justify-content: unset;"
                     >
                       <div
+                        aria-label="Name"
+                        aria-live="assertive"
                         class="label"
-                        role="text"
                         style="color: rgb(0, 59, 74); font-size: 16px;"
                         tabindex="0"
                       >
-                        Name
+                        <span
+                          aria-hidden="true"
+                        >
+                          Name
+                        </span>
                       </div>
                     </div>
                     <div
@@ -814,12 +819,17 @@ Object {
                       style="justify-content: unset;"
                     >
                       <div
+                        aria-label="Name"
+                        aria-live="assertive"
                         class="label"
-                        role="text"
                         style="color: rgb(0, 59, 74); font-size: 16px;"
                         tabindex="0"
                       >
-                        Name
+                        <span
+                          aria-hidden="true"
+                        >
+                          Name
+                        </span>
                       </div>
                     </div>
                     <div

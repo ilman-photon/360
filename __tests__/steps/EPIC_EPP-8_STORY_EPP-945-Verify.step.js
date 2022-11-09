@@ -8,6 +8,7 @@ import AccountSidebar from "../../src/components/molecules/AccountSidebar/accoun
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import constants from "../../src/utils/constants";
+import { formatSocialSecurity } from "../../src/utils/ssnFormatter";
 
 window.scrollTo = jest.fn();
 
@@ -39,7 +40,7 @@ defineFeature(feature, (test) => {
       name: "my-photo.jpg",
       source: "https://loremflickr.com/640/480"
     },
-    ssn: 3777306119,
+    ssn: formatSocialSecurity("*****6119"),
     state: "South Dakota",
     title: "Mrs.",
     zip: "03245",
