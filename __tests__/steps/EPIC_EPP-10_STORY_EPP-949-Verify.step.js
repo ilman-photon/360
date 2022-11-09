@@ -1,7 +1,7 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 
 const feature = loadFeature(
-    "./__tests__/feature/Patient Portal/Sprint3/EPP-949.feature"
+    "./__tests__/feature/Patient Portal/Sprint3/Epp-949.feature"
 );
 
 defineFeature(feature, (test) => {
