@@ -215,8 +215,6 @@ export default function MessagingPage() {
         const deletedData = data.concat(storageData?.delete);
         modifyData = deletedData;
         break;
-      default:
-        break;
     }
     return modifyData;
   }
@@ -460,9 +458,9 @@ export default function MessagingPage() {
   const deletedMessage = () => {
     // Integrasi API service for this to deleted the message base on ID
     const cloneData = JSON.parse(JSON.stringify(dataMessages));
-    const deletedData = storageData?.delete;
+    const deletedData = storageData.delete;
     cloneData.map((item) => {
-      if (item.id === saveId?.id) {
+      if (item.id === saveId.id) {
         deletedData.push(item);
         setStorageData({ delete: deletedData });
       }

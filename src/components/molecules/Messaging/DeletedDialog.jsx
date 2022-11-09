@@ -11,9 +11,9 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "messaging",
   });
-
   return (
     <Dialog
+      data-testId="deleted-dialog-test"
       open={opened}
       close={handleClosed}
       aria-labelledby="alert-dialog-title"
@@ -53,6 +53,7 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
         }}
       >
         <Button
+          data-testId="messaging-button-cancel-test"
           onClick={handleClosed}
           sx={{
             border: "1px solid #205A63",
@@ -68,6 +69,7 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
           {t("cancelBtn")}
         </Button>
         <Button
+          data-testId="messaging-button-delete-test"
           onClick={onDeleted}
           sx={{
             border: "1px solid #007E8F",

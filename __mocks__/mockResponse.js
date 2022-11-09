@@ -37973,3 +37973,627 @@ export const pastAppointmentResponse = {
   ],
   _links: { self: { href: "/appointments?pageNo=0&pageSize=500" } },
 };
+
+export const MOCK_PROVIDER_LIST_MESSAGING = [
+  {
+    designation: "MBBS, MD",
+    firstName: "Jaco",
+    lastName: "David",
+    nickName: "Jaco",
+    employeeNumber: "755708",
+    mi: "Jaco",
+    dob: "02/07/1971",
+    email: "eyecare@gmail.com",
+    sex: {
+      key: 11,
+      name: "M",
+      order: 1,
+      notes: "",
+    },
+    available: true,
+    note: "Test",
+    age: "51",
+    address: {
+      addressLine1: "568 Allens Mill Rd",
+      city: "Yorktown",
+      state: "VA",
+      zip: "23692",
+    },
+    homePhone: "4981261115",
+    cellPhone: "2812942993",
+    inHouse: false,
+    providerDetails: {
+      isProvider: true,
+      isExternalProvider: false,
+      materialRate: "0",
+      drFirstCredentialDetails: {
+        drFirstCredential: false,
+        username: "",
+        password: "",
+        signature: "",
+      },
+      npi: "1134296023",
+      professionalEq: "1234",
+      opticalEq: "12",
+      surgicalEq: "344",
+      contactEq: "12346",
+      provider: "",
+      onlineProvider: true,
+      license: [],
+      deaIds: [],
+      taxonomyCode: "207ND0101X",
+      classification: "Dermatology",
+      specialization: "MOHS-Micrographic Surgery",
+      rating: 9,
+      language1: "Arabic",
+      language2: "Chinese",
+      language3: "German",
+      profilePhoto: {
+        digitalAsset: {
+          uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+          fileName: "test",
+          assetUrl: "/v1/patient",
+          _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+        },
+      },
+    },
+    offices: [
+      {
+        name: "Ballwin",
+        addressLine1: "568 Allens Mill Rd",
+        city: "Yorktown",
+        state: "VA",
+        zip: "23692",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+      },
+      {
+        name: "Edwardsville ",
+        addressLine1: "700 12th St # A",
+        city: "Bellingham",
+        state: "WA",
+        zip: "98225",
+        _id: "cd68948d-aa9d-4100-a806-1afd2b227104",
+      },
+    ],
+    status: "UPDATED",
+    managerialAdjustments: false,
+    overrideExpiredPromo: false,
+    sources: [],
+    _links: {
+      self: {
+        href: "/v1/employees/b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+      },
+    },
+    _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+  },
+  {
+    designation: "MBBS, MD",
+    firstName: "Jaco",
+    lastName: "David",
+    nickName: "Jaco",
+    employeeNumber: "755708",
+    mi: "Jaco",
+    dob: "02/07/1971",
+    email: "eyecare@gmail.com",
+    sex: {
+      key: 11,
+      name: "M",
+      order: 1,
+      notes: "",
+    },
+    available: true,
+    note: "Test",
+    age: "51",
+    address: {
+      addressLine1: "568 Allens Mill Rd",
+      city: "Yorktown",
+      state: "VA",
+      zip: "23692",
+    },
+    homePhone: "4981261115",
+    cellPhone: "2812942993",
+    inHouse: false,
+    providerDetails: {
+      isProvider: true,
+      isExternalProvider: false,
+      materialRate: "0",
+      drFirstCredentialDetails: {
+        drFirstCredential: false,
+        username: "",
+        password: "",
+        signature: "",
+      },
+      npi: "1134296023",
+      professionalEq: "1234",
+      opticalEq: "12",
+      surgicalEq: "344",
+      contactEq: "12346",
+      provider: "",
+      onlineProvider: true,
+      license: [],
+      deaIds: [],
+      taxonomyCode: "207ND0101X",
+      classification: "Dermatology",
+      specialization: "MOHS-Micrographic Surgery",
+      rating: 9,
+      language1: "Arabic",
+      language2: "Chinese",
+      language3: "German",
+      profilePhoto: {
+        digitalAsset: {
+          uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+          fileName: "test",
+          assetUrl: "/v1/patient",
+          _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+        },
+      },
+    },
+    offices: [
+      {
+        name: "Ballwin",
+        addressLine2: "568 Allens Mill Rd",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+      },
+      {
+        name: "Edwardsville ",
+        addressLine1: "700 12th St # A",
+        city: "Bellingham",
+        state: "WA",
+        zip: "98225",
+        _id: "cd68948d-aa9d-4100-a806-1afd2b227104",
+      },
+    ],
+    status: "UPDATED",
+    managerialAdjustments: false,
+    overrideExpiredPromo: false,
+    sources: [],
+    _links: {
+      self: {
+        href: "/v1/employees/b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+      },
+    },
+    _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+  },
+  {
+    designation: "MBBS, MD",
+    firstName: "Jaco",
+    lastName: "David",
+    nickName: "Jaco",
+    employeeNumber: "755708",
+    mi: "Jaco",
+    dob: "02/07/1971",
+    email: "eyecare@gmail.com",
+    sex: {
+      key: 11,
+      name: "M",
+      order: 1,
+      notes: "",
+    },
+    available: true,
+    note: "Test",
+    age: "51",
+    address: {
+      addressLine1: "568 Allens Mill Rd",
+      city: "Yorktown",
+      state: "VA",
+      zip: "23692",
+    },
+    homePhone: "4981261115",
+    cellPhone: "2812942993",
+    workPhone: "2812942993",
+    inHouse: false,
+    providerDetails: {
+      isProvider: true,
+      isExternalProvider: false,
+      materialRate: "0",
+      drFirstCredentialDetails: {
+        drFirstCredential: false,
+        username: "",
+        password: "",
+        signature: "",
+      },
+      npi: "1134296023",
+      professionalEq: "1234",
+      opticalEq: "12",
+      surgicalEq: "344",
+      contactEq: "12346",
+      provider: "",
+      onlineProvider: true,
+      license: [],
+      deaIds: [],
+      taxonomyCode: "207ND0101X",
+      classification: "Dermatology",
+      specialization: "MOHS-Micrographic Surgery",
+      rating: 9,
+      language1: "Arabic",
+      language2: "Chinese",
+      language3: "German",
+      profilePhoto: {
+        digitalAsset: {
+          uid: "1ffaf737-57ac-4660-8a32-f0650e2285ae",
+          fileName: "test",
+          assetUrl: "/v1/patient",
+          _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+        },
+      },
+    },
+    offices: [
+      {
+        name: "Ballwin",
+        addressLine1: "568 Allens Mill Rd",
+        city: "Yorktown",
+        state: "VA",
+        zip: "23692",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+      },
+      {
+        name: "Edwardsville ",
+        addressLine1: "700 12th St # A",
+        city: "Bellingham",
+        state: "WA",
+        zip: "98225",
+        _id: "cd68948d-aa9d-4100-a806-1afd2b227104",
+      },
+    ],
+    status: "UPDATED",
+    managerialAdjustments: false,
+    overrideExpiredPromo: false,
+    sources: [],
+    _links: {
+      self: {
+        href: "/v1/employees/b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+      },
+    },
+    _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+  },
+];
+
+export const MOCK_GET_ALL_MESSAGING = [
+  {
+    id: 6783,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 7395,
+        name: "Anthony Beth, D.O.",
+        modifiedAt: "Oct 11, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+      },
+      {
+        id: 2345,
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "Oct 13, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: null,
+      },
+      {
+        id: 9333,
+        name: "James Black, D.O.",
+        modifiedAt: "Oct 25, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: true,
+  },
+  {
+    id: 2333,
+    subject: "Your lab results",
+    messages: [
+      {
+        id: 8399,
+        name: "Barnard Don, D.O.",
+        modifiedAt: "Oct 08, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+      },
+      {
+        id: 8900,
+        name: "Aliando Explend SpOg",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+      },
+      {
+        id: 5600,
+        name: "Janed Dunt, D.O.",
+        modifiedAt: "Oct 10, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: null,
+      },
+    ],
+    unRead: false,
+  },
+  {
+    id: 3423,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 4533,
+        name: "Jodi Berzak, D.O.",
+        modifiedAt: "Sep 30, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        id: 7789,
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "Sep 29, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: false,
+  },
+];
+
+export const MOCK_GET_SENT_MESSAGING = [
+  {
+    id: 6783,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 5647,
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "Oct 14, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: null,
+      },
+    ],
+    unRead: false,
+  },
+  {
+    id: 2333,
+    subject: "Your lab results",
+    messages: [
+      {
+        id: 5567,
+        name: "Barnard Don, D.O.",
+        modifiedAt: "Oct 15, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: false,
+  },
+  {
+    id: 3423,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 3722,
+        name: "Jodi Berzak, D.O.",
+        modifiedAt: "Oct 18, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "Oct 19, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "James Bond, D.O.",
+        modifiedAt: "Oct 20, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: false,
+  },
+];
+
+export const MOCK_GET_DRAFT_MESSAGING = [
+  {
+    id: 6783,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 9899,
+        name: "Anthony Beth, D.O.",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+        isDraft: false,
+      },
+      {
+        id: 9899,
+        name: "Anthony Beth, D.O.",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+        isDraft: true,
+      },
+    ],
+    unRead: false,
+  },
+  {
+    id: 9998,
+    subject: "",
+    messages: [
+      {
+        id: 9899,
+        name: "",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "",
+        isDraft: true,
+      },
+    ],
+    unRead: false,
+  },
+];
+
+export const MOCK_GET_DELETE_MESSAGING = [
+  {
+    id: 6888,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 4229,
+        name: "Anthony Beth, D.O.",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: false,
+  },
+];
