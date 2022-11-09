@@ -33,23 +33,23 @@ describe("SecurityQuestion Components", () => {
   });
 
   it("set value to all field", () => {
-    const answer1 = container.getByLabelText("Answer 1");
+    const answer1 = container.getByLabelText(/Answer 1/i);
     fireEvent.change(answer1, { target: { value: "test answer 1" } });
     expect(answer1.value).toEqual("test answer 1");
 
-    const answer2 = container.getByLabelText("Answer 2");
+    const answer2 = container.getByLabelText(/Answer 2/i);
     fireEvent.change(answer2, { target: { value: "test answer 2" } });
     expect(answer2.value).toEqual("test answer 2");
 
-    const answer3 = container.getByLabelText("Answer 3");
+    const answer3 = container.getByLabelText(/Answer 3/i);
     fireEvent.change(answer3, { target: { value: "test answer 3" } });
     expect(answer3.value).toEqual("test answer 3");
 
-    const answer4 = container.getByLabelText("Answer 4");
+    const answer4 = container.getByLabelText(/Answer 4/i);
     fireEvent.change(answer4, { target: { value: "test answer 4" } });
     expect(answer4.value).toEqual("test answer 4");
 
-    const answer5 = container.getByLabelText("Answer 5");
+    const answer5 = container.getByLabelText(/Answer 5/i);
     fireEvent.change(answer5, { target: { value: "test answer 5" } });
     expect(answer5.value).toEqual("test answer 5");
   });
@@ -64,7 +64,7 @@ describe("SecurityQuestion Components", () => {
       );
       expect(postMessage).toBeTruthy();
 
-      const answer5 = container.getByLabelText("Answer 5");
+      const answer5 = container.getByLabelText(/Answer 5/i);
       fireEvent.change(answer5, { target: { value: "test answer 6" } });
       expect(answer5.value).toEqual("test answer 6");
     }, 500);

@@ -6,6 +6,7 @@ import {
   RELATIONSHIP_LIST,
   TITLE_LIST,
 } from "../utils/constantData";
+import { formatSocialSecurity } from "../utils/ssnFormatter";
 
 let url;
 
@@ -99,6 +100,7 @@ const buildProfilePostBody = (postBody, payload) => {
     },
     address: addressData,
     sex: getGenderCode(payload.gender),
+    ssn: payload.ssn,
     title: getTitleCode(payload.title),
     contactPreferenceDetail: contactPreferenceDetailData,
     patientDetails: patientDetailsData,
@@ -366,7 +368,7 @@ const buildUserData = (payload) => {
     issuedCardBack: patientDetails.stateIssuedIdBack?.digitalAsset || null,
     dob: payload.dob,
     title: TITLE_LIST[payload.title - 1] || "",
-    ssn: payload.ssn,
+    ssn: formatSocialSecurity(payload.ssn),
     email: payload.contactInformation.emails[0]
       ? payload.contactInformation.emails[0].email
       : "-",

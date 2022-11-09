@@ -163,20 +163,17 @@ export default function PersonalInformation({
             label="Name"
             ariaLabel="Name"
             tooltipContent={tooltipContentDefault}
+            value={userData.name || ""}
           >
-            <div tabIndex={0} aria-label={userData.name}>
-              {userData.name || "-"}
-            </div>
+            <div aria-hidden={true}>{userData.name || "-"}</div>
           </LabelWithInfo>
 
           <LabelWithInfo label="Preferred Name" ariaLabel={"Preferred Name"}>
-            <div tabIndex={0} aria-label={userData.preferredName}>
-              {userData.preferredName || "---"}
-            </div>
+            <div tabIndex={0}>{userData.preferredName || "---"}</div>
           </LabelWithInfo>
 
           <LabelWithInfo label="Title" ariaLabel={"Title"}>
-            <div tabIndex={0} aria-label={userData.preferredName}>
+            <div aria-label={userData.title} tabIndex={0}>
               {userData.title || "-"}
             </div>
           </LabelWithInfo>
@@ -185,13 +182,11 @@ export default function PersonalInformation({
             label="Date of Birth"
             ariaLabel={"Date of Birth"}
             tooltipContent={tooltipContentDefault}
+            value={
+              userData.dob ? new Date(userData.dob).toLocaleDateString() : ""
+            }
           >
-            <div
-              tabIndex={0}
-              aria-label={
-                userData.dob ? new Date(userData.dob).toLocaleDateString() : ""
-              }
-            >
+            <div aria-hidden={true}>
               {userData.dob ? new Date(userData.dob).toLocaleDateString() : "-"}
             </div>
           </LabelWithInfo>
@@ -200,10 +195,9 @@ export default function PersonalInformation({
             label="Age"
             ariaLabel={"Age"}
             tooltipContent={tooltipContentDefault}
+            value={userData.age || ""}
           >
-            <div tabIndex={0} aria-label={userData.age}>
-              {userData.age || "-"}
-            </div>
+            <div aria-hidden={true}>{userData.age || "-"}</div>
           </LabelWithInfo>
 
           <LabelWithInfo label="Gender" ariaLabel={"Gender"}>
@@ -216,13 +210,9 @@ export default function PersonalInformation({
             label="SSN"
             ariaLabel={"SSN"}
             tooltipContent={tooltipContentDefault}
+            value={formatSocialSecurity(String(userData.ssn))}
           >
-            <div
-              tabIndex={0}
-              aria-label={formatSocialSecurity(String(userData.ssn))}
-            >
-              {formatSocialSecurity(String(userData.ssn))}
-            </div>
+            <div aria-hidden={true}>{userData.ssn}</div>
           </LabelWithInfo>
 
           <div>
@@ -232,6 +222,7 @@ export default function PersonalInformation({
                 fontSize: "26px",
                 fontWeight: 500,
               }}
+              tabIndex={0}
             >
               State Issued ID
             </Typography>
@@ -511,7 +502,7 @@ export default function PersonalInformation({
                     disabled
                     id="ssn"
                     label="SSN"
-                    value={formatSocialSecurity(String(value))}
+                    value={value}
                     onChange={onChange}
                     error={!!error}
                     size="small"

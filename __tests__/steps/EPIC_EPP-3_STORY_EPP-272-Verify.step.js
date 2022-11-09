@@ -214,7 +214,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^user answer the question in "(.*)" textfield$/, (arg0) => {
-      const answer1 = container.getByLabelText("Answer 1");
+      const answer1 = container.getByLabelText(/Answer 1/i);
       fireEvent.change(answer1, { target: { value: "test answer 1" } });
       expect(answer1.value).toEqual("test answer 1");
     });
@@ -345,7 +345,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^user answer the question in "(.*)" textfield$/, (arg0) => {
-      const answer1 = container.getByLabelText("Answer 2");
+      const answer1 = container.getByLabelText(/Answer 2/i);
       fireEvent.change(answer1, { target: { value: "test answer 2" } });
       expect(answer1.value).toEqual("test answer 2");
     });
@@ -483,7 +483,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^user answer the question in "(.*)" textfield$/, (arg0) => {
-      const answer1 = container.getByLabelText("Answer 3");
+      const answer1 = container.getByLabelText(/Answer 3/i);
       fireEvent.change(answer1, { target: { value: "test answer 3" } });
       expect(answer1.value).toEqual("test answer 3");
     });
@@ -649,23 +649,23 @@ defineFeature(feature, (test) => {
         target: { value: "What was the first thing you learned to cook?" },
       });
 
-      const answer1 = container.getByLabelText("Answer 1");
+      const answer1 = container.getByLabelText(/Answer 1/i);
       fireEvent.change(answer1, { target: { value: "test answer 1" } });
       expect(answer1.value).toEqual("test answer 1");
 
-      const answer2 = container.getByLabelText("Answer 2");
+      const answer2 = container.getByLabelText(/Answer 2/i);
       fireEvent.change(answer2, { target: { value: "test answer 2" } });
       expect(answer2.value).toEqual("test answer 2");
 
-      const answer3 = container.getByLabelText("Answer 3");
+      const answer3 = container.getByLabelText(/Answer 3/i);
       fireEvent.change(answer3, { target: { value: "test answer 3" } });
       expect(answer3.value).toEqual("test answer 3");
 
-      const answer4 = container.getByLabelText("Answer 4");
+      const answer4 = container.getByLabelText(/Answer 4/i);
       fireEvent.change(answer4, { target: { value: "test answer 4" } });
       expect(answer4.value).toEqual("test answer 4");
 
-      const answer5 = container.getByLabelText("Answer 5");
+      const answer5 = container.getByLabelText(/Answer 5/i);
       fireEvent.change(answer5, { target: { value: "test answer 5" } });
       expect(answer5.value).toEqual("test answer 5");
     });
@@ -838,23 +838,23 @@ defineFeature(feature, (test) => {
         target: { value: "What was the first thing you learned to cook?" },
       });
 
-      const answer1 = container.getByLabelText("Answer 1");
+      const answer1 = container.getByLabelText(/Answer 1/i);
       fireEvent.change(answer1, { target: { value: "test answer 1" } });
       expect(answer1.value).toEqual("test answer 1");
 
-      const answer2 = container.getByLabelText("Answer 2");
+      const answer2 = container.getByLabelText(/Answer 2/i);
       fireEvent.change(answer2, { target: { value: "test answer 2" } });
       expect(answer2.value).toEqual("test answer 2");
 
-      const answer3 = container.getByLabelText("Answer 3");
+      const answer3 = container.getByLabelText(/Answer 3/i);
       fireEvent.change(answer3, { target: { value: "test answer 3" } });
       expect(answer3.value).toEqual("test answer 3");
 
-      const answer4 = container.getByLabelText("Answer 4");
+      const answer4 = container.getByLabelText(/Answer 4/i);
       fireEvent.change(answer4, { target: { value: "test answer 4" } });
       expect(answer4.value).toEqual("test answer 4");
 
-      const answer5 = container.getByLabelText("Answer 5");
+      const answer5 = container.getByLabelText(/Answer 5/i);
       fireEvent.change(answer5, { target: { value: "test answer 5" } });
       expect(answer5.value).toEqual("test answer 5");
     });
@@ -864,7 +864,9 @@ defineFeature(feature, (test) => {
         ResponseCode: 2000,
         ResponseType: "success",
       };
-      mock.onPost(`/ecp/patient/saveSecurityQuestions`).reply(200, expectedResult);
+      mock
+        .onPost(`/ecp/patient/saveSecurityQuestions`)
+        .reply(200, expectedResult);
       const primaryButton = container.getByTestId(
         constants.TEST_ID.MFA_TEST_ID.btnSubmitSecurity
       );

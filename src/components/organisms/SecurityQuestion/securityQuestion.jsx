@@ -125,6 +125,14 @@ const SecurityQuestion = ({
                     "& .MuiFilledInput-root": {
                       border: "1px solid #bbb",
                       backgroundColor: "#fff",
+                      "&.Mui-focused": {
+                        border: "1px solid #bbb",
+                        boxShadow: "none",
+                      },
+                    },
+                    ".MuiInputLabel-shrink": {
+                      color: "#003B4A !important",
+                      fontWeight: "600",
                     },
                   }}
                   label={`Question ${index}`}
@@ -145,6 +153,7 @@ const SecurityQuestion = ({
                   renderValue={(select) => {
                     return select;
                   }}
+                  required
                 />
               );
             }}
@@ -179,6 +188,7 @@ const SecurityQuestion = ({
                       setShowPostMessage(false);
                     }
                   }}
+                  required
                   error={!!error}
                   helperText={error ? error.message : null}
                   tabIndex={tabindex++}
@@ -201,7 +211,7 @@ const SecurityQuestion = ({
       ) : (
         <></>
       )}
-      <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} style={styles.form} noValidate>
         {securityQuestionUI()}
         <Box
           style={styles.buttonContainer}

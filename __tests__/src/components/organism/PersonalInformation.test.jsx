@@ -2,6 +2,7 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import PersonalInformation from "../../../../src/components/organisms/PersonalInformation/personalInformation";
 import constants from "../../../../src/utils/constants";
+import { formatSocialSecurity } from "../../../../src/utils/ssnFormatter";
 
 window.scrollTo = jest.fn();
 
@@ -26,7 +27,7 @@ describe("PersonalInformation Components", () => {
       name: "my-photo.jpg",
       source: "https://loremflickr.com/640/480",
     },
-    ssn: 3777306119,
+    ssn: formatSocialSecurity("*****6119"),
     state: "South Dakota",
     title: "Mrs.",
     zip: "03245",
@@ -62,6 +63,7 @@ describe("PersonalInformation Components", () => {
     expect(container.getByText("8/18/2022")).toBeInTheDocument();
     expect(container.getByText(63)).toBeInTheDocument();
     expect(container.getByText("Transgender")).toBeInTheDocument();
+    expect(container).toMatchSnapshot()
     expect(container.getByText("***-***-6119")).toBeInTheDocument();
     expect(
       container.getByText(

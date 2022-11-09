@@ -8,6 +8,7 @@ import {
 import "@testing-library/jest-dom";
 import ContactInformation from "../../../../src/components/organisms/ContactInformation/contactInformation";
 import mediaQuery from "css-mediaquery";
+import { formatSocialSecurity } from "../../../../src/utils/ssnFormatter";
 
 window.scrollTo = jest.fn();
 
@@ -40,7 +41,7 @@ describe("ContactInformation Components", () => {
       name: "my-photo.jpg",
       source: "https://loremflickr.com/640/480",
     },
-    ssn: 3777306119,
+    ssn: formatSocialSecurity("*****6119"),
     state: "FL",
     title: "Mrs.",
     zip: "24861",
