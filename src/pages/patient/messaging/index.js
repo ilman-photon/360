@@ -191,7 +191,7 @@ export default function MessagingPage() {
    * Please delete this after service available
    */
   function modifyData(data, key) {
-    let modifyData = data;
+    let modifyDataResponse = data;
     switch (key) {
       case "inbox":
         const filterInboxData = [];
@@ -208,14 +208,14 @@ export default function MessagingPage() {
           active: false,
           id: null,
         });
-        modifyData = filterInboxData;
+        modifyDataResponse = filterInboxData;
         break;
       case "deleted":
         const deletedData = data.concat(storageData?.delete);
-        modifyData = deletedData;
+        modifyDataResponse = deletedData;
         break;
     }
-    return modifyData;
+    return modifyDataResponse;
   }
 
   /**
@@ -333,14 +333,8 @@ export default function MessagingPage() {
     const maxSize = max * 1024 * 1024; // 4MB
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      let error = {};
 
       if (file.size > maxSize) {
-        error = {
-          success: false,
-          title: null,
-          content: `File size limit is ${max} MB`,
-        };
         event.target.value = null;
       } else {
         try {
@@ -352,7 +346,6 @@ export default function MessagingPage() {
           }
         } catch (error) {
           console.error("Error when uploading", error);
-        } finally {
         }
       }
     }
@@ -490,13 +483,6 @@ export default function MessagingPage() {
     setShowNewMessageDialog(false);
     setFloatingMsgText("Your message has been sent");
     setOpenFloatingMsg(true);
-  };
-
-  /**
-   * Reply Message
-   */
-  const replyMessage = (id) => {
-    // Integrasi API service for this to reply the message
   };
 
   /**

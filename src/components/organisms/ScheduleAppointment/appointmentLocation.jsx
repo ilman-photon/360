@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-// import Image from "next/image";
+
 import ImageFallback from "../../atoms/Image/image";
 import { styles } from "./style";
 import { TEST_ID } from "../../../utils/constants";

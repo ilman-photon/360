@@ -195,7 +195,6 @@ export default function HomePage({ googleApiKey }) {
     if (isAuthenticated && !isAdmin()) {
       onCalledAllPrescription();
       dispatch(fetchAllPayers());
-      // onCalledGetAllAppointment();
     }
     const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
     if (userStorageData) {

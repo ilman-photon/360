@@ -145,15 +145,6 @@ export default function Appointment({ googleApiKey }) {
       (response, status) => {
         if (status != "OK") {
           alert("Error was: " + status);
-        } else {
-          const origins = response.originAddresses;
-
-          //Loop through the elements row to get the value of duration and distance
-          for (let i = 0; i < origins.length; i++) {
-            const results = response.rows[i].elements;
-            for (const element of results) {
-            }
-          }
         }
       }
     );

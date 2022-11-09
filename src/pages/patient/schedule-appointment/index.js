@@ -397,7 +397,7 @@ export default function ScheduleAppointmentPage() {
     const dateNow = new Date();
     const insurancePayers =
       appointmentScheduleData.appointmentInfo.insuranceCarrier.id || "";
-    const userData = JSON.parse(localStorage.getItem("userData"));
+    const userDataStorage = JSON.parse(localStorage.getItem("userData"));
     const postBody = [
       {
         appointmentDate: mmddyyDateFormat(
@@ -420,7 +420,7 @@ export default function ScheduleAppointmentPage() {
           code: appointmentScheduleData.appointmentInfo.appointmentType,
         },
         patient: {
-          _id: guestId || userData?.patientId,
+          _id: guestId || userDataStorage?.patientId,
         },
         patientDob: patientDob
           ? mmddyyDateFormat(patientDob)
@@ -428,7 +428,7 @@ export default function ScheduleAppointmentPage() {
         confirmationDetail: {
           confirmationDate: mmddyyDateFormat(dateNow),
           confirmationTime: hourDateFormat(dateNow),
-          confirmationBy: guestId || userData?.patientId,
+          confirmationBy: guestId || userDataStorage?.patientId,
         },
         insurancePayers: insurancePayers
           ? [{ _id: insurancePayers || "" }]
