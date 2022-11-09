@@ -6,7 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import constants from "../../../utils/constants";
 import { colors } from "../../../styles/theme";
 import { StyledButton } from "../../atoms/Button/button";
-import CustomizedDialogs from "../../atoms/Dialog/dialog";
+import CustomizedDialogs from "../../molecules/FilterAppointmentDialog/dialog";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   dateIcon,
@@ -69,20 +69,6 @@ const FilterHeadingFilled = ({
     let child = null;
     if (step === "filterMenu") {
       child = renderFilterMeu();
-    } else {
-      child = getDialogContents(
-        {
-          type: step,
-          control,
-          isEmptyLocation,
-          minDate,
-          maxDate,
-          purposeOfVisitData,
-          insuranceCarrierData,
-          isDesktop: false,
-        },
-        handleCloseDialog
-      );
     }
     return child;
   }
@@ -256,8 +242,18 @@ const FilterHeadingFilled = ({
       <CustomizedDialogs
         open={openDialog}
         handleClose={handleCloseDialog}
-        child={getContentDialog()}
+        childContent={getContentDialog()}
+        type={step}
         closeLabel={step === "filterMenu" ? <CloseIcon /> : "Cancel"}
+        additionalProps={{
+          control,
+          isEmptyLocation,
+          minDate,
+          maxDate,
+          purposeOfVisitData,
+          insuranceCarrierData,
+          isDesktop: false,
+        }}
       />
     );
   }

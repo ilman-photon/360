@@ -66,12 +66,12 @@ const ConfirmationForm = ({
             />
             {showPostMessage ? (
               <FormMessage
+                aria-live={"assertive"}
                 success={isSuccessPostMessage}
                 sx={styles.postMessage}
                 title={postMessageTitle}
                 tabIndex={0}
                 aria-label={postMessage}
-                aria-live={postMessage}
               >
                 {postMessage}
               </FormMessage>

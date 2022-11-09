@@ -304,7 +304,6 @@ export default function MfaPage() {
             <AccountTitleHeading title={"Set-up Security Questions"} />
             <Box
               sx={{
-                paddingTop: "65px",
                 maxWidth: "75.1%",
                 minWidth: 686,
                 margin: "auto",

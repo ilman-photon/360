@@ -151,6 +151,10 @@ const ForgotPassword = ({
                       value={value}
                       inputRef={inputRef}
                       data-testid={FORGOT_TEST_ID.email}
+                      FormHelperTextProps={{
+                        tabIndex: 0,
+                        ariaLive: "assertive",
+                      }}
                       onChange={(event) => {
                         onChange(event);
                         if (showPostMessage) {

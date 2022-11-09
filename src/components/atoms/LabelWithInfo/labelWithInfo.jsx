@@ -14,6 +14,7 @@ export const LabelWithInfo = ({
   sxText,
   iconWidth,
   alignItems = "unset",
+  value,
 }) => (
   <Stack>
     <div className={styles.labelContainer} style={sxRow}>
@@ -31,13 +32,12 @@ export const LabelWithInfo = ({
       )}
       <div
         className={styles.label}
-        role="text"
         tabIndex={0}
-        aria-live={ariaLabel}
-        aria-label={ariaLabel}
+        aria-live="assertive"
+        aria-label={value ? `${ariaLabel}, ${value}` : ariaLabel || label}
         style={sxText}
       >
-        {label}
+        <span aria-hidden={true}>{label}</span>
       </div>
       {tooltipContent && (
         <>

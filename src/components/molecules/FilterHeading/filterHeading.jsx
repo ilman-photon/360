@@ -3,6 +3,7 @@ import styles from "./filterHeading.module.scss";
 import {
   Autocomplete,
   Box,
+  Button,
   Divider,
   InputAdornment,
   Link,
@@ -26,14 +27,13 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { StyledButton } from "../../atoms/Button/button";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
-import CustomizedDialogs from "../../atoms/Dialog/dialog";
-import { LocalizationProvider, StaticDatePicker } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import CustomizedDialogs from "../../molecules/FilterAppointmentDialog/dialog";
 import { convertToDate } from "../../../utils/dateFormatter";
 import { Regex } from "../../../utils/regex";
 
 export const imageSrcState = "/bx_insurance_card.png";
 export const muiInputRoot = "& .MuiFilledInput-root";
+
 export function keyDownPress(e, handleCloseDialog) {
   if (Regex.specialRegex.test(e.key)) {
     e.preventDefault();
@@ -55,173 +55,6 @@ export const locationIconUI = function (isDesktop) {
     />
   );
 };
-
-export function getDialogContents(
-  {
-    type,
-    control,
-    isEmptyLocation,
-    isGeolocationEnabled,
-    minDate,
-    maxDate,
-    purposeOfVisitData,
-    insuranceCarrierData,
-    isDesktop,
-  },
-  handleCloseDialog = () => {
-    //This is intentional
-  }
-) {
-  let child = <></>;
-  if (type === "date") {
-    child = (
-      <Controller
-        name={"date"}
-        control={control}
-        render={({ field: { onChange, value }, fieldState: { _error } }) => {
-          return (
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <StaticDatePicker
-                data-testid={"dateFilter"}
-                displayStaticWrapperAs="desktop"
-                minDate={minDate}
-                maxDate={maxDate}
-                openTo="day"
-                value={value}
-                onChange={(newValue) => {
-                  onChange(newValue);
-                  handleCloseDialog();
-                }}
-                renderInput={(props) => <TextField {...props} />}
-              />
-            </LocalizationProvider>
-          );
-        }}
-      />
-    );
-  } else if (type === "purposeInput") {
-    child = (
-      <Box>
-        <Typography className={styles.dialogSelectMenuTitle}>
-          Appointment Type
-        </Typography>
-        <Controller
-          name={"purposeOfVisit"}
-          control={control}
-          render={({ field: { onChange } }) => {
-            return purposeOfVisitData.map((option, idx) => {
-              return (
-                <Box
-                  key={idx}
-                  className={styles.dialogSelectMenu}
-                  onClick={() => {
-                    onChange(option.title);
-                    handleCloseDialog();
-                  }}
-                >
-                  {getMenuList(option.title, option.subtitle)}
-                </Box>
-              );
-            });
-          }}
-        />
-      </Box>
-    );
-  } else if (type === "insuranceCarrier") {
-    child = (
-      <Box>
-        <Typography
-          className={[
-            styles.dialogSelectMenuTitle,
-            styles.dialogSelectMenuInsurance,
-          ].join(", ")}
-        >
-          Enter your insurance information
-        </Typography>
-        {renderInsuranceCarrier(
-          {
-            control,
-            isOpenProps: { open: true },
-            insuranceCarrierData,
-            testid: "insuranceInput",
-            isDesktop,
-          },
-          handleCloseDialog
-        )}
-      </Box>
-    );
-  } else if (type === "location") {
-    child = (
-      <Box>
-        <Box
-          className={isEmptyLocation ? styles.errorField : ""}
-          sx={{
-            display: "flex",
-            alignItems: "flex-end",
-            paddingLeft: "15px",
-            border: "1px solid #BDBDBD",
-            borderRadius: "4px",
-          }}
-        >
-          {locationIconUI()}
-          <Controller
-            name={"location"}
-            control={control}
-            render={({
-              field: { onChange, value },
-              fieldState: { _error },
-            }) => {
-              return (
-                <StyledInput
-                  autoFocus
-                  value={value}
-                  onChange={onChange}
-                  maxLength={50}
-                  type="default"
-                  variant="filled"
-                  label="City, state, or zip code"
-                  data-testid={"location-field-dialog"}
-                  sx={{
-                    width: "100%",
-                    [muiInputRoot]: {
-                      border: "0px",
-                      background: "#fff",
-                    },
-                  }}
-                  onKeyDown={(e) => {
-                    keyDownPress(e, handleCloseDialog);
-                  }}
-                />
-              );
-            }}
-          />
-        </Box>
-        {isGeolocationEnabled && (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              marginTop: "6px",
-            }}
-          >
-            <NearMeOutlinedIcon
-              sx={{
-                width: "22px",
-                height: "22px",
-                color: colors.darkGreen,
-              }}
-            />
-            <Link className={styles.linkUseMyLocationStyle}>
-              Use my current location
-            </Link>
-          </Box>
-        )}
-      </Box>
-    );
-  }
-  return child;
-}
 
 export const dateIcon = (
   <CalendarTodayIcon
@@ -518,7 +351,7 @@ const FilterHeading = ({
   const [isEmptyLocation, setEmptyLocation] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
-  const [contentDialog, setContentDialog] = React.useState(<></>);
+  const [contentTypeDialog, setContentTypeDialog] = React.useState("");
   const mapsData = isGeolocationEnabled ? ["Use my current location"] : [];
 
   const onSubmit = (data) => {
@@ -1081,20 +914,7 @@ const FilterHeading = ({
   }
 
   function handleOpenDialog(type) {
-    let child = getDialogContents(
-      {
-        type,
-        control,
-        isEmptyLocation,
-        minDate,
-        maxDate,
-        purposeOfVisitData,
-        insuranceCarrierData,
-        isDesktop,
-      },
-      handleCloseDialog
-    );
-    setContentDialog(child);
+    setContentTypeDialog(type);
     setOpenDialog(true);
   }
 
@@ -1103,7 +923,17 @@ const FilterHeading = ({
       <CustomizedDialogs
         open={openDialog}
         handleClose={handleCloseDialog}
-        child={contentDialog}
+        type={contentTypeDialog}
+        closeLabel={"Cancel"}
+        additionalProps={{
+          control,
+          isEmptyLocation,
+          minDate,
+          maxDate,
+          purposeOfVisitData,
+          insuranceCarrierData,
+          isDesktop,
+        }}
       />
     );
   }
