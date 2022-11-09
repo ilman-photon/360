@@ -1,0 +1,61 @@
+PASS __tests__/steps/EPIC_EPP-20_STORY_EPP-1708-Verify.step.js
+  Patient Portal : Doctor/ Optometrist Bio - View
+    ✓ EPIC_EPP-20_STORY_EPP-1708 - Verify User navigates to the screen to view their care team i.e. Doctors/ Optometrists (509 ms)
+    ✓ EPIC_EPP-20_STORY_EPP-1708 - Verify User should be able to view the list of doctors/ optometrist they have consulted with the following details (139 ms)
+    ✓ EPIC_EPP-20_STORY_EPP-1708 - Verify User should be able to click on view profile CTA and navigate to doctor’s bio screen (218 ms)
+    ✓ EPIC_EPP-20_STORY_EPP-1708 - Verify User should be able to view the message “There are no doctor/ optometrist details available for you.“ (if there is no my care team for the user) (50 ms)
+    ✓ EPIC_EPP-14_STORY_EPP-1708-Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User selects the "Doctors/ Optometrists" menu (179 ms)
+    ✓ EPIC_EPP-14_STORY_EPP-1708-Negative Test Cases-Verify  when the service is unavailable - when User selects the "Doctors/ Optometrists" menu (114 ms)
+
+PASS __tests__/steps/EPIC_EPP-23_STORY_EPP-6169-Verify.step.js (5.006 s)
+  Patient Portal : Messaging - Navigation
+    ✓ EPIC_EPP-23_STORY_EPP-6169-Verify User should be able to navigate to the Messaging center (1657 ms)
+    ✓ EPIC_EPP-23_STORY_EPP-6169-Verify User should be able to click on Message Center Option (401 ms)
+
+PASS __tests__/steps/EPIC_EPP-20_STORY_EPP-1543-Verify.step.js (5.124 s)
+  Patient Portal : Doctor/ Optometrist Bio - View details of Doctor/ Optometrist
+    ✓ EPIC_EPP-20_STORY_EPP-1543 - Verify User navigates to the screen to view their care team i.e. Doctors/ Optometrists (604 ms)
+    ✓ EPIC_EPP-20_STORY_EPP-1543 - Verify User clicks on any of the doctor/ optometrist listed there (540 ms)
+    ✓ EPIC_EPP-20_STORY_EPP-1543 - Verify User should be able to view an option to schedule an appointment with that provider (382 ms)
+    ✓ EPIC_EPP-14_STORY_EPP-1543-Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User clicks on any of the doctor/ optometrist listed there (234 ms)
+    ✓ EPIC_EPP-14_STORY_EPP-1543-Negative Test Cases-Verify user should see the error message when the service is unavailable - when User clicks on any of the doctor/ optometrist listed there (159 ms)
+
+PASS __tests__/steps/EPIC_EPP-22_STORY_EPP-1589-Verify.step.js (5.279 s)
+  Patient Portal : Message/ Alerts - View
+    ✓ EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view the unread alerts listed one below the other with an option against each to dismiss (1231 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1589 - Verify User should see list unread alerts on how recent they are i.e. recent alerts will be on top (353 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1589 - Verify User should have the option to clear all alerts (248 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1589 - Verify User should be able to view alerts being removed from the list of alerts as and when they are read (279 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1589 -Negative Test Cases-Verify  when the service is unavailable (194 ms)
+
+PASS __tests__/steps/EPIC_EPP-22_STORY_EPP-1590-Verify.step.js (5.664 s)
+  Patient Portal : Message/ Alerts - Receive alerts for the following
+    ✓ EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view upcoming appointment types of alerts (1201 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view test/ lab result is available types of alerts (461 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view visit summary is available types of alerts (297 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view prescription refill is available for download types of alerts (267 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new message is received types of alerts (239 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new glass or lens prescription is available types of alerts (184 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view new medication prescription is available types of alerts (148 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-1590 - Verify User should be able to view contact lens or glasses is available for pick up types of alerts (142 ms)
+
+PASS __tests__/steps/EPIC_EPP-22_STORY_EPP-4319-Verify.step.js (6.214 s)
+  Patient Portal : Message/ Alerts - Redirect to corresponding screen on clicking an alert
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "You have an <purpose of visit/ test/ procedure> appointment in 3 days" (3 Days before) (1119 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage " You have an <purpose of visit/ test/ procedure> appointment tomorrow." (1 Day before) (482 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your <test/ lab name> test results are available now" (267 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your prescription refill is available now" (272 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "You have received a new message from <Provider name>" (218 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your visit summary for your appointment on <appointment date> is available now." (167 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "There is a new outstanding invoice" (153 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "You have your <Glasses/ Contact Lens> prescription available now." (144 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your <medication name> prescription is now available. Frequency ?" (134 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Verify User should be able to see the alert verbiage "Your <Contact Lens/ Glasses> are available for pickup." (123 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User get Alerts to be triggered (158 ms)
+    ✓ EPIC_EPP-22_STORY_EPP-4319 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when User get Alerts to be triggered (126 ms)
+
+Test Suites: 6 passed, 6 total
+Tests:       38 passed, 38 total
+Snapshots:   0 total
+Time:        7.086 s
+Force exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?

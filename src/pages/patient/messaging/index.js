@@ -30,7 +30,6 @@ export default function MessagingPage() {
   const [query, setQuery] = useState("");
   const [filterRead, setFilterRead] = useState("unread");
   const [addAttachmentsSource, setAddAttachmentsSource] = useState([]);
-  const [loading, setLoading] = useState(false);
   const digitalAsset = new DigitalAssetsHandler();
   const addAttachments = useRef(null);
   const [showDeletedDialog, setShowDeletedDialog] = useState(false);
@@ -344,7 +343,6 @@ export default function MessagingPage() {
         };
         event.target.value = null;
       } else {
-        setLoading(true);
         try {
           digitalAsset.setFile(file);
           await digitalAsset.upload();
@@ -355,7 +353,6 @@ export default function MessagingPage() {
         } catch (error) {
           console.error("Error when uploading", error);
         } finally {
-          setLoading(false);
         }
       }
     }

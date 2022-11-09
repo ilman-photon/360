@@ -152,8 +152,6 @@ export default function Appointment({ googleApiKey }) {
           for (let i = 0; i < origins.length; i++) {
             const results = response.rows[i].elements;
             for (const element of results) {
-              const distanceString = element.distance.text;
-              const durationString = element.duration.text;
             }
           }
         }

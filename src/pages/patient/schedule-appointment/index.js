@@ -249,7 +249,6 @@ export default function ScheduleAppointmentPage() {
   const [isReschedule, setIsReschedule] = React.useState(false);
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
-  const [patientId, setPatientId] = React.useState("");
 
   useLeavePageConfirm({ message: "Change that you made might not be saved." });
 

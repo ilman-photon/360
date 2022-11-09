@@ -51,12 +51,10 @@ export const NewMessageDialog = ({
   const [isEmptyName, setEmptyName] = useState(false);
   const [isEmptyMessage, setEmptyMessage] = useState(false);
   const [isClicked, setClicked] = useState(false);
-  const [providerName, setProviderName] = useState("");
 
   const {
     getRootProps,
     getInputProps,
-    getTagProps,
     getListboxProps,
     getOptionProps,
     groupedOptions,
