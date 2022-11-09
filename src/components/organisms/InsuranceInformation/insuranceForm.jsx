@@ -155,7 +155,7 @@ export default function InsuranceForm({
 
   return (
     <Fade in={isEditing} unmountOnExit>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack spacing={3}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6} lg={4}>
@@ -176,6 +176,7 @@ export default function InsuranceForm({
                       value={value}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      required
                     />
                   );
                 }}
@@ -203,6 +204,7 @@ export default function InsuranceForm({
                       value={value}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      required
                     />
                   );
                 }}
@@ -232,6 +234,7 @@ export default function InsuranceForm({
                       variant="filled"
                       helperText={error ? error.message : null}
                       sx={{ width: "100%" }}
+                      required
                     />
                   );
                 }}
@@ -346,6 +349,7 @@ export default function InsuranceForm({
                             variant="filled"
                             helperText={error ? error.message : null}
                             sx={{ width: "100%" }}
+                            required
                           />
                         );
                       }}
@@ -381,6 +385,7 @@ export default function InsuranceForm({
                             variant="filled"
                             helperText={error ? error.message : null}
                             sx={{ width: "100%" }}
+                            required
                           />
                         );
                       }}
@@ -429,6 +434,7 @@ export default function InsuranceForm({
                               size="small"
                               variant="filled"
                               helperText={error ? error.message : "MM/DD/YYYY"}
+                              required
                             />
                           </>
                         );
