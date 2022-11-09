@@ -176,7 +176,7 @@ export default function InsuranceView({
                           <div>
                             <Typography
                               variant={isDesktop ? "bodyRegular" : "h3"}
-                              sx={{ pb: 3 }}
+                              sx={{ pb: 3, color: colors.grayscaleBlack }}
                               component="div"
                             >
                               Upload images of your insurance.
@@ -189,6 +189,7 @@ export default function InsuranceView({
                                   sx={{
                                     display: isDesktop ? "none" : "",
                                     mb: 1,
+                                    color: colors.grayscaleBlack,
                                   }}
                                 >
                                   Insurance Card - Front
@@ -210,6 +211,7 @@ export default function InsuranceView({
                                   sx={{
                                     display: isDesktop ? "none" : "",
                                     mb: 1,
+                                    color: colors.grayscaleBlack,
                                   }}
                                 >
                                   Insurance Card - Back
@@ -233,10 +235,10 @@ export default function InsuranceView({
                           </LabelWithInfo>
 
                           <Stack
-                            direction="row"
                             justifyContent="flex-end"
-                            spacing={2}
+                            gap={2}
                             sx={{
+                              flexDirection: { sm: "row" },
                               alignSelf: { xs: "center", md: "flex-end" },
                               width: { xs: "100%", md: "fit-content" },
                               p: { xs: 0, md: 2 },

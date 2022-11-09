@@ -17,7 +17,7 @@ function SessionExpiredModal() {
   const cookies = new Cookies();
   const idleTime = cookies.get("IdleTimeOut") || 1000 * 60 * 20;
   const timeout = parseInt(idleTime); //Idle Timer
-  const promptTimeout = 60; //Remaining Time
+  const promptTimeout = 60000; //Remaining Time
 
   // Time before idle
   const [remaining, setRemaining] = useState(0);
@@ -29,7 +29,7 @@ function SessionExpiredModal() {
     // All events are disabled while the prompt is active.
     // If the user wishes to stay active, call the `reset()` method.
     // You can get the remaining prompt time with the `getRemainingTime()` method,
-    setRemaining(promptTimeout);
+    setRemaining(Math.ceil(promptTimeout / 1000));
     setOpen(true);
   };
 

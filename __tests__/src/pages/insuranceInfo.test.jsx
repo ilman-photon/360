@@ -158,9 +158,9 @@ describe("InsuranceInformationPage Components", () => {
   };
 
   it("InsuranceInformationPage render", async () => {
-    await waitFor(() => container.getByText("You have no insurance on file"));
+    await waitFor(() => container.getByText(/You have no insurance on file/i));
     expect(
-      container.getByText("You have no insurance on file")
+      container.getByText(/You have no insurance on file/i)
     ).toBeInTheDocument();
   });
 

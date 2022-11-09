@@ -182,7 +182,7 @@ defineFeature(feature, (test) => {
       () => container.getAllByTestId("notification-item")[0]
     );
     expect(notificationItem).toHaveTextContent(
-      "Your lab test results are available now.1mo"
+      "Your lab test results are available now.2mo"
     );
     act(() => {
       fireEvent.click(notificationItem);
@@ -191,7 +191,7 @@ defineFeature(feature, (test) => {
       () => container.getAllByTestId("notification-item")[0]
     );
     expect(newNotificationItem).toHaveTextContent(
-      "Your prescription refill is available now1mo"
+      "Your prescription refill is available now2mo"
     );
   }
 
