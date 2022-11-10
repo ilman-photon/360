@@ -22,7 +22,7 @@ export function appointmentParser(data = {}, appointmentTypes = []) {
       name,
       position: data.provider?.address?.name || "",
       address: data.provider?.address || "",
-      rating: data.provider?.rating / 2 || "",
+      rating: data.provider?.rating || 0,
       phoneNumber: data.provider?.workPhone || "",
       image: data.provider?.profilePhoto?.digitalAsset || "",
     },
