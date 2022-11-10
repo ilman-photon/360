@@ -211,9 +211,6 @@ export default function MobileMenu({
                               router.push(subItem.href);
                             }}
                           >
-                            <ListItemIcon sx={iconStyle}>
-                              {subItem.icon}
-                            </ListItemIcon>
                             <ListItemText
                               primary={subItem.label}
                               sx={{
