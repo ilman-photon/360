@@ -257,7 +257,7 @@ const SetPasswordComponent = ({
       });
   }, [formMessage]);
 
-  const isEmail = Regex.isEmailCorrect.test(username);
+  const isEmail = Regex.emailValidation.test(username);
   const mailFormat =
     username &&
     username.replace(

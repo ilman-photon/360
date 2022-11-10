@@ -64,13 +64,17 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
 
           {isRenderViewAll && !expand && (
             <li>
-              <Typography variant="body2" tabIndex={0}>
+              <Typography
+                variant="body2"
+                tabIndex={0}
+                aria-label="16+ more in-network insurances"
+              >
                 16+ more in-network insurances{" "}
                 <Link
                   className={styles.viewAllLink}
                   data-testid={BIOGRAPHY_TEST_ID.viewAll}
                   aria-roledescription="Link"
-                  aria-label="View All link"
+                  aria-label="View All"
                   tabIndex={0}
                   onClick={() => {
                     setExpand(true);
@@ -138,6 +142,12 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
     }
   };
 
+  const getAddressAriaLabel = (address) => {
+    return `${address.addressLine1 || ""}, ${address.addressLine2 || ""}, ${
+      address.city || ""
+    }, ${address.state || ""}, ${address.zip || ""}`;
+  };
+
   const renderAddress = (newAddressArray) => {
     return (
       <Box className={styles.addressWrapper}>
@@ -171,6 +181,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
                 variant="body2"
                 className={styles.mapAddress}
                 tabIndex={0}
+                aria-label={getAddressAriaLabel(newAddress)}
               >
                 {newAddress && formattedAddress(newAddress)}
               </Typography>
@@ -287,6 +298,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             onClick={onClickAbout}
             aria-label={`About Tab`}
             aria-roledescription="Link"
+            tabIndex={0}
           >
             About
           </Link>
@@ -295,6 +307,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             onClick={onClickLocation}
             aria-label={`Locations Tab`}
             aria-roledescription="Link"
+            tabIndex={0}
           >
             Locations
           </Link>
@@ -303,6 +316,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             onClick={onClickInsurances}
             aria-label={`Insurances Tab`}
             aria-roledescription="Link"
+            tabIndex={0}
           >
             Insurances
           </Link>
@@ -311,6 +325,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             onClick={onClickEducation}
             aria-label={`Education Tab`}
             aria-roledescription="Link"
+            tabIndex={0}
           >
             Education
           </Link>
