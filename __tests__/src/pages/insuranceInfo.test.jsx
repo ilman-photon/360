@@ -111,7 +111,7 @@ describe("InsuranceInformationPage Components", () => {
       constants.TEST_ID.INSURANCE_TEST_ID.subscriberId
     );
     fireEvent.change(
-      within(subscriberId).queryByLabelText("Subscriber ID/ Member ID"),
+      within(subscriberId).queryByLabelText("Subscriber ID/ Member ID *"),
       {
         target: { value: "1" },
       }

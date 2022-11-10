@@ -155,6 +155,7 @@ export const AutoCompleteCreatable = ({
                 variant="filled"
                 {...params}
                 label={props.inputLabel}
+                required={props.required}
                 //error={props.error}
                 //helperText={props.helperText}
                 InputProps={{
