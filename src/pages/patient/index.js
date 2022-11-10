@@ -61,6 +61,7 @@ export default function HomePage({ googleApiKey }) {
   const filterData = useSelector((state) => state.appointment.filterData);
 
   const isDesktop = useMediaQuery("(min-width: 900px)");
+  const showNavBar = useMediaQuery("(min-width: 600px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -277,9 +278,9 @@ export default function HomePage({ googleApiKey }) {
     <>
       {isAuthenticated && !isAdmin() && (
         <Stack sx={{ width: "100%" }}>
+          {showNavBar && <Navbar isDashboard={true} />}
           {isDesktop ? (
             <>
-              <Navbar isDashboard={true} />
               <FilterHeading
                 isDesktop={isDesktop}
                 isTablet={false}
@@ -302,7 +303,7 @@ export default function HomePage({ googleApiKey }) {
                 marginTop: "-25px",
                 display: "flex",
                 width: "100%",
-                zIndex: "9",
+                zIndex: "2",
               }}
             >
               <FilterResultHeading

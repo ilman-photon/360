@@ -113,7 +113,10 @@ const Navbar = ({ isDashboard = false }) => {
             margin: "0 10px",
             fontFamily: "Libre Franklin",
             fontWeight: "400",
-            fontSize: "14px",
+            fontSize: {
+              sm: "14px",
+              md: "16px",
+            },
           }}
         >
           {item.label}
@@ -167,6 +170,10 @@ const Navbar = ({ isDashboard = false }) => {
                     borderBottom: isCurrentPath(page.href)
                       ? "solid 4px #D9D9D9"
                       : "solid 4px transparent",
+                    fontSize: {
+                      sm: "14px",
+                      md: "16px",
+                    },
                   }}
                 >
                   {page.label}
@@ -192,7 +199,10 @@ const Navbar = ({ isDashboard = false }) => {
                       isCurrentPath("/patient/prescription")
                         ? "solid 4px #D9D9D9"
                         : "solid 4px transparent",
-                    // },
+                    fontSize: {
+                      sm: "14px",
+                      md: "16px",
+                    },
                   }}
                   endIcon={<ExpandMoreIcon />}
                 >
@@ -236,6 +246,10 @@ const Navbar = ({ isDashboard = false }) => {
                       isCurrentPath(page.href) || isCurrentPath(page.additional)
                         ? "solid 4px #D9D9D9"
                         : "solid 4px transparent",
+                    fontSize: {
+                      sm: "14px",
+                      md: "16px",
+                    },
                   }}
                 >
                   {page.label}
@@ -259,6 +273,10 @@ const Navbar = ({ isDashboard = false }) => {
                     borderBottom: isCurrentPath("/patient/account/documents")
                       ? "solid 4px #D9D9D9"
                       : "solid 4px transparent",
+                    fontSize: {
+                      sm: "14px",
+                      md: "16px",
+                    },
                   }}
                   endIcon={<ExpandMoreIcon />}
                 >
