@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
@@ -8,11 +8,14 @@ import axios from "axios";
 import {
   createMatchMedia,
   defaultValidation,
+  renderLogin,
+  renderForgotPassword,
 } from "../../__mocks__/commonSteps";
 import {
   mockAppointmentTypes,
   submitFilter,
 } from "../../__mocks__/mockResponse";
+import ForgotPassword from "../../src/components/organisms/ForgotPassword/forgotPassword";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1762.feature"
@@ -46,23 +49,25 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("user lands to Patient Login screen", () => {
-      defaultValidation();
+    then("user lands to Patient Login screen", async () => {
+      container = await renderLogin()
     });
 
-    then(
-      "user clicks on  Already have an appointment? Sync your appointment information",
-      () => {}
-    );
+    then("user clicks on  Already have an appointment? Sync your appointment information",
+      () => {
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
+      });
 
-    then("user lands on that screen to enter email or phone number", () => {
-      defaultValidation();
+    then("user lands on that screen to enter email or phone number", async () => {
+      cleanup()
+      container = await renderForgotPassword()
+      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
     });
 
-    then(
-      "user provides their already registered email or phone number",
-      () => {}
-    );
+    then("user provides their already registered email or phone number", () => {
+      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
+    });
   });
 
   test("EPIC_EPP-44_STORY_EPP-1762 - Verify that user provides existing user's email or phone number in 'Already have an appointment? Sync your appointment information' screen", ({
@@ -74,36 +79,47 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user is in login screen", () => {
-      defaultValidation();
+    and("user is in login screen", async () => {
+      container = await renderLogin()
     });
 
-    then(
-      "user clicks on  Already have an appointment? Sync your appointment information",
-      () => {}
-    );
+    then("user clicks on  Already have an appointment? Sync your appointment information",
+      () => {
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
+      });
 
-    then("user lands on that screen to enter email or phone number", () => {
-      defaultValidation();
+    then("user lands on that screen to enter email or phone number", async () => {
+      cleanup()
+      container = await renderForgotPassword()
+      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
     });
 
-    then(
-      "user provides their already registered email or phone number",
-      () => {}
-    );
+    then("user provides their already registered email or phone number", () => {
+      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
+    });
 
-    and("user click on submit button", () => {
-      defaultValidation();
+    and("user click on submit button", async () => {
+      container.rerender(
+        <ForgotPassword isAppointment={true} />
+      );
+      expect(
+        await waitFor(() =>
+          container.getByText(/syncButton/i)
+        )
+      ).toBeInTheDocument();
+      const syncButton = container.getByText(/syncButton/i);
+      fireEvent.click(syncButton);
     });
 
     then(
       "user should see the message “Existing user You are already a registered user. Please login to the application using your username and password.”",
-      () => {}
+      () => { }
     );
 
     and(
       "user should give the option to redirect to Patient Login screen",
-      () => {}
+      () => { }
     );
 
     and("user lands on to Patient Login screen", () => {
@@ -120,14 +136,15 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user is in login screen", () => {
-      defaultValidation();
+    and("user is in login screen", async () => {
+      container = await renderLogin()
     });
 
-    then(
-      "user clicks on  Already have an appointment? Sync your appointment information",
-      () => {}
-    );
+    then("user clicks on  Already have an appointment? Sync your appointment information",
+      () => {
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
+      });
 
     then("user lands on that screen to enter email", () => {
       defaultValidation();
@@ -137,18 +154,27 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user click on submit button", () => {
-      defaultValidation();
+    and("user click on submit button", async () => {
+      container.rerender(
+        <ForgotPassword isAppointment={true} />
+      );
+      expect(
+        await waitFor(() =>
+          container.getByText(/syncButton/i)
+        )
+      ).toBeInTheDocument();
+      const syncButton = container.getByText(/syncButton/i);
+      fireEvent.click(syncButton);
     });
 
     then(
       "user should see the message Existing user You are already a registered user. Please login to the application using your username and password.",
-      () => {}
+      () => { }
     );
 
     and(
       "user should give the option to redirect to patient login screen",
-      () => {}
+      () => { }
     );
 
     and("user lands on to patient login screen", () => {
@@ -165,14 +191,15 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user is in login screen", () => {
-      defaultValidation();
+    and("user is in login screen", async () => {
+      container = await renderLogin()
     });
 
-    then(
-      "user clicks on  Already have an appointment? Sync your appointment information",
-      () => {}
-    );
+    then("user clicks on  Already have an appointment? Sync your appointment information",
+      () => {
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
+      });
 
     then("user lands on that screen to enter phone number", () => {
       defaultValidation();
@@ -182,18 +209,27 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user click on submit button", () => {
-      defaultValidation();
+    and("user click on submit button", async () => {
+      container.rerender(
+        <ForgotPassword isAppointment={true} />
+      );
+      expect(
+        await waitFor(() =>
+          container.getByText(/syncButton/i)
+        )
+      ).toBeInTheDocument();
+      const syncButton = container.getByText(/syncButton/i);
+      fireEvent.click(syncButton);
     });
 
     then(
       "user should see the message Existing user You are already a registered user. Please login to the application using your username and password.",
-      () => {}
+      () => { }
     );
 
     and(
       "user should give the option to redirect to patient login screen",
-      () => {}
+      () => { }
     );
 
     and("user lands on to patient login screen", () => {

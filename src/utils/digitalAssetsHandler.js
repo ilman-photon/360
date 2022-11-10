@@ -31,13 +31,14 @@ export default class DigitalAssetsHandler {
     if (!this.source._id && !this.source.uid) {
       return;
     }
-    return await api.getURLDigitalAsset(this.source._id || this.source.uid);
+    return api.getURLDigitalAsset(this.source._id || this.source.uid);
   };
+
   fetchSourceURL = async () => {
     if (!this.source) {
       return;
     }
-    return await this.fetchURLFromDigitalAsset();
+    return this.fetchURLFromDigitalAsset();
   };
 
   createDigitalAsset = () => {
@@ -60,7 +61,6 @@ export default class DigitalAssetsHandler {
 
   fetchBlob = async (url) => {
     const response = await axios.get(url, { responseType: "blob" });
-    const blobURL = URL.createObjectURL(response.data);
-    return blobURL;
+    return URL.createObjectURL(response.data);
   };
 }

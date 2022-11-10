@@ -59,10 +59,11 @@ export const fetchSource = async (id, isPrint = false, newTab = true) => {
 
 export const downloadMultipleAsset = async (attachments) => {
   let promises = [];
-  for (let i = 0; i < attachments.length; i++) {
-    const element = attachments[i];
+
+  for (let attachment of attachments) {
+    const element = attachment;
     const source = {
-      _id: element.id,
+      _id: attachment.id,
     };
     const digitalAsset = new DigitalAssetsHandler();
     digitalAsset.setSource(source);

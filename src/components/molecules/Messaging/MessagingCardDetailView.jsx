@@ -18,7 +18,6 @@ export const MessagingCardDetailView = ({
     keyPrefix: "messaging",
   });
   const isDesktop = useMediaQuery("(min-width: 834px)");
-  const getAttachments = () => {};
 
   const convertDate = (data) => {
     let dateTime = "";

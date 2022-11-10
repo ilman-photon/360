@@ -431,8 +431,8 @@ describe("App", () => {
     });
     await waitFor(() => container.getByLabelText(headerText));
     await util.sleep(200);
-    await waitFor(() =>
-      container.getByText(/Your session is about to time-out./i)
+    await waitFor(
+      () => container.getByText(/Your session is about to time-out./i)[0]
     );
     expect(
       container.getByText(/Your session is about to time-out./i)

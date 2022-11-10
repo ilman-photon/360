@@ -12,8 +12,8 @@ import mediaQuery from "css-mediaquery";
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => {},
-    removeListener: () => {},
+    addListener: () => { },
+    removeListener: () => { },
   });
 }
 
@@ -415,10 +415,10 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => {}
+      () => { }
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
 
     and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
@@ -506,10 +506,10 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => {}
+      () => { }
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
 
     and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
@@ -549,11 +549,16 @@ defineFeature(feature, (test) => {
       "patient should see the option to Refill the Prescription.",
       async () => {
         const medicationMenu = container.getByTestId("menu-medication");
+        const mockResponse = {
+          message: "Your refill request has been sumbitted",
+        };
+        mock
+          .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+          .reply(200, mockResponse);
+        await waitFor(() => container.getByText("Active Medications"));
+        const requestRefill = container.getAllByText(/Request Refill/i)[0];
+        expect(requestRefill).toBeInTheDocument();
         fireEvent.click(medicationMenu);
-        await waitFor(() => container.getByText(/Active Medications/i));
-        expect(
-          container.getAllByText(/Request Refill/i)[0]
-        ).toBeInTheDocument();
       }
     );
 
@@ -591,10 +596,10 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => {}
+      () => { }
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
 
     and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
@@ -683,12 +688,12 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => {}
+      () => { }
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
 
-    and("clicks  on login button.", () => {});
+    and("clicks  on login button.", () => { });
 
     and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
@@ -767,12 +772,12 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => {}
+      () => { }
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
 
-    and("clicks  on login button.", () => {});
+    and("clicks  on login button.", () => { });
 
     and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
@@ -854,12 +859,12 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => {}
+      () => { }
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
 
-    and("clicks  on login button.", () => {});
+    and("clicks  on login button.", () => { });
 
     and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";

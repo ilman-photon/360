@@ -14,7 +14,6 @@ export default function PrescriptionPage() {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [requestRefillResponse, setRequestRefillResponse] =
     React.useState(null);
-  const [isLoaded, setIsLoaded] = React.useState(false);
 
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
@@ -25,11 +24,6 @@ export default function PrescriptionPage() {
       })
       .catch(function () {
         //Handle error getAllPrescriptions
-      })
-      .finally(function () {
-        setTimeout(() => {
-          setIsLoaded(true);
-        }, 200);
       });
   }
 
