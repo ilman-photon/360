@@ -109,8 +109,10 @@ export function getAppointmentTypeOnTimeSlot(scheduleData, timeSlot) {
 
 export function parseDateWeekList(availabilities) {
   const dateList = [];
-  for (let availability of availabilities) {
-    dateList.push(availability && availability.date ? availability.date : "");
+  if (availabilities.length > 0) {
+    for (let availability of availabilities) {
+      dateList.push(availability && availability.date ? availability.date : "");
+    }
   }
   return dateList;
 }
@@ -166,15 +168,16 @@ export function parseScheduleDataDay(availability, currentDateIndex) {
 
 export function parseScheduleDataWeekOverlay(availabilities) {
   const scheduleData = {};
-
-  for (let availability of availabilities) {
-    const schedule = [];
-    for (const availabilityList of availability.list) {
-      if (availabilityList) {
-        schedule.push(availabilityList.time);
+  if (availabilities.length > 0) {
+    for (let availability of availabilities) {
+      const schedule = [];
+      for (const availabilityList of availability.list) {
+        if (availabilityList) {
+          schedule.push(availabilityList.time);
+        }
       }
+      scheduleData[getDayName(new Date(availability.date))] = schedule;
     }
-    scheduleData[getDayName(new Date(availability.date))] = schedule;
   }
   return scheduleData;
 }
