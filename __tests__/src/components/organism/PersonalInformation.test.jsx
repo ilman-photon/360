@@ -63,7 +63,6 @@ describe("PersonalInformation Components", () => {
     expect(container.getByText("8/18/2022")).toBeInTheDocument();
     expect(container.getByText(63)).toBeInTheDocument();
     expect(container.getByText("Transgender")).toBeInTheDocument();
-    expect(container).toMatchSnapshot()
     expect(container.getByText("***-***-6119")).toBeInTheDocument();
     expect(
       container.getByText(
