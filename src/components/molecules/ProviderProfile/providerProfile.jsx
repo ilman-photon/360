@@ -118,6 +118,15 @@ export default function ProviderProfile({
     return isNotBio ? "unset" : bioWidth;
   }
 
+  function getAddressAriaLabel(address) {
+    const addressData = Array.isArray(address) ? address[0] : address;
+    return `${addressData?.addressLine1 || ""}, ${
+      addressData?.addressLine2 || ""
+    }, ${addressData?.city || ""}, ${addressData?.state || ""}, ${
+      addressData?.zip || ""
+    }`;
+  }
+
   return (
     <Box
       className={isBio ? styles.shortBio : styles.appointment}
@@ -163,12 +172,13 @@ export default function ProviderProfile({
           )}
           <Box className={styles.detailContainer}>
             <Box>
-              <Box aria-label="Doctor Address">
+              <Box>
                 <Typography
                   variant="body2"
                   className={[styles.address, addressClass].join(" ")}
                   fontSize={isViewSchedule || isMap ? "14px" : "16px"}
-                  tabIndex={"0"}
+                  tabIndex={0}
+                  aria-label={getAddressAriaLabel(providerData.address)}
                 >
                   {getAddress(providerData.address)}
                 </Typography>
@@ -181,7 +191,7 @@ export default function ProviderProfile({
                   sx={{ marginLeft: isMap ? "-67px" : "0" }}
                 >
                   {(isBio || isMap || (isViewSchedule && isShownRating)) && (
-                    <StyledRating value={parseFloat(providerData.rating)} />
+                    <StyledRating value={parseFloat(providerData.rating / 2)} />
                   )}
                   <PhoneNumber phone={phoneNumber} />
                 </Box>

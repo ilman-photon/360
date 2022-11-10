@@ -12,8 +12,8 @@ export class Regex {
   static isValidPhoneFormat = /^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$/i;
   static noSpecialRegex = /^[a-z0-9]+$/gi;
   static nameValidation = /^(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
-  static isEmailCorrect = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i;
-  static emailValidation = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  static emailValidation =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   static REGEX_PHONE_NUMBER = /^\d{10,}$/;
   static REGEX_PHONE_NUMBER_ONLY = /^\d{10,10}$/;
   static noWhitespaceRegex = /[^\s-]/;

@@ -330,7 +330,7 @@ export default function ForgotPasswordPage() {
       username: username,
     };
 
-    const isEmail = username.match(Regex.isEmailCorrect);
+    const isEmail = username.match(Regex.emailValidation);
     const subtitle = isEmail
       ? `Check ${username}  for an email to set up your password.`
       : `Check ${username} for a link to set up your password.`;

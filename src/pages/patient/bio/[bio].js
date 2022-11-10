@@ -51,7 +51,7 @@ export default function Bio({ embedApi, bio }) {
       imageId: response.providerDetails?.profilePhoto?.digitalAsset.uid || "",
       image: "",
       name,
-      rating: response.providerDetails?.rating / 2 || 0,
+      rating: response.providerDetails?.rating || 0,
       phoneNumber: response.workPhone || "",
       specialties: getArrayValue(response.providerDetails?.specialization),
       about: response.note || "",

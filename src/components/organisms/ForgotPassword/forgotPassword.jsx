@@ -55,7 +55,7 @@ const ForgotPassword = ({
     } else if (
       isAppointment &&
       (Regex.REGEX_PHONE_NUMBER.test(username) ||
-        Regex.isEmailCorrect.test(username))
+        Regex.emailValidation.test(username))
     ) {
       onCalledValidateAppointment(
         {
@@ -65,7 +65,7 @@ const ForgotPassword = ({
       );
     } else if (
       Regex.REGEX_PHONE_NUMBER.test(username) ||
-      Regex.isEmailCorrect.test(username)
+      Regex.emailValidation.test(username)
     ) {
       onCalledValidateUsernameAPI(
         {

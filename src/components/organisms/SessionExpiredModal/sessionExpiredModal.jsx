@@ -65,18 +65,13 @@ function SessionExpiredModal() {
     reset();
   };
 
-  const onClickedLoggedOff = () => {
-    setOpen(false);
-    reset();
-  };
-
   const isExpired = open && remaining <= 0;
   /** ------------------------------------------------------------------------ */
 
   const router = useRouter();
   const onLoggedOffClicked = async () => {
     await logoutProps.OnLogoutClicked(router);
-    onClickedLoggedOff();
+    onClickStayLoggedIn();
   };
 
   return (

@@ -25,6 +25,7 @@ export const AccountCard = ({
           boxShadow: isDesktop
             ? "0px 1.65922px 3.31845px rgb(0 51 89 / 10%)"
             : "none",
+          borderRadius: 0,
         }}
       >
         {(isDesktop || isAppoinment) && (
