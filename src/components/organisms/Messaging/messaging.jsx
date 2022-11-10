@@ -31,14 +31,24 @@ const MessagingContainer = ({
   attachmentsSource,
   openDeletedDialog,
   openNewMessageDialog,
-  onSelectedMessage = () => {},
+  onSelectedMessage = () => {
+    // This is intended
+  },
   onChangeSearch = () => {
     // This is intended
   },
-  onChangeTabEvent = () => {},
-  onAddAttachments = () => {},
-  onOpenFilter = () => {},
-  onDownloadAllAttachmentClicked = () => {},
+  onChangeTabEvent = () => {
+    // This is intended
+  },
+  onAddAttachments = () => {
+    // This is intended
+  },
+  onOpenFilter = () => {
+    // This is intended
+  },
+  onDownloadAllAttachmentClicked = () => {
+    // This is intended
+  },
 }) => {
   const isPatient = theme === "patient";
   const isDesktop = useMediaQuery("(min-width: 835px)");

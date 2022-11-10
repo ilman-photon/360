@@ -22,11 +22,17 @@ import * as Styled from "./ListAutoCompleteStyled";
 export const NewMessageDialog = ({
   providerData,
   opened,
-  handleClosed = () => {},
+  handleClosed = () => {
+    //this is intentional
+  },
   refAttachments,
   attachmentsSource,
-  onSaveToDraft = () => {},
-  onSendMessage = () => {},
+  onSaveToDraft = () => {
+    //this is intentional
+  },
+  onSendMessage = () => {
+    //this is intentional
+  },
   isDesktop,
   isDraft,
   isSelectedMsg,
@@ -51,16 +57,13 @@ export const NewMessageDialog = ({
   const [isEmptyName, setEmptyName] = useState(false);
   const [isEmptyMessage, setEmptyMessage] = useState(false);
   const [isClicked, setClicked] = useState(false);
-  const [providerName, setProviderName] = useState("");
 
   const {
     getRootProps,
     getInputProps,
-    getTagProps,
     getListboxProps,
     getOptionProps,
     groupedOptions,
-    value,
     focused,
     setAnchorEl,
   } = useAutocomplete({

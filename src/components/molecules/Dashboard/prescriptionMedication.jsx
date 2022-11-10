@@ -49,8 +49,6 @@ export default function PrescriptionMedication({
   const [selectedData, setSelectedData] = React.useState({});
   const [filterData, setFilterData] = React.useState([]);
   const [filterMedicationData, setFilterMedicationData] = React.useState([]);
-  const [requestRefillResponse, setRequestRefillResponse] =
-    React.useState(null);
   const isFilterApplied = activeFilter.length > 0;
   const imageSrcState = "/mobileFilter.png";
   const imageSrcFilled = "/appliedMobileFilter.png";
@@ -141,11 +139,6 @@ export default function PrescriptionMedication({
       setFilterMedicationData([]);
     }
   };
-
-  useEffect(() => {
-    setRequestRefillResponse(requestRefillResponseData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [requestRefillResponseData]);
 
   useEffect(() => {
     if (filterProvider.length && filterProvider.length > 0)

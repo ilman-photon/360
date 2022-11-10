@@ -8,8 +8,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Patient_Portal
   @Sprint3
   @included
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Verify User receives an email from registered mail-id when user logs in from different device/IP Address
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Verify User receives an email from registered mail-id when user logs in from different device/IP Address"
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Verify User receives an email from registered mail-id when user logs in from different device/IP Address
 
     Given user launch the "XXX" url  
     And user navigates to the Patient Portal application
@@ -42,9 +41,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Patient_Portal
   @Sprint3
   @included
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Verify User should be able to receives a text that registered phone number when user logs in from different device/IP Address
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Verify User should be able to receives a text that registered phone number when user logs in from different device/IP Address"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Verify User should be able to receives a text that registered phone number when user logs in from different device/IP Address
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -77,9 +74,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Regression
   @Sprint3
   @included
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered mail-id
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered mail-id"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered mail-id
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -103,14 +98,8 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
     |Message - "You have logged in from a different device. If this is not you, please contact Customer support"|
     Then user receives an email/ text message with the code to the email or mobile number
     And user should see the mail with Email Subject as " Your Verification Code"
-    And user should see a message body as 
-    |Email/ message body - Hi {username},
-    |The temporary code you requested is xxxxxx. Please use this code to complete your request.
-    |Thank you, 
-    |Admin
-
+    And user should see a message body 
     When user lands onto "xxx" screen
-
     And user should see "<Enter Code>" field
     And user should fill valid "<Enter Code>" fied
     When user clicks on "Submit" button
@@ -125,9 +114,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Patient_Portal
   @Sprint3
   @included
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered phone number
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered phone number"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered phone number
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -152,14 +139,8 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
     |Message - "You have logged in from a different device. If this is not you, please contact Customer support"|
     Then user receives a text message with the code to phone number
     And user should see the mail with Email Subject as " Your Verification Code"
-    And user should see a message body as 
-    |Email/ message body - Hi {username},
-    |The temporary code you requested is xxxxxx. Please use this code to complete your request.
-    |Thank you, 
-    |Admin
-
+    And user should see a message body 
     When user lands onto "xxx" screen
-
     And user should see "<Enter Code>" field
     And user should fill valid "<Enter Code>" fied
     When user clicks on "Submit" button
@@ -175,9 +156,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Regression
   @Sprint3
   @included
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" within "3 seconds" when user logs in from different device/IP Address
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" within "3 seconds" when user logs in from different device/IP Address"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" within "3 seconds" when user logs in from different device/IP Address
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -202,14 +181,8 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
     |Message - "You have logged in from a different device. If this is not you, please contact Customer support"|
     Then user receives a text message with the code to phone number
     And user should see the mail with Email Subject as " Your Verification Code"
-    And user should see a message body as 
-    |Email/ message body - Hi {username},
-    |The temporary code you requested is xxxxxx. Please use this code to complete your request.
-    |Thank you, 
-    |Admin
-
+    And user should see a message body 
     When user lands onto "xxx" screen
-
     And user should see "<Enter Code>" field
     And user should fill valid "<Enter Code>" fied
     When user clicks on "Submit" button
@@ -226,9 +199,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Regression
   @Sprint3
   @included
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Verify user should not see the any errors script when user clicks F12 on the console when user succes set up MFA due to user logs in from different device/IP Address
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Verify user should not see the any errors script when user clicks F12 on the console when user succes set up MFA due to user logs in from different device/IP Address"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Verify user should not see the any errors script when user clicks F12 on the console when user succes set up MFA due to user logs in from different device/IP Address
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -253,14 +224,8 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
     |Message - "You have logged in from a different device. If this is not you, please contact Customer support"|
     Then user receives a text message with the code to phone number
     And user should see the mail with Email Subject as " Your Verification Code"
-    And user should see a message body as 
-    |Email/ message body - Hi {username},
-    |The temporary code you requested is xxxxxx. Please use this code to complete your request.
-    |Thank you, 
-    |Admin
-
+    And user should see a message body 
     When user lands onto "xxx" screen
-
     And user should see "<Enter Code>" field
     And user should fill valid "<Enter Code>" fied
     When user clicks on "Submit" button
@@ -278,9 +243,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Regression
   @Sprint3
   @included
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered mail-id
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered mail-id"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered mail-id
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -305,14 +268,8 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
     |Message - "You have logged in from a different device. If this is not you, please contact Customer support"|
     Then user receives a text message with the code to phone number
     And user should see the mail with Email Subject as " Your Verification Code"
-    And user should see a message body as 
-    |Email/ message body - Hi {username},
-    |The temporary code you requested is xxxxxx. Please use this code to complete your request.
-    |Thank you, 
-    |Admin
-
+    And user should see a message body 
     When user lands onto "xxx" screen
-
     And user should see "<Enter Code>" field
     And user should fill invalid "<Enter Code>" fied
     When user clicks on "Submit" button
@@ -328,9 +285,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Regression
   @Sprint3
   @included
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered phone number
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify User should see the following error message "Incorrect Code. Please try again." when user Set up Multi Factor Authentication from a different device/IP Address"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered phone number
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -355,14 +310,8 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
     |Message - "You have logged in from a different device. If this is not you, please contact Customer support"|
     Then user receives a text message with the code to phone number
     And user should see the mail with Email Subject as " Your Verification Code"
-    And user should see a message body as 
-    |Email/ message body - Hi {username},
-    |The temporary code you requested is xxxxxx. Please use this code to complete your request.
-    |Thank you, 
-    |Admin
-
+    And user should see a message body 
     When user lands onto "xxx" screen
-
     And user should see "<Enter Code>" field
     And user should fill invalid "<Enter Code>" fied
     When user clicks on "Submit" button
@@ -378,9 +327,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Regression
   @Sprint3
   @included
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the internet service is unavailable
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the internet service is unavailable"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the internet service is unavailable
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -405,11 +352,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
     |Message - "You have logged in from a different device. If this is not you, please contact Customer support"|
     Then user receives a text message with the code to phone number
     And user should see the mail with Email Subject as " Your Verification Code"
-    And user should see a message body as 
-    |Email/ message body - Hi {username},
-    |The temporary code you requested is xxxxxx. Please use this code to complete your request.
-    |Thank you, 
-    |Admin
+    And user should see a message body 
 
     When user lands onto "xxx" screen
 
@@ -427,9 +370,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Patient_Portal
   @Sprint3
   @excluded
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the service is unavailable
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the service is unavailable"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the service is unavailable
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -454,14 +395,8 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
     |Message - "You have logged in from a different device. If this is not you, please contact Customer support"| 
     Then user receives a text message with the code to phone number
     And user should see the mail with Email Subject as " Your Verification Code"
-    And user should see a message body as 
-    |Email/ message body - Hi {username},
-    |The temporary code you requested is xxxxxx. Please use this code to complete your request.
-    |Thank you, 
-    |Admin
-
+    And user should see a message body 
     When user lands onto "xxx" screen
-
     And user should see "<Enter Code>" field
     And user should fill invalid "<Enter Code>" fied
     When user clicks on "Submit" button
@@ -477,9 +412,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Regression
   @Sprint3
   @excluded
-  Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the blank field when user refresh the page
-    Scenario: "EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the service is unavailable"
-
+  Scenario: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the blank field when user refresh the page
     Given user launch the "XXX" url		
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -504,20 +437,11 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
     |Message - "You have logged in from a different device. If this is not you, please contact Customer support"|
     Then user receives a text message with the code to phone number
     And user should see the mail with Email Subject as " Your Verification Code"
-    And user should see a message body as 
-    |Email/ message body - Hi {username},
-    |The temporary code you requested is xxxxxx. Please use this code to complete your request.
-    |Thank you, 
-    |Admin
-
+    And user should see a message body 
     When user lands onto "xxx" screen
-
     And user should see "<Enter Code>" field
     And user should fill invalid "<Enter Code>" fied
     When user clicks on "Submit" button
     When user refresh the page 
     Then user should see the blank "<Enter Code>" fied
 
-    Examples:
-    |Phone Number|Password|Enter Code|
-    |+1xxxxxx|*******|              |

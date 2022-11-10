@@ -34,11 +34,11 @@ export const MessagingDetailContentView = ({
     });
     return message;
   };
-  console.log(
-    data?.messages?.length > 1 || data?.messages[0]?.isDraft === undefined
-  );
   return (
-    <Box className={styles.detailViewContainer}>
+    <Box
+      className={styles.detailViewContainer}
+      data-testId="messaging-container-detail"
+    >
       {(data?.messages?.length > 1 || data?.messages?.length == 1) &&
         (data?.messages[0]?.isDraft === undefined ||
           !data?.messages[0]?.isDraft) && (

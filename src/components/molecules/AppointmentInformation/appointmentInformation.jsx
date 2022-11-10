@@ -29,7 +29,7 @@ export default function AppointmentInformation({ data }) {
     const state = providerInfo.address.state || "";
     const zipcode = providerInfo.address.zipcode || "";
 
-    const returnData =
+    return (
       position +
       `\n` +
       addressLine1 +
@@ -40,8 +40,8 @@ export default function AppointmentInformation({ data }) {
       "\n" +
       state +
       `\n` +
-      zipcode;
-    return returnData;
+      zipcode
+    );
   };
 
   return (

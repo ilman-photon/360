@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useTranslation } from "next-i18next";
 import { Box, Button, Typography } from "@mui/material";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import styles from "./styles.module.scss";
@@ -8,10 +7,6 @@ export const AttachmentFile = ({
   attachmentsSource,
   handleAssetDownload = () => {},
 }) => {
-  const { t } = useTranslation("translation", {
-    keyPrefix: "messaging",
-  });
-
   return (
     <>
       {attachmentsSource?.length > 0 && (

@@ -107,14 +107,12 @@ export function getAppointmentTypeOnTimeSlot(scheduleData, timeSlot) {
   return appointmentType;
 }
 
-export function parseDateWeekList(availability) {
+export function parseDateWeekList(availabilities) {
   const dateList = [];
-  for (let index = 0; index < availability.length; index++) {
-    dateList.push(
-      availability[index] && availability[index].date
-        ? availability[index].date
-        : ""
-    );
+  if (availabilities.length > 0) {
+    for (let availability of availabilities) {
+      dateList.push(availability && availability.date ? availability.date : "");
+    }
   }
   return dateList;
 }
@@ -168,23 +166,19 @@ export function parseScheduleDataDay(availability, currentDateIndex) {
   return scheduleData;
 }
 
-export function parseScheduleDataWeekOverlay(availability) {
+export function parseScheduleDataWeekOverlay(availabilities) {
   const scheduleData = {};
-
-  for (let index = 0; index < availability.length; index++) {
-    const schedule = [];
-    for (
-      let indexList = 0;
-      indexList < availability[index].list.length;
-      indexList++
-    ) {
-      if (availability[index].list[indexList]) {
-        schedule.push(availability[index].list[indexList].time);
+  if (availabilities.length > 0) {
+    for (let availability of availabilities) {
+      const schedule = [];
+      for (const availabilityList of availability.list) {
+        if (availabilityList) {
+          schedule.push(availabilityList.time);
+        }
       }
+      scheduleData[getDayName(new Date(availability.date))] = schedule;
     }
-    scheduleData[getDayName(new Date(availability[index].date))] = schedule;
   }
-
   return scheduleData;
 }
 

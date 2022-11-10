@@ -30,7 +30,6 @@ export default function MessagingPage() {
   const [query, setQuery] = useState("");
   const [filterRead, setFilterRead] = useState("unread");
   const [addAttachmentsSource, setAddAttachmentsSource] = useState([]);
-  const [loading, setLoading] = useState(false);
   const digitalAsset = new DigitalAssetsHandler();
   const addAttachments = useRef(null);
   const [showDeletedDialog, setShowDeletedDialog] = useState(false);
@@ -176,21 +175,15 @@ export default function MessagingPage() {
       setShownMessages(mail);
     }
   }, [dataMessages, query]);
-
   /**
    * Catch the new data based on filter to set the data into state.
    */
   useEffect(() => {
-    let mail = [];
     if (filterRead === "unread") {
       setShownMessages(dataMessages);
     } else {
-      dataMessages.filter((post) => {
-        if (post.unRead) {
-          return mail.push(post);
-        }
-      });
-      setShownMessages(mail);
+      const readData = dataMessages.filter((post) => post.unRead);
+      setShownMessages(readData);
     }
   }, [dataMessages, filterRead]);
 
@@ -198,31 +191,31 @@ export default function MessagingPage() {
    * Please delete this after service available
    */
   function modifyData(data, key) {
+    let modifyDataResponse = data;
     switch (key) {
       case "inbox":
-        console.log(storageData);
-        storageData?.delete?.map((store) => {
-          data?.map((item, index) => {
-            if (item.id === store?.id) {
-              data.splice(index, 1);
-            }
-          });
-        });
-        setDataMessages(data);
+        const filterInboxData = [];
+        const inboxData = JSON.parse(JSON.stringify(data));
+        for (const item in inboxData) {
+          const id = inboxData[item].id;
+          const hasDataInLocalStorage = storageData?.delete?.find(
+            (strData) => strData?.id === id
+          );
+          !hasDataInLocalStorage && filterInboxData.push(inboxData[item]);
+        }
+
         setIsSelectedMessage({
           active: false,
           id: null,
         });
+        modifyDataResponse = filterInboxData;
         break;
       case "deleted":
-        storageData?.delete?.map((item) => {
-          data.push(item);
-        });
-        setDataMessages(data);
-        break;
-      default:
+        const deletedData = data.concat(storageData?.delete);
+        modifyDataResponse = deletedData;
         break;
     }
+    return modifyDataResponse;
   }
 
   /**
@@ -238,12 +231,11 @@ export default function MessagingPage() {
           api
             .getAllMessages()
             .then(function (response) {
+              let newResponse = response;
               if (Object.keys(storageData).length !== 0) {
-                modifyData(response, "inbox");
-              } else {
-                setDataMessages(response);
+                newResponse = modifyData(newResponse, "inbox");
               }
-              setHandleShowDataUI(response, "inbox");
+              setHandleShowDataUI(newResponse, "inbox");
             })
             .catch(function () {
               //Handle error getAllAppointment
@@ -291,12 +283,11 @@ export default function MessagingPage() {
           api
             .getDeleteMessages()
             .then(function (response) {
+              let newResponse = response;
               if (Object.keys(storageData).length !== 0) {
-                modifyData(response, "deleted");
-              } else {
-                setDataMessages(response);
+                newResponse = modifyData(response, "deleted");
               }
-              setHandleShowDataUI(response, "deleted");
+              setHandleShowDataUI(newResponse, "deleted");
             })
             .catch(function () {
               //Handle error getAllAppointment
@@ -342,17 +333,10 @@ export default function MessagingPage() {
     const maxSize = max * 1024 * 1024; // 4MB
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      let error = {};
 
       if (file.size > maxSize) {
-        error = {
-          success: false,
-          title: null,
-          content: `File size limit is ${max} MB`,
-        };
         event.target.value = null;
       } else {
-        setLoading(true);
         try {
           digitalAsset.setFile(file);
           await digitalAsset.upload();
@@ -362,8 +346,6 @@ export default function MessagingPage() {
           }
         } catch (error) {
           console.error("Error when uploading", error);
-        } finally {
-          setLoading(false);
         }
       }
     }
@@ -466,9 +448,9 @@ export default function MessagingPage() {
   const deletedMessage = () => {
     // Integrasi API service for this to deleted the message base on ID
     const cloneData = JSON.parse(JSON.stringify(dataMessages));
-    const deletedData = storageData?.delete;
+    const deletedData = storageData.delete;
     cloneData.map((item) => {
-      if (item.id === saveId?.id) {
+      if (item.id === saveId.id) {
         deletedData.push(item);
         setStorageData({ delete: deletedData });
       }
@@ -504,13 +486,6 @@ export default function MessagingPage() {
   };
 
   /**
-   * Reply Message
-   */
-  const replyMessage = (id) => {
-    // Integrasi API service for this to reply the message
-  };
-
-  /**
    * Save Message to Draft
    */
   const saveToDraft = () => {
@@ -526,11 +501,9 @@ export default function MessagingPage() {
   };
 
   const providerFieldFocus = () => {
-    console.log("sini");
     const dummyEl = document.getElementById("name");
     // check for focus
     const isFocused = document.activeElement === dummyEl;
-    console.log(isFocused);
     setIsFocus(isFocused);
   };
 
