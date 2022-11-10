@@ -32,7 +32,7 @@ export const styles = {
     color: "#003B4A",
   },
   boxStyledMobile: {
-    display: { xs: "flex", md: "none" },
+    display: { xs: "flex", sm: "none" },
     justifyContent: "flex-end",
     "@media print": {
       display: "none !important",
@@ -42,13 +42,13 @@ export const styles = {
     display: { xs: "block", md: "none" },
   },
   menuItemMobile: { color: "black" },
-  boxProfileMenuStyles: { flexGrow: 0, display: { xs: "none", md: "flex" } },
+  boxProfileMenuStyles: { flexGrow: 0, display: { xs: "none", sm: "flex" } },
   boxButtonStyles: { color: "black", textTransform: "none" },
   userText: {
-    fontFamily: "Libre Franklin",
-    fontWeight: "400",
-    fontSize: "16px",
-    color: "#191919",
+    fontWeight: "700 !important",
+    fontSize: "16px !important",
+    lineHeight: "24px !important",
+    color: "#191919 !important",
   },
   menuProfileMenu: { mt: "45px" },
   buttonProfileMenu: { color: "black" },

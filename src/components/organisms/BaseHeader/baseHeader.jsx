@@ -20,7 +20,6 @@ import constants from "../../../utils/constants";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
@@ -33,6 +32,8 @@ import {
   markAsReadById,
 } from "../../../store/notification";
 import Link from "next/link";
+import EcommerceButton from "../../atoms/EcommerceButton/ecommerceButton";
+import EcommerceButtonMobile from "../../atoms/EcommerceButton/ecommerceButtonMobile";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -153,40 +154,14 @@ export default function BaseHeader({
               </Link>
               <Stack flexDirection="row" alignItems="center">
                 {/* Menu Desktop*/}
-                <Stack
-                  flexDirection={"row"}
-                  flex={1}
-                  justifyContent={"flex-end"}
-                  sx={{
+                <EcommerceButton
+                  wrapperStyle={{
+                    margin: "12px 16px",
                     display: { xs: "none", sm: "flex" },
                   }}
                 >
-                  <IconButton
-                    sx={{
-                      px: "20px",
-                      py: "8px",
-                      backgroundColor: colors.teal15,
-                      borderRadius: "30px",
-                    }}
-                  >
-                    <Image
-                      src="/contact-shop-icon.png"
-                      alt={"marketplace"}
-                      width={16}
-                      height={16}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: 14,
-                        fontWeight: 600,
-                        lineHeight: "18px",
-                      }}
-                    >
-                      Shop for Contacts
-                    </Typography>
-                    <ArrowRightAltIcon />
-                  </IconButton>
-                </Stack>
+                  Shop for Contacts
+                </EcommerceButton>
 
                 {/* notification badge */}
                 <IconButton
@@ -262,13 +237,25 @@ export default function BaseHeader({
                   <Tooltip title="Username dropdown">
                     <Button
                       variant="text"
-                      sx={[styles.boxButtonStyles, styles.userText]}
+                      sx={styles.boxButtonStyles}
                       startIcon={<Avatar sx={{ background: "#003B4A" }} />}
                       data-testid="user-menu-open"
                       endIcon={<ExpandMoreIcon />}
                       onClick={handleOpenUserMenu}
                     >
-                      {user.name}
+                      <Typography
+                        sx={[
+                          styles.userText,
+                          {
+                            display: {
+                              xs: "none",
+                              md: "block",
+                            },
+                          },
+                        ]}
+                      >
+                        {user.name}
+                      </Typography>
                     </Button>
                   </Tooltip>
                   <Menu
@@ -332,6 +319,7 @@ export default function BaseHeader({
           )}
         </Container>
       </AppBar>
+      {isUserLoged && <EcommerceButtonMobile />}
       {showNavbar && isUserLoged && <Navbar />}
       {backTitle && (
         <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
