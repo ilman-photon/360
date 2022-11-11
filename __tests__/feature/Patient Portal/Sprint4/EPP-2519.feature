@@ -53,7 +53,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -63,7 +63,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user enters the insurance name
     And user clicks on the Search button
 
-    Examples:
 
   @BDDTEST-EPP-2973
   @Appointments
@@ -71,7 +70,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -83,7 +82,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user views the results in the Schedule Appointments screen
     And user views the selected location.
 
-    Examples:
 
   @BDDTEST-EPP-2974
   @Appointments
@@ -91,7 +89,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the date of appointment
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the date of appointment
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -103,7 +101,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user views the results in the Schedule Appointments screen
     And user views the date of appointment.
 
-    Examples:
 
   @BDDTEST-EPP-2975
   @Appointments
@@ -111,7 +108,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user views the purpose of visit
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user views the purpose of visit
     Given user launch the Marketing Site URL		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -123,7 +120,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user views the results in the Schedule Appointments screen
     And user views the purpose of the visit.
 
-    Examples:
 
   @BDDTEST-EPP-2976
   @Appointments
@@ -131,7 +127,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the insurance carrier.
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the insurance carrier.
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -143,7 +139,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user views the results in the Schedule Appointments screen
     And user views the insurance carrier.
 
-    Examples:
 
   @BDDTEST-EPP-2977
   @Appointments
@@ -151,7 +146,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify whether user is able to see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify whether user is able to see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -162,7 +157,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user clicks on the Search button
     And user lands on Schedule Appointment screen with the selected location, date, purpose of visit (if provided) and insurance carrier (if provided)
 
-    Examples:
 
   @BDDTEST-EPP-2978
   @Appointments
@@ -170,7 +164,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user is able to see the timeslot in the Schedule Oppointments screen
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user is able to see the timeslot in the Schedule Oppointments screen
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -182,7 +176,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user views the results in the Schedule Appointments screen
     And user views the timeslot
 
-    Examples:
 
   @BDDTEST-EPP-2979
   @Appointments
@@ -190,7 +183,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user is able to select the timeslot in the Schedule Oppointments screen
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user is able to select the timeslot in the Schedule Oppointments screen
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -202,7 +195,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user views the results in the Schedule Appointments screen
     And user select the timeslot 
 
-    Examples:
 
   @BDDTEST-EPP-2980
   @Appointments
@@ -210,7 +202,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user lands on the screen to review the appointment details
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user lands on the screen to review the appointment details
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -223,7 +215,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user select the timeslot
     Then user lands on the screen to review the appointment details
 
-    Examples:
 
   @BDDTEST-EPP-2981
   @Appointments
@@ -231,7 +222,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user selects the option to change the insurance career
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user selects the option to change the insurance career
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -245,7 +236,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     Then user lands on the screen to review the appointment details
     And user selects the option to change the insurance career
 
-    Examples:
 
   @BDDTEST-EPP-2982
   @Appointments
@@ -253,7 +243,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user should get navigated to the screen to select an insurance career
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user should get navigated to the screen to select an insurance career
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -268,7 +258,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user selects the option to change the insurance career
     Then user should get navigated to the screen to select an insurance career
 
-    Examples:
 
   @BDDTEST-EPP-2983
   @Appointments
@@ -276,7 +265,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user able to Change Insurance
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user able to Change Insurance
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -292,7 +281,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     Then user should get navigated to the screen to select an insurance career
     And user Change Insurance
 
-    Examples:
 
   @BDDTEST-EPP-2984
   @Appointments
@@ -300,7 +288,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user able to review the appointment details once again
+  Scenario: EPIC_EPP-44_STORY_EPP-2519 - Verify whether the user able to review the appointment details once again
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -317,4 +305,3 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Change Insu
     And user Change Insurance during review
     Then user once again review the appointment details
 
-    Examples:

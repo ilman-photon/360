@@ -2,7 +2,6 @@
 @Appointments
 @P1
 @Patient_Portal
-@Include
 Feature: Patient Portal : Schedule appointment from Patient Portal - Select time slot for appointment
   User Story: As a user, I should be able to select a time slot of a provider to schedule appointment from patient portal.
 Acceptance Criteria:
