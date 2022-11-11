@@ -33,7 +33,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2534 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.
+  Scenario: EPIC_EPP-44_STORY_EPP-2534 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password 
     And user clicks on Login button
@@ -48,7 +48,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
     And user views the results on the Schedule Appointments screen
     And user views the selected location, date of appointment, the purpose of visit, and insurance carrier.
 
-    Examples:
 
   @BDDTEST-EPP-3101
   @Appointments
@@ -56,7 +55,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2534 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location
+  Scenario: EPIC_EPP-44_STORY_EPP-2534 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password 
     And user clicks on Login button
@@ -71,7 +70,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
     And user views the results in the Schedule Appointments screen
     And user views the selected location.
 
-    Examples:
 
   @BDDTEST-EPP-3102
   @Appointments
@@ -79,7 +77,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2534 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the date of appointment
+  Scenario: EPIC_EPP-44_STORY_EPP-2534 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the date of appointment
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password 
     And user clicks on Login button
@@ -94,7 +92,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
     And user views the results in the Schedule Appointments screen
     And user views the date of appointment.
 
-    Examples:
 
   @BDDTEST-EPP-3103
   @Appointments
@@ -102,7 +99,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2534 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user views the purpose of visit
+  Scenario: EPIC_EPP-44_STORY_EPP-2534 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user views the purpose of visit
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password 
     And user clicks on Login button
@@ -117,7 +114,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
     And user views the results in the Schedule Appointments screen
     And user views the purpose of the visit.
 
-    Examples:
 
   @BDDTEST-EPP-3104
   @Appointments
@@ -125,7 +121,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2534 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the insurance carrier.
+  Scenario: EPIC_EPP-44_STORY_EPP-2534 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the insurance carrier.
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password 
     And user clicks on Login button
@@ -140,4 +136,3 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Search loca
     And user views the results in the Schedule Appointments screen
     And user views the insurance carrier.
 
-    Examples:
