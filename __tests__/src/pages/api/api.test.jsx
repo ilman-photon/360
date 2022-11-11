@@ -2,6 +2,9 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { Api } from "../../../../src/pages/api/api";
 
+import store, { setGenericErrorMessage } from "../../../../src/store/store";
+import constants from "../../../../src/utils/constants";
+
 describe("Api test", () => {
   let mock;
 
@@ -127,9 +130,12 @@ describe("Api test", () => {
       };
       mock.onPost(`/ecp/patient/oneTimeLinkToken`).reply(200, expectedResult);
       const api = new Api();
-      const result = await api.tokenValidation({
-        oneTimeToken: "123",
-      }, "oneTimeLink");
+      const result = await api.tokenValidation(
+        {
+          oneTimeToken: "123",
+        },
+        "oneTimeLink"
+      );
       expect(result).toEqual(expectedResult);
     });
 
@@ -143,7 +149,8 @@ describe("Api test", () => {
       const result = await api.tokenValidation(
         {
           resetPasswordToken: "123",
-        }, "reset"
+        },
+        "reset"
       );
       expect(result).toEqual(expectedResult);
     });
@@ -209,9 +216,12 @@ describe("Api test", () => {
       };
       mock.onPost(`/ecp/patient/oneTimeLinkToken`).reply(200, expectedResult);
       const api = new Api();
-      const result = await api.tokenValidation({
-        oneTimeToken: "123",
-      }, "oneTimeLink");
+      const result = await api.tokenValidation(
+        {
+          oneTimeToken: "123",
+        },
+        "oneTimeLink"
+      );
       expect(result).toEqual(expectedResult);
     });
 
@@ -224,7 +234,7 @@ describe("Api test", () => {
           {
             resetPasswordToken: "123",
           },
-          'reset'
+          "reset"
         )
         .catch((response) => {
           expect(response.request.responseURL).toEqual(
@@ -242,7 +252,7 @@ describe("Api test", () => {
           {
             resetPasswordToken: "123",
           },
-          'reset'
+          "reset"
         )
         .catch((response) => {
           expect(response.request.responseURL).toEqual(
@@ -281,7 +291,7 @@ describe("Api test", () => {
           {
             resetPasswordToken: "123",
           },
-          'reset'
+          "reset"
         )
         .catch((response) => {
           expect(response).toEqual(expectedResult);
@@ -303,5 +313,107 @@ describe("Api test", () => {
           expect(response).toEqual(expectedResult);
         });
     });
+
+    it("errorGenericValidation", async () => {
+      const err = {
+        code: constants.ERROR_CODE.BAD_REQUEST,
+        response: {
+          data: {
+            ResponseCode: "Not Empty",
+          },
+        },
+      };
+      const err2 = {
+        code: constants.ERROR_CODE.NETWORK_ERR,
+        response: {
+          data: {
+            ResponseCode: "Not Empty",
+          },
+        },
+      };
+      const api = new Api();
+      api.errorGenericValidation(err);
+      api.errorGenericValidation({ ...err, response: null });
+      api.errorGenericValidation({ ...err, data: null });
+      api.errorGenericValidation({
+        ...err,
+        data: {
+          ResponseCode: undefined,
+        },
+      });
+      api.errorGenericValidation(err2);
+    });
+
+    it("responseCodeValidation", async () => {
+      const err = {
+        code: constants.ERROR_CODE.BAD_REQUEST,
+        response: {
+          data: {
+            ResponseCode: "Not Empty",
+          },
+        },
+      };
+      const api = new Api();
+      expect(api.responseCodeValidation(err)).toBeTruthy();
+    });
+  });
+
+  it("create client error", async () => {
+    const errorResult = {
+      ResponseCode: 400,
+      data: {
+        _errors: "Error Test",
+      },
+      _errors: "Error Test",
+    };
+
+    mock.onPost(`/ecp/patient/search/ecppatientid`).reply(300, errorResult);
+    const api = new Api();
+    api
+      .getResponse(
+        `/ecp/patient/search/ecppatientid`,
+        {
+          resetPasswordToken: "123",
+        },
+        "post"
+      )
+      .catch((response) => {});
+  });
+
+  it("tokenValidation", async () => {
+    const expectedResult = {
+      ResponseCode: 1000,
+      ResponseType: "success",
+    };
+    mock.onPost(`/ecp/patient/oneTimeLinkToken`).reply(200, expectedResult);
+    const api = new Api();
+    const result = await api.tokenValidation(
+      {
+        resetPasswordToken: "123",
+      },
+      "link"
+    );
+    expect(result).toEqual(expectedResult);
+  });
+
+  it("getIpAddress", async () => {
+    const expectedResult = {
+      message: "Your refill request has been canceled",
+    };
+    mock
+      .onPost(`http://localhost/api/dummy/prescription/cancelRequestRefill`)
+      .reply(200, expectedResult);
+
+    const api = new Api();
+    const result = await api.doMedicationCancelRequestRefill({
+      patientId: "001",
+    });
+    expect(result).toEqual(expectedResult);
+  });
+
+  it("uploadFile", async () => {
+    const api = new Api();
+    const result = await api.uploadFile("http//dummy.com", {});
+    // expect(result).toEqual(expectedResult);
   });
 });

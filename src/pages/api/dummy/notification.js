@@ -55,7 +55,7 @@ export default function Notifications(req, res) {
       false,
       "test-result",
       "2022-10-26T13:22:45.177Z",
-      "You <b>lab test test results</b> are available now."
+      "Your <b>lab test results</b> are available now."
     ),
     createData(
       5,

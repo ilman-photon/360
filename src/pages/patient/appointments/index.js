@@ -19,6 +19,7 @@ import Cookies from "universal-cookie";
 import { addToCalendar } from "../../../utils/addToCalendar";
 import { appointmentParser } from "../../../utils/appointmentsModel";
 import { fetchAppointmentById } from "../../../store/appointment";
+import { parsePurposeOfVisit } from "../../../utils/appointment";
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
@@ -29,10 +30,26 @@ export default function Appointments() {
   const [upcomingAppointment, setUpcomingAppointment] = useState([]);
   const [pastAppointment, setPastAppointment] = useState([]);
   const [choosenAppointment, setChoosenAppointment] = useState({});
+  const [appointmentTypes, setAppointmentTypes] = useState([]);
 
   const dispatch = useDispatch();
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 992px)");
+
+  function onCalledGetAppointmentTypesAPI() {
+    const api = new Api();
+    api
+      .getAppointmentTypes()
+      .then(function (response) {
+        const parsedAppointmentTypes = parsePurposeOfVisit(
+          response?.entities || []
+        );
+        setAppointmentTypes(parsedAppointmentTypes);
+      })
+      .catch(function () {
+        //Handle error getsuggestion
+      });
+  }
 
   const getAppointments = () => {
     const api = new Api();
@@ -41,7 +58,7 @@ export default function Appointments() {
       .then((response) => {
         const upcomingAppointment = [];
         response.entities.map((data) => {
-          const mappedData = appointmentParser(data);
+          const mappedData = appointmentParser(data, appointmentTypes);
           upcomingAppointment.push(mappedData);
         });
         setUpcomingAppointment(upcomingAppointment);
@@ -58,7 +75,7 @@ export default function Appointments() {
         if (response.count !== 0) {
           const pastAppointment = [];
           response.entities.map((data) => {
-            const mappedData = appointmentParser(data);
+            const mappedData = appointmentParser(data, appointmentTypes);
             pastAppointment.push(mappedData);
           });
           setPastAppointment(pastAppointment);
@@ -72,6 +89,10 @@ export default function Appointments() {
   };
 
   useEffect(() => {
+    onCalledGetAppointmentTypesAPI();
+  }, []);
+
+  useEffect(() => {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
       router.push("/patient/login");
@@ -82,11 +103,9 @@ export default function Appointments() {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    if (!isRequestedPast && !isRequestedUpcoming) {
-      getAppointments();
-    }
+    getAppointments();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [upcomingAppointment, pastAppointment]);
+  }, [appointmentTypes]);
 
   const onRescheduleClicked = ({ appointmentId }) => {
     if (appointmentId) {
@@ -219,7 +238,7 @@ export default function Appointments() {
 Appointments.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AppointmentLayout currentActivePage={"appointments"}>
+      <AppointmentLayout currentActivePage={"appointments"} showNavbar={true}>
         {page}
       </AppointmentLayout>
     </Provider>

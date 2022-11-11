@@ -10,7 +10,7 @@ export default function AppointmentInformation({ data }) {
     const addressLine1 = address.addressLine1 || "";
     const addressLine2 = address.addressLine2 || "";
     const state = address.state || "";
-    const zipcode = address.zipcode || address.zip || "";
+    const zipcode = address.zipcode || "";
     const city = address.city || "";
 
     const addressQuery =
@@ -21,11 +21,34 @@ export default function AppointmentInformation({ data }) {
     return `https://www.google.com/maps/search/?api=1&query=${addressQuery}`;
   };
 
+  const getAriaLabel = (providerInfo) => {
+    const position = providerInfo.position || "";
+    const addressLine1 = providerInfo.address.addressLine1 || "";
+    const addressLine2 = providerInfo.address.addressLine2 || "";
+    const city = providerInfo.address.city || "";
+    const state = providerInfo.address.state || "";
+    const zipcode = providerInfo.address.zipcode || "";
+
+    return (
+      position +
+      `\n` +
+      addressLine1 +
+      `\n` +
+      addressLine2 +
+      `\n` +
+      city +
+      "\n" +
+      state +
+      `\n` +
+      zipcode
+    );
+  };
+
   return (
     <Box className={styles.appointmentInformation}>
       <Box className={styles.imageContainer}>
         <ImageFallback
-          src={data.providerInfo.image}
+          source={data.providerInfo.image}
           layout="fill"
           tabIndex={0}
           className={styles.profilePhoto}
@@ -70,24 +93,17 @@ export default function AppointmentInformation({ data }) {
           >
             Location
           </Typography>
-
           <div
             tabIndex={0}
             ariaLabel={
               data.providerInfo.address !== "" &&
-              (data.providerInfo.position ||
-                "" + `\n` + data.providerInfo.address.addressLine1 ||
-                "" + `\n` + data.providerInfo.address.addressLine2 ||
-                "" + `\n` + data.providerInfo.address.city ||
-                "" + "\n" + data.providerInfo.address.state ||
-                "" + `\n` + data.providerInfo.address.zipcode ||
-                "")
+              getAriaLabel(data.providerInfo)
             }
           >
             <Typography variant="body1" className={styles.bodyTitle}>
               {data.providerInfo.position}
             </Typography>
-            {data.providerInfo?.address !== "" && (
+            {data.providerInfo.address !== "" && (
               <Typography variant="body2" sx={{ color: "#191919" }}>
                 {data.providerInfo.address.addressLine1 +
                   `\n` +

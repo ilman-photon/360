@@ -60,7 +60,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
     {
@@ -97,7 +110,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
   ],
@@ -402,7 +428,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     and(
@@ -462,7 +488,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on to the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     when(
@@ -528,13 +554,15 @@ defineFeature(feature, (test) => {
 
     then("User lands on to the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     and(
       "user should see the current location as default, if location is enabled.",
       async () => {
-        expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
       }
     );
   });
@@ -583,7 +611,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on to the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     and("search the location using City option", async () => {
@@ -593,7 +621,9 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the list of locations based upon City.", () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
   });
 
@@ -641,7 +671,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on to the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     and("search the location using State option.", async () => {
@@ -651,7 +681,9 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the list of locations based upon State.", () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
   });
 
@@ -699,7 +731,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     and("search the location using the Zipcode option.", async () => {
@@ -711,7 +743,9 @@ defineFeature(feature, (test) => {
     then(
       "the user should see the list of locations based upon Zipcode.",
       () => {
-        expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
       }
     );
   });
@@ -760,17 +794,21 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     and("click the option such as use my current location link", () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
 
     then(
       "the user sees the his/her current location in location field.",
       () => {
-        expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
       }
     );
   });
@@ -819,7 +857,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     then(
@@ -875,7 +913,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     then(
@@ -931,11 +969,13 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     and("the user should select the location", () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
 
     and("the user should select the Date of Appointment", () => {
@@ -954,11 +994,11 @@ defineFeature(feature, (test) => {
     });
 
     and("click on the Search button", async () => {
-      cleanup()
+      cleanup();
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
 
       const domain = window.location.origin;
@@ -982,7 +1022,9 @@ defineFeature(feature, (test) => {
       expect(insuranceField).toBeInTheDocument();
       expect(pusposeField).toBeInTheDocument();
       expect(dateField).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
   });
 });

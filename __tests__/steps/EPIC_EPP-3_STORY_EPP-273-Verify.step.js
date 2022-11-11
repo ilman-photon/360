@@ -232,23 +232,23 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user leave the field blank "(.*)"$/, (arg0) => {
-      const answer1 = container.getByLabelText("Answer 1");
+      const answer1 = container.getByLabelText(/Answer 1/i);
       fireEvent.change(answer1, { target: { value: "" } });
       expect(answer1.value).toEqual("");
 
-      const answer2 = container.getByLabelText("Answer 2");
+      const answer2 = container.getByLabelText(/Answer 2/i);
       fireEvent.change(answer2, { target: { value: "" } });
       expect(answer2.value).toEqual("");
 
-      const answer3 = container.getByLabelText("Answer 3");
+      const answer3 = container.getByLabelText(/Answer 3/i);
       fireEvent.change(answer3, { target: { value: "" } });
       expect(answer3.value).toEqual("");
 
-      const answer4 = container.getByLabelText("Answer 4");
+      const answer4 = container.getByLabelText(/Answer 4/i);
       fireEvent.change(answer4, { target: { value: "" } });
       expect(answer4.value).toEqual("");
 
-      const answer5 = container.getByLabelText("Answer 5");
+      const answer5 = container.getByLabelText(/Answer 5/i);
       fireEvent.change(answer5, { target: { value: "" } });
       expect(answer5.value).toEqual("");
     });
@@ -412,25 +412,25 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user leave "(.*)" field blank$/, (arg0) => {
-      const answer1 = container.getByLabelText("Answer 1");
+      const answer1 = container.getByLabelText(/Answer 1/i);
       fireEvent.change(answer1, { target: { value: "" } });
       expect(answer1.value).toEqual("");
     });
 
     and(/^user enter the "(.*)"$/, (arg0) => {
-      const answer2 = container.getByLabelText("Answer 2");
+      const answer2 = container.getByLabelText(/Answer 2/i);
       fireEvent.change(answer2, { target: { value: "test answer 2" } });
       expect(answer2.value).toEqual("test answer 2");
 
-      const answer3 = container.getByLabelText("Answer 3");
+      const answer3 = container.getByLabelText(/Answer 3/i);
       fireEvent.change(answer3, { target: { value: "test answer 3" } });
       expect(answer3.value).toEqual("test answer 3");
 
-      const answer4 = container.getByLabelText("Answer 4");
+      const answer4 = container.getByLabelText(/Answer 4/i);
       fireEvent.change(answer4, { target: { value: "test answer 4" } });
       expect(answer4.value).toEqual("test answer 4");
 
-      const answer5 = container.getByLabelText("Answer 5");
+      const answer5 = container.getByLabelText(/Answer 5/i);
       fireEvent.change(answer5, { target: { value: "test answer 5" } });
       expect(answer5.value).toEqual("test answer 5");
     });
@@ -590,25 +590,25 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user leave "(.*)" field blank$/, (arg0) => {
-      const answer2 = container.getByLabelText("Answer 2");
+      const answer2 = container.getByLabelText(/Answer 2/i);
       fireEvent.change(answer2, { target: { value: "" } });
       expect(answer2.value).toEqual("");
     });
 
     and(/^user enter the "(.*)"$/, (arg0) => {
-      const answer1 = container.getByLabelText("Answer 1");
+      const answer1 = container.getByLabelText(/Answer 1/i);
       fireEvent.change(answer1, { target: { value: "test answer 1" } });
       expect(answer1.value).toEqual("test answer 1");
 
-      const answer3 = container.getByLabelText("Answer 3");
+      const answer3 = container.getByLabelText(/Answer 3/i);
       fireEvent.change(answer3, { target: { value: "test answer 3" } });
       expect(answer3.value).toEqual("test answer 3");
 
-      const answer4 = container.getByLabelText("Answer 4");
+      const answer4 = container.getByLabelText(/Answer 4/i);
       fireEvent.change(answer4, { target: { value: "test answer 4" } });
       expect(answer4.value).toEqual("test answer 4");
 
-      const answer5 = container.getByLabelText("Answer 5");
+      const answer5 = container.getByLabelText(/Answer 5/i);
       fireEvent.change(answer5, { target: { value: "test answer 5" } });
       expect(answer5.value).toEqual("test answer 5");
     });
@@ -775,25 +775,25 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user leave "(.*)" field blank$/, (arg0) => {
-      const answer3 = container.getByLabelText("Answer 3");
+      const answer3 = container.getByLabelText(/Answer 3/i);
       fireEvent.change(answer3, { target: { value: "" } });
       expect(answer3.value).toEqual("");
     });
 
     and(/^user enter the "(.*)"$/, (arg0) => {
-      const answer1 = container.getByLabelText("Answer 1");
+      const answer1 = container.getByLabelText(/Answer 1/i);
       fireEvent.change(answer1, { target: { value: "test answer 1" } });
       expect(answer1.value).toEqual("test answer 1");
 
-      const answer2 = container.getByLabelText("Answer 2");
+      const answer2 = container.getByLabelText(/Answer 2/i);
       fireEvent.change(answer2, { target: { value: "test answer 2" } });
       expect(answer2.value).toEqual("test answer 2");
 
-      const answer4 = container.getByLabelText("Answer 4");
+      const answer4 = container.getByLabelText(/Answer 4/i);
       fireEvent.change(answer4, { target: { value: "test answer 4" } });
       expect(answer4.value).toEqual("test answer 4");
 
-      const answer5 = container.getByLabelText("Answer 5");
+      const answer5 = container.getByLabelText(/Answer 5/i);
       fireEvent.change(answer5, { target: { value: "test answer 5" } });
       expect(answer5.value).toEqual("test answer 5");
     });
@@ -952,25 +952,25 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user leave "(.*)" field blank$/, (arg0) => {
-      const answer1 = container.getByLabelText("Answer 1");
+      const answer1 = container.getByLabelText(/Answer 1/i);
       fireEvent.change(answer1, { target: { value: "" } });
       expect(answer1.value).toEqual("");
 
-      const answer3 = container.getByLabelText("Answer 3");
+      const answer3 = container.getByLabelText(/Answer 3/i);
       fireEvent.change(answer3, { target: { value: "" } });
       expect(answer3.value).toEqual("");
     });
 
     and(/^user enter the "(.*)","(.*)","(.*)"$/, (arg0, arg1, arg2) => {
-      const answer2 = container.getByLabelText("Answer 2");
+      const answer2 = container.getByLabelText(/Answer 2/i);
       fireEvent.change(answer2, { target: { value: "test answer 2" } });
       expect(answer2.value).toEqual("test answer 2");
 
-      const answer4 = container.getByLabelText("Answer 4");
+      const answer4 = container.getByLabelText(/Answer 4/i);
       fireEvent.change(answer4, { target: { value: "test answer 4" } });
       expect(answer4.value).toEqual("test answer 4");
 
-      const answer5 = container.getByLabelText("Answer 5");
+      const answer5 = container.getByLabelText(/Answer 5/i);
       fireEvent.change(answer5, { target: { value: "test answer 5" } });
       expect(answer5.value).toEqual("test answer 5");
     });

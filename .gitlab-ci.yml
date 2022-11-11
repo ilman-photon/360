@@ -91,11 +91,16 @@ imagebuild:
     - docker build -t photon-ecp-e360-dev .
     - docker tag photon-ecp-e360-dev:latest 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-e360-dev:ecp-patient-$CI_PIPELINE_IID
     - docker push 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-e360-dev:ecp-patient-$CI_PIPELINE_IID
+    - docker rmi -f photon-ecp-e360-dev
+    - docker rmi -f 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-e360-dev:ecp-patient-$CI_PIPELINE_IID
     
 deploy_to:
   stage: deploy
   tags:
     - Frontend-runner
+  only:
+    refs:
+      - develop  
   #image: alpine:latest
   # when: manual
   #before_script:

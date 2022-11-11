@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { colors } from "../../../styles/theme";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import NotificationItem from "../../atoms/NotificationItem/notificationItem";
 
@@ -38,6 +38,19 @@ const NotificationDrawer = ({
   },
 }) => {
   const [activeTabs, setActiveTabs] = useState(0);
+  const [filteredNotification, setFilteredNotification] = useState([]);
+
+  useEffect(() => {
+    if (notifications.length > 0) {
+      const filtered = notifications.filter((v) => {
+        if (activeTabs === 0) return !v.isRead;
+        else return v.isRead;
+      });
+
+      setFilteredNotification(filtered);
+    }
+  }, [notifications, activeTabs]);
+
   return (
     <Drawer
       sx={{
@@ -134,28 +147,22 @@ const NotificationDrawer = ({
             )}
           </Stack>
 
-          {/* {JSON.stringify(notifications)} */}
-          {notifications.length > 0 ? (
+          {filteredNotification.length > 0 ? (
             <div
               style={{ flex: 1, overflow: "auto" }}
               className="hide-scrollbar"
             >
               <Stack spacing="10px">
-                {notifications
-                  .filter((v) => {
-                    if (activeTabs === 0) return !v.isRead;
-                    else return v.isRead;
-                  })
-                  .map((item, index) => {
-                    return (
-                      <NotificationItem
-                        key={index}
-                        isRead={item.isRead}
-                        data={item}
-                        onClick={() => onItemClicked(item)}
-                      />
-                    );
-                  })}
+                {filteredNotification.map((item, index) => {
+                  return (
+                    <NotificationItem
+                      key={index}
+                      isRead={item.isRead}
+                      data={item}
+                      onClick={() => onItemClicked(item)}
+                    />
+                  );
+                })}
               </Stack>
             </div>
           ) : (

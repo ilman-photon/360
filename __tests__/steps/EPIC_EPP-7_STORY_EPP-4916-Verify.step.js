@@ -114,9 +114,9 @@ defineFeature(feature, (test) => {
     });
 
     and('Enter the wrong answers', () => {
-      const question1 = container.getByLabelText("Test Question 1")
-      const question2 = container.getByLabelText("Test Question 2")
-      const question3 = container.getByLabelText("Test Question 3")
+      const question1 = container.getByLabelText("Test Question 1 *")
+      const question2 = container.getByLabelText("Test Question 2 *")
+      const question3 = container.getByLabelText("Test Question 3 *")
 
       fireEvent.change(question1, {
         target: { value: "wrong" },
@@ -238,9 +238,9 @@ defineFeature(feature, (test) => {
     });
 
     and(/^Enter the (\d+)th time wrong answers$/, (arg0) => {
-      const question1 = container.getByLabelText("Test Question 1")
-      const question2 = container.getByLabelText("Test Question 2")
-      const question3 = container.getByLabelText("Test Question 3")
+      const question1 = container.getByLabelText("Test Question 1 *")
+      const question2 = container.getByLabelText("Test Question 2 *")
+      const question3 = container.getByLabelText("Test Question 3 *")
 
       fireEvent.change(question1, {
         target: { value: "wrong" },
@@ -361,9 +361,9 @@ defineFeature(feature, (test) => {
     });
 
     and(/^Enter the (\d+)th time wrong answers$/, (arg0) => {
-      const question1 = container.getByLabelText("Test Question 1")
-      const question2 = container.getByLabelText("Test Question 2")
-      const question3 = container.getByLabelText("Test Question 3")
+      const question1 = container.getByLabelText("Test Question 1 *")
+      const question2 = container.getByLabelText("Test Question 2 *")
+      const question3 = container.getByLabelText("Test Question 3 *")
 
       fireEvent.change(question1, {
         target: { value: "wrong" },
@@ -417,11 +417,11 @@ defineFeature(feature, (test) => {
     });
 
     when('the user enters a valid username and password', () => {
-      const usernameField = login.getByLabelText("emailUserLabel");
+      const usernameField = login.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
       expect(usernameField.value).toEqual("validUsername@mail.com");
 
-      const passwordField = login.getByLabelText("passwordLabel");
+      const passwordField = login.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -527,9 +527,9 @@ defineFeature(feature, (test) => {
     });
 
     and(/^Enter the (\d+)th time wrong answers$/, (arg0) => {
-      const question1 = container.getByLabelText("Test Question 1")
-      const question2 = container.getByLabelText("Test Question 2")
-      const question3 = container.getByLabelText("Test Question 3")
+      const question1 = container.getByLabelText("Test Question 1 *")
+      const question2 = container.getByLabelText("Test Question 2 *")
+      const question3 = container.getByLabelText("Test Question 3 *")
 
       fireEvent.change(question1, {
         target: { value: "wrong" },
@@ -583,11 +583,11 @@ defineFeature(feature, (test) => {
     });
 
     when('the user enters a valid username and password', () => {
-      const usernameField = login.getByLabelText("emailUserLabel");
+      const usernameField = login.getByLabelText(/emailUserLabel/i);
       fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
       expect(usernameField.value).toEqual("validUsername@mail.com");
 
-      const passwordField = login.getByLabelText("passwordLabel");
+      const passwordField = login.getByLabelText(/passwordLabel/i);
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
       expect(passwordField.value).toEqual("validPassword");
     });
@@ -693,9 +693,9 @@ defineFeature(feature, (test) => {
     });
 
     and(/^Enter the (\d+) time wrong answers to the security question$/, (arg0) => {
-      const question1 = container.getByLabelText("Test Question 1")
-      const question2 = container.getByLabelText("Test Question 2")
-      const question3 = container.getByLabelText("Test Question 3")
+      const question1 = container.getByLabelText("Test Question 1 *")
+      const question2 = container.getByLabelText("Test Question 2 *")
+      const question3 = container.getByLabelText("Test Question 3 *")
 
       fireEvent.change(question1, {
         target: { value: "wrong" },
@@ -711,9 +711,9 @@ defineFeature(feature, (test) => {
     });
 
     and(/^(\d+)th-time correct answer the security questions$/, (arg0) => {
-      const question1 = container.getByLabelText("Test Question 1")
-      const question2 = container.getByLabelText("Test Question 2")
-      const question3 = container.getByLabelText("Test Question 3")
+      const question1 = container.getByLabelText("Test Question 1 *")
+      const question2 = container.getByLabelText("Test Question 2 *")
+      const question3 = container.getByLabelText("Test Question 3 *")
 
       fireEvent.change(question1, {
         target: { value: "true" },

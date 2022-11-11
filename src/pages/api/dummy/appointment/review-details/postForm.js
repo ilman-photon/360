@@ -47,7 +47,20 @@ export default function postForm(req, res) {
           appointmentInfo: {
             appointmentType: "Eye Exam",
             date: "Thu, 12 Jan 2023 04:30:00 EST",
-            InsuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+            InsuranceCarrier: [
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "ECP Vision",
+              },
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "BlueCare Vision",
+              },
+            ],
           },
         },
         {
@@ -74,7 +87,20 @@ export default function postForm(req, res) {
           appointmentInfo: {
             appointmentType: "Eye Exam",
             date: "Thu, 12 Jan 2023 04:30:00 EST",
-            InsuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+            InsuranceCarrier: [
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "ECP Vision",
+              },
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "BlueCare Vision",
+              },
+            ],
           },
         },
       ],
@@ -106,7 +132,20 @@ export default function postForm(req, res) {
           appointmentInfo: {
             appointmentType: "Eye Exam",
             date: "Thu, 12 Jan 2023 04:30:00 EST",
-            InsuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+            InsuranceCarrier: [
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "ECP Vision",
+              },
+              {
+                category: "all",
+                divider: false,
+                id: "1",
+                name: "BlueCare Vision",
+              },
+            ],
           },
         },
         ResponseType: "success",
@@ -137,7 +176,20 @@ export default function postForm(req, res) {
         appointmentInfo: {
           appointmentType: "Eye Exam",
           date: "Thu, 12 Jan 2023 04:30:00 EST",
-          InsuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+          InsuranceCarrier: [
+            {
+              category: "all",
+              divider: false,
+              id: "1",
+              name: "ECP Vision",
+            },
+            {
+              category: "all",
+              divider: false,
+              id: "1",
+              name: "BlueCare Vision",
+            },
+          ],
         },
       });
     }

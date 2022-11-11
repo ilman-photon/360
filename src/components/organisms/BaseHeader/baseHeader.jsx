@@ -17,20 +17,23 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import constants from "../../../utils/constants";
-import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
+import Navbar from "../../molecules/Navbar/Navbar";
+import MobileMenu from "../../molecules/MobileMenu/mobileMenu";
 import NotificationDrawer from "../../molecules/NotificationDrawer/notificationDrawer";
 import {
   fetchNotifications,
   markAllAsRead,
   markAsReadById,
 } from "../../../store/notification";
+import Link from "next/link";
+import EcommerceButton from "../../atoms/EcommerceButton/ecommerceButton";
+import EcommerceButtonMobile from "../../atoms/EcommerceButton/ecommerceButtonMobile";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -38,6 +41,7 @@ export default function BaseHeader({
   },
   backTitle,
   onBackClicked,
+  showNavbar = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
@@ -181,53 +185,29 @@ export default function BaseHeader({
         <Container maxWidth="xl">
           {isUserLoged ? (
             <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
-              <Image
-                src={logo}
-                width={124}
-                height={36}
-                style={styles.logoStyled}
-                aria-label={"Clarkson Eyecare logo"}
-                title="Your Account"
-                tabIndex={0}
-                role={"img"}
-                data-testid={HOME_TEST_ID.header.logo}
-              ></Image>
+              <Link href={"/patient"} role={"none"} tabIndex={0}>
+                <Image
+                  src={logo}
+                  width={124}
+                  height={36}
+                  style={styles.logoStyled}
+                  aria-label={"Clarkson Eyecare logo"}
+                  title="Your Account"
+                  tabIndex={0}
+                  role={"img"}
+                  data-testid={HOME_TEST_ID.header.logo}
+                ></Image>
+              </Link>
               <Stack flexDirection="row" alignItems="center">
                 {/* Menu Desktop*/}
-                <Stack
-                  flexDirection={"row"}
-                  flex={1}
-                  justifyContent={"flex-end"}
-                  sx={{
+                <EcommerceButton
+                  wrapperStyle={{
+                    margin: "12px 16px",
                     display: { xs: "none", sm: "flex" },
                   }}
                 >
-                  <IconButton
-                    sx={{
-                      px: "20px",
-                      py: "8px",
-                      backgroundColor: colors.teal15,
-                      borderRadius: "30px",
-                    }}
-                  >
-                    <Image
-                      src="/contact-shop-icon.png"
-                      alt={"marketplace"}
-                      width={16}
-                      height={16}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: 14,
-                        fontWeight: 600,
-                        lineHeight: "18px",
-                      }}
-                    >
-                      Shop for Contacts
-                    </Typography>
-                    <ArrowRightAltIcon />
-                  </IconButton>
-                </Stack>
+                  Shop for Contacts
+                </EcommerceButton>
 
                 {/* notification badge */}
                 <IconButton
@@ -288,28 +268,40 @@ export default function BaseHeader({
                   </IconButton>
                 </Box>
 
-                <AccountDrawer
+                <MobileMenu
                   onClose={() => {
                     setAnchorElNav(false);
                   }}
-                  opened={anchorElNav}
-                  onLogoutClicked={() => {
+                  open={anchorElNav}
+                  onLogout={() => {
                     OnLogoutClicked(router);
                   }}
-                />
+                ></MobileMenu>
 
                 {/* profile menu */}
                 <Box sx={styles.boxProfileMenuStyles}>
                   <Tooltip title="Username dropdown">
                     <Button
                       variant="text"
-                      sx={[styles.boxButtonStyles, styles.userText]}
+                      sx={styles.boxButtonStyles}
                       startIcon={<Avatar sx={{ background: "#003B4A" }} />}
                       data-testid="user-menu-open"
                       endIcon={<ExpandMoreIcon />}
                       onClick={handleOpenUserMenu}
                     >
-                      {user.name}
+                      <Typography
+                        sx={[
+                          styles.userText,
+                          {
+                            display: {
+                              xs: "none",
+                              md: "block",
+                            },
+                          },
+                        ]}
+                      >
+                        {user.name}
+                      </Typography>
                     </Button>
                   </Tooltip>
                   <Menu
@@ -356,21 +348,25 @@ export default function BaseHeader({
             </Toolbar>
           ) : (
             <Toolbar disableGutters>
-              <Image
-                src={logo}
-                width="124px"
-                height="36px"
-                role={"img"}
-                quality={100}
-                style={styles.logoStyled}
-                aria-label={"Clarkson Eyecare logo"}
-                tabIndex={0}
-                data-testid={HOME_TEST_ID.header.logo}
-              ></Image>
+              <Link href={"/patient"} role={"none"} tabIndex={0}>
+                <Image
+                  src={logo}
+                  width="124px"
+                  height="36px"
+                  role={"img"}
+                  quality={100}
+                  style={styles.logoStyled}
+                  aria-label={"Clarkson Eyecare logo"}
+                  tabIndex={0}
+                  data-testid={HOME_TEST_ID.header.logo}
+                ></Image>
+              </Link>
             </Toolbar>
           )}
         </Container>
       </AppBar>
+      {isUserLoged && <EcommerceButtonMobile />}
+      {showNavbar && isUserLoged && <Navbar />}
       {backTitle && (
         <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
       )}

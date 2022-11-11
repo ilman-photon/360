@@ -32,6 +32,7 @@ const ConfirmationForm = ({
   primaryButtonTestId,
   formStyle = additional ? styles.margin : styles.marginDescription,
   pageTitle = "",
+  isSendLink = false,
 }) => {
   const router = useRouter();
   const { t, ready } = useTranslation("translation", {
@@ -51,23 +52,26 @@ const ConfirmationForm = ({
         <title>{`EyeCare Patient Portal - ${pageTitle}`}</title>
       </Head>
       {ready && (
-        <Card className={globalStyles.container} style={styles.cardStyle}>
+        <Card
+          className={globalStyles.container}
+          style={styles.cardStyle}
+          tabIndex={0}
+          aria-label={`${title} view`}
+        >
           <CardContent style={styles.cardContentStyle}>
             <HeadingTitle
               variant={constants.H2}
-              tabIndex={0}
-              aria-label={title}
               title={title}
               sx={{ fontSize: "32px" }}
             />
             {showPostMessage ? (
               <FormMessage
+                aria-live={"assertive"}
                 success={isSuccessPostMessage}
                 sx={styles.postMessage}
                 title={postMessageTitle}
                 tabIndex={0}
                 aria-label={postMessage}
-                aria-live={postMessage}
               >
                 {postMessage}
               </FormMessage>
@@ -98,21 +102,23 @@ const ConfirmationForm = ({
                   {description}
                 </Typography>
               )}
-              <StyledButton
-                type={constants.SUBMIT}
-                theme={constants.PATIENT}
-                mode={butttonMode}
-                size={constants.SMALL}
-                gradient={false}
-                data-testid={primaryButtonTestId}
-                style={{
-                  ...styles.margin,
-                  marginTop: "5%",
-                }}
-              >
-                {buttonIcon}
-                {buttonLabel}
-              </StyledButton>
+              {!isSendLink && (
+                <StyledButton
+                  type={constants.SUBMIT}
+                  theme={constants.PATIENT}
+                  mode={butttonMode}
+                  size={constants.SMALL}
+                  gradient={false}
+                  data-testid={primaryButtonTestId}
+                  style={{
+                    ...styles.margin,
+                    marginTop: "5%",
+                  }}
+                >
+                  {buttonIcon}
+                  {buttonLabel}
+                </StyledButton>
+              )}
             </form>
             {butttonMode !== constants.SECONDARY ? (
               <Link
@@ -125,6 +131,11 @@ const ConfirmationForm = ({
                 data-testid={FORGOT_TEST_ID.loginLink}
                 color={colors.link}
                 tabIndex={0}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    router.push("/patient/login");
+                  }
+                }}
                 aria-label={"Back to Log in link"}
                 onClick={function () {
                   onBackToLoginClicked(router);

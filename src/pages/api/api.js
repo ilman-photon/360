@@ -29,7 +29,7 @@ export class Api {
     return (
       err &&
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
-        err?.response?.data?.ResponseCode === undefined) ||
+        err.response?.data?.ResponseCode === undefined) ||
         err.code === constants.ERROR_CODE.NETWORK_ERR ||
         [500].indexOf(err.response?.status) !== -1) &&
       [400].indexOf(err.response?.status) === -1
@@ -190,13 +190,12 @@ export class Api {
         url = "/ecp/patient/oneTimeLinkToken";
         break;
     }
+
     return new Promise((resolve, reject) => {
       this.getResponse(url, postbody, "post")
         .then(function (data) {
           if (data) {
             resolve(data);
-          } else {
-            reject(data);
           }
         })
         .catch(function (err) {
@@ -227,19 +226,6 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
-  getIpAddress() {
-    return new Promise((resolve, reject) => {
-      axios
-        .get("https://api.ipify.org?format=json")
-        .then((response) => {
-          resolve(response.data.ip);
-        })
-        .catch(() => {
-          reject();
-        });
-    });
-  }
-
   async getUSListOfStates() {
     const usStatesApiUrl =
       "https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-state&q=&sort=ste_name&facet=ste_name&rows=99";
@@ -259,28 +245,6 @@ export class Api {
 
   getProviderDetails(providerId) {
     const url = `/ecp/appointments/getprovider/${providerId}`;
-    return this.getResponse(url, {}, "get");
-  }
-
-  getProviderAvailibility() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/create-appointment/getProviderAvailibility`;
-    return this.getResponse(url, {}, "post");
-  }
-
-  getSugestion() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/create-appointment/getSugestion`;
-    return this.getResponse(url, {}, "get");
-  }
-
-  getAllAppointment() {
-    const domain = window.location.origin;
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = `/${userData?.patientId}`;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
-      userData?.patientId ? patientId : ""
-    }`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -318,28 +282,6 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  updateAppointment(postbody) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/updateAppointment`;
-    return this.getResponse(url, postbody, "post");
-  }
-
-  postForm(postbody, method) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/review-details/postForm`;
-    return this.getResponse(url, postbody, method);
-  }
-
-  getAllPrescriptions() {
-    const domain = window.location.origin;
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = `?patientId=${userData?.patientId}`;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions${
-      userData && userData.patientId ? patientId : ""
-    }`;
-    return this.getResponse(url, {}, "get");
-  }
-
   createAppointment(postBody) {
     const url = `/ecp/appointments/savedetails`;
     return this.getResponse(url, postBody, "post");
@@ -358,6 +300,8 @@ export class Api {
   doMedicationCancelRequestRefill(postBody) {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/prescription/cancelRequestRefill`;
+    console.log("domain--", url);
+
     return this.getResponse(url, postBody, "post");
   }
 
@@ -447,5 +391,43 @@ export class Api {
     } catch (error) {
       console.error({ error });
     }
+  }
+
+  googleGeocode(address, apiKey) {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getProviderList() {
+    //TODO: const url = `/ecp/appointments/getproviderlist/`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = userData?.patientId;
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/biography/getProviderList?patientId=${patientId}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getAllMessages() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/messaging/getAllMessages`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getSentMessages() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/messaging/getSentMessages`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getDraftMessages() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/messaging/getDraftMessages`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getDeleteMessages() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/messaging/getDeleteMessages`;
+    return this.getResponse(url, {}, "get");
   }
 }

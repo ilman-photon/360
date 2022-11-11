@@ -49,15 +49,13 @@ export default function PrescriptionMedication({
   const [selectedData, setSelectedData] = React.useState({});
   const [filterData, setFilterData] = React.useState([]);
   const [filterMedicationData, setFilterMedicationData] = React.useState([]);
-  const [requestRefillResponse, setRequestRefillResponse] =
-    React.useState(null);
   const isFilterApplied = activeFilter.length > 0;
   const imageSrcState = "/mobileFilter.png";
   const imageSrcFilled = "/appliedMobileFilter.png";
   const isMobile = useMediaQuery("(max-width: 768px)");
   const iconMedication = "/icon-medication.png";
 
-  const downloadPDF = (medicationType, index = -1) => {
+  const downloadPDF = (medicationType, index) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -69,14 +67,20 @@ export default function PrescriptionMedication({
       containerSelector.current.querySelector(
         `[data-testid=medication-${medicationType}-container-${index}]`
       ) || document.body;
-    savePDF(element, {
-      paperSize: "auto",
-      margin: 40,
-      fileName: `Prescription Medication Don John`,
-    });
+    savePDF(
+      element,
+      {
+        paperSize: "auto",
+        margin: 40,
+        fileName: `Prescription Medication Don John`,
+      },
+      () => {
+        //this is intentional
+      }
+    );
   };
 
-  const printHTML = (medicationType, index = -1) => {
+  const printHTML = (medicationType, index) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -93,13 +97,13 @@ export default function PrescriptionMedication({
       "",
       "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
     );
-    WinPrint.document.write(element.innerHTML);
+    WinPrint?.document?.write(element.innerHTML);
     headStyles.forEach((st) => {
-      WinPrint.document.head.appendChild(st.cloneNode(true));
+      WinPrint?.document.head.appendChild(st.cloneNode(true));
     });
-    WinPrint.document.close();
-    WinPrint.focus();
-    WinPrint.print();
+    WinPrint?.document?.close();
+    WinPrint?.focus();
+    WinPrint?.print();
     setTimeout(() => {
       WinPrint.close();
     }, 500);
@@ -135,11 +139,6 @@ export default function PrescriptionMedication({
       setFilterMedicationData([]);
     }
   };
-
-  useEffect(() => {
-    setRequestRefillResponse(requestRefillResponseData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [requestRefillResponseData]);
 
   useEffect(() => {
     if (filterProvider.length && filterProvider.length > 0)
@@ -505,6 +504,7 @@ export default function PrescriptionMedication({
                 mode={constants.SECONDARY}
                 onClick={() => onRequestCancelRefill(data, true)}
                 className={styles.requestButton}
+                data-testid={"cancel-refill-button"}
               >
                 Cancel Refill Request
               </StyledButton>
@@ -585,9 +585,9 @@ export default function PrescriptionMedication({
   }
 
   function renderMedication(medicationList, medicationType) {
-    return medications?.active?.length > 0 ? (
+    return medicationList?.length > 0 ? (
       <Box ref={containerActive}>
-        {renderPrescriptionTabUI(medications.active, medicationType)}
+        {renderPrescriptionTabUI(medicationList, medicationType)}
       </Box>
     ) : (
       <Box
@@ -634,7 +634,10 @@ export default function PrescriptionMedication({
   return (
     <Box className={styles.medicationDetailContainer}>
       {requestRefillResponseData && (
-        <FormMessage success={true} sx={{ margin: "20px 10px 10px 10px" }}>
+        <FormMessage
+          success={true}
+          sx={{ margin: "20px 10px 10px 10px", color: "#ffffff" }}
+        >
           <Typography className={styles.formMessageText}>
             {requestRefillResponseData.message}
           </Typography>
@@ -662,8 +665,8 @@ export default function PrescriptionMedication({
           } heading`}
         >
           {isFilterApplied ? "Medications" : "Active Medications"}{" "}
-          {medications?.active?.length > 0
-            ? `(${medications?.active?.length})`
+          {filterMedicationData.length > 0
+            ? `(${filterMedicationData.length})`
             : ``}
         </Typography>
         {renderUIFilter()}

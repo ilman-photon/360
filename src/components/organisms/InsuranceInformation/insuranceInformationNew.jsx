@@ -10,8 +10,6 @@ export default function InsuranceInformationNew({
   OnCancelEditClicked = () => {
     // This is intended
   },
-  FormMessageEl,
-  isShowError = false,
   providerList = [],
   planList = [],
   isAutocompleteLoading = false,
@@ -30,9 +28,8 @@ export default function InsuranceInformationNew({
         textStyle={{ fontWeight: "700" }}
       >
         <Stack spacing={2}>
-          {isShowError && FormMessageEl}
           <Typography variant="bodyLarge">
-            You have no insurance on file
+            You have no insurance on file.
           </Typography>
           <InsuranceForm
             providerList={providerList}
@@ -42,7 +39,6 @@ export default function InsuranceInformationNew({
             OnProviderChanged={OnProviderChanged}
             OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
             OnSaveClicked={OnCreateInsurance}
-            isError={isShowError}
           />
         </Stack>
       </AccountCard>

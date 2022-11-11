@@ -63,7 +63,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
     {
@@ -100,7 +113,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
   ],
@@ -663,7 +689,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     // const domain = window.location.origin;
@@ -767,7 +793,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     when("the user navigate to date calender field", () => {
@@ -835,7 +861,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     when("the user navigates to the date calendar field", () => {
@@ -906,7 +932,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     when("user navigate to date calender field", () => {

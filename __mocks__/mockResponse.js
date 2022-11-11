@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const mockAppointmentTypes = {
   count: 5,
   entities: [
@@ -881,6 +883,17 @@ export const mockUpdateInsurance = {
   },
 };
 
+const time = new moment(new Date()).day(1).toDate().getTime();
+
+const days = (i, t) => {
+  return new Date(t + i * 60 * 60 * 24 * 1000);
+};
+const from = new moment(days(1, time)).format("MM-DD-YYYY");
+const day2 = new moment(days(2, time)).format("YYYY-MM-DD");
+const day3 = new moment(days(3, time)).format("YYYY-MM-DD");
+const day4 = new moment(days(4, time)).format("YYYY-MM-DD");
+const day5 = new moment(days(5, time)).format("YYYY-MM-DD");
+const to = new moment(days(6, time)).format("YYYY-MM-DD");
 export const submitFilter = {
   offices: [
     {
@@ -1196,7 +1209,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
           _version: "7c6e09ea-9159-4bfe-aa18-395f5c30ea4b",
@@ -1338,7 +1351,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "af473975-2e0d-40cb-a88e-9e975d58dd51",
           _version: "18f55599-781d-4da2-a45e-1567b9e3773c",
@@ -1515,7 +1528,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "4e8156e3-94b9-4b9e-8516-730c34fd9dd2",
           _version: "d070230c-a6ed-49f8-9100-6d7110c643e5",
@@ -1692,7 +1705,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "9c089446-7193-4585-813b-5dfbd59f9ef0",
           _version: "d3a32b93-f842-4a77-8123-75126d927919",
@@ -2954,7 +2967,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/03/2022",
+          scheduleDate: from,
           status: "UPDATED",
           _id: "5e6a9c25-e247-4d39-a0d1-e9de46b3a725",
           _version: "526f0fcd-35c1-43f3-8f5c-c4e5d9ea7433",
@@ -3411,7 +3424,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
           _version: "7c6e09ea-9159-4bfe-aa18-395f5c30ea4b",
@@ -3553,7 +3566,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "af473975-2e0d-40cb-a88e-9e975d58dd51",
           _version: "18f55599-781d-4da2-a45e-1567b9e3773c",
@@ -3695,7 +3708,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "4e8156e3-94b9-4b9e-8516-730c34fd9dd2",
           _version: "d070230c-a6ed-49f8-9100-6d7110c643e5",
@@ -3802,7 +3815,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "9c089446-7193-4585-813b-5dfbd59f9ef0",
           _version: "d3a32b93-f842-4a77-8123-75126d927919",
@@ -5064,7 +5077,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "5e6a9c25-e247-4d39-a0d1-e9de46b3a725",
           _version: "526f0fcd-35c1-43f3-8f5c-c4e5d9ea7433",
@@ -5136,7 +5149,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/04/2022",
+          scheduleDate: day2,
           status: "UPDATED",
           _id: "42248991-3385-4164-9d75-eec7945cb6a9",
           _version: "f48ceb6a-3048-4c30-b931-ac90ec2956e1",
@@ -5243,7 +5256,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "42248991-3385-4164-9d75-eec7945cb6a9",
           _version: "f48ceb6a-3048-4c30-b931-ac90ec2956e1",
@@ -5420,7 +5433,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "4e8156e3-94b9-4b9e-8516-730c34fd9dd2",
           _version: "d070230c-a6ed-49f8-9100-6d7110c643e5",
@@ -5562,7 +5575,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "9c089446-7193-4585-813b-5dfbd59f9ef0",
           _version: "d3a32b93-f842-4a77-8123-75126d927919",
@@ -6824,7 +6837,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "5e6a9c25-e247-4d39-a0d1-e9de46b3a725",
           _version: "526f0fcd-35c1-43f3-8f5c-c4e5d9ea7433",
@@ -7281,7 +7294,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
           _version: "7c6e09ea-9159-4bfe-aa18-395f5c30ea4b",
@@ -7423,7 +7436,7 @@ export const submitFilter = {
               },
             },
           ],
-          scheduleDate: "10/05/2022",
+          scheduleDate: day3,
           status: "UPDATED",
           _id: "af473975-2e0d-40cb-a88e-9e975d58dd51",
           _version: "18f55599-781d-4da2-a45e-1567b9e3773c",
@@ -7449,6 +7462,6589 @@ export const submitFilter = {
       ],
     },
   ],
+};
+
+export const getNextPrevDate = (reqDate) => {
+  const time = new moment(reqDate).day(1).toDate().getTime();
+
+  const days = (i, t) => {
+    return new Date(t + i * 60 * 60 * 24 * 1000);
+  };
+  const from = new moment(days(1, time)).format("MM-DD-YYYY");
+  const day2 = new moment(days(2, time)).format("YYYY-MM-DD");
+  const day3 = new moment(days(3, time)).format("YYYY-MM-DD");
+  const day4 = new moment(days(4, time)).format("YYYY-MM-DD");
+  const day5 = new moment(days(5, time)).format("YYYY-MM-DD");
+  const to = new moment(days(6, time)).format("YYYY-MM-DD");
+  return {
+    offices: [
+      {
+        office: {
+          name: "Ballwin",
+          _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+          _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+          _updated: "Sep 17, 2022, 10:14:52 AM",
+          _updatedBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+          _links: {
+            self: { href: "/v1/offices/4cd970a0-8529-4b44-a4c5-99c9f4e8d078" },
+          },
+        },
+        providerTemplate: [
+          {
+            name: "Sick",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Steve",
+              lastName: "Adam",
+              designation: "Dr",
+              inHouse: false,
+              _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+              _version: "a1c4536d-6e5e-4779-81b0-080fe4e23a23",
+              _updated: "Apr 8, 2022, 8:35:42 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:05",
+                endHHMM: "11:10",
+                _id: "6f64f4e2-5273-4631-b2fa-b4d6745d6062",
+                _version: "3e03ec17-50fd-4a43-9147-ca300d3025be",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:20",
+                endHHMM: "11:25",
+                _id: "83a08007-4537-424d-90e2-563947d0d91c",
+                _version: "d8b7d0fe-cd95-410b-97c8-0bfc90bdf983",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:25",
+                endHHMM: "11:30",
+                _id: "1375634c-23f5-47b9-a15a-990df8752f8b",
+                _version: "9e2571a8-20f4-4426-8238-68802cf056ed",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:30",
+                endHHMM: "11:35",
+                _id: "fec3523e-a6ab-4ca1-8444-6ab463524b4e",
+                _version: "2041999e-83bb-47dd-9c6b-ca7a0dc1abfa",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:35",
+                endHHMM: "11:40",
+                _id: "4a9fa94d-2ef9-444b-bcb3-e13e4298f46e",
+                _version: "20549e02-dda6-4653-ac01-bc49b74fc27d",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "15:20",
+                endHHMM: "15:25",
+                _id: "c2ecd16d-6dd0-434f-8c79-f2eedf3cd8ad",
+                _version: "19eb2ffd-92a6-42df-b3bd-3692c4e8f047",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "16:15",
+                endHHMM: "16:20",
+                _id: "5f4ef00d-a8d1-4587-8d96-33a845f83cfe",
+                _version: "7861bfe1-ab4c-4152-b102-c5619cb881b3",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "17:15",
+                endHHMM: "17:20",
+                _id: "c30757cc-a2b9-4f2d-a53d-fb3067f0eedb",
+                _version: "7f02a502-4c2c-4cc4-8062-e397d8238a5c",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: from,
+            status: "UPDATED",
+            _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
+            _version: "7c6e09ea-9159-4bfe-aa18-395f5c30ea4b",
+            _created: "Apr 8, 2022, 8:37:38 AM",
+            _updated: "Sep 22, 2022, 10:24:08 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          {
+            name: "Surgery",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Steve",
+              lastName: "Adam",
+              designation: "Dr",
+              inHouse: false,
+              _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+              _version: "a1c4536d-6e5e-4779-81b0-080fe4e23a23",
+              _updated: "Apr 8, 2022, 8:35:42 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "15:15",
+                endHHMM: "15:20",
+                _id: "dfb339d2-4cdc-4eeb-a083-4a9f83fed520",
+                _version: "633cdf5f-5baa-4bf8-805a-9594a032db23",
+                _created: "Apr 8, 2022, 8:38:02 AM",
+                _updated: "Jun 3, 2022, 8:41:14 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "16:15",
+                endHHMM: "16:20",
+                _id: "7e13adb2-ddd7-4113-a42a-55613330a0cf",
+                _version: "4a11d155-129c-4caa-8846-c69028802d86",
+                _created: "Apr 8, 2022, 8:38:02 AM",
+                _updated: "Jun 3, 2022, 8:41:14 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "17:00",
+                endHHMM: "17:05",
+                _id: "b531e4dc-3931-4768-a880-4640ae20e98e",
+                _version: "1f2fad28-fc17-4cf7-9c77-9b1eaadb21d8",
+                _created: "Apr 8, 2022, 8:38:02 AM",
+                _updated: "Jun 3, 2022, 8:41:14 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: from,
+            status: "UPDATED",
+            _id: "af473975-2e0d-40cb-a88e-9e975d58dd51",
+            _version: "18f55599-781d-4da2-a45e-1567b9e3773c",
+            _created: "Apr 8, 2022, 8:38:02 AM",
+            _updated: "Jun 3, 2022, 8:41:14 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+              _links: {
+                self: {
+                  href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                },
+              },
+            },
+          },
+          {
+            name: "Standard",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Jaco",
+              lastName: "David",
+              designation: "MBBS, MD",
+              inHouse: false,
+              _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+              _version: "cbff920b-0dbb-4450-b00d-cd94f5a842ca",
+              _updated: "Feb 15, 2022, 7:06:54 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:15",
+                endHHMM: "10:20",
+                _id: "2761acee-e634-4db1-a54f-172443f47532",
+                _version: "bae0fa33-2df5-41a1-94c0-e5b037139d63",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:30",
+                endHHMM: "10:35",
+                _id: "7eb8c88b-02a4-4f55-8d9e-6cc1d25377e0",
+                _version: "3b839d5f-e929-4177-a722-16dac797782e",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:45",
+                endHHMM: "10:50",
+                _id: "e7db2ce2-74a3-40e0-bf2f-8cf147ac7fa9",
+                _version: "25a9d913-364f-4992-b35f-dde3c53d49d5",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:05",
+                endHHMM: "11:10",
+                _id: "1595cef4-13de-492a-af8e-609e01f70cad",
+                _version: "bcdfe9d2-2781-4e16-a117-4616960f7413",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: from,
+            status: "UPDATED",
+            _id: "4e8156e3-94b9-4b9e-8516-730c34fd9dd2",
+            _version: "d070230c-a6ed-49f8-9100-6d7110c643e5",
+            _created: "Feb 28, 2022, 12:11:38 PM",
+            _updated: "Sep 20, 2022, 4:57:56 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          {
+            name: "OPH Dr Bloom",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Bloom",
+              lastName: "Steven",
+              designation: "MBBS, MD",
+              inHouse: false,
+              _id: "8b5cd1de-a931-475e-8997-2c35209997d7",
+              _version: "f7394cdb-b7d8-4f1c-8108-a2cd8e3a2a5f",
+              _updated: "Sep 28, 2022, 1:06:32 PM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:10",
+                endHHMM: "09:15",
+                _id: "20fa83a7-6c7f-424e-828f-594d7f1e7a05",
+                _version: "66af3265-7117-4fbb-923d-eefacb79f70f",
+                _created: "Feb 15, 2022, 6:55:06 AM",
+                _updated: "Feb 15, 2022, 6:56:52 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:15",
+                endHHMM: "09:20",
+                _id: "5cbb625c-f32b-40ad-884b-1f1ad8bf3c67",
+                _version: "3133d32d-cf7d-48f7-a0fc-a781be1a2129",
+                _created: "Feb 15, 2022, 6:55:06 AM",
+                _updated: "Feb 15, 2022, 6:56:52 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:35",
+                endHHMM: "09:40",
+                _id: "c3b508a1-88b8-4ccd-a342-fe17d49aebbe",
+                _version: "5cca33d0-bfc4-4f72-a125-b8a4316da6bd",
+                _created: "Feb 15, 2022, 6:55:06 AM",
+                _updated: "Feb 15, 2022, 6:56:52 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:55",
+                endHHMM: "10:00",
+                _id: "fd37c7ca-1756-491d-b29a-e86738220cc7",
+                _version: "d98a3adf-2a73-48a5-b7ee-3078fe53e1b2",
+                _created: "Feb 15, 2022, 6:55:06 AM",
+                _updated: "Feb 15, 2022, 6:56:52 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: from,
+            status: "UPDATED",
+            _id: "9c089446-7193-4585-813b-5dfbd59f9ef0",
+            _version: "d3a32b93-f842-4a77-8123-75126d927919",
+            _created: "Feb 15, 2022, 6:55:06 AM",
+            _updated: "Feb 15, 2022, 6:56:52 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+          },
+          {
+            name: "STANDARD",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Bloom",
+              lastName: "Steven",
+              designation: "MBBS, MD",
+              inHouse: false,
+              _id: "8b5cd1de-a931-475e-8997-2c35209997d7",
+              _version: "f7394cdb-b7d8-4f1c-8108-a2cd8e3a2a5f",
+              _updated: "Sep 28, 2022, 1:06:32 PM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:00",
+                endHHMM: "14:05",
+                _id: "4ed8ba08-2fbf-44b4-89d5-ab8e26e66ff0",
+                _version: "a8c9c947-3cfe-4e45-9cbe-c5e8ccb96dfd",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:05",
+                endHHMM: "14:10",
+                _id: "560d1c38-0011-4a61-bf06-07db5c1ddae3",
+                _version: "3a99fc76-77b4-488e-9669-03b6e698fc06",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:10",
+                endHHMM: "14:15",
+                _id: "ebb3ba27-aceb-41c6-ae1c-dbe009b5ddb8",
+                _version: "e8ef9f44-5bc3-4dce-98ab-924420c969c1",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:15",
+                endHHMM: "14:20",
+                _id: "81d33d15-8713-4cfe-b959-bd0a371edc26",
+                _version: "d322d328-8651-4f7c-b8cd-682810e1f41e",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:20",
+                endHHMM: "14:25",
+                _id: "077ab5df-d6b2-4b2f-a3dd-a0654729698d",
+                _version: "579540d6-0e71-4054-8409-9e0b3414134a",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:25",
+                endHHMM: "14:30",
+                _id: "db18faa1-8dc7-4497-bc57-8e704e8c274f",
+                _version: "0e75017e-9295-4cae-bb4f-eefcd6453f3b",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:30",
+                endHHMM: "14:35",
+                _id: "8dd7e2a0-9e8d-4a3a-99e6-c5fddf2c96a3",
+                _version: "01cea112-8b46-41df-8606-1a73af1cbe60",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:35",
+                endHHMM: "14:40",
+                _id: "11c6e0e4-66fa-4652-9ff8-8b4e5335892c",
+                _version: "30a5e0c4-4971-444f-b118-4e796443da0d",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:40",
+                endHHMM: "14:45",
+                _id: "d9b64aa5-c77b-4d22-849a-772d5e724924",
+                _version: "a0e263fb-b413-4356-9d61-c7dd38b4febe",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:45",
+                endHHMM: "14:50",
+                _id: "ee342819-fd59-4eb1-bc37-35ec8cfba82f",
+                _version: "87c87170-0916-4205-a4bc-302fb3687497",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:50",
+                endHHMM: "14:55",
+                _id: "54d1a041-9c5d-42fc-9ba9-6d603ccba5cf",
+                _version: "dfb44243-de06-4653-85bc-9589db16af37",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:55",
+                endHHMM: "15:00",
+                _id: "29b2cb8c-a9ab-4cd6-b55e-d4e74b0ebee2",
+                _version: "8a1f45fd-4378-4b4a-9666-57bbda6a9cbe",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:05",
+                endHHMM: "18:10",
+                _id: "722ec681-4483-40d3-83a6-988cd836dda1",
+                _version: "889a5524-fbd1-40a6-9328-fe25183bd875",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:10",
+                endHHMM: "18:15",
+                _id: "b62d22ef-21f1-4f7d-b70a-46169dd1c1e8",
+                _version: "74841323-c9c1-4324-8bb0-ff86bdf3bb63",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:15",
+                endHHMM: "18:20",
+                _id: "f4413829-2270-4192-8493-590d078873a9",
+                _version: "43709d43-c7a4-461b-98e0-ebf5d66ae6c6",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:20",
+                endHHMM: "18:25",
+                _id: "3be78187-5cde-4396-8ad0-c4c9a688db75",
+                _version: "4e93232d-7428-43d6-a3d7-ff04c47f845f",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:25",
+                endHHMM: "18:30",
+                _id: "b83d4ee2-a060-4e19-9b7c-c2b4e9d02094",
+                _version: "5c1c8b41-c17b-4bf5-8418-b4dc6d38eb27",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:30",
+                endHHMM: "18:35",
+                _id: "b024f358-06a5-4335-94e8-431fec76d65e",
+                _version: "1b34ea20-f015-4ff3-b3d2-19c07cbd2154",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:35",
+                endHHMM: "18:40",
+                _id: "b8072d08-91c2-438e-bc37-175b09f2ed0a",
+                _version: "e7eb8540-9bb2-438d-b0bd-f3a17e76a35e",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:40",
+                endHHMM: "18:45",
+                _id: "9508c6eb-00e5-4137-aeee-3b08ea993689",
+                _version: "ca427aec-b6fd-4e39-a837-9a7471d3d6d1",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:45",
+                endHHMM: "18:50",
+                _id: "e35274eb-f188-4b34-aa10-2e00ad6f9b69",
+                _version: "48809043-9227-4e58-9c20-6997c8cb9e6c",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:50",
+                endHHMM: "18:55",
+                _id: "dd67c690-50ee-4485-94e0-1151a2c68676",
+                _version: "ce593a52-3fa2-4914-bf25-f5970befa017",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:55",
+                endHHMM: "19:00",
+                _id: "d46da0d3-38f7-4886-8d33-25f4f8a9f169",
+                _version: "cf5f698b-263e-4ed0-b075-fb8c9101d9c6",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "19:00",
+                endHHMM: "19:05",
+                _id: "5afdf21b-f11e-4a75-9926-3e8ef2caa92d",
+                _version: "53165819-0166-44f2-8c07-de01e39f4411",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:05",
+                endHHMM: "22:10",
+                _id: "d4c775e3-f204-48d4-bfa8-bf4c8b4cf7e1",
+                _version: "a25080b3-4fca-4ea3-9748-e9e29d09828a",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:10",
+                endHHMM: "22:15",
+                _id: "c9a25951-b55a-46de-b44b-909bed698e82",
+                _version: "695322c9-db44-481a-abc3-30fa51fe806b",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:15",
+                endHHMM: "22:20",
+                _id: "98fc0fda-2c96-4f02-a992-82d766bf3b9e",
+                _version: "ce2faaa7-a3e4-4175-8fea-128b84b62442",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:20",
+                endHHMM: "22:25",
+                _id: "7770315e-555a-4544-a2d2-fe7596f9b9f5",
+                _version: "eaa01ead-2542-49d9-a0da-27e3999aeb30",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:25",
+                endHHMM: "22:30",
+                _id: "a37add81-2640-4f7a-a031-d8c3326d89fc",
+                _version: "9bf30d7a-08a0-4960-a76e-05f40fc2bc86",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:30",
+                endHHMM: "22:35",
+                _id: "802bf554-78df-47d1-ad0f-67129643117f",
+                _version: "b959111e-2d9b-4417-883c-879df721958e",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:35",
+                endHHMM: "22:40",
+                _id: "5ff2ab27-18be-431b-9aae-353d0a622f92",
+                _version: "ef4742f0-4ac5-49c8-939d-906324899533",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:40",
+                endHHMM: "22:45",
+                _id: "61ca2b4f-8c6f-40d6-9722-380ac8bee2d8",
+                _version: "833856a5-bfba-4f16-a38d-5bf87c9caad3",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:45",
+                endHHMM: "22:50",
+                _id: "081c9df3-136b-4390-aa03-546efd1a2a71",
+                _version: "4860cd16-eab9-45c5-9f3f-a4bd387e8568",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:50",
+                endHHMM: "22:55",
+                _id: "535b819f-71a8-44d1-b9b5-cca96666814e",
+                _version: "3c411e70-912a-491a-8f9b-4120a8100688",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:55",
+                endHHMM: "23:00",
+                _id: "d79f4740-4ebe-4333-9e32-dae799349a3e",
+                _version: "8b2c121c-c13a-4d29-9301-2b0b5ebed6a4",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: from,
+            status: "UPDATED",
+            _id: "5e6a9c25-e247-4d39-a0d1-e9de46b3a725",
+            _version: "526f0fcd-35c1-43f3-8f5c-c4e5d9ea7433",
+            _created: "Sep 28, 2022, 12:52:40 PM",
+            _updated: "Sep 28, 2022, 1:03:46 PM",
+            _createdBy: {
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+              _links: {
+                self: {
+                  href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+              _links: {
+                self: {
+                  href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                },
+              },
+            },
+          },
+          {
+            name: "Sick",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Steve",
+              lastName: "Adam",
+              designation: "Dr",
+              inHouse: false,
+              _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+              _version: "a1c4536d-6e5e-4779-81b0-080fe4e23a23",
+              _updated: "Apr 8, 2022, 8:35:42 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:15",
+                endHHMM: "10:20",
+                _id: "5cccda4c-c309-4a73-bed5-2b4dcd320490",
+                _version: "0649e227-df6c-40be-a576-cd68874cd73d",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:00",
+                endHHMM: "11:05",
+                _id: "8d0f66d8-67e6-4c93-8c41-3e92c4a88b0e",
+                _version: "3f41f3e8-90d2-4a39-8579-cb1d11539d15",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:05",
+                endHHMM: "11:10",
+                _id: "6f64f4e2-5273-4631-b2fa-b4d6745d6062",
+                _version: "3e03ec17-50fd-4a43-9147-ca300d3025be",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:10",
+                endHHMM: "11:15",
+                _id: "646deec2-3859-405b-9b9d-25df8545efe3",
+                _version: "acbf2731-4ac6-4d9f-8606-3b2f791bbace",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:15",
+                endHHMM: "11:20",
+                _id: "9186b279-ca0c-4b1e-88f5-33be923c060b",
+                _version: "aa875054-51e1-4f81-97f2-7a077a618eae",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:20",
+                endHHMM: "11:25",
+                _id: "83a08007-4537-424d-90e2-563947d0d91c",
+                _version: "d8b7d0fe-cd95-410b-97c8-0bfc90bdf983",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:25",
+                endHHMM: "11:30",
+                _id: "1375634c-23f5-47b9-a15a-990df8752f8b",
+                _version: "9e2571a8-20f4-4426-8238-68802cf056ed",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:30",
+                endHHMM: "11:35",
+                _id: "fec3523e-a6ab-4ca1-8444-6ab463524b4e",
+                _version: "2041999e-83bb-47dd-9c6b-ca7a0dc1abfa",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:35",
+                endHHMM: "11:40",
+                _id: "4a9fa94d-2ef9-444b-bcb3-e13e4298f46e",
+                _version: "20549e02-dda6-4653-ac01-bc49b74fc27d",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "15:20",
+                endHHMM: "15:25",
+                _id: "c2ecd16d-6dd0-434f-8c79-f2eedf3cd8ad",
+                _version: "19eb2ffd-92a6-42df-b3bd-3692c4e8f047",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "16:15",
+                endHHMM: "16:20",
+                _id: "5f4ef00d-a8d1-4587-8d96-33a845f83cfe",
+                _version: "7861bfe1-ab4c-4152-b102-c5619cb881b3",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "17:15",
+                endHHMM: "17:20",
+                _id: "c30757cc-a2b9-4f2d-a53d-fb3067f0eedb",
+                _version: "7f02a502-4c2c-4cc4-8062-e397d8238a5c",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day2,
+            status: "UPDATED",
+            _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
+            _version: "7c6e09ea-9159-4bfe-aa18-395f5c30ea4b",
+            _created: "Apr 8, 2022, 8:37:38 AM",
+            _updated: "Sep 22, 2022, 10:24:08 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          {
+            name: "Surgery",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Steve",
+              lastName: "Adam",
+              designation: "Dr",
+              inHouse: false,
+              _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+              _version: "a1c4536d-6e5e-4779-81b0-080fe4e23a23",
+              _updated: "Apr 8, 2022, 8:35:42 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "15:15",
+                endHHMM: "15:20",
+                _id: "dfb339d2-4cdc-4eeb-a083-4a9f83fed520",
+                _version: "633cdf5f-5baa-4bf8-805a-9594a032db23",
+                _created: "Apr 8, 2022, 8:38:02 AM",
+                _updated: "Jun 3, 2022, 8:41:14 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "16:15",
+                endHHMM: "16:20",
+                _id: "7e13adb2-ddd7-4113-a42a-55613330a0cf",
+                _version: "4a11d155-129c-4caa-8846-c69028802d86",
+                _created: "Apr 8, 2022, 8:38:02 AM",
+                _updated: "Jun 3, 2022, 8:41:14 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "17:00",
+                endHHMM: "17:05",
+                _id: "b531e4dc-3931-4768-a880-4640ae20e98e",
+                _version: "1f2fad28-fc17-4cf7-9c77-9b1eaadb21d8",
+                _created: "Apr 8, 2022, 8:38:02 AM",
+                _updated: "Jun 3, 2022, 8:41:14 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day2,
+            status: "UPDATED",
+            _id: "af473975-2e0d-40cb-a88e-9e975d58dd51",
+            _version: "18f55599-781d-4da2-a45e-1567b9e3773c",
+            _created: "Apr 8, 2022, 8:38:02 AM",
+            _updated: "Jun 3, 2022, 8:41:14 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+              _links: {
+                self: {
+                  href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                },
+              },
+            },
+          },
+          {
+            name: "Standard",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Jaco",
+              lastName: "David",
+              designation: "MBBS, MD",
+              inHouse: false,
+              _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+              _version: "cbff920b-0dbb-4450-b00d-cd94f5a842ca",
+              _updated: "Feb 15, 2022, 7:06:54 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:30",
+                endHHMM: "10:35",
+                _id: "7eb8c88b-02a4-4f55-8d9e-6cc1d25377e0",
+                _version: "3b839d5f-e929-4177-a722-16dac797782e",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:45",
+                endHHMM: "10:50",
+                _id: "e7db2ce2-74a3-40e0-bf2f-8cf147ac7fa9",
+                _version: "25a9d913-364f-4992-b35f-dde3c53d49d5",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:05",
+                endHHMM: "11:10",
+                _id: "1595cef4-13de-492a-af8e-609e01f70cad",
+                _version: "bcdfe9d2-2781-4e16-a117-4616960f7413",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day2,
+            status: "UPDATED",
+            _id: "4e8156e3-94b9-4b9e-8516-730c34fd9dd2",
+            _version: "d070230c-a6ed-49f8-9100-6d7110c643e5",
+            _created: "Feb 28, 2022, 12:11:38 PM",
+            _updated: "Sep 20, 2022, 4:57:56 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          {
+            name: "OPH Dr Bloom",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Bloom",
+              lastName: "Steven",
+              designation: "MBBS, MD",
+              inHouse: false,
+              _id: "8b5cd1de-a931-475e-8997-2c35209997d7",
+              _version: "f7394cdb-b7d8-4f1c-8108-a2cd8e3a2a5f",
+              _updated: "Sep 28, 2022, 1:06:32 PM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:15",
+                endHHMM: "09:20",
+                _id: "5cbb625c-f32b-40ad-884b-1f1ad8bf3c67",
+                _version: "3133d32d-cf7d-48f7-a0fc-a781be1a2129",
+                _created: "Feb 15, 2022, 6:55:06 AM",
+                _updated: "Feb 15, 2022, 6:56:52 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:35",
+                endHHMM: "09:40",
+                _id: "c3b508a1-88b8-4ccd-a342-fe17d49aebbe",
+                _version: "5cca33d0-bfc4-4f72-a125-b8a4316da6bd",
+                _created: "Feb 15, 2022, 6:55:06 AM",
+                _updated: "Feb 15, 2022, 6:56:52 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day2,
+            status: "UPDATED",
+            _id: "9c089446-7193-4585-813b-5dfbd59f9ef0",
+            _version: "d3a32b93-f842-4a77-8123-75126d927919",
+            _created: "Feb 15, 2022, 6:55:06 AM",
+            _updated: "Feb 15, 2022, 6:56:52 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+          },
+          {
+            name: "STANDARD",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Bloom",
+              lastName: "Steven",
+              designation: "MBBS, MD",
+              inHouse: false,
+              _id: "8b5cd1de-a931-475e-8997-2c35209997d7",
+              _version: "f7394cdb-b7d8-4f1c-8108-a2cd8e3a2a5f",
+              _updated: "Sep 28, 2022, 1:06:32 PM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:00",
+                endHHMM: "14:05",
+                _id: "4ed8ba08-2fbf-44b4-89d5-ab8e26e66ff0",
+                _version: "a8c9c947-3cfe-4e45-9cbe-c5e8ccb96dfd",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:05",
+                endHHMM: "14:10",
+                _id: "560d1c38-0011-4a61-bf06-07db5c1ddae3",
+                _version: "3a99fc76-77b4-488e-9669-03b6e698fc06",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:10",
+                endHHMM: "14:15",
+                _id: "ebb3ba27-aceb-41c6-ae1c-dbe009b5ddb8",
+                _version: "e8ef9f44-5bc3-4dce-98ab-924420c969c1",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:15",
+                endHHMM: "14:20",
+                _id: "81d33d15-8713-4cfe-b959-bd0a371edc26",
+                _version: "d322d328-8651-4f7c-b8cd-682810e1f41e",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:20",
+                endHHMM: "14:25",
+                _id: "077ab5df-d6b2-4b2f-a3dd-a0654729698d",
+                _version: "579540d6-0e71-4054-8409-9e0b3414134a",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:25",
+                endHHMM: "14:30",
+                _id: "db18faa1-8dc7-4497-bc57-8e704e8c274f",
+                _version: "0e75017e-9295-4cae-bb4f-eefcd6453f3b",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:30",
+                endHHMM: "14:35",
+                _id: "8dd7e2a0-9e8d-4a3a-99e6-c5fddf2c96a3",
+                _version: "01cea112-8b46-41df-8606-1a73af1cbe60",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:35",
+                endHHMM: "14:40",
+                _id: "11c6e0e4-66fa-4652-9ff8-8b4e5335892c",
+                _version: "30a5e0c4-4971-444f-b118-4e796443da0d",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:40",
+                endHHMM: "14:45",
+                _id: "d9b64aa5-c77b-4d22-849a-772d5e724924",
+                _version: "a0e263fb-b413-4356-9d61-c7dd38b4febe",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:45",
+                endHHMM: "14:50",
+                _id: "ee342819-fd59-4eb1-bc37-35ec8cfba82f",
+                _version: "87c87170-0916-4205-a4bc-302fb3687497",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:50",
+                endHHMM: "14:55",
+                _id: "54d1a041-9c5d-42fc-9ba9-6d603ccba5cf",
+                _version: "dfb44243-de06-4653-85bc-9589db16af37",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:55",
+                endHHMM: "15:00",
+                _id: "29b2cb8c-a9ab-4cd6-b55e-d4e74b0ebee2",
+                _version: "8a1f45fd-4378-4b4a-9666-57bbda6a9cbe",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:05",
+                endHHMM: "18:10",
+                _id: "722ec681-4483-40d3-83a6-988cd836dda1",
+                _version: "889a5524-fbd1-40a6-9328-fe25183bd875",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:10",
+                endHHMM: "18:15",
+                _id: "b62d22ef-21f1-4f7d-b70a-46169dd1c1e8",
+                _version: "74841323-c9c1-4324-8bb0-ff86bdf3bb63",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:15",
+                endHHMM: "18:20",
+                _id: "f4413829-2270-4192-8493-590d078873a9",
+                _version: "43709d43-c7a4-461b-98e0-ebf5d66ae6c6",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:20",
+                endHHMM: "18:25",
+                _id: "3be78187-5cde-4396-8ad0-c4c9a688db75",
+                _version: "4e93232d-7428-43d6-a3d7-ff04c47f845f",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:25",
+                endHHMM: "18:30",
+                _id: "b83d4ee2-a060-4e19-9b7c-c2b4e9d02094",
+                _version: "5c1c8b41-c17b-4bf5-8418-b4dc6d38eb27",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:30",
+                endHHMM: "18:35",
+                _id: "b024f358-06a5-4335-94e8-431fec76d65e",
+                _version: "1b34ea20-f015-4ff3-b3d2-19c07cbd2154",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:35",
+                endHHMM: "18:40",
+                _id: "b8072d08-91c2-438e-bc37-175b09f2ed0a",
+                _version: "e7eb8540-9bb2-438d-b0bd-f3a17e76a35e",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:40",
+                endHHMM: "18:45",
+                _id: "9508c6eb-00e5-4137-aeee-3b08ea993689",
+                _version: "ca427aec-b6fd-4e39-a837-9a7471d3d6d1",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:45",
+                endHHMM: "18:50",
+                _id: "e35274eb-f188-4b34-aa10-2e00ad6f9b69",
+                _version: "48809043-9227-4e58-9c20-6997c8cb9e6c",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:50",
+                endHHMM: "18:55",
+                _id: "dd67c690-50ee-4485-94e0-1151a2c68676",
+                _version: "ce593a52-3fa2-4914-bf25-f5970befa017",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:55",
+                endHHMM: "19:00",
+                _id: "d46da0d3-38f7-4886-8d33-25f4f8a9f169",
+                _version: "cf5f698b-263e-4ed0-b075-fb8c9101d9c6",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "19:00",
+                endHHMM: "19:05",
+                _id: "5afdf21b-f11e-4a75-9926-3e8ef2caa92d",
+                _version: "53165819-0166-44f2-8c07-de01e39f4411",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:05",
+                endHHMM: "22:10",
+                _id: "d4c775e3-f204-48d4-bfa8-bf4c8b4cf7e1",
+                _version: "a25080b3-4fca-4ea3-9748-e9e29d09828a",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:10",
+                endHHMM: "22:15",
+                _id: "c9a25951-b55a-46de-b44b-909bed698e82",
+                _version: "695322c9-db44-481a-abc3-30fa51fe806b",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:15",
+                endHHMM: "22:20",
+                _id: "98fc0fda-2c96-4f02-a992-82d766bf3b9e",
+                _version: "ce2faaa7-a3e4-4175-8fea-128b84b62442",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:20",
+                endHHMM: "22:25",
+                _id: "7770315e-555a-4544-a2d2-fe7596f9b9f5",
+                _version: "eaa01ead-2542-49d9-a0da-27e3999aeb30",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:25",
+                endHHMM: "22:30",
+                _id: "a37add81-2640-4f7a-a031-d8c3326d89fc",
+                _version: "9bf30d7a-08a0-4960-a76e-05f40fc2bc86",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:30",
+                endHHMM: "22:35",
+                _id: "802bf554-78df-47d1-ad0f-67129643117f",
+                _version: "b959111e-2d9b-4417-883c-879df721958e",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:35",
+                endHHMM: "22:40",
+                _id: "5ff2ab27-18be-431b-9aae-353d0a622f92",
+                _version: "ef4742f0-4ac5-49c8-939d-906324899533",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:40",
+                endHHMM: "22:45",
+                _id: "61ca2b4f-8c6f-40d6-9722-380ac8bee2d8",
+                _version: "833856a5-bfba-4f16-a38d-5bf87c9caad3",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:45",
+                endHHMM: "22:50",
+                _id: "081c9df3-136b-4390-aa03-546efd1a2a71",
+                _version: "4860cd16-eab9-45c5-9f3f-a4bd387e8568",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:50",
+                endHHMM: "22:55",
+                _id: "535b819f-71a8-44d1-b9b5-cca96666814e",
+                _version: "3c411e70-912a-491a-8f9b-4120a8100688",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:55",
+                endHHMM: "23:00",
+                _id: "d79f4740-4ebe-4333-9e32-dae799349a3e",
+                _version: "8b2c121c-c13a-4d29-9301-2b0b5ebed6a4",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day2,
+            status: "UPDATED",
+            _id: "5e6a9c25-e247-4d39-a0d1-e9de46b3a725",
+            _version: "526f0fcd-35c1-43f3-8f5c-c4e5d9ea7433",
+            _created: "Sep 28, 2022, 12:52:40 PM",
+            _updated: "Sep 28, 2022, 1:03:46 PM",
+            _createdBy: {
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+              _links: {
+                self: {
+                  href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+              _links: {
+                self: {
+                  href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                },
+              },
+            },
+          },
+          {
+            name: "OPD",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "indraku",
+              lastName: "kumar",
+              designation: "Mr",
+              inHouse: false,
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _version: "98a1c478-6e50-43b2-a208-c9ee41007811",
+              _updated: "Oct 5, 2022, 6:24:10 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:15",
+                endHHMM: "09:20",
+                _id: "cd313aa8-7c2f-4413-8e16-31c7c522efb9",
+                _version: "85dd0c90-a5e6-4b2f-9e29-1b52ba0305bd",
+                _created: "Feb 7, 2022, 12:30:53 PM",
+                _updated: "Mar 21, 2022, 12:51:21 PM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day2,
+            status: "UPDATED",
+            _id: "42248991-3385-4164-9d75-eec7945cb6a9",
+            _version: "f48ceb6a-3048-4c30-b931-ac90ec2956e1",
+            _created: "Feb 7, 2022, 12:30:53 PM",
+            _updated: "Mar 21, 2022, 12:51:21 PM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+          },
+          {
+            name: "OPD",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "indraku",
+              lastName: "kumar",
+              designation: "Mr",
+              inHouse: false,
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _version: "98a1c478-6e50-43b2-a208-c9ee41007811",
+              _updated: "Oct 5, 2022, 6:24:10 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:00",
+                endHHMM: "09:05",
+                _id: "c0539d82-293c-44ff-904a-47810afab1a5",
+                _version: "b164e0c4-ad03-4ecd-b392-ddddbfa861e0",
+                _created: "Feb 7, 2022, 12:30:53 PM",
+                _updated: "Mar 21, 2022, 12:51:21 PM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:15",
+                endHHMM: "09:20",
+                _id: "cd313aa8-7c2f-4413-8e16-31c7c522efb9",
+                _version: "85dd0c90-a5e6-4b2f-9e29-1b52ba0305bd",
+                _created: "Feb 7, 2022, 12:30:53 PM",
+                _updated: "Mar 21, 2022, 12:51:21 PM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day3,
+            status: "UPDATED",
+            _id: "42248991-3385-4164-9d75-eec7945cb6a9",
+            _version: "f48ceb6a-3048-4c30-b931-ac90ec2956e1",
+            _created: "Feb 7, 2022, 12:30:53 PM",
+            _updated: "Mar 21, 2022, 12:51:21 PM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+          },
+          {
+            name: "Standard",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Jaco",
+              lastName: "David",
+              designation: "MBBS, MD",
+              inHouse: false,
+              _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+              _version: "cbff920b-0dbb-4450-b00d-cd94f5a842ca",
+              _updated: "Feb 15, 2022, 7:06:54 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:15",
+                endHHMM: "10:20",
+                _id: "2761acee-e634-4db1-a54f-172443f47532",
+                _version: "bae0fa33-2df5-41a1-94c0-e5b037139d63",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:30",
+                endHHMM: "10:35",
+                _id: "7eb8c88b-02a4-4f55-8d9e-6cc1d25377e0",
+                _version: "3b839d5f-e929-4177-a722-16dac797782e",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:45",
+                endHHMM: "10:50",
+                _id: "e7db2ce2-74a3-40e0-bf2f-8cf147ac7fa9",
+                _version: "25a9d913-364f-4992-b35f-dde3c53d49d5",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:05",
+                endHHMM: "11:10",
+                _id: "1595cef4-13de-492a-af8e-609e01f70cad",
+                _version: "bcdfe9d2-2781-4e16-a117-4616960f7413",
+                _created: "Feb 28, 2022, 12:11:38 PM",
+                _updated: "Sep 20, 2022, 4:57:56 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day3,
+            status: "UPDATED",
+            _id: "4e8156e3-94b9-4b9e-8516-730c34fd9dd2",
+            _version: "d070230c-a6ed-49f8-9100-6d7110c643e5",
+            _created: "Feb 28, 2022, 12:11:38 PM",
+            _updated: "Sep 20, 2022, 4:57:56 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          {
+            name: "OPH Dr Bloom",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Bloom",
+              lastName: "Steven",
+              designation: "MBBS, MD",
+              inHouse: false,
+              _id: "8b5cd1de-a931-475e-8997-2c35209997d7",
+              _version: "f7394cdb-b7d8-4f1c-8108-a2cd8e3a2a5f",
+              _updated: "Sep 28, 2022, 1:06:32 PM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:15",
+                endHHMM: "09:20",
+                _id: "5cbb625c-f32b-40ad-884b-1f1ad8bf3c67",
+                _version: "3133d32d-cf7d-48f7-a0fc-a781be1a2129",
+                _created: "Feb 15, 2022, 6:55:06 AM",
+                _updated: "Feb 15, 2022, 6:56:52 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:35",
+                endHHMM: "09:40",
+                _id: "c3b508a1-88b8-4ccd-a342-fe17d49aebbe",
+                _version: "5cca33d0-bfc4-4f72-a125-b8a4316da6bd",
+                _created: "Feb 15, 2022, 6:55:06 AM",
+                _updated: "Feb 15, 2022, 6:56:52 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "09:55",
+                endHHMM: "10:00",
+                _id: "fd37c7ca-1756-491d-b29a-e86738220cc7",
+                _version: "d98a3adf-2a73-48a5-b7ee-3078fe53e1b2",
+                _created: "Feb 15, 2022, 6:55:06 AM",
+                _updated: "Feb 15, 2022, 6:56:52 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day3,
+            status: "UPDATED",
+            _id: "9c089446-7193-4585-813b-5dfbd59f9ef0",
+            _version: "d3a32b93-f842-4a77-8123-75126d927919",
+            _created: "Feb 15, 2022, 6:55:06 AM",
+            _updated: "Feb 15, 2022, 6:56:52 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+          },
+          {
+            name: "STANDARD",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Bloom",
+              lastName: "Steven",
+              designation: "MBBS, MD",
+              inHouse: false,
+              _id: "8b5cd1de-a931-475e-8997-2c35209997d7",
+              _version: "f7394cdb-b7d8-4f1c-8108-a2cd8e3a2a5f",
+              _updated: "Sep 28, 2022, 1:06:32 PM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:00",
+                endHHMM: "14:05",
+                _id: "4ed8ba08-2fbf-44b4-89d5-ab8e26e66ff0",
+                _version: "a8c9c947-3cfe-4e45-9cbe-c5e8ccb96dfd",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:05",
+                endHHMM: "14:10",
+                _id: "560d1c38-0011-4a61-bf06-07db5c1ddae3",
+                _version: "3a99fc76-77b4-488e-9669-03b6e698fc06",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:10",
+                endHHMM: "14:15",
+                _id: "ebb3ba27-aceb-41c6-ae1c-dbe009b5ddb8",
+                _version: "e8ef9f44-5bc3-4dce-98ab-924420c969c1",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:15",
+                endHHMM: "14:20",
+                _id: "81d33d15-8713-4cfe-b959-bd0a371edc26",
+                _version: "d322d328-8651-4f7c-b8cd-682810e1f41e",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:20",
+                endHHMM: "14:25",
+                _id: "077ab5df-d6b2-4b2f-a3dd-a0654729698d",
+                _version: "579540d6-0e71-4054-8409-9e0b3414134a",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:25",
+                endHHMM: "14:30",
+                _id: "db18faa1-8dc7-4497-bc57-8e704e8c274f",
+                _version: "0e75017e-9295-4cae-bb4f-eefcd6453f3b",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:30",
+                endHHMM: "14:35",
+                _id: "8dd7e2a0-9e8d-4a3a-99e6-c5fddf2c96a3",
+                _version: "01cea112-8b46-41df-8606-1a73af1cbe60",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:35",
+                endHHMM: "14:40",
+                _id: "11c6e0e4-66fa-4652-9ff8-8b4e5335892c",
+                _version: "30a5e0c4-4971-444f-b118-4e796443da0d",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:40",
+                endHHMM: "14:45",
+                _id: "d9b64aa5-c77b-4d22-849a-772d5e724924",
+                _version: "a0e263fb-b413-4356-9d61-c7dd38b4febe",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:45",
+                endHHMM: "14:50",
+                _id: "ee342819-fd59-4eb1-bc37-35ec8cfba82f",
+                _version: "87c87170-0916-4205-a4bc-302fb3687497",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:50",
+                endHHMM: "14:55",
+                _id: "54d1a041-9c5d-42fc-9ba9-6d603ccba5cf",
+                _version: "dfb44243-de06-4653-85bc-9589db16af37",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "14:55",
+                endHHMM: "15:00",
+                _id: "29b2cb8c-a9ab-4cd6-b55e-d4e74b0ebee2",
+                _version: "8a1f45fd-4378-4b4a-9666-57bbda6a9cbe",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:05",
+                endHHMM: "18:10",
+                _id: "722ec681-4483-40d3-83a6-988cd836dda1",
+                _version: "889a5524-fbd1-40a6-9328-fe25183bd875",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:10",
+                endHHMM: "18:15",
+                _id: "b62d22ef-21f1-4f7d-b70a-46169dd1c1e8",
+                _version: "74841323-c9c1-4324-8bb0-ff86bdf3bb63",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:15",
+                endHHMM: "18:20",
+                _id: "f4413829-2270-4192-8493-590d078873a9",
+                _version: "43709d43-c7a4-461b-98e0-ebf5d66ae6c6",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:20",
+                endHHMM: "18:25",
+                _id: "3be78187-5cde-4396-8ad0-c4c9a688db75",
+                _version: "4e93232d-7428-43d6-a3d7-ff04c47f845f",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:25",
+                endHHMM: "18:30",
+                _id: "b83d4ee2-a060-4e19-9b7c-c2b4e9d02094",
+                _version: "5c1c8b41-c17b-4bf5-8418-b4dc6d38eb27",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:30",
+                endHHMM: "18:35",
+                _id: "b024f358-06a5-4335-94e8-431fec76d65e",
+                _version: "1b34ea20-f015-4ff3-b3d2-19c07cbd2154",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:35",
+                endHHMM: "18:40",
+                _id: "b8072d08-91c2-438e-bc37-175b09f2ed0a",
+                _version: "e7eb8540-9bb2-438d-b0bd-f3a17e76a35e",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:40",
+                endHHMM: "18:45",
+                _id: "9508c6eb-00e5-4137-aeee-3b08ea993689",
+                _version: "ca427aec-b6fd-4e39-a837-9a7471d3d6d1",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:45",
+                endHHMM: "18:50",
+                _id: "e35274eb-f188-4b34-aa10-2e00ad6f9b69",
+                _version: "48809043-9227-4e58-9c20-6997c8cb9e6c",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:50",
+                endHHMM: "18:55",
+                _id: "dd67c690-50ee-4485-94e0-1151a2c68676",
+                _version: "ce593a52-3fa2-4914-bf25-f5970befa017",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "18:55",
+                endHHMM: "19:00",
+                _id: "d46da0d3-38f7-4886-8d33-25f4f8a9f169",
+                _version: "cf5f698b-263e-4ed0-b075-fb8c9101d9c6",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "19:00",
+                endHHMM: "19:05",
+                _id: "5afdf21b-f11e-4a75-9926-3e8ef2caa92d",
+                _version: "53165819-0166-44f2-8c07-de01e39f4411",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:05",
+                endHHMM: "22:10",
+                _id: "d4c775e3-f204-48d4-bfa8-bf4c8b4cf7e1",
+                _version: "a25080b3-4fca-4ea3-9748-e9e29d09828a",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:10",
+                endHHMM: "22:15",
+                _id: "c9a25951-b55a-46de-b44b-909bed698e82",
+                _version: "695322c9-db44-481a-abc3-30fa51fe806b",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:15",
+                endHHMM: "22:20",
+                _id: "98fc0fda-2c96-4f02-a992-82d766bf3b9e",
+                _version: "ce2faaa7-a3e4-4175-8fea-128b84b62442",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:20",
+                endHHMM: "22:25",
+                _id: "7770315e-555a-4544-a2d2-fe7596f9b9f5",
+                _version: "eaa01ead-2542-49d9-a0da-27e3999aeb30",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:25",
+                endHHMM: "22:30",
+                _id: "a37add81-2640-4f7a-a031-d8c3326d89fc",
+                _version: "9bf30d7a-08a0-4960-a76e-05f40fc2bc86",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:30",
+                endHHMM: "22:35",
+                _id: "802bf554-78df-47d1-ad0f-67129643117f",
+                _version: "b959111e-2d9b-4417-883c-879df721958e",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:35",
+                endHHMM: "22:40",
+                _id: "5ff2ab27-18be-431b-9aae-353d0a622f92",
+                _version: "ef4742f0-4ac5-49c8-939d-906324899533",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:40",
+                endHHMM: "22:45",
+                _id: "61ca2b4f-8c6f-40d6-9722-380ac8bee2d8",
+                _version: "833856a5-bfba-4f16-a38d-5bf87c9caad3",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:45",
+                endHHMM: "22:50",
+                _id: "081c9df3-136b-4390-aa03-546efd1a2a71",
+                _version: "4860cd16-eab9-45c5-9f3f-a4bd387e8568",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:50",
+                endHHMM: "22:55",
+                _id: "535b819f-71a8-44d1-b9b5-cca96666814e",
+                _version: "3c411e70-912a-491a-8f9b-4120a8100688",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "22:55",
+                endHHMM: "23:00",
+                _id: "d79f4740-4ebe-4333-9e32-dae799349a3e",
+                _version: "8b2c121c-c13a-4d29-9301-2b0b5ebed6a4",
+                _created: "Sep 28, 2022, 12:52:40 PM",
+                _updated: "Sep 28, 2022, 1:03:46 PM",
+                _createdBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day3,
+            status: "UPDATED",
+            _id: "5e6a9c25-e247-4d39-a0d1-e9de46b3a725",
+            _version: "526f0fcd-35c1-43f3-8f5c-c4e5d9ea7433",
+            _created: "Sep 28, 2022, 12:52:40 PM",
+            _updated: "Sep 28, 2022, 1:03:46 PM",
+            _createdBy: {
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+              _links: {
+                self: {
+                  href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+              _links: {
+                self: {
+                  href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                },
+              },
+            },
+          },
+          {
+            name: "Sick",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Steve",
+              lastName: "Adam",
+              designation: "Dr",
+              inHouse: false,
+              _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+              _version: "a1c4536d-6e5e-4779-81b0-080fe4e23a23",
+              _updated: "Apr 8, 2022, 8:35:42 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "10:15",
+                endHHMM: "10:20",
+                _id: "5cccda4c-c309-4a73-bed5-2b4dcd320490",
+                _version: "0649e227-df6c-40be-a576-cd68874cd73d",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:00",
+                endHHMM: "11:05",
+                _id: "8d0f66d8-67e6-4c93-8c41-3e92c4a88b0e",
+                _version: "3f41f3e8-90d2-4a39-8579-cb1d11539d15",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:05",
+                endHHMM: "11:10",
+                _id: "6f64f4e2-5273-4631-b2fa-b4d6745d6062",
+                _version: "3e03ec17-50fd-4a43-9147-ca300d3025be",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:10",
+                endHHMM: "11:15",
+                _id: "646deec2-3859-405b-9b9d-25df8545efe3",
+                _version: "acbf2731-4ac6-4d9f-8606-3b2f791bbace",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:15",
+                endHHMM: "11:20",
+                _id: "9186b279-ca0c-4b1e-88f5-33be923c060b",
+                _version: "aa875054-51e1-4f81-97f2-7a077a618eae",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:20",
+                endHHMM: "11:25",
+                _id: "83a08007-4537-424d-90e2-563947d0d91c",
+                _version: "d8b7d0fe-cd95-410b-97c8-0bfc90bdf983",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:25",
+                endHHMM: "11:30",
+                _id: "1375634c-23f5-47b9-a15a-990df8752f8b",
+                _version: "9e2571a8-20f4-4426-8238-68802cf056ed",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:30",
+                endHHMM: "11:35",
+                _id: "fec3523e-a6ab-4ca1-8444-6ab463524b4e",
+                _version: "2041999e-83bb-47dd-9c6b-ca7a0dc1abfa",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "11:35",
+                endHHMM: "11:40",
+                _id: "4a9fa94d-2ef9-444b-bcb3-e13e4298f46e",
+                _version: "20549e02-dda6-4653-ac01-bc49b74fc27d",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "15:20",
+                endHHMM: "15:25",
+                _id: "c2ecd16d-6dd0-434f-8c79-f2eedf3cd8ad",
+                _version: "19eb2ffd-92a6-42df-b3bd-3692c4e8f047",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "16:15",
+                endHHMM: "16:20",
+                _id: "5f4ef00d-a8d1-4587-8d96-33a845f83cfe",
+                _version: "7861bfe1-ab4c-4152-b102-c5619cb881b3",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "17:15",
+                endHHMM: "17:20",
+                _id: "c30757cc-a2b9-4f2d-a53d-fb3067f0eedb",
+                _version: "7f02a502-4c2c-4cc4-8062-e397d8238a5c",
+                _created: "Apr 8, 2022, 8:37:38 AM",
+                _updated: "Sep 22, 2022, 10:24:08 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day3,
+            status: "UPDATED",
+            _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
+            _version: "7c6e09ea-9159-4bfe-aa18-395f5c30ea4b",
+            _created: "Apr 8, 2022, 8:37:38 AM",
+            _updated: "Sep 22, 2022, 10:24:08 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          {
+            name: "Surgery",
+            templateType: { code: "USER", description: "User template type" },
+            provider: {
+              firstName: "Steve",
+              lastName: "Adam",
+              designation: "Dr",
+              inHouse: false,
+              _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+              _version: "a1c4536d-6e5e-4779-81b0-080fe4e23a23",
+              _updated: "Apr 8, 2022, 8:35:42 AM",
+            },
+            slots: [
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "15:15",
+                endHHMM: "15:20",
+                _id: "dfb339d2-4cdc-4eeb-a083-4a9f83fed520",
+                _version: "633cdf5f-5baa-4bf8-805a-9594a032db23",
+                _created: "Apr 8, 2022, 8:38:02 AM",
+                _updated: "Jun 3, 2022, 8:41:14 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "16:15",
+                endHHMM: "16:20",
+                _id: "7e13adb2-ddd7-4113-a42a-55613330a0cf",
+                _version: "4a11d155-129c-4caa-8846-c69028802d86",
+                _created: "Apr 8, 2022, 8:38:02 AM",
+                _updated: "Jun 3, 2022, 8:41:14 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+              {
+                appointmentType: {
+                  code: "Clinical_Diagnosis",
+                  name: "Clinical_Diagnosis",
+                  key: 4,
+                  order: 4,
+                  category: { code: "Vision", description: "Vision" },
+                  acronym: "CAD",
+                  color: "#6fc77b",
+                  slotLength: 5,
+                  notes: "",
+                },
+                startHHMM: "17:00",
+                endHHMM: "17:05",
+                _id: "b531e4dc-3931-4768-a880-4640ae20e98e",
+                _version: "1f2fad28-fc17-4cf7-9c77-9b1eaadb21d8",
+                _created: "Apr 8, 2022, 8:38:02 AM",
+                _updated: "Jun 3, 2022, 8:41:14 AM",
+                _createdBy: {
+                  _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                    },
+                  },
+                },
+                _updatedBy: {
+                  _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  _links: {
+                    self: {
+                      href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                    },
+                  },
+                },
+              },
+            ],
+            scheduleDate: day3,
+            status: "UPDATED",
+            _id: "af473975-2e0d-40cb-a88e-9e975d58dd51",
+            _version: "18f55599-781d-4da2-a45e-1567b9e3773c",
+            _created: "Apr 8, 2022, 8:38:02 AM",
+            _updated: "Jun 3, 2022, 8:41:14 AM",
+            _createdBy: {
+              _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+              _links: {
+                self: {
+                  href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+              _links: {
+                self: {
+                  href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                },
+              },
+            },
+          },
+        ],
+      },
+    ],
+  };
 };
 
 export const testLab = {
@@ -8237,7 +14833,20 @@ export const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
+          },
+        ],
       },
     },
     {
@@ -8274,7 +14883,20 @@ export const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
+          },
+        ],
       },
     },
   ],
@@ -8330,10 +14952,13 @@ export const MOCK_PRESCRIPTION = {
     ],
     medications: [
       {
+        id: "0001",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
+        type: "active",
       },
       {
+        id: "0002",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
       },
@@ -8777,7 +15402,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "Ivan",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -8823,7 +15448,7 @@ export const TEMP_DATA_MEDICATION = [
     CreatedDate: "12/05/2022 03:40:57 EDT",
     CompletedDate: "",
     SignedDate: "",
-    StopDate: "10/05/2022",
+    StopDate: "10/05/2023",
     LastModifiedBy: "pclarksoneyecare",
     LastModifiedDate: "10/05/2022 03:41:00 EDT",
     Height: "",
@@ -8860,7 +15485,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "Philips",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -8906,7 +15531,7 @@ export const TEMP_DATA_MEDICATION = [
     CreatedDate: "12/05/2022 03:40:57 EDT",
     CompletedDate: "",
     SignedDate: "",
-    StopDate: "10/05/2022",
+    StopDate: "11/05/2023",
     LastModifiedBy: "pclarksoneyecare",
     LastModifiedDate: "10/05/2022 03:41:00 EDT",
     Height: "",
@@ -8943,7 +15568,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "Delip",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -8989,7 +15614,7 @@ export const TEMP_DATA_MEDICATION = [
     CreatedDate: "12/05/2022 03:40:57 EDT",
     CompletedDate: "",
     SignedDate: "",
-    StopDate: "10/05/2022",
+    StopDate: "12/05/2023",
     LastModifiedBy: "pclarksoneyecare",
     LastModifiedDate: "10/05/2022 03:41:00 EDT",
     Height: "",
@@ -9026,7 +15651,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "David",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -9109,7 +15734,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "Ivan",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -9192,7 +15817,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "Capi",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -9275,7 +15900,7 @@ export const TEMP_DATA_MEDICATION = [
       DEA: "AP3864421",
       Username: "pclarksoneyecare",
       NPI: "1741791705",
-      FirstName: "Provider",
+      FirstName: "Opa",
       ExternalID: "",
       RcopiaID: "2642957631",
       LastName: "ClarksonEyeCare",
@@ -9341,6 +15966,130 @@ export const TEMP_DATA_MEDICATION = [
         },
       },
     },
+  },
+];
+
+export const MOCK_MESSAGING = [
+  {
+    id: 6783,
+    subject: "Follow-up from past visit/message",
+    name: "Jodi Berzak, D.O.",
+    modifiedAt: "09/09/2022 12:00PM",
+    messages: [
+      {
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: null,
+      },
+    ],
+  },
+  {
+    id: 2333,
+    subject: "Your lab results",
+    name: "Dr Chang Yoo",
+    modifiedAt: "09/10/2022 14:00PM",
+    messages: [
+      {
+        name: "Barnard Don, D.O.",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+  },
+  {
+    id: 3423,
+    subject: "Follow-up from past visit/message",
+    name: "Jodi Berzak, D.O.",
+    modifiedAt: "09/12/2022 17:00PM",
+    messages: [
+      {
+        name: "Jodi Berzak, D.O.",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "James Bond, D.O.",
+        modifiedAt: "09/09/2022 12:00PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
   },
 ];
 export const mockUserData = {
@@ -9555,10 +16304,14 @@ export const mockAppointmentCreationData = [
       isEmergencyContactAvailable: false,
       contactPrefrence: false,
       _id: "7300529f-ce7e-4f8e-946b-92d498a4b03d",
+      email: "test@gmail.com",
     },
     provider: {
       inHouse: false,
       _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+      office: {
+        id: "123490",
+      },
     },
     office: {
       _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
@@ -28548,6 +35301,7 @@ export const prescriptionContact = {
     },
   },
 };
+
 export const prescriptionGlasses = {
   count: 2,
   entities: [
@@ -28693,6 +35447,7 @@ export const prescriptionGlasses = {
     },
   },
 };
+
 export const prescriptionMedication = [
   {
     Deleted: "n",
@@ -28776,5 +35531,3069 @@ export const prescriptionMedication = [
         },
       },
     },
+  },
+  {
+    Voided: "n",
+    RcopiaID: "SB-263536464821",
+    Patient: {
+      RcopiaPracticeID: "2225319421",
+      FirstName: "FirstNikitaDhan",
+      ExternalID: "",
+      RcopiaID: "26151571631",
+      LastName: "Dr",
+    },
+    NeedsReview: "n",
+    Provider: {
+      DEA: "AP3864421",
+      Username: "pclarksoneyecare",
+      NPI: "1741791705",
+      FirstName: "Provider",
+      ExternalID: "",
+      RcopiaID: "2642957631",
+      LastName: "ClarksonEyeCare",
+    },
+    Preparer: {
+      RcopiaID: "2642957631",
+      ExternalID: "",
+      FirstName: "Provider",
+      LastName: "ClarksonEyeCare",
+    },
+    Sig: {
+      Drug: {
+        NDCID: "00378070901",
+        BrandName: "D-Penamine",
+        GenericName: "penicillamine",
+        Form: "tablet",
+        Strength: "125 mg",
+        RcopiaID: "12100000098779",
+        FirstDataBankMedID: "585251",
+        DrugDescription: "D-Penamine 200 mg tablet",
+        Schedule: "nonscheduled",
+        BrandType: "brand",
+        Route: "oral",
+        LegendStatus: "rx",
+      },
+      DoseUnit: "tablet",
+      DoseTiming: "twice a day",
+      Duration: "",
+      Route: "by mouth",
+      Quantity: "1",
+      QuantityUnit: "tablet",
+      Refills: "0",
+      SubstitutionPermitted: "y",
+      OtherNotes: "",
+      PatientNotes: "as directed",
+      Dose: "3",
+      Action: "Take",
+      Comments: "",
+      MaximumDailyDoseUnit: "",
+      DoseOther: "as directed",
+      MaximumDailyDose: "",
+    },
+    CreatedDate: "10/05/2022 03:40:57 EDT",
+    CompletedDate: "",
+    SignedDate: "",
+    StopDate: "10/05/2023",
+    LastModifiedBy: "pclarksoneyecare",
+    LastModifiedDate: "10/05/2022 03:41:00 EDT",
+    Height: "",
+    Weight: "",
+    IntendedUse: "",
+    Denied: "n",
+    patientRcopiaID: "26151571631",
+    _id: "323498f1-dff7-47b6-b3af-2dcc432f65ce",
+    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008e",
+    _created: "Oct 5, 2022, 7:41:50 AM",
+    _updated: "Oct 5, 2022, 7:41:50 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: {
+          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+        },
+      },
+    },
+  },
+];
+
+export const mockSubmitFilterReal = {
+  offices: [
+    {
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _links: {
+          self: {
+            href: "/v1/offices/4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+          },
+        },
+      },
+      providerTemplate: [
+        {
+          name: "NEURO",
+          templateType: {
+            code: "USER",
+            description: "User template type",
+          },
+          provider: {
+            firstName: "Steve",
+            lastName: "Adam",
+            designation: "Dr",
+            inHouse: false,
+            workPhone: "3219898898",
+            rating: 2,
+            profilePhoto: {
+              digitalAsset: {
+                uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+                fileName: "test",
+                assetUrl: "/v1/patient",
+                _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+              },
+            },
+            address: {
+              addressLine1: "800 14th St Apt B",
+              city: "Virginia Beach",
+              state: "VA",
+              zip: "23451",
+            },
+            _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+            _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+            _updated: "Oct 20, 2022, 10:51:39 AM",
+            _updatedBy: {
+              _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              _links: {
+                self: {
+                  href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+                },
+              },
+            },
+          },
+          slots: [
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:00",
+              endHHMM: "16:05",
+              _id: "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
+              _version: "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:05",
+              endHHMM: "16:10",
+              _id: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
+              _version: "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:10",
+              endHHMM: "16:15",
+              _id: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
+              _version: "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:15",
+              endHHMM: "16:20",
+              _id: "42eee764-b78a-404e-9393-1fda66b06e73",
+              _version: "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:20",
+              endHHMM: "16:25",
+              _id: "81be5e4d-d25d-422a-aa49-533236eccc46",
+              _version: "87629eb5-538c-4500-8885-15eb8df1fadc",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:25",
+              endHHMM: "16:30",
+              _id: "7a82bcbe-d58b-4448-933a-b2932032b489",
+              _version: "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:30",
+              endHHMM: "16:35",
+              _id: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
+              _version: "872c560e-93f6-4979-812f-035bfde93a44",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:35",
+              endHHMM: "16:40",
+              _id: "f0c6a887-626f-46ed-b48b-be65ee21b150",
+              _version: "c4d7a99d-1548-4554-a701-ae30ca705250",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          scheduleDate: day4,
+          status: "UPDATED",
+          _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+          _version: "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
+          _created: "Oct 20, 2022, 7:48:23 AM",
+          _updated: "Oct 21, 2022, 9:43:32 AM",
+          _createdBy: {
+            _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            _links: {
+              self: {
+                href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        {
+          name: "NEURO",
+          templateType: {
+            code: "USER",
+            description: "User template type",
+          },
+          provider: {
+            firstName: "Steve",
+            lastName: "Adam",
+            designation: "Dr",
+            inHouse: false,
+            workPhone: "3219898898",
+            rating: 2,
+            profilePhoto: {
+              digitalAsset: {
+                uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+                fileName: "test",
+                assetUrl: "/v1/patient",
+                _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+              },
+            },
+            address: {
+              addressLine1: "800 14th St Apt B",
+              city: "Virginia Beach",
+              state: "VA",
+              zip: "23451",
+            },
+            _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+            _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+            _updated: "Oct 20, 2022, 10:51:39 AM",
+            _updatedBy: {
+              _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              _links: {
+                self: {
+                  href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+                },
+              },
+            },
+          },
+          slots: [
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:00",
+              endHHMM: "16:05",
+              _id: "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
+              _version: "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:05",
+              endHHMM: "16:10",
+              _id: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
+              _version: "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:10",
+              endHHMM: "16:15",
+              _id: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
+              _version: "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:15",
+              endHHMM: "16:20",
+              _id: "42eee764-b78a-404e-9393-1fda66b06e73",
+              _version: "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:20",
+              endHHMM: "16:25",
+              _id: "81be5e4d-d25d-422a-aa49-533236eccc46",
+              _version: "87629eb5-538c-4500-8885-15eb8df1fadc",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:25",
+              endHHMM: "16:30",
+              _id: "7a82bcbe-d58b-4448-933a-b2932032b489",
+              _version: "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:30",
+              endHHMM: "16:35",
+              _id: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
+              _version: "872c560e-93f6-4979-812f-035bfde93a44",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:35",
+              endHHMM: "16:40",
+              _id: "f0c6a887-626f-46ed-b48b-be65ee21b150",
+              _version: "c4d7a99d-1548-4554-a701-ae30ca705250",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          scheduleDate: "10/26/2022",
+          status: "UPDATED",
+          _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+          _version: "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
+          _created: "Oct 20, 2022, 7:48:23 AM",
+          _updated: "Oct 21, 2022, 9:43:32 AM",
+          _createdBy: {
+            _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            _links: {
+              self: {
+                href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        {
+          name: "NEURO",
+          templateType: {
+            code: "USER",
+            description: "User template type",
+          },
+          provider: {
+            firstName: "Steve",
+            lastName: "Adam",
+            designation: "Dr",
+            inHouse: false,
+            workPhone: "3219898898",
+            rating: 2,
+            profilePhoto: {
+              digitalAsset: {
+                uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+                fileName: "test",
+                assetUrl: "/v1/patient",
+                _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+              },
+            },
+            address: {
+              addressLine1: "800 14th St Apt B",
+              city: "Virginia Beach",
+              state: "VA",
+              zip: "23451",
+            },
+            _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+            _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+            _updated: "Oct 20, 2022, 10:51:39 AM",
+            _updatedBy: {
+              _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              _links: {
+                self: {
+                  href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+                },
+              },
+            },
+          },
+          slots: [
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:00",
+              endHHMM: "16:05",
+              _id: "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
+              _version: "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:05",
+              endHHMM: "16:10",
+              _id: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
+              _version: "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:10",
+              endHHMM: "16:15",
+              _id: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
+              _version: "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:15",
+              endHHMM: "16:20",
+              _id: "42eee764-b78a-404e-9393-1fda66b06e73",
+              _version: "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:20",
+              endHHMM: "16:25",
+              _id: "81be5e4d-d25d-422a-aa49-533236eccc46",
+              _version: "87629eb5-538c-4500-8885-15eb8df1fadc",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:25",
+              endHHMM: "16:30",
+              _id: "7a82bcbe-d58b-4448-933a-b2932032b489",
+              _version: "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:30",
+              endHHMM: "16:35",
+              _id: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
+              _version: "872c560e-93f6-4979-812f-035bfde93a44",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:35",
+              endHHMM: "16:40",
+              _id: "f0c6a887-626f-46ed-b48b-be65ee21b150",
+              _version: "c4d7a99d-1548-4554-a701-ae30ca705250",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          scheduleDate: "10/27/2022",
+          status: "UPDATED",
+          _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+          _version: "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
+          _created: "Oct 20, 2022, 7:48:23 AM",
+          _updated: "Oct 21, 2022, 9:43:32 AM",
+          _createdBy: {
+            _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            _links: {
+              self: {
+                href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        {
+          name: "NEURO",
+          templateType: {
+            code: "USER",
+            description: "User template type",
+          },
+          provider: {
+            firstName: "Steve",
+            lastName: "Adam",
+            designation: "Dr",
+            inHouse: false,
+            workPhone: "3219898898",
+            rating: 2,
+            profilePhoto: {
+              digitalAsset: {
+                uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+                fileName: "test",
+                assetUrl: "/v1/patient",
+                _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+              },
+            },
+            address: {
+              addressLine1: "800 14th St Apt B",
+              city: "Virginia Beach",
+              state: "VA",
+              zip: "23451",
+            },
+            _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+            _version: "403a6428-9a69-4fe5-b186-e5549f4eeecc",
+            _updated: "Oct 20, 2022, 10:51:39 AM",
+            _updatedBy: {
+              _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              _links: {
+                self: {
+                  href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+                },
+              },
+            },
+          },
+          slots: [
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:00",
+              endHHMM: "16:05",
+              _id: "3ff35d73-a01f-41c8-a698-fe17888e6c5b",
+              _version: "7549a902-8f4f-4ff9-af6a-29b1c9d0fc03",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:05",
+              endHHMM: "16:10",
+              _id: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf",
+              _version: "81f421a9-10f6-4c30-8afb-64d8b6da01c5",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:10",
+              endHHMM: "16:15",
+              _id: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea",
+              _version: "f102c9e7-c7b3-4b96-b18b-61c290245cd2",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:15",
+              endHHMM: "16:20",
+              _id: "42eee764-b78a-404e-9393-1fda66b06e73",
+              _version: "1ab131ed-a5aa-4219-87a4-97cb8dc62b66",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:20",
+              endHHMM: "16:25",
+              _id: "81be5e4d-d25d-422a-aa49-533236eccc46",
+              _version: "87629eb5-538c-4500-8885-15eb8df1fadc",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:25",
+              endHHMM: "16:30",
+              _id: "7a82bcbe-d58b-4448-933a-b2932032b489",
+              _version: "be2a85ff-ae5a-4806-86d7-efb8c8655d30",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:30",
+              endHHMM: "16:35",
+              _id: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c",
+              _version: "872c560e-93f6-4979-812f-035bfde93a44",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+            {
+              appointmentType: {
+                code: "Charity",
+                name: "Charity",
+                key: 107,
+                order: 107,
+                category: {
+                  code: "OPH",
+                  description: "OPH",
+                },
+                acronym: "CHA",
+                color: "#F19D69",
+                slotLength: 5,
+                notes: "Charity",
+              },
+              startHHMM: "16:35",
+              endHHMM: "16:40",
+              _id: "f0c6a887-626f-46ed-b48b-be65ee21b150",
+              _version: "c4d7a99d-1548-4554-a701-ae30ca705250",
+              _created: "Oct 20, 2022, 7:48:23 AM",
+              _updated: "Oct 21, 2022, 9:43:32 AM",
+              _createdBy: {
+                _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+                _links: {
+                  self: {
+                    href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          scheduleDate: "10/28/2022",
+          status: "UPDATED",
+          _id: "ad3faafc-5ac1-43ae-a30e-463ca13590d9",
+          _version: "ac2d47d9-477d-49ea-ab4d-626b174f2ce3",
+          _created: "Oct 20, 2022, 7:48:23 AM",
+          _updated: "Oct 21, 2022, 9:43:32 AM",
+          _createdBy: {
+            _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            _links: {
+              self: {
+                href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+      ],
+    },
+  ],
+};
+
+export const mockDistance = {
+  originAddresses: [
+    "Greenwich, Greater London, UK",
+    "13 Great Carleton Square, Edinburgh, City of Edinburgh EH16 4, UK",
+  ],
+  destinationAddresses: [
+    "Stockholm County, Sweden",
+    "Dlouhá 609/2, 110 00 Praha-Staré Město, Česká republika",
+  ],
+  rows: [
+    {
+      elements: [
+        {
+          status: "OK",
+          duration: {
+            value: 70778,
+            text: "19 hours 40 mins",
+          },
+          distance: {
+            value: 1887508,
+            text: "1173 mi",
+          },
+        },
+        {
+          status: "OK",
+          duration: {
+            value: 44476,
+            text: "12 hours 21 mins",
+          },
+          distance: {
+            value: 1262780,
+            text: "785 mi",
+          },
+        },
+      ],
+    },
+    {
+      elements: [
+        {
+          status: "OK",
+          duration: {
+            value: 96000,
+            text: "1 day 3 hours",
+          },
+          distance: {
+            value: 2566737,
+            text: "1595 mi",
+          },
+        },
+        {
+          status: "OK",
+          duration: {
+            value: 69698,
+            text: "19 hours 22 mins",
+          },
+          distance: {
+            value: 1942009,
+            text: "1207 mi",
+          },
+        },
+      ],
+    },
+  ],
+};
+
+export const pastAppointmentResponse = {
+  count: 4,
+  entities: [
+    {
+      appointmentType: { code: "Charity", name: "Charity" },
+      patient: {
+        title: "0",
+        firstName: "dewoPatient",
+        lastName: "Simanjuntak",
+        dob: "02/26/1990",
+        age: "32",
+        sex: "0",
+        address: [],
+        patientDetails: {
+          isFlagNew: false,
+          isFlagInCollection: false,
+          isFlagBadCheck: false,
+          isFlagDeceased: false,
+          isFlagChartless: false,
+          _id: "17ad4082-9d55-4df7-aaff-992a388e6592",
+          _version: "b3cc4bd3-9fc2-4d7a-b7fb-2a6ed3885d9f",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        isEmergencyContactAvailable: false,
+        contactPrefrence: false,
+        status: "UPDATED",
+        contactInformation: {
+          phones: [{ type: 3.0, number: "(123) 434-5566", isPreferred: true }],
+          emails: [
+            {
+              type: 1,
+              isPreferred: true,
+              email: "patient123@mailinator.com",
+              _id: "7f0c7363-8a46-4cc6-9fa0-f647275630ba",
+              _version: "8718c073-b767-413e-9f73-60e7464f492a",
+              _created: "Oct 26, 2022, 12:48:48 PM",
+              _updated: "Nov 3, 2022, 11:15:34 AM",
+              _createdBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          contactPreferenceDetail: {
+            phone: false,
+            text: true,
+            email: true,
+            _id: "c8e63eba-7baf-45d7-83bf-3b8658762773",
+            _version: "887c0d39-ea76-4fa8-bb45-4d6124ca51ff",
+            _created: "Oct 26, 2022, 12:48:48 PM",
+            _updated: "Nov 3, 2022, 11:15:34 AM",
+            _createdBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          noEmail: false,
+          _id: "6aee049d-6255-4418-8b93-1aa97868dd00",
+          _version: "1b7a78c8-71f3-4f08-9903-b0ef42d7f619",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        _id: "761c3d8f-6236-43ae-80c1-06aa9e86eb1f",
+        _version: "0f723c6b-bbd9-4ef5-83ff-9da0fff7ab4d",
+        _created: "Oct 26, 2022, 12:48:48 PM",
+        _updated: "Nov 3, 2022, 11:15:34 AM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      provider: {
+        firstName: "Steve",
+        lastName: "Adam",
+        designation: "Dr",
+        inHouse: false,
+        workPhone: "3219898898",
+        address: {
+          addressLine1: "800 14th St Apt B",
+          city: "Virginia Beach",
+          state: "VA",
+          zip: "23451",
+        },
+        sex: { key: 11, name: "M", order: 1, notes: "" },
+        taxonomyCode: "207NI0002X",
+        classification: "Dermatology",
+        specialization: "Clinical & Laboratory Dermatological Immunology",
+        directAddress: "direct@test.com",
+        _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+        _version: "2a9e2afd-f26e-4af8-82b1-1415c2b29140",
+        _updated: "Nov 4, 2022, 1:16:17 PM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      appointmentDate: "07/03/2022",
+      appointmentTime: "09:55",
+      appointmentEndTime: "09:56",
+      appointmentLength: 1,
+      isConfirmed: false,
+      appointmentHistory: [],
+      state: {
+        subState: {
+          subState: "UPDATED",
+          _id: "135965e7-2b24-4548-b59b-1f405c31fdd6",
+          _version: "ee36b406-9608-498a-8d41-0a4802809c5e",
+          _created: "Nov 3, 2022, 10:00:01 AM",
+          _updated: "Nov 3, 2022, 10:00:01 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        state: "NO_SHOW",
+        _id: "a4ee0634-691b-41ed-b0ff-cb3be41610db",
+        _version: "32f72bd4-b1e2-4818-ad20-340baa8882fd",
+        _created: "Nov 3, 2022, 7:45:45 AM",
+        _updated: "Nov 3, 2022, 10:00:01 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      notes: [],
+      allowCreate: false,
+      paymentMethod: {
+        noInsuranceInformation: {},
+        insuranceInfoUsedForBilling: {
+          financialClassBasedInformation: {},
+          active: false,
+          archive: false,
+          selected: false,
+        },
+      },
+      appointmentNo: 1000001550,
+      newPatient: false,
+      insurancePayers: [],
+      override: false,
+      quickAppointmentflag: false,
+      isPrimaryMember: true,
+      status: "UPDATED",
+      _links: {
+        self: { href: "/v1/appointments/9a00f73a-e139-4c0a-8deb-3cf3968764ee" },
+      },
+      _id: "9a00f73a-e139-4c0a-8deb-3cf3968764ee",
+      _version: "e9b20ed9-abae-490c-9030-7c9ef5961e09",
+      _created: "Nov 3, 2022, 7:45:45 AM",
+      _updated: "Nov 3, 2022, 10:00:01 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+      _updatedBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+    },
+    {
+      appointmentType: { code: "Charity", name: "Charity" },
+      patient: {
+        title: "0",
+        firstName: "dewoPatient",
+        lastName: "Simanjuntak",
+        dob: "02/26/1990",
+        age: "32",
+        sex: "0",
+        address: [],
+        patientDetails: {
+          isFlagNew: false,
+          isFlagInCollection: false,
+          isFlagBadCheck: false,
+          isFlagDeceased: false,
+          isFlagChartless: false,
+          _id: "17ad4082-9d55-4df7-aaff-992a388e6592",
+          _version: "b3cc4bd3-9fc2-4d7a-b7fb-2a6ed3885d9f",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        isEmergencyContactAvailable: false,
+        contactPrefrence: false,
+        status: "UPDATED",
+        contactInformation: {
+          phones: [{ type: 3.0, number: "(123) 434-5566", isPreferred: true }],
+          emails: [
+            {
+              type: 1,
+              isPreferred: true,
+              email: "patient123@mailinator.com",
+              _id: "7f0c7363-8a46-4cc6-9fa0-f647275630ba",
+              _version: "8718c073-b767-413e-9f73-60e7464f492a",
+              _created: "Oct 26, 2022, 12:48:48 PM",
+              _updated: "Nov 3, 2022, 11:15:34 AM",
+              _createdBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          contactPreferenceDetail: {
+            phone: false,
+            text: true,
+            email: true,
+            _id: "c8e63eba-7baf-45d7-83bf-3b8658762773",
+            _version: "887c0d39-ea76-4fa8-bb45-4d6124ca51ff",
+            _created: "Oct 26, 2022, 12:48:48 PM",
+            _updated: "Nov 3, 2022, 11:15:34 AM",
+            _createdBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          noEmail: false,
+          _id: "6aee049d-6255-4418-8b93-1aa97868dd00",
+          _version: "1b7a78c8-71f3-4f08-9903-b0ef42d7f619",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        _id: "761c3d8f-6236-43ae-80c1-06aa9e86eb1f",
+        _version: "0f723c6b-bbd9-4ef5-83ff-9da0fff7ab4d",
+        _created: "Oct 26, 2022, 12:48:48 PM",
+        _updated: "Nov 3, 2022, 11:15:34 AM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      provider: {
+        firstName: "Steve",
+        lastName: "Adam",
+        designation: "Dr",
+        inHouse: false,
+        workPhone: "3219898898",
+        address: {
+          addressLine1: "800 14th St Apt B",
+          city: "Virginia Beach",
+          state: "VA",
+          zip: "23451",
+        },
+        sex: { key: 11, name: "M", order: 1, notes: "" },
+        taxonomyCode: "207NI0002X",
+        classification: "Dermatology",
+        specialization: "Clinical & Laboratory Dermatological Immunology",
+        directAddress: "direct@test.com",
+        _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+        _version: "2a9e2afd-f26e-4af8-82b1-1415c2b29140",
+        _updated: "Nov 4, 2022, 1:16:17 PM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      appointmentDate: "07/03/2022",
+      appointmentTime: "09:30",
+      appointmentEndTime: "09:31",
+      appointmentLength: 1,
+      isConfirmed: false,
+      appointmentHistory: [],
+      state: {
+        subState: {
+          subState: "UPDATED",
+          _id: "2eed7570-e2f3-491d-b244-de2219eb1066",
+          _version: "7364c91b-9f03-4741-9c47-c1b58f32cf6e",
+          _created: "Nov 3, 2022, 10:00:00 AM",
+          _updated: "Nov 3, 2022, 10:00:00 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        state: "NO_SHOW",
+        _id: "5b46846a-812f-4d51-9737-a8a412f8af8d",
+        _version: "977fc489-f3a1-48aa-bf27-b175e8136867",
+        _created: "Nov 1, 2022, 3:39:02 PM",
+        _updated: "Nov 3, 2022, 10:00:00 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      notes: [],
+      allowCreate: false,
+      paymentMethod: {
+        noInsuranceInformation: {},
+        insuranceInfoUsedForBilling: {
+          financialClassBasedInformation: {},
+          active: false,
+          archive: false,
+          selected: false,
+        },
+      },
+      appointmentNo: 1000001483,
+      newPatient: false,
+      insurancePayers: [],
+      override: false,
+      quickAppointmentflag: false,
+      isPrimaryMember: true,
+      status: "UPDATED",
+      _links: {
+        self: { href: "/v1/appointments/a4d72c3c-a3a8-42e8-ab00-0add17a0be21" },
+      },
+      _id: "a4d72c3c-a3a8-42e8-ab00-0add17a0be21",
+      _version: "6d982f26-0d5e-45fb-8b5f-d4549d37245c",
+      _created: "Nov 1, 2022, 3:39:02 PM",
+      _updated: "Nov 3, 2022, 10:00:00 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+      _updatedBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+    },
+    {
+      appointmentType: { code: "Charity", name: "Charity" },
+      patient: {
+        title: "0",
+        firstName: "dewoPatient",
+        lastName: "Simanjuntak",
+        dob: "02/26/1990",
+        age: "32",
+        sex: "0",
+        address: [],
+        patientDetails: {
+          isFlagNew: false,
+          isFlagInCollection: false,
+          isFlagBadCheck: false,
+          isFlagDeceased: false,
+          isFlagChartless: false,
+          _id: "17ad4082-9d55-4df7-aaff-992a388e6592",
+          _version: "b3cc4bd3-9fc2-4d7a-b7fb-2a6ed3885d9f",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        isEmergencyContactAvailable: false,
+        contactPrefrence: false,
+        status: "UPDATED",
+        contactInformation: {
+          phones: [{ type: 3.0, number: "(123) 434-5566", isPreferred: true }],
+          emails: [
+            {
+              type: 1,
+              isPreferred: true,
+              email: "patient123@mailinator.com",
+              _id: "7f0c7363-8a46-4cc6-9fa0-f647275630ba",
+              _version: "8718c073-b767-413e-9f73-60e7464f492a",
+              _created: "Oct 26, 2022, 12:48:48 PM",
+              _updated: "Nov 3, 2022, 11:15:34 AM",
+              _createdBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+              _updatedBy: {
+                _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                _links: {
+                  self: {
+                    href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                  },
+                },
+              },
+            },
+          ],
+          contactPreferenceDetail: {
+            phone: false,
+            text: true,
+            email: true,
+            _id: "c8e63eba-7baf-45d7-83bf-3b8658762773",
+            _version: "887c0d39-ea76-4fa8-bb45-4d6124ca51ff",
+            _created: "Oct 26, 2022, 12:48:48 PM",
+            _updated: "Nov 3, 2022, 11:15:34 AM",
+            _createdBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+            _updatedBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+          noEmail: false,
+          _id: "6aee049d-6255-4418-8b93-1aa97868dd00",
+          _version: "1b7a78c8-71f3-4f08-9903-b0ef42d7f619",
+          _created: "Oct 26, 2022, 12:48:48 PM",
+          _updated: "Nov 3, 2022, 11:15:34 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        _id: "761c3d8f-6236-43ae-80c1-06aa9e86eb1f",
+        _version: "0f723c6b-bbd9-4ef5-83ff-9da0fff7ab4d",
+        _created: "Oct 26, 2022, 12:48:48 PM",
+        _updated: "Nov 3, 2022, 11:15:34 AM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      provider: {
+        firstName: "Steve",
+        lastName: "Adam",
+        designation: "Dr",
+        inHouse: false,
+        workPhone: "3219898898",
+        address: {
+          addressLine1: "800 14th St Apt B",
+          city: "Virginia Beach",
+          state: "VA",
+          zip: "23451",
+        },
+        sex: { key: 11, name: "M", order: 1, notes: "" },
+        taxonomyCode: "207NI0002X",
+        classification: "Dermatology",
+        specialization: "Clinical & Laboratory Dermatological Immunology",
+        directAddress: "direct@test.com",
+        _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+        _version: "2a9e2afd-f26e-4af8-82b1-1415c2b29140",
+        _updated: "Nov 4, 2022, 1:16:17 PM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      appointmentDate: "07/02/2022",
+      appointmentTime: "09:25",
+      appointmentEndTime: "09:26",
+      appointmentLength: 1,
+      isConfirmed: false,
+      appointmentHistory: [],
+      state: {
+        subState: {
+          subState: "UPDATED",
+          _id: "234b173c-b041-4e4b-96ca-7732ef577e0a",
+          _version: "5f687043-8b84-4849-852d-7ffa96368717",
+          _created: "Nov 2, 2022, 9:30:01 AM",
+          _updated: "Nov 2, 2022, 9:30:01 AM",
+          _createdBy: {
+            _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            _links: {
+              self: {
+                href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+              },
+            },
+          },
+        },
+        state: "NO_SHOW",
+        _id: "524bf856-eed2-4e68-98c7-ec13f930c6de",
+        _version: "efd3dd2a-37e4-4e55-b488-2aff8a0ca1e3",
+        _created: "Nov 1, 2022, 3:43:10 PM",
+        _updated: "Nov 2, 2022, 9:30:01 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      notes: [],
+      allowCreate: false,
+      paymentMethod: {
+        noInsuranceInformation: {},
+        insuranceInfoUsedForBilling: {
+          financialClassBasedInformation: {},
+          active: false,
+          archive: false,
+          selected: false,
+        },
+      },
+      appointmentNo: 1000001484,
+      newPatient: false,
+      insurancePayers: [],
+      override: false,
+      quickAppointmentflag: false,
+      isPrimaryMember: true,
+      status: "UPDATED",
+      _links: {
+        self: { href: "/v1/appointments/0ecf162e-4040-471c-adf6-5d00f21229c1" },
+      },
+      _id: "0ecf162e-4040-471c-adf6-5d00f21229c1",
+      _version: "37b04074-1eae-44d1-88d1-4119c6b7b391",
+      _created: "Nov 1, 2022, 3:43:10 PM",
+      _updated: "Nov 2, 2022, 9:30:01 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+      _updatedBy: {
+        _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        _links: {
+          self: { href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0" },
+        },
+      },
+    },
+  ],
+  _links: { self: { href: "/appointments?pageNo=0&pageSize=500" } },
+};
+
+export const MOCK_PROVIDER_LIST_MESSAGING = [
+  {
+    designation: "MBBS, MD",
+    firstName: "Jaco",
+    lastName: "David",
+    nickName: "Jaco",
+    employeeNumber: "755708",
+    mi: "Jaco",
+    dob: "02/07/1971",
+    email: "eyecare@gmail.com",
+    sex: {
+      key: 11,
+      name: "M",
+      order: 1,
+      notes: "",
+    },
+    available: true,
+    note: "Test",
+    age: "51",
+    address: {
+      addressLine1: "568 Allens Mill Rd",
+      city: "Yorktown",
+      state: "VA",
+      zip: "23692",
+    },
+    homePhone: "4981261115",
+    cellPhone: "2812942993",
+    inHouse: false,
+    providerDetails: {
+      isProvider: true,
+      isExternalProvider: false,
+      materialRate: "0",
+      drFirstCredentialDetails: {
+        drFirstCredential: false,
+        username: "",
+        password: "",
+        signature: "",
+      },
+      npi: "1134296023",
+      professionalEq: "1234",
+      opticalEq: "12",
+      surgicalEq: "344",
+      contactEq: "12346",
+      provider: "",
+      onlineProvider: true,
+      license: [],
+      deaIds: [],
+      taxonomyCode: "207ND0101X",
+      classification: "Dermatology",
+      specialization: "MOHS-Micrographic Surgery",
+      rating: 9,
+      language1: "Arabic",
+      language2: "Chinese",
+      language3: "German",
+      profilePhoto: {
+        digitalAsset: {
+          uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+          fileName: "test",
+          assetUrl: "/v1/patient",
+          _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+        },
+      },
+    },
+    offices: [
+      {
+        name: "Ballwin",
+        addressLine1: "568 Allens Mill Rd",
+        city: "Yorktown",
+        state: "VA",
+        zip: "23692",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+      },
+      {
+        name: "Edwardsville ",
+        addressLine1: "700 12th St # A",
+        city: "Bellingham",
+        state: "WA",
+        zip: "98225",
+        _id: "cd68948d-aa9d-4100-a806-1afd2b227104",
+      },
+    ],
+    status: "UPDATED",
+    managerialAdjustments: false,
+    overrideExpiredPromo: false,
+    sources: [],
+    _links: {
+      self: {
+        href: "/v1/employees/b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+      },
+    },
+    _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+  },
+  {
+    designation: "MBBS, MD",
+    firstName: "Jaco",
+    lastName: "David",
+    nickName: "Jaco",
+    employeeNumber: "755708",
+    mi: "Jaco",
+    dob: "02/07/1971",
+    email: "eyecare@gmail.com",
+    sex: {
+      key: 11,
+      name: "M",
+      order: 1,
+      notes: "",
+    },
+    available: true,
+    note: "Test",
+    age: "51",
+    address: {
+      addressLine1: "568 Allens Mill Rd",
+      city: "Yorktown",
+      state: "VA",
+      zip: "23692",
+    },
+    homePhone: "4981261115",
+    cellPhone: "2812942993",
+    inHouse: false,
+    providerDetails: {
+      isProvider: true,
+      isExternalProvider: false,
+      materialRate: "0",
+      drFirstCredentialDetails: {
+        drFirstCredential: false,
+        username: "",
+        password: "",
+        signature: "",
+      },
+      npi: "1134296023",
+      professionalEq: "1234",
+      opticalEq: "12",
+      surgicalEq: "344",
+      contactEq: "12346",
+      provider: "",
+      onlineProvider: true,
+      license: [],
+      deaIds: [],
+      taxonomyCode: "207ND0101X",
+      classification: "Dermatology",
+      specialization: "MOHS-Micrographic Surgery",
+      rating: 9,
+      language1: "Arabic",
+      language2: "Chinese",
+      language3: "German",
+      profilePhoto: {
+        digitalAsset: {
+          uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+          fileName: "test",
+          assetUrl: "/v1/patient",
+          _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+        },
+      },
+    },
+    offices: [
+      {
+        name: "Ballwin",
+        addressLine2: "568 Allens Mill Rd",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+      },
+      {
+        name: "Edwardsville ",
+        addressLine1: "700 12th St # A",
+        city: "Bellingham",
+        state: "WA",
+        zip: "98225",
+        _id: "cd68948d-aa9d-4100-a806-1afd2b227104",
+      },
+    ],
+    status: "UPDATED",
+    managerialAdjustments: false,
+    overrideExpiredPromo: false,
+    sources: [],
+    _links: {
+      self: {
+        href: "/v1/employees/b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+      },
+    },
+    _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+  },
+  {
+    designation: "MBBS, MD",
+    firstName: "Jaco",
+    lastName: "David",
+    nickName: "Jaco",
+    employeeNumber: "755708",
+    mi: "Jaco",
+    dob: "02/07/1971",
+    email: "eyecare@gmail.com",
+    sex: {
+      key: 11,
+      name: "M",
+      order: 1,
+      notes: "",
+    },
+    available: true,
+    note: "Test",
+    age: "51",
+    address: {
+      addressLine1: "568 Allens Mill Rd",
+      city: "Yorktown",
+      state: "VA",
+      zip: "23692",
+    },
+    homePhone: "4981261115",
+    cellPhone: "2812942993",
+    workPhone: "2812942993",
+    inHouse: false,
+    providerDetails: {
+      isProvider: true,
+      isExternalProvider: false,
+      materialRate: "0",
+      drFirstCredentialDetails: {
+        drFirstCredential: false,
+        username: "",
+        password: "",
+        signature: "",
+      },
+      npi: "1134296023",
+      professionalEq: "1234",
+      opticalEq: "12",
+      surgicalEq: "344",
+      contactEq: "12346",
+      provider: "",
+      onlineProvider: true,
+      license: [],
+      deaIds: [],
+      taxonomyCode: "207ND0101X",
+      classification: "Dermatology",
+      specialization: "MOHS-Micrographic Surgery",
+      rating: 9,
+      language1: "Arabic",
+      language2: "Chinese",
+      language3: "German",
+      profilePhoto: {
+        digitalAsset: {
+          uid: "1ffaf737-57ac-4660-8a32-f0650e2285ae",
+          fileName: "test",
+          assetUrl: "/v1/patient",
+          _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
+        },
+      },
+    },
+    offices: [
+      {
+        name: "Ballwin",
+        addressLine1: "568 Allens Mill Rd",
+        city: "Yorktown",
+        state: "VA",
+        zip: "23692",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+      },
+      {
+        name: "Edwardsville ",
+        addressLine1: "700 12th St # A",
+        city: "Bellingham",
+        state: "WA",
+        zip: "98225",
+        _id: "cd68948d-aa9d-4100-a806-1afd2b227104",
+      },
+    ],
+    status: "UPDATED",
+    managerialAdjustments: false,
+    overrideExpiredPromo: false,
+    sources: [],
+    _links: {
+      self: {
+        href: "/v1/employees/b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+      },
+    },
+    _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
+  },
+];
+
+export const MOCK_GET_ALL_MESSAGING = [
+  {
+    id: 6783,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 7395,
+        name: "Anthony Beth, D.O.",
+        modifiedAt: "Oct 11, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+      },
+      {
+        id: 2345,
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "Oct 13, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: null,
+      },
+      {
+        id: 9333,
+        name: "James Black, D.O.",
+        modifiedAt: "Oct 25, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: true,
+  },
+  {
+    id: 2333,
+    subject: "Your lab results",
+    messages: [
+      {
+        id: 8399,
+        name: "Barnard Don, D.O.",
+        modifiedAt: "Oct 08, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+      },
+      {
+        id: 8900,
+        name: "Aliando Explend SpOg",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+      },
+      {
+        id: 5600,
+        name: "Janed Dunt, D.O.",
+        modifiedAt: "Oct 10, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: null,
+      },
+    ],
+    unRead: false,
+  },
+  {
+    id: 3423,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 4533,
+        name: "Jodi Berzak, D.O.",
+        modifiedAt: "Sep 30, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        id: 7789,
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "Sep 29, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            id: "682d29e5-9d85-498c-b2dc-8be8ba4b3b64",
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: false,
+  },
+];
+
+export const MOCK_GET_SENT_MESSAGING = [
+  {
+    id: 6783,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 5647,
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "Oct 14, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: null,
+      },
+    ],
+    unRead: false,
+  },
+  {
+    id: 2333,
+    subject: "Your lab results",
+    messages: [
+      {
+        id: 5567,
+        name: "Barnard Don, D.O.",
+        modifiedAt: "Oct 15, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: false,
+  },
+  {
+    id: 3423,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 3722,
+        name: "Jodi Berzak, D.O.",
+        modifiedAt: "Oct 18, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "Daniel Radclief SpOg",
+        modifiedAt: "Oct 19, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+      {
+        name: "James Bond, D.O.",
+        modifiedAt: "Oct 20, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [
+          {
+            fileName: "PatientNotes.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes2.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+          {
+            fileName: "PatientNotes3.pdf",
+            url: "https://www.africau.edu/images/default/sample.pdf",
+          },
+        ],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: false,
+  },
+];
+
+export const MOCK_GET_DRAFT_MESSAGING = [
+  {
+    id: 6783,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 9899,
+        name: "Anthony Beth, D.O.",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+        isDraft: false,
+      },
+      {
+        id: 9899,
+        name: "Anthony Beth, D.O.",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+        isDraft: true,
+      },
+    ],
+    unRead: false,
+  },
+  {
+    id: 9998,
+    subject: "",
+    messages: [
+      {
+        id: 9899,
+        name: "",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "",
+        isDraft: true,
+      },
+    ],
+    unRead: false,
+  },
+];
+
+export const MOCK_GET_DELETE_MESSAGING = [
+  {
+    id: 6888,
+    subject: "Follow-up from past visit/message",
+    messages: [
+      {
+        id: 4229,
+        name: "Anthony Beth, D.O.",
+        modifiedAt: "Oct 09, 2022, 4:31:42 PM",
+        message:
+          "I have attached the updated note about the patient. It was nice seeing you at the appointment we’ll need...",
+        attachments: [],
+        source: "/doctor.png",
+      },
+    ],
+    unRead: false,
   },
 ];

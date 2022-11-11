@@ -61,7 +61,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
     {
@@ -98,7 +111,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
   ],
@@ -380,15 +406,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -420,15 +446,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -460,15 +486,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -500,15 +526,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -540,15 +566,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -580,15 +606,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -620,15 +646,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -660,15 +686,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -708,15 +734,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -752,15 +778,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
@@ -792,15 +818,15 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
     });

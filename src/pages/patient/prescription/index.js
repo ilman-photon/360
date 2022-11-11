@@ -14,7 +14,6 @@ export default function PrescriptionPage() {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [requestRefillResponse, setRequestRefillResponse] =
     React.useState(null);
-  const [isLoaded, setIsLoaded] = React.useState(false);
 
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
@@ -25,11 +24,6 @@ export default function PrescriptionPage() {
       })
       .catch(function () {
         //Handle error getAllPrescriptions
-      })
-      .finally(function () {
-        setTimeout(() => {
-          setIsLoaded(true);
-        }, 200);
       });
   }
 
@@ -57,8 +51,8 @@ export default function PrescriptionPage() {
         });
     } else {
       const refillRequestBody = {
-        subject: "PhotonTesting checking",
-        bodyNote: "Please refill the medicine",
+        subject: "Refill request",
+        bodyNote: `${prescriptionData.medications[index]?.drug?.DrugDescription}, ${prescriptionData.medications[index]?.drug?.NDCID}, ${prescriptionData.medications[index].id}`,
         bodyReferences: [
           {
             code: "PATIENT",

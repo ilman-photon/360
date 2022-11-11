@@ -77,7 +77,7 @@ export default function MfaPage() {
     const postBody = {
       username,
       deviceId,
-      communication,
+      preferredMode: communication,
     };
     api
       .sendMfaCode(postBody)
@@ -85,6 +85,7 @@ export default function MfaPage() {
         setTempValidation(response);
         setComponentName(constants.MFA_COMPONENT_NAME);
         cookies.set("isStay", "stay", { path: "/patient" });
+        cookies.set("mfaPreferredMode", communication, { path: "/patient" });
       })
       .catch((err) => {
         if (err.ResponseCode === 4004) {
@@ -109,6 +110,7 @@ export default function MfaPage() {
     cookies.remove("mfa", { path: "/patient" });
     cookies.remove("isStay", { path: "/patient" });
     cookies.remove("isSecurityQuestionStep", { path: "/patient" });
+    cookies.remove("mfaPreferredMode", { path: "/patient" });
     !rememberMe && cookies.remove("mfaAccessToken", { path: "/patient" });
     router.push("/patient/");
   }
@@ -166,10 +168,12 @@ export default function MfaPage() {
 
   function onResendCodeClicked(callback) {
     const deviceId = "";
+    const preferredMode = cookies.get("mfaPreferredMode", { path: "/patient" });
     const postBody = {
       username,
       deviceId,
       codeType: "resendCode",
+      preferredMode,
     };
     api
       .sendMfaCode(postBody)
@@ -300,7 +304,6 @@ export default function MfaPage() {
             <AccountTitleHeading title={"Set-up Security Questions"} />
             <Box
               sx={{
-                paddingTop: "65px",
                 maxWidth: "75.1%",
                 minWidth: 686,
                 margin: "auto",

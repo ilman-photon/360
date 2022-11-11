@@ -5,7 +5,6 @@ import SidebarLink from "../../atoms/SidebarLink/sidebarLink";
 import styles from "./accountSidebar.module.scss";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
-import AssignmentTurnedInOutlinedIcon from "@mui/icons-material/AssignmentTurnedInOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
@@ -19,23 +18,23 @@ export const AccountSidebar = ({ ...props }, ref) => {
     {
       label: "Profile Information",
       href: "/patient/account/profile-info",
-      icon: <AccountCircleOutlinedIcon />,
+      icon: <AccountCircleOutlinedIcon sx={{ margin: "5px" }} />,
     },
-    {
-      label: "Care Plan",
-      href: "#",
-      icon: <AccountCircleOutlinedIcon />,
-    },
-    {
-      label: "Prescriptions",
-      href: "/patient/prescription",
-      icon: <AccountCircleOutlinedIcon />,
-    },
-    {
-      label: "Test & Lab Results",
-      href: "#",
-      icon: <AssignmentTurnedInOutlinedIcon />,
-    },
+    // {
+    //   label: "Care Plan",
+    //   href: "#",
+    //   icon: <AccountCircleOutlinedIcon />,
+    // },
+    // {
+    //   label: "Prescriptions",
+    //   href: "/patient/prescription",
+    //   icon: <AccountCircleOutlinedIcon />,
+    // },
+    // {
+    //   label: "Test & Lab Results",
+    //   href: "#",
+    //   icon: <AssignmentTurnedInOutlinedIcon />,
+    // },
     // {
     //   label: "Documents",
     //   child: [
@@ -53,12 +52,12 @@ export const AccountSidebar = ({ ...props }, ref) => {
     {
       label: "Insurance documents",
       href: "/patient/account/insurance-info",
-      icon: <DescriptionOutlinedIcon />,
+      icon: <DescriptionOutlinedIcon sx={{ margin: "5px" }} />,
     },
     {
       label: "Multi factor authentication",
       href: "#",
-      icon: <LockOutlinedIcon />,
+      icon: <LockOutlinedIcon sx={{ margin: "5px" }} />,
     },
   ];
 
@@ -89,8 +88,10 @@ export const AccountSidebar = ({ ...props }, ref) => {
               flexDirection="row"
               alignItems="center"
               color={colors.iconGrey}
+              sx={{ width: "100%" }}
             >
               <SidebarLink router={router} href={link.href} child={link.child}>
+                {link.icon}
                 {link.label}
               </SidebarLink>
             </Stack>

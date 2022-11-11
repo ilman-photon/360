@@ -138,19 +138,22 @@ const InfoWindowContent = ({
                             mode={constants.PRIMARY}
                             size={constants.SMALL}
                             gradient={false}
-                            data-testId={
+                            data-testid={
                               constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
                                 .MAPS.infoWindow.timeslot
                             }
                             onClick={() => {
                               if (!item) return;
                               OnTimeClicked(
-                                new Date(
-                                  `${v.date} ${item.time.substring(
-                                    0,
-                                    item.time.length - 2
-                                  )}`
-                                ),
+                                {
+                                  appointmentCode: item.appointmentCode,
+                                  dateTime: new Date(
+                                    `${v.date} ${item.time.substring(
+                                      0,
+                                      item.time.length - 2
+                                    )}`
+                                  ),
+                                },
                                 data[counter - 1]
                               );
                             }}

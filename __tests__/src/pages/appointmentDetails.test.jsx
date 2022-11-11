@@ -65,7 +65,20 @@ describe("Render Appointment", () => {
     appointmentInfo: {
       appointmentType: "Eye Exam",
       date: "Fri, 14 Oct 2022 04:30:00 EST",
-      insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       documentDetails: {
         documentID: "6c6bc10990uq09.1231.1239.01.0921.(2.129.91.0.102) ",
         createdOn: "July 26, 2022, 2:54 : 10PM -0500",

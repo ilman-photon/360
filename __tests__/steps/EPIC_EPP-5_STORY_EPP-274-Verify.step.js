@@ -1,7 +1,10 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, renderHook, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import SessionExpiredModal from "../../src/components/organisms/SessionExpiredModal/sessionExpiredModal";
+import Cookies from "universal-cookie";
+import { sleep } from "../../__mocks__/util";
+import { useIdleTimer } from "react-idle-timer";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-274.feature",
@@ -10,8 +13,52 @@ const feature = loadFeature(
   }
 );
 
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get() {
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
+
 defineFeature(feature, (test) => {
-  let container;
+  let props, container;
+  const idleTimer = () => {
+    return renderHook(() => useIdleTimer(props));
+  };
+
+  beforeEach(() => {
+    props = {
+      timeout: undefined,
+      promptTimeout: undefined,
+      element: undefined,
+      events: undefined,
+      timers: undefined,
+      immediateEvents: undefined,
+      onPrompt: undefined,
+      onActive: undefined,
+      onAction: undefined,
+      onMessage: undefined,
+      debounce: undefined,
+      throttle: undefined,
+      eventsThrottle: undefined,
+      startOnMount: undefined,
+      startManually: undefined,
+      stopOnIdle: undefined,
+      capture: undefined,
+      passive: undefined,
+      crossTab: undefined,
+      name: undefined,
+      syncTimers: undefined,
+      leaderElection: undefined,
+    };
+  });
+
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
@@ -50,9 +97,10 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
-        <SessionExpiredModal showModal={true} remaining={60} />
-      );
+      Cookies.result = { IdleTimeOut: 200, authorized: true, mfa: "123" };
+      props.idleTimer = 200;
+      props.promptTimeout = 2000;
+      container = render(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -99,9 +147,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
-        <SessionExpiredModal showModal={true} remaining={60} />
-      );
+      container = render(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -160,9 +206,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
-        <SessionExpiredModal showModal={true} remaining={60} />
-      );
+      container = render(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -196,13 +240,8 @@ defineFeature(feature, (test) => {
     then(
       /^user should validate the message "(.*)" with  "(.*)" Button$/,
       async (arg0, arg1) => {
-        container = render(
-          <SessionExpiredModal
-            showModal={true}
-            isExpired={true}
-            remaining={0}
-          />
-        );
+        await sleep(60000);
+        container = render(<SessionExpiredModal />);
         await waitFor(() =>
           container.getByText(/Your session expired. Please login again/i)
         );
@@ -210,7 +249,7 @@ defineFeature(feature, (test) => {
         expect(logoutBtn).toBeVisible();
       }
     );
-  });
+  }, 61000);
 
   test('EPIC_EPP-3_STORY_EPP-274 - Verify that when user clicks "OK" button, system should logout the user', ({
     given,
@@ -243,9 +282,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
-        <SessionExpiredModal showModal={true} remaining={60} />
-      );
+      container = render(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -279,13 +316,8 @@ defineFeature(feature, (test) => {
     then(
       /^user should validate the message "(.*)" with  "(.*)" Button$/,
       async (arg0, arg1) => {
-        container = render(
-          <SessionExpiredModal
-            showModal={true}
-            isExpired={true}
-            remaining={0}
-          />
-        );
+        container = render(<SessionExpiredModal />);
+        await sleep(60000);
         await waitFor(() =>
           container.getByText(/Your session expired. Please login again/i)
         );
@@ -301,7 +333,7 @@ defineFeature(feature, (test) => {
     then("user must be logged out", () => {
       defaultValidation();
     });
-  });
+  }, 61000);
 
   test('EPIC_EPP-3_STORY_EPP-274 - Verify that when user clicks "OK" button, system should logout within 3 seconds', ({
     given,
@@ -334,12 +366,14 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
-        <SessionExpiredModal showModal={true} remaining={60} />
-      );
+      props.idleTimer = 1000;
+      props.promptTimeout = 2000;
+      props.isPrompted = jest.fn().mockReturnValue(true);
+      const { result } = idleTimer();
+      container = render(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
-          /Your session is about to time-out. You will be logged out in /i
+          /Your session is about to time-out. You will be logged out in 60 seconds./i
         )
       );
     });
@@ -370,13 +404,7 @@ defineFeature(feature, (test) => {
     then(
       /^user should validate the message "(.*)" with  "(.*)" Button$/,
       async (arg0, arg1) => {
-        container = render(
-          <SessionExpiredModal
-            showModal={true}
-            isExpired={true}
-            remaining={0}
-          />
-        );
+        await sleep(60000);
         await waitFor(() =>
           container.getByText(/Your session expired. Please login again/i)
         );
@@ -396,5 +424,5 @@ defineFeature(feature, (test) => {
     then("user must  be navigated to Patient Portal login page", () => {
       defaultValidation();
     });
-  });
+  }, 61000);
 });

@@ -1,10 +1,13 @@
 import moment from "moment";
+import { Api } from "../pages/api/api";
+import { setFilterBy, setProviderListData } from "../store/appointment";
 import constants from "./constants";
 import {
   convertTime24to12,
   mmddyyDateFormat,
   yyyymmddDateFormat,
 } from "./dateFormatter";
+import { getCoords, getDistanceMatrix } from "./getCity";
 
 function isValidDate(d) {
   return d instanceof Date && !isNaN(d);
@@ -94,7 +97,7 @@ export function parseScheduleDataWeek(availability) {
 
 export function getAppointmentTypeOnTimeSlot(scheduleData, timeSlot) {
   let appointmentType = "";
-  for (let index = 0; index < scheduleData.list.length; index++) {
+  for (let index = 0; index < scheduleData?.list?.length; index++) {
     if (scheduleData.list[index]?.time === timeSlot) {
       appointmentType = scheduleData.list[index].appointmentCode;
       break;
@@ -104,14 +107,12 @@ export function getAppointmentTypeOnTimeSlot(scheduleData, timeSlot) {
   return appointmentType;
 }
 
-export function parseDateWeekList(availability) {
+export function parseDateWeekList(availabilities) {
   const dateList = [];
-  for (let index = 0; index < availability.length; index++) {
-    dateList.push(
-      availability[index] && availability[index].date
-        ? availability[index].date
-        : ""
-    );
+  if (availabilities.length > 0) {
+    for (let availability of availabilities) {
+      dateList.push(availability && availability.date ? availability.date : "");
+    }
   }
   return dateList;
 }
@@ -165,23 +166,19 @@ export function parseScheduleDataDay(availability, currentDateIndex) {
   return scheduleData;
 }
 
-export function parseScheduleDataWeekOverlay(availability) {
+export function parseScheduleDataWeekOverlay(availabilities) {
   const scheduleData = {};
-
-  for (let index = 0; index < availability.length; index++) {
-    const schedule = [];
-    for (
-      let indexList = 0;
-      indexList < availability[index].list.length;
-      indexList++
-    ) {
-      if (availability[index].list[indexList]) {
-        schedule.push(availability[index].list[indexList].time);
+  if (availabilities.length > 0) {
+    for (let availability of availabilities) {
+      const schedule = [];
+      for (const availabilityList of availability.list) {
+        if (availabilityList) {
+          schedule.push(availabilityList.time);
+        }
       }
+      scheduleData[getDayName(new Date(availability.date))] = schedule;
     }
-    scheduleData[getDayName(new Date(availability[index].date))] = schedule;
   }
-
   return scheduleData;
 }
 
@@ -275,7 +272,7 @@ export function getProvideOverlay(
     }
   }
 
-  if (listOfProvider?.length === 0) {
+  if (listOfProvider.length === 0) {
     const getRangeDate = getDates(
       new Date(startDate),
       new Date(endDate),
@@ -319,7 +316,7 @@ export function updateProviderTimeSchedule(
   return updateProviderList;
 }
 
-function parsePrescriptionItemData(prescriptionData, key) {
+export function parsePrescriptionItemData(prescriptionData, key) {
   const data = [];
   let latestDate = "";
   for (const itemData of prescriptionData) {
@@ -415,6 +412,7 @@ function parsePrescriptionItemMedication(medications) {
       "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
     medicationData.type = element.type;
     medicationData.providerNPI = element.providerNPI;
+    medicationData.drug = element.drug;
 
     if (medicationData.type === "active") {
       active.push(medicationData);
@@ -430,11 +428,16 @@ function parsePrescriptionItemMedication(medications) {
     } else {
       past.push(medicationData);
     }
-    filterProvider.push({
-      name: element.providerName,
-      checked: false,
-      type: "provider",
-    });
+    const fProvider = filterProvider.find(
+      (item) => item.name === element.providerName
+    );
+    if (!fProvider) {
+      filterProvider.push({
+        name: element.providerName,
+        checked: false,
+        type: "provider",
+      });
+    }
   }
   filterData[1].checklist.push(...filterProvider);
   return { active, past, latestDateMedic, filterProvider: filterData };
@@ -574,7 +577,7 @@ export function parseAppointmentDetails(appointmentDetails) {
     },
   ];
 
-  for (let i = 0; i < data.appointmentInfo.contents; i++) {
+  for (let i = 0; i < data.appointmentInfo.contents.length; i++) {
     let headers = [];
     switch (data.appointmentInfo.contents[i].type.toLowerCase()) {
       case "allergies":
@@ -666,14 +669,79 @@ function setAvailableToday(dateSchedule) {
   return dateSchedule === newDate;
 }
 
-export function parseProviderListData(response, startDate, endDate) {
+function getProviderAddres(providerAddress) {
+  return {
+    addressLine1: providerAddress?.addressLine1 || "",
+    addressLine2: "",
+    city: providerAddress?.city || "",
+    state: providerAddress?.state || "",
+    zipcode: providerAddress?.zip || "",
+  };
+}
+
+export function addLanguageFilter(provider, languageList) {
+  const languageKeyList = ["language1", "language2", "language3"];
+  const filterLanguage = [];
+  for (const key of languageKeyList) {
+    const language = provider[key];
+    const isSameData = languageList.find((item) => item.name === language);
+    if (!isSameData && language) {
+      languageList.push({
+        name: language,
+        type: "languange",
+        checked: false,
+      });
+    }
+
+    if (language) {
+      filterLanguage.push(language);
+    }
+  }
+
+  return { languageList, filterLanguage };
+}
+
+export function addGenderFilter(sex, genderList) {
+  let gender = "";
+  if (sex) {
+    if (sex === "M") {
+      gender = "Male";
+    } else if (sex === "F") {
+      gender = "Female";
+    } else {
+      gender = "Non-Binary";
+    }
+
+    const isSameData = genderList.find((item) => item.name === gender);
+
+    if (!isSameData) {
+      genderList.push({
+        name: gender,
+        type: "gender",
+        checked: false,
+      });
+    }
+  }
+  return { genderList, gender };
+}
+
+export async function parseProviderListData(
+  response,
+  startDate,
+  endDate,
+  googleApiKey,
+  currentCoordinate
+) {
   startDate = yyyymmddDateFormat(startDate);
   endDate = yyyymmddDateFormat(endDate);
+  let languageFilter = [];
+  let genderFilter = [];
   const data = {
     listOfProvider: [],
     filterbyData: [
       {
         name: "Available Today",
+        type: "general",
         checked: false,
       },
     ],
@@ -692,6 +760,7 @@ export function parseProviderListData(response, startDate, endDate) {
       const currentProvider = data.listOfProvider
         ? data.listOfProvider.find((item) => item.providerId === providerId)
         : [];
+
       if (data.listOfProvider.length === 0 || !currentProvider) {
         const providerTemp = {
           providerId: "",
@@ -716,8 +785,8 @@ export function parseProviderListData(response, startDate, endDate) {
           to: endDate,
           availability: [],
           coordinate: {
-            latitude: "",
-            longitude: "",
+            lat: "",
+            lng: "",
           },
           filters: {},
         };
@@ -729,7 +798,38 @@ export function parseProviderListData(response, startDate, endDate) {
         providerTemp.filters["isAvailableToday"] = setAvailableToday(
           availabilityDate.date
         );
+        providerTemp.address = getProviderAddres(provider.address);
+        providerTemp.rating = provider.rating;
+        providerTemp.phoneNumber = provider.workPhone;
+        providerTemp.image = provider?.profilePhoto?.digitalAsset || null;
+
+        providerTemp.coordinate = await getCoords(
+          googleApiKey,
+          provider.address
+        );
+
+        providerTemp.distance = await getDistanceMatrix(
+          // { lat: 36.8493937, lng: -76.0106753 }, // Testing from 1456 Reynard Dr, Virginia Beach, VA 23451, USA
+          // { lat: -6.2268686, lng: 106.8335146}, // Testing from Jakarta Selatan
+          currentCoordinate,
+          providerTemp.coordinate
+        );
+
         data.listOfProvider.push(providerTemp);
+
+        const { languageList, filterLanguage } = addLanguageFilter(
+          provider,
+          languageFilter
+        );
+        const { genderList, gender } = addGenderFilter(
+          provider?.sex?.name,
+          genderFilter
+        );
+        languageFilter = languageList;
+        genderFilter = genderList;
+
+        providerTemp.filters["language"] = filterLanguage;
+        providerTemp.filters["gender"] = gender;
       } else if (data.listOfProvider.length > 0 && currentProvider) {
         const isSameDate = currentProvider.availability.find(
           (item) => item.date === availabilityDate.date
@@ -754,5 +854,81 @@ export function parseProviderListData(response, startDate, endDate) {
     );
   }
 
+  if (languageFilter.length > 0) {
+    data.filterbyData.push({
+      name: "Language",
+      checklist: languageFilter,
+    });
+  }
+
+  if (genderFilter.length > 0) {
+    data.filterbyData.push({
+      name: "Gender",
+      checklist: genderFilter,
+    });
+  }
   return data;
+}
+
+export function onCalledGetAppointmentTypesAPI(insuranceCarrierList, callback) {
+  const api = new Api();
+  api
+    .getAppointmentTypes()
+    .then(function (response) {
+      const filterSuggestion = {
+        purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
+        insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
+      };
+      callback(filterSuggestion);
+    })
+    .catch(function () {
+      //Handle error getsuggestion
+    });
+}
+
+export async function onCallSubmitFilterAPI(
+  requestData,
+  filterSuggestionData,
+  dispatch,
+  router
+) {
+  const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
+    (element) => element.title === requestData.purposeOfVisit
+  );
+  const startDateRequest = getMondayOfCurrentWeek(requestData.date);
+  const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
+  const postBody = {
+    appointmentType: {
+      code: selectedAppointmentType?.id || "ALL",
+    },
+    currentDate: startDateRequest,
+    numDays: 6,
+    days: ["ALL"],
+    prefTime: "ALL",
+  };
+  const api = new Api();
+
+  api
+    .submitFilter(requestData.location, postBody)
+    .then(async function (response) {
+      const parseProviderData = await parseProviderListData(
+        response,
+        postBody.currentDate,
+        endDateRequest,
+        googleApiKey,
+        currentCoordinate
+      );
+      if (response?.offices?.length > 0) {
+        dispatch(setProviderListData(parseProviderData?.listOfProvider));
+      } else {
+        dispatch(setProviderListData([]));
+      }
+      dispatch(setFilterBy(parseProviderData.filterbyData));
+    })
+    .catch(function () {
+      dispatch(setProviderListData([]));
+    })
+    .finally(function () {
+      router.push("/patient/appointment");
+    });
 }

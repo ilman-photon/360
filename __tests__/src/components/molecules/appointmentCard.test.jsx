@@ -4,6 +4,20 @@ import AppointmentCard from "../../../../src/components/molecules/Dashboard/appo
 
 describe("AppointmentCard Components", () => {
   let container;
+
+  const spyWindowOpen = jest.spyOn(window, "open");
+  spyWindowOpen.mockImplementation(jest.fn()).mockReturnValue({
+    focus: jest.fn(),
+    print: jest.fn(),
+    document: {
+      write: jest.fn(),
+      head: {
+        appendChild: jest.fn(),
+      },
+      close: jest.fn(),
+    },
+  });
+
   it("AppointmentCard render", async () => {
     const appointmentData = [{
       appointmentId: "1",
@@ -11,7 +25,13 @@ describe("AppointmentCard Components", () => {
         providerId: "1",
         name: "John",
         position: "",
-        address: "",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
         rating: "5",
         phoneNumber: "",
         image: "",
@@ -23,6 +43,7 @@ describe("AppointmentCard Components", () => {
         dob: `1990-11-12`,
       },
       appointmentInfo: {
+        appointmentTypeCategory: "OPH",
         appointmentType: `Comprehensive`,
         date: `2022-10-10`,
         insuranceCarrier: [],
@@ -67,6 +88,7 @@ describe("AppointmentCard Components", () => {
         dob: `1990-11-12`,
       },
       appointmentInfo: {
+        appointmentTypeCategory: "OPT",
         appointmentType: `Eye Exam`,
         date: `2022-10-10`,
         insuranceCarrier: [],
@@ -83,7 +105,22 @@ describe("AppointmentCard Components", () => {
       />
     )
     const telBtn = container.getByText('857299998')
+    const getDirectionsBtn = container.getByText('Get Directions')
+    const viewAppointmentLink = container.getByText('View Appointments')
+    fireEvent.keyDown(viewAppointmentLink, { key: "Enter" });
+    fireEvent.keyDown(viewAppointmentLink, { key: "ArrowDown" });
+    fireEvent.keyDown(telBtn, { key: "Enter" });
+    fireEvent.keyDown(telBtn, { key: "ArrowDown" });
     fireEvent.click(telBtn)
+    fireEvent.click(getDirectionsBtn)
     expect(await container.getByText('John')).toBeInTheDocument();
+  });
+
+  it("AppointmentCard render without data", async () => {
+    cleanup()
+    container = render(
+      <AppointmentCard appointmentData={[]} />
+    )
+    expect(await container.getByText('View Appointments')).toBeInTheDocument();
   });
 });

@@ -208,7 +208,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
     {
@@ -245,7 +258,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
   ],
@@ -400,14 +426,13 @@ describe("App", () => {
     Cookies.result = { IdleTimeOut: 200, authorized: true, mfa: "123" };
     props.idleTimer = 200;
     props.promptTimeout = 2000;
-    const { result } = idleTimer();
     act(() => {
       container = render(<App Component={HomePage} />);
     });
     await waitFor(() => container.getByLabelText(headerText));
     await util.sleep(200);
-    await waitFor(() =>
-      container.getByText(/Your session is about to time-out./i)
+    await waitFor(
+      () => container.getByText(/Your session is about to time-out./i)[0]
     );
     expect(
       container.getByText(/Your session is about to time-out./i)
@@ -422,12 +447,10 @@ describe("App", () => {
     Cookies.result = { IdleTimeOut: 200, authorized: true, mfa: "123" };
     props.idleTimer = 200;
     props.promptTimeout = 2000;
-    const { result } = idleTimer();
     act(() => {
       container = render(<App Component={HomePage} />);
     });
     await waitFor(() => container.getByLabelText(headerText));
-    await util.sleep(200);
     await waitFor(() =>
       container.getByText(/Your session is about to time-out./i)
     );

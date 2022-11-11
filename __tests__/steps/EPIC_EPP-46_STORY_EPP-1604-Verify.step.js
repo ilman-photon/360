@@ -1,5 +1,5 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import axios from "axios";
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
@@ -8,7 +8,7 @@ import store from "../../src/store/store";
 import Cookies from "universal-cookie";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
-
+import { renderLogin } from "../../__mocks__/commonSteps";
 
 const upcoming = {
   "count": 1,
@@ -355,8 +355,8 @@ jest.mock("universal-cookie", () => {
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => {},
-    removeListener: () => {},
+    addListener: () => { },
+    removeListener: () => { },
   });
 }
 
@@ -380,8 +380,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
-      defaultValidation();
+    when("User is logged in to the application", async () => {
+      container = await renderLogin()
     });
 
     and("User clicks to “Appointments” menu", () => {
@@ -393,6 +393,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
+      cleanup()
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
@@ -403,17 +404,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
-      .onGet(
-        `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-      )
-      .reply(200, upcoming);
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -463,8 +464,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
-      defaultValidation();
+    when("User is logged in to the application", async () => {
+      container = await renderLogin()
     });
 
     and("User clicks to “Appointments” menu", () => {
@@ -476,6 +477,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
+      cleanup()
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
@@ -486,17 +488,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
-      .onGet(
-        `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-      )
-      .reply(200, upcoming);
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -555,8 +557,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
-      defaultValidation();
+    when("User is logged in to the application", async () => {
+      container = await renderLogin()
     });
 
     and("User clicks to “Appointments” menu", () => {
@@ -568,6 +570,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
+      cleanup()
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
@@ -578,17 +581,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
-      .onGet(
-        `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-      )
-      .reply(200, upcoming);
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -669,8 +672,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
-      defaultValidation();
+    when("User is logged in to the application", async () => {
+      container = await renderLogin()
     });
 
     and("User clicks to “Appointments” menu", () => {
@@ -682,6 +685,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
+      cleanup()
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
@@ -692,17 +696,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
-      .onGet(
-        `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-      )
-      .reply(200, upcoming);
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -779,8 +783,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
-      defaultValidation();
+    when("User is logged in to the application", async () => {
+      container = await renderLogin()
     });
 
     and("User clicks to “Appointments” menu", () => {
@@ -792,6 +796,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
+      cleanup()
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
@@ -802,17 +807,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
-      .onGet(
-        `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-      )
-      .reply(200, upcoming);
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -884,8 +889,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
-      defaultValidation();
+    when("User is logged in to the application", async () => {
+      container = await renderLogin()
     });
 
     and("User clicks to “Appointments” menu", () => {
@@ -897,6 +902,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
+      cleanup()
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
@@ -907,17 +913,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
-      .onGet(
-        `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-      )
-      .reply(200, upcoming);
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1006,8 +1012,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
-      defaultValidation();
+    when("User is logged in to the application", async () => {
+      container = await renderLogin()
     });
 
     and("User clicks to “Appointments” menu", () => {
@@ -1019,6 +1025,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
+      cleanup()
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
@@ -1029,17 +1036,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
-      .onGet(
-        `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-      )
-      .reply(200, upcoming);
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1128,8 +1135,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
-      defaultValidation();
+    when("User is logged in to the application", async () => {
+      container = await renderLogin()
     });
 
     and("User clicks to “Appointments” menu", () => {
@@ -1141,6 +1148,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
+      cleanup()
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
@@ -1151,17 +1159,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
-      .onGet(
-        `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-      )
-      .reply(200, upcoming);
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1258,8 +1266,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
-      defaultValidation();
+    when("User is logged in to the application", async () => {
+      container = await renderLogin()
     });
 
     and("User clicks to “Appointments” menu", () => {
@@ -1271,6 +1279,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
+      cleanup()
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
@@ -1281,17 +1290,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
-      .onGet(
-        `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-      )
-      .reply(200, upcoming);
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),

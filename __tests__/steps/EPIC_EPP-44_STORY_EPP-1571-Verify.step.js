@@ -227,7 +227,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -251,7 +251,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -633,7 +633,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -657,7 +657,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -977,7 +977,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -1001,7 +1001,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -1365,7 +1365,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -1389,7 +1389,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -1769,7 +1769,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and("User should input the mandatory fields", () => {
@@ -1807,7 +1807,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+      defaultValidation();
     });
 
     and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {

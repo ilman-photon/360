@@ -316,7 +316,7 @@ export default function DetailAppointment({ data }) {
                     Insurance
                   </Typography>
                 </Box>
-                {appointmentInfo.insuranceCarrier.map((insurance, index) => (
+                {appointmentInfo.insuranceCarrier?.map((insurance, index) => (
                   <Box
                     key={index.toString()}
                     display={"flex"}
@@ -330,7 +330,7 @@ export default function DetailAppointment({ data }) {
                       ariaLabel={insurance}
                       variant="regularDarkGreen"
                     >
-                      {insurance}
+                      {insurance.name}
                     </Typography>
                   </Box>
                 ))}

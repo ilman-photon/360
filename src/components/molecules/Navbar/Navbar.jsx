@@ -25,6 +25,15 @@ const pages = [
   { href: "/patient/appointments", label: "Appointments" },
 ];
 
+const pagesNext = [
+  {
+    href: "/patient/my-care-team",
+    additional: "/patient/bio/",
+    label: "My Care Team",
+  },
+  { href: "/patient/messaging", label: "Messaging" },
+];
+
 const documents = [
   {
     icon: iconintakeFoms,
@@ -62,33 +71,31 @@ const medical = [
 ];
 
 const Navbar = ({ isDashboard = false }) => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorHealth, setAnchorHealth] = React.useState(null);
+  const [anchorDocument, setAnchorDocument] = React.useState(null);
 
   const router = useRouter();
 
   const isCurrentPath = (href) => {
-    return router.pathname === href;
+    return (
+      router.pathname === href ||
+      (router.pathname.includes(href) && href !== "/patient")
+    );
   };
   (function prefetchPages() {
     if (typeof window !== "undefined") router.prefetch(router.pathname);
   })();
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenHealth = (event) => {
+    setAnchorHealth(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = (href) => {
-    setAnchorElNav(null);
-    if (typeof href === "string") router.push(href);
+  const handleOpenDocument = (event) => {
+    setAnchorDocument(event.currentTarget);
   };
 
-  const handleCloseUserMenu = (href) => {
-    setAnchorElNav(null);
-    setAnchorElUser(null);
+  const handleCloseMenu = (href) => {
+    setAnchorHealth(null);
+    setAnchorDocument(null);
     if (typeof href === "string") router.push(href);
   };
 
@@ -96,11 +103,7 @@ const Navbar = ({ isDashboard = false }) => {
     return (
       <MenuItem
         key={itemIdx}
-        onClick={() =>
-          item.href.includes("medical-record")
-            ? handleCloseNavMenu(item.href)
-            : handleCloseUserMenu(item.href)
-        }
+        onClick={() => handleCloseMenu(item.href)}
         aria-label={`${item.label} menu`}
       >
         <Image alt="" src={item.icon} width={"16px"} height={"16px"} />
@@ -110,7 +113,10 @@ const Navbar = ({ isDashboard = false }) => {
             margin: "0 10px",
             fontFamily: "Libre Franklin",
             fontWeight: "400",
-            fontSize: "14px",
+            fontSize: {
+              sm: "14px",
+              md: "16px",
+            },
           }}
         >
           {item.label}
@@ -134,7 +140,19 @@ const Navbar = ({ isDashboard = false }) => {
       >
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ minHeight: "43px !important" }}>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", sm: "flex" },
+                justifyContent: {
+                  sm: "space-between",
+                  md: "normal",
+                },
+                gap: {
+                  md: "16px",
+                },
+              }}
+            >
               {pages.map((page, pageIdx) => (
                 <Button
                   key={pageIdx}
@@ -152,16 +170,21 @@ const Navbar = ({ isDashboard = false }) => {
                     borderBottom: isCurrentPath(page.href)
                       ? "solid 4px #D9D9D9"
                       : "solid 4px transparent",
+                    fontSize: {
+                      sm: "14px",
+                      md: "16px",
+                    },
                   }}
                 >
                   {page.label}
                 </Button>
               ))}
+
               <Box>
                 <Button
-                  key={"Medical Record"}
-                  onClick={handleOpenNavMenu}
-                  aria-label={`Medical Record menu`}
+                  key={"Health Chart"}
+                  onClick={handleOpenHealth}
+                  aria-label={`Health Chart menu`}
                   sx={{
                     my: 2,
                     color: "white",
@@ -176,16 +199,19 @@ const Navbar = ({ isDashboard = false }) => {
                       isCurrentPath("/patient/prescription")
                         ? "solid 4px #D9D9D9"
                         : "solid 4px transparent",
-                    // },
+                    fontSize: {
+                      sm: "14px",
+                      md: "16px",
+                    },
                   }}
                   endIcon={<ExpandMoreIcon />}
                 >
-                  Medical Record
+                  Health Chart
                 </Button>
                 <Menu
                   sx={{ mt: "40px" }}
                   id="menu-appbar"
-                  anchorEl={anchorElNav}
+                  anchorEl={anchorHealth}
                   anchorOrigin={{
                     vertical: "top",
                     horizontal: "right",
@@ -195,17 +221,46 @@ const Navbar = ({ isDashboard = false }) => {
                     vertical: "top",
                     horizontal: "right",
                   }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
+                  open={Boolean(anchorHealth)}
+                  onClose={handleCloseMenu}
                 >
                   {medical.map((med, medIdx) => MenuItemLabel(med, medIdx))}
                 </Menu>
               </Box>
+
+              {pagesNext.map((page, pageIdx) => (
+                <Button
+                  key={pageIdx}
+                  onClick={() => router.push(page.href)}
+                  aria-label={`${page.label} menu`}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    textTransform: "none",
+                    display: "block",
+                    margin: "0 !important",
+                    borderRadius: "2px 2px 0px 0px",
+                    borderTop: "solid 4px transparent",
+                    paddingBottom: "1px",
+                    borderBottom:
+                      isCurrentPath(page.href) || isCurrentPath(page.additional)
+                        ? "solid 4px #D9D9D9"
+                        : "solid 4px transparent",
+                    fontSize: {
+                      sm: "14px",
+                      md: "16px",
+                    },
+                  }}
+                >
+                  {page.label}
+                </Button>
+              ))}
+
               <Box>
                 <Button
                   key={"Documents"}
                   aria-label={`Documents menu`}
-                  onClick={handleOpenUserMenu}
+                  onClick={handleOpenDocument}
                   sx={{
                     my: 2,
                     color: "white",
@@ -218,6 +273,10 @@ const Navbar = ({ isDashboard = false }) => {
                     borderBottom: isCurrentPath("/patient/account/documents")
                       ? "solid 4px #D9D9D9"
                       : "solid 4px transparent",
+                    fontSize: {
+                      sm: "14px",
+                      md: "16px",
+                    },
                   }}
                   endIcon={<ExpandMoreIcon />}
                 >
@@ -226,7 +285,7 @@ const Navbar = ({ isDashboard = false }) => {
                 <Menu
                   sx={{ mt: "40px" }}
                   id="menu-appbar"
-                  anchorEl={anchorElUser}
+                  anchorEl={anchorDocument}
                   anchorOrigin={{
                     vertical: "top",
                     horizontal: "right",
@@ -236,8 +295,8 @@ const Navbar = ({ isDashboard = false }) => {
                     vertical: "top",
                     horizontal: "right",
                   }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
+                  open={Boolean(anchorDocument)}
+                  onClose={handleCloseMenu}
                 >
                   {documents.map((doc, docIdx) => MenuItemLabel(doc, docIdx))}
                 </Menu>

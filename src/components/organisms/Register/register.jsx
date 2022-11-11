@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Divider, Typography } from "@mui/material";
 import Link from "next/link";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { StyledInput } from "../../atoms/Input/input";
 import globalStyles from "../../../styles/Global.module.scss";
@@ -28,6 +28,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       password: "",
       preferredCommunication: "both",
     },
+  });
+  const { errors, isSubmitting } = useFormState({
+    control,
   });
   const { REGISTER_TEST_ID } = constants.TEST_ID;
   const validatePassword = (errors1 = [], errors2 = []) => {
@@ -124,7 +127,31 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       OnRegisterClicked(data, router);
     }
   };
-
+  const inputRef = React.useRef(null);
+  const inputLastName = React.useRef(null);
+  const inputDob = React.useRef(null);
+  const inputEmail = React.useRef(null);
+  const inputMobileNumber = React.useRef(null);
+  const inputPassword = React.useRef(null);
+  const inputPrefentComunnication = React.useRef(null);
+  useEffect(() => {
+    if (errors.firstName) {
+      inputRef.current.focus();
+    } else if (errors.lastName) {
+      inputLastName.current.focus();
+    } else if (errors.dob) {
+      inputDob.current.focus();
+    } else if (errors.email) {
+      inputEmail.current.focus();
+    } else if (errors.mobileNumber) {
+      inputMobileNumber.current.focus();
+    } else if (errors.password) {
+      inputPassword.current.focus();
+    } else if (errors.preferredCommunication) {
+      inputPrefentComunnication.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
   useEffect(() => {
     if (!!watchedEmail && !!watchedMobile) {
       setValue("preferredCommunication", "both");
@@ -216,6 +243,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="text"
                   id="firstName"
                   label="First Name"
+                  inputRef={inputRef}
+                  inputProps={{
+                    "aria-label": `First Name - required -`,
+                  }}
                   value={value}
                   data-testid={REGISTER_TEST_ID.firstname}
                   onChange={onChange}
@@ -248,6 +279,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="text"
                   id="lastName"
                   label="Last Name"
+                  inputRef={inputLastName}
+                  inputProps={{
+                    "aria-label": `Last Name - required -`,
+                  }}
                   data-testid={REGISTER_TEST_ID.lastname}
                   value={value}
                   onChange={onChange}
@@ -280,9 +315,14 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   disableFuture
                   type="dob"
                   id="dob"
+                  inputRef={inputDob}
                   InputProps={{ "data-testid": REGISTER_TEST_ID.dateofbirth }}
                   data-testid={REGISTER_TEST_ID.dateofbirth}
                   label="Date of Birth"
+                  aria-label="Date of Birth - required -"
+                  inputProps={{
+                    "aria-label": `Date of Birth - required -`,
+                  }}
                   variant="filled"
                   value={value}
                   onChange={onChange}
@@ -310,6 +350,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="text"
                   id="email"
                   label="Email"
+                  inputRef={inputEmail}
+                  inputProps={{
+                    "aria-label": `Email - required -`,
+                  }}
                   value={value}
                   data-testid={REGISTER_TEST_ID.email}
                   onChange={onChange}
@@ -325,6 +369,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
+              required: "This field is required",
               validate: {
                 required: (value) => {
                   if (!isOneOfPreferredValid("email", value))
@@ -344,9 +389,13 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               return (
                 <StyledInput
                   type="phone"
+                  inputRef={inputMobileNumber}
                   id="mobileNumber"
                   data-testid={REGISTER_TEST_ID.mobilenumber}
                   label="Mobile Number"
+                  inputProps={{
+                    "aria-label": `Mobile Number - required -`,
+                  }}
                   value={value}
                   onChange={onChange}
                   error={!!error}
@@ -361,6 +410,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
+              required: "This field is required",
               validate: {
                 required: (value) => {
                   if (!isOneOfPreferredValid("phone", value))
@@ -384,8 +434,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 <StyledInput
                   type="password"
                   id="password"
+                  inputRef={inputPassword}
                   label="Password"
-                  data-testid={REGISTER_TEST_ID.passwordField}
+                  inputProps={{
+                    "aria-label": `Password - required -`,
+                  }}
+                  data-testid={REGISTER_TEST_ID.password}
                   value={value}
                   onChange={onChange}
                   error={!!error}
@@ -439,9 +493,13 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   <>
                     <RowRadioButtonsGroup
                       error={!!error}
+                      inputRef={inputPrefentComunnication}
                       value={value}
                       onChange={onChange}
                       label="Preferred mode of Communication"
+                      inputProps={{
+                        "aria-label": `Preferred mode of Communication - required -`,
+                      }}
                       options={options}
                       helperText={error ? error.message : null}
                       isRegistrationForm={true}

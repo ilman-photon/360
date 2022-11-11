@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
 import { HeadingTitle } from "../../atoms/Heading";
@@ -24,6 +24,7 @@ const ForgotPassword = ({
   onCalledValidateAppointment,
   title = "",
   isAppointment = true,
+  isRegistered = false,
 }) => {
   const isMobile = useMediaQuery("(max-width: 833px)");
   const router = useRouter();
@@ -33,13 +34,29 @@ const ForgotPassword = ({
   });
   const { handleSubmit, control, setError } = useForm();
   const { FORGOT_TEST_ID } = constants.TEST_ID;
+  const inputRef = React.useRef(null);
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
+  React.useEffect(() => {
+    if (errors.username) {
+      inputRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
+
   const onSubmit = ({ username }) => {
     if (username.length <= 0) {
       setError("username", {
         type: "custom",
         message: t("errorEmptyField"),
       });
-    } else if (isAppointment) {
+    } else if (
+      isAppointment &&
+      (Regex.REGEX_PHONE_NUMBER.test(username) ||
+        Regex.emailValidation.test(username))
+    ) {
       onCalledValidateAppointment(
         {
           username: username,
@@ -48,7 +65,7 @@ const ForgotPassword = ({
       );
     } else if (
       Regex.REGEX_PHONE_NUMBER.test(username) ||
-      Regex.isEmailCorrect.test(username)
+      Regex.emailValidation.test(username)
     ) {
       onCalledValidateUsernameAPI(
         {
@@ -63,7 +80,7 @@ const ForgotPassword = ({
       });
     }
   };
-  const errorMessage = isAppointment ? "syncError" : "errorUsernameNotFound";
+  const errorMessage = isRegistered ? "syncError" : "errorUsernameNotFound";
   return (
     <>
       <Head>
@@ -73,6 +90,8 @@ const ForgotPassword = ({
         <Card
           className={globalStyles.container}
           sx={{ minWidth: 275, padding: "16px" }}
+          tabIndex={0}
+          aria-label={`${isAppointment ? t("syncTitle") : t("title")} View`}
         >
           <CardContent style={styles.cardContentStyle}>
             <HeadingTitle
@@ -85,29 +104,35 @@ const ForgotPassword = ({
                 /* or 138% */
               }}
             />
-            <Typography
-              tabIndex={0}
-              aria-label={t("syncContent")}
-              variant="bodyMedium"
-              sx={{
-                pb: 2,
-                color: "#191919",
-              }}
-            >
-              {t("syncContent")}
-            </Typography>
+            {isAppointment && (
+              <Typography
+                tabIndex={0}
+                aria-label={t("syncContent")}
+                variant="bodyMedium"
+                sx={{
+                  pb: 2,
+                  color: "#191919",
+                }}
+              >
+                {t("syncContent")}
+              </Typography>
+            )}
             {showPostMessage ? (
               <FormMessage
                 success={false}
                 sx={styles.postMessage}
-                title={isAppointment && t("syncErrorTitle")}
+                title={isRegistered && t("syncErrorTitle")}
               >
                 {t(errorMessage)}
               </FormMessage>
             ) : (
               <></>
             )}
-            <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              style={styles.form}
+              noValidate
+            >
               <Controller
                 name="username"
                 control={control}
@@ -124,7 +149,12 @@ const ForgotPassword = ({
                       maxLength={254}
                       variant="filled"
                       value={value}
+                      inputRef={inputRef}
                       data-testid={FORGOT_TEST_ID.email}
+                      FormHelperTextProps={{
+                        tabIndex: 0,
+                        ariaLive: "assertive",
+                      }}
                       onChange={(event) => {
                         onChange(event);
                         if (showPostMessage) {
@@ -142,6 +172,7 @@ const ForgotPassword = ({
                           fontSize: "12px",
                         },
                       }}
+                      required
                       error={!!error}
                       helperText={error ? error.message : null}
                     />
@@ -174,6 +205,11 @@ const ForgotPassword = ({
                     : t("backButtonLink") + " Link"
                 }
                 data-testid={FORGOT_TEST_ID.loginLink}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    onBackToLoginClicked(router);
+                  }
+                }}
                 onClick={function () {
                   onBackToLoginClicked(router);
                 }}

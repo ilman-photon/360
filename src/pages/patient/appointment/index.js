@@ -48,6 +48,7 @@ import { fetchAllPayers } from "../../../store/provider";
 import NearMeOutlinedIcon from "@mui/icons-material/NearMeOutlined";
 import { useTranslation } from "next-i18next";
 import { getCity } from "../../../utils/getCity";
+import { mmddyyDateFormat } from "../../../utils/dateFormatter";
 
 export async function getStaticProps() {
   return {
@@ -81,6 +82,10 @@ export default function Appointment({ googleApiKey }) {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isReschedule, setIsReschedule] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
+  const [currentCoordinate, setCurrentCoordinate] = useState({
+    lat: 0,
+    lng: 0,
+  });
   const [firstLoad, setFirstLoad] = useState(true);
   const [filterProviderData, setFilterProviderData] = useState([]);
 
@@ -110,7 +115,7 @@ export default function Appointment({ googleApiKey }) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [providerListData]);
+  }, [JSON.stringify(providerListData)]);
 
   const pendingAppointment =
     cookies.get("dashboardState", { path: "/patient" }) === "true";
@@ -140,17 +145,6 @@ export default function Appointment({ googleApiKey }) {
       (response, status) => {
         if (status != "OK") {
           alert("Error was: " + status);
-        } else {
-          const origins = response.originAddresses;
-
-          //Loop through the elements row to get the value of duration and distance
-          for (let i = 0; i < origins.length; i++) {
-            const results = response.rows[i].elements;
-            for (const element of results) {
-              const distanceString = element.distance.text;
-              const durationString = element.duration.text;
-            }
-          }
         }
       }
     );
@@ -216,6 +210,18 @@ export default function Appointment({ googleApiKey }) {
       if (filter.name === "Available Today" && filter.checked) {
         filterResult = filterResult.filter((v) => v.filters.isAvailableToday);
       }
+
+      if (filter.type === "languange") {
+        filterResult = filterResult.filter(
+          (v) => v.filters.language.indexOf(filter.name) > -1
+        );
+      }
+
+      if (filter.type === "gender") {
+        filterResult = filterResult.filter(
+          (v) => v.filters.gender === filter.name
+        );
+      }
     }
 
     if (filterApplied.length === 0) {
@@ -227,6 +233,10 @@ export default function Appointment({ googleApiKey }) {
     } else {
       dispatch(setProviderListData(filterResult));
     }
+  }
+
+  function compareDate(date) {
+    return new Date() > new Date(date);
   }
 
   function onCallSubmitFilterAPI(
@@ -246,7 +256,9 @@ export default function Appointment({ googleApiKey }) {
       appointmentType: {
         code: selectedAppointmentType?.id || "ALL",
       },
-      currentDate: startDateRequest,
+      currentDate: compareDate(startDateRequest)
+        ? mmddyyDateFormat(new Date())
+        : startDateRequest,
       numDays: 6,
       days: ["ALL"],
       prefTime: "ALL",
@@ -257,11 +269,13 @@ export default function Appointment({ googleApiKey }) {
     const api = new Api();
     api
       .submitFilter(requestData.location, postBody)
-      .then(function (response) {
-        const parseProviderData = parseProviderListData(
+      .then(async function (response) {
+        const parseProviderData = await parseProviderListData(
           response,
-          postBody.currentDate,
-          endDateRequest
+          startDateRequest,
+          endDateRequest,
+          googleApiKey,
+          currentCoordinate
         );
         const rangeDate = {
           startDate: startDateRequest,
@@ -384,20 +398,10 @@ export default function Appointment({ googleApiKey }) {
     userDecisionTimeout: 5000,
   });
 
-  useEffect(() => {
-    if (filterData.location === "Use my current location") {
-      setDataFilter({
-        ...dataFilter,
-        location: "",
-        coords: { lat: coords?.latitude, long: coords?.longitude },
-      });
-    }
-  }, [filterData, coords]);
-
   const fetchCurrentLocation = () => {
     if (coords) {
       setCurrentCity("");
-      getCity(googleApiKey, coords, setCurrentCity);
+      getCity(googleApiKey, coords, setCurrentCity, setCurrentCoordinate);
     }
   };
 

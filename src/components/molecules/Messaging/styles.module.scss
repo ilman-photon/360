@@ -1,0 +1,358 @@
+.listContainer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 702px;
+  padding: 16px;
+  border-right: 1px solid #bdbdbd;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #fbfbfa;
+    border-left: 1px solid #bdbdbd;
+    border-bottom: 1px solid #bdbdbd;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    padding: 16px 0;
+    border-right: unset;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 16px 0;
+    border-right: unset;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    padding: 16px 0;
+    border-right: unset;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 16px 0;
+    border-right: unset;
+  }
+}
+
+.cardViewContainer {
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 16px;
+  padding: 16px;
+  gap: 8px;
+}
+
+.listContainer :last-child {
+  margin-bottom: 0px;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 16px;
+  justify-content: space-between;
+}
+
+.searchContent {
+  border: 1px solid #bdbdbd;
+  height: 55px;
+  justify-content: center;
+  padding: 0px;
+  border-radius: 4px;
+}
+
+.searchIcon {
+  display: initial;
+  left: 12px;
+  width: 25px;
+  height: inherit;
+  margin: 0 20px 0 0;
+  position: relative;
+  top: 13px;
+}
+
+.buttonContent {
+  display: flex;
+  flex-direction: row;
+  background-color: #007e8f;
+  border-radius: 30px;
+  height: 46px;
+  padding: 0 15px;
+  text-align: center;
+  gap: 13px;
+  width: auto;
+  justify-content: center;
+}
+
+.tabsContent {
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.radioButtonGroup {
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.noResultContent {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  top: 155px;
+  position: relative;
+}
+
+.noMessagesContent {
+  background-color: #f2f7f7;
+  width: 100%;
+  height: 60px;
+  padding: 16px 10px;
+}
+
+.hiddenUI {
+  display: block;
+  width: 10px;
+  height: 10px;
+}
+
+.circleIconContent {
+  position: relative;
+  margin: auto;
+}
+
+.subjectContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.messageListContent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.noMessageSelectedContainer {
+  text-align: center;
+  position: relative;
+  margin: 42% auto;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.detailContentHeaderView {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.cardDetailViewContainer {
+  padding: 0 15px;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+}
+
+.cardDetailView {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #bdbdbd;
+  padding: 15px 0;
+  justify-content: space-between;
+  gap: 16px;
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    flex-direction: column;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    flex-direction: column;
+  }
+}
+
+.detailViewContainer {
+  padding: 24px 24px 0;
+  height: 702px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #fbfbfa;
+    border: 1px solid #bdbdbd;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #888;
+    border-radius: 10px;
+  }
+}
+
+.profilePicture {
+  display: inline-block;
+  width: 61.95px;
+  height: 44px;
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    width: 44px;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    width: 44px;
+  }
+}
+
+.profilePicture > span > img {
+  border-radius: 30px;
+}
+
+.cardDetailHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.attachmentContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.downloadAttachContent {
+  gap: 9px;
+  padding: 0;
+  text-transform: capitalize;
+}
+
+.downloadAttachContent > svg {
+  color: #003b4a;
+}
+
+.messagesTextAreaContent {
+  border-radius: 4px;
+  padding: 0 8px 8px;
+  margin-top: 8px;
+  border: 1px solid #bdbdbd;
+}
+
+.typeNameContainer {
+  display: flex;
+  flex-direction: row;
+  border-radius: 4px;
+}
+
+.detailViewMobileContainer {
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
+  z-index: 1000;
+  height: 100%;
+  top: 0;
+  background: #fff;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #fbfbfa;
+    border: 1px solid #bdbdbd;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #888;
+    border-radius: 10px;
+  }
+}
+
+.detailContentHeaderMobileView {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.selectedStyle {
+  border: 1px solid #003b4a;
+  border-radius: 4px;
+}
+
+.errorField {
+  border: 1px solid #b93632;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
+.radioButtonGroupMobile {
+  position: absolute;
+  z-index: 1000;
+  height: 100%;
+  top: 0;
+  background: #fff;
+  width: 100%;
+}
+
+.mobileNewMessageContainer {
+  position: absolute;
+  z-index: 1000;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  background: #fff;
+}
+
+.cardDetailDraftNewMsgContainer {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+.providerNameListContent {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: #ffffff;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  height: 138px;
+  width: 93%;
+  overflow-y: scroll;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  top: 141px;
+  z-index: 99;
+}

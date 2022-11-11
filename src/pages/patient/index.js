@@ -52,11 +52,16 @@ export default function HomePage({ googleApiKey }) {
   const [currentCity, setCurrentCity] = React.useState("");
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
   const [username, setUsername] = React.useState("");
+  const [currentCoordinate, setCurrentCoordinate] = React.useState({
+    lat: 0,
+    lng: 0,
+  });
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
 
   const isDesktop = useMediaQuery("(min-width: 900px)");
+  const showNavBar = useMediaQuery("(min-width: 600px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -87,7 +92,7 @@ export default function HomePage({ googleApiKey }) {
   }
 
   //Call API for submitFilter
-  function onCallSubmitFilterAPI(requestData) {
+  async function onCallSubmitFilterAPI(requestData) {
     const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
       (element) => element.title === requestData.purposeOfVisit
     );
@@ -105,11 +110,13 @@ export default function HomePage({ googleApiKey }) {
     const api = new Api();
     api
       .submitFilter(requestData.location, postBody)
-      .then(function (response) {
-        const parseProviderData = parseProviderListData(
+      .then(async function (response) {
+        const parseProviderData = await parseProviderListData(
           response,
           postBody.currentDate,
-          endDateRequest
+          endDateRequest,
+          googleApiKey,
+          currentCoordinate
         );
         if (response?.offices?.length > 0) {
           dispatch(setProviderListData(parseProviderData?.listOfProvider));
@@ -151,7 +158,10 @@ export default function HomePage({ googleApiKey }) {
       .then(function (response) {
         const upcomingAppointment = [];
         response.entities.map((data) => {
-          const mappedData = appointmentParser(data);
+          const mappedData = appointmentParser(
+            data,
+            filterSuggestionData.purposeOfVisit
+          );
           upcomingAppointment.push(mappedData);
         });
         setAppointmentData(upcomingAppointment);
@@ -168,7 +178,7 @@ export default function HomePage({ googleApiKey }) {
   const fetchCurrentLocation = () => {
     if (coords) {
       setCurrentCity("");
-      getCity(googleApiKey, coords, setCurrentCity);
+      getCity(googleApiKey, coords, setCurrentCity, setCurrentCoordinate);
     }
   };
 
@@ -185,7 +195,6 @@ export default function HomePage({ googleApiKey }) {
   useEffect(() => {
     if (isAuthenticated && !isAdmin()) {
       onCalledAllPrescription();
-      onCalledGetAllAppointment();
       dispatch(fetchAllPayers());
     }
     const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
@@ -198,6 +207,11 @@ export default function HomePage({ googleApiKey }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    onCalledGetAllAppointment();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterSuggestionData.purposeOfVisit]);
 
   useEffect(() => {
     onCalledGetAppointmentTypesAPI();
@@ -264,9 +278,9 @@ export default function HomePage({ googleApiKey }) {
     <>
       {isAuthenticated && !isAdmin() && (
         <Stack sx={{ width: "100%" }}>
+          {showNavBar && <Navbar isDashboard={true} />}
           {isDesktop ? (
             <>
-              <Navbar isDashboard={true} />
               <FilterHeading
                 isDesktop={isDesktop}
                 isTablet={false}
@@ -289,7 +303,7 @@ export default function HomePage({ googleApiKey }) {
                 marginTop: "-25px",
                 display: "flex",
                 width: "100%",
-                zIndex: "9",
+                zIndex: "2",
               }}
             >
               <FilterResultHeading

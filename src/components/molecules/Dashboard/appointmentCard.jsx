@@ -121,7 +121,6 @@ export default function AppointmentCard({
   }
   function addHours(numOfHours, date = new Date()) {
     date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
-
     return date;
   }
 
@@ -130,10 +129,13 @@ export default function AppointmentCard({
       const today = new Date();
       const visitDate = new Date(appointment.appointmentInfo.date);
       let hideHour = 0;
-      if (appointment.appointmentInfo.appointmentType === "Eye Exam") {
+      if (
+        appointment.appointmentInfo.appointmentTypeCategory === "OPT" ||
+        appointment.appointmentInfo.appointmentTypeCategory === "OPT/OPH"
+      ) {
         hideHour = 4;
       }
-      if (appointment.appointmentInfo.appointmentType === "Comprehensive") {
+      if (appointment.appointmentInfo.appointmentTypeCategory === "OPH") {
         hideHour = 24;
       }
 

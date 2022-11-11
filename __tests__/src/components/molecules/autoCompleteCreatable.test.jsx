@@ -55,7 +55,6 @@ describe("Auto Complete Creatable Components", () => {
     fireEvent.keyDown(autocomplete, { key: "Enter" });
   });
 
-
   it("Auto Complete Creatable with new label test", async () => {
     const data = ["test1", "test2"];
     container = render(
@@ -92,15 +91,13 @@ describe("Auto Complete Creatable Components", () => {
     fireEvent.change(input, { target: { value: "test1" } });
   });
 
-   it("Auto Complete No Props", async () => {
-     container = render(
-       <AutoCompleteCreatable />
-     );
-     expect(container).toMatchSnapshot();
-   });
+  it("Auto Complete No Props", async () => {
+    container = render(<AutoCompleteCreatable />);
+    expect(container.getAllByRole("combobox")[0]).toBeInTheDocument();
+  });
 
-   it("Auto Complete With Error", async () => {
-     container = render(<AutoCompleteCreatable error={true} />);
-     expect(container).toMatchSnapshot();
-   });
+  it("Auto Complete With Error", async () => {
+    container = render(<AutoCompleteCreatable error={true} />);
+    expect(container.getAllByRole("combobox")[0]).toBeInTheDocument();
+  });
 });

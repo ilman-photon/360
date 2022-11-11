@@ -21,6 +21,7 @@ describe("Forgot Password", () => {
       back: jest.fn(),
       asPath: "/patient/forgot-password",
       push: jest.fn(),
+      replace: jest.fn(),
     });
     window.matchMedia = createMatchMedia("1290px");
     container = render(
@@ -206,6 +207,7 @@ describe("Forgot Password", () => {
       back: jest.fn(),
       asPath: "/patient/sync",
       push: jest.fn(),
+      replace: jest.fn(),
     });
     cleanup();
     container = render(
@@ -247,7 +249,6 @@ describe("Forgot Password", () => {
     fireEvent.change(usernameField, { target: { value: "12345" } });
     expect(usernameField.value).toEqual("12345");
     fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.continueBtn));
-    await waitFor(() => container.getByText("syncErrorTitle"));
     fireEvent.change(usernameField, { target: { value: "12345678" } });
     expect(usernameField.value).toEqual("12345678");
     const button = container.getByTestId(FORGOT_TEST_ID.loginLink);

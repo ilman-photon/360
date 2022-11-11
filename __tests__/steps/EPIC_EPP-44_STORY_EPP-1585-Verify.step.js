@@ -58,7 +58,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
     {
@@ -95,7 +108,20 @@ const MOCK_APPOINTMENT = {
       appointmentInfo: {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
-        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        insuranceCarrier: [
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "ECP Vision",
+         },
+         {
+           category: "all",
+           divider: false,
+           id: "1",
+           name: "BlueCare Vision",
+          },
+        ],
       },
     },
   ],
@@ -323,15 +349,6 @@ const navigateToPatientPortalHome = async () => {
   };
   const domain = window.location.origin;
   mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
-    .reply(200, MOCK_SUGESTION);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
-    .reply(200, MOCK_APPOINTMENT);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
-    .reply(200, MOCK_PRESCRIPTION);
   const mockGeolocation = {
     getCurrentPosition: jest.fn(),
     watchPosition: jest.fn(),
@@ -398,7 +415,7 @@ defineFeature(feature, (test) => {
 
     then("User lands on to the screen", async () => {
       cleanup();
-      container = await renderScheduleAppointment();
+      container = await renderScheduleAppointment(mock);
     });
 
     and("user view and search  the location", async () => {
@@ -465,13 +482,15 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("User lands on to the screen", async() => {
-      cleanup()
-      container = await renderScheduleAppointment()
+    then("User lands on to the screen", async () => {
+      cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
     and("user view and search  the location", () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
 
     when("user select  the date of appointment", () => {
@@ -531,13 +550,15 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("User lands on to the screen", async() => {
-      cleanup()
-      container = await renderScheduleAppointment()
+    then("User lands on to the screen", async () => {
+      cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
     and("user view and search  the location", () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
 
     when("user select  the date of appointment", () => {

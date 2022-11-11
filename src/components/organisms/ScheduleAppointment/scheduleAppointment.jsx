@@ -118,6 +118,7 @@ export default function ScheduleAppointment({
               <Button
                 type="submit"
                 variant="contained"
+                data-testId="schedule_appointment_step3_button"
                 style={styles.continueButton}
                 sx={{
                   width: { xs: "100%", md: "222px" },

@@ -1,6 +1,6 @@
 import moment from "moment";
 
-export function appointmentParser(data = {}) {
+export function appointmentParser(data = {}, appointmentTypes = []) {
   const firstname = data.provider?.firstName || "";
   const lastName = data.provider?.lastName ? ` ${data.provider?.lastName}` : "";
   const designation = data.provider?.designation
@@ -12,6 +12,9 @@ export function appointmentParser(data = {}) {
     `${data.appointmentDate} ${data.appointmentTime}`
   );
   const year = momentDate.format("YYYY");
+  const appointmentTypeCategory = appointmentTypes.find(
+    (v) => v.title === data.appointmentType?.code
+  )?.subtitle;
   return {
     appointmentId: data._id,
     providerInfo: {
@@ -19,9 +22,9 @@ export function appointmentParser(data = {}) {
       name,
       position: data.provider?.address?.name || "",
       address: data.provider?.address || "",
-      rating: data.provider?.rating / 2 || "",
+      rating: data.provider?.rating || 0,
       phoneNumber: data.provider?.workPhone || "",
-      image: data.provider?.profilePhoto?.digitalAsset.uid || "",
+      image: data.provider?.profilePhoto?.digitalAsset || "",
     },
     patientInfo: {
       name: `${data.patient?.firstName || ``}${
@@ -33,6 +36,7 @@ export function appointmentParser(data = {}) {
     },
     appointmentInfo: {
       appointmentType: data.appointmentType?.name,
+      appointmentTypeCategory: appointmentTypeCategory,
       date: `${data.appointmentDate} ${data.appointmentTime}`,
       insuranceCarrier: data.insurancePayers || [],
       state: data.state,

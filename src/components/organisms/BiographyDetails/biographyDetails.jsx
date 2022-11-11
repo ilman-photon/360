@@ -1,10 +1,13 @@
 import { Link, Typography, Stack, Box, Divider } from "@mui/material";
 import styles from "./styles.module.scss";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import constants from "../../../utils/constants";
+import GMaps from "../Google/Maps/gMaps";
+import { Api } from "../../../pages/api/api";
+import { formattedAddress } from "../../../utils/bioUtils";
 
-export default function BiographyDetails({ providerData = {}, googleApiKey }) {
+export default function BiographyDetails({ providerData, googleApiKey }) {
   const aboutRef = useRef(null);
   const locationRef = useRef(null);
   const insurancesRef = useRef(null);
@@ -16,6 +19,9 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   const educationMenuRef = useRef(null);
 
   const [expand, setExpand] = useState(false);
+  const [locations, setLocations] = useState();
+
+  let isRequest = false;
 
   const renderInsurances = () => {
     const networkInsurance = providerData.networkInsurance;
@@ -31,6 +37,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
               return (
                 <li key={index}>
                   <Typography
+                    aria-label={item}
                     variant="body2"
                     className={index === splitedIndex ? styles.newColumn : ""}
                     tabIndex={0}
@@ -43,6 +50,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
               return (
                 <li key={index}>
                   <Typography
+                    aria-label={item}
                     variant="body2"
                     className={index === 2 ? styles.newColumn : ""}
                     tabIndex={0}
@@ -56,13 +64,17 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
 
           {isRenderViewAll && !expand && (
             <li>
-              <Typography variant="body2" tabIndex={0}>
+              <Typography
+                variant="body2"
+                tabIndex={0}
+                aria-label="16+ more in-network insurances"
+              >
                 16+ more in-network insurances{" "}
                 <Link
                   className={styles.viewAllLink}
                   data-testid={BIOGRAPHY_TEST_ID.viewAll}
                   aria-roledescription="Link"
-                  aria-label="View All link"
+                  aria-label="View All"
                   tabIndex={0}
                   onClick={() => {
                     setExpand(true);
@@ -85,15 +97,60 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
     const state = addressPayload.state || "";
     const zipcode = addressPayload.zipcode || addressPayload.zip || "";
 
-    return `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
-      / /g,
+    return `${addressLine1}+${addressLine2}+${city}+${state}+${zipcode}`.replace(
+      / |#/g,
       "+"
     );
   };
 
+  useEffect(() => {
+    !isRequest && providerData && getLocation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isRequest, providerData]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getLocation = () => {
+    if (locations === undefined) {
+      isRequest = true;
+      const api = new Api();
+      const locationsArray = [];
+      const locationsList = [];
+      const addressArray = providerData.address;
+      addressArray.map((item) => {
+        const query = getAddressQuery(item);
+        locationsArray.push(api.googleGeocode(query, googleApiKey));
+      });
+
+      Promise.all(locationsArray).then((values) => {
+        values.forEach((item) => {
+          if (item.status === "OK") {
+            const location = item.results[0]?.geometry?.location;
+            if (location) {
+              const locData = {
+                coordinate: {
+                  latitude: location.lat,
+                  longitude: location.lng,
+                },
+              };
+              locationsList.push(locData);
+            }
+          }
+        });
+        isRequest = false;
+        setLocations(locationsList);
+      });
+    }
+  };
+
+  const getAddressAriaLabel = (address) => {
+    return `${address.addressLine1 || ""}, ${address.addressLine2 || ""}, ${
+      address.city || ""
+    }, ${address.state || ""}, ${address.zip || ""}`;
+  };
+
   const renderAddress = (newAddressArray) => {
     return (
-      <Box>
+      <Box className={styles.addressWrapper}>
         {newAddressArray.map((newAddress, idx) => {
           const addressQuery = getAddressQuery(newAddress);
           return (
@@ -111,29 +168,22 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                   : {}
               }
             >
-              <Typography className={styles.addressTitle}>
-                {idx === 0 ? "Primary Address" : "Secondary Address"}
-              </Typography>
+              {idx === 0 && (
+                <Typography
+                  tabIndex={0}
+                  aria-label={"Primary Address"}
+                  className={styles.addressTitle}
+                >
+                  Primary Address
+                </Typography>
+              )}
               <Typography
                 variant="body2"
                 className={styles.mapAddress}
                 tabIndex={0}
+                aria-label={getAddressAriaLabel(newAddress)}
               >
-                {newAddress && (
-                  <>
-                    {newAddress.addressLine1}
-                    <br />
-                    {newAddress.addressLine2 && (
-                      <>
-                        {newAddress.addressLine2}
-                        <br />
-                      </>
-                    )}
-                    {newAddress.city && `${newAddress.city},`}{" "}
-                    {newAddress.state && `${newAddress.state},`}{" "}
-                    {newAddress.zip}
-                  </>
-                )}
+                {newAddress && formattedAddress(newAddress)}
               </Typography>
               <Box className={styles.getDirectionLinkContainer}>
                 <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
@@ -142,6 +192,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                   href={`https://www.google.com/maps/search/?api=1&query=${addressQuery}`}
                   target="_blank"
                   rel="noopener"
+                  tabIndex={0}
                 >
                   Get directions
                 </Link>
@@ -200,7 +251,6 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   const { BIOGRAPHY_TEST_ID } = constants.TEST_ID;
 
   const address = providerData.address;
-  const addressQuery = getAddressQuery(address[0]);
 
   return (
     <Box className={styles.detailedBio}>
@@ -248,6 +298,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
             onClick={onClickAbout}
             aria-label={`About Tab`}
             aria-roledescription="Link"
+            tabIndex={0}
           >
             About
           </Link>
@@ -256,6 +307,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
             onClick={onClickLocation}
             aria-label={`Locations Tab`}
             aria-roledescription="Link"
+            tabIndex={0}
           >
             Locations
           </Link>
@@ -264,6 +316,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
             onClick={onClickInsurances}
             aria-label={`Insurances Tab`}
             aria-roledescription="Link"
+            tabIndex={0}
           >
             Insurances
           </Link>
@@ -272,6 +325,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
             onClick={onClickEducation}
             aria-label={`Education Tab`}
             aria-roledescription="Link"
+            tabIndex={0}
           >
             Education
           </Link>
@@ -295,22 +349,20 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
           Locations
         </Typography>
 
-        <Box className={styles.mapContainer}>
-          <Box className={styles.map}>
-            <iframe
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              src={`https://www.google.com/maps/embed/v1/place?key=${googleApiKey}&q=${addressQuery}`}
-              aria-label="Map"
-            ></iframe>
+        {locations && locations.length > 0 && (
+          <Box className={styles.mapContainer}>
+            <Box className={styles.map}>
+              <GMaps
+                apiKey={googleApiKey}
+                providerListData={locations}
+                disable={true}
+              />
+            </Box>
+            {renderAddress(address)}
           </Box>
-          {renderAddress(address)}
-        </Box>
+        )}
 
-        <Typography variant="h3" tabIndex={0}>
+        <Typography tabIndex={0} aria-label={"Languages heading"} variant="h3">
           Languages
         </Typography>
         <Typography variant="body2" tabIndex={0}>
@@ -324,12 +376,22 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
               }
             })}
         </Typography>
-        <Typography variant="h3" ref={insurancesRef} tabIndex={0}>
+        <Typography
+          variant="h3"
+          aria-label={"In-network insurances heading"}
+          ref={insurancesRef}
+          tabIndex={0}
+        >
           In-network insurances
         </Typography>
         {providerData.networkInsurance && renderInsurances()}
 
-        <Typography variant="h3" ref={educationRef} tabIndex={0}>
+        <Typography
+          variant="h3"
+          ref={educationRef}
+          tabIndex={0}
+          aria-label={"Education heading"}
+        >
           Education
         </Typography>
         <Box className={styles.educationContainer}>
@@ -343,7 +405,11 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
             })}
         </Box>
 
-        <Typography variant="h3" tabIndex={0}>
+        <Typography
+          variant="h3"
+          tabIndex={0}
+          aria-label={"Memberships and Afilliations"}
+        >
           Memberships and Afilliations
         </Typography>
         <Box className={styles.educationContainer}>

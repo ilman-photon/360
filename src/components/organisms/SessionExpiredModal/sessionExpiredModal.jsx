@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -9,29 +9,79 @@ import { Box } from "@mui/material";
 import { styles } from "./styles";
 import { useRouter } from "next/router";
 import { logoutProps } from "../../../utils/authetication";
+import { useIdleTimer } from "react-idle-timer";
+import Cookies from "universal-cookie";
 
-function SessionExpiredModal({
-  showModal = false,
-  onStayLoggedIn = () => {
-    //this is intentional
-  },
-  isExpired = false,
-  remaining = 0,
-  onLoggedOff = () => {
-    //this is intentional
-  },
-}) {
+function SessionExpiredModal() {
+  /** --------------------------------- New Code ------------------------------- */
+  const cookies = new Cookies();
+  const idleTime = cookies.get("IdleTimeOut") || 1000 * 60 * 20;
+  const timeout = parseInt(idleTime); //Idle Timer
+  const promptTimeout = 60000; //Remaining Time
+
+  // Time before idle
+  const [remaining, setRemaining] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  const onPrompt = () => {
+    // onPrompt will be called after the timeout value is reached
+    // In this case 30 minutes. Here you can open your prompt.
+    // All events are disabled while the prompt is active.
+    // If the user wishes to stay active, call the `reset()` method.
+    // You can get the remaining prompt time with the `getRemainingTime()` method,
+    setRemaining(Math.ceil(promptTimeout / 1000));
+    setOpen(true);
+  };
+
+  const onIdle = () => {
+    // onIdle will be called after the promptTimeout is reached.
+    // In this case 30 seconds. Here you can close your prompt and
+    // perform what ever idle action you want such as log out your user.
+    // Events will be rebound as long as `stopOnMount` is not set.
+    setRemaining(0);
+    pause();
+  };
+
+  const { getRemainingTime, isPrompted, reset, pause } = useIdleTimer({
+    timeout,
+    promptTimeout,
+    onIdle,
+    onPrompt,
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isPrompted()) {
+        setRemaining(Math.ceil(getRemainingTime() / 1000));
+      }
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [getRemainingTime, isPrompted]);
+
+  const onClickStayLoggedIn = () => {
+    setOpen(false);
+    reset();
+  };
+
+  const isExpired = open && remaining <= 0;
+  /** ------------------------------------------------------------------------ */
+
   const router = useRouter();
   const onLoggedOffClicked = async () => {
     await logoutProps.OnLogoutClicked(router);
-    onLoggedOff();
+    onClickStayLoggedIn();
   };
 
   return (
     <Dialog
-      open={showModal}
+      open={open}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
+      sx={{
+        zIndex: 3000,
+      }}
     >
       <DialogTitle
         id="alert-dialog-title"
@@ -99,7 +149,7 @@ function SessionExpiredModal({
               gradient={false}
               style={styles.buttonStyle}
               data-testid="session-stay-btn"
-              onClick={onStayLoggedIn}
+              onClick={onClickStayLoggedIn}
               tabindex="1"
               aria-live={"polite"}
               aria-label={"Stay Logged in button"}

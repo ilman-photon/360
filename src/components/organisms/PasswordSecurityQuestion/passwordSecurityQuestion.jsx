@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
@@ -32,6 +32,24 @@ const PasswordSecurityQuestion = ({
   });
   const { handleSubmit, control } = useForm();
   const [postMessage, setPostMessage] = useState({ title: "", message: "" });
+  const inputRef = React.useRef([]);
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
+  React.useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      inputRef.current.forEach((_, idx) => {
+        if (
+          inputRef.current[idx] &&
+          inputRef.current[idx].id === Object.keys(errors)[0]
+        ) {
+          inputRef.current[idx].focus();
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = (data) => {
     const callback = (err) => {
@@ -63,6 +81,8 @@ const PasswordSecurityQuestion = ({
         <Card
           className={globalStyles.container}
           sx={{ minWidth: 275, padding: "16px" }}
+          tabIndex={0}
+          aria-label={`${t("title")} view`}
         >
           <CardContent style={styles.cardContentStyle}>
             <HeadingTitle
@@ -89,7 +109,11 @@ const PasswordSecurityQuestion = ({
             ) : (
               <></>
             )}
-            <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              style={styles.form}
+              noValidate
+            >
               {securityQuestionData.map(function (question, i) {
                 return (
                   <Controller
@@ -107,6 +131,9 @@ const PasswordSecurityQuestion = ({
                           label={question[`Question`]}
                           id={`securityQuestion${i}`}
                           variant="filled"
+                          inputRef={(el) =>
+                            (inputRef.current = [...inputRef.current, el])
+                          }
                           style={styles.margin}
                           key={`securityQuestion${i}`}
                           value={value}
@@ -117,6 +144,7 @@ const PasswordSecurityQuestion = ({
                             }
                           }}
                           error={!!error}
+                          required
                           helperText={error ? error.message : null}
                           sx={{ ".MuiInputLabel-root": { fontSize: "14px" } }}
                         />
@@ -145,6 +173,11 @@ const PasswordSecurityQuestion = ({
                 ...styles.link,
               }}
               color={colors.link}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  router.push("/patient/login");
+                }
+              }}
               data-testid={FORGOT_TEST_ID.loginLink}
               onClick={function () {
                 onBackToLoginClicked(router);

@@ -4,12 +4,18 @@
   margin-left: 12vw;
   padding: 16px 0 32px 0;
 
-  @media (max-width: 992px) {
+  @media (max-width: 600px) {
     width: auto;
     max-width: 552px;
     flex-direction: column;
     margin: unset;
     padding: 16px 16px 0;
+  }
+
+  @media (min-width: 600px) and (max-width: 1200px) {
+    width: auto;
+    margin-left: 16px;
+    max-width: unset;
   }
 }
 
@@ -24,17 +30,21 @@
   letter-spacing: 0.0016em;
   width: 362px;
 
-  @media (max-width: 992px) {
+  @media (max-width: 600px) {
     width: auto;
     font-size: 14px !important;
+  }
+
+  @media (min-width: 600px) and (max-width: 1200px) {
+    width: auto;
   }
 }
 
 .specialistTitle {
   font-weight: 700 !important;
   font-size: 16px !important;
-  min-width: 250px;
-  @media (max-width: 992px) {
+  width: auto;
+  @media (max-width: 600px) {
     margin-bottom: 12px;
     margin-top: 8px;
   }
@@ -66,16 +76,19 @@
   margin-left: 12px;
   margin-right: 25px;
 
-  @media (max-width: 992px) {
+  @media (max-width: 600px) {
     width: auto;
     margin-right: unset;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 }
 
 .shortBio h2 {
-  font-family: "Inter", sans-serif;
   font-style: normal;
-  @media (max-width: 992px) {
+  font-size: 32px;
+  @media (max-width: 600px) {
     font-weight: 700;
     font-size: 18px;
     line-height: 28px;
@@ -129,7 +142,10 @@
 
 .ratingContainer {
   margin-top: 50px;
-  @media (max-width: 992px) {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  @media (max-width: 1024px) {
     margin-top: 12px;
   }
 }
@@ -141,7 +157,7 @@
 .specialistList > li > p {
   width: 200px;
   line-height: 24px;
-  @media (max-width: 992px) {
+  @media (max-width: 600px) {
     width: unset;
   }
 }
@@ -158,16 +174,16 @@
 .detailContainer {
   display: flex;
   margin-top: 10px;
-  @media (max-width: 992px) {
+  @media (max-width: 600px) {
     flex-direction: column;
-    width: 198px;
+    flex: 1;
   }
 }
 
 .imageContainer {
-  width: 100px;
+  width: 90px;
   margin-right: 10px;
-  @media (max-width: 992px) {
+  @media (max-width: 600px) {
     width: 70px;
   }
 }
@@ -180,4 +196,18 @@
 .imageContainerSmall {
   width: 48px;
   margin-right: 10px;
+}
+
+.phone {
+  color: #424747;
+  letter-spacing: 0.0016em;
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    text-decoration: underline;
+    text-decoration-color: #424747;
+  }
 }

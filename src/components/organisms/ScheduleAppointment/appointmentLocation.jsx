@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-// import Image from "next/image";
+
 import ImageFallback from "../../atoms/Image/image";
 import { styles } from "./style";
 import { TEST_ID } from "../../../utils/constants";
@@ -75,8 +75,9 @@ export default function AppointmentLocation({
               source={
                 providerData.image ||
                 providerData.profilePhoto ||
-                "/transparent.png"
+                "/cardImage.png"
               }
+              fallbackSrc={"/cardImage.png"}
               width={105}
               height={105}
               style={{ borderRadius: "50%" }}

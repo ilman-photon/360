@@ -338,7 +338,10 @@ export const FilterResultHeading = ({
             >
               <Button
                 aria-label={filterData.location}
-                className={styles.mobileFilterButton}
+                className={[
+                  styles.mobileFilterStyles,
+                  styles.mobileFilterButton,
+                ].join(" ")}
               >
                 <Typography
                   variant={"bodyMedium"}
@@ -363,6 +366,7 @@ export const FilterResultHeading = ({
               {!(title && subtitle) && (
                 <Button
                   aria-label={"Filter"}
+                  data-testId="filter-button-mobile"
                   sx={{
                     width: "31px",
                     minWidth: "31px",

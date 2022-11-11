@@ -42,6 +42,18 @@ const DisclaimerText = (data) => {
   );
 };
 
+export const isDOB = (value) => {
+  let date = new Date().getFullYear();
+
+  if (value.getYear() < 0) {
+    return false;
+  }
+  if (value.getFullYear() <= date) {
+    return true;
+  }
+  return value.getMonth() <= 12;
+};
+
 export default function AppointmentForm({
   isForMyself,
   OnClickSchedule = () => {
@@ -151,23 +163,6 @@ export default function AppointmentForm({
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
-  const isDOB = (value) => {
-    let date = new Date().getFullYear();
-    if (value.getYear() < 0) {
-      return false;
-    }
-    if (value.getFullYear() <= date) {
-      return true;
-    }
-    if (value.getMonth() <= 12) {
-      return true;
-    }
-    if (value.getMonth() <= 12) {
-      return true;
-    }
-    return false;
-  };
-
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
@@ -182,8 +177,6 @@ export default function AppointmentForm({
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
-      default:
-        return false;
     }
   };
 
@@ -437,7 +430,9 @@ export default function AppointmentForm({
                   disableFuture
                   type="dob"
                   id="dob"
-                  data-testid={SCHEDULE_GUEST_TEST_ID.dateofbirth}
+                  InputProps={{
+                    "data-testid": SCHEDULE_GUEST_TEST_ID.dateofbirth,
+                  }}
                   label="Date of Birth"
                   variant="filled"
                   value={value}
@@ -452,7 +447,9 @@ export default function AppointmentForm({
               required: t("thisFieldRequired"),
               validate: {
                 required: (value) => {
-                  if (!isDOB(value)) return "Invalid Date of Birth";
+                  if (!isDOB(value)) {
+                    return "Invalid Date of Birth";
+                  }
                 },
               },
             }}
@@ -572,6 +569,7 @@ export default function AppointmentForm({
 
         <div style={styles.divRight}>
           <Button
+            data-testId="scheduleAppoinment"
             type="submit"
             variant="contained"
             sx={{

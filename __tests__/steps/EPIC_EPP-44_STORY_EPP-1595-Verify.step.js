@@ -1,4 +1,10 @@
-import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  cleanup,
+} from "@testing-library/react";
 import axios from "axios";
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
@@ -15,10 +21,13 @@ import FilterBy from "../../src/components/molecules/FilterBy/filterBy";
 import AppointmentDetails from "../../src/components/organisms/ScheduleAppointment/appointmentDetails";
 import AppointmentLocation from "../../src/components/organisms/ScheduleAppointment/appointmentLocation";
 import { PageContent } from "../../src/pages/patient/schedule-appointment";
-import { renderAppointmentDetail, renderScheduleAppointment } from "../../__mocks__/commonSteps";
+import {
+  renderAppointmentDetail,
+  renderScheduleAppointment,
+} from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint4/EPP-1595.feature",
+  "./__tests__/feature/Patient Portal/Sprint4/EPP-1595.feature"
 );
 
 const MOCK_SUGGESTION_DATA = {
@@ -169,7 +178,7 @@ const MOCK_SUGGESTION_DATA = {
       ],
     },
   ],
-}
+};
 
 const provideFilters = () => {
   inputLocation();
@@ -225,7 +234,8 @@ const defaultValidation = () => {
 };
 
 const launchURL = () => {
-  let container
+  let container;
+  const mock = new MockAdapter(axios);
   const mockOnLoginClicked = jest.fn((callback) => {
     callback({
       status: "success",
@@ -235,22 +245,35 @@ const launchURL = () => {
 };
 
 defineFeature(feature, (test) => {
-  let container
-  test('EPIC_EPP-44_STORY_EPP-1595-To verify whether the user is allowed to change the Location in Appointment Review screen.', ({ when, and, then }) => {
-    when('user clicks on the Schedule Appointment button', () => {
-      defaultValidation()
+  let container;
+  const mock = new MockAdapter(axios);
+  test("EPIC_EPP-44_STORY_EPP-1595-To verify whether the user is allowed to change the Location in Appointment Review screen.", ({
+    when,
+    and,
+    then,
+  }) => {
+    when("user clicks on the Schedule Appointment button", () => {
+      defaultValidation();
     });
 
-    and('user navigates to the schedule appointment screen', () => {
+    and("user navigates to the schedule appointment screen", () => {
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
 
       const domain = window.location.origin;
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGGESTION_DATA);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
       global.navigator.geolocation = mockGeolocation;
       container = render(
         <Provider store={store}>
@@ -259,46 +282,70 @@ defineFeature(feature, (test) => {
       );
     });
 
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters();
+    and(
+      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
+      () => {
+        provideFilters();
+      }
+    );
+
+    and("click on Search button", () => {
+      clickSearch();
     });
 
-    and('click on Search button', () => {
-      clickSearch()
+    and(
+      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
+      async () => {
+        cleanup();
+        container = await renderScheduleAppointment(mock);
+        expect(container.getByLabelText("Date")).toBeInTheDocument();
+        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
+
+    and("try to update the location if already provided", async () => {
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
 
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async() => {
-      cleanup()
-      container = await renderScheduleAppointment()
-      expect(container.getByLabelText("Date")).toBeInTheDocument();
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    and('try to update the location if already provided', async() => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    then('user should allow to update the location.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+    then("user should allow to update the location.", () => {
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1595-Verify whethet the user is able to select the Location, if not selected in Previous page.', ({ when, and, then }) => {
-    when('user clicks on the Schedule Appointment button', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1595-Verify whethet the user is able to select the Location, if not selected in Previous page.", ({
+    when,
+    and,
+    then,
+  }) => {
+    when("user clicks on the Schedule Appointment button", () => {
+      defaultValidation();
     });
 
-    and('user navigates to the schedule appointment screen', () => {
+    and("user navigates to the schedule appointment screen", () => {
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
 
       const domain = window.location.origin;
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGGESTION_DATA);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
       global.navigator.geolocation = mockGeolocation;
       container = render(
         <Provider store={store}>
@@ -307,52 +354,79 @@ defineFeature(feature, (test) => {
       );
     });
 
-    and('user should select the Date of Appointment, Purpose of visit, Insurance carrier and without selecting location.', () => {
-      expect(container.getByLabelText("Date")).toBeInTheDocument();
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+    and(
+      "user should select the Date of Appointment, Purpose of visit, Insurance carrier and without selecting location.",
+      () => {
+        expect(container.getByLabelText("Date")).toBeInTheDocument();
+        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
+
+    and("click on Search button", () => {
+      clickSearch();
     });
 
-    and('click on Search button', () => {
-      clickSearch()
+    and(
+      "user should lands on Schedule Appointment Review screen with blank selected location, date, Purpose of visit and Insurance carrier data",
+      async () => {
+        cleanup();
+        container = await renderScheduleAppointment(mock);
+        expect(container.getByLabelText("Date")).toBeInTheDocument();
+        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
+
+    and("try to add the location", () => {
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
 
-    and('user should lands on Schedule Appointment Review screen with blank selected location, date, Purpose of visit and Insurance carrier data', async() => {
-      cleanup()
-      container = await renderScheduleAppointment()
-      expect(container.getByLabelText("Date")).toBeInTheDocument();
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    and('try to add the location', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    then('user should allow to add the Location.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+    then("user should allow to add the Location.", () => {
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the already selected data are getting removed if we update the other Location if not supported.', ({ given, when, and, then }) => {
-    given('user launch the Patient portal URL', () => {
-      launchURL()
+  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the already selected data are getting removed if we update the other Location if not supported.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient portal URL", () => {
+      launchURL();
     });
 
-    when('user clicks on the Schedule Appointment button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule Appointment button", () => {
+      defaultValidation();
     });
 
-    and('user navigates to the schedule appointment screen', () => {
+    and("user navigates to the schedule appointment screen", () => {
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
 
       const domain = window.location.origin;
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGGESTION_DATA);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
       global.navigator.geolocation = mockGeolocation;
       container = render(
         <Provider store={store}>
@@ -361,52 +435,240 @@ defineFeature(feature, (test) => {
       );
     });
 
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters();
+    and(
+      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
+      () => {
+        provideFilters();
+      }
+    );
+
+    and("click on Search button", () => {
+      clickSearch();
     });
 
-    and('click on Search button', () => {
-      clickSearch()
+    and(
+      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
+      async () => {
+        cleanup();
+        container = await renderScheduleAppointment(mock);
+        expect(container.getByLabelText("Date")).toBeInTheDocument();
+        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
+
+    and("try to update the Location, which is not supported.", () => {
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
 
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
-      cleanup()
-      container = await renderScheduleAppointment()
-      expect(container.getByLabelText("Date")).toBeInTheDocument();
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+    then(
+      "already selected  Date of Appointment, Insurance carrier, purpose of visit should get removed.",
+      () => {
+        expect(container.getByLabelText("Date")).toBeInTheDocument();
+        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to review the Appointment details after updating the Location.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient portal URL", () => {
+      launchURL();
     });
 
-    and('try to update the Location, which is not supported.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+    when("user clicks on the Schedule Appointment button", () => {
+      defaultValidation();
     });
 
-    then('already selected  Date of Appointment, Insurance carrier, purpose of visit should get removed.', () => {
-      expect(container.getByLabelText("Date")).toBeInTheDocument();
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+    and("user navigates to the schedule appointment screen", () => {
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGGESTION_DATA);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
+    });
+
+    and(
+      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
+      () => {
+        provideFilters();
+      }
+    );
+
+    and("click on Search button", () => {
+      clickSearch();
+    });
+
+    and(
+      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit andInsurance carrier data",
+      async () => {
+        cleanup();
+        container = await renderScheduleAppointment(mock);
+        expect(container.getByLabelText("Date")).toBeInTheDocument();
+        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
+
+    and("try to update the Location if already provided", () => {
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
+    });
+
+    then(
+      "it should allow to review once again the changed Location in Appointment review screen.",
+      () => {
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by City", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient portal URL", () => {
+      launchURL();
+    });
+
+    when("user clicks on the Schedule Appointment button", () => {
+      defaultValidation();
+    });
+
+    and("user navigates to the schedule appointment screen", () => {
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGGESTION_DATA);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
+    });
+
+    and(
+      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
+      () => {
+        provideFilters();
+      }
+    );
+
+    and("click on Search button", () => {
+      clickSearch();
+    });
+
+    and(
+      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
+      async () => {
+        cleanup();
+        container = await renderScheduleAppointment(mock);
+        expect(container.getByLabelText("Date")).toBeInTheDocument();
+        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
+
+    and(
+      "try to update the location using Search by City and select any other location.",
+      () => {
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
+
+    then("user should allow to update the location.", () => {
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to review the Appointment details after updating the Location.', ({ given, when, and, then }) => {
-    given('user launch the Patient portal URL', () => {
-      launchURL()
+  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by State", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient portal URL", () => {
+      launchURL();
     });
 
-    when('user clicks on the Schedule Appointment button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule Appointment button", () => {
+      defaultValidation();
     });
 
-    and('user navigates to the schedule appointment screen', () => {
+    and("user navigates to the schedule appointment screen", () => {
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
 
       const domain = window.location.origin;
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGGESTION_DATA);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
       global.navigator.geolocation = mockGeolocation;
       container = render(
         <Provider store={store}>
@@ -415,50 +677,78 @@ defineFeature(feature, (test) => {
       );
     });
 
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters();
+    and(
+      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
+      () => {
+        provideFilters();
+      }
+    );
+
+    and("click on Search button", () => {
+      clickSearch();
     });
 
-    and('click on Search button', () => {
-      clickSearch()
-    });
+    and(
+      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
+      async () => {
+        cleanup();
+        container = await renderScheduleAppointment(mock);
+        expect(container.getByLabelText("Date")).toBeInTheDocument();
+        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit andInsurance carrier data', async() => {
-      cleanup()
-      container = await renderScheduleAppointment()
-      expect(container.getByLabelText("Date")).toBeInTheDocument();
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
+    and(
+      "try to update the location using Search by State and select any other location.",
+      () => {
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('try to update the Location if already provided', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    then('it should allow to review once again the changed Location in Appointment review screen.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+    then("user should allow to update the location.", () => {
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by City', ({ given, when, and, then }) => {
-    given('user launch the Patient portal URL', () => {
-      launchURL()
+  test("EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by Zipcode", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient portal URL", () => {
+      launchURL();
     });
 
-    when('user clicks on the Schedule Appointment button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule Appointment button", () => {
+      defaultValidation();
     });
 
-    and('user navigates to the schedule appointment screen', () => {
+    and("user navigates to the schedule appointment screen", () => {
       const mock = new MockAdapter(axios);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
 
       const domain = window.location.origin;
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGGESTION_DATA);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
       global.navigator.geolocation = mockGeolocation;
       container = render(
         <Provider store={store}>
@@ -467,132 +757,43 @@ defineFeature(feature, (test) => {
       );
     });
 
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters();
+    and(
+      "user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.",
+      () => {
+        provideFilters();
+      }
+    );
+
+    and("click on Search button", () => {
+      clickSearch();
     });
 
-    and('click on Search button', () => {
-      clickSearch()
-    });
+    and(
+      "user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data",
+      async () => {
+        cleanup();
+        container = await renderScheduleAppointment(mock);
+        expect(container.getByLabelText("Date")).toBeInTheDocument();
+        expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async() => {
-      cleanup()
-      container = await renderScheduleAppointment()
-      expect(container.getByLabelText("Date")).toBeInTheDocument();
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
+    and(
+      "try to update the location using Search by Zipcode and select any other location.",
+      () => {
+        expect(
+          container.getByLabelText("City, state, or zip code")
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('try to update the location using Search by City and select any other location.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    then('user should allow to update the location.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by State', ({ given, when, and, then }) => {
-    given('user launch the Patient portal URL', () => {
-      launchURL()
-    });
-
-    when('user clicks on the Schedule Appointment button', () => {
-      defaultValidation()
-    });
-
-    and('user navigates to the schedule appointment screen', () => {
-      const mock = new MockAdapter(axios);
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
-      };
-
-      const domain = window.location.origin;
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
-    });
-
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters();
-    });
-
-    and('click on Search button', () => {
-      clickSearch()
-    });
-
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async() => {
-      cleanup()
-      container = await renderScheduleAppointment()
-      expect(container.getByLabelText("Date")).toBeInTheDocument();
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    and('try to update the location using Search by State and select any other location.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    then('user should allow to update the location.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1595-Verify whether the user is able to change the location using search by Zipcode', ({ given, when, and, then }) => {
-    given('user launch the Patient portal URL', () => {
-      launchURL()
-    });
-
-    when('user clicks on the Schedule Appointment button', () => {
-      defaultValidation()
-    });
-
-    and('user navigates to the schedule appointment screen', () => {
-      const mock = new MockAdapter(axios);
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
-      };
-
-      const domain = window.location.origin;
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
-    });
-
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters();
-    });
-
-    and('click on Search button', () => {
-      clickSearch()
-    });
-
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async() => {
-      cleanup()
-      container = await renderScheduleAppointment()
-      expect(container.getByLabelText("Date")).toBeInTheDocument();
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    and('try to update the location using Search by Zipcode and select any other location.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
-    });
-
-    then('user should allow to update the location.', () => {
-      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
+    then("user should allow to update the location.", () => {
+      expect(
+        container.getByLabelText("City, state, or zip code")
+      ).toBeInTheDocument();
     });
   });
 });

@@ -10,6 +10,7 @@ export default function AppointmentLayout({
   backTitle,
   onBackClicked,
   pageTitle = "EyeCare Patient Portal - Appointment",
+  showNavbar = false,
 }) {
   const router = useRouter();
   return (
@@ -30,6 +31,7 @@ export default function AppointmentLayout({
                 router.back();
               }
             }}
+            showNavbar={showNavbar}
           />
           <div className={styles.defaultContainer}>{children}</div>
         </div>

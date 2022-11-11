@@ -85,7 +85,7 @@ export default function Container({
                       }}
                       checked={rememberMe}
                       data-testid={testIds.checkbox}
-                      onChange={() => {
+                      onChange={(event) => {
                         setRememberMe(event.target.checked);
                       }}
                       inputProps={{
