@@ -80,6 +80,7 @@ export const FilterResultHeading = ({
         <Box className={styles.filterChildButton} key={idx} tabIndex="0">
           {option.name}
           <IconButton
+            // eslint-disable-next-line jsx-a11y/aria-props
             aria-description="Close"
             onClick={() => {
               const id = appliedFilter.findIndex((x) => x.name === option.name);

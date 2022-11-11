@@ -17,7 +17,6 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import constants from "../../../utils/constants";
-import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import ProfileDrawer from "../../molecules/ProfileDrawer/profileDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";

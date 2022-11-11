@@ -46,6 +46,9 @@ export function Login({
       postMessage.status === "failed" && (
         <Box marginBottom={"16px"}>
           <FormMessage
+            tabIndex={0}
+            aria-live={"assertive"}
+            aria-label={t(postMessage.message.description)}
             error
             title={postMessage.message.title && t(postMessage.message.title)}
           >

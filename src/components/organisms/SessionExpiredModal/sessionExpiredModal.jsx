@@ -22,6 +22,7 @@ function SessionExpiredModal() {
   // Time before idle
   const [remaining, setRemaining] = useState(0);
   const [open, setOpen] = useState(false);
+  const [isExpired, setIsExpired] = useState(false);
 
   const onPrompt = () => {
     // onPrompt will be called after the timeout value is reached
@@ -60,16 +61,23 @@ function SessionExpiredModal() {
     };
   }, [getRemainingTime, isPrompted]);
 
+  useEffect(() => {
+    if (open && remaining <= 0) {
+      setIsExpired(true);
+    }
+  }, [remaining, open]);
+
   const onClickStayLoggedIn = () => {
     setOpen(false);
+    setIsExpired(false);
     reset();
   };
 
-  const isExpired = open && remaining <= 0;
   /** ------------------------------------------------------------------------ */
 
   const router = useRouter();
   const onLoggedOffClicked = async () => {
+    setOpen(false);
     await logoutProps.OnLogoutClicked(router);
     onClickStayLoggedIn();
   };

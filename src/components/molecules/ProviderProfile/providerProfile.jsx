@@ -123,14 +123,11 @@ export default function ProviderProfile({
   function renderRatingAndPhone() {
     if (isShownPhoneAndRating) {
       return (
-        <Box
-          className={isBio ? styles.ratingContainer : styles.phoneContainer}
-          sx={{ marginLeft: isMap ? "-67px" : "0" }}
-        >
+        <Box className={isBio ? styles.ratingContainer : styles.phoneContainer}>
           {(isBio || isMap || (isViewSchedule && isShownRating)) && (
             <StyledRating value={parseFloat(providerData.rating / 2)} />
           )}
-          <PhoneNumber phone={providerData.phoneNumber} />
+          <PhoneNumber isMap={isMap} phone={phoneNumber} />
         </Box>
       );
     } else {

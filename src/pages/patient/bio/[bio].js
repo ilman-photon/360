@@ -39,6 +39,18 @@ export default function Bio({ embedApi, bio }) {
   });
 
   let isRequest = false;
+  const getArrayValue = (data) => {
+    if (data) {
+      const isMultipleValue = Array.isArray(data);
+      return !isMultipleValue ? splitByComa(data) : data;
+    } else {
+      return "";
+    }
+  };
+
+  const splitByComa = (data) => {
+    return data.split(", ");
+  };
 
   const mapper = (response) => {
     const designation = response.designation ? `, ${response.designation}` : "";
