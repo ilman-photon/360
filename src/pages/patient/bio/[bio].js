@@ -25,10 +25,14 @@ export default function Bio({ embedApi, bio }) {
   const getArrayValue = (data) => {
     if (data) {
       const isMultipleValue = Array.isArray(data);
-      return !isMultipleValue ? [data] : data;
+      return !isMultipleValue ? splitByComa(data) : data;
     } else {
       return "";
     }
+  };
+
+  const splitByComa = (data) => {
+    return data.split(", ");
   };
 
   const mapper = (response) => {

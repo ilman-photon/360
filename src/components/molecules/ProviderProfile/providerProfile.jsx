@@ -198,12 +198,11 @@ export default function ProviderProfile({
                   className={
                     isBio ? styles.ratingContainer : styles.phoneContainer
                   }
-                  sx={{ marginLeft: isMap ? "-67px" : "0" }}
                 >
                   {(isBio || isMap || (isViewSchedule && isShownRating)) && (
                     <StyledRating value={parseFloat(providerData.rating / 2)} />
                   )}
-                  <PhoneNumber phone={phoneNumber} />
+                  <PhoneNumber isMap={isMap} phone={phoneNumber} />
                 </Box>
               )}
             </Box>

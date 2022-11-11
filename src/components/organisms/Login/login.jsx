@@ -14,7 +14,6 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { useTranslation } from "next-i18next";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
-import { Regex } from "../../../utils/regex";
 import { colors } from "../../../styles/theme";
 
 const constants = require("../../../utils/constants");
@@ -47,6 +46,9 @@ export function Login({
       postMessage.status === "failed" && (
         <Box marginBottom={"16px"}>
           <FormMessage
+            tabIndex={0}
+            aria-live={"assertive"}
+            aria-label={t(postMessage.message.description)}
             error
             title={postMessage.message.title && t(postMessage.message.title)}
           >
@@ -96,9 +98,9 @@ export function Login({
                         data-testid={LOGIN_TEST_ID.email}
                         type={constants.INPUT_TEXT}
                         value={value}
-                        onChange={(value) => {
+                        onChange={(val) => {
                           setPostMessage({ status: "" });
-                          onChange(value);
+                          onChange(val);
                         }}
                         error={!!error}
                         required
@@ -126,15 +128,15 @@ export function Login({
                         InputLabelProps={{ "aria-hidden": true }}
                         aria-label={"Password required text field"}
                         id="password"
-                        data-testid={LOGIN_TEST_ID.password}
+                        data-testid={LOGIN_TEST_ID.passwordField}
                         label={t("passwordLabel")}
                         type={constants.INPUT_PASSWORD}
                         size={constants.SMALL}
                         variant={constants.FILLED}
                         value={value}
-                        onChange={(value) => {
+                        onChange={(val) => {
                           setPostMessage({ status: "" });
-                          onChange(value);
+                          onChange(val);
                         }}
                         error={!!error}
                         aria
