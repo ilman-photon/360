@@ -30,6 +30,7 @@ import {
   fetchNotifications,
   markAllAsRead,
   markAsReadById,
+  readNotificationItem,
 } from "../../../store/notification";
 import Link from "next/link";
 import EcommerceButton from "../../atoms/EcommerceButton/ecommerceButton";
@@ -58,6 +59,7 @@ export default function BaseHeader({
       !!cookies.get("accessToken");
     setUserLoged(isLogin);
 
+    const userData = JSON.parse(localStorage.getItem("userData"));
     const userStorageData =
       localStorage.getItem("userProfile") !== "undefined"
         ? JSON.parse(localStorage.getItem("userProfile"))
@@ -69,11 +71,11 @@ export default function BaseHeader({
     // notifications
     // fetch for every 3 minutes
     const notificationId = setInterval(() => {
-      fetchUserNotifications();
+      fetchUserNotifications(userData?.patientId);
     }, 180000);
 
     // fetch for first time
-    fetchUserNotifications();
+    fetchUserNotifications(userData?.patientId);
 
     // clear interval after unMount
     return () => clearInterval(notificationId);
@@ -107,10 +109,9 @@ export default function BaseHeader({
     setAnchorElUser(null);
   };
 
-  const fetchUserNotifications = () => {
+  const fetchUserNotifications = async (patientId) => {
     setIsNotificationLoading(true);
-    dispatch(fetchNotifications());
-
+    await dispatch(fetchNotifications({ patientId }));
     setIsNotificationLoading(false);
   };
 
@@ -126,6 +127,7 @@ export default function BaseHeader({
     console.log("redirect to:", data.type);
     let path = "#";
     switch (data.type) {
+      case "prescription":
       case "prescription-refill":
         path = "/patient/prescription";
         break;
@@ -157,14 +159,23 @@ export default function BaseHeader({
       case "aspirin":
         path = getPathToPrescriptionPage(2);
         break;
-      default:
-        return <>-</>;
     }
     router.push(path);
   };
 
+  const actionNotificationRead = async (notificationId) => {
+    const { payload } = await dispatch(
+      readNotificationItem({ notificationId })
+    );
+    if (payload.success) {
+      // after effect to edit state of rawuserinsuranceData manually and rebuild
+      dispatch(markAsReadById(data.id));
+    }
+  };
+
   const handleNotificationItemClicked = (data) => {
-    dispatch(markAsReadById(data.id));
+    const id = data.id || data._id;
+    actionNotificationRead(id);
     actionNotificationRedirect(data);
     setNotificationDrawerOpened(false);
   };
@@ -221,7 +232,7 @@ export default function BaseHeader({
                     setNotificationDrawerOpened(true);
                   }}
                 >
-                  {notifications.some((v) => !v.isRead) ? (
+                  {notifications && notifications.some((v) => !v.isRead) ? (
                     <Badge
                       color="error"
                       badgeContent={notifications.length > 0 ? " " : null}

@@ -1,9 +1,52 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Api } from "../pages/api/api";
+
+let url;
 
 export const fetchNotifications = createAsyncThunk(
-  "user/fetchNotifications",
-  async () => {
-    return fetch("/api/dummy/notification").then((res) => res.json());
+  "notification/fetchNotifications",
+  async ({ patientId }) => {
+    const api = new Api();
+    return api.getResponse(
+      `/ecp/messagealert/getalerts/${"7dba6139-e2aa-4994-bb72-af6f1b11b94a"}`,
+      null,
+      "get"
+    );
+  }
+);
+
+export const readNotificationItem = createAsyncThunk(
+  "notification/readNotificationItem",
+  async ({ notificationId }) => {
+    const api = new Api();
+    url = `/ecp/messagealert/getMessageDetails/${notificationId}`;
+    try {
+      const response = await api.getResponse(
+        url,
+        {
+          op: "replace",
+          path: "/isRead",
+          value: [
+            {
+              _id: notificationId,
+              isRead: true,
+            },
+          ],
+        },
+        "patch"
+      );
+
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
   }
 );
 
@@ -38,7 +81,7 @@ export const notificationStore = createSlice({
       state.status = "loading";
     },
     [fetchNotifications.fulfilled]: (state, { payload }) => {
-      state.list = payload;
+      state.list = payload.alerts;
       state.status = "success";
     },
     [fetchNotifications.rejected]: (state, action) => {
