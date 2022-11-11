@@ -108,7 +108,7 @@ export default function CustomizedDialogs({
     }
   }, [open]);
 
-  const handleCapture = (target) => {
+  const handleCapture = (target, _) => {
     if (target.files) {
       if (target.files.length !== 0) {
         const file = target.files[0];
