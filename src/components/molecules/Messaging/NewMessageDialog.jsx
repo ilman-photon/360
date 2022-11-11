@@ -39,6 +39,9 @@ export const NewMessageDialog = ({
   valueText,
   onFocused,
   isFocused,
+  onDiscardMessage = () => {
+    //this is intentional
+  },
 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "messaging",

@@ -23,7 +23,7 @@ export const AttachmentFile = ({
               padding: "0px 10px",
             }}
           >
-            {attachmentsSource?.map((item, index) => {
+            {attachmentsSource.map((item, index) => {
               return (
                 <Button
                   key={index}
