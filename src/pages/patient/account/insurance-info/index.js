@@ -87,6 +87,7 @@ export default function InsuranceInfoPage() {
 
   const checkInsuranceCardCompletion = (postBody) => {
     const { backCard, frontCard } = postBody;
+    if (!backCard && !frontCard) return true;
     if (!backCard || !frontCard) {
       dispatch(
         setPageMessage({
@@ -100,7 +101,6 @@ export default function InsuranceInfoPage() {
   };
 
   const OnCreateInsurance = async (postBody) => {
-    console.log({ postBody });
     if (!postBody) return;
     if (!checkInsuranceCardCompletion(postBody)) return;
 
@@ -117,6 +117,9 @@ export default function InsuranceInfoPage() {
           content: "Insurance successfully added",
         })
       );
+      setTimeout(() => {
+        dispatch(closePageMessage());
+      }, 5000);
       setOpenNewInsuranceForm(false);
     }
   };

@@ -9,7 +9,7 @@
     "lint": "next lint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest --verbose --coverage --passWithNoTests --forceExit --silent",
+    "test": "jest --verbose --coverage --passWithNoTests --forceExit --silent --bail",
     "check-format": "prettier --check \"src/**/*.[jt]s?(x)\" \"./styles\" \"src/**/*.css\" \"src/**/*.scss\" \"src/**/*.css\"",
     "sonar-lint": "sonarlint --src 'src/**' --tests '__tests__/**' --exclude 'src/**/_*.js' --exclude 'src/**/dummy/**'",
     "check-lint": "eslint src --ext .js,.jsx",

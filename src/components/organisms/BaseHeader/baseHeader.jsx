@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import constants from "../../../utils/constants";
 import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
+import ProfileDrawer from "../../molecules/ProfileDrawer/profileDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,6 +66,7 @@ export default function BaseHeader({
 
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [openedProfileDrawer, setOpenedProfileDrawer] = React.useState(false);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -160,14 +162,20 @@ export default function BaseHeader({
 
               {/* Menu Mobile*/}
               <Box sx={styles.boxStyledMobile}>
-                <Avatar
-                  sx={{
-                    background: "#003B4A",
-                    alignSelf: "center",
-                    width: "24px",
-                    height: "24px",
-                  }}
-                />
+                <IconButton
+                  size="large"
+                  onClick={() => setOpenedProfileDrawer(true)}
+                >
+                  <Avatar
+                    sx={{
+                      background: "#003B4A",
+                      alignSelf: "center",
+                      width: "24px",
+                      height: "24px",
+                    }}
+                  />
+                </IconButton>
+
                 <IconButton
                   size="large"
                   aria-label="account of current user"
@@ -181,17 +189,27 @@ export default function BaseHeader({
                   <MenuIcon />
                 </IconButton>
               </Box>
-              {
-                <AccountDrawer
-                  onClose={() => {
-                    setAnchorElNav(false);
-                  }}
-                  opened={anchorElNav}
-                  onLogoutClicked={() => {
-                    OnLogoutClicked(router);
-                  }}
-                />
-              }
+
+              <ProfileDrawer
+                onClose={() => {
+                  setOpenedProfileDrawer(false);
+                }}
+                opened={openedProfileDrawer}
+                onLogoutClicked={() => {
+                  OnLogoutClicked(router);
+                }}
+              />
+
+              <AccountDrawer
+                onClose={() => {
+                  setAnchorElNav(false);
+                }}
+                opened={anchorElNav}
+                onLogoutClicked={() => {
+                  OnLogoutClicked(router);
+                }}
+              />
+
               {/* profile menu */}
               <Box sx={styles.boxProfileMenuStyles}>
                 <Tooltip title="Username dropdown">

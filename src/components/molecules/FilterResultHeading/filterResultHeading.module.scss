@@ -225,3 +225,30 @@
     line-height: normal;
   }
 }
+
+.filterHeaderCalendar {
+  grid-template-columns: 490px 638px;
+
+  @media only screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    grid-template-columns: 20% 73% !important;
+    padding-right: 15px;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    grid-template-columns: 20% 65% !important;
+    padding-right: 15px;
+  }
+
+  @media only screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    grid-template-columns: 20% 55% !important;
+    padding-right: 15px;
+  }
+}
+
+.calendarHeading {
+  gap: 8px;
+
+  @media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    gap: 15px;
+  }
+}

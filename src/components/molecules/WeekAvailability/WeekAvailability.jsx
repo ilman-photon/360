@@ -160,9 +160,7 @@ export const WeekAvailability = ({
       key={keyWeek}
       sx={{
         display: "grid",
-        width: 598,
         gridTemplateColumns: "repeat(6, 1fr)",
-        gap: 1,
         justifyContent: "center",
         alignContent: "center",
         gridTemplateRows: "auto",
@@ -172,6 +170,7 @@ export const WeekAvailability = ({
                             "moremondaySchedule moretuesdaySchedule morewednesdaySchedule morethursdaySchedule morefridaySchedule moresaturdaySchedule"
                             "linkAvability linkAvability linkAvability linkAvability linkAvability linkAvability"`,
       }}
+      className={styles.weeklyScheduleContent}
     >
       {renderScheduleData()}
       {viewAllAvailabilityLinkUI({ onClickViewAllAvailability })}

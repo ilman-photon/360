@@ -60,7 +60,11 @@ export default function Container({
           </Box>
           <Stack spacing={2}>
             <Box className={styles.contentContainer}>
-              <Typography variant={constants.H1} className={styles.title}>
+              <Typography
+                variant={constants.H1}
+                className={styles.title}
+                tabIndex={0}
+              >
                 {title}
               </Typography>
               {renderFromMessage()}
@@ -68,6 +72,7 @@ export default function Container({
                 variant="body2"
                 className={styles.description}
                 aria-live={"polite"}
+                tabIndex={0}
               >
                 {description}
               </Typography>
@@ -106,6 +111,7 @@ export default function Container({
                     variant="body2"
                     className={styles.checkBoxText}
                     sx={{ fontSize: "14px !important" }}
+                    tabIndex={0}
                   >
                     {t("rememberMeDescription")}
                   </Typography>
@@ -140,16 +146,18 @@ export default function Container({
                     {secondaryButtonTitle}
                   </StyledButton>
                 )}
-                <Link
-                  className={styles.link}
-                  data-testid={testIds.link}
-                  {...getLinkAria(linkTitle)}
-                  onClick={() => {
-                    onClickLink();
-                  }}
-                >
-                  {linkTitle}
-                </Link>
+                {linkTitle && (
+                  <Link
+                    className={styles.link}
+                    data-testid={testIds.link}
+                    {...getLinkAria(linkTitle)}
+                    onClick={() => {
+                      onClickLink();
+                    }}
+                  >
+                    {linkTitle}
+                  </Link>
+                )}
               </Stack>
             </Box>
           </Stack>

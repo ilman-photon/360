@@ -218,7 +218,7 @@ export default function CustomizedDialogs({
                 id="icon-button-file"
                 type="file"
                 capture="environment"
-                onChange={(e) => handleCapture(e.target, setSource)}
+                onChange={(e) => handleCapture(e.target)}
                 style={{
                   display: "none",
                 }}

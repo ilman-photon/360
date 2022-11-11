@@ -180,7 +180,7 @@ Object {
                       class="appointment MuiBox-root css-1qa5ro4"
                     >
                       <div
-                        class="displayFlex MuiBox-root css-0"
+                        class="displayFlex [object Object] MuiBox-root css-0"
                       >
                         <div
                           class="imageContainer MuiBox-root css-0"
@@ -233,7 +233,7 @@ Object {
                             Scripps Eyecare
                           </h3>
                           <div
-                            class="detailContainer MuiBox-root css-0"
+                            class="detailContainer [object Object] MuiBox-root css-0"
                           >
                             <div
                               class="MuiBox-root css-0"
@@ -541,7 +541,7 @@ Object {
                     class="appointment MuiBox-root css-1qa5ro4"
                   >
                     <div
-                      class="displayFlex MuiBox-root css-0"
+                      class="displayFlex [object Object] MuiBox-root css-0"
                     >
                       <div
                         class="imageContainer MuiBox-root css-0"
@@ -594,7 +594,7 @@ Object {
                           Scripps Eyecare
                         </h3>
                         <div
-                          class="detailContainer MuiBox-root css-0"
+                          class="detailContainer [object Object] MuiBox-root css-0"
                         >
                           <div
                             class="MuiBox-root css-0"

@@ -36,7 +36,7 @@ export default function SetMultiFactorAuthentication({
         selectedCommunication === "" && setSelectedCommunication("phone");
       }
       return (
-        <Typography variant="body2" className={styles.description}>
+        <Typography variant="body2" className={styles.description} tabIndex={0}>
           {value}
         </Typography>
       );
@@ -48,11 +48,11 @@ export default function SetMultiFactorAuthentication({
             variant="body2"
             className={styles.radioLabel}
             sx={{ color: "#242526" }}
+            tabIndex={0}
           >
             {t("communicationMethodTitle")}
           </Typography>
           <RadioGroup
-            aria-labelledby="communication-radio-buttons-group-label"
             name="radio-buttons-group"
             defaultValue="email"
             onChange={(event) => {

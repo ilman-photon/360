@@ -6,7 +6,6 @@ import {
   Box,
   Dialog,
   DialogContent,
-  DialogTitle,
   IconButton,
   CircularProgress,
   Stack,
@@ -59,8 +58,8 @@ export async function getStaticProps() {
 }
 
 export default function Appointment({ googleApiKey }) {
-  const isDesktop = useMediaQuery("(min-width: 834px)");
-  const isMobile = useMediaQuery("(max-width: 833px)");
+  const isDesktop = useMediaQuery("(min-width: 760px)");
+  const isMobile = useMediaQuery("(max-width: 759px)");
   const isTablet = useMediaQuery("(max-width: 1440px)");
   const [filterSuggestionData, setFilterSuggestionData] = useState({});
   const [open, setOpen] = React.useState(false);
@@ -462,8 +461,10 @@ export default function Appointment({ googleApiKey }) {
           data-testid={TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.container}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
+          aria-label={open ? "View all availability dialog window open" : ""}
+          role="alertdialog"
         >
-          <DialogTitle id="alert-dialog-title" sx={{ height: "51px" }}>
+          <Box sx={{ height: "51px", marginBottom: "40px" }}>
             <IconButton
               aria-label="close"
               onClick={handleClose}
@@ -476,7 +477,7 @@ export default function Appointment({ googleApiKey }) {
             >
               <CloseIcon />
             </IconButton>
-          </DialogTitle>
+          </Box>
           <DialogContent>
             <Box sx={{ width: "290px" }}>
               <ProviderProfile
@@ -746,7 +747,10 @@ export default function Appointment({ googleApiKey }) {
 Appointment.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AppointmentLayout currentActivePage={"appointment"}>
+      <AppointmentLayout
+        pageTitle="Schedule Appointment - Search Page"
+        currentActivePage={"appointment"}
+      >
         {page}
       </AppointmentLayout>
     </Provider>
