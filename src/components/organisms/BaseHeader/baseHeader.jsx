@@ -17,6 +17,8 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import constants from "../../../utils/constants";
+import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
+import ProfileDrawer from "../../molecules/ProfileDrawer/profileDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
@@ -93,6 +95,7 @@ export default function BaseHeader({
     React.useState(false);
 
   const notifications = useSelector((state) => state.notification.list);
+  const [openedProfileDrawer, setOpenedProfileDrawer] = React.useState(false);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -196,17 +199,21 @@ export default function BaseHeader({
 
                 {/* Menu Mobile*/}
                 <Box sx={styles.boxStyledMobile}>
-                  <Avatar
+                  <IconButton
+                    size="large"
+                    onClick={() => setOpenedProfileDrawer(true)}
                     data-testid={HOME_TEST_ID.header.userAvatar}
-                    sx={{
-                      background: "#003B4A",
-                      alignSelf: "center",
-                      width: "24px",
-                      height: "24px",
-                      mx: 2,
-                    }}
-                    onClick={handleOpenUserMenu}
-                  />
+                  >
+                    <Avatar
+                      sx={{
+                        background: "#003B4A",
+                        alignSelf: "center",
+                        width: "24px",
+                        height: "24px",
+                        mx: 2,
+                      }}
+                    />
+                  </IconButton>
                   <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -221,6 +228,16 @@ export default function BaseHeader({
                     <MenuIcon />
                   </IconButton>
                 </Box>
+
+                <ProfileDrawer
+                  onClose={() => {
+                    setOpenedProfileDrawer(false);
+                  }}
+                  opened={openedProfileDrawer}
+                  onLogoutClicked={() => {
+                    OnLogoutClicked(router);
+                  }}
+                />
 
                 <MobileMenu
                   onClose={() => {

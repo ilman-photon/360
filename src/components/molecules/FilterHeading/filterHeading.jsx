@@ -92,7 +92,7 @@ export const insuraceIcon = (
 export function getMenuList(title, subtitle) {
   return (
     <Box className={styles.selectMenuContainer}>
-      <Typography tabindex={0} sx={{ lineHeight: "1" }}>
+      <Typography sx={{ lineHeight: "1" }}>
         <Typography
           variant="bodySmallRegular"
           sx={{ display: "block", color: colors.darkGreen, lineHeight: "18px" }}
@@ -165,7 +165,8 @@ export function onGetInsuranceCarrierStyle(isDesktop = true) {
   return {
     width: {
       xs: "auto",
-      md: "65%",
+      sm: "60%",
+      md: "70%",
       lg: "100%",
     },
     maxWidth: "100%",
@@ -439,7 +440,7 @@ const FilterHeading = ({
               disableClearable={true}
               options={mapsData}
               sx={{
-                width: "100%",
+                width: "75%",
                 background: "#FFF",
                 borderRadius: "100%",
               }}
@@ -592,7 +593,7 @@ const FilterHeading = ({
                 display: "flex",
                 alignItems: "flex-end",
                 background: "#fff",
-                width: isDesktop ? "85%" : "auto",
+                width: isDesktop ? "70%" : "auto",
                 paddingLeft: "15px",
                 marginTop: isDesktop ? "0px" : "16px",
               }}

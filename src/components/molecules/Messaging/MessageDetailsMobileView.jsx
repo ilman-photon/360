@@ -30,7 +30,6 @@ export const MessageDetailsMobileView = ({
   const getDraftContentValue = () => {
     let message = "";
     data?.messages?.map((item) => {
-      console.log(item?.isDraft !== null && item?.isDraft);
       if (item?.isDraft !== null && item?.isDraft) {
         message = item.message;
       }

@@ -105,7 +105,6 @@ export default function Bio({ embedApi, bio }) {
   }, [providerData, isRequest]);
 
   const navigateToScheduleAppointment = (data) => {
-    console.log(data);
     const address = data.address;
     const addressData = Array.isArray(address) ? address[0] : address;
     const specialties = Array.isArray(data.specialties)

@@ -156,12 +156,12 @@ export const FilterResultHeading = ({
           sx={{
             marginTop: "16px",
             display: "grid",
-            gridTemplateColumns: "490px 638px",
             justifyContent: "space-between",
             alignContent: "space-between",
             gridTemplateRows: "auto",
             gridTemplateAreas: `"filterDetails calenderDetails"`,
           }}
+          className={styles.filterHeaderCalendar}
         >
           <Box
             sx={{ gridArea: "filterDetails" }}
@@ -215,13 +215,13 @@ export const FilterResultHeading = ({
               sx={{
                 gridArea: "caledar",
                 display: "grid",
-                gap: 1,
                 gridTemplateColumns: "repeat(6, 1fr)",
                 justifyContent: "center",
                 alignContent: "center",
                 gridTemplateRows: "auto",
                 gridTemplateAreas: `"mondaySchedule tuesdaySchedule wednesdaySchedule thusdaySchedule fridaySchedule saturdaySchedule"`,
               }}
+              className={styles.calendarHeading}
             >
               {weekColumn.map((option, idx) => {
                 return (

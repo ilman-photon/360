@@ -8,7 +8,7 @@ export default function MFALayout({ children }) {
   return (
     <>
       <Head>
-        <title>EyeCare Patient Portal - MFA</title>
+        <title>EyeCare Patient Portal - Multi-Factor Authentication</title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader />

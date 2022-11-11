@@ -151,7 +151,6 @@ export default function MobileMenu({
               {item.href ? (
                 <ListItemButton
                   onClick={() => {
-                    console.log(item.href);
                     router.push(item.href);
                   }}
                 >

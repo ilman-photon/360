@@ -28,9 +28,16 @@ export default function MultiFactorAuthentication({
       <StyledInput
         type="number"
         id="mfaCode"
+        tabIndex={0}
+        InputLabelProps={{ "aria-hidden": true }}
+        aria-label={"Enter code text field"}
         label={t("mfaLabel")}
         onKeyDown={(e) => {
-          if (!Regex.numberOnly.test(e.key) && e.key != "Backspace") {
+          if (
+            !Regex.numberOnly.test(e.key) &&
+            e.key != "Backspace" &&
+            e.key != "Tab"
+          ) {
             e.preventDefault();
           }
         }}

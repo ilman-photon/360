@@ -152,7 +152,12 @@ export default function ProviderProfile({
       className={isBio ? styles.shortBio : styles.appointment}
       sx={{ maxWidth: isMap ? "unset" : "368px" }}
     >
-      <Box className={styles.displayFlex}>
+      <Box
+        className={[
+          styles.displayFlex,
+          isViewSchedule ? styles.viewSchedule : {},
+        ].join(" ")}
+      >
         <Box className={getImageContainerStyle()}>
           <ImageFallback
             src={providerData.image}
@@ -170,7 +175,7 @@ export default function ProviderProfile({
           className={[styles.bioContainer, bioContainerClass].join(" ")}
           sx={{
             width: getWidtBioContainer(),
-            ml: isMap ? 1 : "inherit",
+            ml: isViewSchedule || isMap ? 1 : "inherit",
           }}
         >
           <Typography
@@ -191,7 +196,12 @@ export default function ProviderProfile({
               {getAddressName(providerData.address)}
             </Typography>
           )}
-          <Box className={styles.detailContainer}>
+          <Box
+            className={[
+              styles.detailContainer,
+              isViewSchedule ? styles.viewSchedule : {},
+            ].join(" ")}
+          >
             <Box
               sx={
                 isBio && {
