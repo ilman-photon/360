@@ -18,10 +18,7 @@ function createMatchMedia(width) {
 }
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint6/EPP-2707.feature",
-  {
-    tagFilter: "@included and not @excluded",
-  }
+  "./__tests__/feature/Patient Portal/Sprint6/EPP-2707.feature"
 );
 
 jest.mock("universal-cookie", () => {
