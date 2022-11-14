@@ -42,9 +42,9 @@ export const MessagingCardDetailView = ({
   const getProfilePicture = () => {
     return (
       <Box className={styles.profilePicture}>
-        {data?.source !== null ? (
+        {data.source !== null ? (
           <Image
-            src={data?.source}
+            src={data.source}
             alt={"profilePicture"}
             width={"100%"}
             height={"100%"}
@@ -77,7 +77,7 @@ export const MessagingCardDetailView = ({
               lineHeight: isDesktop ? "24px" : "32px",
             }}
           >
-            {data?.name}
+            {data.name}
           </Typography>
           <Box sx={{ textAlign: "end", justifyContent: "flex-end" }}>
             <Typography
@@ -89,7 +89,7 @@ export const MessagingCardDetailView = ({
                 lineHeight: "24px",
               }}
             >
-              {convertDate(data?.modifiedAt)}
+              {convertDate(data.modifiedAt)}
             </Typography>
             <Typography
               sx={{
@@ -100,7 +100,7 @@ export const MessagingCardDetailView = ({
                 lineHeight: "20px",
               }}
             >
-              {convertTime(data?.modifiedAt)}
+              {convertTime(data.modifiedAt)}
             </Typography>
           </Box>
         </Box>
@@ -118,7 +118,7 @@ export const MessagingCardDetailView = ({
             >
               {data.message}
             </Typography>
-            {data?.attachments?.length > 0 && (
+            {data.attachments?.length > 0 && (
               <Box className={styles.attachmentContent}>
                 <Box
                   sx={{
@@ -131,7 +131,7 @@ export const MessagingCardDetailView = ({
                     marginBottom: "8px",
                   }}
                 >
-                  {data?.attachments?.map((item, index) => {
+                  {data.attachments.map((item, index) => {
                     return (
                       <Button
                         key={index}
@@ -143,6 +143,7 @@ export const MessagingCardDetailView = ({
                           textTransform: "capitalize",
                           maxWidth: "153px",
                         }}
+                        data-testId="button-asset-download-test"
                       >
                         <DescriptionOutlinedIcon
                           sx={{
@@ -169,12 +170,13 @@ export const MessagingCardDetailView = ({
                     );
                   })}
                 </Box>
-                {data?.attachments?.length > 1 && (
+                {data.attachments.length > 1 && (
                   <Button
                     className={styles.downloadAttachContent}
                     onClick={() =>
                       onDownloadAllAttachmentClicked(data.attachments)
                     }
+                    data-testId="button-all-asset-download-test"
                   >
                     <FileDownloadOutlinedIcon />
                     <Typography
@@ -209,7 +211,7 @@ export const MessagingCardDetailView = ({
           >
             {data.message}
           </Typography>
-          {data?.attachments?.length > 0 && (
+          {data.attachments?.length > 0 && (
             <Box className={styles.attachmentContent}>
               <Box
                 sx={{
@@ -222,7 +224,7 @@ export const MessagingCardDetailView = ({
                   marginBottom: "8px",
                 }}
               >
-                {data?.attachments?.map((item, index) => {
+                {data.attachments.map((item, index) => {
                   return (
                     <Button
                       key={index}
@@ -234,6 +236,7 @@ export const MessagingCardDetailView = ({
                         textTransform: "capitalize",
                         maxWidth: "153px",
                       }}
+                      data-testId="button-asset-download-mobile-test"
                     >
                       <DescriptionOutlinedIcon
                         sx={{
@@ -260,8 +263,11 @@ export const MessagingCardDetailView = ({
                   );
                 })}
               </Box>
-              {data?.attachments?.length > 1 && (
-                <Button className={styles.downloadAttachContent}>
+              {data.attachments.length > 1 && (
+                <Button
+                  className={styles.downloadAttachContent}
+                  data-testId="button-all-asset-download-mobile-test"
+                >
                   <FileDownloadOutlinedIcon />
                   <Typography
                     sx={{
