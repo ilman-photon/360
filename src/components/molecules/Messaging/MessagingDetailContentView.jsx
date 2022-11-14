@@ -75,7 +75,7 @@ export const MessagingDetailContentView = ({
         {data?.messages?.length > 0 && !data.messages[0].isDraft ? (
           <>
             {data.messages.map((item) => {
-              if (item.isDraft) {
+              if (!item.isDraft) {
                 return (
                   <MessagingCardDetailView
                     key={item.id}

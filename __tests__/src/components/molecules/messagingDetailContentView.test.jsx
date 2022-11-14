@@ -8,14 +8,9 @@ import {
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MessagingDetailContentView from "../../../../src/components/molecules/Messaging/MessagingDetailContentView";
-// import React from "react";
 
 describe("container Components", () => {
   let container;
-  // const useRefSpy = jest
-  //   .spyOn(React, "useRef")
-  //   .mockReturnValueOnce({ current: { focus } });
-
   const MOCK_DATA = {
     id: 6783,
     subject: "Follow-up from past visit/message",
