@@ -59,23 +59,24 @@ export default function BaseHeader({
       !!cookies.get("accessToken");
     setUserLoged(isLogin);
 
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const userStorageData =
+    const userStorageData = JSON.parse(localStorage.getItem("userData"));
+    setPatientId(userStorageData?.patientId);
+    const userStorageProfile =
       localStorage.getItem("userProfile") !== "undefined"
         ? JSON.parse(localStorage.getItem("userProfile"))
         : null;
-    if (userStorageData) {
-      dispatch(setUserData(userStorageData));
+    if (userStorageProfile) {
+      dispatch(setUserData(userStorageProfile));
     }
 
     // notifications
     // fetch for every 3 minutes
     const notificationId = setInterval(() => {
-      fetchUserNotifications(userData?.patientId);
+      fetchUserNotifications(userStorageData?.patientId);
     }, 180000);
 
     // fetch for first time
-    fetchUserNotifications(userData?.patientId);
+    fetchUserNotifications(userStorageData?.patientId);
 
     // clear interval after unMount
     return () => clearInterval(notificationId);
@@ -89,6 +90,7 @@ export default function BaseHeader({
 
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [patientId, setPatientId] = React.useState(null);
   const [notificationDrawerOpened, setNotificationDrawerOpened] =
     React.useState(false);
   const [isNotificationLoading, setIsNotificationLoading] =
@@ -115,8 +117,15 @@ export default function BaseHeader({
     setIsNotificationLoading(false);
   };
 
-  const handleMarkAllAsRead = () => {
-    dispatch(markAllAsRead());
+  const handleMarkAllAsRead = async () => {
+    const notificationIds = notifications.map((item) => item._id);
+    const { payload } = await dispatch(
+      readNotificationItem({ patientId, notificationIds: notificationIds })
+    );
+    if (payload.success) {
+      // after effect to edit state of rawuserinsuranceData manually and rebuild
+      dispatch(markAllAsRead());
+    }
   };
 
   const getPathToPrescriptionPage = (tab) => {
@@ -124,7 +133,6 @@ export default function BaseHeader({
   };
 
   const actionNotificationRedirect = (data) => {
-    console.log("redirect to:", data.type);
     let path = "#";
     switch (data.type) {
       case "prescription":
@@ -165,11 +173,11 @@ export default function BaseHeader({
 
   const actionNotificationRead = async (notificationId) => {
     const { payload } = await dispatch(
-      readNotificationItem({ notificationId })
+      readNotificationItem({ patientId, notificationIds: [notificationId] })
     );
     if (payload.success) {
       // after effect to edit state of rawuserinsuranceData manually and rebuild
-      dispatch(markAsReadById(data.id));
+      dispatch(markAsReadById(notificationId));
     }
   };
 

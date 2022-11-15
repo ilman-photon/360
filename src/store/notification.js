@@ -8,7 +8,7 @@ export const fetchNotifications = createAsyncThunk(
   async ({ patientId }) => {
     const api = new Api();
     return api.getResponse(
-      `/ecp/messagealert/getalerts/${"7dba6139-e2aa-4994-bb72-af6f1b11b94a"}`,
+      `/ecp/messagealert/getalerts/${patientId}`, // "7dba6139-e2aa-4994-bb72-af6f1b11b94a"
       null,
       "get"
     );
@@ -17,21 +17,25 @@ export const fetchNotifications = createAsyncThunk(
 
 export const readNotificationItem = createAsyncThunk(
   "notification/readNotificationItem",
-  async ({ notificationId }) => {
+  async ({ patientId, notificationIds }) => {
+    console.log(patientId, notificationIds);
     const api = new Api();
-    url = `/ecp/messagealert/getMessageDetails/${notificationId}`;
+    url = `/ecp/messagealert/getMessageDetails/${patientId}`; // "7dba6139-e2aa-4994-bb72-af6f1b11b94a"
+    let postBodyValue = [];
+    notificationIds.forEach((element) => {
+      postBodyValue.push({
+        id: element,
+        isRead: true,
+      });
+    });
+
     try {
       const response = await api.getResponse(
         url,
         {
           op: "replace",
           path: "/isRead",
-          value: [
-            {
-              _id: notificationId,
-              isRead: true,
-            },
-          ],
+          value: postBodyValue,
         },
         "patch"
       );
@@ -69,9 +73,10 @@ export const notificationStore = createSlice({
     },
     markAsReadById: (state, { payload }) => {
       state.list = state.list.map((v) => {
+        const id = v.id || v._id;
         return {
           ...v,
-          isRead: payload === v.id ? true : v.isRead,
+          isRead: payload === id ? true : v.isRead,
         };
       });
     },
