@@ -59,11 +59,15 @@ export const FormMessage = (
           }}
           data-testid="submission-message"
           aria-live="polite"
-          role="alert"
+          role={!props.textRole && "alert"}
           {...accessibility}
         >
           {props.title ? (
-            <div style={{ fontWeight: "600" }} role="alert" tabIndex={"0"}>
+            <div
+              style={{ fontWeight: "600" }}
+              role={!props.textRole && "alert"}
+              tabIndex={"0"}
+            >
               {props.title}
             </div>
           ) : (
@@ -71,7 +75,7 @@ export const FormMessage = (
           )}
           <div
             style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}
-            role="alert"
+            role={!props.textRole && "alert"}
             tabIndex={"0"}
           >
             {props.children}
