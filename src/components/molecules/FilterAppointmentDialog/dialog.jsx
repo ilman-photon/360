@@ -98,7 +98,9 @@ export default function CustomizedDialogs({
     purposeOfVisitData: [],
     insuranceCarrierData: [],
     isDesktop: false,
-    onChangeLocation: () => {},
+    onChangeLocation: () => {
+      //This is intended
+    },
   },
 }) {
   const [source, setSource] = React.useState("");

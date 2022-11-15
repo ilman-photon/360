@@ -5,7 +5,9 @@ import styles from "./styles.module.scss";
 
 export const AttachmentFile = ({
   attachmentsSource,
-  handleAssetDownload = () => {},
+  handleAssetDownload = () => {
+    // This is intentional
+  },
 }) => {
   return (
     <>
