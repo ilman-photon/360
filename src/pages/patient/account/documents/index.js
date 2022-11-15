@@ -81,13 +81,13 @@ export default function AccountDocumentsPage() {
         type: "text",
         primary: true,
         valueKey: "name",
-        cellProps: { padding: "none" },
+        cellProps: { padding: "none", tabIndex: 0 },
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
       {
         type: "date",
         valueKey: "_updated",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none", tabIndex: 0 },
         contentStyle: {
           padding: isDesktop ? "12px 0" : "8px 0",
           fontSize: isDesktop ? "unset" : "12px",
@@ -102,6 +102,7 @@ export default function AccountDocumentsPage() {
           <IconButton
             sx={{ width: 24, height: 24, p: 0 }}
             data-testid="downloadPDFButton"
+            aria-label={`download button`}
           >
             <FileDownloadIcon sx={{ fill: colors.darkGreen }} />
           </IconButton>

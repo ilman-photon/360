@@ -43,6 +43,9 @@ export const FilterResultHeading = ({
   onActivFilter,
   title = "",
   subtitle = "",
+  isGeolocationEnabled = false,
+  onChangeLocation = () => {},
+  currentCity = "",
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -280,6 +283,10 @@ export const FilterResultHeading = ({
   }
 
   function renderMobileView() {
+    let renderSubFilter = filterData.purposeOfVisit
+      ? `${filterData.purposeOfVisit} • `
+      : "";
+    renderSubFilter += filterData.insuranceCarrier?.name || "";
     return (
       <Box
         className={styles.mobileFilterContainer}
@@ -350,12 +357,7 @@ export const FilterResultHeading = ({
                 >
                   {filterData.location || "City, state, or zip code"}
                 </Typography>
-                {filterData.purposeOfVisit ||
-                  (filterData.insuranceCarrier && (
-                    <Typography
-                      className={styles.mobileFilterSubtitle}
-                    >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
-                  ))}
+                {renderSubFilter}
               </Button>
             </Box>
             <Box
@@ -395,6 +397,9 @@ export const FilterResultHeading = ({
             onSearchProvider={onSearchProvider}
             purposeOfVisitData={purposeOfVisitData}
             insuranceCarrierData={insuranceCarrierData}
+            isGeolocationEnabled={isGeolocationEnabled}
+            onChangeLocation={onChangeLocation}
+            currentCity={currentCity}
           />
         }
       </Box>

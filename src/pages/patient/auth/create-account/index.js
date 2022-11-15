@@ -31,7 +31,7 @@ export default function CreateAccountPage() {
       );
 
       // after register handler
-      let username = postbody.email || postbody.mobileNumber;
+      let username = postbody.email || postbody.mobileNumber.replace(/\D/g, "");
       loginProps.OnLoginClicked(
         {
           username,

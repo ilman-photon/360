@@ -28,13 +28,21 @@ const FilterHeadingFilled = ({
   },
   purposeOfVisitData = [],
   insuranceCarrierData = [],
+  isGeolocationEnabled = false,
+  onChangeLocation = () => {},
+  currentCity = "",
 }) => {
-  const { handleSubmit, control } = useForm({
-    defaultValues: filterData,
+  const { handleSubmit, control, setValue } = useForm({
+    defaultValues: { ...filterData },
   });
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const [isEmptyLocation, setEmptyLocation] = useState(false);
   const [step, setStep] = useState("filterMenu");
+
+  React.useEffect(() => {
+    if (currentCity) setValue("location", currentCity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCity]);
 
   const onSubmit = (data) => {
     if (!data.location) {
@@ -175,7 +183,7 @@ const FilterHeadingFilled = ({
       return (
         <StyledInput
           type="default"
-          value={value}
+          value={value?.name || ""}
           onChange={onChange}
           variant="filled"
           label="Insurance Carrier"
@@ -207,6 +215,7 @@ const FilterHeadingFilled = ({
             gradient={false}
             data-testid={APPOINTMENT_TEST_ID.searchbtn}
             sx={{
+              padding: "0px",
               marginTop: "16px",
               height: "40px",
               width: "100%",
@@ -222,6 +231,7 @@ const FilterHeadingFilled = ({
             gradient={false}
             data-testid={APPOINTMENT_TEST_ID.searchbtn}
             sx={{
+              padding: "0px",
               marginTop: "16px",
               height: "40px",
               width: "100%",
@@ -248,11 +258,13 @@ const FilterHeadingFilled = ({
         additionalProps={{
           control,
           isEmptyLocation,
+          isGeolocationEnabled,
           minDate,
           maxDate,
           purposeOfVisitData,
           insuranceCarrierData,
           isDesktop: false,
+          onChangeLocation,
         }}
       />
     );

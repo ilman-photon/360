@@ -8,25 +8,36 @@
   padding: 16px;
   width: 100%;
 
-  @media only screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  @media only screen and (min-device-width: 759px) and (max-device-width: 930px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 759px) and (max-device-width: 930px) and (orientation: portrait) {
     width: auto;
     grid-template-columns: 29% 10% 47%;
     place-content: unset;
   }
 
-  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  @media only screen and (min-device-width: 930px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 930px) and (max-device-width: 1024px) and (orientation: portrait) {
+    width: auto;
+    grid-template-columns: 29% 10% 50%;
+    place-content: unset;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1112px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1024px) and (max-device-width: 1112px) and (orientation: portrait) {
     width: auto;
     grid-template-columns: 25% 10% 55%;
     place-content: unset;
   }
 
-  @media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  @media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) {
     width: auto;
     grid-template-columns: 31% 15% 52%;
     place-content: unset;
   }
 
-  @media only screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  @media only screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) {
     width: auto;
     grid-template-columns: 31% 15% 52%;
     place-content: unset;
@@ -36,7 +47,8 @@
 .locationContent {
   display: block;
 
-  @media only screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  @media only screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait) {
     display: block;
     position: absolute;
     left: 17%;
