@@ -75,12 +75,8 @@ const EnhancedTableHead = (props) => {
   };
   const isDesc = order === "desc";
   return (
-    <TableHead
-      tabIndex={-1}
-      aria-hidden={false}
-      sx={{ backgroundColor: "#F3F5F6" }}
-    >
-      <TableRow tabIndex={-1} aria-hidden={false} sx={{ whiteSpace: "nowrap" }}>
+    <TableHead aria-hidden={false} sx={{ backgroundColor: "#F3F5F6" }}>
+      <TableRow aria-hidden={false} sx={{ whiteSpace: "nowrap" }}>
         {props.config.map((headCell, headIdx) => {
           switch (headCell.type) {
             case "empty":
@@ -95,8 +91,7 @@ const EnhancedTableHead = (props) => {
               return (
                 <TableCell
                   key={`head-${headIdx}`}
-                  tabIndex={-1}
-                  aria-hidden={false}
+                  // aria-hidden={false}
                   align={headCell.numeric ? "right" : "left"}
                   padding={headCell.disablePadding ? "none" : "normal"}
                   sortDirection={orderBy === headCell.id ? order : false}
@@ -111,8 +106,11 @@ const EnhancedTableHead = (props) => {
                   }}
                 >
                   <TableSortLabel
-                    tabIndex={0}
-                    aria-label={headCell.label}
+                    aria-label={
+                      isDesc
+                        ? headCell.label + " sorted descending"
+                        : headCell.label + " sorted ascending"
+                    }
                     active={orderBy === headCell.id}
                     direction={orderBy === headCell.id ? order : "asc"}
                     data-testid={"table-header-sort"}
@@ -125,17 +123,9 @@ const EnhancedTableHead = (props) => {
                       color: "#003B4A !important",
                     }}
                   >
-                    <b
-                      aria-label={
-                        isDesc
-                          ? headCell.label + " sorted descending"
-                          : headCell.label + " sorted ascending"
-                      }
-                    >
-                      {headCell.label}
-                    </b>
+                    <b>{headCell.label}</b>
                     {orderBy === headCell.id ? (
-                      <Box tabIndex={-1} component="span" sx={visuallyHidden}>
+                      <Box component="span" sx={visuallyHidden}>
                         {isDesc ? "sorted descending" : "sorted ascending"}
                       </Box>
                     ) : null}
@@ -269,11 +259,153 @@ export default function TableWithSort({
     }
   };
 
+  const renderCellContent = ({ row, cell }) => {
+    switch (cell.type) {
+      case "icon":
+        return <>{cell.icon}</>;
+      case "download-asset":
+        return (
+          <Tooltip
+            title={
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: 13,
+                    md: 14,
+                    color: "white",
+                  },
+                }}
+              >
+                Download
+              </Typography>
+            }
+            placement="top"
+          >
+            <div
+              onClick={() => {
+                const assetId = ref(row, cell.valueKey);
+                onAssetDownload(assetId);
+              }}
+            >
+              {cell.icon}
+            </div>
+          </Tooltip>
+        );
+      case "download-icon":
+        return (
+          <Tooltip
+            title={
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: 13,
+                    md: 14,
+                    color: "white",
+                  },
+                }}
+              >
+                download
+              </Typography>
+            }
+            placement="top"
+          >
+            <a
+              href={row.source}
+              download
+              data-testid="downloadPDFButton"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {cell.icon}
+            </a>
+          </Tooltip>
+        );
+      case "menus":
+        return (
+          <>
+            <IconButton
+              sx={{
+                width: 32,
+                height: 32,
+                p: 0,
+                color: "#003B4A",
+                background: "#EEF5F7",
+                borderRadius: "50%",
+              }}
+              aria-label="more option"
+              onClick={handleMenuClick}
+              aria-haspopup="true"
+              aria-controls="menu-appbar"
+              data-testid="more-vert-button"
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              sx={{ mt: "40px" }}
+              id="menu-more"
+              anchorEl={anchorEl}
+              keepMounted
+              onClose={handleMoreMenu}
+              data-testid={TEST_ID.MEDICAL_RECORD.moreMenu}
+              open={isMenuOpen}
+            >
+              {MyOptions.map((more, moreIdx) => (
+                <MenuItem
+                  key={`menu-${moreIdx}`}
+                  onClick={() => handleMoreMenu(more.id, row)}
+                  aria-label={`${more.ariaLabel}`}
+                  aria-live="polite"
+                >
+                  {more.icon}
+                  <Typography
+                    textAlign="center"
+                    sx={{
+                      margin: "0 8px",
+                      fontFamily: "Libre Franklin",
+                      fontWeight: "500",
+                      fontSize: "14px",
+                    }}
+                    data-testid={more.dataTestId}
+                  >
+                    {more.label}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </>
+        );
+      case "date":
+        return (
+          <div
+            style={cell.contentStyle}
+            aria-label={new moment(ref(row, cell.valueKey)).format("LLL")}
+            className={[styles.tableCell, cell.contentClass].join(" ")}
+          >
+            <span>
+              {new moment(ref(row, cell.valueKey)).format("MM/DD/YYYY")}
+              <br />
+              {new moment(ref(row, cell.valueKey)).format("hh:mmA")}
+            </span>
+          </div>
+        );
+      case "text":
+      default:
+        return (
+          <span
+            style={cell.contentStyle}
+            aria-label={`${ref(row, cell.valueKey)}`}
+            className={[styles.tableCell, cell.contentClass].join(" ")}
+          >
+            {ref(row, cell.valueKey)}
+          </span>
+        );
+    }
+  };
+
   return (
     <>
       <TableContainer sx={{ boxShadow: "none" }}>
         <Table
-          tabIndex={0}
           size={dense ? "small" : "medium"}
           sx={{
             minWidth: isDesktop ? 750 : "none",
@@ -344,7 +476,6 @@ export default function TableWithSort({
                     onClick={(event) => handleClick(event, row.id || row._id)}
                     data-testid={"table-sort-header"}
                     role={"row"}
-                    tabIndex={-1}
                     key={`row-${rowIdx}`}
                     selected={isItemSelected}
                     sx={{
@@ -362,204 +493,14 @@ export default function TableWithSort({
                       },
                     }}
                   >
-                    {config?.cells?.map((cell, cellIdx) => {
-                      switch (cell.type) {
-                        case "icon":
-                          return (
-                            <TableCell
-                              key={`cell-${rowIdx}-${cellIdx}`}
-                              {...cell.cellProps}
-                            >
-                              {cell.icon}
-                            </TableCell>
-                          );
-                        case "download-asset":
-                          return (
-                            <TableCell
-                              key={`cell-${rowIdx}-${cellIdx}`}
-                              {...cell.cellProps}
-                            >
-                              <Tooltip
-                                title={
-                                  <Typography
-                                    sx={{
-                                      fontSize: {
-                                        xs: 13,
-                                        md: 14,
-                                        color: "white",
-                                      },
-                                    }}
-                                  >
-                                    Download
-                                  </Typography>
-                                }
-                                placement="top"
-                              >
-                                <div
-                                  role="button"
-                                  aria-label={`download`}
-                                  onClick={() => {
-                                    const assetId = ref(
-                                      row,
-                                      "digital_assets._id"
-                                    );
-                                    onAssetDownload(assetId);
-                                  }}
-                                >
-                                  {cell.icon}
-                                </div>
-                              </Tooltip>
-                            </TableCell>
-                          );
-                        case "download-icon":
-                          return (
-                            <TableCell
-                              key={`cell-${rowIdx}-${cellIdx}`}
-                              {...cell.cellProps}
-                            >
-                              <Tooltip
-                                title={
-                                  <Typography
-                                    sx={{
-                                      fontSize: {
-                                        xs: 13,
-                                        md: 14,
-                                        color: "white",
-                                      },
-                                    }}
-                                  >
-                                    download
-                                  </Typography>
-                                }
-                                placement="top"
-                              >
-                                <a
-                                  href={row.source}
-                                  download
-                                  data-testid="downloadPDFButton"
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  {cell.icon}
-                                </a>
-                              </Tooltip>
-                            </TableCell>
-                          );
-                        case "menus":
-                          return (
-                            <TableCell
-                              key={`${rowIdx}-${cellIdx}`}
-                              {...cell.cellProps}
-                            >
-                              <>
-                                <IconButton
-                                  sx={{
-                                    width: 32,
-                                    height: 32,
-                                    p: 0,
-                                    color: "#003B4A",
-                                    background: "#EEF5F7",
-                                    borderRadius: "50%",
-                                  }}
-                                  aria-label="more option"
-                                  onClick={(e) => handleMenuClick(e, row)}
-                                  aria-haspopup="true"
-                                  aria-controls="menu-appbar"
-                                  data-testid="more-vert-button"
-                                >
-                                  <MoreVertIcon />
-                                </IconButton>
-                                <Menu
-                                  sx={{ mt: "40px" }}
-                                  id="menu-more"
-                                  anchorEl={anchorEl}
-                                  keepMounted
-                                  onClose={handleMoreMenu}
-                                  data-testid={TEST_ID.MEDICAL_RECORD.moreMenu}
-                                  open={isMenuOpen}
-                                >
-                                  {MyOptions.map((more, moreIdx) => (
-                                    <MenuItem
-                                      key={`menu-${moreIdx}`}
-                                      onClick={() =>
-                                        handleMoreMenu(more.id, activeMenuData)
-                                      }
-                                      aria-label={`${more.ariaLabel}`}
-                                      aria-live="polite"
-                                    >
-                                      {more.icon}
-                                      <Typography
-                                        textAlign="center"
-                                        tabIndex={0}
-                                        sx={{
-                                          margin: "0 8px",
-                                          fontFamily: "Libre Franklin",
-                                          fontWeight: "500",
-                                          fontSize: "14px",
-                                        }}
-                                        data-testid={more.dataTestId}
-                                      >
-                                        {more.label}
-                                      </Typography>
-                                    </MenuItem>
-                                  ))}
-                                </Menu>
-                              </>
-                            </TableCell>
-                          );
-                        case "date":
-                          return (
-                            <TableCell
-                              key={`cell-${rowIdx}-${cellIdx}`}
-                              {...cell.cellProps}
-                            >
-                              <div
-                                style={cell.contentStyle}
-                                tabIndex={0}
-                                aria-label={`${cell.valueKey}. ${ref(
-                                  row,
-                                  cell.valueKey
-                                )}`}
-                                className={[
-                                  styles.tableCell,
-                                  cell.contentClass,
-                                ].join(" ")}
-                              >
-                                {new moment(ref(row, cell.valueKey)).format(
-                                  "MM/DD/YYYY"
-                                )}
-                                <br />
-                                {new moment(ref(row, cell.valueKey)).format(
-                                  "hh:mmA"
-                                )}
-                              </div>
-                            </TableCell>
-                          );
-                        case "text":
-                        default:
-                          return (
-                            <TableCell
-                              key={`cell-${rowIdx}-${cellIdx}`}
-                              {...cell.cellProps}
-                            >
-                              <div
-                                style={cell.contentStyle}
-                                tabIndex={0}
-                                aria-label={`${cell.valueKey}. ${ref(
-                                  row,
-                                  cell.valueKey
-                                )}`}
-                                className={[
-                                  styles.tableCell,
-                                  cell.contentClass,
-                                ].join(" ")}
-                              >
-                                {ref(row, cell.valueKey)}
-                              </div>
-                            </TableCell>
-                          );
-                      }
-                    })}
+                    {config?.cells?.map((cell, cellIdx) => (
+                      <TableCell
+                        key={`cell-${rowIdx}-${cellIdx}`}
+                        {...cell.cellProps}
+                      >
+                        {renderCellContent({ row, cell })}
+                      </TableCell>
+                    ))}
                   </TableRow>
                 );
               })}

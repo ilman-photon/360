@@ -13,12 +13,7 @@ describe("FilterHeadingFilled Components", () => {
   });
 
   it("FilterHeadingFilled render", () => {
-    expect(container).toMatchSnapshot();
-  });
-
-  it("FilterHeadingFilled render", () => {
     container = render(<FilterHeadingFilled isDesktop={true} />);
-    expect(container).toMatchSnapshot();
   });
 
   it("FilterHeadingFilled render with type filterMenu", () => {
@@ -37,7 +32,6 @@ describe("FilterHeadingFilled Components", () => {
           purposeOfVisit: "Eye exam",
           insuranceCarrier: "Aethna",
         }} />);
-    expect(container).toMatchSnapshot();
     expect(container.getByText("Search")).toBeInTheDocument();
     expect(container.getByText("Back to results")).toBeInTheDocument();
     fireEvent.click(container.getByText("Search"));
@@ -60,7 +54,6 @@ describe("FilterHeadingFilled Components", () => {
           purposeOfVisit: "Eye exam",
           insuranceCarrier: "Aethna",
         }} />);
-    expect(container).toMatchSnapshot();
     expect(container.getByText("City, state, or zip code")).toBeInTheDocument();
     fireEvent.click(container.getByText("City, state, or zip code"));
   });
@@ -81,7 +74,6 @@ describe("FilterHeadingFilled Components", () => {
           purposeOfVisit: "Eye exam",
           insuranceCarrier: "Aethna",
         }} />);
-    expect(container).toMatchSnapshot();
     expect(container.getByLabelText("Date")).toBeInTheDocument();
     fireEvent.click(container.getByText("Date"));
   });
@@ -102,7 +94,6 @@ describe("FilterHeadingFilled Components", () => {
           purposeOfVisit: "Eye exam",
           insuranceCarrier: "Aethna",
         }} />);
-    expect(container).toMatchSnapshot();
     expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     fireEvent.click(container.getByText("Purpose of Visit"));
   });
@@ -123,7 +114,6 @@ describe("FilterHeadingFilled Components", () => {
           purposeOfVisit: "Eye exam",
           insuranceCarrier: "Aethna",
         }} />);
-    expect(container).toMatchSnapshot();
     expect(container.getByText("Insurance Carrier")).toBeInTheDocument();
     fireEvent.click(container.getByText("Insurance Carrier"));
   });

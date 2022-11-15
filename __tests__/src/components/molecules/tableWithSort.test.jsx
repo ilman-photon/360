@@ -38,7 +38,7 @@ describe("ProfilePhotoUploader Components", () => {
       {
         type: "text",
         valueKey: "_created",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none" },
         contentStyle: { padding: "12px 0", fontSize: "unset" },
         contentClass: "",
       },
@@ -105,7 +105,7 @@ describe("ProfilePhotoUploader Components", () => {
       {
         type: "text",
         valueKey: "_updated",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none" },
         contentStyle: {
           padding: "12px 0",
           fontSize: "unset",

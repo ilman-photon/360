@@ -911,7 +911,7 @@ const FilterHeading = ({
       return (
         <StyledInput
           type="default"
-          value={value}
+          value={value?.name || ""}
           onChange={onChange}
           variant="filled"
           label="Insurance Carrier"
@@ -948,11 +948,13 @@ const FilterHeading = ({
         additionalProps={{
           control,
           isEmptyLocation,
+          isGeolocationEnabled,
           minDate,
           maxDate,
           purposeOfVisitData,
           insuranceCarrierData,
           isDesktop,
+          onChangeLocation,
         }}
       />
     );

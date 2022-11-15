@@ -80,7 +80,9 @@ describe("MedicalRecordPage", () => {
       query: { type: "care-plan-overview" },
     });
     container = render(
-      MedicalRecordPage.getLayout(<MedicalRecordPage />, store, useRouter())
+      <Provider store={store}>
+        <MedicalRecordPage />
+      </Provider>
     );
     await waitFor(() =>
       container.getAllByTestId(TEST_ID.MEDICAL_RECORD.moreMenu)

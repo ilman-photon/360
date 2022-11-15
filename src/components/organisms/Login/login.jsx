@@ -9,13 +9,12 @@ import styles from "./Style.module.scss";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { useTranslation } from "next-i18next";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { colors } from "../../../styles/theme";
-
 const constants = require("../../../utils/constants");
 
 export function Login({
@@ -58,6 +57,19 @@ export function Login({
       )
     );
   };
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+  const inputRef = React.useRef(null);
+  const inputPassword = React.useRef(null);
+  React.useEffect(() => {
+    if (errors.username) {
+      inputRef.current.focus();
+    } else if (errors.password) {
+      inputPassword.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   return (
     <>
@@ -89,6 +101,7 @@ export function Login({
                     return (
                       <StyledInput
                         tabIndex={0}
+                        inputRef={inputRef}
                         InputLabelProps={{ "aria-hidden": true }}
                         aria-label={"Email or Phone number required text field"}
                         id="username"
@@ -125,6 +138,7 @@ export function Login({
                     return (
                       <StyledInput
                         tabIndex={0}
+                        inputRef={inputPassword}
                         InputLabelProps={{ "aria-hidden": true }}
                         aria-label={"Password required text field"}
                         id="password"

@@ -66,7 +66,7 @@ export default function Appointment({ googleApiKey }) {
   const [activeTabs, setActiveTabs] = useState(0);
   const [showMaps, setShowMaps] = useState(false);
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [providerDataOverview, setProviderDataOverview] = useState({});
   const [tempProviderDataOverview, setTempProviderDataOverview] = useState({});
   const [rangeDateOverview, setRangeDateOverview] = useState({
@@ -570,9 +570,8 @@ export default function Appointment({ googleApiKey }) {
     return (
       <Stack
         flexDirection="row"
-        width="100%"
         marginTop={"60px"}
-        sx={{ alignSelf: "center" }}
+        sx={{ alignSelf: "center", width: isMobile ? "auto" : "100%" }}
       >
         <CircularProgress />
       </Stack>
@@ -660,7 +659,7 @@ export default function Appointment({ googleApiKey }) {
   }
 
   function renderFilterResultMobileView() {
-    return (
+    return !isLoading ? (
       <FilterResult
         onClickViewAllAvailability={onViewAllAvailability}
         OnDayClicked={handleDayClicked}
@@ -684,7 +683,12 @@ export default function Appointment({ googleApiKey }) {
         }}
         appliedFilter={activeFilterBy}
         isLoading={isLoading}
+        currentCity={currentCity}
+        isGeolocationEnabled={isGeolocationEnabled}
+        onChangeLocation={fetchCurrentLocation}
       />
+    ) : (
+      renderCircularProgress()
     );
   }
 

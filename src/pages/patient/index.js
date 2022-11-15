@@ -311,6 +311,7 @@ export default function HomePage({ googleApiKey }) {
                 isTablet={false}
                 filterData={filterData}
                 onSearchProvider={onSearchProvider}
+                isGeolocationEnabled={isGeolocationEnabled}
                 purposeOfVisitData={filterSuggestionData.purposeOfVisit}
                 insuranceCarrierData={filterSuggestionData.insuranceCarrier}
                 filter={[]}
