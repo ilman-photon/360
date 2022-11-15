@@ -76,6 +76,7 @@ export default function MedicalRecordPage() {
         type: "text",
         primary: true,
         valueKey: "data.testingOrder.orderDetails.testType._id",
+        cellProps: { tabIndex: 0 },
         contentStyle: {
           padding: "12px 24px",
           fontWeight: "400",
@@ -85,7 +86,7 @@ export default function MedicalRecordPage() {
       {
         type: "text",
         valueKey: "data.testingOrder.orderDetails.orderingProvider.firstName",
-        cellProps: { align: "left", padding: "none" },
+        cellProps: { align: "left", padding: "none", tabIndex: 0 },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "500",
@@ -95,7 +96,7 @@ export default function MedicalRecordPage() {
       {
         type: "date",
         valueKey: "data.testingOrder.orderDetails.dateTime.startDate",
-        cellProps: { align: "left", padding: "none" },
+        cellProps: { align: "left", padding: "none", tabIndex: 0 },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "500",
@@ -106,7 +107,7 @@ export default function MedicalRecordPage() {
       {
         type: "text",
         valueKey: "data.testingOrder.orderDetails.status",
-        cellProps: { align: "left" },
+        cellProps: { align: "left", tabIndex: 0 },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "700",
@@ -167,12 +168,13 @@ export default function MedicalRecordPage() {
         type: "text",
         primary: true,
         valueKey: "name",
+        cellProps: { tabIndex: 0 },
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
       {
         type: "date",
         valueKey: "_created",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none", tabIndex: 0 },
         contentStyle: {
           padding: isDesktop ? "12px 0" : "8px 0",
           fontSize: isDesktop ? "unset" : "12px",
@@ -329,13 +331,3 @@ export default function MedicalRecordPage() {
     </div>
   );
 }
-
-MedicalRecordPage.getLayout = function getLayout(page, store, router) {
-  return (
-    <Provider store={store}>
-      <PrescriptionLayout title={"Test & Lab Result"}>
-        {page}
-      </PrescriptionLayout>
-    </Provider>
-  );
-};

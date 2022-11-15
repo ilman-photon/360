@@ -123,14 +123,11 @@ export default function ProviderProfile({
   function renderRatingAndPhone() {
     if (isShownPhoneAndRating) {
       return (
-        <Box
-          className={isBio ? styles.ratingContainer : styles.phoneContainer}
-          sx={{ marginLeft: isMap ? "-67px" : "0" }}
-        >
+        <Box className={isBio ? styles.ratingContainer : styles.phoneContainer}>
           {(isBio || isMap || (isViewSchedule && isShownRating)) && (
             <StyledRating value={parseFloat(providerData.rating / 2)} />
           )}
-          <PhoneNumber phone={providerData.phoneNumber} />
+          <PhoneNumber isMap={isMap} phone={providerData.phoneNumber} />
         </Box>
       );
     } else {
@@ -152,7 +149,12 @@ export default function ProviderProfile({
       className={isBio ? styles.shortBio : styles.appointment}
       sx={{ maxWidth: isMap ? "unset" : "368px" }}
     >
-      <Box className={styles.displayFlex}>
+      <Box
+        className={[
+          styles.displayFlex,
+          isViewSchedule ? styles.viewSchedule : {},
+        ].join(" ")}
+      >
         <Box className={getImageContainerStyle()}>
           <ImageFallback
             src={providerData.image}
@@ -170,7 +172,7 @@ export default function ProviderProfile({
           className={[styles.bioContainer, bioContainerClass].join(" ")}
           sx={{
             width: getWidtBioContainer(),
-            ml: isMap ? 1 : "inherit",
+            ml: isViewSchedule || isMap ? 1 : "inherit",
           }}
         >
           <Typography
@@ -191,7 +193,12 @@ export default function ProviderProfile({
               {getAddressName(providerData.address)}
             </Typography>
           )}
-          <Box className={styles.detailContainer}>
+          <Box
+            className={[
+              styles.detailContainer,
+              isViewSchedule ? styles.viewSchedule : {},
+            ].join(" ")}
+          >
             <Box
               sx={
                 isBio && {

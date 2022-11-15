@@ -80,9 +80,7 @@ defineFeature(feature, (test) => {
 
   const navigateToMedicalPage = async () => {
     act(() => {
-      container.rerender(
-        TestLabPage.getLayout(<TestLabPage />, store, useRouter())
-      );
+      container.rerender(<TestLabPage />, store, useRouter());
     });
     await waitFor(() => container.getByText("Choose a category"));
   };

@@ -1265,8 +1265,8 @@ defineFeature(feature, (test) => {
     when(
       "user selects Insurance Available Today (Provider) filter",
       async () => {
-        const filterBtn = container.getByTestId("filterbtn");
-        fireEvent.click(filterBtn);
+        // const filterBtn = container.getByTestId("filterbtn");
+        // fireEvent.click(filterBtn);
 
         // await waitFor(() => {
         //   container.getByText(/Filter By/i);

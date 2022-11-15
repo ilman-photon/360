@@ -443,7 +443,6 @@ export default function ScheduleAppointmentPage() {
         if (isGuest) {
           router.push("/patient/schedule-appointment-confirmation");
         } else {
-          console.log("::Masuk jank");
           setActiveStep(4);
           setIsOpen(true);
         }
@@ -486,7 +485,6 @@ export default function ScheduleAppointmentPage() {
         payload: appointmentScheduleData,
       })
     );
-    console.log("::payload", payload);
 
     if (payload.success) {
       setActiveStep(4);
@@ -511,7 +509,6 @@ export default function ScheduleAppointmentPage() {
       />
     );
   };
-  console.log("::activestep", activeStep);
   return (
     <section>
       <BaseHeader />

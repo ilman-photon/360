@@ -79,9 +79,7 @@ defineFeature(feature, (test) => {
 
   const navigateToMedicalPage = async () => {
     act(() => {
-      container.rerender(
-        MedicalRecordPage.getLayout(<MedicalRecordPage />, store, useRouter())
-      );
+      container.rerender(<MedicalRecordPage />, store, useRouter());
     });
     await waitFor(() => container.getByText("Choose a category"));
   };

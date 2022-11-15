@@ -93,7 +93,7 @@ export const FilterResultContainer = ({
           gap: "6px",
           boxShadow: "inset 0px 0px 5px rgba(0, 0, 0, 0.18)",
           borderRadius: "0px",
-          height: "62px",
+          height: "78px",
         }}
       >
         <Box
@@ -101,7 +101,7 @@ export const FilterResultContainer = ({
             borderBottom: 6,
             borderColor: "#E4E4E4",
             position: "sticky",
-            top: "46px",
+            top: "51px",
           }}
         />
         <Tabs

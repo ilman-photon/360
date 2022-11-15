@@ -39,6 +39,18 @@ export default function Bio({ embedApi, bio }) {
   });
 
   let isRequest = false;
+  const getArrayValue = (data) => {
+    if (data) {
+      const isMultipleValue = Array.isArray(data);
+      return !isMultipleValue ? splitByComa(data) : data;
+    } else {
+      return "";
+    }
+  };
+
+  const splitByComa = (data) => {
+    return data.split(", ");
+  };
 
   const mapper = (response) => {
     const designation = response.designation ? `, ${response.designation}` : "";
@@ -105,7 +117,6 @@ export default function Bio({ embedApi, bio }) {
   }, [providerData, isRequest]);
 
   const navigateToScheduleAppointment = (data) => {
-    console.log(data);
     const address = data.address;
     const addressData = Array.isArray(address) ? address[0] : address;
     const specialties = Array.isArray(data.specialties)

@@ -72,6 +72,7 @@ const ConfirmationForm = ({
                 title={postMessageTitle}
                 tabIndex={0}
                 aria-label={postMessage}
+                textRole="text"
               >
                 {postMessage}
               </FormMessage>
