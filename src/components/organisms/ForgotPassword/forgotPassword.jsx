@@ -143,7 +143,9 @@ const ForgotPassword = ({
                 }) => {
                   return (
                     <StyledInput
-                      aria-label="Email or Phone number Field"
+                      aria-label={`Email or Phone number Field ${
+                        error ? error.message : ""
+                      }`}
                       label={t("usernamePlaceHolder")}
                       id="username"
                       maxLength={254}
@@ -173,6 +175,9 @@ const ForgotPassword = ({
                         },
                       }}
                       required
+                      rules={{
+                        required: "This field is required",
+                      }}
                       error={!!error}
                       helperText={error ? error.message : null}
                     />

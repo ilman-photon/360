@@ -471,7 +471,9 @@ export default function ForgotPasswordPage() {
           setShowPostMessage={setShowPostMessage}
           onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
           onCalledValidateAppointment={onCalledValidateAppointment}
-          title={"Forgot Password Page"}
+          title={
+            isAppointment ? "Sync appointment Page" : "Forgot Password Page"
+          }
           isAppointment={isAppointment}
           isRegistered={isRegistered}
         />
