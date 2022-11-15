@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import MessageIcon from "@mui/icons-material/Message";
+import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import styles from "./notificationItem.module.scss";
 import timeSince from "../../../utils/timeSince";
@@ -30,7 +30,7 @@ const NotificationItem = ({
       case "test-result":
         return <TestTubeIcon width={24} height={24} />;
       case "message":
-        return <MessageIcon width={24} height={24} />;
+        return <MessageOutlinedIcon width={24} height={24} />;
       case "invoice":
         return <AttachMoneyIcon width={24} height={24} />;
       case "appointment-summary":
