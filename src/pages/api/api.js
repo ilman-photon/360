@@ -398,11 +398,10 @@ export class Api {
   }
 
   getProviderList() {
-    //TODO: const url = `/ecp/appointments/getproviderlist/`;
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = userData?.patientId;
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/biography/getProviderList?patientId=${patientId}`;
+    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+    const firstName = userProfile?.firstName || "";
+    const lastName = userProfile?.lastName || "";
+    const url = `/ecp/appointments/patientDetails?search.query=((patient.firstName=eq=${firstName})AND(patient.lastName=eq=${lastName}))`;
     return this.getResponse(url, {}, "get");
   }
 
