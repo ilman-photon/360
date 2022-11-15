@@ -127,7 +127,7 @@ export function Login({
                 />
                 <Controller
                   tabIndex={0}
-                  aria-label={"Password required text field"}
+                  //aria-label={"Password required text field"}
                   name="password"
                   control={control}
                   defaultValue=""

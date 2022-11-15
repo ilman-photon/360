@@ -22,6 +22,7 @@ function GMaps({
 }) {
   const [activeMarker, setActiveMarker] = React.useState(null);
   const markers = [];
+  console.log(providerListData);
   providerListData.forEach((provider) => {
     const { lat, lng } = provider?.coordinate || false;
     if (lat && lng) {

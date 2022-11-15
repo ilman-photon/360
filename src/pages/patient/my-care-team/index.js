@@ -16,21 +16,22 @@ export default function MyCareTeamPage() {
   const mapper = (responses) => {
     const data = [];
     responses.map((response) => {
-      const designation = response.designation
-        ? `, ${response.designation}`
+      const provider = response.provider;
+      const designation = provider.designation
+        ? `, ${provider.designation}`
         : "";
-      const name = `${response.firstName || ""} ${
-        response.lastName || ""
+      const name = `${provider.firstName || ""} ${
+        provider.lastName || ""
       }${designation}`;
 
       const providerItem = {
-        providerId: response._id || "",
-        image: response.providerDetails?.profilePhoto?.digitalAsset || "",
+        providerId: provider._id || "",
+        image: provider.profilePhoto?.digitalAsset || "",
         name,
-        email: response.email || "",
-        phone: response.workPhone || "",
-        specialties: getArrayValue(response.providerDetails?.specialization),
-        address: response.offices[0],
+        email: provider.email || "",
+        phone: provider.workPhone || "",
+        specialties: getArrayValue(provider.specialization),
+        address: response.office,
       };
 
       data.push(providerItem);
@@ -48,7 +49,7 @@ export default function MyCareTeamPage() {
     api
       .getProviderList()
       .then((responses) => {
-        mapper(responses.results);
+        mapper(responses.entities);
       })
       .catch(() => {
         //This is intentional
