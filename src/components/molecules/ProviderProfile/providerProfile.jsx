@@ -157,7 +157,7 @@ export default function ProviderProfile({
       >
         <Box className={getImageContainerStyle()}>
           <ImageFallback
-            src={providerData.image}
+            source={providerData.image}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
             width={100}
             height={100}

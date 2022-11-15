@@ -128,8 +128,8 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             if (location) {
               const locData = {
                 coordinate: {
-                  latitude: location.lat,
-                  longitude: location.lng,
+                  lat: location.lat,
+                  lng: location.lng,
                 },
               };
               locationsList.push(locData);
