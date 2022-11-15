@@ -147,7 +147,8 @@
   font-size: 14px;
   line-height: 24px;
 
-  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3),
+    screen and (min-device-width: 375px) and (max-device-width: 812px) {
     display: block;
     line-height: 15px;
   }
@@ -198,30 +199,70 @@
 }
 
 .mobileFilterStyles {
-  font-family: "Libre Franklin", sans-serif;
+  font-family: "Libre Franklin", sans-serif !important;
   font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  line-height: 24px !important;
   color: $lightGrey;
 
-  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3),
+    screen and (min-device-width: 375px) and (max-device-width: 812px) {
     flex-direction: column;
     align-items: flex-start;
     margin-top: 5px;
   }
 
-  @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+  @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2),
+    screen and (device-width: 414px) and (device-height: 896px) {
     flex-direction: column;
     align-items: flex-start;
     line-height: normal;
     margin-bottom: 2px;
   }
 
-  @media only screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
+  @media only screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2),
+    screen and (device-width: 375px) and (device-height: 667px) {
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 3px;
     line-height: normal;
+  }
+}
+
+.filterHeaderCalendar {
+  grid-template-columns: 490px 638px;
+
+  @media only screen and (min-device-width: 759px) and (max-device-width: 930px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 759px) and (max-device-width: 930px) and (orientation: portrait) {
+    grid-template-columns: 20% 72.5% !important;
+    padding-right: 15px;
+  }
+
+  @media only screen and (min-device-width: 930px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 930px) and (max-device-width: 1024px) and (orientation: portrait) {
+    grid-template-columns: 20% 69% !important;
+    padding-right: 15px;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1112px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1024px) and (max-device-width: 1112px) and (orientation: portrait) {
+    grid-template-columns: 20% 65% !important;
+    padding-right: 15px;
+  }
+
+  @media only screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) {
+    grid-template-columns: 20% 55% !important;
+    padding-right: 15px;
+  }
+}
+
+.calendarHeading {
+  gap: 8px;
+
+  @media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) {
+    gap: 15px;
   }
 }

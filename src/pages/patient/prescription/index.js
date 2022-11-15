@@ -93,7 +93,7 @@ export default function PrescriptionPage() {
     });
     setTimeout(() => {
       setRequestRefillResponse(null);
-    }, 2000);
+    }, 5000);
   }
 
   useEffect(() => {

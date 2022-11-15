@@ -369,7 +369,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "This field is required",
               validate: {
                 required: (value) => {
                   if (!isOneOfPreferredValid("email", value))
@@ -410,7 +409,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "This field is required",
               validate: {
                 required: (value) => {
                   if (!isOneOfPreferredValid("phone", value))

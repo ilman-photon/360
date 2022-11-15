@@ -13,3 +13,12 @@
     margin-left: 10px;
   }
 }
+
+.directionButton {
+  @media only screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait) {
+    position: absolute;
+    margin-top: 85%;
+    left: 17%;
+  }
+}

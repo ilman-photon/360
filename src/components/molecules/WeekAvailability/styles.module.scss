@@ -17,6 +17,16 @@
       font-size: 14px;
       line-height: 18px;
     }
+
+    @media only screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+      screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) {
+      width: 75px;
+    }
+
+    @media only screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+      screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) {
+      width: 90px;
+    }
   }
 }
 .linkWrapper {
@@ -51,4 +61,51 @@
   justify-content: center;
   align-items: center;
   min-height: 30px;
+  padding-right: 15%;
+
+  @media only screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) {
+    padding-right: 0px;
+    width: 85px;
+  }
+
+  @media only screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) {
+    padding-right: 0px;
+    width: 90px;
+  }
+}
+
+.weeklyScheduleContent {
+  width: 598px;
+  gap: 8px;
+
+  @media only screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) {
+    width: auto;
+    gap: 0px;
+  }
+
+  @media only screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) {
+    width: auto;
+    gap: 8px;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) {
+    width: 598px;
+    gap: 8px;
+  }
+
+  @media only screen and (min-device-width: 1112px) and (max-device-width: 759px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min-device-width: 1112px) and (max-device-width: 759px) and (orientation: landscape) {
+    width: auto;
+    gap: 2px;
+  }
+
+  @media only screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) {
+    width: auto;
+  }
 }

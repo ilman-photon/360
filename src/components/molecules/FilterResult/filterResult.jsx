@@ -52,6 +52,9 @@ export const FilterResult = ({
   onActivFilter,
   appliedFilter,
   isLoading = false,
+  isGeolocationEnabled = false,
+  onChangeLocation = () => {},
+  currentCity = "",
 }) => {
   const [dateList, setDateList] = useState({
     dateRange: [],
@@ -127,11 +130,12 @@ export const FilterResult = ({
           marginTop: "-25px",
           height: "calc(100vh - 56px)",
           display: "flex",
+          flexDirection: "column",
         }}
       >
         <Box
           sx={{
-            position: "fixed",
+            position: "relative",
             width: "100%",
             zIndex: "9",
           }}
@@ -146,6 +150,9 @@ export const FilterResult = ({
             filter={filter}
             onActivFilter={onActivFilter}
             appliedFilter={appliedFilter}
+            isGeolocationEnabled={isGeolocationEnabled}
+            onChangeLocation={onChangeLocation}
+            currentCity={currentCity}
           />
           <Stack
             direction={"row"}
@@ -262,7 +269,6 @@ export const FilterResult = ({
         </Box>
         <Box
           sx={{
-            paddingTop: "160px",
             flex: "1",
             display: "flex",
             flexDirection: "column",

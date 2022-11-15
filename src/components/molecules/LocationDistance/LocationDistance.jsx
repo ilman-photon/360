@@ -73,6 +73,7 @@ export const LocationDistance = ({
             cursor: "pointer",
           }}
           aria-label={"Direction button"}
+          className={styles.directionButton}
         >
           <DirectionsOutlinedIcon
             aria-label={"Get Direction"}

@@ -41,12 +41,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -55,11 +57,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -207,6 +209,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -236,12 +239,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -285,12 +282,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -299,11 +298,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -451,6 +450,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -480,12 +480,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -586,12 +580,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -600,11 +596,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -752,6 +748,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -781,12 +778,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -830,12 +821,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -844,11 +837,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -996,6 +989,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -1025,12 +1019,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -1131,12 +1119,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -1145,11 +1135,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -1297,6 +1287,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -1326,12 +1317,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -1375,12 +1360,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -1389,11 +1376,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -1541,6 +1528,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -1570,12 +1558,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -1677,12 +1659,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -1691,11 +1675,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -1843,6 +1827,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -1872,12 +1857,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -1921,12 +1900,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -1935,11 +1916,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -2087,6 +2068,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -2116,12 +2098,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -2166,12 +2142,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -2180,11 +2158,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -2332,6 +2310,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -2361,12 +2340,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -2468,12 +2441,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -2482,11 +2457,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -2634,6 +2609,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -2663,12 +2639,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -2712,12 +2682,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -2726,11 +2698,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -2878,6 +2850,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -2907,12 +2880,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -2956,12 +2923,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -2970,11 +2939,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -3122,6 +3091,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -3151,12 +3121,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -3201,12 +3165,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -3215,11 +3181,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -3367,6 +3333,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -3396,12 +3363,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -3503,12 +3464,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -3517,11 +3480,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -3669,6 +3632,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -3698,12 +3662,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -3747,12 +3705,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -3761,11 +3721,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -3913,6 +3873,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -3942,12 +3903,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -3991,12 +3946,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -4005,11 +3962,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -4157,6 +4114,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -4186,12 +4144,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -4235,12 +4187,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -4249,11 +4203,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -4401,6 +4355,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -4430,12 +4385,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -4480,12 +4429,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -4494,11 +4445,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -4646,6 +4597,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -4675,12 +4627,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -4782,12 +4728,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -4796,11 +4744,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -4948,6 +4896,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -4977,12 +4926,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -5026,12 +4969,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -5040,11 +4985,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -5192,6 +5137,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -5221,12 +5167,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -5270,12 +5210,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -5284,11 +5226,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -5436,6 +5378,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -5465,12 +5408,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -5514,12 +5451,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -5528,11 +5467,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -5680,6 +5619,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -5709,12 +5649,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -5758,12 +5692,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -5772,11 +5708,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -5924,6 +5860,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -5953,12 +5890,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -6003,12 +5934,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -6017,11 +5950,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -6169,6 +6102,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -6198,12 +6132,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -6304,12 +6232,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -6318,11 +6248,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -6470,6 +6400,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -6499,12 +6430,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -6548,12 +6473,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -6562,11 +6489,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -6714,6 +6641,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -6743,12 +6671,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -6850,12 +6772,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -6864,11 +6788,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -7016,6 +6940,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -7045,12 +6970,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -7094,12 +7013,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -7108,11 +7029,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -7260,6 +7181,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -7289,12 +7211,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -7339,12 +7255,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -7353,11 +7271,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -7505,6 +7423,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -7534,12 +7453,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>
@@ -7641,12 +7554,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -7655,11 +7570,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -7807,6 +7722,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -7836,12 +7752,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -7885,12 +7795,14 @@ Object {
           >
             <h1
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+              tabindex="0"
             >
               setMFATitle
             </h1>
             <p
               aria-live="polite"
               class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              tabindex="0"
             >
               setMFADescription
             </p>
@@ -7899,11 +7811,11 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+                tabindex="0"
               >
                 communicationMethodTitle
               </p>
               <div
-                aria-labelledby="communication-radio-buttons-group-label"
                 class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
                 role="radiogroup"
               >
@@ -8051,6 +7963,7 @@ Object {
               </div>
               <p
                 class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+                tabindex="0"
               >
                 rememberMeDescription
               </p>
@@ -8080,12 +7993,6 @@ Object {
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-              <a
-                aria-label="undefined"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-                role="link"
-                tabindex="0"
-              />
             </div>
           </div>
         </div>
@@ -8130,12 +8037,14 @@ Object {
         >
           <h1
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
+            tabindex="0"
           >
             setMFATitle
           </h1>
           <p
             aria-live="polite"
             class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            tabindex="0"
           >
             setMFADescription
           </p>
@@ -8144,11 +8053,11 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body2 radioLabel css-1s8gdz4-MuiTypography-root"
+              tabindex="0"
             >
               communicationMethodTitle
             </p>
             <div
-              aria-labelledby="communication-radio-buttons-group-label"
               class="MuiFormGroup-root css-1p2a9tc-MuiFormGroup-root"
               role="radiogroup"
             >
@@ -8296,6 +8205,7 @@ Object {
             </div>
             <p
               class="MuiTypography-root MuiTypography-body2 checkBoxText css-1tmbszj-MuiTypography-root"
+              tabindex="0"
             >
               rememberMeDescription
             </p>
@@ -8325,12 +8235,6 @@ Object {
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-            <a
-              aria-label="undefined"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
-              role="link"
-              tabindex="0"
-            />
           </div>
         </div>
       </div>

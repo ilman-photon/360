@@ -32,7 +32,6 @@ export default function ItemResult({
           marginTop: "16px",
           display: "grid",
           gap: "6px",
-          gridTemplateColumns: `${isTablet ? "auto" : "388px"} 100px 598px`,
           gridTemplateRows: "auto",
           gridTemplateAreas: `"providerProvile locationDistance weekAvailability"`,
         }}
@@ -46,7 +45,10 @@ export default function ItemResult({
             providerData={providerData}
           />
         </Box>
-        <Box sx={{ gridArea: "locationDistance" }}>
+        <Box
+          sx={{ gridArea: "locationDistance" }}
+          className={styles.locationContent}
+        >
           {providerData.distance && (
             <LocationDistance
               distance={providerData.distance}

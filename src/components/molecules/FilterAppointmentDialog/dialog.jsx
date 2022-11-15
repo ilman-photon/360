@@ -98,15 +98,16 @@ export default function CustomizedDialogs({
     purposeOfVisitData: [],
     insuranceCarrierData: [],
     isDesktop: false,
+    onChangeLocation: () => {},
   },
 }) {
   const [source, setSource] = React.useState("");
 
   React.useEffect(() => {
-    if (open) {
+    if (open || type === "filterMenu") {
       setSource("");
     }
-  }, [open]);
+  }, [open, type]);
 
   const handleCapture = (target) => {
     if (target.files) {
@@ -218,7 +219,7 @@ export default function CustomizedDialogs({
                 id="icon-button-file"
                 type="file"
                 capture="environment"
-                onChange={(e) => handleCapture(e.target, setSource)}
+                onChange={(e) => handleCapture(e.target)}
                 style={{
                   display: "none",
                 }}
@@ -302,11 +303,18 @@ export default function CustomizedDialogs({
           </Box>
           {additionalProps.isGeolocationEnabled && (
             <Box
+              className={styles.linkContainer}
               sx={{
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
                 marginTop: "6px",
+              }}
+              onClick={() => {
+                if (additionalProps?.onChangeLocation) {
+                  additionalProps.onChangeLocation();
+                }
+                handleClose();
               }}
             >
               <NearMeOutlinedIcon

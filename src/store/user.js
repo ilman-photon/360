@@ -95,14 +95,15 @@ const buildProfilePostBody = (postBody, payload) => {
     nickName: payload.preferredName,
     contactInformation: {
       ...postBody.contactInformation,
-      emails: emailData,
-      phones: phoneData,
+      contactPreferenceDetail: {
+        ...postBody.contactInformation.contactPreferenceDetail,
+        ...contactPreferenceDetailData,
+      },
     },
     address: addressData,
     sex: getGenderCode(payload.gender),
     ssn: payload.ssn,
     title: getTitleCode(payload.title),
-    contactPreferenceDetail: contactPreferenceDetailData,
     patientDetails: patientDetailsData,
   };
 };
@@ -352,9 +353,9 @@ const buildUserData = (payload) => {
         if (payload.contactInformation.contactPreferenceDetail.email) {
           userPreferredCommunication = "both";
         } else {
-          userPreferredCommunication = "email";
+          userPreferredCommunication = "phone";
         }
-      } else userPreferredCommunication = "phone";
+      } else userPreferredCommunication = "email";
     }
   }
 

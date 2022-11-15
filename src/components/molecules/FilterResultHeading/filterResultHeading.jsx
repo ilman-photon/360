@@ -43,6 +43,9 @@ export const FilterResultHeading = ({
   onActivFilter,
   title = "",
   subtitle = "",
+  isGeolocationEnabled = false,
+  onChangeLocation = () => {},
+  currentCity = "",
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -80,6 +83,7 @@ export const FilterResultHeading = ({
         <Box className={styles.filterChildButton} key={idx} tabIndex="0">
           {option.name}
           <IconButton
+            // eslint-disable-next-line jsx-a11y/aria-props
             aria-description="Close"
             onClick={() => {
               const id = appliedFilter.findIndex((x) => x.name === option.name);
@@ -156,12 +160,12 @@ export const FilterResultHeading = ({
           sx={{
             marginTop: "16px",
             display: "grid",
-            gridTemplateColumns: "490px 638px",
             justifyContent: "space-between",
             alignContent: "space-between",
             gridTemplateRows: "auto",
             gridTemplateAreas: `"filterDetails calenderDetails"`,
           }}
+          className={styles.filterHeaderCalendar}
         >
           <Box
             sx={{ gridArea: "filterDetails" }}
@@ -215,13 +219,13 @@ export const FilterResultHeading = ({
               sx={{
                 gridArea: "caledar",
                 display: "grid",
-                gap: 1,
                 gridTemplateColumns: "repeat(6, 1fr)",
                 justifyContent: "center",
                 alignContent: "center",
                 gridTemplateRows: "auto",
                 gridTemplateAreas: `"mondaySchedule tuesdaySchedule wednesdaySchedule thusdaySchedule fridaySchedule saturdaySchedule"`,
               }}
+              className={styles.calendarHeading}
             >
               {weekColumn.map((option, idx) => {
                 return (
@@ -279,6 +283,10 @@ export const FilterResultHeading = ({
   }
 
   function renderMobileView() {
+    let renderSubFilter = filterData.purposeOfVisit
+      ? `${filterData.purposeOfVisit} • `
+      : "";
+    renderSubFilter += filterData.insuranceCarrier?.name || "";
     return (
       <Box
         className={styles.mobileFilterContainer}
@@ -349,12 +357,7 @@ export const FilterResultHeading = ({
                 >
                   {filterData.location || "City, state, or zip code"}
                 </Typography>
-                {filterData.purposeOfVisit ||
-                  (filterData.insuranceCarrier && (
-                    <Typography
-                      className={styles.mobileFilterSubtitle}
-                    >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
-                  ))}
+                {renderSubFilter}
               </Button>
             </Box>
             <Box
@@ -394,6 +397,9 @@ export const FilterResultHeading = ({
             onSearchProvider={onSearchProvider}
             purposeOfVisitData={purposeOfVisitData}
             insuranceCarrierData={insuranceCarrierData}
+            isGeolocationEnabled={isGeolocationEnabled}
+            onChangeLocation={onChangeLocation}
+            currentCity={currentCity}
           />
         }
       </Box>
