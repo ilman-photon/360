@@ -179,7 +179,7 @@ describe("BaseHeader", () => {
     useDispatchMock.mockClear();
 
     const mock = new MockAdapter(axios);
-    mock.onGet("/ecp/messagealert/getalerts/7dba6139-e2aa-4994-bb72-af6f1b11b94a").reply(200, {alerts: realDummyNotifications});
+    mock.onGet("/ecp/messagealert/getalerts/98f9404b-6ea8-4732-b14f-9c1a168d8066").reply(200, {alerts: realDummyNotifications});
 
     Object.defineProperty(document, 'cookie', {
       writable: true,
