@@ -124,6 +124,7 @@ const FilterHeadingFilled = ({
     const locationInput = function (onChange, value) {
       return (
         <StyledInput
+          required
           type="default"
           value={value}
           onChange={onChange}
