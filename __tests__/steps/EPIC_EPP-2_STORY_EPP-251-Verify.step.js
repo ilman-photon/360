@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import LoginPage from "../../src/pages/patient/login";
 import RegisterPage from "../../src/pages/patient/auth/create-account";
@@ -7,6 +7,17 @@ import store from "../../src/store/store";
 import { TRUE } from "sass";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import { mockAppointmentTypes, mockInsurance, submitFilter } from "../../__mocks__/mockResponse";
+import { TEST_ID } from "../../src/utils/constants";
+import {
+  clickSearch,
+  createMatchMedia,
+  doLogin,
+  provideFilters,
+  renderLogin,
+  renderScheduleAppointment,
+  landOnCreateAccountPage,
+} from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-251.feature"
@@ -17,7 +28,33 @@ const defaultValidation = () => {
 };
 
 defineFeature(feature, (test) => {
+  let container;
+  const element = document.createElement("div");
   const mock = new MockAdapter(axios);
+  const { FORGOT_TEST_ID, APPOINTMENT_TEST_ID } = TEST_ID;
+  afterEach(() => {
+    cleanup()
+    mock.reset();
+  });
+
+  beforeEach(() => {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn(),
+    };
+
+    mock
+      .onGet("/ecp/appointments/appointment-types", mockAppointmentTypes)
+      .reply(200, mockAppointmentTypes);
+    mock
+      .onGet("/ecp/appointments/insurance/allpayers", mockInsurance)
+      .reply(200, mockInsurance);
+    mock
+      .onPut("/ecp/appointments/available-slot?searchText=Texas")
+      .reply(200, submitFilter);
+    window.matchMedia = createMatchMedia("1920px");
+    global.navigator.geolocation = mockGeolocation;
+  });
   test('EPIC_EPP-2_STORY_EPP-251 - Verify if user able to receive the link after submit the registration details.', ({ }) => {
 
   });
@@ -55,40 +92,51 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    and('user is in “Patient Login” screen', () => {
-      defaultValidation()
+    and('user is in “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
 
     when('user clicks on the ‘Create an Account’ CTA in “Patient Login” screen', () => {
-      defaultValidation()
+      const createAccBtn = container.getByTestId("createaccount")
+      fireEvent.click(createAccBtn)
     });
 
-    then('user lands onto “Registration” screen', () => {
-      defaultValidation()
+    then('user lands onto “Registration” screen', async () => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     and('user should see registration screen', () => {
-      defaultValidation()
+      expect(container.getByText("User Registration")).toBeInTheDocument();
     });
 
     then('user should see the following fields', (table) => {
-      defaultValidation()
+      const requiredFields = container.getByText(/Required Fields/i)
+      expect(requiredFields).toBeInTheDocument();
     });
 
     when(/^user provide the details to the field  (.*),(.*),(.*),(.*),"<Mobile number">$/, (arg0, arg1, arg2, arg3) => {
-      defaultValidation()
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     then(/^user have a option to select "(.*)" or "(.*)"$/, (arg0, arg1) => {
-      defaultValidation()
+      const prefferredMode = container.getByText(/Preferred mode of Communication/i)
+      expect(prefferredMode).toBeInTheDocument();
     });
 
-    and('user should see the ‘Register’ CTA', () => {
-      defaultValidation()
+    and('user should see the ‘Register’ CTA', async () => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
-    and(/^user click on "(.*)" CTA$/, (arg0) => {
-      defaultValidation()
+    and(/^user click on "(.*)" CTA$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      fireEvent.click(registerBtn)
     });
 
     then('user receives activation link to either Email or to phone number', () => {
@@ -101,40 +149,51 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    and('user is in “Patient Login” screen', () => {
-      defaultValidation()
+    and('user is in “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
 
     when('user clicks on the ‘Create an Account’ CTA in “Patient Login” screen', () => {
-      defaultValidation()
+      const createAccBtn = container.getByTestId("createaccount")
+      fireEvent.click(createAccBtn)
     });
 
-    then('user lands onto “Registration” screen', () => {
-      defaultValidation()
+    then('user lands onto “Registration” screen', async () => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     and('user should see registration screen', () => {
-      defaultValidation()
+      expect(container.getByText("User Registration")).toBeInTheDocument();
     });
 
     then('user should see the following fields', (table) => {
-      defaultValidation()
+      const requiredFields = container.getByText(/Required Fields/i)
+      expect(requiredFields).toBeInTheDocument();
     });
 
     when(/^user provide the details to the flield  "(.*)"$/, (arg0) => {
-      defaultValidation()
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     then(/^user have a option to select "(.*)" or "(.*)"$/, (arg0, arg1) => {
-      defaultValidation()
+      const prefferredMode = container.getByText(/Preferred mode of Communication/i)
+      expect(prefferredMode).toBeInTheDocument();
     });
 
     when('user select the email option', () => {
-      defaultValidation()
+      const prefferredMode = container.getByText(/Preferred mode of Communication/i)
+      expect(prefferredMode).toBeInTheDocument();
     });
 
     and('user to provide His/Her Email id', () => {
-      defaultValidation()
+      const emailField = container.getByTestId("email")
+      expect(emailField).toBeInTheDocument();
     });
 
     then('user receive a activation link to the given Email id', () => {
@@ -159,20 +218,22 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    and('User is in “Patient Login” screen', () => {
-      defaultValidation()
+    and('user is in “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
 
     when('user clicks on the ‘Create an Account’ CTA in “Patient Login” screen', () => {
-      defaultValidation()
+      const createAccBtn = container.getByTestId("createaccount")
+      fireEvent.click(createAccBtn)
     });
 
-    then('User lands onto “Registration” screen', () => {
-      defaultValidation()
+    then('user lands onto “Registration” screen', async () => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     and('user should be able to view registration screen', () => {
-      defaultValidation()
+      expect(container.getByText("User Registration")).toBeInTheDocument();
     });
 
     then('User should be able to view the following fields', (table) => {
@@ -180,19 +241,27 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user provide the details to the flield  "(.*)"$/, (arg0) => {
-      defaultValidation()
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     then(/^user have a option to select"(.*)"or"(.*)"$/, (arg0, arg1) => {
-      defaultValidation()
+      const prefferredMode = container.getByText(/Preferred mode of Communication/i)
+      expect(prefferredMode).toBeInTheDocument();
     });
 
     when('user select the Mobil number option', () => {
-      defaultValidation()
+      const prefferredMode = container.getByText(/Preferred mode of Communication/i)
+      expect(prefferredMode).toBeInTheDocument();
     });
 
     and('user to provide His/Her Mobile number', () => {
-      defaultValidation()
+      const mobilenumberField = container.getByTestId("mobilenumber")
+      expect(mobilenumberField).toBeInTheDocument();
     });
 
     then('user receive a activation link to the given Mobile number', () => {
@@ -213,20 +282,22 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    and('user is in “Patient Login” screen', () => {
-      defaultValidation()
+    and('user is in “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
 
     when('user clicks on the ‘Create an Account’ CTA in “Patient Login” screen', () => {
-      defaultValidation()
+      const createAccBtn = container.getByTestId("createaccount")
+      fireEvent.click(createAccBtn)
     });
 
-    then('user lands onto “Registration” screen', () => {
-      defaultValidation()
+    then('user lands onto “Registration” screen', async () => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     and('user should be able to view registration screen', () => {
-      defaultValidation()
+      expect(container.getByText("User Registration")).toBeInTheDocument();
     });
 
     then('user should be able to view the following fields', (table) => {
@@ -234,19 +305,27 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user provide the details to the flield  "(.*)"$/, (arg0) => {
-      defaultValidation()
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     then(/^user have a option to select "(.*)" or "(.*)"$/, (arg0, arg1) => {
-      defaultValidation()
+      const prefferredMode = container.getByText(/Preferred mode of Communication/i)
+      expect(prefferredMode).toBeInTheDocument();
     });
 
     when('user select the email option', () => {
-      defaultValidation()
+      const prefferredMode = container.getByText(/Preferred mode of Communication/i)
+      expect(prefferredMode).toBeInTheDocument();
     });
 
     and('user enters wrong Email id', () => {
-      defaultValidation()
+      const emailField = container.getByTestId("email")
+      expect(emailField).toBeInTheDocument();
     });
 
     then('user should not  receive a activation link to the actual  Email id', () => {
@@ -263,20 +342,22 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    and('User is in “Patient Login” screen', () => {
-      defaultValidation()
+    and('user is in “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
 
     when('user clicks on the ‘Create an Account’ CTA in “Patient Login” screen', () => {
-      defaultValidation()
+      const createAccBtn = container.getByTestId("createaccount")
+      fireEvent.click(createAccBtn)
     });
 
-    then('User lands onto “Registration” screen', () => {
-      defaultValidation()
+    then('user lands onto “Registration” screen', async () => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     and('user should be able to view registration screen', () => {
-      defaultValidation()
+      expect(container.getByText("User Registration")).toBeInTheDocument();
     });
 
     then('User should be able to view the following fields', (table) => {
@@ -284,7 +365,12 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user provide the details to the flield  "(.*)"$/, (arg0) => {
-      defaultValidation()
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     then(/^user have a option to select"(.*)"or"(.*)"$/, (arg0, arg1) => {
@@ -313,20 +399,22 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    and('User is in “Patient Login” screen', () => {
-      defaultValidation()
+    and('user is in “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
 
     when('user clicks on the ‘Create an Account’ CTA in “Patient Login” screen', () => {
-      defaultValidation()
+      const createAccBtn = container.getByTestId("createaccount")
+      fireEvent.click(createAccBtn)
     });
 
-    then('User lands onto “Registration” screen', () => {
-      defaultValidation()
+    then('user lands onto “Registration” screen', async () => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     and('user should be able to view registration screen', () => {
-      defaultValidation()
+      expect(container.getByText("User Registration")).toBeInTheDocument();
     });
 
     then('User should be able to view the following fields', (table) => {
@@ -334,7 +422,12 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user provide the details to the flield  "(.*)"$/, (arg0) => {
-      defaultValidation()
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     then(/^user have a option to select"(.*)"or"(.*)"$/, (arg0, arg1) => {
@@ -363,32 +456,41 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    and('user is in “Patient Login” screen', () => {
-      defaultValidation()
+    and('user is in “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
 
     when('user clicks on the ‘Create an Account’ CTA in “Patient Login” screen', () => {
-      defaultValidation()
+      const createAccBtn = container.getByTestId("createaccount")
+      fireEvent.click(createAccBtn)
     });
 
-    then('user lands onto “Registration” screen', () => {
-      defaultValidation()
+    then('user lands onto “Registration” screen', async () => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     and('user should see registration screen', () => {
-      defaultValidation()
+      expect(container.getByText("User Registration")).toBeInTheDocument();
     });
 
     then('user should see the following fields', (table) => {
-      defaultValidation()
+      const requiredFields = container.getByText(/Required Fields/i)
+      expect(requiredFields).toBeInTheDocument();
     });
 
     when(/^user provide the details to the flield  "(.*)"$/, (arg0) => {
-      defaultValidation()
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     then(/^user have a option to select "(.*)" or "(.*)"$/, (arg0, arg1) => {
-      defaultValidation()
+      const prefferredMode = container.getByText(/Preferred mode of Communication/i)
+      expect(prefferredMode).toBeInTheDocument();
     });
 
     when('user select the email option', () => {
@@ -425,20 +527,22 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    and('User is in “Patient Login” screen', () => {
-      defaultValidation()
+    and('user is in “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
 
     when('user clicks on the ‘Create an Account’ CTA in “Patient Login” screen', () => {
-      defaultValidation()
+      const createAccBtn = container.getByTestId("createaccount")
+      fireEvent.click(createAccBtn)
     });
 
-    then('User lands onto “Registration” screen', () => {
-      defaultValidation()
+    then('user lands onto “Registration” screen', async () => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     and('user should be able to view registration screen', () => {
-      defaultValidation()
+      expect(container.getByText("User Registration")).toBeInTheDocument();
     });
 
     then('User should be able to view the following fields', (table) => {
@@ -446,7 +550,12 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user provide the details to the field  "(.*)"$/, (arg0) => {
-      defaultValidation()
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     then(/^user have a option to select"(.*)"or"(.*)"$/, (arg0, arg1) => {
