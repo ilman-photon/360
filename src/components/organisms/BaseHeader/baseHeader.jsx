@@ -71,16 +71,21 @@ export default function BaseHeader({
     }
 
     // notifications
-    // fetch for every 3 minutes
-    const notificationId = setInterval(() => {
-      fetchUserNotifications(userStorageData?.patientId);
-    }, 180000);
+    let notificationId;
+    if (userStorageData?.patientId) {
+      // fetch for every 3 minutes
+      notificationId = setInterval(() => {
+        fetchUserNotifications(userStorageData?.patientId);
+      }, 180000);
 
-    // fetch for first time
-    fetchUserNotifications(userStorageData?.patientId);
+      // fetch for first time
+      fetchUserNotifications(userStorageData?.patientId);
+    }
 
     // clear interval after unMount
-    return () => clearInterval(notificationId);
+    return () => {
+      if (notificationId) clearInterval(notificationId);
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
