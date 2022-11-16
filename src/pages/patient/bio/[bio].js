@@ -7,7 +7,7 @@ import { Box } from "@mui/material";
 import styles from "./styles.module.scss";
 import { Api } from "../../api/api";
 import { useEffect, useState } from "react";
-import { getLanguage, getArrayValue } from "../../../utils/bioUtils";
+import { getLanguage } from "../../../utils/bioUtils";
 import { useLoadScript } from "@react-google-maps/api";
 import { setFilterData, setIsFilterApplied } from "../../../store/appointment";
 import moment from "moment";
@@ -65,9 +65,7 @@ export default function Bio({ embedApi, bio }) {
 
     const data = {
       providerId: response.id || "",
-      // imageId: "1ffaf737-57ac-4660-8a32-f0650e2285ae",
-      imageId: response.providerDetails?.profilePhoto?.digitalAsset.uid || "",
-      image: "",
+      image: response.providerDetails?.profilePhoto?.digitalAsset || "",
       name,
       rating: response.providerDetails?.rating || 0,
       phoneNumber: response.workPhone || "",
@@ -82,33 +80,21 @@ export default function Bio({ embedApi, bio }) {
         response.providerDetails?.membershipAndAffiliation
       ),
     };
-    getProviderImage(data);
-  };
-
-  const getProviderImage = (data) => {
-    const api = new Api();
-    api
-      .getURLDigitalAsset(data.imageId)
-      .then((response) => {
-        const imageURL = response.presignedUrl;
-        data["image"] = imageURL;
-        setProviderData(data);
-      })
-      .catch(() => {
-        setProviderData(data);
-      })
-      .finally(() => {
-        isRequest = false;
-      });
+    setProviderData(data);
   };
 
   const getProviderData = () => {
     isRequest = true;
     const api = new Api();
     !providerData &&
-      api.getProviderDetails(bio).then((response) => {
-        mapper(response);
-      });
+      api
+        .getProviderDetails(bio)
+        .then((response) => {
+          mapper(response);
+        })
+        .finally(() => {
+          isRequest = false;
+        });
   };
 
   useEffect(() => {

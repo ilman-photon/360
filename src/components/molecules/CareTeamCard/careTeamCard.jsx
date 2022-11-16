@@ -19,27 +19,27 @@ export default function CareTeamCard({ provider }) {
   const router = useRouter();
   const insuranceCarrierList = useSelector((state) => state.provider.list);
 
-  const addressLine1 = provider.address.addressLine1
+  const addressLine1 = provider.address?.addressLine1
     ? `${provider.address.addressLine1} `
     : "";
-  const addressLine2 = provider.address.addressLine2
+  const addressLine2 = provider.address?.addressLine2
     ? `${provider.address.addressLine2}. `
     : ".";
-  const city = provider.address.city ? `${provider.address.city}, ` : "";
-  const addressState = provider.address.state
+  const city = provider.address?.city ? `${provider.address.city}, ` : "";
+  const addressState = provider.address?.state
     ? `${provider.address.state} `
     : "";
-  const zip = provider.address.zip ? `${provider.address.zip}` : "";
+  const zip = provider.address?.zip ? `${provider.address.zip}` : "";
   const address = `${addressLine1}${addressLine2}${city}${addressState}${zip}`;
 
   const navigateToScheduleAppointment = () => {
     let location = "";
 
-    if (provider.address.city) {
+    if (provider.address?.city) {
       location = provider.address.city;
-    } else if (provider.address.state) {
+    } else if (provider.address?.state) {
       location = provider.address.state;
-    } else if (provider.address.zip) {
+    } else if (provider.address?.zip) {
       location = provider.address.zip;
     }
 
@@ -107,11 +107,11 @@ export default function CareTeamCard({ provider }) {
             />
             <Typography
               tabIndex={0}
-              aria-label={provider.address.name}
+              aria-label={provider.address?.name}
               className={styles.addressNameText}
               variant="body2"
             >
-              {provider.address.name}
+              {provider.address?.name}
             </Typography>
           </Box>
           <Typography

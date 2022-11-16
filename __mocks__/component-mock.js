@@ -13,7 +13,7 @@ export const mockGoogleWindow = (mockData = mockDistance) => {
         // getDistanceMatrix: (config, callback) => {
         //   callback && callback(mockData, "OK");
         // },
-        getDistanceMatrix: jest.fn().mockReturnValue(mockDistance)
+        getDistanceMatrix: jest.fn().mockReturnValue(mockDistance),
       }),
       UnitSystem: { METRIC: 1, IMPERIAL: 0.0 },
       LatLngBounds: jest.fn().mockReturnValue({
@@ -437,6 +437,15 @@ jest.mock("react-google-autocomplete/lib/usePlacesAutocompleteService", () => {
     tz: { setDefault: jest.fn() },
   };
   return usePlaceService;
+});
+
+jest.mock("jszip", () => {
+  return jest.fn().mockImplementation(() => {
+    return {
+      folder: jest.fn().mockReturnValue({ file: jest.fn() }),
+      generateAsync: jest.fn().mockResolvedValue("(⌐□_□)"),
+    };
+  });
 });
 
 // jest.mock("react-idle-timer", () => ({

@@ -17,50 +17,54 @@ export const MessagingDetailContentView = ({
   attachmentsSource,
   openDeletedDialog,
   isSelectedMsg,
-  onDiscardMessage = () => {},
-  onDownloadAllAttachmentClicked = () => {},
+  onDiscardMessage = () => {
+    //this is intentional
+  },
+  onDownloadAllAttachmentClicked = () => {
+    //this is intentional
+  },
 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "messaging",
   });
+
   const isDesktop = useMediaQuery("(min-width: 835px)");
 
   const getDraftContentValue = () => {
     let message = "";
     data?.messages?.map((item) => {
-      if (item?.isDraft !== undefined && item?.isDraft) {
+      if (item.isDraft) {
         message = item.message;
       }
     });
     return message;
   };
+
   return (
     <Box
       className={styles.detailViewContainer}
       data-testId="messaging-container-detail"
     >
-      {(data?.messages?.length > 1 || data?.messages?.length == 1) &&
-        (data?.messages[0]?.isDraft === undefined ||
-          !data?.messages[0]?.isDraft) && (
-          <Box className={styles.detailContentHeaderView}>
-            <Typography
-              sx={{
-                fontFamily: "Bw Nista Geometric DEMO",
-                fontSize: "22px",
-                fontWeight: "400",
-                fontStyle: "normal",
-                color: "#003B4A",
-                lineHeight: "32px",
-              }}
-            >
-              {data?.subject}
-            </Typography>
-            <DeleteOutlinedIcon
-              data-testId="delete-message-icon"
-              onClick={() => openDeletedDialog(data?.id)}
-            />
-          </Box>
-        )}
+      {data?.messages?.length > 0 && !data.messages[0].isDraft && (
+        <Box className={styles.detailContentHeaderView}>
+          <Typography
+            sx={{
+              fontFamily: "Bw Nista Geometric DEMO",
+              fontSize: "22px",
+              fontWeight: "400",
+              fontStyle: "normal",
+              color: "#003B4A",
+              lineHeight: "32px",
+            }}
+          >
+            {data.subject}
+          </Typography>
+          <DeleteOutlinedIcon
+            data-testId="delete-message-icon"
+            onClick={() => openDeletedDialog(data.id)}
+          />
+        </Box>
+      )}
       <Box
         className={
           data?.messages?.length > 1
@@ -68,12 +72,10 @@ export const MessagingDetailContentView = ({
             : styles.cardDetailDraftNewMsgContainer
         }
       >
-        {(data?.messages?.length > 1 || data?.messages?.length == 1) &&
-        (data?.messages[0]?.isDraft === undefined ||
-          !data?.messages[0]?.isDraft) ? (
+        {data?.messages?.length > 0 && !data.messages[0].isDraft ? (
           <>
-            {data?.messages?.map((item) => {
-              if (item?.isDraft === undefined || !item?.isDraft) {
+            {data.messages.map((item) => {
+              if (!item.isDraft) {
                 return (
                   <MessagingCardDetailView
                     key={item.id}
@@ -172,6 +174,7 @@ export const MessagingDetailContentView = ({
             onAddAttachFile={handleAssetDownload}
             refAttachments={addAttachments}
             attachmentsSource={attachmentsSource}
+            onDiscardMessage={onDiscardMessage}
           />
         )}
       </Box>

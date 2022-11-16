@@ -10,7 +10,6 @@ import CustomizedDialogs from "../../molecules/FilterAppointmentDialog/dialog";
 import CloseIcon from "@mui/icons-material/Close";
 import {
   dateIcon,
-  getDialogContents,
   insuraceIcon,
   locationIconUI,
   purposeIcon,
@@ -29,7 +28,9 @@ const FilterHeadingFilled = ({
   purposeOfVisitData = [],
   insuranceCarrierData = [],
   isGeolocationEnabled = false,
-  onChangeLocation = () => {},
+  onChangeLocation = () => {
+    // This is intentional
+  },
   currentCity = "",
 }) => {
   const { handleSubmit, control, setValue } = useForm({

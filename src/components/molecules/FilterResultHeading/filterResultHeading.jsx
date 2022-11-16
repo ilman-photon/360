@@ -44,7 +44,9 @@ export const FilterResultHeading = ({
   title = "",
   subtitle = "",
   isGeolocationEnabled = false,
-  onChangeLocation = () => {},
+  onChangeLocation = () => {
+    // This is intentional
+  },
   currentCity = "",
 }) => {
   const imageSrcState = "/searchInputIcon.png";
