@@ -1,7 +1,7 @@
 import * as React from "react";
 import PrescriptionLayout from "../../../../components/templates/prescriptionLayout";
 import { Provider, useDispatch, useSelector } from "react-redux";
-
+import store from "../../../../store/store";
 import TableWithSort from "../../../../components/molecules/TableWithSort/tableWithSort";
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
@@ -41,7 +41,7 @@ export default function MedicalRecordPage() {
     header: [
       {
         type: "text",
-        id: "data.testingOrder.orderDetails.testType._id",
+        id: "data.testingOrder.orderDetails.testType.name",
         numeric: false,
         disablePadding: false,
         label: "Test Name",
@@ -75,7 +75,7 @@ export default function MedicalRecordPage() {
       {
         type: "text",
         primary: true,
-        valueKey: "data.testingOrder.orderDetails.testType._id",
+        valueKey: "data.testingOrder.orderDetails.testType.name",
         cellProps: { tabIndex: 0 },
         contentStyle: {
           padding: "12px 24px",
@@ -331,3 +331,13 @@ export default function MedicalRecordPage() {
     </div>
   );
 }
+
+MedicalRecordPage.getLayout = function getLayout(page) {
+  return (
+    <Provider store={store}>
+      <PrescriptionLayout title={"Test & Lab Results"}>
+        {page}
+      </PrescriptionLayout>
+    </Provider>
+  );
+};

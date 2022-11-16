@@ -149,7 +149,7 @@ export default function CustomizedDialogs({
       );
     } else if (type === "purposeInput") {
       child = (
-        <Box>
+        <Box className={styles.dialogSelectMenuContainer}>
           <Typography className={styles.dialogSelectMenuTitle}>
             Appointment Type
           </Typography>

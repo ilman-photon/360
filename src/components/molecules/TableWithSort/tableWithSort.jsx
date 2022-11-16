@@ -15,7 +15,7 @@ import {
   MenuItem,
   Icon,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { visuallyHidden } from "@mui/utils";
 import styles from "./styles.module.scss";
 import { colors } from "../../../styles/theme";
@@ -99,8 +99,12 @@ const EnhancedTableHead = (props) => {
                   role={"rowheader"}
                   sx={{
                     py: "15px",
-                    ".MuiTableSortLabel-icon": {
-                      opacity: 0.5,
+                    color: "#003B4A",
+                    ".MuiTableSortLabel-root.Mui-active": {
+                      color: "#003B4A !important",
+                    },
+                    ".MuiTableSortLabel-root:hover": {
+                      color: "#003B4A !important",
                     },
                     ...headCell.sx,
                   }}
@@ -116,11 +120,13 @@ const EnhancedTableHead = (props) => {
                     data-testid={"table-header-sort"}
                     onClick={createSortHandler(headCell.id)}
                     sx={{
+                      "MuiTableSortLabel-icon:hover": {
+                        color: "#757575 !important",
+                        opacity: 1,
+                      },
                       ".MuiTableSortLabel-icon": {
-                        opacity: "1 !important",
                         color: "#003B4A !important",
                       },
-                      color: "#003B4A !important",
                     }}
                   >
                     <b>{headCell.label}</b>
@@ -150,7 +156,7 @@ export default function TableWithSort({
   additionalProps = {},
 }) {
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("calories");
+  const [orderBy, setOrderBy] = React.useState("");
   const [selected, setSelected] = React.useState([]);
   const [page] = React.useState(0);
   const [dense] = React.useState(false);
@@ -195,6 +201,10 @@ export default function TableWithSort({
   const isSelected = (id) => {
     return selected.indexOf(id) !== -1;
   };
+
+  useEffect(() => {
+    setOrderBy("");
+  }, [rows]);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
