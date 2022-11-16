@@ -18,7 +18,6 @@ export const fetchNotifications = createAsyncThunk(
 export const readNotificationItem = createAsyncThunk(
   "notification/readNotificationItem",
   async ({ patientId, notificationIds }) => {
-    console.log(patientId, notificationIds);
     const api = new Api();
     url = `/ecp/messagealert/getMessageDetails/${patientId}`; // "7dba6139-e2aa-4994-bb72-af6f1b11b94a"
     let postBodyValue = [];
