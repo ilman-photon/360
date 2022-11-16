@@ -7,7 +7,7 @@ import { Box } from "@mui/material";
 import styles from "./styles.module.scss";
 import { Api } from "../../api/api";
 import { useEffect, useState } from "react";
-import { getLanguage, getArrayValue } from "../../../utils/bioUtils";
+import { getLanguage } from "../../../utils/bioUtils";
 import { useLoadScript } from "@react-google-maps/api";
 import { setFilterData, setIsFilterApplied } from "../../../store/appointment";
 import moment from "moment";

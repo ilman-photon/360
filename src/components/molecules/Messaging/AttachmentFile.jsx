@@ -5,7 +5,9 @@ import styles from "./styles.module.scss";
 
 export const AttachmentFile = ({
   attachmentsSource,
-  handleAssetDownload = () => {},
+  handleAssetDownload = () => {
+    // This is intentional
+  },
 }) => {
   return (
     <>
@@ -23,7 +25,7 @@ export const AttachmentFile = ({
               padding: "0px 10px",
             }}
           >
-            {attachmentsSource?.map((item, index) => {
+            {attachmentsSource.map((item, index) => {
               return (
                 <Button
                   key={index}

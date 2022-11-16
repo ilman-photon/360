@@ -21,12 +21,13 @@ export const MessageDetailsMobileView = ({
   onCloseDetailMsg,
   isSelectedMsg,
   isDesktop,
-  onDiscardMessage = () => {},
+  onDiscardMessage = () => {
+    //this is intentional
+  },
 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "messaging",
   });
-
   const getDraftContentValue = () => {
     let message = "";
     data?.messages?.map((item) => {
@@ -83,7 +84,7 @@ export const MessageDetailsMobileView = ({
                 lineHeight: "32px",
               }}
             >
-              {data?.subject}
+              {data.subject}
             </Typography>
             <DeleteOutlinedIcon onClick={() => openDeletedDialog()} />
           </Box>
@@ -97,7 +98,7 @@ export const MessageDetailsMobileView = ({
         >
           {data?.messages?.length > 1 ? (
             <>
-              {data?.messages?.map((item) => {
+              {data.messages.map((item) => {
                 return (
                   <MessagingCardDetailView
                     key={item.id}
@@ -160,6 +161,7 @@ export const MessageDetailsMobileView = ({
                     margin: "8px 0",
                     borderRadius: "30px",
                   }}
+                  data-testId="add-attachments-button"
                 >
                   <AttachmentOutlinedIcon
                     sx={{

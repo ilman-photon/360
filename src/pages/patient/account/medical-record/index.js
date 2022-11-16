@@ -1,6 +1,5 @@
 import * as React from "react";
-import PrescriptionLayout from "../../../../components/templates/prescriptionLayout";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import TableWithSort from "../../../../components/molecules/TableWithSort/tableWithSort";
 import { IconButton, Stack, useMediaQuery } from "@mui/material";

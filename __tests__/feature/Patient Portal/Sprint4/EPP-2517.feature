@@ -42,10 +42,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Error messa
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when there are no results for the searched location and selected date of appointment.
-    Feature: Schedule Appointment from marketing site - Error message displayed when there are no results for the searched location and date of appointment
-    Scenario: "EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when there are no results for the searched location and selected date of appointment."
-    
+  Scenario: EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when there are no results for the searched location and selected date of appointment.
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -59,10 +56,9 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Error messa
     And user increases the radius search locations
     And user search the providers with distance greater than 20 miles
     And application not displaying any providers 
-    when user increasing radius distance greater than 20 miles
+    When user increasing radius distance greater than 20 miles
     Then user views the error message 'No appointment slots based upon your request. Please try again with a different combination.' 
     
-    Examples:
 
   @BDDTEST-EPP-2816
   @Appointments
@@ -71,10 +67,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Error messa
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2517 - Verify user should not see an error message when with distance less than 20 miles for the searched location and selected date of appointment.
-    Feature: Schedule Appointment from marketing site - Error message displayed when there are no results for the searched location and date of appointment
-    Scenario: "EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when there are no results for the searched location and selected date of appointment."
-    
+  Scenario: EPIC_EPP-44_STORY_EPP-2517 - Verify user should not see an error message when with distance less than 20 miles for the searched location and selected date of appointment.
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -89,7 +82,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Error messa
     And user search the providers with distance less than 20 miles
     And user views the search results
     
-    Examples:
+    
 
   @BDDTEST-EPP-2817
   @Appointments
@@ -98,10 +91,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Error messa
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when there are no results for the searched location 25 miles distance of providers locations and selected date of appointment.
-    Feature: Schedule Appointment from marketing site - Error message displayed when there are no results for the searched location and date of appointment
-    Scenario: "EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when there are no results for the searched location 25 miles distance of providers locations and selected date of appointment."
-    
+  Scenario: EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when there are no results for the searched location 25 miles distance of providers locations and selected date of appointment.
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -115,10 +105,10 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Error messa
     And user increases the radius search locations
     And user searched location 25 miles distance of providers locations 
     And application not displaying any providers 
-    when user increasing distance 25 miles
+    When user increasing distance 25 miles
     Then user views the error message 'No appointment slots based upon your request. Please try again with a different combination.' 
     
-    Examples:
+    
 
   @BDDTEST-EPP-2818
   @Appointments
@@ -127,10 +117,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Error messa
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when user entered the invalid location and there are no results for the searched location and selected date of appointment.
-    Feature: Schedule Appointment from marketing site - Error message displayed when there are no results for the searched location and date of appointment
-    Scenario: "EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when user entered the invalid location and there are no results for the searched location and selected date of appointment."
-    
+  Scenario: EPIC_EPP-44_STORY_EPP-2517 - Verify user able to see an error message when user entered the invalid location and there are no results for the searched location and selected date of appointment.
     Given user launch the Marketing Site url		
     And user clicks on the Schedule your Eye Exam button
     Then user navigates to the search screen
@@ -144,4 +131,4 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Error messa
     And user entered the invalid locations to search
     Then user views the error message 'No appointment slots based upon your request. Please try again with a different combination.' 
     
-    Examples:
+    

@@ -53,7 +53,9 @@ export const FilterResult = ({
   appliedFilter,
   isLoading = false,
   isGeolocationEnabled = false,
-  onChangeLocation = () => {},
+  onChangeLocation = () => {
+    // This is intentional
+  },
   currentCity = "",
 }) => {
   const [dateList, setDateList] = useState({
