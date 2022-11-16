@@ -118,7 +118,10 @@ export const FilterResultContainer = ({
             lineHeight: "22px",
             letterSpacing: "0.0016em",
             paddingBottom: "16px",
-            color: colors.darkGreen,
+            color: "#9E9E9E",
+            ".Mui-selected": {
+              color: colors.darkGreen,
+            },
           }}
           value={activeTabs}
           onChange={(_evt, val) => {

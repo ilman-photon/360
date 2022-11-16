@@ -3,15 +3,16 @@
 .dialogSelectMenu {
   margin-top: 16px;
 }
-
-.dialogSelectMenuTitle {
-  font-family: "Libre Franklin", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 26px;
-  letter-spacing: 0.0016em;
-  color: $darkGreen;
+.dialogSelectMenuContainer {
+  .dialogSelectMenuTitle {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.0016em;
+    color: $darkGreen;
+  }
 }
 
 .errorField {
