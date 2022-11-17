@@ -7,6 +7,8 @@ import MfaPage from "../../src/pages/patient/mfa";
 import { act } from "react-dom/test-utils";
 import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -74,7 +76,11 @@ defineFeature(feature, (test) => {
     //   });
     // });
     Cookies.result = { mfa: true };
-    container = render(<MfaPage />);
+    container = render(
+      <Provider store={store}>
+        <MfaPage />
+      </Provider>
+    );
     ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
     expect(container).toMatchSnapshot();
   };
@@ -100,7 +106,11 @@ defineFeature(feature, (test) => {
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      page = render(<MfaPage />);
+      page = render(
+        <Provider store={store}>
+          <MfaPage />
+        </Provider>
+      );
       ////await waitFor(() => container.getByText("communicationMethodTitle"));
     });
     given(/^user launch "(.*)" URL$/, (arg0) => {
@@ -603,7 +613,11 @@ defineFeature(feature, (test) => {
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      const container = render(<MfaPage />);
+      const container = render(
+        <Provider store={store}>
+          <MfaPage />
+        </Provider>
+      );
 
       // const confirmButton = page.getByRole("button", { name: /confrimBtn/i });
       // fireEvent.click(confirmButton);
@@ -699,7 +713,9 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
       act(() => {
-        container = render(<MfaPage />, {
+        container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -838,7 +854,9 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
       act(() => {
-        container = render(<MfaPage />, {
+        container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -979,7 +997,9 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
       act(() => {
-        container = render(<MfaPage />, {
+        container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1120,7 +1140,9 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
       act(() => {
-        container = render(<MfaPage />, {
+        container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });

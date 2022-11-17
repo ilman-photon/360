@@ -44,6 +44,7 @@ export default function BaseHeader({
   backTitle,
   onBackClicked,
   showNavbar = false,
+  isNotShowHeader = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
@@ -142,7 +143,7 @@ export default function BaseHeader({
         }}
       >
         <Container maxWidth="xl">
-          {isUserLoged ? (
+          {isUserLoged && !isNotShowHeader ? (
             <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
               <Link href={"/patient"} role={"none"} tabIndex={0}>
                 <Image

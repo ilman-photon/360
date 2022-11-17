@@ -6,11 +6,15 @@ import MfaPage from "../../src/pages/patient/mfa";
 import "@testing-library/jest-dom";
 import AuthPage from "../../src/pages/patient/login";
 import Cookies from "universal-cookie";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint3/EPP-269.feature", {
-  tagFilter: '@included and not @excluded'
-});
+  "./__tests__/feature/Patient Portal/Sprint3/EPP-269.feature",
+  {
+    tagFilter: "@included and not @excluded",
+  }
+);
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -31,16 +35,21 @@ jest.mock("universal-cookie", () => {
 });
 
 defineFeature(feature, (test) => {
-  let container
+  let container;
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
 
-  test('EPIC_EPP-3_STORY_EPP-269 - Verify User should be able to receives a text that registered phone number when user logs in from different device/IP Address', ({ given, and, when, then }) => {
+  test("EPIC_EPP-3_STORY_EPP-269 - Verify User should be able to receives a text that registered phone number when user logs in from different device/IP Address", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
@@ -48,30 +57,38 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user see (.*) and (.*) fields that was MFA was set up on device A$/, async (arg0, arg1) => {
-      Cookies.result = { mfa: true };
+    then(
+      /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
+      async (arg0, arg1) => {
+        Cookies.result = { mfa: true };
 
-      const userData = {
-        communicationMethod: {
-          email: "user1@photon.com",
-          phone: "9998887772",
-        },
-        ResponseCode: 4000,
-        ResponseType: "success",
-      };
+        const userData = {
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              <MfaPage />
+            </Provider>,
+            {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            }
+          );
         });
-      });
-      await waitFor(() => container.getByText("backToLoginBtn"));
-      expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-    });
+        await waitFor(() => container.getByText("backToLoginBtn"));
+        expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+      }
+    );
 
-    and('user login from device A', () => {
+    and("user login from device A", () => {
       expect(true).toBeTruthy();
     });
 
@@ -91,9 +108,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user tries to login from another deviceAnd user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user tries to login from another deviceAnd user should see "(.*)" option$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -111,7 +131,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user login from device B', () => {
+    and("user login from device B", () => {
       expect(true).toBeTruthy();
     });
 
@@ -123,7 +143,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives a text from registered phone number', () => {
+    then("user receives a text from registered phone number", () => {
       expect(true).toBeTruthy();
     });
 
@@ -131,17 +151,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body as', (table) => {
+    and("user should see a message body as", (table) => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered mail-id', ({ given, and, when, then }) => {
+  test('EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered mail-id', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
@@ -149,30 +174,38 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user see (.*) and (.*) fields that was MFA was set up on device A$/, async (arg0, arg1) => {
-      Cookies.result = { mfa: true };
+    then(
+      /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
+      async (arg0, arg1) => {
+        Cookies.result = { mfa: true };
 
-      const userData = {
-        communicationMethod: {
-          email: "user1@photon.com",
-          phone: "9998887772",
-        },
-        ResponseCode: 4000,
-        ResponseType: "success",
-      };
+        const userData = {
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              <MfaPage />
+            </Provider>,
+            {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            }
+          );
         });
-      });
-      await waitFor(() => container.getByText("backToLoginBtn"));
-      expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-    });
+        await waitFor(() => container.getByText("backToLoginBtn"));
+        expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+      }
+    );
 
-    and('user login from device A', () => {
+    and("user login from device A", () => {
       expect(true).toBeTruthy();
     });
 
@@ -192,9 +225,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user tries to login from another deviceAnd user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user tries to login from another deviceAnd user should see "(.*)" option$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -212,7 +248,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user login from device B', () => {
+    and("user login from device B", () => {
       expect(true).toBeTruthy();
     });
 
@@ -224,7 +260,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives an email message with the code to the email', () => {
+    then("user receives an email message with the code to the email", () => {
       expect(true).toBeTruthy();
     });
 
@@ -232,19 +268,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body as', (table) => {
+    and("user should see a message body as", (table) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives an email/ text message with the code to the email or mobile number', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user receives an email/ text message with the code to the email or mobile number",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see the mail with Email Subject as "(.*)"$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body', () => {
+    and("user should see a message body", () => {
       expect(true).toBeTruthy();
     });
 
@@ -269,12 +308,17 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered phone number', ({ given, and, when, then }) => {
+  test('EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered phone number', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
@@ -282,30 +326,38 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user see (.*) and (.*) fields that was MFA was set up on device A$/, async (arg0, arg1) => {
-      Cookies.result = { mfa: true };
+    then(
+      /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
+      async (arg0, arg1) => {
+        Cookies.result = { mfa: true };
 
-      const userData = {
-        communicationMethod: {
-          email: "user1@photon.com",
-          phone: "9998887772",
-        },
-        ResponseCode: 4000,
-        ResponseType: "success",
-      };
+        const userData = {
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              <MfaPage />
+            </Provider>,
+            {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            }
+          );
         });
-      });
-      await waitFor(() => container.getByText("backToLoginBtn"));
-      expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-    });
+        await waitFor(() => container.getByText("backToLoginBtn"));
+        expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+      }
+    );
 
-    and('user login from device A', () => {
+    and("user login from device A", () => {
       expect(true).toBeTruthy();
     });
 
@@ -325,7 +377,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user tries to login from another device', () => {
+    and("user tries to login from another device", () => {
       expect(true).toBeTruthy();
     });
 
@@ -349,7 +401,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user login from device B', () => {
+    and("user login from device B", () => {
       expect(true).toBeTruthy();
     });
 
@@ -361,7 +413,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives an email/ text message with the code to the email or mobile number', () => {
+    then(
+      "user receives an email/ text message with the code to the email or mobile number",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    and(/^user should see the mail with Email Subject as "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and("user should see a message body as", (table) => {
+      expect(true).toBeTruthy();
+    });
+
+    then("user receives a text message with the code to phone number", () => {
       expect(true).toBeTruthy();
     });
 
@@ -369,19 +436,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body as', (table) => {
-      expect(true).toBeTruthy();
-    });
-
-    then('user receives a text message with the code to phone number', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and(/^user should see the mail with Email Subject as "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
-
-    and('user should see a message body', () => {
+    and("user should see a message body", () => {
       expect(true).toBeTruthy();
     });
 
@@ -406,12 +461,17 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" within "3 seconds" when user logs in from different device/IP Address', ({ given, and, when, then }) => {
+  test('EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" within "3 seconds" when user logs in from different device/IP Address', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
@@ -419,30 +479,38 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user see (.*) and (.*) fields that was MFA was set up on device A$/, async (arg0, arg1) => {
-      Cookies.result = { mfa: true };
+    then(
+      /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
+      async (arg0, arg1) => {
+        Cookies.result = { mfa: true };
 
-      const userData = {
-        communicationMethod: {
-          email: "user1@photon.com",
-          phone: "9998887772",
-        },
-        ResponseCode: 4000,
-        ResponseType: "success",
-      };
+        const userData = {
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              <MfaPage />
+            </Provider>,
+            {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            }
+          );
         });
-      });
-      await waitFor(() => container.getByText("backToLoginBtn"));
-      expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-    });
+        await waitFor(() => container.getByText("backToLoginBtn"));
+        expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+      }
+    );
 
-    and('user login from device A', () => {
+    and("user login from device A", () => {
       expect(true).toBeTruthy();
     });
 
@@ -462,7 +530,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user tries to login from another device', () => {
+    and("user tries to login from another device", () => {
       expect(true).toBeTruthy();
     });
 
@@ -486,7 +554,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user login from device B', () => {
+    and("user login from device B", () => {
       expect(true).toBeTruthy();
     });
 
@@ -498,7 +566,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives an email/ text message with the code to the email or mobile number', () => {
+    then(
+      "user receives an email/ text message with the code to the email or mobile number",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    and(/^user should see the mail with Email Subject as "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and("user should see a message body as", (table) => {
+      expect(true).toBeTruthy();
+    });
+
+    then("user receives a text message with the code to phone number", () => {
       expect(true).toBeTruthy();
     });
 
@@ -506,19 +589,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body as', (table) => {
-      expect(true).toBeTruthy();
-    });
-
-    then('user receives a text message with the code to phone number', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and(/^user should see the mail with Email Subject as "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
-
-    and('user should see a message body', () => {
+    and("user should see a message body", () => {
       expect(true).toBeTruthy();
     });
 
@@ -547,12 +618,17 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-269 - Verify user should not see the any errors script when user clicks F12 on the console when user succes set up MFA due to user logs in from different device/IP Address', ({ given, and, when, then }) => {
+  test("EPIC_EPP-3_STORY_EPP-269 - Verify user should not see the any errors script when user clicks F12 on the console when user succes set up MFA due to user logs in from different device/IP Address", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
@@ -560,30 +636,38 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user see (.*) and (.*) fields that was MFA was set up on device A$/, async (arg0, arg1) => {
-      Cookies.result = { mfa: true };
+    then(
+      /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
+      async (arg0, arg1) => {
+        Cookies.result = { mfa: true };
 
-      const userData = {
-        communicationMethod: {
-          email: "user1@photon.com",
-          phone: "9998887772",
-        },
-        ResponseCode: 4000,
-        ResponseType: "success",
-      };
+        const userData = {
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              <MfaPage />
+            </Provider>,
+            {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            }
+          );
         });
-      });
-      await waitFor(() => container.getByText("backToLoginBtn"));
-      expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-    });
+        await waitFor(() => container.getByText("backToLoginBtn"));
+        expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+      }
+    );
 
-    and('user login from device A', () => {
+    and("user login from device A", () => {
       expect(true).toBeTruthy();
     });
 
@@ -603,7 +687,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user tries to login from another device', () => {
+    and("user tries to login from another device", () => {
       expect(true).toBeTruthy();
     });
 
@@ -627,7 +711,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user login from device B', () => {
+    and("user login from device B", () => {
       expect(true).toBeTruthy();
     });
 
@@ -639,7 +723,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives an email/ text message with the code to the email or mobile number', () => {
+    then(
+      "user receives an email/ text message with the code to the email or mobile number",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    and(/^user should see the mail with Email Subject as "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and("user should see a message body as", (table) => {
+      expect(true).toBeTruthy();
+    });
+
+    then("user receives a text message with the code to phone number", () => {
       expect(true).toBeTruthy();
     });
 
@@ -647,19 +746,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body as', (table) => {
-      expect(true).toBeTruthy();
-    });
-
-    then('user receives a text message with the code to phone number', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and(/^user should see the mail with Email Subject as "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
-
-    and('user should see a message body', () => {
+    and("user should see a message body", () => {
       expect(true).toBeTruthy();
     });
 
@@ -687,17 +774,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should not to see any errors script', () => {
+    then("user should not to see any errors script", () => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered mail-id', ({ given, and, when, then }) => {
+  test('EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered mail-id', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
@@ -705,30 +797,38 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user see (.*) and (.*) fields that was MFA was set up on device A$/, async (arg0, arg1) => {
-      Cookies.result = { mfa: true };
+    then(
+      /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
+      async (arg0, arg1) => {
+        Cookies.result = { mfa: true };
 
-      const userData = {
-        communicationMethod: {
-          email: "user1@photon.com",
-          phone: "9998887772",
-        },
-        ResponseCode: 4000,
-        ResponseType: "success",
-      };
+        const userData = {
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              <MfaPage />
+            </Provider>,
+            {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            }
+          );
         });
-      });
-      await waitFor(() => container.getByText("backToLoginBtn"));
-      expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-    });
+        await waitFor(() => container.getByText("backToLoginBtn"));
+        expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+      }
+    );
 
-    and('user login from device A', () => {
+    and("user login from device A", () => {
       expect(true).toBeTruthy();
     });
 
@@ -748,7 +848,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user tries to login from another device', () => {
+    and("user tries to login from another device", () => {
       expect(true).toBeTruthy();
     });
 
@@ -772,7 +872,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user login from device B', () => {
+    and("user login from device B", () => {
       expect(true).toBeTruthy();
     });
 
@@ -784,7 +884,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives an emai with the code to the mobile number', () => {
+    then("user receives an emai with the code to the mobile number", () => {
       expect(true).toBeTruthy();
     });
 
@@ -792,11 +892,11 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body as', (table) => {
+    and("user should see a message body as", (table) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives a text message with the code to phone number', () => {
+    then("user receives a text message with the code to phone number", () => {
       expect(true).toBeTruthy();
     });
 
@@ -804,7 +904,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body', () => {
+    and("user should see a message body", () => {
       expect(true).toBeTruthy();
     });
 
@@ -829,12 +929,17 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered phone number', ({ given, and, when, then }) => {
+  test('EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered phone number', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
@@ -842,30 +947,38 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user see (.*) and (.*) fields that was MFA was set up on device A$/, async (arg0, arg1) => {
-      Cookies.result = { mfa: true };
+    then(
+      /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
+      async (arg0, arg1) => {
+        Cookies.result = { mfa: true };
 
-      const userData = {
-        communicationMethod: {
-          email: "user1@photon.com",
-          phone: "9998887772",
-        },
-        ResponseCode: 4000,
-        ResponseType: "success",
-      };
+        const userData = {
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              <MfaPage />
+            </Provider>,
+            {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            }
+          );
         });
-      });
-      await waitFor(() => container.getByText("backToLoginBtn"));
-      expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-    });
+        await waitFor(() => container.getByText("backToLoginBtn"));
+        expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+      }
+    );
 
-    and('user login from device A', () => {
+    and("user login from device A", () => {
       expect(true).toBeTruthy();
     });
 
@@ -885,7 +998,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user tries to login from another device', () => {
+    and("user tries to login from another device", () => {
       expect(true).toBeTruthy();
     });
 
@@ -909,7 +1022,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user login from device B', () => {
+    and("user login from device B", () => {
       expect(true).toBeTruthy();
     });
 
@@ -921,19 +1034,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives a text message with the code to the phone number', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user receives a text message with the code to the phone number",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see the mail with text Subject as "(.*)"$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body as', (table) => {
+    and("user should see a message body as", (table) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives a text message with the code to phone number', () => {
+    then("user receives a text message with the code to phone number", () => {
       expect(true).toBeTruthy();
     });
 
@@ -941,7 +1057,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body', () => {
+    and("user should see a message body", () => {
       expect(true).toBeTruthy();
     });
 
@@ -966,12 +1082,17 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the internet service is unavailable', ({ given, and, when, then }) => {
+  test("EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the internet service is unavailable", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
@@ -979,30 +1100,38 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user see (.*) and (.*) fields that was MFA was set up on device A$/, async (arg0, arg1) => {
-      Cookies.result = { mfa: true };
+    then(
+      /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
+      async (arg0, arg1) => {
+        Cookies.result = { mfa: true };
 
-      const userData = {
-        communicationMethod: {
-          email: "user1@photon.com",
-          phone: "9998887772",
-        },
-        ResponseCode: 4000,
-        ResponseType: "success",
-      };
+        const userData = {
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              <MfaPage />
+            </Provider>,
+            {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            }
+          );
         });
-      });
-      await waitFor(() => container.getByText("backToLoginBtn"));
-      expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-    });
+        await waitFor(() => container.getByText("backToLoginBtn"));
+        expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+      }
+    );
 
-    and('user login from device A', () => {
+    and("user login from device A", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1022,7 +1151,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user tries to login from another device', () => {
+    and("user tries to login from another device", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1046,7 +1175,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user login from device B', () => {
+    and("user login from device B", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1058,19 +1187,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives a text message with the code to the phone number', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user receives a text message with the code to the phone number",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see the mail with text Subject as "(.*)"$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body as', (table) => {
+    and("user should see a message body as", (table) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives a text message with the code to phone number', () => {
+    then("user receives a text message with the code to phone number", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1078,7 +1210,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a message body', () => {
+    and("user should see a message body", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1098,17 +1230,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see the appropriate error message', () => {
+    then("user should see the appropriate error message", () => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-269 - Verify User receives an email from registered mail-id when user logs in from different device/IP Address', ({ given, and, when, then }) => {
+  test("EPIC_EPP-3_STORY_EPP-269 - Verify User receives an email from registered mail-id when user logs in from different device/IP Address", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1116,30 +1253,38 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user see (.*) and (.*) fields that was MFA was set up on device A$/, async (arg0, arg1) => {
-      Cookies.result = { mfa: true };
+    then(
+      /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
+      async (arg0, arg1) => {
+        Cookies.result = { mfa: true };
 
-      const userData = {
-        communicationMethod: {
-          email: "user1@photon.com",
-          phone: "9998887772",
-        },
-        ResponseCode: 4000,
-        ResponseType: "success",
-      };
+        const userData = {
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              <MfaPage />
+            </Provider>,
+            {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            }
+          );
         });
-      });
-      await waitFor(() => container.getByText("backToLoginBtn"));
-      expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-    });
+        await waitFor(() => container.getByText("backToLoginBtn"));
+        expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+      }
+    );
 
-    and('user login from device A', () => {
+    and("user login from device A", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1159,9 +1304,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user tries to login from another deviceAnd user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user tries to login from another deviceAnd user should see "(.*)" option$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1179,7 +1327,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user login from device B', () => {
+    and("user login from device B", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1191,7 +1339,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user receives an email from registered email-id', () => {
+    then("user receives an email from registered email-id", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1199,7 +1347,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see a mail body as', (table) => {
+    and("user should see a mail body as", (table) => {
       expect(true).toBeTruthy();
     });
   });

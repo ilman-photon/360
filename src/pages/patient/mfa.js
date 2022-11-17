@@ -11,9 +11,11 @@ import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/acco
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
 import { Api } from "../api/api";
 import { useTranslation } from "next-i18next";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import store from "../../store/store";
 import { removeAuthCookies } from "../../utils/authetication";
+import { setMfaPageTitle } from "../../store";
+
 export default function MfaPage() {
   const api = new Api();
   const cookies = new Cookies();
@@ -27,6 +29,8 @@ export default function MfaPage() {
   const [communicationMethod, setCommunicationMethod] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true);
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+
+  const dispatch = useDispatch();
 
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "mfaPage",
@@ -59,6 +63,7 @@ export default function MfaPage() {
 
   React.useEffect(() => {
     const securityQuestions = cookies.get("securityQuestions") === "true";
+    dispatch(setMfaPageTitle("Multi-Factor Authentication page"));
 
     if (isStepThree && !securityQuestions) {
       onShowSecurityQuestionForm();
@@ -210,6 +215,7 @@ export default function MfaPage() {
           mappingSecurityQuestionList(response.SetUpSecurityQuestions)
         );
         cookies.set("isSecurityQuestionStep", true, { path: "/patient" });
+        dispatch(setMfaPageTitle("Security questions page"));
         setComponentName(constants.SQ_COMPONENT_NAME);
       })
       .catch(function () {

@@ -19,6 +19,7 @@ export default function AuthLayout({
   title,
   customImageBg = false,
   isReverseFlex = true,
+  isNotShowHeader = false,
 }) {
   const isPatient = theme === "patient";
   const pathImageWebsite = "/desktop_3x.png";
@@ -62,7 +63,7 @@ export default function AuthLayout({
           <title>{`EyeCare Patient Portal - ${titleState}`}</title>
         </Head>
         <div className={styles.authLayout}>
-          <BaseHeader></BaseHeader>
+          <BaseHeader isNotShowHeader={isNotShowHeader}></BaseHeader>
           <div className={styles.authContainer}>
             <ThemeProvider
               theme={isPatient ? patientTypography : providerTypography}

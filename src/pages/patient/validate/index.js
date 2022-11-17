@@ -194,5 +194,5 @@ export default function ValidatePage({ query }) {
 }
 
 ValidatePage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  return <AuthLayout isNotShowHeader={true}>{page}</AuthLayout>;
 };

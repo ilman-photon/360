@@ -27,6 +27,7 @@ const INITIAL_STATE = {
   genericErrorMessage: null,
   accessToken: null,
   isShowModalError: false,
+  mfaPageTitle: "Multi-Factor Authentication",
 };
 
 export const indexStore = createSlice({
@@ -60,6 +61,9 @@ export const indexStore = createSlice({
     setShowModalError: (state, { payload }) => {
       state.isShowModalError = payload;
     },
+    setMfaPageTitle: (state, { payload }) => {
+      state.mfaPageTitle = payload;
+    },
   },
   extraReducers: {
     [fetchToken.pending]: (state) => {
@@ -86,6 +90,7 @@ export const {
   resetPageMessage,
   setGenericErrorMessage,
   setShowModalError,
+  setMfaPageTitle,
 } = indexStore.actions;
 
 export default indexStore.reducer;

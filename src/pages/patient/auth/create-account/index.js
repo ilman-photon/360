@@ -78,6 +78,7 @@ CreateAccountPage.getLayout = function getLayout(page) {
       imageSrc={backgroundImage}
       title={"User Registration"}
       customImageBg={true}
+      isNotShowHeader={true}
     >
       {page}
     </AuthLayout>

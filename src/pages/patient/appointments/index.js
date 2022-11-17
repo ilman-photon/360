@@ -168,6 +168,9 @@ export default function Appointments() {
               data={upcomingAppointment}
               isMobile={isMobile}
               onRescheduleClicked={onRescheduleClicked}
+              onScheduleNewClicked={() => {
+                router.push("/patient/appointment");
+              }}
               onCancelClicked={onCancelClicked}
               onAddToCalendarClicked={addToCalendar}
             />
