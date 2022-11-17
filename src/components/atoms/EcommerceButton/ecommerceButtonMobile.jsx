@@ -1,19 +1,6 @@
 import { Box, Button } from "@mui/material";
-import Image from "next/image";
 
-const iconLinkEcomm = "/icon-link-ecomm-mobile.png";
-
-export default function EcommerceButtonMobile({
-  menu = [
-    {
-      icon: <Image alt="" src={iconLinkEcomm} width={18} height={18} />,
-      text: "Shop for Contacts",
-      onClick: () => {
-        window.open("https://www.clarksoneyecare.com/");
-      },
-    },
-  ],
-}) {
+export default function EcommerceButtonMobile({ menu = [] }) {
   return (
     <Box
       sx={{

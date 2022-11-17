@@ -1,5 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import moment from "moment";
+import { connect } from "react-redux";
 import { Api } from "../pages/api/api";
+
+function parseMedicalRecordData(data) {
+  return data.map((v) => ({
+    ...v,
+    name: `Medical Record - ${new moment(v._created).format("MM/DD/YYYY")} `,
+  }));
+}
 
 export const fetchDocuments = createAsyncThunk(
   "document/fetchDocuments",
@@ -13,6 +22,7 @@ export const fetchDocuments = createAsyncThunk(
         case "insurance-documents":
           break;
         case "health-record":
+          categoryId = "Medical-Record";
           break;
         case "care-plan-overview":
           categoryId = "care-plan";
@@ -23,6 +33,15 @@ export const fetchDocuments = createAsyncThunk(
       }
       url = `/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=${categoryId}))`;
     }
+    const api = new Api();
+    return api.getResponse(url, null, "get");
+  }
+);
+
+export const fetchMedicalRecordDocuments = createAsyncThunk(
+  "document/fetchMedicalRecordDocuments",
+  async ({ patientId }) => {
+    const url = `/ecp/patient/phr/patientchart/${patientId}`;
     const api = new Api();
     return api.getResponse(url, null, "get");
   }
@@ -48,6 +67,16 @@ const documentSlice = createSlice({
       state.status = "success";
     },
     [fetchDocuments.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [fetchMedicalRecordDocuments.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchMedicalRecordDocuments.fulfilled]: (state, { payload }) => {
+      state.documentList = parseMedicalRecordData(payload.entities);
+      state.status = "success";
+    },
+    [fetchMedicalRecordDocuments.rejected]: (state) => {
       state.status = "failed";
     },
   },

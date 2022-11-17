@@ -48,4 +48,9 @@ describe("ImageUploader Components", () => {
     await waitFor(() => container.getByText(/Change file/i));
     expect(container.getByText(/Change file/i)).toBeInTheDocument();
   });
+
+  it("image uploader without data", async () => {
+    container = render(<ImageUploader />);
+  });
+
 });

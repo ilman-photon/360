@@ -61,7 +61,7 @@ const BootstrapDialogTitle = (props) => {
             position: "absolute",
             right: 8,
             top: 8,
-            fontFamily: "Libre Franklin",
+            fontFamily: `"Libre Franklin", sans-serif`,
             fontWeight: "600",
             fontSize: "14px",
             lineHeight: "18px",
@@ -151,7 +151,7 @@ export default function CustomizedDialogs({
       );
     } else if (type === "purposeInput") {
       child = (
-        <Box>
+        <Box className={styles.dialogSelectMenuContainer}>
           <Typography className={styles.dialogSelectMenuTitle}>
             Appointment Type
           </Typography>

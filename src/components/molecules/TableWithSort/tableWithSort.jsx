@@ -14,7 +14,7 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { visuallyHidden } from "@mui/utils";
 import styles from "./styles.module.scss";
 
@@ -24,6 +24,7 @@ import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { TEST_ID } from "../../../utils/constants";
 import moment from "moment";
+import { renderCTAIcon } from "../Dashboard/prescriptions";
 
 function descendingComparator(a, b, orderBy) {
   const refA = ref(a, orderBy);
@@ -85,6 +86,25 @@ const EnhancedTableHead = (props) => {
                   width={headCell.width}
                 />
               );
+            case "textNoSort":
+              return (
+                <TableCell
+                  key={`head-${headIdx}`}
+                  align={headCell.numeric ? "right" : "left"}
+                  padding={headCell.disablePadding ? "none" : "normal"}
+                  width={headCell.width}
+                  role={"rowheader"}
+                  sx={{
+                    py: "15px",
+                    ".MuiTableSortLabel-icon": {
+                      opacity: 0.5,
+                    },
+                    ...headCell.sx,
+                  }}
+                >
+                  <b tabIndex={0}>{headCell.label}</b>
+                </TableCell>
+              );
             case "text":
               return (
                 <TableCell
@@ -97,8 +117,12 @@ const EnhancedTableHead = (props) => {
                   role={"rowheader"}
                   sx={{
                     py: "15px",
-                    ".MuiTableSortLabel-icon": {
-                      opacity: 0.5,
+                    color: "#003B4A",
+                    ".MuiTableSortLabel-root.Mui-active": {
+                      color: "#003B4A !important",
+                    },
+                    ".MuiTableSortLabel-root:hover": {
+                      color: "#003B4A !important",
                     },
                     ...headCell.sx,
                   }}
@@ -114,11 +138,13 @@ const EnhancedTableHead = (props) => {
                     data-testid={"table-header-sort"}
                     onClick={createSortHandler(headCell.id)}
                     sx={{
+                      "MuiTableSortLabel-icon:hover": {
+                        color: "#757575 !important",
+                        opacity: 1,
+                      },
                       ".MuiTableSortLabel-icon": {
-                        opacity: "1 !important",
                         color: "#003B4A !important",
                       },
-                      color: "#003B4A !important",
                     }}
                   >
                     <b>{headCell.label}</b>
@@ -148,7 +174,7 @@ export default function TableWithSort({
   additionalProps = {},
 }) {
   const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("calories");
+  const [orderBy, setOrderBy] = React.useState("");
   const [selected, setSelected] = React.useState([]);
   const [page] = React.useState(0);
   const [dense] = React.useState(false);
@@ -193,6 +219,10 @@ export default function TableWithSort({
   const isSelected = (id) => {
     return selected.indexOf(id) !== -1;
   };
+
+  useEffect(() => {
+    setOrderBy("");
+  }, [rows]);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -257,7 +287,73 @@ export default function TableWithSort({
     }
   };
 
-  const renderCellContent = ({ row, cell }) => {
+  function getMultilineDate(dateValue) {
+    let intent = [];
+    if (dateValue) {
+      dateValue?.split(" ").forEach((value) => {
+        intent.push(<p>{value}</p>);
+      });
+    }
+    return intent;
+  }
+
+  function getDateTabelCell(tabelData, type) {
+    let format = "MM/DD/YYYY";
+    if (type === "date-time") {
+      format = "MM/DD/YYYY hh:mmA";
+    }
+    const dateValue = new moment(
+      ref(tabelData.row, tabelData.cell.valueKey)
+    ).format(format);
+    return (
+      <>
+        <div
+          style={tabelData.cell.contentStyle}
+          tabIndex={0}
+          aria-label={`${tabelData.cell.valueKey}. ${ref(
+            tabelData.row,
+            tabelData.cell.valueKey
+          )}`}
+          className={[styles.tableCell, tabelData.cell.contentClass].join(" ")}
+        >
+          {type === "date-time" ? getMultilineDate(dateValue) : dateValue}
+        </div>
+      </>
+    );
+  }
+
+  function getTextMultipleValue(row, cell) {
+    let textValue = "";
+    cell.valueKey.split(",").forEach((key) => {
+      const tempValue = ref(row, key);
+      textValue += `${tempValue} `;
+    });
+    return textValue;
+  }
+
+  function getTextValue(row, cell) {
+    if (cell.isMultipleKey) {
+      return getTextMultipleValue(row, cell);
+    } else if (cell.hasAction && cell.onClick) {
+      return (
+        <div
+          role="button"
+          className={styles.actionText}
+          aria-label={`download`}
+          onClick={() => {
+            const assetId = ref(row, cell.additionalValueKey);
+            cell.onClick(assetId);
+          }}
+        >
+          {ref(row, cell.valueKey)}
+        </div>
+      );
+    }
+
+    return ref(row, cell.valueKey);
+  }
+
+  const renderCellContent = ({ row, cell, rowIdx, cellIdx }) => {
     switch (cell.type) {
       case "icon":
         return <>{cell.icon}</>;
@@ -372,30 +468,39 @@ export default function TableWithSort({
             </Menu>
           </>
         );
-      case "date":
+      case "menu-cta":
         return (
-          <div
-            style={cell.contentStyle}
-            aria-label={new moment(ref(row, cell.valueKey)).format("LLL")}
-            className={[styles.tableCell, cell.contentClass].join(" ")}
-          >
-            <span>
-              {new moment(ref(row, cell.valueKey)).format("MM/DD/YYYY")}
-              <br />
-              {new moment(ref(row, cell.valueKey)).format("hh:mmA")}
-            </span>
-          </div>
+          <>
+            {renderCTAIcon(
+              () => {
+                handleMoreMenu("download", row);
+              },
+              () => {
+                handleMoreMenu("print", rows);
+              },
+              () => {
+                handleMoreMenu("share", row);
+              },
+              ["download", "print", "share"],
+              styles.butttonIconContainer
+            )}
+          </>
         );
+      case "date":
+        return getDateTabelCell({ rowIdx, cellIdx, cell, row }, "date");
+      case "date-time":
+        return getDateTabelCell({ rowIdx, cellIdx, cell, row }, "date-time");
       case "text":
       default:
         return (
-          <span
+          <div
             style={cell.contentStyle}
-            aria-label={`${ref(row, cell.valueKey)}`}
+            tabIndex={0}
+            aria-label={`${cell.valueKey}. ${ref(row, cell.valueKey)}`}
             className={[styles.tableCell, cell.contentClass].join(" ")}
           >
-            {ref(row, cell.valueKey)}
-          </span>
+            {getTextValue(row, cell)}
+          </div>
         );
     }
   };
@@ -496,7 +601,7 @@ export default function TableWithSort({
                         key={`cell-${rowIdx}-${cellIdx}`}
                         {...cell.cellProps}
                       >
-                        {renderCellContent({ row, cell })}
+                        {renderCellContent({ row, cell, rowIdx, cellIdx })}
                       </TableCell>
                     ))}
                   </TableRow>

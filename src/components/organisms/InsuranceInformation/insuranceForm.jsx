@@ -275,8 +275,14 @@ export default function InsuranceForm({
                 }}
                 rules={{
                   validate: {
-                    isNumber: (v) =>
-                      Regex.numberOnly.test(v) || "Invalid format",
+                    isAlphaNumericIfFilled: (v) => {
+                      if (v) {
+                        return (
+                          Regex.alphaNumericRegex.test(v) || "Invalid format"
+                        );
+                      }
+                      return true;
+                    },
                   },
                 }}
               />

@@ -13,6 +13,19 @@ import { renderWithProviders } from "../src/utils/test-util";
 import Cookies from "universal-cookie";
 import HomePage from "../../src/pages/patient";
 
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get() {
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
+
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1588.feature",
   {
@@ -490,7 +503,6 @@ const navigateToPatientPortalHome = async () => {
   let container;
   const element = document.createElement("div");
   const mock = new MockAdapter(axios);
-  Cookies.result = "true";
   const expectedResult = {
     ResponseCode: 2005,
     ResponseType: "success",
@@ -512,7 +524,7 @@ const navigateToPatientPortalHome = async () => {
     watchPosition: jest.fn(),
   };
   global.navigator.geolocation = mockGeolocation;
-  Cookies.result = false;
+  Cookies.result = { authorized: true };
   act(() => {
     container = render(
       <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>

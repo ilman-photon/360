@@ -11,6 +11,8 @@ import { useRouter } from "next/router";
 export default function PrescriptionLayout({
   children,
   pageTitle = "EyeCare Patient Portal - Prescription",
+  title = "",
+  customClassName = "",
 }) {
   const router = useRouter();
 
@@ -41,18 +43,20 @@ export default function PrescriptionLayout({
       <Head>
         <title>EyeCare Patient Portal - {headingTitle(true)} Page</title>
       </Head>
-      <ThemeProvider theme={patientTypography}>
-        <div className={styles.defaultLayout}>
-          <BaseHeader {...logoutProps} />
-          <Navbar />
-          <AccountTitleHeading
-            title={headingTitle()}
-            sxContainer={{ marginTop: "0px" }}
-            sx={{ fontWeight: "400", maxWidth: "1477px", margin: "0 auto" }}
-          />
-          <div className={styles.defaultContainer}>{children}</div>
-        </div>
-      </ThemeProvider>
+      <div className={styles.defaultLayout}>
+        <BaseHeader {...logoutProps} />
+        <Navbar />
+        <AccountTitleHeading
+          title={title ? title : headingTitle()}
+          sxContainer={{ marginTop: "0px" }}
+          sx={{ fontWeight: "400", maxWidth: "1477px", margin: "0 auto" }}
+        />
+        <ThemeProvider theme={patientTypography}>
+          <div className={[styles.defaultContainer.customClassName].join(" ")}>
+            {children}
+          </div>
+        </ThemeProvider>
+      </div>
     </>
   );
 }
