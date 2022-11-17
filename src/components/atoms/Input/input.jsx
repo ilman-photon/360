@@ -115,6 +115,10 @@ export const CustomPasswordInput = styled((props) => (
 }));
 
 export const RedditTextField = React.forwardRef((props, ref) => {
+  // Object.keys(props).indexOf("tabIndex") > -1 && delete props.tabIndex;
+  // Object.keys(props).indexOf("aria-label") > -1 && delete props["aria-label"];
+  const required =
+    Object.keys(props).indexOf("required") > -1 ? "required" : "";
   return (
     <TextField
       inputRef={ref}
@@ -135,7 +139,16 @@ export const RedditTextField = React.forwardRef((props, ref) => {
         ) : null,
         ...props.InputProps,
       }}
+      InputLabelProps={{
+        "aria-hidden": true,
+        ...props.InputLabelProps,
+      }}
       {...props}
+      inputProps={{
+        ...props.inputProps,
+        tabIndex: 0,
+        "aria-label": `${props.label} ${required} text field`,
+      }}
     />
   );
 });
@@ -359,7 +372,6 @@ export const StyledInput = ({
         placeholder={placeholder}
         helperText={helperText}
         withicon={withIcon}
-        tabIndex={0}
         {...props}
         className={["custom-input"].join(" ")}
         adorment={adorment}
