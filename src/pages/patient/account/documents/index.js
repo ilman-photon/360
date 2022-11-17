@@ -85,7 +85,7 @@ export default function AccountDocumentsPage() {
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
       {
-        type: "date",
+        type: "date-time",
         valueKey: "_updated",
         cellProps: { align: "left", padding: "none", tabIndex: 0 },
         contentStyle: {

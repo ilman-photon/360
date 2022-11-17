@@ -39,10 +39,55 @@ export function renderCTAIcon(
   },
   onClickPrint = () => {
     //this is intentional
-  }
+  },
+  onClickShare = () => {
+    //this is intentional
+  },
+  buttonList = ["download", "share", "print"],
+  customButtonClass = ""
 ) {
   const iconShare = "/icon-share.png";
   const iconDownload = "/icon-download.png";
+  const downloadButton = (
+    <Button
+      className={[styles.butttonIconContainer, customButtonClass].join(" ")}
+      data-testid={"download-icon"}
+      onClick={onClickDownload}
+      aria-label={"Download option"}
+    >
+      <Image alt="" src={iconDownload} width={15} height={15} />
+    </Button>
+  );
+
+  const shareButton = (
+    <Button
+      className={[styles.butttonIconContainer, customButtonClass].join(" ")}
+      data-testid={"shared-icon"}
+      aria-label={"Share option"}
+      onClick={onClickShare}
+    >
+      <Image alt="" src={iconShare} width={15} height={15} />
+    </Button>
+  );
+
+  const printButton = (
+    <Button
+      className={[styles.butttonIconContainer, customButtonClass].join(" ")}
+      onClick={onClickPrint}
+      aria-label={"Print option"}
+      data-testid={"print-icon"}
+    >
+      <LocalPrintshopOutlinedIcon
+        sx={{
+          width: "18px",
+          height: "18px",
+          color: colors.darkGreen,
+          cursor: "pointer",
+        }}
+        data-testid={"print-icon"}
+      />
+    </Button>
+  );
   return (
     <Stack
       className={styles.ctaContainer}
@@ -50,37 +95,16 @@ export function renderCTAIcon(
       alignSelf={"center"}
       sx={{ marginLeft: "auto" }}
     >
-      <Button
-        className={styles.butttonIconContainer}
-        data-testid={"download-icon"}
-        onClick={onClickDownload}
-        aria-label={"Download option"}
-      >
-        <Image alt="" src={iconDownload} width={15} height={15} />
-      </Button>
-      <Button
-        className={styles.butttonIconContainer}
-        data-testid={"shared-icon"}
-        aria-label={"Share option"}
-      >
-        <Image alt="" src={iconShare} width={15} height={15} />
-      </Button>
-      <Button
-        className={styles.butttonIconContainer}
-        onClick={onClickPrint}
-        aria-label={"Print option"}
-        data-testid={"print-icon"}
-      >
-        <LocalPrintshopOutlinedIcon
-          sx={{
-            width: "18px",
-            height: "18px",
-            color: colors.darkGreen,
-            cursor: "pointer",
-          }}
-          data-testid={"print-icon"}
-        />
-      </Button>
+      {buttonList.map((option, idx) => {
+        if (option === "download") {
+          return downloadButton;
+        } else if (option === "share") {
+          return shareButton;
+        } else if (option === "print") {
+          return printButton;
+        }
+        return <></>;
+      })}
     </Stack>
   );
 }

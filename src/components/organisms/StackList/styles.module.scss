@@ -1,0 +1,92 @@
+.sortContainer {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px;
+  width: 100%;
+  background: #eff6f7;
+
+  .sortLabel {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+    align-self: center;
+  }
+
+  .dropdownLabel {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    letter-spacing: 0.0016em;
+    color: #303030;
+  }
+}
+.stackContainer {
+  margin-bottom: 8px;
+  background-color: #fff;
+  padding: 16px;
+
+  .stackContent {
+    margin-bottom: 16px;
+  }
+  .stackContentButton {
+    margin-bottom: 5px;
+    margin-top: 28px;
+  }
+  .titleStyle {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+  }
+
+  .valueStyle {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    letter-spacing: 0.0016em;
+    color: #191919;
+  }
+
+  .valueName {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    letter-spacing: 0.0016em;
+    color: #008294;
+    word-break: break-word;
+    text-align: end;
+    cursor: pointer;
+    @media (max-width: 600px) {
+      width: 60%;
+    }
+  }
+
+  .butttonIconContainer {
+    padding: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    min-width: 15px;
+    margin: 0;
+    margin: 0 10px;
+  }
+}
