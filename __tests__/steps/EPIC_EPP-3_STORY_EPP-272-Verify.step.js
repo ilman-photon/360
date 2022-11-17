@@ -8,6 +8,8 @@ import MfaPage from "../../src/pages/patient/mfa";
 import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
 import { renderWithProviders } from "../src/utils/test-util";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-272.feature",
@@ -73,7 +75,11 @@ defineFeature(feature, (test) => {
 
     mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-    container = render(<MfaPage />);
+    container = render(
+      <Provider store={store}>
+        <MfaPage />
+      </Provider>
+    );
     await waitFor(() => container.getByText("setMFATitle"));
   });
 
@@ -137,7 +143,9 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<MfaPage />, {
+        container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -274,7 +282,9 @@ defineFeature(feature, (test) => {
 
     then("user should see MFA Setup screen", async () => {
       act(() => {
-        container = render(<MfaPage />, {
+        container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -406,7 +416,9 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<MfaPage />, {
+        container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -546,7 +558,9 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<MfaPage />, {
+        container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -735,7 +749,9 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<MfaPage />, {
+        container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });

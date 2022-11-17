@@ -61,7 +61,7 @@ const BootstrapDialogTitle = (props) => {
             position: "absolute",
             right: 8,
             top: 8,
-            fontFamily: "Libre Franklin",
+            fontFamily: `"Libre Franklin", sans-serif`,
             fontWeight: "600",
             fontSize: "14px",
             lineHeight: "18px",

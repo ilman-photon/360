@@ -93,6 +93,7 @@ UpdatePasswordPage.getLayout = function getLayout(page) {
       showMobileImage={false}
       imageSrc={backgroundImage}
       title={"Update Password page"}
+      isNotShowHeader={true}
     >
       {page}
     </AuthLayout>

@@ -1,0 +1,21 @@
+.documentPageWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1477px;
+  margin: 0 auto 35px auto;
+  background: white;
+  padding: 32px 24px;
+
+  @media (max-width: 768px) {
+    background: #f4f4f4;
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.defaultContainer {
+  @media (max-width: 768px) {
+    padding-top: 0px !important;
+  }
+}

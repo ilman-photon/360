@@ -35,9 +35,10 @@ const INITIAL_STATE = {
   formMessage: DEFAULT_FORM_MESSAGE,
   pageMessage: DEFAULT_PAGE_MESSAGE,
   isBackToLogin: false,
-  isShowModalError: false,
   genericErrorMessage: null,
   accessToken: null,
+  isShowModalError: false,
+  mfaPageTitle: "Multi-Factor Authentication",
 };
 
 describe("Store Index", () => {

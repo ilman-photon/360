@@ -35,6 +35,7 @@ import {
 import Link from "next/link";
 import EcommerceButton from "../../atoms/EcommerceButton/ecommerceButton";
 import EcommerceButtonMobile from "../../atoms/EcommerceButton/ecommerceButtonMobile";
+import { StyledButton } from "../../atoms/Button/button";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -43,6 +44,7 @@ export default function BaseHeader({
   backTitle,
   onBackClicked,
   showNavbar = false,
+  isNotShowHeader = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
@@ -50,6 +52,8 @@ export default function BaseHeader({
   const dispatch = useDispatch();
   const logo = "/eyecarelogo.png";
   const userData = useSelector((state) => state.user.userData);
+  const iconLinkEcomm = "/icon-link-ecomm-mobile.png";
+  const iconEyeContact = "/icon-eye-contacts.png";
 
   const [user, setUser] = React.useState({});
   React.useEffect(() => {
@@ -139,7 +143,7 @@ export default function BaseHeader({
         }}
       >
         <Container maxWidth="xl">
-          {isUserLoged ? (
+          {isUserLoged && !isNotShowHeader ? (
             <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
               <Link href={"/patient"} role={"none"} tabIndex={0}>
                 <Image
@@ -164,7 +168,26 @@ export default function BaseHeader({
                 >
                   Shop for Contacts
                 </EcommerceButton>
-
+                {/* Menu Desktop*/}
+                <StyledButton
+                  mode={constants.PRIMARY}
+                  size={constants.SMALL}
+                  gradient={false}
+                  data-testid={"Schedule Appointment"}
+                  onClick={() => {
+                    router.push("/patient/appointment");
+                  }}
+                  sx={{
+                    display: { xs: "none !important", sm: "flex !important" },
+                    height: "40px !important",
+                    fontFamily: "'Libre Franklin', sans-serif",
+                    fontWeight: "400 !important",
+                    fontSize: "14px",
+                    boxShadow: "none !important",
+                  }}
+                >
+                  Schedule Appointment
+                </StyledButton>
                 {/* notification badge */}
                 <IconButton
                   data-testid="notification-badge-icon"
@@ -335,7 +358,28 @@ export default function BaseHeader({
           )}
         </Container>
       </AppBar>
-      {isUserLoged && <EcommerceButtonMobile />}
+      {isUserLoged && (
+        <EcommerceButtonMobile
+          menu={[
+            {
+              icon: <Image alt="" src={iconLinkEcomm} width={18} height={18} />,
+              text: "Shop for Contacts",
+              onClick: () => {
+                window.open("https://www.clarksoneyecare.com/");
+              },
+            },
+            {
+              icon: (
+                <Image alt="" src={iconEyeContact} width={18} height={18} />
+              ),
+              text: "Schedule Appointment",
+              onClick: () => {
+                router.push("/patient/appointment");
+              },
+            },
+          ]}
+        />
+      )}
       {showNavbar && isUserLoged && <Navbar />}
       {backTitle && (
         <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
