@@ -112,13 +112,20 @@ export default function ForgotPasswordPage() {
     const targetElement = document.body;
     if (isMobile) {
       targetElement.style.width = "100%";
-      disableBodyScroll(targetElement);
+      if (!showPasswordSecurityQuestion) {
+        disableBodyScroll(targetElement);
+      }
       return () => {
         enableBodyScroll(targetElement);
         targetElement.style.width = "";
       };
     }
-  }, [disableBodyScroll, enableBodyScroll, isMobile]);
+  }, [
+    disableBodyScroll,
+    enableBodyScroll,
+    isMobile,
+    showPasswordSecurityQuestion,
+  ]);
 
   useEffect(() => {
     if (router.asPath === "/patient/sync") {
@@ -528,7 +535,11 @@ export default function ForgotPasswordPage() {
 ForgotPasswordPage.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
+    <AuthLayout
+      showMobileImage={false}
+      imageSrc={backgroundImage}
+      isNotShowHeader={true}
+    >
       {page}
     </AuthLayout>
   );

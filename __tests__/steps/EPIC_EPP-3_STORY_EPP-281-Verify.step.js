@@ -5,6 +5,8 @@ import axios from "axios";
 import MfaPage from "../../src/pages/patient/mfa";
 import "@testing-library/jest-dom";
 import Cookies from "universal-cookie";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -38,7 +40,11 @@ defineFeature(feature, (test) => {
   let container
     beforeEach(async () => {
       Cookies.result = { mfa: true };
-        container = render(<MfaPage />)
+        container = render(
+          <Provider store={store}>
+            <MfaPage />
+          </Provider>
+        )
         await waitFor(() => container.getByText("Set Multi-Factor Authentication"));
 
     });
@@ -107,7 +113,9 @@ defineFeature(feature, (test) => {
     test('"EPIC_EPP-3_STORY_EPP-281-Existing-Verify user should be able to login from device without being asked for MFA using registered mail-id within 3 seconds"', ({ given, and, when, then }) => {
       given(/^user launch the "(.*)" url$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -122,7 +130,9 @@ defineFeature(feature, (test) => {
 
       when(/^user lands onto "(.*)" screen$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -133,7 +143,9 @@ defineFeature(feature, (test) => {
 
       then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
                act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -144,7 +156,9 @@ defineFeature(feature, (test) => {
 
       and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -155,7 +169,9 @@ defineFeature(feature, (test) => {
 
       and(/^user should fill valid (.*) field$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -166,7 +182,9 @@ defineFeature(feature, (test) => {
 
       and(/^user should see the "(.*)" option has been selected that Remember me has not expired$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -177,7 +195,9 @@ defineFeature(feature, (test) => {
 
       when(/^user clicks on "(.*)" button$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -188,7 +208,9 @@ defineFeature(feature, (test) => {
 
       then(/^user should see the page loads within "(.*)"$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -199,7 +221,9 @@ defineFeature(feature, (test) => {
 
       and(/^user should see "(.*)" screen$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -215,7 +239,9 @@ defineFeature(feature, (test) => {
     test('"EPIC_EPP-3_STORY_EPP-281-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail-id"', ({ given, and, when, then }) => {
       given(/^user launch the "(.*)" url$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -230,7 +256,9 @@ defineFeature(feature, (test) => {
 
       when(/^user lands onto "(.*)" screen$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -241,7 +269,9 @@ defineFeature(feature, (test) => {
 
       then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
                act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -252,7 +282,9 @@ defineFeature(feature, (test) => {
 
       and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -263,7 +295,9 @@ defineFeature(feature, (test) => {
 
       and(/^user should fill valid (.*) field$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -274,7 +308,9 @@ defineFeature(feature, (test) => {
 
       and(/^user should see the "(.*)" option has been selected that Remember me has not expired$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -285,7 +321,9 @@ defineFeature(feature, (test) => {
 
       when(/^user clicks on "(.*)" button$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });
@@ -296,7 +334,9 @@ defineFeature(feature, (test) => {
 
       then(/^user should see "(.*)" screen$/, async (arg0) => {
              act(() => {
-                container = render(<MfaPage />, {
+                container = render(<Provider store={store}>
+          <MfaPage />
+        </Provider>, {
                   container: document.body.appendChild(element),
                   legacyRoot: true,
                 });

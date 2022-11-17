@@ -85,6 +85,7 @@ function SessionExpiredModal() {
   return (
     <Dialog
       open={open}
+      role={"dialog"}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
       sx={{
@@ -94,10 +95,8 @@ function SessionExpiredModal() {
       <DialogTitle
         id="alert-dialog-title"
         style={styles.containerPadding}
-        tabindex="1"
-        aria-live={
-          !isExpired ? "Session Timeout heading" : "Session Expired heading"
-        }
+        tabindex={0}
+        aria-live={"assertive"}
         aria-label={
           !isExpired ? "Session Timeout heading" : "Session Expired heading"
         }
@@ -106,7 +105,6 @@ function SessionExpiredModal() {
       </DialogTitle>
       <DialogContent
         style={{ ...styles.containerPadding, paddingBottom: "16px" }}
-        tabIndex={1}
         sx={{
           width: "500px",
           "@media (max-width: 992px)": {
@@ -116,16 +114,15 @@ function SessionExpiredModal() {
       >
         <FormMessage
           success={false}
+          tabIndex={0}
+          aria-live="assertive"
           id="alert-dialog-description"
           sx={styles.postMessage}
-          aria-live={
+          aria-label={
             !isExpired
               ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
               : "Your session expired. Please login again."
           }
-          accessibility={{
-            "aria-live": "off",
-          }}
         >
           {!isExpired
             ? // ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`

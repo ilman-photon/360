@@ -40,12 +40,7 @@ export default function AppointmentLocation({
   return (
     <Box mb={2}>
       <AccountCard
-        titleIcon={
-          <LocationOnOutlinedIcon
-            aria-label={"calendar icon"}
-            aria-hidden={"false"}
-          />
-        }
+        titleIcon={<LocationOnOutlinedIcon aria-label={"Location icon"} />}
         title={t("location")}
         isAppoinment={true}
         actionContent={
