@@ -15,7 +15,7 @@ import { patientTypography } from "../../../styles/theme";
 
 const iconintakeFoms = "/iconintakeFoms.png";
 const iconCardinsuranceCard = "/iconCardinsuranceCard.png";
-const iconHealthRecord = "/iconHealthRecord.png";
+const iconHealthRecord = "/iconCarePlanRecord.png";
 const iconCarePlan = "/icon-carePlan.png";
 const iconPrescription2 = "/icon-prescription2.png";
 const iconTestLabResults = "/icon-testLabResults.png";
@@ -39,6 +39,11 @@ const documents = [
     icon: iconintakeFoms,
     href: "/patient/account/documents?type=intake-forms",
     label: "Intake Forms",
+  },
+  {
+    label: "Health Record",
+    href: "/patient/health-record",
+    icon: iconHealthRecord,
   },
   // {
   //   icon: iconCardinsuranceCard,

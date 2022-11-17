@@ -26,6 +26,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { colors } from "../../../styles/theme";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function MobileMenu({
   menu = [
@@ -82,6 +83,21 @@ export default function MobileMenu({
           label: "Intake Forms",
           href: "/patient/account/documents?type=intake-forms",
           icon: <IntakeFormsIcon sx={{ fill: colors.darkGreen }} />,
+        },
+        {
+          label: "Health Record",
+          href: "/patient/health-record",
+          icon: (
+            <Box sx={{ lineHeight: "15px" }}>
+              <Image
+                alt=""
+                src={"/iconCarePlanRecord.png"}
+                width={24}
+                height={24}
+                style={{ cursor: "pointer" }}
+              />
+            </Box>
+          ),
         },
       ],
       icon: <DescriptionOutlinedIcon sx={{ fill: colors.darkGreen }} />,

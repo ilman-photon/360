@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import PrescriptionLayout from "../../../../components/templates/prescriptionLayout";
-import store from "../../../../store/store";
 import TableWithSort from "../../../../components/molecules/TableWithSort/tableWithSort";
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
@@ -172,7 +171,7 @@ export default function MedicalRecordPage() {
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
       {
-        type: "date",
+        type: "date-time",
         valueKey: "_created",
         cellProps: { align: "left", padding: "none", tabIndex: 0 },
         contentStyle: {
@@ -332,7 +331,7 @@ export default function MedicalRecordPage() {
   );
 }
 
-MedicalRecordPage.getLayout = function getLayout(page) {
+MedicalRecordPage.getLayout = function getLayout(page, store, router) {
   return (
     <Provider store={store}>
       <PrescriptionLayout title={"Test & Lab Results"}>
