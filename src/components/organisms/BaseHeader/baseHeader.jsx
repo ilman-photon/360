@@ -31,6 +31,7 @@ import {
   fetchNotifications,
   markAllAsRead,
   markAsReadById,
+  readNotificationItem,
 } from "../../../store/notification";
 import Link from "next/link";
 import EcommerceButton from "../../atoms/EcommerceButton/ecommerceButton";
@@ -63,25 +64,32 @@ export default function BaseHeader({
       !!cookies.get("accessToken");
     setUserLoged(isLogin);
 
-    const userStorageData =
+    const userStorageData = JSON.parse(localStorage.getItem("userData"));
+    setPatientId(userStorageData?.patientId);
+    const userStorageProfile =
       localStorage.getItem("userProfile") !== "undefined"
         ? JSON.parse(localStorage.getItem("userProfile"))
         : null;
-    if (userStorageData) {
-      dispatch(setUserData(userStorageData));
+    if (userStorageProfile) {
+      dispatch(setUserData(userStorageProfile));
     }
 
     // notifications
-    // fetch for every 3 minutes
-    const notificationId = setInterval(() => {
-      fetchUserNotifications();
-    }, 180000);
+    let notificationId;
+    if (userStorageData?.patientId) {
+      // fetch for every 3 minutes
+      notificationId = setInterval(() => {
+        fetchUserNotifications(userStorageData?.patientId);
+      }, 180000);
 
-    // fetch for first time
-    fetchUserNotifications();
+      // fetch for first time
+      fetchUserNotifications(userStorageData?.patientId);
+    }
 
     // clear interval after unMount
-    return () => clearInterval(notificationId);
+    return () => {
+      if (notificationId) clearInterval(notificationId);
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -92,6 +100,7 @@ export default function BaseHeader({
 
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [patientId, setPatientId] = React.useState(null);
   const [notificationDrawerOpened, setNotificationDrawerOpened] =
     React.useState(false);
   const [isNotificationLoading, setIsNotificationLoading] =
@@ -113,20 +122,81 @@ export default function BaseHeader({
     setAnchorElUser(null);
   };
 
-  const fetchUserNotifications = () => {
+  const fetchUserNotifications = async (patientId) => {
     setIsNotificationLoading(true);
-    dispatch(fetchNotifications());
-
+    await dispatch(fetchNotifications({ patientId }));
     setIsNotificationLoading(false);
   };
 
-  const handleMarkAllAsRead = () => {
-    dispatch(markAllAsRead());
+  const handleMarkAllAsRead = async () => {
+    const notificationIds = notifications.map((item) => item._id);
+    const { payload } = await dispatch(
+      readNotificationItem({ patientId, notificationIds: notificationIds })
+    );
+    if (payload.success) {
+      // after effect to edit state of rawuserinsuranceData manually and rebuild
+      dispatch(markAllAsRead());
+    }
+  };
+
+  const getPathToPrescriptionPage = (tab) => {
+    return `/patient/prescription?activeTab=${tab}`;
+  };
+
+  const actionNotificationRedirect = (data) => {
+    let path = "#";
+    switch (data.type) {
+      case "prescription":
+      case "prescription-refill":
+        path = "/patient/prescription";
+        break;
+      case "appointment-first-reminder":
+      case "appointment":
+      case "appointment-second-reminder":
+      case "appointment-one":
+        path = `/patient/appointments/detail-appointments/${data.details?.appointmentData?.appointmentId}`;
+        break;
+      case "test-result":
+        path = "/patient/account/medical-records?type=test-lab-result";
+        break;
+      case "message":
+        path = "/patient/message?conversationId=1234";
+        break;
+      case "invoice":
+        break;
+      case "appointment-summary":
+        break;
+      case "prescription-glasses":
+      case "glasses":
+        path = getPathToPrescriptionPage(0);
+        break;
+      case "prescription-contact":
+      case "contact-lens":
+        path = getPathToPrescriptionPage(1);
+        break;
+      case "prescription-aspirin":
+      case "aspirin":
+        path = getPathToPrescriptionPage(2);
+        break;
+    }
+    router.push(path);
+  };
+
+  const actionNotificationRead = async (notificationId) => {
+    const { payload } = await dispatch(
+      readNotificationItem({ patientId, notificationIds: [notificationId] })
+    );
+    if (payload.success) {
+      // after effect to edit state of rawuserinsuranceData manually and rebuild
+      dispatch(markAsReadById(notificationId));
+    }
   };
 
   const handleNotificationItemClicked = (data) => {
-    dispatch(markAsReadById(data.id));
-    console.log("redirect to:", data.type);
+    const id = data.id || data._id;
+    actionNotificationRead(id);
+    actionNotificationRedirect(data);
+    setNotificationDrawerOpened(false);
   };
 
   return (
@@ -200,7 +270,7 @@ export default function BaseHeader({
                     setNotificationDrawerOpened(true);
                   }}
                 >
-                  {notifications.some((v) => !v.isRead) ? (
+                  {notifications && notifications.some((v) => !v.isRead) ? (
                     <Badge
                       color="error"
                       badgeContent={notifications.length > 0 ? " " : null}
