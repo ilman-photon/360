@@ -81,7 +81,7 @@ export default function PrescriptionPage() {
             response.deliveryDate
           );
           setPrescriptionData(data);
-          response.message = "Your refill request has been sumbitted";
+          response.message = "Your refill request has been submitted";
           setRequestRefillResponse(response);
           resetRequestRefillResponse();
         })

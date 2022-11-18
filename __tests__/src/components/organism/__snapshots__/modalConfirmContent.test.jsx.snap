@@ -91,7 +91,7 @@ Object {
           >
             <a
               aria-label="isEmergency"
-              arialabel="sIf this is a medical emergency, please call 911"
+              arialabel="If this is a medical emergency, please call 911"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
               data-mui-internal-clone-element="true"
               data-testid="loginlink"
@@ -452,7 +452,7 @@ Object {
         >
           <a
             aria-label="isEmergency"
-            arialabel="sIf this is a medical emergency, please call 911"
+            arialabel="If this is a medical emergency, please call 911"
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
             data-mui-internal-clone-element="true"
             data-testid="loginlink"
