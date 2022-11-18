@@ -1,9 +1,55 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Api } from "../pages/api/api";
+
+let url;
 
 export const fetchNotifications = createAsyncThunk(
-  "user/fetchNotifications",
-  async () => {
-    return fetch("/api/dummy/notification").then((res) => res.json());
+  "notification/fetchNotifications",
+  async ({ patientId }) => {
+    const api = new Api();
+    return api.getResponse(
+      `/ecp/messagealert/getalerts/${patientId}`, // "7dba6139-e2aa-4994-bb72-af6f1b11b94a"
+      null,
+      "get"
+    );
+  }
+);
+
+export const readNotificationItem = createAsyncThunk(
+  "notification/readNotificationItem",
+  async ({ patientId, notificationIds }) => {
+    const api = new Api();
+    url = `/ecp/messagealert/getMessageDetails/${patientId}`; // "7dba6139-e2aa-4994-bb72-af6f1b11b94a"
+    let postBodyValue = [];
+    notificationIds.forEach((element) => {
+      postBodyValue.push({
+        id: element,
+        isRead: true,
+      });
+    });
+
+    try {
+      const response = await api.getResponse(
+        url,
+        {
+          op: "replace",
+          path: "/isRead",
+          value: postBodyValue,
+        },
+        "patch"
+      );
+
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
   }
 );
 
@@ -26,9 +72,10 @@ export const notificationStore = createSlice({
     },
     markAsReadById: (state, { payload }) => {
       state.list = state.list.map((v) => {
+        const id = v.id || v._id;
         return {
           ...v,
-          isRead: payload === v.id ? true : v.isRead,
+          isRead: payload === id ? true : v.isRead,
         };
       });
     },
@@ -38,7 +85,7 @@ export const notificationStore = createSlice({
       state.status = "loading";
     },
     [fetchNotifications.fulfilled]: (state, { payload }) => {
-      state.list = payload;
+      state.list = payload.alerts;
       state.status = "success";
     },
     [fetchNotifications.rejected]: (state, action) => {
