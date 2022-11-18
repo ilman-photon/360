@@ -20,7 +20,7 @@ describe("SetMultiFactorAuthentication Components", () => {
         data={communicationMethod}
         testIds={MFA_TEST_ID}
       />);
-    expect(container.getByText(`Email: ${communicationMethod.email}`)).toBeInTheDocument();
+    expect(container.getByText(`Email: u****@photon.com`)).toBeInTheDocument();
   });
 
   it("SetMultiFactorAuthentication render only phone", () => {
@@ -37,6 +37,6 @@ describe("SetMultiFactorAuthentication Components", () => {
         data={communicationMethod}
         testIds={MFA_TEST_ID}
       />);
-    expect(container.getByText(`Phone: ${communicationMethod.phone}`)).toBeInTheDocument();
+    expect(container.getByText(`Phone: (9**)***-**72`)).toBeInTheDocument();
   });
 });

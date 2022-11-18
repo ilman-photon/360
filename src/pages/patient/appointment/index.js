@@ -66,7 +66,7 @@ export default function Appointment({ googleApiKey }) {
   const [activeTabs, setActiveTabs] = useState(0);
   const [showMaps, setShowMaps] = useState(false);
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [providerDataOverview, setProviderDataOverview] = useState({});
   const [tempProviderDataOverview, setTempProviderDataOverview] = useState({});
   const [rangeDateOverview, setRangeDateOverview] = useState({

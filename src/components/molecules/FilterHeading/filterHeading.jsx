@@ -34,9 +34,10 @@ export const imageSrcState = "/bx_insurance_card.png";
 export const muiInputRoot = "& .MuiFilledInput-root";
 
 export function keyDownPress(e, handleCloseDialog) {
+  const code = e.code || e.key;
   if (Regex.specialRegex.test(e.key)) {
     e.preventDefault();
-  } else if (e.code && e.code.toLowerCase() === "enter" && e.target.value) {
+  } else if (code.toLowerCase() === "enter" && e.target.value) {
     handleCloseDialog();
     e.preventDefault();
   }
