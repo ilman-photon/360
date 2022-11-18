@@ -5,6 +5,8 @@ import axios from "axios";
 import MfaPage from "../../src/pages/patient/mfa";
 import "@testing-library/jest-dom";
 import Cookies from "universal-cookie";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -25,9 +27,6 @@ jest.mock("universal-cookie", () => {
   }
   return MockCookies;
 });
-import { renderWithProviders } from "../src/utils/test-util";
-import { Provider } from "react-redux";
-import store from "../../src/store/store";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-281.feature"

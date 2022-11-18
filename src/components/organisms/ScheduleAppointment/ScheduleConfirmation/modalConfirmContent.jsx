@@ -168,7 +168,7 @@ export default function ModalConfirmContent({
         <div className={styles.bottomParagraph}>
           <Tooltip
             title="If this is a medical emergency, please call 911"
-            ariaLabel={"sIf this is a medical emergency, please call 911"}
+            ariaLabel={"If this is a medical emergency, please call 911"}
             tabIndex={0}
           >
             <Link
