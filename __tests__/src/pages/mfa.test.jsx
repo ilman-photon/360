@@ -4,6 +4,8 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { Provider } from "react-redux";
+import store from "../../../src/store/store";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -42,7 +44,11 @@ describe("Multi-Factor Authentication", () => {
 
     mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-    container = render(<MfaPage />);
+    container = render(
+      <Provider store={store}>
+        <MfaPage />
+      </Provider>
+    );
     await waitFor(() => container.getByText("communicationMethodTitle"));
   });
 
@@ -53,7 +59,11 @@ describe("Multi-Factor Authentication", () => {
 
   test("cookie false", async () => {
     await waitFor(() => (Cookies.result = undefined));
-    container = render(<MfaPage />);
+    container = render(
+      <Provider store={store}>
+        <MfaPage />
+      </Provider>
+    );
   });
 
   test("securityQuestions", async () => {
@@ -69,7 +79,11 @@ describe("Multi-Factor Authentication", () => {
           isSecurityQuestionStep: "true",
         })
     );
-    container = render(<MfaPage />);
+    container = render(
+      <Provider store={store}>
+        <MfaPage />
+      </Provider>
+    );
   });
 
   test("is confirm button clicked", async () => {
@@ -356,5 +370,14 @@ describe("Multi-Factor Authentication", () => {
       name: /backToLoginBtn/i,
     });
     fireEvent.click(confirmButton);
+  });
+  describe("Multi-Factor Authentication", () => {
+    test("render with mfa cookie false", () => {
+      const container = render(
+        <Provider store={store}>
+          <MfaPage />
+        </Provider>
+      );
+    });
   });
 });

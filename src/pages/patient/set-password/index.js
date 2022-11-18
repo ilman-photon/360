@@ -193,6 +193,7 @@ SetPasswordPage.getLayout = function getLayout(page) {
       imageSrc={backgroundImage}
       title={"Set Password"}
       customImageBg={true}
+      isNotShowHeader={true}
     >
       {page}
     </AuthLayout>

@@ -15,6 +15,7 @@ export function UpcomingAppointmentCard({
   onRescheduleClicked,
   onCancelClicked,
   onAddToCalendarClicked,
+  onScheduleNewClicked,
 }) {
   function addHours(numOfHours, date = new Date()) {
     date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
@@ -145,7 +146,7 @@ export function scheduleAppointmentButton(onScheduleClicked) {
   );
 }
 
-export function NoAppointment({ onRescheduleClicked }) {
+export function NoAppointment({ onScheduleNewClicked }) {
   return (
     <Box>
       <Box className={styles.noAppointmentTitle}>
@@ -154,7 +155,7 @@ export function NoAppointment({ onRescheduleClicked }) {
         </Typography>
       </Box>
       <Box className={styles.noAppointmentButtonContainer}>
-        {scheduleAppointmentButton(onRescheduleClicked)}
+        {scheduleAppointmentButton(onScheduleNewClicked)}
       </Box>
     </Box>
   );
@@ -165,6 +166,7 @@ export default function UpcomingAppointment({
   onRescheduleClicked,
   onCancelClicked,
   onAddToCalendarClicked,
+  onScheduleNewClicked,
   isMobile,
 }) {
   const isHasValue = data.length !== 0;
@@ -180,7 +182,7 @@ export default function UpcomingAppointment({
         >
           Upcoming Appointments
         </Typography>
-        {isHasValue ? scheduleAppointmentButton(onRescheduleClicked) : null}
+        {isHasValue ? scheduleAppointmentButton(onScheduleNewClicked) : null}
       </Box>
 
       {isHasValue ? (
@@ -192,13 +194,14 @@ export default function UpcomingAppointment({
               onRescheduleClicked={onRescheduleClicked}
               onCancelClicked={onCancelClicked}
               onAddToCalendarClicked={onAddToCalendarClicked}
+              onScheduleNewClicked={onScheduleNewClicked}
               isMobile={isMobile}
             />
           );
         })
       ) : (
         <NoAppointment
-          onRescheduleClicked={onRescheduleClicked}
+          onScheduleNewClicked={onScheduleNewClicked}
         ></NoAppointment>
       )}
     </Box>

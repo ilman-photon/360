@@ -222,7 +222,7 @@ export default function AppointmentCard({
               >
                 {appointment?.providerInfo?.image ? (
                   <ImageFallback
-                    src={appointment.providerInfo.image}
+                    source={appointment.providerInfo.image}
                     style={{ borderRadius: "50%" }}
                     alt={`${appointment.providerInfo?.name} image`}
                     width="90px"

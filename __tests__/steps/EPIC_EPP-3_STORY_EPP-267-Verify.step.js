@@ -6,6 +6,8 @@ import MfaPage from "../../src/pages/patient/mfa";
 import "@testing-library/jest-dom";
 import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -51,7 +53,11 @@ defineFeature(feature, (test) => {
 
     mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-    container = render(<MfaPage />);
+    container = render(
+      <Provider store={store}>
+        <MfaPage />
+      </Provider>
+    );
     await waitFor(() => container.getByText("communicationMethodTitle"));
   });
 
