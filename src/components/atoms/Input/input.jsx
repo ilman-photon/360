@@ -233,7 +233,10 @@ export const CustomInput = styled(({ ...props }) => {
           <CustomFormControl sx={{ m: 1 }} variant="filled">
             <CustomPasswordInput
               error={!Boolean(values.value) && props.error}
-              InputLabelProps={{ "aria-hidden": true }}
+              InputLabelProps={{
+                "aria-hidden": true,
+                "aria-label": "Password required text field",
+              }}
               variant="filled"
               id={props.id}
               type={showPassword}
