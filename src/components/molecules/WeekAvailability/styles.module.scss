@@ -70,7 +70,8 @@
   }
 
   @media only screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) {
+    screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait),
+    screen and (min-width: 930px) and (max-width: 1024px) {
     padding-right: 0px;
     width: 90px;
   }
@@ -87,7 +88,8 @@
   }
 
   @media only screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait) {
+    screen and (min-device-width: 834px) and (max-device-width: 1024px) and (orientation: portrait),
+    screen and (min-width: 930px) and (max-width: 1024px) {
     width: auto;
     gap: 8px;
   }

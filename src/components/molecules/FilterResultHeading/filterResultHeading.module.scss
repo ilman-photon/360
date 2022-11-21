@@ -240,7 +240,8 @@
   }
 
   @media only screen and (min-device-width: 930px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 930px) and (max-device-width: 1024px) and (orientation: portrait) {
+    screen and (min-device-width: 930px) and (max-device-width: 1024px) and (orientation: portrait),
+    screen and (min-width: 930px) and (max-width: 1024px) {
     grid-template-columns: 20% 69% !important;
     padding-right: 15px;
   }

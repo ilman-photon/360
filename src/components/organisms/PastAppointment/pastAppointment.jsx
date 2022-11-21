@@ -102,7 +102,7 @@ export function PastAppointmentCard({ data, threshold }) {
                 <Link
                   tabIndex={0}
                   ariaLabel={"View appointment details"}
-                  href={`/patient/appointments/detail-appoiments/${item.appointmentId}`}
+                  href={`/patient/appointments/detail-appointments/${item.appointmentId}`}
                   className={styles.link}
                 >
                   View appointment details

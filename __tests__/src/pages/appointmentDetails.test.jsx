@@ -12,7 +12,7 @@ import MockAdapter from "axios-mock-adapter";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
 import Cookies from "universal-cookie";
-import AppointmentDetails from "../../../src/pages/patient/appointments/detail-appoiments/[appointmentId]";
+import AppointmentDetails from "../../../src/pages/patient/appointments/detail-appointments/[appointmentId]";
 import { TEST_ID } from "../../../src/utils/constants";
 
 jest.mock("universal-cookie", () => {

@@ -6,6 +6,8 @@ import {
   AccordionSummary,
   Box,
   Dialog,
+  DialogTitle,
+  DialogContentText,
   DialogActions,
   DialogContent,
   Divider,
@@ -49,6 +51,8 @@ export default function PrescriptionMedication({
   const [selectedData, setSelectedData] = React.useState({});
   const [filterData, setFilterData] = React.useState([]);
   const [filterMedicationData, setFilterMedicationData] = React.useState([]);
+  const [requestRefillResponse, setRequestRefillResponse] =
+    React.useState(null);
   const isFilterApplied = activeFilter.length > 0;
   const imageSrcState = "/mobileFilter.png";
   const imageSrcFilled = "/appliedMobileFilter.png";
@@ -140,10 +144,30 @@ export default function PrescriptionMedication({
     }
   };
 
+  const formMessageComp = React.useRef(null);
+
+  useEffect(() => {
+    if (formMessageComp.current) {
+      formMessageComp.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+      formMessageComp.current.focus();
+    }
+    setRequestRefillResponse(requestRefillResponseData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requestRefillResponseData]);
+
   useEffect(() => {
     if (filterProvider.length && filterProvider.length > 0)
       setFilterData(filterProvider);
   }, [filterProvider]);
+
+  useEffect(() => {
+    setRequestRefillResponse(requestRefillResponseData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requestRefillResponseData]);
 
   /**
    * Handle medication request refill or cancel request refill
@@ -175,19 +199,20 @@ export default function PrescriptionMedication({
       <Dialog
         class={styles.dialog}
         open={showModal}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
         sx={{
           ".MuiDialog-container .MuiPaper-root": {
             marginTop: "70px",
             marginBottom: "auto",
           },
         }}
+        role="alertdialog"
+        aria-label=""
       >
         <DialogContent
           className={styles.dialogContent}
           style={{ padding: "16px" }}
-          aria-live={"assertive"}
+          tabIndex={0}
+          aria-label="Are you sure you want to cancel?"
           sx={{
             width: "500px",
             "@media (max-width: 992px)": {
@@ -195,7 +220,11 @@ export default function PrescriptionMedication({
             },
           }}
         >
-          <Typography className={styles.dialogTypo}>
+          <Typography
+            className={styles.dialogTypo}
+            aria-hidden={true}
+            tabIndex={"-1"}
+          >
             Are you sure you want to cancel?
           </Typography>
         </DialogContent>
@@ -311,7 +340,7 @@ export default function PrescriptionMedication({
       );
     } else {
       intentUI.push(
-        <Typography className={styles.medicationViewAllStatus}>
+        <Typography className={styles.medicationViewAllStatus} tabIndex={"0"}>
           Status: {status === "refill request" ? `${status}ed` : status}
         </Typography>
       );
@@ -635,8 +664,11 @@ export default function PrescriptionMedication({
     <Box className={styles.medicationDetailContainer}>
       {requestRefillResponseData && (
         <FormMessage
+          ref={formMessageComp}
+          id="alert-dialog-description"
           success={true}
           sx={{ margin: "20px 10px 10px 10px", color: "#ffffff" }}
+          autoFocus
         >
           <Typography className={styles.formMessageText}>
             {requestRefillResponseData.message}

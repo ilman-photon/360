@@ -7,6 +7,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { useTranslation } from "next-i18next";
+import { maskingEmail, maskingPhone } from "../../../utils/mfa";
 
 export default function SetMultiFactorAuthentication({
   onConfirmClicked,
@@ -29,10 +30,10 @@ export default function SetMultiFactorAuthentication({
     if (!isMultipleComunication) {
       let value = "";
       if (data.email) {
-        value = `Email: ${data.email}`;
+        value = `Email: ${maskingEmail(data.email)}`;
         selectedCommunication === "" && setSelectedCommunication("email");
       } else if (data.phone) {
-        value = `Phone: ${data.phone}`;
+        value = `Phone: ${maskingPhone(data.phone)}`;
         selectedCommunication === "" && setSelectedCommunication("phone");
       }
       return (
@@ -66,7 +67,7 @@ export default function SetMultiFactorAuthentication({
             <FormControlLabel
               value="email"
               data-testid={testIds.radioEmail}
-              label={`Email: ${data.email}`}
+              label={`Email: ${maskingEmail(data.email)}`}
               sx={{
                 ".MuiFormControlLabel-label": {
                   color: "#242526",
@@ -90,7 +91,7 @@ export default function SetMultiFactorAuthentication({
             <FormControlLabel
               value="phone"
               data-testid={testIds.radioPhone}
-              label={`Phone: ${data.phone}`}
+              label={`Phone: ${maskingPhone(data.phone)}`}
               sx={{
                 ".MuiFormControlLabel-label": {
                   color: "#242526",

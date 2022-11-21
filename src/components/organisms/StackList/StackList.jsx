@@ -61,6 +61,7 @@ const StackList = ({
       setSortBy(sortFilterData[0].value);
       setSortDataList(onSortData(sortFilterData[0].value));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataList]);
 
   function getUIList(data, idx) {
