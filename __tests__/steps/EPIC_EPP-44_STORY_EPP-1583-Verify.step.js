@@ -1,4 +1,10 @@
-import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  cleanup,
+} from "@testing-library/react";
 import axios from "axios";
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
@@ -45,8 +51,10 @@ defineFeature(feature, (test) => {
     when(
       "user click on Already have an appointment? Sync your appointment information button",
       async () => {
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
@@ -97,8 +105,10 @@ defineFeature(feature, (test) => {
     when(
       "user click on Already have an appointment? Sync your appointment information button",
       async () => {
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
@@ -123,7 +133,8 @@ defineFeature(feature, (test) => {
     });
 
     and("user provides valid email or phone number", () => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, { target: { value: "user@gmail.com" } });
       expect(usernameField.value).toEqual("user@gmail.com");
     });
@@ -176,14 +187,16 @@ defineFeature(feature, (test) => {
     when(
       "user click on Already have an appointment? Sync your appointment information button",
       async () => {
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     then("user should see the Email or Phone number", async () => {
-      cleanup()
+      cleanup();
       useRouter.mockReturnValue({
         back: jest.fn(),
         asPath: "/patient/sync",
@@ -198,12 +211,13 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => {
-        container.getByText(/usernamePlaceHolder/i)
-      })
+        container.getByText(/usernamePlaceHolder/i);
+      });
     });
 
     and("user provides valid email or phone number", () => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, { target: { value: "user@gmail.com" } });
       expect(usernameField.value).toEqual("user@gmail.com");
     });
@@ -276,14 +290,16 @@ defineFeature(feature, (test) => {
     when(
       "user click on Already have an appointment? Sync your appointment information button",
       async () => {
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     then("user should see the Email or Phone number", async () => {
-      cleanup()
+      cleanup();
       useRouter.mockReturnValue({
         back: jest.fn(),
         asPath: "/patient/sync",
@@ -303,7 +319,8 @@ defineFeature(feature, (test) => {
     });
 
     and("user provides valid email or phone number", () => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, { target: { value: "user@gmail.com" } });
       expect(usernameField.value).toEqual("user@gmail.com");
     });
@@ -342,14 +359,16 @@ defineFeature(feature, (test) => {
     when(
       "user click on Already have an appointment? Sync your appointment information button",
       async () => {
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     then("user should see the Email or Phone number", async () => {
-      cleanup()
+      cleanup();
       useRouter.mockReturnValue({
         back: jest.fn(),
         asPath: "/patient/sync",
@@ -369,7 +388,8 @@ defineFeature(feature, (test) => {
     });
 
     and("user provides valid email or phone number", () => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, { target: { value: "user@gmail.com" } });
       expect(usernameField.value).toEqual("user@gmail.com");
     });
@@ -419,7 +439,7 @@ defineFeature(feature, (test) => {
     );
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1583 -Verify that user should be prompted with inline validation error message “This field is required” when all the required fields are not filled", ({ }) => {
+  test("EPIC_EPP-44_STORY_EPP-1583 -Verify that user should be prompted with inline validation error message “This field is required” when all the required fields are not filled", ({}) => {
     defaultValidation();
   });
 
@@ -436,14 +456,16 @@ defineFeature(feature, (test) => {
     when(
       "user click on Already have an appointment? Sync your appointment information button",
       async () => {
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     then("user should see the Email or Phone number", async () => {
-      cleanup()
+      cleanup();
       useRouter.mockReturnValue({
         back: jest.fn(),
         asPath: "/patient/sync",
@@ -463,7 +485,8 @@ defineFeature(feature, (test) => {
     });
 
     and("user provides valid email or phone number", () => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, { target: { value: "user@gmail.com" } });
       expect(usernameField.value).toEqual("user@gmail.com");
     });
@@ -582,14 +605,16 @@ defineFeature(feature, (test) => {
     when(
       "user click on Already have an appointment? Sync your appointment information button",
       async () => {
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     then("user should see the Email or Phone number", async () => {
-      cleanup()
+      cleanup();
       useRouter.mockReturnValue({
         back: jest.fn(),
         asPath: "/patient/sync",
@@ -609,7 +634,8 @@ defineFeature(feature, (test) => {
     });
 
     and("user provides valid email or phone number", () => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, { target: { value: "user@gmail.com" } });
       expect(usernameField.value).toEqual("user@gmail.com");
     });
@@ -694,7 +720,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User is logged in to the application", async () => {
-      container = await renderLogin()
+      container = await renderLogin();
       const syncButton = container.getByText("syncYourAppointmentInformation");
       fireEvent.click(syncButton);
     });
@@ -744,14 +770,16 @@ defineFeature(feature, (test) => {
     when(
       "user click on Already have an appointment? Sync your appointment information button",
       async () => {
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     then("user should see the Email or Phone number", async () => {
-      cleanup()
+      cleanup();
       useRouter.mockReturnValue({
         back: jest.fn(),
         asPath: "/patient/sync",

@@ -22,10 +22,12 @@ const launchURL = () => {
     });
   });
   container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-}
+};
 
 const navigateToPatientPortalApp = () => {
-  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  mock
+    .onGet(`https://api.ipify.org?format=json`)
+    .reply(200, { ip: "10.10.10.10" });
   act(() => {
     container = renderWithProviders(<AuthPage />, {
       container: document.body.appendChild(element),
@@ -37,7 +39,7 @@ const navigateToPatientPortalApp = () => {
 const landOnPatientPortalScreen = () => {
   const title = container.getByText("formTitle");
   expect("formTitle").toEqual(title.textContent);
-}
+};
 
 defineFeature(feature, (test) => {
   test('EPIC_EPP-7_STORY_EPP-218 - Verify the error message if user enter 3 times wrong/incorrect answer the security questions via "Answer security questions" mode', ({
@@ -48,15 +50,15 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("use launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when('user lands onto "Patient Login" screen', () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
     and("user clicks on 'Forgot Password' link", () => {
@@ -70,7 +72,7 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
       expect(usernameField.id).toEqual("username");
     });
 
