@@ -4,23 +4,23 @@ import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import ImageFallback from "../../atoms/Image/image";
 
+export const getProviderLocation = (address) => {
+  if (address === "") return "#";
+  const addressLine1 = address.addressLine1 || "";
+  const addressLine2 = address.addressLine2 || "";
+  const state = address.state || "";
+  const zipcode = address.zipcode || address.zip || "";
+  const city = address.city || "";
+
+  const addressQuery =
+    `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
+      / /g,
+      "+"
+    );
+  return `https://www.google.com/maps/search/?api=1&query=${addressQuery}`;
+};
+
 export default function AppointmentInformation({ data }) {
-  const getProviderLocation = (address) => {
-    if (address === "") return "#";
-    const addressLine1 = address.addressLine1 || "";
-    const addressLine2 = address.addressLine2 || "";
-    const state = address.state || "";
-    const zipcode = address.zipcode || address.zip || "";
-    const city = address.city || "";
-
-    const addressQuery =
-      `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
-        / /g,
-        "+"
-      );
-    return `https://www.google.com/maps/search/?api=1&query=${addressQuery}`;
-  };
-
   return (
     <Box className={styles.appointmentInformation}>
       <Box className={styles.imageContainer}>

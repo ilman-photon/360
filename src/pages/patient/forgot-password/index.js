@@ -469,6 +469,18 @@ export default function ForgotPasswordPage() {
     }
   };
 
+  let pageTitleAcc = confirmationFormProps.pageTitle;
+
+  if (showForgotPassword) {
+    pageTitleAcc = isAppointment
+      ? "Sync appointment Page"
+      : "Forgot Password Page";
+  } else if (showSelectOption) {
+    pageTitleAcc = "Select an Option Page";
+  } else if (showPasswordSecurityQuestion) {
+    pageTitleAcc = "Password recovery security questions page";
+  }
+
   return (
     <Box className={globalStyles.containerStyledPage}>
       {showForgotPassword ? (
@@ -530,6 +542,9 @@ export default function ForgotPasswordPage() {
       ) : (
         <></>
       )}
+      <div style={{ display: "none" }} role={"alert"}>
+        {pageTitleAcc}
+      </div>
     </Box>
   );
 }

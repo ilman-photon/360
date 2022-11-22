@@ -46,7 +46,7 @@ import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
 import { mmddyyDateFormat, hourDateFormat } from "../../../utils/dateFormatter";
 import { addToCalendar } from "../../../utils/addToCalendar";
-
+import Head from "next/head";
 const MobileTopBar = (data) => {
   return (
     <Box className={styles.mobileMenuBar}>
@@ -512,6 +512,10 @@ export default function ScheduleAppointmentPage() {
 
   return (
     <section>
+      <Head>
+        <title>Review appointment details page</title>
+      </Head>
+
       <BaseHeader />
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
       <StepperAppoinment

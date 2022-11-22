@@ -20,15 +20,13 @@ import {
 } from "@mui/material";
 import { StyledButton } from "../../atoms/Button/button";
 import { patientTypography, colors } from "../../../styles/theme";
-import {
-  getDirection,
-  parseAppointmentCardData,
-} from "../../../utils/appointment";
+import { parseAppointmentCardData } from "../../../utils/appointment";
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { getLinkAria } from "../../../utils/viewUtil";
 import ImageFallback from "../../atoms/Image/image";
+import { getProviderLocation } from "../AppointmentInformation/appointmentInformation";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -86,13 +84,9 @@ export default function AppointmentCard({
   }
 
   function renderGetDirection() {
-    const location = appointment.providerInfo?.location || {
-      latitude: "",
-      longitude: "",
-    };
+    const address = appointment.providerInfo?.address;
     return (
-      location.latitude &&
-      location.longitude && (
+      address && (
         <Box
           className={styles.flexDisplay}
           pt={3}
@@ -101,20 +95,15 @@ export default function AppointmentCard({
           <Box pr={1}>
             <DirectionsOutlinedIcon sx={{ color: colors.darkGreen }} />
           </Box>
-          <Typography
-            variant="bodyLinkRegular"
-            sx={{
-              paddingBottom: "2px",
-              cursor: "pointer",
-            }}
-            aria-label="Get Direction link"
-            tabIndex={0}
-            onClick={() => {
-              getDirection(location);
-            }}
-          >
-            Get Directions
-          </Typography>
+          <Box className={styles.getDirectionLink}>
+            <Link
+              className={styles.getDirectionLinkText}
+              href={getProviderLocation(appointment.providerInfo?.address)}
+              target="_blank"
+            >
+              Get Directions
+            </Link>
+          </Box>
         </Box>
       )
     );

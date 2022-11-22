@@ -88,7 +88,7 @@ const PasswordSecurityQuestion = ({
             <HeadingTitle
               variant={constants.H2}
               title={t("title")}
-              tabIndex="0"
+              tabIndex={0}
             />
             <Typography
               variant={constants.BODY_REGULAR}

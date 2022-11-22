@@ -10,9 +10,11 @@ import SetPasswordComponent from "../../../components/organisms/SetPassword/setP
 import globalStyles from "../../../styles/Global.module.scss";
 
 const setUsernameFromQuery = function (route) {
-  return route && route.query && route.query.username
-    ? route.query.username
-    : constants.EMPTY_STRING;
+  const queryString = route.asPath?.split("?")[1];
+  const splitQueryString = queryString?.split("=");
+  return splitQueryString && splitQueryString.length > 0
+    ? splitQueryString[1]
+    : "";
 };
 
 export default function UpdatePasswordPage() {
@@ -20,6 +22,7 @@ export default function UpdatePasswordPage() {
     keyPrefix: "UpdatePasswordPage",
   });
   const [showPostMessage, setShowPostMessage] = useState(false);
+  const [postMessage, setPostMessage] = useState("");
   const [showUpdatePassword, setShowUpdatePassword] = useState(true);
   const route = useRouter();
   const username = setUsernameFromQuery(route);
@@ -51,7 +54,11 @@ export default function UpdatePasswordPage() {
         setShowPostMessage(true);
         setShowUpdatePassword(false);
       })
-      .catch(function () {
+      .catch(function (err) {
+        if (err?.ResponseCode == 1001) {
+          setShowPostMessage(true);
+          setPostMessage("Something went wrong");
+        }
         console.error("Something went wrong");
       });
   };
@@ -63,6 +70,7 @@ export default function UpdatePasswordPage() {
           username={username}
           title={t("title")}
           showPostMessage={showPostMessage}
+          postMessage={postMessage}
           setShowPostMessage={setShowPostMessage}
           onBackToLoginClicked={function (router) {
             router.push("/patient/login");
