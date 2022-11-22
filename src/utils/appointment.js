@@ -709,9 +709,9 @@ function addLanguageFilter(provider, languageList) {
 function addGenderFilter(sex, genderList) {
   let gender = "";
   if (sex) {
-    if (sex === "M") {
+    if (sex === 11) {
       gender = "Male";
-    } else if (sex === "F") {
+    } else if (sex === 12) {
       gender = "Female";
     } else {
       gender = "Non-Binary";
@@ -827,7 +827,7 @@ export async function parseProviderListData(
           languageFilter
         );
         const { genderList, gender } = addGenderFilter(
-          provider?.sex?.name,
+          provider?.sex?.key,
           genderFilter
         );
         languageFilter = languageList;

@@ -41,6 +41,7 @@ export default function AppointmentLocation({
     <Box mb={2}>
       <AccountCard
         titleIcon={<LocationOnOutlinedIcon aria-label={"Location icon"} />}
+        aria-label="Location Heading"
         title={t("location")}
         isAppoinment={true}
         actionContent={
@@ -102,14 +103,16 @@ export default function AppointmentLocation({
             </Typography>
             <Typography
               variant="h4"
+              aria-aria-labelledby="provider-phone-number"
               style={styles.detailText}
-              aria-label={`provider phone number ${
-                providerData.phoneNumber || providerData.cellPhone
-              }`}
-              tabIndex={"0"}
             >
               <Link
+                id="provider-phone-number"
                 style={styles.linkText}
+                aria-label={`phone number ${
+                  providerData.phoneNumber || providerData.cellPhone
+                }`}
+                tabIndex={"0"}
                 href={`tel:${
                   providerData.phoneNumber || providerData.cellPhone
                 }`}

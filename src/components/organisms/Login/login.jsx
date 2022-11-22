@@ -143,13 +143,9 @@ export function Login({
                       <StyledInput
                         tabIndex={0}
                         inputRef={inputPassword}
-<<<<<<< HEAD
-                        InputLabelProps={{ "aria-hidden": true }}
-=======
                         InputLabelProps={{
                           "aria-hidden": true,
                         }}
->>>>>>> release/release-phase1
                         aria-label={"Password required text field"}
                         id="password"
                         data-testid={LOGIN_TEST_ID.passwordField}

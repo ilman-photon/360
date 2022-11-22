@@ -110,7 +110,9 @@ export default function ForgotPasswordPage() {
 
   useEffect(() => {
     const targetElement = document.body;
-    if (isMobile) {
+    const platform = window.navigator.platform;
+    const isIphone = platform.toLowerCase().includes("iphone");
+    if (isMobile && isIphone) {
       targetElement.style.width = "100%";
       if (!showPasswordSecurityQuestion) {
         disableBodyScroll(targetElement);

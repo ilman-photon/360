@@ -40,8 +40,8 @@ export default function Bio({ embedApi, bio }) {
       response.designation ? `, ${response.designation}` : ""
     }`;
     const genderCode = response.sex?.key;
-    const femaleGender = genderCode === "3" ? "Female" : "-";
-    const gender = genderCode === "6" ? "Male" : femaleGender;
+    const femaleGender = genderCode === 12 ? "Female" : "Unknown";
+    const gender = genderCode === 11 ? "Male" : femaleGender;
     const address = [];
     const primaryAddress = response.address || "";
     const secondaryAddress = (response.offices && response.offices[0]) || "";
