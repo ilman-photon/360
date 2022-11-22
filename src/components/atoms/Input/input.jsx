@@ -135,6 +135,7 @@ export const RedditTextField = React.forwardRef((props, ref) => {
         ) : null,
         ...props.InputProps,
       }}
+      inputProps={{ "aria-label": props["label"], ...props.inputProps }}
       {...props}
     />
   );

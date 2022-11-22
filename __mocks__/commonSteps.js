@@ -388,7 +388,7 @@ export async function renderForgotPassword() {
       </Provider>
     );
   });
-  await waitFor(() => container.getByLabelText(/usernamePlaceHolder/i));
+  await waitFor(() => container.getAllByLabelText(/usernamePlaceHolder/i));
   return container;
 }
 export async function clickContinueForgot(container, mock) {

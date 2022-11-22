@@ -1,11 +1,22 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Login } from "../../src/components/organisms/Login/login";
-import { fireEvent, render, act, cleanup, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  act,
+  cleanup,
+  waitFor,
+} from "@testing-library/react";
 import AuthPage from "../../src/pages/patient/login";
 import HomePage from "../../src/pages/patient";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import { renderLogin, landOnCreateAccountPage, navigateToPatientPortalHome, renderForgotPassword } from "../../__mocks__/commonSteps";
+import {
+  renderLogin,
+  landOnCreateAccountPage,
+  navigateToPatientPortalHome,
+  renderForgotPassword,
+} from "../../__mocks__/commonSteps";
 import constants from "../../src/utils/constants";
 import { renderWithProviders } from "../src/utils/test-util";
 
@@ -48,7 +59,7 @@ const landOnPatientPortalScreen = () => {
 
 const passwordAndUserView = () => {
   launchURL();
-  const usernameField = container.getByLabelText(/emailUserLabel/i);
+  const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
   const passwordField = container.getByLabelText(/passwordLabel/i);
   expect(usernameField.id).toEqual("username");
   expect(passwordField.id).toEqual("password");
@@ -104,7 +115,7 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
       const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
@@ -138,7 +149,7 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
       const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
@@ -181,9 +192,11 @@ defineFeature(feature, (test) => {
       landOnPatientPortalScreen();
     });
     then("user should able to view 'Login' button .", async () => {
-      cleanup()
-      container = await renderLogin()
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      cleanup();
+      container = await renderLogin();
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
+      ).toBeInTheDocument();
     });
     and("user should able to view  'Continue as Guest' button .", () => {
       expect(true).toBeTruthy();
@@ -191,12 +204,15 @@ defineFeature(feature, (test) => {
     and(
       "user should able to view the  Don’t have an account?” verbiage along with 'Create Account' button",
       () => {
-        const loginDontHaveAccText = container.getByText(/dontHaveAccountLabel/i);
+        const loginDontHaveAccText =
+          container.getByText(/dontHaveAccountLabel/i);
         expect(loginDontHaveAccText).toBeInTheDocument();
       }
     );
     and("user should able to view 'Forgot password' link .", () => {
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the user is able to Login as Guest User.", ({
@@ -222,31 +238,41 @@ defineFeature(feature, (test) => {
     then(
       "user should view the mentioned fields like First Name, Last Name, Date of Birth, Email, Phone number.",
       async () => {
-        cleanup()
-        container = await landOnCreateAccountPage()
+        cleanup();
+        container = await landOnCreateAccountPage();
       }
     );
     and('user should allow to enter the <"FirstName ">', () => {
-      expect(container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.firstname)).toBeInTheDocument();
+      expect(
+        container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.firstname)
+      ).toBeInTheDocument();
     });
     and('user should allow to enter the  <"LastName ">', () => {
-      expect(container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.lastname)).toBeInTheDocument();
+      expect(
+        container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.lastname)
+      ).toBeInTheDocument();
     });
     and('user should allow to enter the  <"DateofBirth ">', () => {
       const loginDontHaveAccText = container.getByText(/Date of Birth/i);
       expect(loginDontHaveAccText).toBeInTheDocument();
     });
     and('user should allow to enter the  <"Email ">', () => {
-      expect(container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.email)).toBeInTheDocument();
+      expect(
+        container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.email)
+      ).toBeInTheDocument();
     });
     and('user should allow to enter the  <"PhoneNumber ">', () => {
-      expect(container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.mobilenumber)).toBeInTheDocument();
+      expect(
+        container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.mobilenumber)
+      ).toBeInTheDocument();
     });
     and("user click the 'Login ' button.", () => {
-      expect(container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.registerbtn)).toBeInTheDocument();
+      expect(
+        container.getByTestId(constants.TEST_ID.REGISTER_TEST_ID.registerbtn)
+      ).toBeInTheDocument();
     });
     then("user should view the Home/Dashboard Page", async () => {
-      cleanup()
+      cleanup();
       // container = await navigateToPatientPortalHome()
     });
   });
@@ -268,13 +294,17 @@ defineFeature(feature, (test) => {
       landOnPatientPortalScreen();
     });
     and("user click the 'Create Account' button", () => {
-      const createAccountBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.createAccountBtn)
-      fireEvent.click(createAccountBtn)
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.createAccountBtn)).toBeInTheDocument();
+      const createAccountBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.createAccountBtn
+      );
+      fireEvent.click(createAccountBtn);
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.createAccountBtn)
+      ).toBeInTheDocument();
     });
     then("user should navigate to Registration page.", async () => {
-      cleanup()
-      container = await landOnCreateAccountPage()
+      cleanup();
+      container = await landOnCreateAccountPage();
     });
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the user is able to click the 'Forgot Password' link", ({
@@ -295,11 +325,13 @@ defineFeature(feature, (test) => {
       landOnPatientPortalScreen();
     });
     and("user click the 'Forgot Password' link", () => {
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
     then("user should navigate to Forgot password page.", async () => {
-      cleanup()
-      container = await renderForgotPassword()
+      cleanup();
+      container = await renderForgotPassword();
     });
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the inline error message is displayed if Email or Phone number not filled", ({
@@ -322,23 +354,27 @@ defineFeature(feature, (test) => {
     and(
       'user/admin user provides blank "<Email or Phone Number>" and valid "<password>"',
       () => {
-        cleanup()
+        cleanup();
         const mockOnLoginClicked = jest.fn((data, route, callback) => {
           callback({
             status: "success",
           });
         });
         container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
         const passwordField = container.getByLabelText(/passwordLabel/i);
         expect(usernameField.id).toEqual("username");
         expect(passwordField.id).toEqual("password");
       }
     );
     and("user click the 'Login' Button.", async () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
-      fireEvent.click(loginBtn)
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
+      ).toBeInTheDocument();
     });
     then("user should view the error message 'This field is required'", () => {
       expect(container.getByText(/passwordLabel/i)).toBeInTheDocument();
@@ -364,23 +400,27 @@ defineFeature(feature, (test) => {
     and(
       'user/admin user provides valid "<Email or Phone Number>" and blank "<password>"',
       () => {
-        cleanup()
+        cleanup();
         const mockOnLoginClicked = jest.fn((data, route, callback) => {
           callback({
             status: "success",
           });
         });
         container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
         const passwordField = container.getByLabelText(/passwordLabel/i);
         expect(usernameField.id).toEqual("username");
         expect(passwordField.id).toEqual("password");
       }
     );
     and("user click the 'Login' Button.", () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
-      fireEvent.click(loginBtn)
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
+      ).toBeInTheDocument();
     });
     then("user should view the error message 'This field is required'", () => {
       expect(container.getByText(/passwordLabel/i)).toBeInTheDocument();
@@ -405,9 +445,13 @@ defineFeature(feature, (test) => {
     });
 
     then('admin user should view "Login" button', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
-      fireEvent.click(loginBtn)
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
+      ).toBeInTheDocument();
     });
     and("admin user should not view  'Continue as a guest' button .", () => {
       expect(true).toBeTruthy();
@@ -415,12 +459,15 @@ defineFeature(feature, (test) => {
     and(
       "admin user should not view the  Don’t have an account?” verbiage along with 'Create Account' button",
       () => {
-        const loginDontHaveAccText = container.getByText(/dontHaveAccountLabel/i);
+        const loginDontHaveAccText =
+          container.getByText(/dontHaveAccountLabel/i);
         expect(loginDontHaveAccText).toBeInTheDocument();
       }
     );
     and("admin user should not view 'Forgot password' link .", () => {
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
   });
   test("EPIC_EPP-4_STORY_EPP-206- Verify whether the inline error message is displayed if Email or Phone Number and  password are not filled", ({
@@ -443,26 +490,30 @@ defineFeature(feature, (test) => {
     and(
       'user/admin user provides blank "<Email or Phone Number>" and blank "<password>"',
       () => {
-        cleanup()
+        cleanup();
         const mockOnLoginClicked = jest.fn((data, route, callback) => {
           callback({
             status: "success",
           });
         });
         container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
         const passwordField = container.getByLabelText(/passwordLabel/i);
         expect(usernameField.id).toEqual("username");
         expect(passwordField.id).toEqual("password");
       }
     );
     and("user click the 'Login' Button.", () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
-      fireEvent.click(loginBtn)
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
+      ).toBeInTheDocument();
     });
     then("user should view the error message 'This field is required'", () => {
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
       const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
@@ -549,14 +600,14 @@ defineFeature(feature, (test) => {
     then(
       'Admin should be able to view "Email or phone number" & "Password fields"',
       () => {
-        cleanup()
+        cleanup();
         const mockOnLoginClicked = jest.fn((data, route, callback) => {
           callback({
             status: "success",
           });
         });
         container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
         const passwordField = container.getByLabelText(/passwordLabel/i);
         expect(usernameField.id).toEqual("username");
         expect(passwordField.id).toEqual("password");
@@ -577,9 +628,9 @@ defineFeature(feature, (test) => {
       landOnPatientPortalScreen();
     });
 
-    and("turn off the Data", () => { });
+    and("turn off the Data", () => {});
 
-    then("user should view appropriate error message", () => { });
+    then("user should view appropriate error message", () => {});
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the page is loading with in 3 seconds", ({
     given,
@@ -599,7 +650,7 @@ defineFeature(feature, (test) => {
       landOnPatientPortalScreen();
     });
 
-    then(/^page should load in (\d+) seconds$/, (arg0) => { });
+    then(/^page should load in (\d+) seconds$/, (arg0) => {});
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether any error is displaying when we press F12 after navigating to the Patient Login page.", ({
     given,
@@ -619,9 +670,9 @@ defineFeature(feature, (test) => {
       landOnPatientPortalScreen();
     });
 
-    and(/^press the F(\d+) button from the keyboard.$/, (arg0) => { });
+    and(/^press the F(\d+) button from the keyboard.$/, (arg0) => {});
 
-    then("none of the javascript error should be seen by the user.", () => { });
+    then("none of the javascript error should be seen by the user.", () => {});
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the error message is displaying when the service is unavailable.", ({
     given,
@@ -637,7 +688,7 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp();
     });
 
-    when("the service is unavailable", () => { });
+    when("the service is unavailable", () => {});
 
     and("user lands on “Patient Login” screen", async () => {
       landOnPatientPortalScreen();
@@ -645,7 +696,7 @@ defineFeature(feature, (test) => {
 
     then(
       /^error message '(\d+) - Server is not ready to handle the request' should get display.$/,
-      (arg0) => { }
+      (arg0) => {}
     );
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the Password is getting mask when Admin typing the Password.", ({
@@ -667,14 +718,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^Admin provides (.*) and (.*)$/, (arg0, arg1) => {
-      cleanup()
+      cleanup();
       const mockOnLoginClicked = jest.fn((data, route, callback) => {
         callback({
           status: "success",
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
       const passwordField = container.getByLabelText(/passwordLabel/i);
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
