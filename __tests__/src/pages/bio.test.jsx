@@ -282,7 +282,7 @@ describe("Render Bio", () => {
 
   test("Data Cases", async () => {
     let customizedUserData = { ...userData };
-    customizedUserData.sex.key = "3";
+    customizedUserData.sex.key = 12;
     customizedUserData.firstName = "";
     customizedUserData.providerDetails.rating = 0;
     customizedUserData.networkInsurance = null;
@@ -290,7 +290,7 @@ describe("Render Bio", () => {
     await renderBio(customizedUserData);
     expect(container.getByText("Female")).toBeInTheDocument();
     customizedUserData = { ...userData };
-    customizedUserData.sex.key = "6";
+    customizedUserData.sex.key = 11;
     customizedUserData.lastName = "";
     customizedUserData.workPhone = "";
     customizedUserData.id = "";
