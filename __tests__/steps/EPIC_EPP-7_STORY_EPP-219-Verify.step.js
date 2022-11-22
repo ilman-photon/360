@@ -1,4 +1,10 @@
-import { fireEvent, render, act, cleanup, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  act,
+  cleanup,
+  waitFor,
+} from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import UpdatePasswordPage from "../../src/pages/patient/update-password";
 import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPassword";
@@ -25,26 +31,28 @@ const launchURL = () => {
     });
   });
   container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-}
+};
 
 const navigateToPatientPortalApp = () => {
-  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  mock
+    .onGet(`https://api.ipify.org?format=json`)
+    .reply(200, { ip: "10.10.10.10" });
   act(() => {
     container = renderWithProviders(<AuthPage />, {
       container: document.body.appendChild(element),
       legacyRoot: true,
     });
   });
-}
+};
 
 const landOnPatientPortalScreen = () => {
   const title = container.getByText("formTitle");
   expect("formTitle").toEqual(title.textContent);
-}
+};
 
 defineFeature(feature, (test) => {
   afterEach(() => {
-    cleanup()
+    cleanup();
   });
   test("EPIC_EPP-7_STORY_EPP-219 - Verify User should see the entered mask password by default", ({
     given,
@@ -54,20 +62,20 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given('use launch the "XXX" url', () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when('user lands onto "Patient Login" screen', () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
     then('user should see "Forgot Password" link', async () => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
       const link = container.getByTestId("forgotpswd");
       expect("forgotPassword").toEqual(link.textContent);
     });
@@ -82,7 +90,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "a?",
             "Test Question 2": "b?",
-            "Test Question 3": "c?"
+            "Test Question 3": "c?",
           },
         ],
         PreferredComunication: "Both",
@@ -101,13 +109,15 @@ defineFeature(feature, (test) => {
     });
 
     and('user should see "Email or Phone Number" field', () => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and('user should enter valid "Email or Phone Number" field', () => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -118,36 +128,36 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then('user should see "Select an option" screen', () => {
-      const answerquestions = container.getByTestId("answerquestions")
+      const answerquestions = container.getByTestId("answerquestions");
       expect(answerquestions).toBeInTheDocument();
     });
 
     and(
       'user should see "Answer security questions" button(if security questions is set)',
       () => {
-        const answerquestions = container.getByTestId("answerquestions")
+        const answerquestions = container.getByTestId("answerquestions");
         expect(answerquestions).toBeInTheDocument();
       }
     );
 
     and('user should see "Login with magic link" button', () => {
-      const onetimelink = container.getByTestId("onetimelink")
+      const onetimelink = container.getByTestId("onetimelink");
       expect(onetimelink).toBeInTheDocument();
     });
 
     and('user should see "Back to Log in" button', () => {
-      const backtologin = container.getByTestId("backtologin")
+      const backtologin = container.getByTestId("backtologin");
       expect(backtologin).toBeInTheDocument();
     });
 
     when('user click on "Answer security questions" button', () => {
-      const answerquestions = container.getByTestId("answerquestions")
-      fireEvent.click(answerquestions)
+      const answerquestions = container.getByTestId("answerquestions");
+      fireEvent.click(answerquestions);
     });
 
     then('user should see "Password Recovery Security Questions"', () => {
@@ -191,9 +201,9 @@ defineFeature(feature, (test) => {
           username={"smith1@photon.com"}
           title={"Update Password"}
           showPostMessage={true}
-          setShowPostMessage={() => { }}
-          onBackToLoginClicked={function () { }}
-          onSetPasswordClicked={() => { }}
+          setShowPostMessage={() => {}}
+          onBackToLoginClicked={function () {}}
+          onSetPasswordClicked={() => {}}
           passwordPlaceHolder={"New Password"}
           confirmPasswordPlaceHolder={"Confirm New Password"}
           ctaButtonLabel={"Update"}
@@ -240,24 +250,29 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-7_STORY_EPP-219 - Verify User should Login using new Password', ({ given, and, when, then }) => {
+  test("EPIC_EPP-7_STORY_EPP-219 - Verify User should Login using new Password", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -270,7 +285,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -289,12 +304,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -305,8 +322,8 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -357,9 +374,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see mask the entered password along with an option to unmask it by default', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user should see mask the entered password along with an option to unmask it by default",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^User should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -373,19 +393,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('User should receive an email to their registered email-id regarding password reset', () => {
+    and(
+      "User should receive an email to their registered email-id regarding password reset",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    when("User should click the link - Open mail", () => {
       expect(true).toBeTruthy();
     });
 
-    when('User should click the link - Open mail', () => {
+    and("User Login to the email", () => {
       expect(true).toBeTruthy();
     });
 
-    and('User Login to the email', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and('The mail will looks like with below format', (table) => {
+    and("The mail will looks like with below format", (table) => {
       expect(true).toBeTruthy();
     });
 
@@ -422,24 +445,29 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('"EPIC_EPP-7_STORY_EPP-219 - Verify User should not copy and paste on "<New Password>" and "<Confirm New Password>" fields"', ({ given, and, when, then }) => {
+  test('"EPIC_EPP-7_STORY_EPP-219 - Verify User should not copy and paste on "<New Password>" and "<Confirm New Password>" fields"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -452,7 +480,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -471,12 +499,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -487,8 +517,8 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
@@ -539,29 +569,37 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^User should not copy and paste on (.*) and (.*) fields$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      /^User should not copy and paste on (.*) and (.*) fields$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
   });
 
-  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user should see the inline error "This field is required" when user emptied "<New Password>" field"', ({ given, and, when, then }) => {
-    given('use launch the \'XXX\' url', () => {
+  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user should see the inline error "This field is required" when user emptied "<New Password>" field"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("use launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -574,7 +612,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -593,12 +631,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -609,17 +649,20 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -637,11 +680,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and('user should view the questions fields', () => {
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -653,9 +699,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -673,9 +722,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see mask the entered password along with an option to unmask it by default', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user should see mask the entered password along with an option to unmask it by default",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^User should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -690,24 +742,29 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user should see "Password does not meet requirements" error message"', ({ given, and, when, then }) => {
+  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user should see "Password does not meet requirements" error message"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -720,7 +777,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -739,12 +796,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -755,17 +814,20 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -783,11 +845,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and('user should view the questions fields', () => {
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -799,9 +864,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -823,9 +891,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see mask the entered password along with an option to unmask it by default', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should see mask the entered password along with an option to unmask it by default",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^User should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -840,24 +911,29 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user should see "page loading" as 3 seconds"', ({ given, and, when, then }) => {
+  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user should see "page loading" as 3 seconds"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -870,7 +946,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -889,12 +965,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -905,17 +983,20 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -933,11 +1014,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and('user should view the questions fields', () => {
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -949,9 +1033,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -973,9 +1060,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see mask the entered password along with an option to unmask it by default', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user should see mask the entered password along with an option to unmask it by default",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^User should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -994,24 +1084,29 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user  is not able to submit "Reset Password" when service is unavailable"', ({ given, and, when, then }) => {
+  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user  is not able to submit "Reset Password" when service is unavailable"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -1024,7 +1119,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -1043,12 +1138,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -1059,17 +1156,20 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1087,11 +1187,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and('user should view the questions fields', () => {
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1103,9 +1206,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1127,9 +1233,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see mask the entered password along with an option to unmask it by default', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user should see mask the entered password along with an option to unmask it by default",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^User should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1139,29 +1248,34 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see appropriate error message', () => {
+    then("user should see appropriate error message", () => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user  is not able to submit "Reset Password" when Internet connection is unavailable"', ({ given, and, when, then }) => {
+  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user  is not able to submit "Reset Password" when Internet connection is unavailable"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -1174,7 +1288,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -1193,12 +1307,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -1209,17 +1325,20 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1237,11 +1356,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and('user should view the questions fields', () => {
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1253,9 +1375,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1277,9 +1402,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see mask the entered password along with an option to unmask it by default', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user should see mask the entered password along with an option to unmask it by default",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^User should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1289,29 +1417,34 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see appropriate error message', () => {
+    then("user should see appropriate error message", () => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user should not see any Java scripts error when after user press F12 on the console"', ({ given, and, when, then }) => {
+  test('"EPIC_EPP-7_STORY_EPP-219 - Verify user should not see any Java scripts error when after user press F12 on the console"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -1324,7 +1457,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -1343,12 +1476,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -1359,17 +1494,20 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1387,11 +1525,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and('user should view the questions fields', () => {
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1403,9 +1544,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1427,9 +1571,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see mask the entered password along with an option to unmask it by default', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user should see mask the entered password along with an option to unmask it by default",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^User should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1451,25 +1598,30 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should not see any scripts error', () => {
+    then("user should not see any scripts error", () => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('EPIC_EPP-7_STORY_EPP-219 - Verify User should receive an email to their registered email-id that the entered in the username field, regarding password reset', ({ given, and, when, then }) => {
-    given('user launch the \'XXX\' url', () => {
+  test("EPIC_EPP-7_STORY_EPP-219 - Verify User should receive an email to their registered email-id that the entered in the username field, regarding password reset", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
-    when('user lands onto “Patient Login” screen', () => {
+    when("user lands onto “Patient Login” screen", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
+    and("user clicks on 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1489,9 +1641,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1509,11 +1664,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and('user should view the questions fields', () => {
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1525,9 +1683,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1545,9 +1706,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see mask the entered password along with an option to unmask it by default', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user should see mask the entered password along with an option to unmask it by default",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^User should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1561,19 +1725,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('User should receive an email to their registered email-id regarding password reset', () => {
+    and(
+      "User should receive an email to their registered email-id regarding password reset",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    when("User Open mail and click the link", () => {
       expect(true).toBeTruthy();
     });
 
-    when('User Open mail and click the link', () => {
+    and("User Login to the email", () => {
       expect(true).toBeTruthy();
     });
 
-    and('User Login to the email', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and('The mail will looks like with below format', (table) => {
+    and("The mail will looks like with below format", (table) => {
       expect(true).toBeTruthy();
     });
 
@@ -1590,24 +1757,29 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('"EPIC_EPP-7_STORY_EPP-219 - Verify User should unmask the entered password"', ({ given, and, when, then }) => {
+  test('"EPIC_EPP-7_STORY_EPP-219 - Verify User should unmask the entered password"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -1620,7 +1792,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -1639,12 +1811,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -1655,17 +1829,20 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1683,11 +1860,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and('user should view the questions fields', () => {
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1699,9 +1879,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1719,7 +1902,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('User should see the entered mask password by default', () => {
+    then("User should see the entered mask password by default", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1731,33 +1914,36 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('User should see the entered password', () => {
+    then("User should see the entered password", () => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('EPIC_EPP-7_STORY_EPP-219 - Verify User should receive a text to their registered Phone number  regarding password reset', ({ }) => {
+  test("EPIC_EPP-7_STORY_EPP-219 - Verify User should receive a text to their registered Phone number  regarding password reset", ({}) => {});
 
-  });
-
-  test('"EPIC_EPP-7_STORY_EPP-219 - Verify User should receive a text to their registered mobile number that the entered in the username field, regarding password reset"', ({ given, and, when, then }) => {
+  test('"EPIC_EPP-7_STORY_EPP-219 - Verify User should receive a text to their registered mobile number that the entered in the username field, regarding password reset"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
-      container = await renderLogin()
+      cleanup();
+      container = await renderLogin();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      const forgotPassBtn = container.getByText("forgotPassword")
-      expect(forgotPassBtn).toBeInTheDocument()
-      fireEvent.click(forgotPassBtn)
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
+      fireEvent.click(forgotPassBtn);
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
@@ -1770,7 +1956,7 @@ defineFeature(feature, (test) => {
           {
             "Test Question 1": "",
             "Test Question 2": "",
-            "Test Question 3": ""
+            "Test Question 3": "",
           },
         ],
         PreferredComunication: "Both",
@@ -1790,12 +1976,14 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-      expect(usernameField).toBeInTheDocument()
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -1806,17 +1994,20 @@ defineFeature(feature, (test) => {
       const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
       await waitFor(() => {
-        container.getByTestId("answerquestions")
-      })
+        container.getByTestId("answerquestions");
+      });
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1834,11 +2025,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and('user should view the questions fields', () => {
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -1850,9 +2044,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1870,9 +2067,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see mask the entered password along with an option to unmask it by default', () => {
-      expect(true).toBeTruthy();
-    });
+    then(
+      "user should see mask the entered password along with an option to unmask it by default",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^User should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1886,19 +2086,22 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('User should receive an email to their registered email-id regarding password reset', () => {
+    and(
+      "User should receive an email to their registered email-id regarding password reset",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    when("User Open message on phone and click the link", () => {
       expect(true).toBeTruthy();
     });
 
-    when('User Open message on phone and click the link', () => {
+    and("User Login to the email", () => {
       expect(true).toBeTruthy();
     });
 
-    and('User Login to the email', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and('The mail will looks like with below format', (table) => {
+    and("The mail will looks like with below format", (table) => {
       expect(true).toBeTruthy();
     });
 

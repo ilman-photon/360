@@ -58,8 +58,8 @@ export default function Bio({ embedApi, bio }) {
       response.lastName || ""
     }${designation}`;
     const genderCode = response.sex?.key;
-    const femaleGender = genderCode === "3" ? "Female" : "-";
-    const gender = genderCode === "6" ? "Male" : femaleGender;
+    const femaleGender = genderCode === 12 ? "Female" : "Unknown";
+    const gender = genderCode === 11 ? "Male" : femaleGender;
     const address = response.offices;
     const language = getLanguage(response.providerDetails);
 

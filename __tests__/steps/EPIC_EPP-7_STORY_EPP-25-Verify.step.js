@@ -89,7 +89,8 @@ defineFeature(feature, (test) => {
     });
 
     and("user should see 'Email or Phone Number' field", async () => {
-      let usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      let usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, {
         target: { value: "user1@gmail.com" },
       });
@@ -143,7 +144,7 @@ defineFeature(feature, (test) => {
 
     and(/^user should see (.*) field$/, (arg0) => {
       expect(
-        container.getByLabelText(/usernamePlaceHolder/i)
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0]
       ).toBeInTheDocument();
     });
 
@@ -195,7 +196,7 @@ defineFeature(feature, (test) => {
 
     and(/^user should see (.*) field$/, (arg0) => {
       expect(
-        container.getByLabelText(/usernamePlaceHolder/i)
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0]
       ).toBeInTheDocument();
     });
 
@@ -287,12 +288,13 @@ defineFeature(feature, (test) => {
 
     and(/^user should see (.*) field$/, (arg0) => {
       expect(
-        container.getByLabelText(/usernamePlaceHolder/i)
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0]
       ).toBeInTheDocument();
     });
 
     when(/^user enters unregistered (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
       expect(usernameField.value).toEqual("user1@gmail.com");
     });
@@ -343,12 +345,13 @@ defineFeature(feature, (test) => {
 
     and(/^user should see (.*) field$/, (arg0) => {
       expect(
-        container.getByLabelText(/usernamePlaceHolder/i)
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0]
       ).toBeInTheDocument();
     });
 
     when(/^user enters unregistered (.*) field$/, (arg0) => {
-      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      const usernameField =
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0];
       fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
       expect(usernameField.value).toEqual("user1@gmail.com");
     });
@@ -399,7 +402,7 @@ defineFeature(feature, (test) => {
 
     and(/^user should see (.*) field$/, (arg0) => {
       expect(
-        container.getByLabelText(/usernamePlaceHolder/i)
+        container.getAllByLabelText(/usernamePlaceHolder/i)[0]
       ).toBeInTheDocument();
     });
 

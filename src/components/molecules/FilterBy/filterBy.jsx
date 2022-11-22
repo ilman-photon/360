@@ -139,7 +139,6 @@ const FilterBy = ({
       <>
         <IconButton
           aria-label="close"
-          aria-hidden
           tabIndex="0"
           component="label"
           role="button"

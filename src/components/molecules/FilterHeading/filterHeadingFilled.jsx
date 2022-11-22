@@ -15,6 +15,7 @@ import {
   purposeIcon,
 } from "./filterHeading";
 import { convertToDate } from "../../../utils/dateFormatter";
+import { useRef } from "react";
 
 const FilterHeadingFilled = ({
   openDialog,
@@ -33,9 +34,30 @@ const FilterHeadingFilled = ({
   },
   currentCity = "",
 }) => {
-  const { handleSubmit, control, setValue } = useForm({
+  const { handleSubmit, control, setValue, watch } = useForm({
     defaultValues: { ...filterData },
   });
+
+  const [activeName, setActiveName] = useState(null);
+
+  const refMobileInput = useRef([null, null]);
+  const controlNameList = ["purposeOfVisit", "insuranceCarrier"];
+  /** setRef depends on watch */
+  React.useEffect(() => {
+    if (activeName) {
+      const indexControlList = controlNameList.indexOf(activeName);
+      refMobileInput.current[indexControlList]?.focus();
+      setActiveName(null);
+    }
+  }, [activeName]);
+
+  /** Check data changes on input */
+  React.useEffect(() => {
+    watch((_, { name }) => {
+      setActiveName(name);
+    });
+  }, [watch]);
+
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const [isEmptyLocation, setEmptyLocation] = useState(false);
   const [step, setStep] = useState("filterMenu");
@@ -168,6 +190,7 @@ const FilterHeadingFilled = ({
           type="default"
           value={value}
           onChange={onChange}
+          inputRef={(el) => (refMobileInput.current[0] = el)}
           variant="filled"
           label="Purpose of Visit"
           sx={sxButton}
@@ -184,6 +207,7 @@ const FilterHeadingFilled = ({
     const insuranceInput = function (onChange, value) {
       return (
         <StyledInput
+          inputRef={(el) => (refMobileInput.current[1] = el)}
           type="default"
           value={value?.name || ""}
           onChange={onChange}

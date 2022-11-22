@@ -157,6 +157,7 @@ const ForgotPassword = ({
                         tabIndex: 0,
                         ariaLive: "assertive",
                       }}
+                      InputLabelProps={{ "aria-hidden": true }}
                       onChange={(event) => {
                         onChange(event);
                         if (showPostMessage) {
@@ -174,10 +175,10 @@ const ForgotPassword = ({
                           fontSize: "12px",
                         },
                       }}
-                      required
                       rules={{
                         required: "This field is required",
                       }}
+                      required
                       error={!!error}
                       helperText={error ? error.message : null}
                     />
@@ -190,7 +191,9 @@ const ForgotPassword = ({
                 theme="patient"
                 mode="primary"
                 size="small"
-                aria-label={t("syncButton") + " Button"}
+                aria-label={
+                  isAppointment ? t("syncButton") : t("resetPasswordText")
+                }
                 gradient={false}
                 style={styles.margin}
                 data-testid={FORGOT_TEST_ID.continueBtn}
