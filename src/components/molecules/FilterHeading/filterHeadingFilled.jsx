@@ -49,6 +49,7 @@ const FilterHeadingFilled = ({
       refMobileInput.current[indexControlList]?.focus();
       setActiveName(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeName]);
 
   /** Check data changes on input */

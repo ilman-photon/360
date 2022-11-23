@@ -103,7 +103,7 @@ export default function AppointmentLocation({
             </Typography>
             <Typography
               variant="h4"
-              aria-aria-labelledby="provider-phone-number"
+              aria-labelledby="provider-phone-number"
               style={styles.detailText}
             >
               <Link

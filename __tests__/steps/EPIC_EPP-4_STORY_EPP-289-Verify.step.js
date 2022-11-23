@@ -1,20 +1,49 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import AuthPage from "../../src/pages/patient/login";
 import { renderWithProviders } from "../src/utils/test-util";
+import { Login } from "../../src/components/organisms/Login/login";
+import { renderLogin, navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-289.feature", {
   tagFilter: '@included and not @excluded'
+});
+
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+
+const launchURL = () => {
+  const mockOnLoginClicked = jest.fn((data, route, callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
 }
-);
+
+const navigateToPatientPortalApp = () => {
+  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  act(() => {
+    container = renderWithProviders(<AuthPage />, {
+      container: document.body.appendChild(element),
+      legacyRoot: true,
+    });
+  });
+}
+
+const landOnPatientPortalScreen = () => {
+  const title = container.getByText("formTitle");
+  expect("formTitle").toEqual(title.textContent);
+}
 
 defineFeature(feature, (test) => {
-  let container, login;
-  const mock = new MockAdapter(axios);
-  const element = document.createElement("div");
+  afterEach(() => {
+    cleanup()
+  });
   test("EPIC_EPP-4_STORY_EPP-289 - Verify user  should be able to logout from patient portal", ({
     given,
     when,
@@ -22,56 +51,60 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given('user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      const expectedResult = {
-        ResponseCode: 2001,
-        ResponseType: "failure",
-        userType: "patient",
-      };
-      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+      navigateToPatientPortalApp();
     });
 
     when('lands onto “Patient Login” screen', () => {
-      expect(true).toBeTruthy()
+      landOnPatientPortalScreen();
     });
 
     then(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usernameField = container.getByTestId("emailorphonenumber")
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     when(/^user enter Email or Phone Number in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usernameField = container.getByTestId("emailorphonenumber")
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user enter password in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     and('user should see \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId(/loginbtn/i);
+      expect(loginbtn).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId("loginbtn");
+      fireEvent.submit(loginbtn);
     });
 
     then('user should see Home/Dashboard Page', () => {
-      expect(true).toBeTruthy()
+      cleanup()
+      navigateToPatientPortalHome()
     });
 
     and('user should see \'Logout\' option under Profile name', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     when('user click on \'Logout\' button', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     then('user should see Login screen', () => {
@@ -85,51 +118,60 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given('user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy()
+      navigateToPatientPortalApp();
     });
 
     when('lands onto “Patient Login” screen', () => {
-      expect(true).toBeTruthy()
+      landOnPatientPortalScreen();
     });
 
     then(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     when(/^user enter Email or Phone Number in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usernameField = container.getByTestId("emailorphonenumber")
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user enter password in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     and('user should see \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId(/loginbtn/i);
+      expect(loginbtn).toBeInTheDocument();
     });
 
     when('user click on \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId("loginbtn");
+      fireEvent.submit(loginbtn);
     });
 
     then('user should see Home/Dashboard Page', () => {
-      expect(true).toBeTruthy()
+      cleanup()
+      navigateToPatientPortalHome()
     });
 
     and('user should see \'Logout\' option under Profile name', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     when('user click on \'Logout\' button when internet is unavailable', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     then('user should see appropriate error message', () => {
@@ -143,51 +185,60 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given('admin user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+      launchURL();
     });
 
     and('admin user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy()
+      navigateToPatientPortalApp();
     });
 
     when('admin lands onto “Patient Login” screen', () => {
-      expect(true).toBeTruthy()
+      landOnPatientPortalScreen();
     });
 
     then(/^admin user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^admin user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     when(/^admin user enter Email or Phone Number in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^admin user enter password in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     and('admin user should see \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId(/loginbtn/i);
+      expect(loginbtn).toBeInTheDocument();
     });
 
     when('admin user click on \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId("loginbtn");
+      fireEvent.submit(loginbtn);
     });
 
     then('admin user should see Home/Dashboard Page', () => {
-      expect(true).toBeTruthy()
+      cleanup()
+      navigateToPatientPortalHome()
     });
 
     and('admin user should see \'Logout\' option under Profile name', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     when('admin user click on \'Logout\' button', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     then('admin user should see Login screen', () => {
@@ -201,11 +252,11 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given('user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy()
+      navigateToPatientPortalApp();
     });
 
     when("user lands onto “Patient Login” screen", () => {
@@ -221,39 +272,48 @@ defineFeature(feature, (test) => {
     });
 
     then(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     when(/^user enter Email or Phone Number in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usernameField = container.getByTestId("emailorphonenumber")
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user enter password in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     and('user should see \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId(/loginbtn/i);
+      expect(loginbtn).toBeInTheDocument();
     });
 
     when('user click on \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId("loginbtn");
+      fireEvent.submit(loginbtn);
     });
 
     then('user should see Home/Dashboard Page', () => {
-      expect(true).toBeTruthy()
+      cleanup()
+      navigateToPatientPortalHome()
     });
 
     and('user should see \'Logout\' option under Profile name', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     when('user click on \'Logout\' button when service is unavailable', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     then('user should see appropriate error message', () => {
@@ -262,11 +322,11 @@ defineFeature(feature, (test) => {
   });
   test('EPIC_EPP-4_STORY_EPP-289 - Verify user is able to view the Logout screen loaded within 3 sec', ({ given, and, when, then }) => {
     given('user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy()
+      navigateToPatientPortalApp();
     });
 
     when('user lands onto “Patient Login” screen', () => {
@@ -274,39 +334,48 @@ defineFeature(feature, (test) => {
     });
 
     then(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     when(/^user enter Email or Phone Number in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usernameField = container.getByTestId("emailorphonenumber")
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user enter password in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     and('user should see \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId(/loginbtn/i);
+      expect(loginbtn).toBeInTheDocument();
     });
 
     when('user click on \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId("loginbtn");
+      fireEvent.submit(loginbtn);
     });
 
     then('user should see Home/Dashboard Page', () => {
-      expect(true).toBeTruthy()
+      cleanup()
+      navigateToPatientPortalHome()
     });
 
     and('user should see \'Logout\' option under Profile name', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     when('user click on \'Logout\' button when internet is unavailable', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     then('user should see appropriate error message', () => {
@@ -332,11 +401,11 @@ defineFeature(feature, (test) => {
   });
   test('EPIC_EPP-4_STORY_EPP-289 - Verify admin user is not able to logout when Internet connection is unavailable', ({ given, and, when, then }) => {
     given('user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+      launchURL();
     });
 
     and('admin user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy()
+      navigateToPatientPortalApp();
     });
 
     when('admin user lands onto “Patient Login” screen', () => {
@@ -344,11 +413,13 @@ defineFeature(feature, (test) => {
     });
 
     then(/^admin user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^admin user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     when(/^admin  user enter Email or Phone Number in (.*) field$/, (arg0) => {
@@ -360,23 +431,28 @@ defineFeature(feature, (test) => {
     });
 
     and('admin user should see \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId(/loginbtn/i);
+      expect(loginbtn).toBeInTheDocument();
     });
 
     when('admin user click on \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId("loginbtn");
+      fireEvent.submit(loginbtn);
     });
 
     then('admin user should see Home/Dashboard Page', () => {
-      expect(true).toBeTruthy()
+      cleanup()
+      navigateToPatientPortalHome()
     });
 
     and('admin user should see \'Logout\' option under Profile name', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     when('admin user click on \'Logout\' button when internet is unavailable', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     then('admin user should see appropriate error message', () => {
@@ -385,11 +461,11 @@ defineFeature(feature, (test) => {
   });
   test('EPIC_EPP-4_STORY_EPP-289 - Verify admin user is not able to logout when Service is unavailable', ({ given, and, when, then }) => {
     given('admin user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+      launchURL();
     });
 
     and('admin user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy()
+      navigateToPatientPortalApp();
     });
 
     when('admin user lands onto “Patient Login” screen', () => {
@@ -397,39 +473,48 @@ defineFeature(feature, (test) => {
     });
 
     then(/^admin user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^admin user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     when(/^admin user enter Email or Phone Number in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^admin user enter password in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     and('admin user should see \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId(/loginbtn/i);
+      expect(loginbtn).toBeInTheDocument();
     });
 
     when('admin user click on \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId("loginbtn");
+      fireEvent.submit(loginbtn);
     });
 
     then('admin user should see Home/Dashboard Page', () => {
-      expect(true).toBeTruthy()
+      cleanup()
+      navigateToPatientPortalHome()
     });
 
     and('admin user should see \'Logout\' option under Profile name', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     when('admin user click on \'Logout\' button when service is unavailable', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     then('admin user should see appropriate error message', () => {
@@ -438,51 +523,60 @@ defineFeature(feature, (test) => {
   });
   test('EPIC_EPP-4_STORY_EPP-289 - Verify admin user is able to view the Logout screen loaded within 3 sec', ({ given, and, when, then }) => {
     given('admin  user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+      launchURL();
     });
 
     and('admin user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy()
+      navigateToPatientPortalApp();
     });
 
     when('admin  user lands onto “Patient Login” screen', () => {
-      expect(true).toBeTruthy()
+      landOnPatientPortalScreen();
     });
 
     then(/^admin  user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^admin user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     when(/^admin  user enter Email or Phone Number in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const usenameField = container.getByTestId("emailorphonenumber")
+      expect(usenameField).toBeInTheDocument();
     });
 
     and(/^admin user enter password in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy()
+      const passwordField = container.getByText(/passwordLabel/i);
+      expect(passwordField).toBeInTheDocument();
     });
 
     and('admin user should see \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId(/loginbtn/i);
+      expect(loginbtn).toBeInTheDocument();
     });
 
     when('admin  user click on \'Login\' button', () => {
-      expect(true).toBeTruthy()
+      const loginbtn = container.getByTestId("loginbtn");
+      fireEvent.submit(loginbtn);
     });
 
     then('admin  user should see Home/Dashboard Page', () => {
-      expect(true).toBeTruthy()
+      cleanup()
+      navigateToPatientPortalHome()
     });
 
     and('admin user should see \'Logout\' option under Profile name', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     when('admin  user click on \'Logout\' button when internet is unavailable', () => {
-      expect(true).toBeTruthy()
+      // const logout = container.getByTestId("logout");
+      // expect(userMenu).toBeInTheDocument();
     });
 
     then('admin user should see appropriate error message', () => {
