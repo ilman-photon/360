@@ -270,14 +270,18 @@ export function getProvideOverlay(
   endDate
 ) {
   const providerDataTmp = { ...providerDataOverview };
-  for (let index = 0; index < listOfProvider.length; index++) {
-    if (providerDataTmp.providerId === listOfProvider[index].providerId) {
-      providerDataTmp.availability = listOfProvider[index].availability;
-      break;
-    }
-  }
+  const indexProviderAvailability = listOfProvider.findIndex((provider) => {
+    return provider.providerId === providerDataTmp.providerId;
+  });
 
-  if (listOfProvider?.length === 0) {
+  /** Fix Bugs EPP-11011 */
+  /** Data Available */
+  if (indexProviderAvailability > -1) {
+    /** Data is available */
+    providerDataTmp.availability =
+      listOfProvider[indexProviderAvailability].availability;
+  } else {
+    /** Data not Available */
     const getRangeDate = getDates(
       new Date(startDate),
       new Date(endDate),
@@ -288,6 +292,7 @@ export function getProvideOverlay(
       getRangeDate
     );
   }
+
   return providerDataTmp;
 }
 

@@ -161,6 +161,7 @@ export default function InsuranceForm({
             <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="provider"
+                aria-live="assertive"
                 control={control}
                 render={({
                   field: { onChange, value },
@@ -168,6 +169,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <AutoCompleteCreatable
+                      tabIndex={0}
                       isLoading={isAutocompleteLoading}
                       options={providerList}
                       testId={testIds.provider}
@@ -189,6 +191,7 @@ export default function InsuranceForm({
             <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="plan"
+                aria-live="assertive"
                 control={control}
                 render={({
                   field: { onChange, value },
@@ -196,6 +199,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <AutoCompleteCreatable
+                      tabIndex={0}
                       isLoading={isAutocompleteLoading}
                       options={planList}
                       testId={testIds.planName}
@@ -217,6 +221,7 @@ export default function InsuranceForm({
             <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="memberID"
+                aria-live="assertive"
                 control={control}
                 render={({
                   field: { onChange, value },
@@ -225,6 +230,7 @@ export default function InsuranceForm({
                   return (
                     <StyledInput
                       type="text"
+                      tabIndex={0}
                       label="Subscriber ID/ Member ID"
                       value={value}
                       onChange={onChange}
@@ -253,6 +259,7 @@ export default function InsuranceForm({
             <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="groupID"
+                aria-live="assertive"
                 control={control}
                 render={({
                   field: { onChange, value },
@@ -261,6 +268,7 @@ export default function InsuranceForm({
                   return (
                     <StyledInput
                       type="text"
+                      tabIndex={0}
                       label="Group #"
                       value={value}
                       onChange={onChange}
@@ -302,10 +310,12 @@ export default function InsuranceForm({
 
           <Controller
             name="isSubscriber"
+            aria-live="assertive"
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <RowRadioButtonsGroup
+                  tabIndex={0}
                   error={!!error}
                   value={value}
                   onChange={onChange}
@@ -338,6 +348,7 @@ export default function InsuranceForm({
                     <Controller
                       name="subscriberData.firstName"
                       control={control}
+                      aria-live="assertive"
                       render={({
                         field: { onChange, value },
                         fieldState: { error },
@@ -346,6 +357,8 @@ export default function InsuranceForm({
                           <StyledInput
                             type="text"
                             label="Subscriber First Name"
+                            tabIndex={0}
+                            aria-live="assertive"
                             minLength={2}
                             maxLength={50}
                             value={value}
@@ -375,6 +388,7 @@ export default function InsuranceForm({
                   <Grid item xs={12} md={4}>
                     <Controller
                       name="subscriberData.lastName"
+                      aria-live="assertive"
                       control={control}
                       render={({
                         field: { onChange, value },
@@ -423,6 +437,7 @@ export default function InsuranceForm({
                   >
                     <Controller
                       name="subscriberData.dob"
+                      aria-live="assertive"
                       control={control}
                       render={({
                         field: { onChange, value },
@@ -499,6 +514,7 @@ export default function InsuranceForm({
                                 color: colors.darkGreen,
                               },
                             }}
+                            tabIndex={0}
                             label="Relationship"
                             options={RELATIONSHIP_LIST}
                             value={value}
@@ -585,6 +601,7 @@ export default function InsuranceForm({
                       OnInputError={onFormCardFrontError}
                       testIds={testIds.uploadFrontImage}
                       source={value}
+                      tabIndex={0}
                       // preview={value?.presignedUrl}
                       label="Upload Front"
                       changeLabel="Change photo"
@@ -608,6 +625,7 @@ export default function InsuranceForm({
               >
                 <Collapse in={!!formCardBackState.content}>
                   <FormMessage
+                    tabIndex={0}
                     success={formCardBackState.success}
                     title={formCardBackState.title}
                   >
@@ -635,6 +653,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <ImageUploader
+                      tabIndex={0}
                       OnUpload={onChange}
                       OnInputError={onFormCardBackError}
                       source={value}

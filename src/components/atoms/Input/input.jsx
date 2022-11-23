@@ -367,7 +367,7 @@ export const StyledInput = ({
         placeholder={placeholder}
         helperText={helperText}
         withicon={withIcon}
-        tabIndex={0}
+        // tabIndex={0}
         {...props}
         className={["custom-input"].join(" ")}
         adorment={adorment}

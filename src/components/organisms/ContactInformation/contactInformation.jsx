@@ -38,7 +38,15 @@ export default function ContactInformation({
     // This is intended
   },
 }) {
-  const { handleSubmit, control, watch, reset, setValue } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+    reset,
+    setValue,
+    setFocus,
+    formState: { errors },
+  } = useForm({
     // defaultValues: DEFAULT_CONTACT_INFO,
     defaultValues: userData, // Object.assign({}, userData),
   });
@@ -56,6 +64,13 @@ export default function ContactInformation({
     "mobile",
     "preferredCommunication",
   ]);
+
+  useEffect(() => {
+    const firstErrorKey = Object.keys(errors).find((key) => errors[key]);
+    if (firstErrorKey) {
+      setFocus(firstErrorKey);
+    }
+  }, [Object.keys(errors)]);
 
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
@@ -92,8 +107,6 @@ export default function ContactInformation({
   const onSubmit = (data) => {
     OnSaveClicked(data);
   };
-
-  const buttonWidth = isDesktop ? {} : { width: "100%" };
 
   // GAPI autocomplete
   const { placesService, placePredictions, getPlacePredictions } =
@@ -291,12 +304,13 @@ export default function ContactInformation({
               name="mobile"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <StyledInput
                     type="phone"
+                    inputRef={ref}
                     id="mobile"
                     label="Phone Number"
                     inputProps={{
@@ -335,12 +349,13 @@ export default function ContactInformation({
               name="email"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <StyledInput
                     type="text"
+                    inputRef={ref}
                     id="email"
                     label="Email ID"
                     inputProps={{
@@ -379,12 +394,13 @@ export default function ContactInformation({
               name="address"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <Autocomplete
                     freeSolo
+                    inputRef={ref}
                     options={placePredictions.map(
                       (option) => option.description
                     )}
@@ -438,12 +454,13 @@ export default function ContactInformation({
               name="city"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <StyledInput
                     type="text"
+                    inputRef={ref}
                     id="city"
                     label="City"
                     inputProps={{
@@ -485,12 +502,13 @@ export default function ContactInformation({
                   name="state"
                   control={control}
                   render={({
-                    field: { onChange, value },
+                    field: { onChange, value, ref },
                     fieldState: { error },
                   }) => {
                     return (
                       <StyledInput
                         select
+                        inputRef={ref}
                         label="State"
                         autoComplete="address-level1"
                         data-testid="styled-select-state"
@@ -525,12 +543,13 @@ export default function ContactInformation({
                   name="zip"
                   control={control}
                   render={({
-                    field: { onChange, value },
+                    field: { onChange, value, ref },
                     fieldState: { error },
                   }) => {
                     return (
                       <StyledInput
                         type="text"
+                        inputRef={ref}
                         onKeyDown={(e) => {
                           if (
                             !Regex.numberOnly.test(e.key) &&
@@ -580,13 +599,14 @@ export default function ContactInformation({
               name="preferredCommunication"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <>
                     <RowRadioButtonsGroup
                       error={!!error}
+                      inputRef={ref}
                       value={value}
                       onChange={onChange}
                       label="Preferred mode(s) of Communication"
