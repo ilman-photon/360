@@ -538,7 +538,8 @@ export default function ContactInformation({
                         onKeyDown={(e) => {
                           if (
                             !Regex.numberOnly.test(e.key) &&
-                            e.key != "Backspace"
+                            e.key != "Backspace" &&
+                            e.key != "Tab"
                           ) {
                             e.preventDefault();
                           }

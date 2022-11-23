@@ -98,7 +98,7 @@
 
 .viewPrescriptionText {
   color: "#008294";
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 18px;
   margin: auto 0;
   cursor: pointer;
@@ -484,4 +484,22 @@
       cursor: pointer;
     }
   }
+}
+
+.getDirectionLink {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.getDirectionLinkText {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.0016em;
+  color: #008294 !important;
+  cursor: pointer;
+  text-decoration-color: inherit !important;
 }

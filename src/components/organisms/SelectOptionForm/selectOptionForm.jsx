@@ -34,12 +34,12 @@ const SelectOptionForm = ({
         <Card
           className={globalStyles.container}
           style={styles.cardStyle}
-          tabIndex={0}
           aria-label={`${t("title")} view`}
         >
           <CardContent style={styles.cardContentStyle}>
             <HeadingTitle variant={constants.H2} title={t("title")} />
             <StyledButton
+              autoFocus
               theme={constants.PATIENT}
               mode={constants.PRIMARY}
               size={constants.SMALL}

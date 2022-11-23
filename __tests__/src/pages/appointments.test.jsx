@@ -97,12 +97,8 @@ describe("Render Appointment", () => {
     await waitFor(() => container.getAllByTestId("CancelOutlinedIcon"));
     fireEvent.click(container.getAllByTestId("CancelOutlinedIcon")[0]);
 
-    await waitFor(() =>
-      container.getByLabelText("Appointment no longer needed Radio Button")
-    );
-    fireEvent.click(
-      container.getByLabelText("Appointment no longer needed Radio Button")
-    );
+    await waitFor(() => container.getAllByTestId("noNeeded-test"));
+    fireEvent.click(container.getAllByTestId("noNeeded-test")[0]);
     fireEvent.click(
       container.getByTestId(TEST_ID.CANCEL_SCHEDULE_TEST_ID.btnCancel)
     );
@@ -176,8 +172,8 @@ describe("Render Appointment", () => {
     await waitFor(() => container.getAllByTestId("CancelOutlinedIcon"));
     fireEvent.click(container.getAllByTestId("CancelOutlinedIcon")[0]);
 
-    await waitFor(() => container.getByLabelText("Other Radio Button"));
-    fireEvent.click(container.getByLabelText("Other Radio Button"));
+    await waitFor(() => container.getAllByTestId("other-test"));
+    fireEvent.click(container.getAllByTestId("other-test")[0]);
     fireEvent.change(
       within(container.getAllByTestId("other")[0]).getByRole("textbox"),
       { target: { value: "Testing" } }

@@ -243,9 +243,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="text"
                   id="firstName"
                   label="First Name"
+                  aria-label="First name required text field"
                   inputRef={inputRef}
                   inputProps={{
-                    "aria-label": `First Name - required -`,
+                    "aria-label": "First Name - Required",
                   }}
                   value={value}
                   data-testid={REGISTER_TEST_ID.firstname}
@@ -280,8 +281,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   id="lastName"
                   label="Last Name"
                   inputRef={inputLastName}
+                  aria-label={"Last name required text field"}
                   inputProps={{
-                    "aria-label": `Last Name - required -`,
+                    "aria-label": "Last Name - Required",
                   }}
                   data-testid={REGISTER_TEST_ID.lastname}
                   value={value}
@@ -309,26 +311,42 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           <Controller
             name="dob"
             control={control}
+            tabIndex={0}
+            InputPropsLabel={{
+              "aria-label": "Date of Birth required text field",
+            }}
+            aria-label="Date of Birth required text field"
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
-                  disableFuture
+                  aria-hidden={true}
+                  tabIndex={-1}
                   type="dob"
                   id="dob"
                   inputRef={inputDob}
-                  InputProps={{ "data-testid": REGISTER_TEST_ID.dateofbirth }}
                   data-testid={REGISTER_TEST_ID.dateofbirth}
-                  label="Date of Birth"
-                  aria-label="Date of Birth - required -"
-                  inputProps={{
-                    "aria-label": `Date of Birth - required -`,
+                  InputLabel={{ "aria-hidden": true }}
+                  InputLabelProps={{
+                    "aria-hidden": true,
+                    "aria-label": "Date of Birth required text field",
                   }}
+                  InputProps={{
+                    tabIndex: 0,
+                    "data-testid": REGISTER_TEST_ID.dateofbirth,
+                    "aria-hidden": "false",
+                    "aria-label": "Date of Birth required text field",
+                  }}
+                  inputProps={{
+                    "aria-hidden": "true",
+                    "aria-label": "Date of Birth - required",
+                  }}
+                  aria-label="Date of Birth required text field"
+                  label="Date of Birth"
                   variant="filled"
                   value={value}
                   onChange={onChange}
                   error={!!error}
                   helperText={error ? error.message : null}
-                  required
                 />
               );
             }}
@@ -351,8 +369,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   id="email"
                   label="Email"
                   inputRef={inputEmail}
+                  aria-label={"Email required text field"}
                   inputProps={{
-                    "aria-label": `Email - required -`,
+                    "aria-label": "Email - Required",
                   }}
                   value={value}
                   data-testid={REGISTER_TEST_ID.email}
@@ -390,10 +409,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="phone"
                   inputRef={inputMobileNumber}
                   id="mobileNumber"
+                  aria-label="Mobile Number required text field"
                   data-testid={REGISTER_TEST_ID.mobilenumber}
                   label="Mobile Number"
                   inputProps={{
-                    "aria-label": `Mobile Number - required -`,
+                    "aria-label": `Mobile Number - Required`,
                   }}
                   value={value}
                   onChange={onChange}
