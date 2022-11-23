@@ -134,6 +134,9 @@ const PasswordSecurityQuestion = ({
                           inputRef={(el) =>
                             (inputRef.current = [...inputRef.current, el])
                           }
+                          InputLabelProps={{
+                            "aria-hidden": true,
+                          }}
                           style={styles.margin}
                           key={`securityQuestion${i}`}
                           value={value}

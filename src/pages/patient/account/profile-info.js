@@ -1,7 +1,7 @@
 import AccountLayout from "../../../components/templates/accountLayout";
 import PersonalInformation from "../../../components/organisms/PersonalInformation/personalInformation";
 import ContactInformation from "../../../components/organisms/ContactInformation/contactInformation";
-import { Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
+import { Collapse, Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { fetchUser, updateUser } from "../../../store/user";
@@ -80,9 +80,6 @@ export default function ProfileInformationPage({
         content: message || "Your changes were saved",
       })
     );
-    setTimeout(() => {
-      dispatch(closePageMessage());
-    }, 5000);
   };
 
   const onSavePersonalData = async (postBody) => {
@@ -125,26 +122,29 @@ export default function ProfileInformationPage({
 
   return (
     <section>
-      <FormMessage
-        onClick={() => {
-          dispatch(closePageMessage());
-        }}
-        role="button"
-        success={pageMessage.error ? false : true}
-        fontTitle={16}
-        sx={{
-          borderRadius: "0px",
-          justifyContent: "center",
-          position: "absolute",
-          top: "-44px",
-          left: 0,
-          width: "100%",
-          transition: "0.3 s ease-in-out",
-          cursor: "pointer",
-        }}
-      >
-        {pageMessage.content}
-      </FormMessage>
+      <Collapse in={pageMessage.isShow}>
+        <FormMessage
+          onClick={() => {
+            dispatch(closePageMessage());
+          }}
+          role="button"
+          success={pageMessage.error ? false : true}
+          fontTitle={16}
+          sx={{
+            borderRadius: "0px",
+            justifyContent: "center",
+            position: "absolute",
+            top: "-44px",
+            // top: 0,
+            left: 0,
+            width: "100%",
+            transition: "0.3 s ease-in-out",
+            cursor: "pointer",
+          }}
+        >
+          {pageMessage.content}
+        </FormMessage>
+      </Collapse>
       {!isDesktop && (
         <Tabs
           sx={{
@@ -207,7 +207,12 @@ export default function ProfileInformationPage({
 ProfileInformationPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AccountLayout currentActivePage={"profile-info"}>{page}</AccountLayout>
+      <AccountLayout
+        currentActivePage={"profile-info"}
+        pageTitle="EyeCare Patient Portal - Profile Information"
+      >
+        {page}
+      </AccountLayout>
     </Provider>
   );
 };

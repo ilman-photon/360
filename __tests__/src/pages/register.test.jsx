@@ -47,8 +47,8 @@ describe("Register", () => {
     year = "1991"
   ) => {
     const title = container.getByText(/User Registration/i);
-    const firstname = container.getByLabelText(/First Name/i);
-    const lastname = container.getByLabelText(/Last Name/i);
+    const firstname = container.getAllByLabelText(/First Name/i)[0];
+    const lastname = container.getAllByLabelText(/Last Name/i)[0];
     await waitFor(() => container.getByLabelText("Double tap to Choose date"));
     fireEvent.click(container.getByLabelText("Double tap to Choose date"));
     await waitFor(() =>
@@ -62,7 +62,7 @@ describe("Register", () => {
     await waitFor(() => container.getByText("8"));
     fireEvent.click(container.getByText("8"));
     const email = container.getAllByLabelText(/Email/i)[0];
-    const mobileNumber = container.getByLabelText(/Mobile Number/i);
+    const mobileNumber = container.getAllByLabelText(/Mobile Number/i)[0];
     const password = container.getAllByLabelText(/Password/i)[0];
     fireEvent.change(firstname, { target: { value: "userA" } });
     fireEvent.change(lastname, { target: { value: "testing" } });

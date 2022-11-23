@@ -143,9 +143,11 @@ const ForgotPassword = ({
                 }) => {
                   return (
                     <StyledInput
-                      aria-label={`Email or Phone number Field ${
-                        error ? error.message : ""
-                      }`}
+                      inputProps={{
+                        "aria-label": `Email or Phone number Field - Required ${
+                          error ? error.message : ""
+                        }`,
+                      }}
                       label={t("usernamePlaceHolder")}
                       id="username"
                       maxLength={254}
@@ -157,7 +159,6 @@ const ForgotPassword = ({
                         tabIndex: 0,
                         ariaLive: "assertive",
                       }}
-                      InputLabelProps={{ "aria-hidden": true }}
                       onChange={(event) => {
                         onChange(event);
                         if (showPostMessage) {

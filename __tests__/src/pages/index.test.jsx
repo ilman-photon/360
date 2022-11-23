@@ -1,4 +1,4 @@
-import { act, cleanup, render, waitFor } from "@testing-library/react";
+import { act, cleanup, render, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
@@ -243,12 +243,8 @@ describe("Home", () => {
     await waitFor(() => getAllByTestId("CancelOutlinedIcon"));
     fireEvent.click(getAllByTestId("CancelOutlinedIcon")[0]);
 
-    await waitFor(() =>
-      getByLabelText("Appointment no longer needed Radio Button")
-    );
-    fireEvent.click(
-      getByLabelText("Appointment no longer needed Radio Button")
-    );
+    await waitFor(() => getByTestId("noNeeded-test"));
+    fireEvent.click(getByTestId("noNeeded-test"));
     fireEvent.click(getByTestId(TEST_ID.CANCEL_SCHEDULE_TEST_ID.btnCancel));
     expect(getAllByTestId("CancelOutlinedIcon").length).toEqual(1);
 
@@ -268,12 +264,8 @@ describe("Home", () => {
     await waitFor(() => getAllByTestId("CancelOutlinedIcon"));
     fireEvent.click(getAllByTestId("CancelOutlinedIcon")[0]);
 
-    await waitFor(() =>
-      getByLabelText("Appointment no longer needed Radio Button")
-    );
-    fireEvent.click(
-      getByLabelText("Appointment no longer needed Radio Button")
-    );
+    await waitFor(() => getByTestId("noNeeded-test"));
+    fireEvent.click(getByTestId("noNeeded-test"));
     fireEvent.click(getByTestId(TEST_ID.CANCEL_SCHEDULE_TEST_ID.btnCancel));
     expect(getAllByTestId("CancelOutlinedIcon").length).toEqual(1);
     jest.resetAllMocks();

@@ -137,6 +137,10 @@ export const RedditTextField = React.forwardRef((props, ref) => {
       }}
       inputProps={{ "aria-label": props["label"], ...props.inputProps }}
       {...props}
+      InputLabelProps={{
+        "aria-hidden": true,
+        ...props.InputLabelProps,
+      }}
     />
   );
 });
@@ -236,8 +240,8 @@ export const CustomInput = styled(({ ...props }) => {
               error={!Boolean(values.value) && props.error}
               InputLabelProps={{
                 "aria-hidden": true,
-                "aria-label": "Password required text field",
               }}
+              inputProps={{ "aria-label": props["label"], ...props.inputProps }}
               variant="filled"
               id={props.id}
               type={showPassword}
