@@ -1,7 +1,7 @@
 import AccountLayout from "../../../components/templates/accountLayout";
 import PersonalInformation from "../../../components/organisms/PersonalInformation/personalInformation";
 import ContactInformation from "../../../components/organisms/ContactInformation/contactInformation";
-import { Collapse, Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
+import { Collapse, Grid, Stack, Tab, Tabs, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { fetchUser, updateUser } from "../../../store/user";
@@ -123,27 +123,41 @@ export default function ProfileInformationPage({
   return (
     <section>
       <Collapse in={pageMessage.isShow}>
-        <FormMessage
-          onClick={() => {
-            dispatch(closePageMessage());
-          }}
-          role="button"
-          success={pageMessage.error ? false : true}
-          fontTitle={16}
-          sx={{
+        <div
+          style={{
             borderRadius: "0px",
             justifyContent: "center",
             position: "absolute",
             top: "-44px",
-            // top: 0,
+            zIndex: "1",
             left: 0,
             width: "100%",
             transition: "0.3 s ease-in-out",
-            cursor: "pointer",
           }}
         >
-          {pageMessage.content}
-        </FormMessage>
+          <FormMessage
+            withClose
+            onClose={() => {
+              dispatch(closePageMessage());
+            }}
+            role="button"
+            success={pageMessage.error ? false : true}
+            fontTitle={16}
+            sx={{
+              position: "relative",
+              justifyContent: "center",
+            }}
+          >
+            <Stack
+              sx={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              {pageMessage.content}
+            </Stack>
+          </FormMessage>
+        </div>
       </Collapse>
       {!isDesktop && (
         <Tabs

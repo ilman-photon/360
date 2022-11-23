@@ -1,6 +1,7 @@
+import { Close } from "@mui/icons-material";
 import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import Link from "next/link";
 import { forwardRef } from "react";
 import { colors } from "../../../styles/theme";
@@ -8,6 +9,9 @@ import { colors } from "../../../styles/theme";
 export const FormMessage = (
   {
     onClick = () => {
+      // This is intended
+    },
+    onClose = () => {
       // This is intended
     },
     accessibility = {},
@@ -56,6 +60,7 @@ export const FormMessage = (
             fontSize: "14px",
             lineHeight: "20.02px",
             letterSpacing: "0.17px",
+            // width: props.isWidthFilled ? "-webkit-fill-available" : "",
           }}
           data-testid="submission-message"
           aria-live="polite"
@@ -75,6 +80,22 @@ export const FormMessage = (
               </Link>
             ) : (
               ""
+            )}
+
+            {props.withClose ? (
+              <IconButton
+                sx={{
+                  position: "absolute",
+                  right: 0,
+                  top: 0,
+                  height: "100%",
+                }}
+                onClick={onClose}
+              >
+                <Close sx={{ color: "white" }} />
+              </IconButton>
+            ) : (
+              <></>
             )}
           </div>
         </div>
