@@ -86,7 +86,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            expect(container).toMatchSnapshot();
+            expect(container.getByText(/You have no insurance on file./i)).toBeInTheDocument();
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
