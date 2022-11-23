@@ -348,26 +348,26 @@ export default function Prescriptions({
                     fontSize: "14px",
                     fontWeight: "400",
                   },
-                  ".MuiTableCell-head": {
+                  ".MuiTableCell-customHead": {
                     fontFamily: "Roboto",
                     fontSize: "14px",
                     fontWeight: "500",
+                    backgroundColor: "#F4F4F4",
                   },
                 }}
-                aria-label="simple table"
+                aria-label="prescription"
               >
-                <TableHead>
-                  <TableRow>
-                    {tableHeader.map((header, idx) => (
-                      <StyledTableCell
-                        key={`${idxKey}-${idx}-tabel-header`}
-                        tabIndex={0}
-                      >
-                        {header}
-                      </StyledTableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
+                <TableRow>
+                  {tableHeader.map((header, idx) => (
+                    <StyledTableCell
+                      key={`${idxKey}-${idx}-tabel-header`}
+                      tabIndex={0}
+                      className="MuiTableCell-customHead"
+                    >
+                      {header}
+                    </StyledTableCell>
+                  ))}
+                </TableRow>
                 <TableBody>
                   {data?.prescriptionDetails.map((row, idx) => (
                     <TableRow
@@ -376,7 +376,7 @@ export default function Prescriptions({
                         "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      <TableCell component="th" scope="row" tabIndex={0}>
+                      <TableCell scope="row" tabIndex={0}>
                         {row.eye}
                       </TableCell>
                       <TableCell tabIndex={0}>{row.sph}</TableCell>
