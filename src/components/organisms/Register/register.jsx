@@ -323,6 +323,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   tabIndex={-1}
                   type="dob"
                   id="dob"
+                  inputRef={inputDob}
                   data-testid={REGISTER_TEST_ID.dateofbirth}
                   InputLabel={{ "aria-hidden": true }}
                   InputLabelProps={{
@@ -331,6 +332,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   }}
                   InputProps={{
                     tabIndex: 0,
+                    "data-testid": REGISTER_TEST_ID.dateofbirth,
                     "aria-hidden": "false",
                     "aria-label": "Date of Birth required text field",
                   }}
