@@ -120,25 +120,37 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see One-time link page", () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" text$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("subtitleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(
       /^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/,
-      (arg0, arg1, arg2) => { }
+      (arg0, arg1, arg2) => {
+        expect(
+          container.getByTestId("email-test")
+        ).toBeInTheDocument();
+      }
     );
 
     and(
       /^user should select only (\d+) "(.*)" as "(.*)"$/,
-      (arg0, arg1, arg2) => { }
+      (arg0, arg1, arg2) => {
+        expect(
+          container.getByTestId("email-test")
+        ).toBeInTheDocument();
+      }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see heading "(.*)"$/, (arg0) => {
@@ -222,35 +234,44 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" button \(if security questions is set or not\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const answerquestions = container.getByTestId("answerquestions");
+      expect(answerquestions).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const onetimelink = container.getByTestId("onetimelink");
+      expect(onetimelink).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const backtologin = container.getByTestId("backtologin");
+      expect(backtologin).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should see One-time link page', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when('user clicks on Send magic link', () => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should see One-time link page', () => {
@@ -258,11 +279,15 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     and('user clicks on Send magic link', () => {
@@ -349,23 +374,28 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" button \(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const answerquestions = container.getByTestId("answerquestions");
+      expect(answerquestions).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const onetimelink = container.getByTestId("onetimelink");
+      expect(onetimelink).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const backtologin = container.getByTestId("backtologin");
+      expect(backtologin).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should see One-time link page', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" text$/, (arg0) => {
@@ -373,15 +403,19 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when('user clicks on Send magic link', () => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see heading "(.*)"$/, (arg0) => {
@@ -452,31 +486,39 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const onetimelink = container.getByTestId("onetimelink");
+      expect(onetimelink).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const backtologin = container.getByTestId("backtologin");
+      expect(backtologin).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should see One-time link page', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when('user clicks on Send magic link', () => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     when(/^user click on "(.*)" button when conection is unavailable$/, (arg0) => {
@@ -531,31 +573,39 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const onetimelink = container.getByTestId("onetimelink");
+      expect(onetimelink).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const backtologin = container.getByTestId("backtologin");
+      expect(backtologin).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should see One-time link page', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when('user clicks on Send magic link', () => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     when(/^user click on "(.*)" button when service is unavailable$/, (arg0) => {
@@ -606,31 +656,40 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" button \(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const answerquestions = container.getByTestId("answerquestions");
+      expect(answerquestions).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const onetimelink = container.getByTestId("onetimelink");
+      expect(onetimelink).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const backtologin = container.getByTestId("backtologin");
+      expect(backtologin).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should see One-time link page', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     and('user clicks on Send magic link', () => {
@@ -701,7 +760,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" button \(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const answerquestions = container.getByTestId("answerquestions");
+      expect(answerquestions).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -709,11 +769,13 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should see One-time link page', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
@@ -800,7 +862,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" button \(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const answerquestions = container.getByTestId("answerquestions");
+      expect(answerquestions).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -808,11 +871,13 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should see One-time link page', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see loaded less than (\d+) seconds$/, (arg0) => {
@@ -859,7 +924,8 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" button \(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const answerquestions = container.getByTestId("answerquestions");
+      expect(answerquestions).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -867,11 +933,13 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should see One-time link page', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user click F(\d+) on keyboard$/, (arg0) => {
