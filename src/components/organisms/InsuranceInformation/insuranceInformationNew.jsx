@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-unsupported-elements */
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Box, Stack, Typography } from "@mui/material";
 import Head from "next/head";
