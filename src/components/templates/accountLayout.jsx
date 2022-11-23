@@ -15,6 +15,7 @@ function AccountLayout({
   theme = "patient",
   currentActivePage = "",
   children,
+  pageTitle = "EyeCare Patient Portal - Profile Information",
 }) {
   const isPatient = theme === "patient";
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -34,7 +35,7 @@ function AccountLayout({
   return (
     <Provider store={store}>
       <Head>
-        <title>EyeCare Patient Portal - Account Information</title>
+        <title>{pageTitle} page</title>
       </Head>
       <div
         className={[

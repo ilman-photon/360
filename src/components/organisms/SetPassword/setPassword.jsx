@@ -392,6 +392,9 @@ const SetPasswordComponent = ({
                         onChange(event);
                         onChangePasswordValue();
                       }}
+                      inputProps={{
+                        "aria-label": `${passwordPlaceHolder} - required`,
+                      }}
                       error={!!error}
                       required
                       helperText={error ? error.message : null}
@@ -428,7 +431,9 @@ const SetPasswordComponent = ({
                       type="password"
                       value={value}
                       inputRef={confirmRef}
-                      // style={styles.margin}
+                      inputProps={{
+                        "aria-label": `${confirmPasswordPlaceHolder} - required`,
+                      }}
                       onChange={(event) => {
                         onChange(event);
                         onChangePasswordValue();

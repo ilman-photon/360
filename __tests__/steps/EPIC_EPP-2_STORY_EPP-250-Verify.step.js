@@ -14,8 +14,10 @@ const feature = loadFeature(
 
 defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
-  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
-  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the Registration screen", () => { });
+  mock
+    .onGet(`https://api.ipify.org?format=json`)
+    .reply(200, { ip: "10.10.10.10" });
+  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the Registration screen", () => {});
   test("Verify if user able to view the Registration screen", ({
     given,
     when,
@@ -109,7 +111,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "First Name" field not filled', () => { });
+  test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "First Name" field not filled', () => {});
   test('Verify if user able to Register the account when the "First Name" field not filled', ({
     given,
     when,
@@ -204,11 +206,13 @@ defineFeature(feature, (test) => {
     when(
       "user provide the details to the field Last Name, Date Of Birth, Email, Mobile number, User Name, Password, Preferred mode(s) of communication",
       () => {
-        const lastnameField = container.getByLabelText(/Last Name/i);
+        const lastnameField = container.getAllByLabelText(/Last Name/i)[0];
         const emailField = container.getAllByLabelText(/Email/i);
-        const mobileField = container.getByLabelText(/Mobile Number/i);
+        const mobileField = container.getAllByLabelText(/Mobile Number/i)[0];
         const passwordField = container.getByLabelText("Password *");
-        const communicationRadio = container.getByRole("radio", { name: /Both/i });
+        const communicationRadio = container.getByRole("radio", {
+          name: /Both/i,
+        });
         fireEvent.change(lastnameField, { target: { value: "username" } });
         fireEvent.change(emailField[0], { target: { value: "a@aa.aa" } });
         fireEvent.change(mobileField, { target: { value: "(123) 456-789" } });
@@ -243,7 +247,7 @@ defineFeature(feature, (test) => {
     );
   });
 
-  test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Last Name" field not filled', () => { });
+  test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Last Name" field not filled', () => {});
   test('Verify if user able to Register the account when the "Last Name" field not filled', ({
     given,
     when,
@@ -338,11 +342,13 @@ defineFeature(feature, (test) => {
     when(
       "user provide the details to the field First Name, Date Of Birth, Email, Mobile number, User Name, Password, Preferred mode(s) of communication",
       () => {
-        const firstnameField = container.getByLabelText(/Last Name/i);
+        const firstnameField = container.getAllByLabelText(/Last Name/i)[0];
         const emailField = container.getAllByLabelText(/Email/i);
-        const mobileField = container.getByLabelText(/Mobile Number/i);
+        const mobileField = container.getAllByLabelText(/Mobile Number/i)[0];
         const passwordField = container.getByLabelText("Password *");
-        const communicationRadio = container.getByRole("radio", { name: /Both/i });
+        const communicationRadio = container.getByRole("radio", {
+          name: /Both/i,
+        });
         fireEvent.change(firstnameField, { target: { value: "username" } });
         fireEvent.change(emailField[0], { target: { value: "a@aa.aa" } });
         fireEvent.change(mobileField, { target: { value: "(123) 456-789" } });
@@ -373,12 +379,12 @@ defineFeature(feature, (test) => {
             inputFieldError.textContent
           );
         }, 500);
-      });
+      }
+    );
   });
 
-
-  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in \"Email\" field", () => { })
-  test("Verify if user able to see error message when incorrect format enter in \"Email\" field", ({
+  test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in "Email" field', () => {});
+  test('Verify if user able to see error message when incorrect format enter in "Email" field', ({
     given,
     when,
     then,
@@ -386,32 +392,40 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy()
+      expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
       container = render(
         <Provider store={store}>
           <LoginPage />
-        </Provider>);
+        </Provider>
+      );
     });
 
     when("userr lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy()
+      expect(true).toBeTruthy();
     });
 
-    and("user should able to view the  Don’t have an account?” verbiage along with 'Create Account' button", () => {
-      setTimeout(() => {
-        const accountitle = container.getByLabelText(/Don't have an account?/i)
-        expect(/Don't have an account?/i).toEqual(accountitle.textContent);
-      }, 500);
-    });
+    and(
+      "user should able to view the  Don’t have an account?” verbiage along with 'Create Account' button",
+      () => {
+        setTimeout(() => {
+          const accountitle = container.getByLabelText(
+            /Don't have an account?/i
+          );
+          expect(/Don't have an account?/i).toEqual(accountitle.textContent);
+        }, 500);
+      }
+    );
 
     when("user clicks on the ‘Create an Account’ button", () => {
       setTimeout(() => {
-        const toRegister = container.getByRole("button", { name: /Create Account/i });
-        expect(toRegister).toBeTruthy()
-        fireEvent.click(toRegister)
+        const toRegister = container.getByRole("button", {
+          name: /Create Account/i,
+        });
+        expect(toRegister).toBeTruthy();
+        fireEvent.click(toRegister);
       }, 500);
     });
 
@@ -419,27 +433,35 @@ defineFeature(feature, (test) => {
       container = render(
         <Provider store={store}>
           <RegisterPage />
-        </Provider>);
+        </Provider>
+      );
     });
 
-    then("user should see the following fields First Name, Last Name, Date Of Birth, Email, Mobile number, User Name, Password, Preferred mode(s) of communication", () => {
-      expect(true).toBeTruthy()
-    });
+    then(
+      "user should see the following fields First Name, Last Name, Date Of Birth, Email, Mobile number, User Name, Password, Preferred mode(s) of communication",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and("user should see ‘Register’ button", () => {
       const register = container.getByRole("button", { name: /REGISTER/i });
-      expect(register).toBeTruthy()
+      expect(register).toBeTruthy();
     });
 
-    and("User should view the verbiage “By registering, you accept to our Terms & Conditions and Privacy Policy” below the ‘Register’ button", () => {
-      setTimeout(() => {
-        const title = container.getByText("By registering, you agree to our Terms & Conditions and Privacy Policy");
-        expect("By registering, you agree to our Terms & Conditions and Privacy Policy").toEqual(title.textContent);
-      }, 500);
-    });
-
-
-
+    and(
+      "User should view the verbiage “By registering, you accept to our Terms & Conditions and Privacy Policy” below the ‘Register’ button",
+      () => {
+        setTimeout(() => {
+          const title = container.getByText(
+            "By registering, you agree to our Terms & Conditions and Privacy Policy"
+          );
+          expect(
+            "By registering, you agree to our Terms & Conditions and Privacy Policy"
+          ).toEqual(title.textContent);
+        }, 500);
+      }
+    );
 
     when("user enter invalid format in Email field", () => {
       const emailField = container.getAllByLabelText(/Email/i);
@@ -450,12 +472,19 @@ defineFeature(feature, (test) => {
       fireEvent.click(register);
     });
 
-    then("user should see the error message “Incorrect email format” under \"Email\" field", () => {
-      setTimeout(() => {
-        const emailFieldError = container.getByLabelText(/Incorrect email format/i)
-        expect(emailFieldError).toBeTruthy()
-        expect(/Incorrect email format/i).toEqual(emailFieldError.textContent);
-      }, 500);
-    });
+    then(
+      'user should see the error message “Incorrect email format” under "Email" field',
+      () => {
+        setTimeout(() => {
+          const emailFieldError = container.getByLabelText(
+            /Incorrect email format/i
+          );
+          expect(emailFieldError).toBeTruthy();
+          expect(/Incorrect email format/i).toEqual(
+            emailFieldError.textContent
+          );
+        }, 500);
+      }
+    );
   });
 });

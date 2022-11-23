@@ -46,7 +46,7 @@ defineFeature(feature, (test) => {
 
     and(/^user clicks on "(.*)" button in Device A$/, (arg0) => {
       const usernameField = containerA.getAllByLabelText(/emailUserLabel/i)[0];
-      const passwordField = containerA.getByLabelText(/passwordLabel/i);
+      const passwordField = containerA.getAllByLabelText(/passwordLabel/i)[0];
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
 
@@ -81,7 +81,7 @@ defineFeature(feature, (test) => {
 
     and(/^user clicks on "(.*)" button in Device B$/, (arg0) => {
       const usernameField = containerB.getAllByLabelText(/emailUserLabel/i)[0];
-      const passwordField = containerB.getByLabelText(/passwordLabel/i);
+      const passwordField = containerB.getAllByLabelText(/passwordLabel/i)[0];
       expect(usernameField.id).toEqual("username");
       expect(passwordField.id).toEqual("password");
 

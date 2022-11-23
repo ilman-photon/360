@@ -88,7 +88,7 @@ const PasswordSecurityQuestion = ({
             <HeadingTitle
               variant={constants.H2}
               title={t("title")}
-              tabIndex="0"
+              tabIndex={0}
             />
             <Typography
               variant={constants.BODY_REGULAR}
@@ -134,6 +134,9 @@ const PasswordSecurityQuestion = ({
                           inputRef={(el) =>
                             (inputRef.current = [...inputRef.current, el])
                           }
+                          InputLabelProps={{
+                            "aria-hidden": true,
+                          }}
                           style={styles.margin}
                           key={`securityQuestion${i}`}
                           value={value}

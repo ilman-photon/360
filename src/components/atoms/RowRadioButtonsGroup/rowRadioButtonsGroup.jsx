@@ -86,7 +86,6 @@ export default function RowRadioButtonsGroup({
             <FormControlLabel
               key={idx}
               value={option.value}
-              aria-label={`${option.label} Radio Button`}
               tabindex={0}
               data-testid={`${option.value}-test`}
               control={
