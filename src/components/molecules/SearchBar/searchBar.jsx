@@ -513,7 +513,9 @@ export default function SearchBar({
   return (
     <Box padding={!isMobile ? "24px" : "8px"} className={styles.searchDoctor}>
       <Typography
+        tabIndex={0}
         variant="h2"
+        aria-label="Doctor Search"
         sx={{
           fontWeight: 400,
           fontSize: "26px",

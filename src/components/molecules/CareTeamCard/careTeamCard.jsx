@@ -60,7 +60,7 @@ export default function CareTeamCard({ provider }) {
     <Box className={styles.careTeamContainer}>
       <Box>
         <IconButton
-          aria-label="more"
+          aria-label="more option"
           id="more-button"
           sx={{
             position: "absolute",
