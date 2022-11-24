@@ -32,9 +32,7 @@ Feature: Patient Portal : Search Doctors - Search doctors by Name or ECP Practis
     And user click on one of ECP Practise location from the list
     Then user should be able to view list of doctor from the selected ECP Practise location 
 
-    Example:
-    |Doctor name, practice name|
-    |Robert|
+    
 
   @BDDTEST-EPP-8257
   @P2
@@ -67,9 +65,7 @@ Feature: Patient Portal : Search Doctors - Search doctors by Name or ECP Practis
     Then user should be able to view list of doctor from the selected ECP Practise location 
     And user able to view filter result from ECP Practise location that they selected 
 
-    Example:
-    |Doctor name, practice name|
-    |Robert|
+    
 
   @BDDTEST-EPP-8258
   @P2
@@ -102,6 +98,4 @@ Feature: Patient Portal : Search Doctors - Search doctors by Name or ECP Practis
     Then user should be able to view list of doctor from the selected ECP Practise location 
     And user able to view filter button to open overlay
 
-    Example:
-    |Doctor name, practice name|
-    |Robert|
+    

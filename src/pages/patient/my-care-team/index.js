@@ -136,7 +136,7 @@ export default function MyCareTeamPage() {
 MyCareTeamPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <MyCareTeamLayout>{page}</MyCareTeamLayout>
+      <MyCareTeamLayout title={"My Care Team"}>{page}</MyCareTeamLayout>
     </Provider>
   );
 };

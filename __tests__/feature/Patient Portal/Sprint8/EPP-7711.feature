@@ -8,7 +8,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the option to filter by City and Specialty(Specialty and sub specialty)
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the option to filter by City and Specialty(Specialty and sub specialty)
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -24,7 +23,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the list of all the available cities and specialties
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the list of all the available cities and specialties
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -41,7 +39,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to select multiple cities and specialties
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to select multiple cities and specialties 
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -59,7 +56,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the Done CTA
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the Done CTA
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -78,7 +74,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to click on the Done CTA to view the results based on the filters applied
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to click on the Done CTA to view the results based on the filters applied
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -99,7 +94,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the Reset CTA
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the Reset CTA
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -122,7 +116,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Regression
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to click on the Reset CTA to reset all the filters selected
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to click on the Reset CTA to reset all the filters selected
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -146,7 +139,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the Close CTA
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the Close CTA
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -172,7 +164,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Regression
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to click on the Close CTA to close the popup for filter without applying any filters
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to click on the Close CTA to close the popup for filter without applying any filters
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -199,7 +190,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the selected filters
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the selected filters
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -228,7 +218,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Regression
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view option to remove the selected filters
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view option to remove the selected filters
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -258,7 +247,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Regression
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the list of doctors updated when the selected filter is removed
-    Scenario: EPIC_EPP-24_STORY_EPP-7711- Verify User should be able to view the list of doctors updated when the selected filter is removed
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -289,7 +277,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User removes the selected filter
-    Scenario: EPIC_EPP-24_STORY_EPP-7711 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User removes the selected filter
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -321,7 +308,6 @@ Feature: Patient Portal : Search Doctors - Filter search results
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-7711 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when User removes the selected filter
-    Scenario: EPIC_EPP-24_STORY_EPP-7711 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when User removes the selected filter
 
     Given User is logged into the portal
     And User lands on the dashboard screen
