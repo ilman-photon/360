@@ -223,29 +223,43 @@ export default function InsuranceInfoPage() {
 
   return (
     <section>
-      <Collapse in={pageMessage.isShow}>
-        <FormMessage
-          onClick={() => {
-            dispatch(closePageMessage());
-          }}
-          role="button"
-          success={pageMessage.error ? false : true}
-          fontTitle={16}
-          sx={{
-            borderRadius: "0px",
-            justifyContent: "center",
-            position: "absolute",
-            top: "-44px",
-            zIndex: "1",
-            left: 0,
-            width: "100%",
-            transition: "0.3 s ease-in-out",
-            cursor: "pointer",
-          }}
-        >
-          {pageMessage.content}
-        </FormMessage>
-      </Collapse>
+      <div
+        style={{
+          borderRadius: "0px",
+          justifyContent: "center",
+          position: "absolute",
+          top: "-44px",
+          zIndex: "1",
+          left: 0,
+          width: "100%",
+          transition: "0.3 s ease-in-out",
+        }}
+      >
+        <Collapse in={pageMessage.isShow}>
+          <FormMessage
+            withClose
+            onClose={() => {
+              dispatch(closePageMessage());
+            }}
+            role="button"
+            success={pageMessage.error ? false : true}
+            fontTitle={16}
+            sx={{
+              position: "relative",
+              justifyContent: "center",
+            }}
+          >
+            <Stack
+              sx={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              {pageMessage.content}
+            </Stack>
+          </FormMessage>
+        </Collapse>
+      </div>
       {loadingInsurance === "loading" ? (
         <Stack
           alignItems={"center"}

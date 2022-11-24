@@ -3,7 +3,8 @@ import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import styles from "./styles.module.scss";
 
 export default function PhoneNumber({ phone, sx = {}, isMap }) {
-  const isMobile = useMediaQuery("(max-width: 992px)");
+  const mobileScreen = useMediaQuery("(max-width: 992px)");
+  const isMobile = mobileScreen && phone !== "-";
   return (
     <Typography
       variant="body2"

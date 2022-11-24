@@ -6,16 +6,16 @@ import { patientTypography } from "../../styles/theme";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
 import { logoutProps } from "../../utils/authetication";
 
-export default function MyCareTeamLayout({ children }) {
+export default function MyCareTeamLayout({ children, title }) {
   return (
     <>
       <Head>
-        <title>My Care Team page</title>
+        <title>{title}</title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader {...logoutProps} showNavbar={true} />
         <AccountTitleHeading
-          title="My Care Team"
+          title={title}
           sx={{ fontWeight: "400", maxWidth: "1477px", margin: "0 auto" }}
         />
         <ThemeProvider theme={patientTypography}>

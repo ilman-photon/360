@@ -41,7 +41,13 @@ export default function PersonalInformation({
   },
   testIds,
 }) {
-  const { handleSubmit, control, reset } = useForm({
+  const {
+    handleSubmit,
+    control,
+    reset,
+    setFocus,
+    formState: { errors },
+  } = useForm({
     defaultValues: userData,
   });
 
@@ -87,6 +93,13 @@ export default function PersonalInformation({
   useEffect(() => {
     if (userData) reset(userData);
   }, [userData, reset]);
+
+  useEffect(() => {
+    const firstErrorKey = Object.keys(errors).find((key) => errors[key]);
+    if (firstErrorKey) {
+      setFocus(firstErrorKey);
+    }
+  }, [Object.keys(errors)]);
 
   const handleCancel = () => {
     reset(userData);
@@ -324,7 +337,7 @@ export default function PersonalInformation({
               name="name"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
@@ -332,6 +345,7 @@ export default function PersonalInformation({
                     <StyledInput
                       disabled
                       type="text"
+                      inputRef={ref}
                       id="name"
                       label="Name"
                       value={value}
@@ -351,12 +365,13 @@ export default function PersonalInformation({
               name="preferredName"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <StyledInput
                     type="text"
+                    inputRef={ref}
                     id="preferredName"
                     label="Preferred Name"
                     inputProps={{
@@ -377,12 +392,13 @@ export default function PersonalInformation({
               name="title"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <StyledSelect
                     id="title"
+                    inputRef={ref}
                     label="Title"
                     inputProps={{
                       "aria-label": "Title dropdown menu",
@@ -460,13 +476,14 @@ export default function PersonalInformation({
               name="gender"
               control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <StyledSelect
                     id="gender"
                     label="Gender"
+                    inputRef={ref}
                     inputProps={{
                       "aria-label": "Gender dropdown menu",
                     }}

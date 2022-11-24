@@ -19,11 +19,10 @@ const iconHealthRecord = "/iconCarePlanRecord.png";
 const iconCarePlan = "/icon-carePlan.png";
 const iconPrescription2 = "/icon-prescription2.png";
 const iconTestLabResults = "/icon-testLabResults.png";
+const iconDoctor = "/doctorMenu.png";
+const iconAppointments = "/appointmentsMenu.png";
 
-const pages = [
-  { href: "/patient", label: "Dashboard" },
-  { href: "/patient/appointments", label: "Appointments" },
-];
+const pages = [{ href: "/patient", label: "Dashboard" }];
 
 const pagesNext = [
   {
@@ -75,9 +74,23 @@ const medical = [
   },
 ];
 
+const appointments = [
+  {
+    icon: iconDoctor,
+    href: "/patient/search-doctor",
+    label: "Find a Doctor",
+  },
+  {
+    icon: iconAppointments,
+    href: "/patient/appointments",
+    label: "Upcoming Appointment",
+  },
+];
+
 const Navbar = ({ isDashboard = false }) => {
   const [anchorHealth, setAnchorHealth] = React.useState(null);
   const [anchorDocument, setAnchorDocument] = React.useState(null);
+  const [anchorAppointments, setAnchorAppointments] = React.useState(null);
 
   const router = useRouter();
 
@@ -97,10 +110,14 @@ const Navbar = ({ isDashboard = false }) => {
   const handleOpenDocument = (event) => {
     setAnchorDocument(event.currentTarget);
   };
+  const handleOpenAppointments = (event) => {
+    setAnchorAppointments(event.currentTarget);
+  };
 
   const handleCloseMenu = (href) => {
     setAnchorHealth(null);
     setAnchorDocument(null);
+    setAnchorAppointments(null);
     if (typeof href === "string") router.push(href);
   };
 
@@ -184,6 +201,52 @@ const Navbar = ({ isDashboard = false }) => {
                   {page.label}
                 </Button>
               ))}
+
+              <Box>
+                <Button
+                  onClick={handleOpenAppointments}
+                  aria-label={`Appointments menu`}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    textTransform: "none",
+                    display: "flex",
+                    margin: "0 !important",
+                    borderRadius: "2px 2px 0px 0px",
+                    borderTop: "solid 4px transparent",
+                    paddingBottom: "1px",
+                    borderBottom:
+                      isCurrentPath("/patient/appointments") ||
+                      isCurrentPath("/patient/search-doctor")
+                        ? "solid 4px #D9D9D9"
+                        : "solid 4px transparent",
+                    // },
+                  }}
+                  endIcon={<ExpandMoreIcon />}
+                >
+                  Appointments
+                </Button>
+                <Menu
+                  sx={{ mt: "40px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorAppointments}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorAppointments)}
+                  onClose={handleCloseMenu}
+                >
+                  {appointments.map((med, medIdx) =>
+                    MenuItemLabel(med, medIdx)
+                  )}
+                </Menu>
+              </Box>
 
               <Box>
                 <Button

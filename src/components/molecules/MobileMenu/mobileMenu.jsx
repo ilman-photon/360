@@ -37,8 +37,17 @@ export default function MobileMenu({
     },
     {
       label: "Appointments",
-      href: "/patient/appointments",
       icon: <CalendarTodayOutlinedIcon sx={{ fill: colors.darkGreen }} />,
+      submenu: [
+        {
+          label: "Find a Doctor",
+          href: "/patient/search-doctor",
+        },
+        {
+          label: "Upcoming Appointment",
+          href: "/patient/appointments",
+        },
+      ],
     },
     {
       label: "Health Chart",

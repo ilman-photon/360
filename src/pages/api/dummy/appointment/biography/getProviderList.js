@@ -53,7 +53,7 @@ export default function getProviderList(req, res) {
             deaIds: [],
             taxonomyCode: "207ND0101X",
             classification: "Dermatology",
-            specialization: "MOHS-Micrographic Surgery",
+            specialization: "Glaucoma",
             rating: 9,
             language1: "Arabic",
             language2: "Chinese",
@@ -240,7 +240,7 @@ export default function getProviderList(req, res) {
             language3: "German",
             profilePhoto: {
               digitalAsset: {
-                uid: "1ffaf737-57ac-4660-8a32-f0650e2285ae",
+                uid: "c4ba4230-24b9-4b6b-af14-6907317c83e5",
                 fileName: "test",
                 assetUrl: "/v1/patient",
                 _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",

@@ -2,6 +2,7 @@ import axios from "axios";
 import moment from "moment";
 import { setGenericErrorMessage } from "../../store";
 import constants from "../../utils/constants";
+import { Regex } from "../../utils/regex";
 
 let store;
 
@@ -68,6 +69,9 @@ export class Api {
           if (errors && showError) {
             store.dispatch(setGenericErrorMessage(errors[0].description));
           }
+        } else if (err.code === "ECONNABORTED" && showError) {
+          store.dispatch(setGenericErrorMessage(err.message));
+          reject(err);
         } else {
           reject(err);
         }
@@ -402,6 +406,45 @@ export class Api {
     const firstName = userProfile?.firstName || "";
     const lastName = userProfile?.lastName || "";
     const url = `/ecp/appointments/patientDetails?search.query=((patient.firstName=eq=${firstName})AND(patient.lastName=eq=${lastName}))`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  searchProvider(query) {
+    const notEmpty = (text) => {
+      return text !== "";
+    };
+
+    const isAllEmpty =
+      !notEmpty(query.name) &&
+      !notEmpty(query.location) &&
+      !notEmpty(query.speciality);
+
+    const name = query.name.split(" ");
+    const firstName = notEmpty(name[0]) ? `(firstName=eq=${name[0]})` : "";
+    const lastNameRaw =
+      name.length > 1
+        ? `AND(lastName=eq=${name[name.length - 1]})`
+        : `OR(lastName=eq=${name[0]})`;
+    const lastName = notEmpty(query.name) ? lastNameRaw : "";
+    const location = query.location;
+    let city = "";
+    let zip = "";
+    if (notEmpty(location)) {
+      if (Regex.isZip.test(location)) {
+        zip = `AND(offices.zip=eq=${location})`;
+      } else {
+        city = `AND(offices.city=eq=${location})`;
+      }
+    }
+    const speciality = notEmpty(query.speciality)
+      ? `AND(providerDetails.specialization=eq=${query.speciality})`
+      : "";
+
+    const queryString = isAllEmpty
+      ? ""
+      : `(${firstName}${lastName}${zip}${city}${speciality})`;
+
+    const url = `/ecp/appointments/getDoctorDetails?pageSize=300&search.query=${queryString}`;
     return this.getResponse(url, {}, "get");
   }
 
