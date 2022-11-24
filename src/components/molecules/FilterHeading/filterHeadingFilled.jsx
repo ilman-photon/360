@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./filterHeading.module.scss";
 import { Box, Typography } from "@mui/material";
 import StyledInput from "../../atoms/Input/input";
@@ -15,7 +15,6 @@ import {
   purposeIcon,
 } from "./filterHeading";
 import { convertToDate } from "../../../utils/dateFormatter";
-import { useRef } from "react";
 
 const FilterHeadingFilled = ({
   openDialog,

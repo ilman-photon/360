@@ -17,6 +17,7 @@ export default function ImageFallback({
   };
 
   useEffect(() => {
+    setImageSource(fallbackSrc);
     if (source) fetchImageURL();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [source]);
