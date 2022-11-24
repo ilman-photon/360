@@ -80,6 +80,9 @@ export default function ProfileInformationPage({
         content: message || "Your changes were saved",
       })
     );
+    setTimeout(() => {
+      dispatch(closePageMessage());
+    }, 5000);
   };
 
   const onSavePersonalData = async (postBody) => {
