@@ -1,79 +1,134 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, act, cleanup, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import ConfirmationForm from "../../src/components/organisms/ConfirmationForm/confirmationForm";
 import RowRadioButtonsGroup from "../../src/components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
-import constants from "../../src/utils/constants";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import AuthPage from "../../src/pages/patient/login";
+import { Login } from "../../src/components/organisms/Login/login";
+import { renderWithProviders } from "../src/utils/test-util";
+import { TEST_ID } from "../../src/utils/constants";
+import { renderLogin, renderForgotPassword, clickContinueForgot } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-220.feature"
 );
 
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+
+const launchURL = () => {
+  const mockOnLoginClicked = jest.fn((data, route, callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+}
+
+const navigateToPatientPortalApp = () => {
+  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  act(() => {
+    container = renderWithProviders(<AuthPage />, {
+      container: document.body.appendChild(element),
+      legacyRoot: true,
+    });
+  });
+}
+
 defineFeature(feature, (test) => {
+  let container;
+  const mock = new MockAdapter(axios);
+  const element = document.createElement("div");
   test('EPIC_EPP-7_STORY_EPP-220 - Verify user  is not able to submit "Set New Password" when internet connection is unavailable', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see "(.*)" Page$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -151,67 +206,90 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify User should not copy and paste on "<New Password>" and "<Confirm New Password>" fields', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see "(.*)" Page$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -273,67 +351,90 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-219 - Verify user  is not able to submit "Set New Password" when service is unavailable', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see "(.*)" Page$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -411,67 +512,90 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify user should see "page loading" within 3 seconds', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see "(.*)" Page$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -553,67 +677,90 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify user should see empty fields when user refresh the page', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see "(.*)" Page$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -695,67 +842,90 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify user should not see any scripts error when after user press F12 on the console', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see "(.*)" Page$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -813,67 +983,90 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Negative tests - Verify user should see "Password does not meet requirements" error message', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see "(.*)" Page$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -951,121 +1144,163 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify user able to navigate to the Select option screen from the Forgot Password Screen when Security questions not set', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
   });
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify should be able to receive reset password link  to the registered Email without answering the security questions if they are not set.', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see "(.*)" Page$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -1115,67 +1350,90 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify should be able to receive reset password link to the registered Phone number without answering the security questions if they are not set.', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then(/^user should see "(.*)" Page$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByText("titleOneTime")
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("email-test")
+      ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -1225,35 +1483,48 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify should be able to set a new password using the link received to the registered email without answering the security questions if they are not set', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      expect(forgotPassBtn).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" link$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const forgotPassBtn = container.getByText("forgotPassword");
+      fireEvent.click(forgotPassBtn);
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should enter valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
     and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -1419,15 +1690,20 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify should be able to set a new password using the link received to the registered Phone Number without answering the security questions if they are not set', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
@@ -1450,16 +1726,18 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      // container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      // expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      // expect(
+      //   container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      // ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -1479,7 +1757,9 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      // expect(
+      //   container.getByTestId("email-test")
+      // ).toBeInTheDocument();
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
@@ -1601,15 +1881,20 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-7_STORY_EPP-220 - Verify the error message “Reset password link has been expired” if the user clicks on the link received in email/text to update password 24 hours after it has been sent', ({ given, and, when, then }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" link$/, (arg0) => {
@@ -1632,16 +1917,18 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      // container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      // expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      // expect(
+      //   container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+      // ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -1661,7 +1948,9 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      // expect(
+      //   container.getByTestId("email-test")
+      // ).toBeInTheDocument();
     });
 
     and(/^user should select only  "(.*)" as "(.*)" or "(.*)"$/, (arg0, arg1, arg2) => {
