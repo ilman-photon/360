@@ -231,6 +231,8 @@ export default function BaseHeader({
               <Stack flexDirection="row" alignItems="center">
                 {/* Menu Desktop*/}
                 <EcommerceButton
+                  tabIndex={0}
+                  aria-label="Shop for Contacts button"
                   wrapperStyle={{
                     margin: "12px 16px",
                     display: { xs: "none", sm: "flex" },
@@ -260,6 +262,8 @@ export default function BaseHeader({
                 </StyledButton>
                 {/* notification badge */}
                 <IconButton
+                  tabIndex={0}
+                  aria-label="Notifications button"
                   data-testid="notification-badge-icon"
                   sx={{
                     px: { xs: 2, sm: 3 },
@@ -290,7 +294,11 @@ export default function BaseHeader({
                 </IconButton>
 
                 {/* Menu Mobile*/}
-                <Box sx={styles.boxStyledMobile}>
+                <Box
+                  tabIndex={0}
+                  aria-label={"Username dropdown"}
+                  sx={styles.boxStyledMobile}
+                >
                   <IconButton
                     size="large"
                     onClick={() => setOpenedProfileDrawer(true)}
