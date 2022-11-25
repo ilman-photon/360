@@ -1,45 +1,89 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, act, cleanup, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import LoginPage from "../../src/pages/patient/login";
-import RegisterPage from "../../src/pages/patient/auth/create-account";
-import { Provider } from "react-redux";
-import store from "../../src/store/store";
+import ConfirmationForm from "../../src/components/organisms/ConfirmationForm/confirmationForm";
+import RowRadioButtonsGroup from "../../src/components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
+import InsertLinkIcon from "@mui/icons-material/InsertLink";
+import { Controller } from "react-hook-form";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import constants from "../../src/utils/constants";
+import AuthPage from "../../src/pages/patient/login";
+import { Login } from "../../src/components/organisms/Login/login";
+import { renderWithProviders } from "../src/utils/test-util";
+import { TEST_ID } from "../../src/utils/constants";
+import { renderLogin, renderForgotPassword, clickContinueForgot, landOnCreateAccountPage } from "../../__mocks__/commonSteps";
+import UpdatePasswordPage from "../../src/pages/patient/update-password";
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-250.feature"
 );
 
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+
+const launchURL = () => {
+  const mockOnLoginClicked = jest.fn((data, route, callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+}
+
+const navigateToPatientPortalApp = () => {
+  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  act(() => {
+    container = renderWithProviders(<AuthPage />, {
+      container: document.body.appendChild(element),
+      legacyRoot: true,
+    });
+  });
+}
+
 defineFeature(feature, (test) => {
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in "Email" field', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -61,31 +105,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in "Date of Birth" field', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -107,31 +164,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in "Mobile number" field', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -157,31 +227,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Mobile Number" field not filled and Preferred mode as Email', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -215,31 +298,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Email" field not filled and Preferred mode as Email', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -273,31 +369,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Email" field not filled and Preferred mode as Mobile Number', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -339,31 +448,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view "Username" field auto populate with Email id when email id is provided but Mobile number not provided', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -389,31 +511,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view "Username" field auto populate with Mobile number when mobile number is provided but email not provided', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -439,31 +574,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view "Username" field auto populate with Email id when both email id and Mobile number provided', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -489,31 +637,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when password requirement not met in "Password" field', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -543,31 +704,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the field "Preferred mode of communication" preselected with option "Both"', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -593,31 +767,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to change "Preferred mode of communication" to Mobile Number or Both when Email is provided', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -651,31 +838,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to change "Preferred mode of communication" to Email or Both when Mobile number is provided', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -709,27 +909,35 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to change "Preferred mode of communication" to "Email" or "Mobile number" when Both Mobile number and Email provided', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^user should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
@@ -881,11 +1089,11 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the Registration screen', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
     when(/^userr lands onto "(.*)" screen$/, (arg0) => {
@@ -893,15 +1101,20 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -927,11 +1140,11 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account by providing details in all mandatory field', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
     when(/^userr lands onto "(.*)" screen$/, (arg0) => {
@@ -939,15 +1152,20 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^user should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
@@ -989,15 +1207,18 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "First Name" field not filled', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should see the Don't have an account verbiage along with "(.*)" button$/, (arg0) => {
@@ -1047,27 +1268,35 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Last Name" field not filled', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following field (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
@@ -1105,31 +1334,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Date of Birth"" field not filled', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -1163,31 +1405,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Mobile Number" field not filled and Preferred mode as Mobile Number', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
@@ -1221,31 +1476,44 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in "Last name" field', ({ given, and, when, then }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)).toBeInTheDocument();
     });
 
     and(/^user should able to view the Don"(.*)" verbiage along with "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const dontHaveAccountLabel = container.getByText(/dontHaveAccountLabel/i);
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      expect(dontHaveAccountLabel).toBeInTheDocument();
+      expect(createAccountButtonLabel).toBeInTheDocument();
     });
 
     when(/^user clicks on the "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const createAccountButtonLabel = container.getByText(/createAccountButtonLabel/i);
+      fireEvent.click(createAccountButtonLabel)
     });
 
-    then(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await landOnCreateAccountPage()
     });
 
     then(/^User should see the following fields (.*),(.*),(.*),(.*),(.*),(.*),(.*),(.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) => {
-      expect(true).toBeTruthy();
+      const firstNameField = container.getByText(/First Name/i)
+      const lastNameField = container.getByText(/Last Name/i)
+      const emailField = container.getByTestId("email")
+      expect(firstNameField).toBeInTheDocument();
+      expect(lastNameField).toBeInTheDocument();
+      expect(emailField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
