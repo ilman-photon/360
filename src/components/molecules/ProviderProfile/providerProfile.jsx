@@ -211,7 +211,7 @@ export default function ProviderProfile({
                 }
               }
             >
-              <Box>
+              <Box width={280}>
                 <Typography
                   variant="body2"
                   className={[styles.address, addressClass].join(" ")}
