@@ -291,7 +291,7 @@ export const CustomInput = styled(({ ...props }) => {
                 setTimeout(() => {
                   dobInputRef?.current?.blur();
                 }, 1);
-                props?.onClose();
+                props?.onClose && props?.onClose();
               }}
               inputRef={dobInputRef}
               getOpenDialogAriaText={(date, utils) => {
