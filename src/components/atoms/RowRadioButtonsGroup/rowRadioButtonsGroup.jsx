@@ -4,11 +4,11 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { Box, FormHelperText } from "@mui/material";
+import { FormHelperText, IconButton } from "@mui/material";
 import { colors } from "../../../styles/theme";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import Image from "next/image";
+import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -47,29 +47,32 @@ export default function RowRadioButtonsGroup({
           alignItems: "center",
           ...textSx,
         }}
-        tabIndex={0}
       >
         {props.label}
         {tooltipContent ? (
           <>
-            <CustomWidthTooltip
+            <Tooltip
               title={tooltipContent}
-              tabindex="0"
-              aria-hidden="true"
               placement="top"
-              arrow
-              sx={{ width: customTooltipWidth || "unset" }}
+              PopperProps={{
+                role: "alert",
+              }}
+              aria-label={`Information Icon - ${tooltipContent}`}
             >
-              <Box sx={{ marginLeft: "7px", lineHeight: "10px" }}>
-                <Image
-                  alt=""
-                  src={"/tooltipIcon.png"}
-                  width={18}
-                  height={18}
-                  style={{ cursor: "pointer", paddingLeft: "10px" }}
+              <IconButton
+                sx={{ p: 0, marginLeft: "7px", lineHeight: "10px" }}
+                style={{ cursor: "pointer" }}
+                aria-label={"Information Icon"}
+              >
+                <ErrorOutlineOutlinedIcon
+                  sx={{
+                    width: "19.21px",
+                    height: "19.21px",
+                    color: "#00000080",
+                  }}
                 />
-              </Box>
-            </CustomWidthTooltip>
+              </IconButton>
+            </Tooltip>
           </>
         ) : (
           ""

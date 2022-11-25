@@ -100,7 +100,6 @@ export function Login({
                   }) => {
                     return (
                       <StyledInput
-                        tabIndex={0}
                         inputRef={inputRef}
                         InputLabelProps={{
                           "aria-hidden": true,
@@ -130,7 +129,7 @@ export function Login({
                   }}
                 />
                 <Controller
-                  tabIndex={0}
+                  // tabIndex={0}
                   aria-label={"Password required text field"}
                   name="password"
                   control={control}
@@ -141,7 +140,6 @@ export function Login({
                   }) => {
                     return (
                       <StyledInput
-                        tabIndex={0}
                         inputRef={inputPassword}
                         id="password"
                         data-testid={LOGIN_TEST_ID.passwordField}

@@ -166,6 +166,7 @@
     "preferredCommunication": "Preferred mode of Communication",
     "scheduled": "You’re Scheduled!",
     "isEmergency": "Is this a medical emergency?",
+    "isEmergencyTooltip": "If this is a medical emergency, please call 911",
     "thanksBar" : "Thank you for scheduling your appointment. We will send a confirmation Email/Text shortly.",
     "thanksBarReschedule" : "Thank you for rescheduling your appointment. We will send a confirmation Email/Text shortly.",
     "patientInformation": "Patient Information",

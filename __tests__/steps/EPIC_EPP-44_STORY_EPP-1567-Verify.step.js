@@ -469,7 +469,7 @@ defineFeature(feature, (test) => {
     const field3 = container.getByLabelText("Mobile Number");
     fireEvent.change(field3, { target: { value: "3" } });
 
-    const field4 = container.getByRole("textbox", { name: "Email" });
+    const field4 = container.getAllByLabelText("Email")[0];
     fireEvent.change(field4, { target: { value: "4" } });
   };
 

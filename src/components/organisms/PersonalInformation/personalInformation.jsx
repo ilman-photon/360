@@ -94,15 +94,35 @@ export default function PersonalInformation({
     if (userData) reset(userData);
   }, [userData, reset]);
 
+  const resetImageUploaderState = () => {
+    setFormProfilePhotoState({
+      success: false,
+      title: null,
+      content: null,
+    });
+    setFormIssuedFrontState({
+      success: false,
+      title: null,
+      content: null,
+    });
+    setFormIssuedBackState({
+      success: false,
+      title: null,
+      content: null,
+    });
+  };
+
   useEffect(() => {
     const firstErrorKey = Object.keys(errors).find((key) => errors[key]);
     if (firstErrorKey) {
       setFocus(firstErrorKey);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Object.keys(errors)]);
 
   const handleCancel = () => {
     reset(userData);
+    resetImageUploaderState();
     OnCancelEditClicked();
   };
 
@@ -343,7 +363,9 @@ export default function PersonalInformation({
                 return (
                   <>
                     <StyledInput
-                      disabled
+                      inputProps={{
+                        readOnly: true,
+                      }}
                       type="text"
                       inputRef={ref}
                       id="name"
@@ -430,7 +452,10 @@ export default function PersonalInformation({
               }) => {
                 return (
                   <StyledInput
-                    disabled
+                    inputProps={{
+                      readOnly: true,
+                    }}
+                    selectorDisabled
                     disableFuture
                     type="dob"
                     id="dob"
@@ -457,7 +482,9 @@ export default function PersonalInformation({
               }) => {
                 return (
                   <StyledInput
-                    disabled
+                    inputProps={{
+                      readOnly: true,
+                    }}
                     type="text"
                     id="age"
                     label="Age"
@@ -516,7 +543,9 @@ export default function PersonalInformation({
               }) => {
                 return (
                   <StyledInput
-                    disabled
+                    inputProps={{
+                      readOnly: true,
+                    }}
                     id="ssn"
                     label="SSN"
                     value={value}

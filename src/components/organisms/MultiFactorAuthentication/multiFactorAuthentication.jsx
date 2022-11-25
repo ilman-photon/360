@@ -28,7 +28,6 @@ export default function MultiFactorAuthentication({
       <StyledInput
         type="number"
         id="mfaCode"
-        tabIndex={0}
         InputLabelProps={{ "aria-hidden": true }}
         aria-label={"Enter code text field"}
         label={t("mfaLabel")}

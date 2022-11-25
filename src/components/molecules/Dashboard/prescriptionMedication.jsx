@@ -429,18 +429,18 @@ export default function PrescriptionMedication({
               <Stack
                 direction={"row"}
                 alignSelf={"center"}
-                className={styles.gridHeight}
+                className={styles.customGridHeight}
               >
                 <Typography
                   variant="customBodyRegular"
-                  className={styles.gridText}
+                  className={styles.customGridText}
                   tabIndex={"0"}
                 >
                   Prescribed on: &nbsp;
                 </Typography>
                 <Typography
                   variant="bodyMedium"
-                  className={styles.gridText}
+                  className={styles.customGridText}
                   tabIndex={"0"}
                 >
                   {data.date}
@@ -449,18 +449,18 @@ export default function PrescriptionMedication({
               <Stack
                 direction={"row"}
                 alignSelf={"center"}
-                className={styles.gridHeight}
+                className={styles.customGridHeight}
               >
                 <Typography
                   variant="customBodyRegular"
-                  className={styles.gridText}
+                  className={styles.customGridText}
                   tabIndex={"0"}
                 >
                   Prescribed by: &nbsp;
                 </Typography>
                 <Typography
                   variant="bodyMedium"
-                  className={styles.gridText}
+                  className={styles.customGridText}
                   tabIndex={"0"}
                 >
                   {data.prescribedBy}
