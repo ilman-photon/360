@@ -20,7 +20,7 @@ export const getIcon = (data) => {
   const getPrescriptionIcon = (string) => {
     const type = getPrescriptionType(string);
     switch (type) {
-      case "Isopto Carpine":
+      default:
         return <PrescriptionIcon width={24} height={24} />;
     }
   };
@@ -34,6 +34,7 @@ export const getIcon = (data) => {
     case "appointment":
       return <CalendarTodayIcon width={24} height={24} />;
     case "test-result":
+    case "test/lab results":
       return <TestTubeIcon width={24} height={24} />;
     case "message":
       return <MessageIcon width={24} height={24} />;
@@ -91,6 +92,7 @@ export const getDescription = (data) => {
         </>
       );
     case "test-result":
+    case "test/lab results":
       return (
         <>
           Your <b>lab test results</b> are available now.
