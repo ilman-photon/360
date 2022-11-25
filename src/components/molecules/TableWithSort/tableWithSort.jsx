@@ -306,6 +306,7 @@ export default function TableWithSort({
                 const assetId = ref(row, cell.valueKey);
                 onAssetDownload(assetId);
               }}
+              aria-label="Download"
             >
               {cell.icon}
             </div>
@@ -335,6 +336,7 @@ export default function TableWithSort({
               data-testid="downloadPDFButton"
               target="_blank"
               rel="noreferrer"
+              aria-label="Download"
             >
               {cell.icon}
             </a>

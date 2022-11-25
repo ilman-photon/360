@@ -19,6 +19,8 @@ export function PastAppointmentCard({ data, threshold }) {
   const handleClickAlt = () => {
     setOpenAlt(!openAlt);
   };
+
+  const expandCondition = threshold == 0 ? openAlt : open;
   return (
     <Box className={styles.pastAppointmentsContainer}>
       <Box
@@ -40,7 +42,11 @@ export function PastAppointmentCard({ data, threshold }) {
             paddingLeft: "16px",
           }}
         >
-          <Typography tabIndex={0} ariaLabel={year} variant="h4">
+          <Typography
+            tabIndex={0}
+            aria-label={`Past appointment year of ${year}`}
+            variant="h4"
+          >
             {year}
           </Typography>
         </Box>
@@ -54,11 +60,13 @@ export function PastAppointmentCard({ data, threshold }) {
         >
           <Button
             onClick={() => (threshold == 0 ? handleClickAlt() : handleClick())}
+            aria-label={"Collapse"}
+            ariaExpanded={expandCondition ? "true" : "false"}
           >
-            {(threshold == 0 ? openAlt : open) ? (
-              <ExpandLessIcon sx={{ color: "#000000" }} />
+            {expandCondition ? (
+              <ExpandLessIcon sx={{ color: "#000000" }} aria-expanded="true" />
             ) : (
-              <ExpandMoreIcon sx={{ color: "#000000" }} />
+              <ExpandMoreIcon sx={{ color: "#000000" }} aria-expanded="false" />
             )}
           </Button>
         </Box>

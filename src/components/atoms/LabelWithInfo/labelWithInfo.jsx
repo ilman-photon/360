@@ -45,6 +45,9 @@ export const LabelWithInfo = ({
           <Tooltip
             title={tooltipContent}
             placement="top"
+            PopperProps={{
+              role: "alert",
+            }}
             aria-label={`Information Icon - ${tooltipContent}`}
           >
             <IconButton sx={{ p: 0 }}>

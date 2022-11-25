@@ -548,6 +548,7 @@ const FilterHeading = ({
                 inputProps={{
                   "aria-label": "Date field",
                   readOnly: true,
+                  isTransparent: true,
                 }}
                 sx={{
                   margin: 0,

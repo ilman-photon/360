@@ -168,6 +168,9 @@ export default function ModalConfirmContent({
           <Tooltip
             title="If this is a medical emergency, please call 911"
             ariaLabel={"If this is a medical emergency, please call 911"}
+            PopperProps={{
+              role: "alert",
+            }}
             tabIndex={0}
           >
             <Link

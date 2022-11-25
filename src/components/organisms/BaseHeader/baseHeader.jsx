@@ -212,7 +212,13 @@ export default function BaseHeader({
 
               {/* profile menu */}
               <Box sx={styles.boxProfileMenuStyles}>
-                <Tooltip title="Username dropdown">
+                <Tooltip
+                  title="Username dropdown"
+                  PopperProps={{
+                    role: "alert",
+                  }}
+                  aria-label={`Information Icon - Username dropdown`}
+                >
                   <Button
                     variant="text"
                     sx={[styles.boxButtonStyles, styles.userText]}
