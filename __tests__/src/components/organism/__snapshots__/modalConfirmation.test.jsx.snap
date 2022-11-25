@@ -38,12 +38,15 @@ Object {
           role="dialog"
         >
           <div
+            aria-label="Appointment confirmation page"
             class="boxModalContents MuiBox-root css-17wkslb"
           >
             <h2
-              aria-label="Appointment confirmation page"
+              aria-hidden="false"
+              aria-label="You’re Scheduled!"
               class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-j0ed6i-MuiTypography-root-MuiDialogTitle-root"
               id=":r0:"
+              tabindex="0"
             >
               <span
                 class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
@@ -59,11 +62,7 @@ Object {
                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
                   />
                 </svg>
-                 
-                <div
-                  aria-label="You’re Scheduled!"
-                  tabindex="0"
-                >
+                <div>
                   You’re Scheduled!
                 </div>
               </span>
@@ -91,14 +90,16 @@ Object {
             </h2>
             <div
               class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
-              tabindex="0"
             >
               <div
-                aria-label="nono button"
+                aria-hidden="false"
+                aria-label="thanksBar"
                 class="registeredUsernameWrapper"
                 sx="[object Object]"
+                tabindex="0"
               >
                 <div
+                  aria-hidden="false"
                   aria-label="thanksBar"
                   class="thanksBar MuiBox-root css-1bwq3er"
                   tabindex="0"
@@ -122,7 +123,8 @@ Object {
                 class="bottomParagraph"
               >
                 <a
-                  aria-label="isEmergency"
+                  aria-label="isEmergency. isEmergencyTooltip."
+                  aria-roledescription=""
                   arialabel="If this is a medical emergency, please call 911"
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                   data-mui-internal-clone-element="true"
@@ -145,6 +147,7 @@ Object {
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 dateBold css-eyz4cw-MuiTypography-root"
+                    tabindex="0"
                   >
                     -
                   </p>
@@ -182,12 +185,14 @@ Object {
                   <p
                     aria-label="Purpose of Visit"
                     class="MuiTypography-root MuiTypography-body1 dateBold css-ahj2mt-MuiTypography-root"
+                    tabindex="0"
                   >
                     Purpose of Visit
                   </p>
                   <p
                     aria-label="Eye exam"
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    tabindex="0"
                   >
                     Eye exam
                   </p>
@@ -346,6 +351,7 @@ Object {
                     aria-label="Patient Information heading"
                     aria-roledescription="Heading"
                     class="MuiTypography-root MuiTypography-body1 patientBoxLabel css-z2eky3-MuiTypography-root"
+                    tabindex="0"
                   >
                     patientInformation
                   </p>
@@ -376,6 +382,7 @@ Object {
                       <div>
                         <span
                           class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
+                          tabindex="0"
                         >
                           -
                         </span>
@@ -500,12 +507,15 @@ Object {
           role="presentation"
         >
           <div
+            aria-label="Appointment confirmation page"
             class="boxModalContents MuiBox-root css-17wkslb"
           >
             <h2
-              aria-label="Appointment confirmation page"
+              aria-hidden="false"
+              aria-label="You’re Scheduled!"
               class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-j0ed6i-MuiTypography-root-MuiDialogTitle-root"
               id="customized-dialog-title"
+              tabindex="0"
             >
               <span
                 class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
@@ -521,11 +531,7 @@ Object {
                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
                   />
                 </svg>
-                 
-                <div
-                  aria-label="You’re Scheduled!"
-                  tabindex="0"
-                >
+                <div>
                   You’re Scheduled!
                 </div>
               </span>
@@ -553,14 +559,16 @@ Object {
             </h2>
             <div
               class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
-              tabindex="0"
             >
               <div
-                aria-label="nono button"
+                aria-hidden="false"
+                aria-label="thanksBar"
                 class="registeredUsernameWrapper"
                 sx="[object Object]"
+                tabindex="0"
               >
                 <div
+                  aria-hidden="false"
                   aria-label="thanksBar"
                   class="thanksBar MuiBox-root css-1bwq3er"
                   tabindex="0"
@@ -584,7 +592,8 @@ Object {
                 class="bottomParagraph"
               >
                 <a
-                  aria-label="isEmergency"
+                  aria-label="isEmergency. isEmergencyTooltip."
+                  aria-roledescription=""
                   arialabel="If this is a medical emergency, please call 911"
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                   data-mui-internal-clone-element="true"
@@ -607,6 +616,7 @@ Object {
                 >
                   <p
                     class="MuiTypography-root MuiTypography-body1 dateBold css-eyz4cw-MuiTypography-root"
+                    tabindex="0"
                   >
                     -
                   </p>
@@ -644,12 +654,14 @@ Object {
                   <p
                     aria-label="Purpose of Visit"
                     class="MuiTypography-root MuiTypography-body1 dateBold css-ahj2mt-MuiTypography-root"
+                    tabindex="0"
                   >
                     Purpose of Visit
                   </p>
                   <p
                     aria-label="Eye exam"
                     class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    tabindex="0"
                   >
                     Eye exam
                   </p>
@@ -808,6 +820,7 @@ Object {
                     aria-label="Patient Information heading"
                     aria-roledescription="Heading"
                     class="MuiTypography-root MuiTypography-body1 patientBoxLabel css-z2eky3-MuiTypography-root"
+                    tabindex="0"
                   >
                     patientInformation
                   </p>
@@ -838,6 +851,7 @@ Object {
                       <div>
                         <span
                           class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
+                          tabindex="0"
                         >
                           -
                         </span>

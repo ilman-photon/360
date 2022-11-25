@@ -37,11 +37,7 @@ const BootstrapDialogTitle = (props) => {
   const { children, onClose, isPage, ...other } = props;
 
   return (
-    <DialogTitle
-      sx={{ m: 0, p: 2 }}
-      {...other}
-      aria-label="Appointment confirmation page"
-    >
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       {children}
       {onClose && !isPage ? (
         <IconButton
@@ -110,23 +106,24 @@ export default function ModalConfirmContent({
     <Box
       sx={{ width: { xs: "auto", md: "max-content" } }}
       className={styles.boxModalContents}
+      aria-label="Appointment confirmation page"
     >
       <BootstrapDialogTitle
         id="customized-dialog-title"
         onClose={handleClose}
         sx={{ textAlign: "center", fontSize: "22px" }}
         isPage={isPage}
+        tabIndex={0}
+        aria-hidden={false}
+        aria-label={
+          isReschedule
+            ? "Reschedule Appointment Successful"
+            : "You’re Scheduled!"
+        }
       >
         <Typography variant="bodyMedium" className={styles.scheduledText}>
-          <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />{" "}
-          <div
-            tabIndex={0}
-            aria-label={
-              isReschedule
-                ? "Reschedule Appointment Successful"
-                : "You’re Scheduled!"
-            }
-          >
+          <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />
+          <div>
             {isReschedule
               ? "Reschedule Appointment Successful"
               : "You’re Scheduled!"}
@@ -141,12 +138,13 @@ export default function ModalConfirmContent({
             pb: { xs: 2, md: 3 },
           },
         }}
-        tabIndex={0}
       >
         <div
           className={styles.registeredUsernameWrapper}
           sx={{ m: { xs: 0, md: 2 } }}
-          aria-label={"nono button"}
+          aria-hidden={false}
+          aria-label={isReschedule ? t("thanksBarReschedule") : t("thanksBar")}
+          tabIndex={0}
         >
           <Box
             className={styles.thanksBar}
@@ -159,6 +157,7 @@ export default function ModalConfirmContent({
               isReschedule ? t("thanksBarReschedule") : t("thanksBar")
             }
             tabIndex={0}
+            aria-hidden={false}
           >
             <MailOutlineIcon sx={{ mr: 1, height: "35px", width: "28px" }} />{" "}
             {isReschedule ? t("thanksBarReschedule") : t("thanksBar")}
@@ -173,7 +172,10 @@ export default function ModalConfirmContent({
           >
             <Link
               data-testid={REGISTER_TEST_ID.loginlink}
-              {...getLinkAria(t("isEmergency"))}
+              aria-label={`${t("isEmergency")}. ${t("isEmergencyTooltip")}.`}
+              aria-roledescription=""
+              role="link"
+              tabIndex={"0"}
             >
               <span className={styles.medicLink}>{t("isEmergency")}</span>
             </Link>
@@ -192,6 +194,7 @@ export default function ModalConfirmContent({
               className={styles.dateBold}
               sx={{ pb: 2 }}
               aria-label={appointmentData?.date}
+              tabIndex={"0"}
             >
               {formatAppointmentDate(appointmentData.date)}
             </Typography>
@@ -245,11 +248,13 @@ export default function ModalConfirmContent({
             <Typography
               className={styles.dateBold}
               aria-label={"Purpose of Visit"}
+              tabIndex={"0"}
             >
               Purpose of Visit
             </Typography>
             <Typography
               aria-label={appointmentData.appointmentType || "Eye exam"}
+              tabIndex={"0"}
             >
               {appointmentData.appointmentType || "Eye exam"}
             </Typography>
@@ -294,6 +299,7 @@ export default function ModalConfirmContent({
               sx={{ mb: 2 }}
               aria-label={"Patient Information heading"}
               aria-roledescription="Heading"
+              tabIndex={"0"}
             >
               {t("patientInformation")}
             </Typography>
@@ -303,7 +309,11 @@ export default function ModalConfirmContent({
               sxRow={{ justifyContent: "unset" }}
               sxText={{ color: colors.darkGreen, fontSize: "16px" }}
             >
-              <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+              <Typography
+                variant="bodyMedium"
+                sx={{ color: colors.darkGreen }}
+                tabIndex={"0"}
+              >
                 {getName()}
               </Typography>
             </LabelWithInfo>

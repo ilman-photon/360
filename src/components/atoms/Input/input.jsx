@@ -39,7 +39,7 @@ export const CustomFormControl = styled((props) => <FormControl {...props} />)(
 
 export const CustomPasswordInput = styled((props) => (
   <TextField
-    tabIndex={0}
+    // tabIndex={0}
     aria-label={"Password required text field"}
     InputProps={{
       disableUnderline: true,
