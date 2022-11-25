@@ -273,6 +273,7 @@ export const CustomInput = styled(({ ...props }) => {
         </>
       );
     case "dob":
+      const dobInputRef = React.useRef(null);
       return (
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -286,6 +287,13 @@ export const CustomInput = styled(({ ...props }) => {
               label={props.label}
               onChange={props.onChange}
               value={props.value}
+              onClose={() => {
+                setTimeout(() => {
+                  dobInputRef?.current?.blur();
+                }, 1);
+                props?.onClose();
+              }}
+              inputRef={dobInputRef}
               getOpenDialogAriaText={(date, utils) => {
                 if (date instanceof Date && !isNaN(date))
                   return `Choose date, selected date is ${utils.format(
