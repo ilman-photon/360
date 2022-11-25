@@ -15,9 +15,16 @@ export default function ModalCancelScheduling({
   OnClickCancel,
   OnCancelClicked,
 }) {
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control, watch, reset } = useForm({
     defaultValues: {},
   });
+
+  React.useEffect(() => {
+    reset({
+      cancelReason: "",
+      cancelOther: "",
+    });
+  }, [isOpen, reset]);
 
   const watchedRadio = watch("cancelSchedule");
 
