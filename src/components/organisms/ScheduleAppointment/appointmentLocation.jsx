@@ -8,7 +8,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ImageFallback from "../../atoms/Image/image";
 import { styles } from "./style";
 import { TEST_ID } from "../../../utils/constants";
-
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 export default function AppointmentLocation({
   providerData = {},
   OnEditClicked = () => {
@@ -106,19 +106,15 @@ export default function AppointmentLocation({
               aria-labelledby="provider-phone-number"
               style={styles.detailText}
             >
-              <Link
-                id="provider-phone-number"
-                style={styles.linkText}
-                aria-label={`phone number ${
-                  providerData.phoneNumber || providerData.cellPhone
-                }`}
-                tabIndex={"0"}
-                href={`tel:${
-                  providerData.phoneNumber || providerData.cellPhone
-                }`}
-              >
-                {providerData.phoneNumber || providerData.cellPhone}
-              </Link>
+              <PhoneNumber
+                phone={providerData.phoneNumber || providerData.cellPhone}
+                sx={{
+                  display: "flex",
+                  alignContent: "center",
+                  justifyContent: "flex-start",
+                  pt: 1,
+                }}
+              />
             </Typography>
           </Box>
         </Stack>

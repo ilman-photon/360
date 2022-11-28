@@ -598,7 +598,7 @@ export default function ScheduleAppointmentPage() {
         open={modalConfirmReschedule}
         sx={{
           ".MuiPaper-root": {
-            minWidth: "500px",
+            minWidth: { xs: "90%", sm: "500px" },
           },
           ".MuiDialogActions-root": {
             padding: 2,

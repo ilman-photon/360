@@ -97,6 +97,7 @@ export default function SelectOptionButton({
           "data-testid": `select-${id}`,
           ...props.inputProps,
         }}
+        MenuProps={props.MenuProps}
         {...props.menuProps}
         renderValue={props.renderValue}
       >

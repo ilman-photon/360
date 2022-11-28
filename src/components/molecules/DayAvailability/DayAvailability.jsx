@@ -258,7 +258,7 @@ export const DayAvailability = ({
           </Button>
         </Box>
       </Box>
-      <Divider className={styles.dividerSchedule} />
+      <Divider className={styles.dividerSchedule} aria-hidden="true" />
       <Stack
         spacing={3}
         data-testid={
