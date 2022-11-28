@@ -152,7 +152,14 @@ function SessionExpiredModal() {
               mode="primary"
               size="small"
               gradient={false}
-              style={styles.buttonStyle}
+              style={{
+                minWidth: "40px !important",
+                marginLeft: "10px",
+                fontSize: "14px",
+                boxShadow: "none",
+                transform: "none",
+                borderRadius: "5px",
+              }}
               data-testid="session-stay-btn"
               onClick={onClickStayLoggedIn}
               tabindex="1"
