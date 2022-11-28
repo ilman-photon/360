@@ -10,6 +10,7 @@ import {
   CircularProgress,
   Stack,
   useMediaQuery,
+  DialogTitle,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import FilterResult from "../../../components/molecules/FilterResult/filterResult";
@@ -462,7 +463,7 @@ export default function Appointment({ googleApiKey }) {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
           aria-label={open ? "View all availability dialog window open" : ""}
-          role="alertdialog"
+          role={"alertdialog"}
         >
           <Box sx={{ height: "51px", marginBottom: "40px" }}>
             <IconButton
@@ -478,6 +479,13 @@ export default function Appointment({ googleApiKey }) {
               <CloseIcon />
             </IconButton>
           </Box>
+          {!isDesktop && (
+            <DialogTitle
+              aria-label="View all availability dialog window open"
+              sx={{ padding: 0 }}
+              aria-hidden={true}
+            />
+          )}
           <DialogContent>
             <Box sx={{ width: "290px" }}>
               <ProviderProfile

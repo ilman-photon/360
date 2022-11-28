@@ -202,7 +202,7 @@ export default function ProviderProfile({
                   {(isBio || isMap || (isViewSchedule && isShownRating)) && (
                     <StyledRating value={parseFloat(providerData.rating / 2)} />
                   )}
-                  <PhoneNumber isMap={isMap} phone={phoneNumber} />
+                  <PhoneNumber isMap={isMap} phone={providerData.phoneNumber} />
                 </Box>
               )}
             </Box>
