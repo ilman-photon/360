@@ -86,16 +86,23 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const registerBtn = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(registerBtn).toBeInTheDocument();
     });
 
     when(/^user enter invalid format in (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      // const firstNameField = container.getByText(/First Name/i)
+      // const lastNameField = container.getByText(/Last Name/i)
+      // fireEvent.change(firstNameField, { target: { value: "1234" } });
+      // fireEvent.change(lastNameField, { target: { value: "1234" } });
+      // expect(firstNameField.value).toEqual("1234");
+      // expect(lastNameField.value).toEqual("1234");
     });
 
     then(/^user should see the error message "(.*)" under "(.*)" field$/, (arg0, arg1) => {
@@ -145,12 +152,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     when(/^user enter invalid format in (.*) field$/, (arg0) => {
@@ -204,12 +213,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -267,12 +278,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -338,12 +351,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -409,12 +424,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     when(/^user provide the details to the field (.*),(.*),(.*),(.*),(.*) and blank the field (.*)$/, (arg0, arg1, arg2, arg3, arg4, arg5) => {
@@ -488,12 +505,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -551,12 +570,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -614,12 +635,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -677,12 +700,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -744,12 +769,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -807,12 +834,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^user should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -878,12 +907,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^user should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -944,12 +975,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -1117,8 +1150,9 @@ defineFeature(feature, (test) => {
       container = await landOnCreateAccountPage()
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^user should see the verbiage "(.*)" below the "(.*)" CTA$/, (arg0, arg1) => {
@@ -1172,12 +1206,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see the "(.*)" CTA$/, (arg0) => {
@@ -1238,11 +1274,12 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      // expect(true).toBeTruthy();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      // const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      // expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see the "(.*)" CTA$/, (arg0) => {
@@ -1303,12 +1340,14 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see the "(.*)" CTA$/, (arg0) => {
@@ -1374,12 +1413,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see the "(.*)" CTA$/, (arg0) => {
@@ -1445,12 +1486,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^User should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
@@ -1516,12 +1559,14 @@ defineFeature(feature, (test) => {
       expect(emailField).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should see "(.*)" button$/, async (arg0) => {
+      const registerBtn = await container.getByTestId("registerBtn")
+      expect(registerBtn).toBeInTheDocument();
     });
 
     and(/^user should view the verbiage "(.*)" below the "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/By registering, you accept to our Terms & Conditions and Privacy Policy/i)
+      expect(verbiage).toBeInTheDocument();
     });
 
     and(/^user should see verbiage "(.*)"Login" link$/, (arg0) => {
