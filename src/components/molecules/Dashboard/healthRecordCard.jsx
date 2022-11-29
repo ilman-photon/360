@@ -1,12 +1,8 @@
 import * as React from "react";
-import AccountCard from "../AccountCard/accountCard";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import styles from "./styles.module.scss";
 import {
   Box,
-  Link,
   Stack,
-  ThemeProvider,
   Paper,
   TableContainer,
   Table,
@@ -17,9 +13,7 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { patientTypography } from "../../../styles/theme";
 import { useEffect } from "react";
-import { getLinkAria } from "../../../utils/viewUtil";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,8 +24,8 @@ import {
 import TableEmpty from "../../atoms/TableEmpty/tableEmpty";
 import { renderCTAIcon, StyledTableCell } from "./prescriptions";
 import moment from "moment";
-import { StyledButton } from "../../atoms/Button/button";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
+import CommonCard, { onRenderButtonView } from "./commonCard";
 
 export default function HealthRecordCard({}) {
   const [healthRecordData, setHealthRecordData] = React.useState({});
@@ -41,7 +35,7 @@ export default function HealthRecordCard({}) {
   const dispatch = useDispatch();
 
   const rows = useSelector((state) => {
-    return state.document.documentList;
+    return state.document.healthRecordList;
   });
 
   const handleAssetDownload = (id, print, newTab = true) => {
@@ -88,35 +82,6 @@ export default function HealthRecordCard({}) {
     );
   }
 
-  function onRenderButtonView() {
-    return (
-      <StyledButton
-        theme="patient"
-        mode="secondary"
-        size="small"
-        gradient={false}
-        sx={{
-          "&.sxButton": {
-            height: "30px",
-            padding: 0,
-            minWidth: isDesktop ? "50px !important" : "60% !important",
-            fontSize: "14px",
-            fontWeight: 500,
-            borderRadius: "5px",
-            border: "2px solid #003B4A",
-          },
-        }}
-        data-testid="view-record-btn"
-        tabindex="1"
-        onClick={() => {}}
-        aria-live={"polite"}
-        aria-label={"View record button"}
-      >
-        View
-      </StyledButton>
-    );
-  }
-
   function renderDekstopView() {
     const tableHeader = ["Health Record", "Last update", "", ""];
     return (
@@ -125,7 +90,7 @@ export default function HealthRecordCard({}) {
           padding: "16px",
         }}
       >
-        {rows?.length > 0 ? (
+        {healthRecordData ? (
           <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
             <Table
               sx={{
@@ -171,7 +136,9 @@ export default function HealthRecordCard({}) {
                     {new moment(healthRecordData._created).format("MM/DD/YYYY")}
                   </TableCell>
                   <TableCell tabIndex={0}>{onRenderCTA()}</TableCell>
-                  <TableCell tabIndex={0}>{onRenderButtonView()}</TableCell>
+                  <TableCell tabIndex={0}>
+                    {onRenderButtonView(() => {}, isDesktop)}
+                  </TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -216,60 +183,19 @@ export default function HealthRecordCard({}) {
           }}
         >
           {onRenderCTA()}
-          {onRenderButtonView()}
+          {onRenderButtonView(() => {}, isDesktop)}
         </Stack>
       </Stack>
     );
   }
 
   return (
-    <ThemeProvider theme={patientTypography}>
-      <AccountCard
-        className={styles.appointmentContainer}
-        isAppoinment={true}
-        isDashboard={true}
-        titleIcon={
-          <Image alt="" src={iconPrescription} width={32} height={32} />
-        }
-        title={"Health Records"}
-        sx={{
-          ".MuiCardContent-root": {
-            p: 0,
-            position: "relative",
-          },
-          ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
-            p: { xs: "24px 15.5px", md: "24px" },
-          },
-        }}
-      >
-        {isDesktop ? renderDekstopView() : renderMobileView()}
-        <Box
-          className={[styles.flexDisplay, styles.viewPrescription]}
-          sx={{
-            borderTop: 1,
-            borderColor: "divider",
-            paddingTop: "20px",
-          }}
-        >
-          <Link
-            className={styles.viewPrescriptionText}
-            sx={{ color: "#008294", fontFamily: "Inter" }}
-            onClick={() => {
-              router.push("/patient/health-record");
-            }}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                router.push("/patient/health-record");
-              }
-            }}
-            {...getLinkAria("View Health Records option")}
-            tabIndex={0}
-          >
-            View Health Records
-          </Link>
-          <KeyboardArrowRightIcon />
-        </Box>
-      </AccountCard>
-    </ThemeProvider>
+    <CommonCard
+      title={"Health Records"}
+      titleIcon={<Image alt="" src={iconPrescription} width={32} height={32} />}
+      content={isDesktop ? renderDekstopView() : renderMobileView()}
+      navRouter={"/patient/health-record"}
+      viewAllText={"View Health Records"}
+    />
   );
 }

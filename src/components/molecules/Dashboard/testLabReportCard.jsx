@@ -1,12 +1,8 @@
 import * as React from "react";
-import AccountCard from "../AccountCard/accountCard";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import styles from "./styles.module.scss";
 import {
   Box,
-  Link,
   Stack,
-  ThemeProvider,
   Paper,
   TableContainer,
   Table,
@@ -15,22 +11,18 @@ import {
   TableCell,
   useMediaQuery,
   Typography,
-  Divider,
 } from "@mui/material";
-import { patientTypography } from "../../../styles/theme";
 import { useEffect } from "react";
-import { getLinkAria } from "../../../utils/viewUtil";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDocuments, resetDocuments } from "../../../store/document";
 import TableEmpty from "../../atoms/TableEmpty/tableEmpty";
-import { renderCTAIcon, StyledTableCell } from "./prescriptions";
 import moment from "moment";
-import { StyledButton } from "../../atoms/Button/button";
-import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import CommonCard from "./commonCard";
+import { StyledTableCell } from "./prescriptions";
 
 export default function TestLabReportCard({}) {
   const [testLabReportData, setTestLabReportData] = React.useState({});
@@ -101,7 +93,7 @@ export default function TestLabReportCard({}) {
           padding: "16px",
         }}
       >
-        {rows?.length > 0 ? (
+        {orderDetails ? (
           <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
             <Table
               sx={{
@@ -254,58 +246,18 @@ export default function TestLabReportCard({}) {
   }
 
   return (
-    <ThemeProvider theme={patientTypography}>
-      <AccountCard
-        className={[styles.appointmentContainer, styles.testLabContainer].join(
-          " "
-        )}
-        isAppoinment={true}
-        isDashboard={true}
-        titleIcon={<Image alt="" src={iconTestTube} width={32} height={32} />}
-        title={"Test and Lab Reports"}
-        sx={{
-          ".MuiCardContent-root": {
-            p: 0,
-            position: "relative",
-          },
-          ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
-            p: { xs: "24px 15.5px", md: "24px" },
-          },
-        }}
-      >
-        <Typography className={styles.testLabTitle}>Eye Exam</Typography>
-        {isDesktop ? renderDekstopView() : renderMobileView()}
-        <Box
-          className={[styles.flexDisplay, styles.viewPrescription]}
-          sx={{
-            borderTop: 1,
-            borderColor: "divider",
-            paddingTop: "20px",
-          }}
-        >
-          <Link
-            className={styles.viewPrescriptionText}
-            sx={{ color: "#008294", fontFamily: "Inter" }}
-            onClick={() => {
-              router.push(
-                "/patient/account/medical-record?type=test-lab-result"
-              );
-            }}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                router.push(
-                  "/patient/account/medical-record?type=test-lab-result"
-                );
-              }
-            }}
-            {...getLinkAria("View  View Tests and Lab Reports option")}
-            tabIndex={0}
-          >
-            View Tests and Lab Reports
-          </Link>
-          <KeyboardArrowRightIcon />
-        </Box>
-      </AccountCard>
-    </ThemeProvider>
+    <CommonCard
+      title={"Test and Lab Reports"}
+      titleIcon={<Image alt="" src={iconTestTube} width={32} height={32} />}
+      content={
+        <>
+          <Typography className={styles.testLabTitle}>Eye Exam</Typography>
+          {isDesktop ? renderDekstopView() : renderMobileView()}
+        </>
+      }
+      navRouter={"/patient/account/medical-record?type=test-lab-result"}
+      viewAllText={"View Tests and Lab Reports"}
+      customClassName={styles.testLabContainer}
+    />
   );
 }

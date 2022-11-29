@@ -157,7 +157,7 @@ export default function HealthRecord() {
   };
 
   const rows = useSelector((state) => {
-    return state.document.documentList;
+    return state.document.healthRecordList;
   });
 
   const noResultText = () => {

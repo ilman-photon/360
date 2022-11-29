@@ -654,3 +654,44 @@
     color: #7b7b7b;
   }
 }
+
+.hightLightContainer {
+  margin-right: 16px;
+  .hightLightTitle {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+  }
+
+  .hightLightValue {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #008294;
+  }
+}
+
+.hightLightContainer:nth-child(even) {
+  margin-right: 0px;
+}
+
+.makePaymentContainer {
+  position: absolute;
+  bottom: 0px;
+  @media (max-width: 700px) {
+    margin-top: 16px;
+    position: relative;
+    width: 100%;
+  }
+}

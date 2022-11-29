@@ -37,6 +37,7 @@ import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
 import HealthRecordCard from "../../components/molecules/Dashboard/healthRecordCard";
 import TestLabReportCard from "../../components/molecules/Dashboard/testLabReportCard";
+import PayMyBillCard from "../../components/molecules/Dashboard/payMyBillCard";
 
 export async function getStaticProps() {
   return {
@@ -370,6 +371,28 @@ export default function HomePage({ googleApiKey }) {
                 onViewAppointment={onViewAppointment}
                 onClickReschedule={onClickReschedule}
               />
+            </Grid>
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              md={2}
+              sx={{
+                paddingLeft: { xs: "16px !important", md: "24px !important" },
+              }}
+            >
+              <PayMyBillCard />
+            </Grid>
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              md={3}
+              sx={{
+                paddingLeft: { xs: "16px !important", md: "24px !important" },
+              }}
+            >
+              {/* Education Material Widget */}
             </Grid>
             <Grid
               item
