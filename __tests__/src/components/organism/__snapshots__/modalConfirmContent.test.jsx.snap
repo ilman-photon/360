@@ -238,7 +238,7 @@ Object {
                             Scripps Eyecare
                           </h3>
                           <div
-                            class="detailContainer [object Object] MuiBox-root css-0"
+                            class="detailContainer [object Object] MuiBox-root css-1xttgf3"
                           >
                             <div
                               class="MuiBox-root css-0"
@@ -266,6 +266,9 @@ Object {
                           </div>
                         </div>
                       </div>
+                      <div
+                        class="MuiBox-root css-1vwjk5f"
+                      />
                     </div>
                     <div
                       class="getDirectionLink MuiBox-root css-0"
@@ -606,7 +609,7 @@ Object {
                           Scripps Eyecare
                         </h3>
                         <div
-                          class="detailContainer [object Object] MuiBox-root css-0"
+                          class="detailContainer [object Object] MuiBox-root css-1xttgf3"
                         >
                           <div
                             class="MuiBox-root css-0"
@@ -634,6 +637,9 @@ Object {
                         </div>
                       </div>
                     </div>
+                    <div
+                      class="MuiBox-root css-1vwjk5f"
+                    />
                   </div>
                   <div
                     class="getDirectionLink MuiBox-root css-0"

@@ -42,6 +42,14 @@
     @media (max-width: 767px) {
       font-size: 18px;
     }
+
+    @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+      font-size: 24px;
+    }
+
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+      font-size: 24px;
+    }
   }
 }
 
@@ -520,4 +528,14 @@
   color: #008294 !important;
   cursor: pointer;
   text-decoration-color: inherit !important;
+}
+
+.directionContent {
+  @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    flex-flow: inherit !important;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    flex-flow: inherit !important;
+  }
 }

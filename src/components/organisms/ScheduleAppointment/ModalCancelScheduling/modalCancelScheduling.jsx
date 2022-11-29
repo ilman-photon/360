@@ -196,8 +196,9 @@ export default function ModalCancelScheduling({
                 data-testid={CANCEL_SCHEDULE_TEST_ID.btnCancel}
                 sx={{
                   width: {
-                    xs: "100%",
-                    md: "fit-content",
+                    xs: "100% !important",
+                    md: "194px !important",
+                    lg: "100% !important",
                   },
                   mb: {
                     xs: "8px",
@@ -216,8 +217,9 @@ export default function ModalCancelScheduling({
                 data-testid={CANCEL_SCHEDULE_TEST_ID.btnKeep}
                 sx={{
                   width: {
-                    xs: "100%",
-                    md: "fit-content",
+                    xs: "100% !important",
+                    md: "194px !important",
+                    lg: "100% !important",
                   },
                   textTransform: "none",
                   borderRadius: 30,

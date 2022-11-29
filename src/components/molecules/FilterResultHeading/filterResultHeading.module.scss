@@ -99,6 +99,16 @@
   .titleContainer {
     position: relative;
     background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
+
+    @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+      justify-content: flex-start;
+      padding-top: 30px;
+    }
+
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+      justify-content: flex-start;
+      padding-top: 30px;
+    }
   }
   .subtitleContainer {
     margin-bottom: 30px;
@@ -130,12 +140,28 @@
     position: absolute;
     width: 94%;
     top: 84%;
+
+    @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+      top: 53%;
+    }
+
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+      top: 53%;
+    }
   }
   .mobileFilterStyle {
     height: 56px;
     background: #fff;
     border: 1px solid $teal;
     border-radius: 47px;
+  }
+
+  @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    height: 196px !important;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    height: 196px !important;
   }
 }
 

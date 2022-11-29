@@ -598,6 +598,9 @@ const FilterHeading = ({
                     color: "#303030",
                     lineHeight: "18px",
                     fontStyle: "normal",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    width: { xs: "100px", md: "unset" },
                   },
                 }}
                 onClick={() => setOpen(true)}

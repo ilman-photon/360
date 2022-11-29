@@ -88,6 +88,8 @@ export default function Appointment({ googleApiKey }) {
   });
   const [firstLoad, setFirstLoad] = useState(true);
   const [filterProviderData, setFilterProviderData] = useState([]);
+  const [currentDateIndex, setCurrentDateIndex] = useState(0);
+  const [isActiveSearchProvider, setActiveSearchProvider] = useState(true);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -105,7 +107,6 @@ export default function Appointment({ googleApiKey }) {
   const { t } = useTranslation("translation", {
     keyPrefix: "appointment",
   });
-
   useEffect(() => {
     if (providerListData && providerListData.length > 0) {
       setRangeDateOverview(setRangeDateData(providerListData));
@@ -175,6 +176,11 @@ export default function Appointment({ googleApiKey }) {
     dispatch(setFilterData(data));
     onCallSubmitFilterAPI(data, [], false, true);
     dispatch(setIsFilterApplied(true));
+
+    /**
+     * Bugs Fixing EPP-10368
+     */
+    setActiveSearchProvider(true);
   }
 
   function onSwapButtonClicked() {
@@ -539,6 +545,8 @@ export default function Appointment({ googleApiKey }) {
                 }}
                 appliedFilter={activeFilterBy}
                 onGetDirection={getDirection}
+                currentDateIndex={currentDateIndex}
+                setCurrentDateIndex={setCurrentDateIndex}
               />
             ) : (
               <EmptyResult
@@ -622,6 +630,8 @@ export default function Appointment({ googleApiKey }) {
                   onFilterByApplied(filter, providerListData);
                 }}
                 appliedFilter={activeFilterBy}
+                currentDateIndex={currentDateIndex}
+                setCurrentDateIndex={setCurrentDateIndex}
               />
             ) : (
               <EmptyResult
@@ -694,6 +704,10 @@ export default function Appointment({ googleApiKey }) {
         currentCity={currentCity}
         isGeolocationEnabled={isGeolocationEnabled}
         onChangeLocation={fetchCurrentLocation}
+        currentDateIndex={currentDateIndex}
+        setCurrentDateIndex={setCurrentDateIndex}
+        isActiveSearchProvider={isActiveSearchProvider}
+        setActiveSearchProvider={setActiveSearchProvider}
       />
     ) : (
       renderCircularProgress()

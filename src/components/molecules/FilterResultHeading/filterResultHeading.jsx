@@ -309,7 +309,7 @@ export const FilterResultHeading = ({
         <Stack
           justifyContent={"center"}
           height={"100%"}
-          paddingX={"14px"}
+          paddingX={"24px"}
           className={title && subtitle ? styles.titleContainer : {}}
         >
           {title && subtitle && (

@@ -485,8 +485,8 @@ defineFeature(feature, (test) => {
         container.getByTestId(TEST_ID.about);
       });
 
-      const data = await container.getByText(/Specialties/i);
-      expect(data.textContent).toEqual("Specialties and Sub-specialties: ")
+      const data = await container.getAllByText(/Specialties/i);
+      expect(data[0].textContent).toEqual("Specialties and Sub-specialties: ")
     });
   });
 

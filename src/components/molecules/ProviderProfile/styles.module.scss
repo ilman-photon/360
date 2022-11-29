@@ -22,7 +22,6 @@
 .address {
   color: #003b4a;
   letter-spacing: 0.0016em;
-  width: 362px;
   font-family: "Libre Franklin", sans-serif !important;
 
   @media (max-width: 992px) {
@@ -30,11 +29,10 @@
     font-size: 14px !important;
   }
 
-  @media only screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait),
-    screen and (min-width: 930px) and (max-width: 1024px) {
-    width: 130px;
-  }
+  // @media only screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+  //   screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) {
+  //   width: 130px;
+  // }
 }
 
 .specialistTitle {
