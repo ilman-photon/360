@@ -16,6 +16,8 @@ import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
+import { resetFormMessage } from "../../../store";
+import { useDispatch } from "react-redux";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch, setValue } = useForm({
@@ -168,6 +170,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedEmail, watchedMobile]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(resetFormMessage());
+  }, []);
 
   const formMessageComp = useRef(null);
   useEffect(() => {
