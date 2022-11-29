@@ -1,4 +1,4 @@
-import { Stack, useMediaQuery } from "@mui/material";
+import { CircularProgress, Stack, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
@@ -109,7 +109,6 @@ export default function PrescriptionPage() {
 
   return (
     <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
-      {/* {isLoaded && ( */}
       <Stack
         sx={{
           padding: isMobile ? "16px" : "44px 24px 24px 24px",
@@ -120,14 +119,21 @@ export default function PrescriptionPage() {
           width: "100%",
         }}
       >
-        <Prescriptions
-          prescriptionData={prescriptionData}
-          isViewAll={true}
-          onMedicationRequestRefill={onMedicationRequestRefill}
-          requestRefillResponseData={requestRefillResponse}
-        />
+        {isLoaded ? (
+          <Prescriptions
+            prescriptionData={prescriptionData}
+            isViewAll={true}
+            onMedicationRequestRefill={onMedicationRequestRefill}
+            requestRefillResponseData={requestRefillResponse}
+          />
+        ) : (
+          <CircularProgress
+            sx={{
+              margin: "0 auto",
+            }}
+          />
+        )}
       </Stack>
-      {/* )} */}
     </Stack>
   );
 }
