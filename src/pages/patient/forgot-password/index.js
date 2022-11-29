@@ -10,11 +10,11 @@ import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import ForgotPassword from "../../../components/organisms/ForgotPassword/forgotPassword";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { Box, useMediaQuery } from "@mui/material";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { Regex } from "../../../utils/regex";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
   subtitle: constants.EMPTY_STRING,
@@ -342,8 +342,15 @@ export default function ForgotPasswordPage() {
 
     const isEmail = username.match(Regex.emailValidation);
     const subtitle = isEmail
-      ? `Check ${username}  for an email to set up your password.`
-      : `Check ${username} for a link to set up your password.`;
+      ? `Check ${username.replace(
+          Regex.maskingEmail,
+          (_, a, b, c) => a + b.replace(/./g, "*") + c
+        )}  for an email to set up your password.`
+      : `Check ${formatPhoneNumber(
+          username,
+          true,
+          true
+        )}for a link to set up your password.`;
     const postMessage = isEmail
       ? `Link sent to your email`
       : `Link sent to your phone number`;
@@ -518,7 +525,7 @@ export default function ForgotPasswordPage() {
           setShowPostMessage={setShowPostMessage}
           securityQuestionData={patientData.securityQuestions}
           onContinueButtonClicked={onCalledValidateSubmitSecurityQuestion}
-          title={"Password recovery security questions page"}
+          title={"Security Question page"}
         />
       ) : (
         <></>

@@ -244,6 +244,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
+                  required
                   type="text"
                   id="firstName"
                   label="First Name"
@@ -259,7 +260,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  required
                   sx={{
                     margin: "8px",
                   }}
@@ -323,6 +323,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
+                  required
                   open={open}
                   onOpen={() => setOpen(true)}
                   onClose={() => {

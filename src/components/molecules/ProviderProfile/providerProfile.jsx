@@ -63,7 +63,7 @@ export default function ProviderProfile({
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
   const isMap = variant === "map";
-  const isMobile = useMediaQuery("(max-width: 600px)");
+  const isMobile = useMediaQuery("(max-width: 890px)");
 
   const router = useRouter();
 
@@ -198,6 +198,10 @@ export default function ProviderProfile({
               styles.detailContainer,
               isViewSchedule ? styles.viewSchedule : {},
             ].join(" ")}
+            sx={{
+              display: "flex",
+              gap: "120px",
+            }}
           >
             <Box
               sx={
@@ -242,11 +246,37 @@ export default function ProviderProfile({
                 </Box>
               )}
             </Box>
-            {isBio && !isMobile && renderSpecialistList(providerData)}
+
+            {/* render specialties in desktop */}
+            {isBio && (
+              <Box
+                sx={{
+                  display: "none",
+                  ["@media (min-width:993px)"]: {
+                    display: "block",
+                  },
+                }}
+              >
+                {renderSpecialistList(providerData)}
+              </Box>
+            )}
+
+            {/* ---------------------------------- */}
           </Box>
         </Box>
       </Box>
-      {isBio && isMobile && renderSpecialistList(providerData)}
+      {/* render specialties in mobile */}
+      <Box
+        sx={{
+          display: "none",
+          ["@media (max-width:992px)"]: {
+            display: "block",
+          },
+        }}
+      >
+        {isBio && renderSpecialistList(providerData)}
+      </Box>
+      {/* ---------------------------------- */}
     </Box>
   );
 }

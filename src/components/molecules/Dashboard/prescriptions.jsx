@@ -291,10 +291,12 @@ export default function Prescriptions({
 
           <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
             <Box className={[styles.flexDisplay, getBoxStyle()]} tabIndex={0}>
-              <Typography variant="customBodyRegular">
+              <Typography variant="customBodyRegular" sx={{ fontSize: "18px" }}>
                 Prescribed by: &nbsp;
               </Typography>
-              <Typography variant="bodyMedium">{data.prescribedBy}</Typography>
+              <Typography variant="bodyMedium" sx={{ fontSize: "18px" }}>
+                {data.prescribedBy}
+              </Typography>
             </Box>
             {isViewAll && (
               <Box
@@ -304,10 +306,13 @@ export default function Prescriptions({
                 ]}
                 tabIndex={0}
               >
-                <Typography variant="customBodyRegular">
+                <Typography
+                  variant="customBodyRegular"
+                  sx={{ fontSize: "18px" }}
+                >
                   Expires on: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium">
+                <Typography variant="bodyMedium" sx={{ fontSize: "18px" }}>
                   {data.expirationDate}
                 </Typography>
               </Box>
@@ -319,10 +324,10 @@ export default function Prescriptions({
               className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
               tabIndex={0}
             >
-              <Typography variant="customBodyRegular">
+              <Typography variant="customBodyRegular" sx={{ fontSize: "18px" }}>
                 Expires on: &nbsp;
               </Typography>
-              <Typography variant="bodyMedium">
+              <Typography variant="bodyMedium" sx={{ fontSize: "18px" }}>
                 {data.expirationDate}
               </Typography>
             </Box>

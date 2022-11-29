@@ -78,6 +78,14 @@
   align-self: self-end;
   border-radius: 46px;
   color: #ffffff;
+
+  @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    width: 222px !important;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    flex-flow: 222px !important;
+  }
 }
 
 .examForComponent .continueButton {

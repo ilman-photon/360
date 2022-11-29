@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { getDates, isPrevArrowDisable } from "../../../utils/appointment";
 import { TEST_ID } from "../../../utils/constants";
 import styles from "./filterResult.module.scss";
+import moment from "moment";
 
 export const FilterResult = ({
   providerList = [],
@@ -57,12 +58,32 @@ export const FilterResult = ({
     // This is intentional
   },
   currentCity = "",
+  currentDateIndex = 0,
+  setCurrentDateIndex = () => {
+    // This is intentional
+  },
+  isActiveSearchProvider = false,
+  setActiveSearchProvider = () => {
+    // This is intentional
+  },
 }) => {
   const [dateList, setDateList] = useState({
     dateRange: [],
     dateListName: [],
   });
-  const [currentDateIndex, setCurrentDateIndex] = useState(0);
+
+  const setCurrentIndex = (dates) => {
+    let dateFilterIndex = dates.dateRange.findIndex((date) => {
+      const dateLoop = moment(date).format("YYYY:MM:DD");
+      const filterDate = moment(filterData.date).format("YYYY:MM:DD");
+      return dateLoop === filterDate;
+    });
+
+    if (isActiveSearchProvider && dateFilterIndex > -1) {
+      setCurrentDateIndex(dateFilterIndex);
+      setActiveSearchProvider(false);
+    }
+  };
 
   useEffect(() => {
     const dates = getDates(
@@ -71,6 +92,7 @@ export const FilterResult = ({
       true
     );
     if (rangeDate.startDate && rangeDate.endDate) {
+      setCurrentIndex(dates);
       setDateList(dates);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -99,7 +121,10 @@ export const FilterResult = ({
 
   function renderDesktopView() {
     return (
-      <Stack data-testid={TEST_ID.APPOINTMENT_TEST_ID.FILTER_RESULT.container}>
+      <Stack
+        data-testid={TEST_ID.APPOINTMENT_TEST_ID.FILTER_RESULT.container}
+        sx={{ width: "calc(100vw - 32px)", overflowX: "auto" }}
+      >
         <Box>
           <FilterResultHeading
             isDesktop={isDesktop}
@@ -116,6 +141,7 @@ export const FilterResult = ({
         <div
           style={{
             marginTop: 8,
+            marginRight: 15,
           }}
           className="hide-scrollbar"
         >

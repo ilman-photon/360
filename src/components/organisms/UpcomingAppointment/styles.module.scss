@@ -69,6 +69,18 @@
     display: flex;
     flex-direction: column;
   }
+
+  @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: unset;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: unset;
+  }
 }
 
 .date {
@@ -126,6 +138,30 @@
 
     div {
       flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    width: auto;
+    margin-left: unset;
+    margin-top: unset;
+    flex-direction: column;
+
+    div {
+      flex-direction: unset;
+      gap: 10px;
+    }
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    width: auto;
+    margin-left: unset;
+    margin-top: unset;
+    flex-direction: column;
+
+    div {
+      flex-direction: unset;
       gap: 10px;
     }
   }

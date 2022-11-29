@@ -68,11 +68,16 @@ export const FormMessage = (
           {...accessibility}
         >
           {props.title ? (
-            <div style={{ fontWeight: "600" }}>{props.title}</div>
+            <div tabIndex={0} aria-level="2" style={{ fontWeight: "600" }}>
+              {props.title}
+            </div>
           ) : (
             <></>
           )}
-          <div style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}>
+          <div
+            tabIndex={0}
+            style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}
+          >
             {props.children}
             {props.isBackToLogin ? (
               <Link href="/patient/login">

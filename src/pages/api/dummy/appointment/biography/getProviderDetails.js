@@ -3,7 +3,7 @@ export default function getProviderDetails(req, res) {
     res.status(200).json({
       providerId: "1",
       image: "/doctor.png",
-      name: "Paul Wagner Md",
+      name: "Paul Wagner, Md",
       rating: "5",
       phoneNumber: "8572999989",
       specialties: ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"],
