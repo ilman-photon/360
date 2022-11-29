@@ -680,7 +680,7 @@ function getProviderAddres(providerAddress) {
     addressLine2: "",
     city: providerAddress?.city || "",
     state: providerAddress?.state || "",
-    zipcode: providerAddress?.zip || "",
+    zip: providerAddress?.zip || "",
   };
 }
 
