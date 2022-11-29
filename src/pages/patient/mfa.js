@@ -125,7 +125,7 @@ export default function MfaPage() {
           const token = JSON.parse(
             localStorage.getItem("userData")
           ).patientId.replace(/-/g, "");
-          const maxAge = 90 * 86400;
+          const maxAge = 300;
           cookies.set("mfaAccessToken", token, {
             path: "/patient",
             maxAge,
