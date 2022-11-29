@@ -94,7 +94,7 @@ export function fullDateFormat(data) {
 
 export function hourDateFormat(date) {
   const momentDate = new moment(date);
-  return momentDate.format("hh:mm");
+  return momentDate.format("HH:mm");
 }
 
 export const convertTime12to24 = (time12h) => {

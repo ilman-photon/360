@@ -95,7 +95,9 @@ export default function SelectOptionButton({
           "aria-label": `${label}. ${value}`,
           "aria-live": "polite",
           "data-testid": `select-${id}`,
+          ...props.inputProps,
         }}
+        MenuProps={props.MenuProps}
         {...props.menuProps}
         renderValue={props.renderValue}
       >

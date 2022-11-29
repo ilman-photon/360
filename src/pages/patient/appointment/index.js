@@ -10,6 +10,7 @@ import {
   CircularProgress,
   Stack,
   useMediaQuery,
+  DialogTitle,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import FilterResult from "../../../components/molecules/FilterResult/filterResult";
@@ -87,6 +88,8 @@ export default function Appointment({ googleApiKey }) {
   });
   const [firstLoad, setFirstLoad] = useState(true);
   const [filterProviderData, setFilterProviderData] = useState([]);
+  const [currentDateIndex, setCurrentDateIndex] = useState(0);
+  const [isActiveSearchProvider, setActiveSearchProvider] = useState(true);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -104,7 +107,6 @@ export default function Appointment({ googleApiKey }) {
   const { t } = useTranslation("translation", {
     keyPrefix: "appointment",
   });
-
   useEffect(() => {
     if (providerListData && providerListData.length > 0) {
       setRangeDateOverview(setRangeDateData(providerListData));
@@ -163,6 +165,11 @@ export default function Appointment({ googleApiKey }) {
     dispatch(setFilterData(data));
     onCallSubmitFilterAPI(data, [], false, true);
     dispatch(setIsFilterApplied(true));
+
+    /**
+     * Bugs Fixing EPP-10368
+     */
+    setActiveSearchProvider(true);
   }
 
   function onSwapButtonClicked() {
@@ -451,7 +458,7 @@ export default function Appointment({ googleApiKey }) {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
           aria-label={open ? "View all availability dialog window open" : ""}
-          role="alertdialog"
+          role={"alertdialog"}
         >
           <Box sx={{ height: "51px", marginBottom: "40px" }}>
             <IconButton
@@ -467,6 +474,13 @@ export default function Appointment({ googleApiKey }) {
               <CloseIcon />
             </IconButton>
           </Box>
+          {!isDesktop && (
+            <DialogTitle
+              aria-label="View all availability dialog window open"
+              sx={{ padding: 0 }}
+              aria-hidden={true}
+            />
+          )}
           <DialogContent>
             <Box sx={{ width: "290px" }}>
               <ProviderProfile
@@ -520,6 +534,8 @@ export default function Appointment({ googleApiKey }) {
                 }}
                 appliedFilter={activeFilterBy}
                 onGetDirection={getDirection}
+                currentDateIndex={currentDateIndex}
+                setCurrentDateIndex={setCurrentDateIndex}
               />
             ) : (
               <EmptyResult
@@ -603,6 +619,8 @@ export default function Appointment({ googleApiKey }) {
                   onFilterByApplied(filter, providerListData);
                 }}
                 appliedFilter={activeFilterBy}
+                currentDateIndex={currentDateIndex}
+                setCurrentDateIndex={setCurrentDateIndex}
               />
             ) : (
               <EmptyResult
@@ -675,6 +693,10 @@ export default function Appointment({ googleApiKey }) {
         currentCity={currentCity}
         isGeolocationEnabled={isGeolocationEnabled}
         onChangeLocation={fetchCurrentLocation}
+        currentDateIndex={currentDateIndex}
+        setCurrentDateIndex={setCurrentDateIndex}
+        isActiveSearchProvider={isActiveSearchProvider}
+        setActiveSearchProvider={setActiveSearchProvider}
       />
     ) : (
       renderCircularProgress()

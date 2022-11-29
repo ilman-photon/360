@@ -13,7 +13,7 @@ export default function AppointmentButton({
       variant="outlined"
       data-testid={testId}
       tabIndex={0}
-      aria-label={"Collapse All option"}
+      aria-label={children}
       startIcon={icon}
       onClick={onClick}
       className={[styles.appointmentButton, className].join(" ")}

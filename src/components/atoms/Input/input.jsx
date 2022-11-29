@@ -39,7 +39,7 @@ export const CustomFormControl = styled((props) => <FormControl {...props} />)(
 
 export const CustomPasswordInput = styled((props) => (
   <TextField
-    tabIndex={0}
+    // tabIndex={0}
     aria-label={"Password required text field"}
     InputProps={{
       disableUnderline: true,
@@ -48,6 +48,14 @@ export const CustomPasswordInput = styled((props) => (
           <Tooltip
             title={`${
               props.type !== "password" ? "Hide Password" : "Show Password"
+            }`}
+            PopperProps={{
+              role: "alert",
+            }}
+            aria-label={`${
+              props.type !== "password"
+                ? "Password hide icon"
+                : "Password unhide icon"
             }`}
           >
             <IconButton
@@ -133,9 +141,15 @@ export const RedditTextField = React.forwardRef((props, ref) => {
             </IconButton>
           </InputAdornment>
         ) : null,
+        className: props.inputProps?.readOnly ? "Mui-disabled" : undefined,
         ...props.InputProps,
       }}
+      inputProps={{ "aria-label": props["label"], ...props.inputProps }}
       {...props}
+      InputLabelProps={{
+        "aria-hidden": true,
+        ...props.InputLabelProps,
+      }}
     />
   );
 });
@@ -233,7 +247,10 @@ export const CustomInput = styled(({ ...props }) => {
           <CustomFormControl sx={{ m: 1 }} variant="filled">
             <CustomPasswordInput
               error={!Boolean(values.value) && props.error}
-              InputLabelProps={{ "aria-hidden": true }}
+              InputLabelProps={{
+                "aria-hidden": true,
+              }}
+              inputProps={{ "aria-label": props["label"], ...props.inputProps }}
               variant="filled"
               id={props.id}
               type={showPassword}
@@ -256,12 +273,13 @@ export const CustomInput = styled(({ ...props }) => {
         </>
       );
     case "dob":
+      const dobInputRef = React.useRef(null);
       return (
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               inputFormat="MM/dd/yyyy"
-              disabled={props.disabled}
+              disableOpenPicker={props.selectorDisabled}
               disableFuture={props.disableFuture}
               disablePast={props.disablePast}
               ariaLabel={props.label}
@@ -269,6 +287,13 @@ export const CustomInput = styled(({ ...props }) => {
               label={props.label}
               onChange={props.onChange}
               value={props.value}
+              onClose={() => {
+                setTimeout(() => {
+                  dobInputRef?.current?.blur();
+                }, 1);
+                props?.onClose && props?.onClose();
+              }}
+              inputRef={dobInputRef}
               getOpenDialogAriaText={(date, utils) => {
                 if (date instanceof Date && !isNaN(date))
                   return `Choose date, selected date is ${utils.format(
@@ -292,6 +317,9 @@ export const CustomInput = styled(({ ...props }) => {
                         cursor: props.isFilter ? "pointer" : "inherit",
                       },
                     },
+                    ".Mui-disabled": {
+                      backgroundColor: "#efefef",
+                    },
                   }}
                   {...params}
                   onClick={props.onClick}
@@ -299,6 +327,15 @@ export const CustomInput = styled(({ ...props }) => {
                   helperText={props.helperText}
                   onPaste={preventPasteHandler}
                   required={props.required}
+                  inputProps={{
+                    ...params.inputProps,
+                    readOnly: props.inputProps?.readOnly,
+                    className:
+                      props.inputProps?.readOnly &&
+                      !props.inputProps.isTransparent
+                        ? "Mui-disabled"
+                        : undefined,
+                  }}
                 />
               )}
               {...props}
@@ -359,10 +396,9 @@ export const StyledInput = ({
         placeholder={placeholder}
         helperText={helperText}
         withicon={withIcon}
-        tabIndex={0}
-        {...props}
         className={["custom-input"].join(" ")}
         adorment={adorment}
+        {...props}
       ></CustomInput>
     </ThemeProvider>
   );

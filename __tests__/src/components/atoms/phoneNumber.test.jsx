@@ -6,12 +6,8 @@ import { createMatchMedia } from "../../../../__mocks__/commonSteps";
 
 describe("phoneNumber", () => {
   it("renders phone number on mobile device", () => {
-    window.matchMedia = createMatchMedia("800px");
-    const container = render(
-      <PhoneNumber
-        phone={"012345"}
-      />
-    );
+    window.matchMedia = createMatchMedia("768px");
+    const container = render(<PhoneNumber phone={"012345"} />);
     const phone = container.getByRole("link");
     fireEvent.click(phone);
     expect(phone).toBeInTheDocument();

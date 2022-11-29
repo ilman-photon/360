@@ -143,9 +143,11 @@ const ForgotPassword = ({
                 }) => {
                   return (
                     <StyledInput
-                      aria-label={`Email or Phone number Field ${
-                        error ? error.message : ""
-                      }`}
+                      inputProps={{
+                        "aria-label": `Email or Phone number Field - Required ${
+                          error ? error.message : ""
+                        }`,
+                      }}
                       label={t("usernamePlaceHolder")}
                       id="username"
                       maxLength={254}
@@ -174,10 +176,10 @@ const ForgotPassword = ({
                           fontSize: "12px",
                         },
                       }}
-                      required
                       rules={{
                         required: "This field is required",
                       }}
+                      required
                       error={!!error}
                       helperText={error ? error.message : null}
                     />
@@ -190,7 +192,9 @@ const ForgotPassword = ({
                 theme="patient"
                 mode="primary"
                 size="small"
-                aria-label={t("syncButton") + " Button"}
+                aria-label={
+                  isAppointment ? t("syncButton") : t("resetPasswordText")
+                }
                 gradient={false}
                 style={styles.margin}
                 data-testid={FORGOT_TEST_ID.continueBtn}

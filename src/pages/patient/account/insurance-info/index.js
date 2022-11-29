@@ -223,14 +223,8 @@ export default function InsuranceInfoPage() {
 
   return (
     <section>
-      <FormMessage
-        onClick={() => {
-          dispatch(closePageMessage());
-        }}
-        role="button"
-        success={pageMessage.error ? false : true}
-        fontTitle={16}
-        sx={{
+      <div
+        style={{
           borderRadius: "0px",
           justifyContent: "center",
           position: "absolute",
@@ -239,11 +233,33 @@ export default function InsuranceInfoPage() {
           left: 0,
           width: "100%",
           transition: "0.3 s ease-in-out",
-          cursor: "pointer",
         }}
       >
-        {pageMessage.content}
-      </FormMessage>
+        <Collapse in={pageMessage.isShow}>
+          <FormMessage
+            withClose
+            onClose={() => {
+              dispatch(closePageMessage());
+            }}
+            role="button"
+            success={pageMessage.error ? false : true}
+            fontTitle={16}
+            sx={{
+              position: "relative",
+              justifyContent: "center",
+            }}
+          >
+            <Stack
+              sx={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              {pageMessage.content}
+            </Stack>
+          </FormMessage>
+        </Collapse>
+      </div>
       {loadingInsurance === "loading" ? (
         <Stack
           alignItems={"center"}
@@ -459,7 +475,12 @@ export default function InsuranceInfoPage() {
 InsuranceInfoPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AccountLayout currentActivePage={"insurance-info"}>{page}</AccountLayout>
+      <AccountLayout
+        currentActivePage={"insurance-info"}
+        pageTitle="EyeCare Patient Portal - Insurance Documents"
+      >
+        {page}
+      </AccountLayout>
     </Provider>
   );
 };

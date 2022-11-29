@@ -265,14 +265,18 @@ export function getProvideOverlay(
   endDate
 ) {
   const providerDataTmp = { ...providerDataOverview };
-  for (let index = 0; index < listOfProvider.length; index++) {
-    if (providerDataTmp.providerId === listOfProvider[index].providerId) {
-      providerDataTmp.availability = listOfProvider[index].availability;
-      break;
-    }
-  }
+  const indexProviderAvailability = listOfProvider.findIndex((provider) => {
+    return provider.providerId === providerDataTmp.providerId;
+  });
 
-  if (listOfProvider.length === 0) {
+  /** Fix Bugs EPP-11011 */
+  /** Data Available */
+  if (indexProviderAvailability > -1) {
+    /** Data is available */
+    providerDataTmp.availability =
+      listOfProvider[indexProviderAvailability].availability;
+  } else {
+    /** Data not Available */
     const getRangeDate = getDates(
       new Date(startDate),
       new Date(endDate),
@@ -283,6 +287,7 @@ export function getProvideOverlay(
       getRangeDate
     );
   }
+
   return providerDataTmp;
 }
 
@@ -704,9 +709,9 @@ export function addLanguageFilter(provider, languageList) {
 export function addGenderFilter(sex, genderList) {
   let gender = "";
   if (sex) {
-    if (sex === "M") {
+    if (sex === 11) {
       gender = "Male";
-    } else if (sex === "F") {
+    } else if (sex === 12) {
       gender = "Female";
     } else {
       gender = "Non-Binary";
@@ -822,7 +827,7 @@ export async function parseProviderListData(
           languageFilter
         );
         const { genderList, gender } = addGenderFilter(
-          provider?.sex?.name,
+          provider?.sex?.key,
           genderFilter
         );
         languageFilter = languageList;

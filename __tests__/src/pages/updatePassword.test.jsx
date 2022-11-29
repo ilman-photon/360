@@ -16,6 +16,7 @@ describe("Update Password", () => {
     replace: jest.fn(),
     prefetch: jest.fn(),
     pathname: "/patient/update-password",
+    asPath: "/patient/update-password?username=patient1@gmail.com",
   };
 
   let container;

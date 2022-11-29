@@ -40,11 +40,13 @@ export default function ModalConfirmation({
           role="presentation"
         >
           <ModalConfirmContent
-            OnOkClicked={OnOkClicked}
-            isLoggedIn={isLoggedIn}
-            isReschedule={isReschedule}
             patientData={patientData}
             providerData={providerData}
+            appointmentData={appointmentData}
+            isLoggedIn={isLoggedIn}
+            isReschedule={isReschedule}
+            OnOkClicked={OnOkClicked}
+            onAddToCalendarClicked={onAddToCalendarClicked}
           />
         </Box>
       </SwipeableDrawer>

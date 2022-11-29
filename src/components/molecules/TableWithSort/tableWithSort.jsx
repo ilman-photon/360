@@ -73,8 +73,23 @@ const EnhancedTableHead = (props) => {
     onRequestSort(event, property);
   };
   const isDesc = order === "desc";
+
+  const getAriaHeader = (headCell) => {
+    if (isDesc && headCell.id == orderBy) {
+      return headCell.label + " sorted descending";
+    } else if (!isDesc && headCell.id == orderBy) {
+      return headCell.label + " sorted ascending";
+    } else {
+      return headCell.label;
+    }
+  };
   return (
-    <TableHead aria-hidden={false} sx={{ backgroundColor: "#F3F5F6" }}>
+    <TableHead
+      aria-hidden={false}
+      sx={{ backgroundColor: "#F3F5F6" }}
+      tabIndex={0}
+      aria-label="Table Header"
+    >
       <TableRow aria-hidden={false} sx={{ whiteSpace: "nowrap" }}>
         {props.config.map((headCell, headIdx) => {
           switch (headCell.type) {
@@ -109,7 +124,6 @@ const EnhancedTableHead = (props) => {
               return (
                 <TableCell
                   key={`head-${headIdx}`}
-                  // aria-hidden={false}
                   align={headCell.numeric ? "right" : "left"}
                   padding={headCell.disablePadding ? "none" : "normal"}
                   sortDirection={orderBy === headCell.id ? order : false}
@@ -128,11 +142,7 @@ const EnhancedTableHead = (props) => {
                   }}
                 >
                   <TableSortLabel
-                    aria-label={
-                      isDesc
-                        ? headCell.label + " sorted descending"
-                        : headCell.label + " sorted ascending"
-                    }
+                    aria-label={getAriaHeader(headCell)}
                     active={orderBy === headCell.id}
                     direction={orderBy === headCell.id ? order : "asc"}
                     data-testid={"table-header-sort"}
@@ -380,6 +390,7 @@ export default function TableWithSort({
                 const assetId = ref(row, cell.valueKey);
                 onAssetDownload(assetId);
               }}
+              aria-label="Download"
             >
               {cell.icon}
             </div>
@@ -409,6 +420,7 @@ export default function TableWithSort({
               data-testid="downloadPDFButton"
               target="_blank"
               rel="noreferrer"
+              aria-label="Download"
             >
               {cell.icon}
             </a>

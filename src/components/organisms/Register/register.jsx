@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Divider, Typography } from "@mui/material";
+import { Divider, Typography, useMediaQuery } from "@mui/material";
 import Link from "next/link";
 import { useForm, Controller, useFormState } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
@@ -16,6 +16,8 @@ import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
+import { resetFormMessage } from "../../../store";
+import { useDispatch } from "react-redux";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch, setValue } = useForm({
@@ -32,6 +34,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   const { errors, isSubmitting } = useFormState({
     control,
   });
+  const [open, setOpen] = React.useState(false);
+  const isDesktop = useMediaQuery("(min-width: 769px)");
   const { REGISTER_TEST_ID } = constants.TEST_ID;
   const validatePassword = (errors1 = [], errors2 = []) => {
     return errors1.length === 0 && errors2.length <= 1;
@@ -127,6 +131,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       OnRegisterClicked(data, router);
     }
   };
+  const msgRef = React.useRef(null);
+
   const inputRef = React.useRef(null);
   const inputLastName = React.useRef(null);
   const inputDob = React.useRef(null);
@@ -164,6 +170,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedEmail, watchedMobile]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(resetFormMessage());
+  }, []);
 
   const formMessageComp = useRef(null);
   useEffect(() => {
@@ -240,12 +251,14 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
+                  required
                   type="text"
                   id="firstName"
                   label="First Name"
+                  aria-label="First name required text field"
                   inputRef={inputRef}
                   inputProps={{
-                    "aria-label": `First Name - required -`,
+                    "aria-label": "First Name - Required",
                   }}
                   value={value}
                   data-testid={REGISTER_TEST_ID.firstname}
@@ -254,7 +267,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  required
                   sx={{
                     margin: "8px",
                   }}
@@ -280,8 +292,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   id="lastName"
                   label="Last Name"
                   inputRef={inputLastName}
+                  aria-label={"Last name required text field"}
                   inputProps={{
-                    "aria-label": `Last Name - required -`,
+                    "aria-label": "Last Name - Required",
                   }}
                   data-testid={REGISTER_TEST_ID.lastname}
                   value={value}
@@ -309,26 +322,51 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           <Controller
             name="dob"
             control={control}
+            tabIndex={0}
+            InputPropsLabel={{
+              "aria-label": "Date of Birth required text field",
+            }}
+            aria-label="Date of Birth required text field"
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
-                  disableFuture
+                  required
+                  open={open}
+                  onOpen={() => setOpen(true)}
+                  onClose={() => {
+                    setOpen(false);
+                    setTimeout(() => {
+                      inputDob?.current?.focus();
+                    }, 1);
+                  }}
+                  onClick={() => setOpen(true)}
+                  aria-hidden={true}
+                  tabIndex={-1}
                   type="dob"
                   id="dob"
                   inputRef={inputDob}
-                  InputProps={{ "data-testid": REGISTER_TEST_ID.dateofbirth }}
                   data-testid={REGISTER_TEST_ID.dateofbirth}
-                  label="Date of Birth"
-                  aria-label="Date of Birth - required -"
-                  inputProps={{
-                    "aria-label": `Date of Birth - required -`,
+                  InputLabel={{ "aria-hidden": true }}
+                  InputLabelProps={{
+                    "aria-hidden": true,
                   }}
+                  InputProps={{
+                    ref: inputDob,
+                    tabIndex: 0,
+                    "data-testid": REGISTER_TEST_ID.dateofbirth,
+                    "aria-label": "Date of Birth required text field",
+                  }}
+                  inputProps={{
+                    tabIndex: -1,
+                    readOnly: !isDesktop,
+                    isTransparent: true,
+                  }}
+                  label="Date of Birth"
                   variant="filled"
                   value={value}
                   onChange={onChange}
                   error={!!error}
                   helperText={error ? error.message : null}
-                  required
                 />
               );
             }}
@@ -351,8 +389,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   id="email"
                   label="Email"
                   inputRef={inputEmail}
+                  aria-label={"Email required text field"}
                   inputProps={{
-                    "aria-label": `Email - required -`,
+                    "aria-label": "Email - Required",
                   }}
                   value={value}
                   data-testid={REGISTER_TEST_ID.email}
@@ -390,10 +429,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="phone"
                   inputRef={inputMobileNumber}
                   id="mobileNumber"
+                  aria-label="Mobile Number required text field"
                   data-testid={REGISTER_TEST_ID.mobilenumber}
                   label="Mobile Number"
                   inputProps={{
-                    "aria-label": `Mobile Number - required -`,
+                    "aria-label": `Mobile Number - Required`,
                   }}
                   value={value}
                   onChange={onChange}
@@ -472,6 +512,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
 
           <div style={styles.registeredUsernameWrapper}>
             <Typography
+              ref={msgRef}
               variant="bodyMedium"
               sx={{ fontWeight: 500, color: colors.darkGreen }}
             >

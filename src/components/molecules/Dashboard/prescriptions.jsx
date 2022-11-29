@@ -291,10 +291,12 @@ export default function Prescriptions({
 
           <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
             <Box className={[styles.flexDisplay, getBoxStyle()]} tabIndex={0}>
-              <Typography variant="customBodyRegular">
+              <Typography variant="customBodyRegular" sx={{ fontSize: "18px" }}>
                 Prescribed by: &nbsp;
               </Typography>
-              <Typography variant="bodyMedium">{data.prescribedBy}</Typography>
+              <Typography variant="bodyMedium" sx={{ fontSize: "18px" }}>
+                {data.prescribedBy}
+              </Typography>
             </Box>
             {isViewAll && (
               <Box
@@ -304,10 +306,13 @@ export default function Prescriptions({
                 ]}
                 tabIndex={0}
               >
-                <Typography variant="customBodyRegular">
+                <Typography
+                  variant="customBodyRegular"
+                  sx={{ fontSize: "18px" }}
+                >
                   Expires on: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium">
+                <Typography variant="bodyMedium" sx={{ fontSize: "18px" }}>
                   {data.expirationDate}
                 </Typography>
               </Box>
@@ -319,10 +324,10 @@ export default function Prescriptions({
               className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
               tabIndex={0}
             >
-              <Typography variant="customBodyRegular">
+              <Typography variant="customBodyRegular" sx={{ fontSize: "18px" }}>
                 Expires on: &nbsp;
               </Typography>
-              <Typography variant="bodyMedium">
+              <Typography variant="bodyMedium" sx={{ fontSize: "18px" }}>
                 {data.expirationDate}
               </Typography>
             </Box>
@@ -348,26 +353,26 @@ export default function Prescriptions({
                     fontSize: "14px",
                     fontWeight: "400",
                   },
-                  ".MuiTableCell-head": {
+                  ".MuiTableCell-customHead": {
                     fontFamily: "Roboto",
                     fontSize: "14px",
                     fontWeight: "500",
+                    backgroundColor: "#F4F4F4",
                   },
                 }}
-                aria-label="simple table"
+                aria-label="prescription"
               >
-                <TableHead>
-                  <TableRow>
-                    {tableHeader.map((header, idx) => (
-                      <StyledTableCell
-                        key={`${idxKey}-${idx}-tabel-header`}
-                        tabIndex={0}
-                      >
-                        {header}
-                      </StyledTableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
+                <TableRow>
+                  {tableHeader.map((header, idx) => (
+                    <StyledTableCell
+                      key={`${idxKey}-${idx}-tabel-header`}
+                      tabIndex={0}
+                      className="MuiTableCell-customHead"
+                    >
+                      {header}
+                    </StyledTableCell>
+                  ))}
+                </TableRow>
                 <TableBody>
                   {data?.prescriptionDetails.map((row, idx) => (
                     <TableRow
@@ -376,7 +381,7 @@ export default function Prescriptions({
                         "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      <TableCell component="th" scope="row" tabIndex={0}>
+                      <TableCell scope="row" tabIndex={0}>
                         {row.eye}
                       </TableCell>
                       <TableCell tabIndex={0}>{row.sph}</TableCell>

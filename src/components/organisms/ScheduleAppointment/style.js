@@ -39,11 +39,13 @@ export const styles = {
     color: "#366A70",
     fontSize: "34px",
   },
-  sigInInfoLabel: {
+  signInInfoLabel: {
     fontFamily: "Libre Franklin",
     fontWeight: "600",
     fontSize: "16px",
     color: "#000000",
+    lineHeight: "1.167",
+    letterSpacing: "-0.01562em",
   },
   link: {
     color: "#008294",

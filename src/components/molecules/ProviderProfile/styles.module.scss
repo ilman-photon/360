@@ -28,7 +28,7 @@
 .address {
   color: #003b4a;
   letter-spacing: 0.0016em;
-  width: 362px;
+  width: 270px;
   font-family: "Libre Franklin", sans-serif !important;
 
   @media (max-width: 600px) {
@@ -40,10 +40,11 @@
     width: auto;
   }
 
-  @media only screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) {
-    width: 130px;
-  }
+  // @media only screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+  //   screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait),
+  //   screen and (min-width: 930px) and (max-width: 1024px) {
+  //   width: 130px;
+  // }
 }
 
 .specialistTitle {
@@ -78,8 +79,9 @@
   display: flex;
 
   &.viewSchedule {
-    @media only screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-      screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) {
+    @media only screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+      screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait),
+      screen and (min-width: 930px) and (max-width: 1024px) {
       flex-direction: column;
     }
   }
@@ -107,8 +109,8 @@
     line-height: 28px;
   }
 
-  @media only screen and (min-device-width: 750px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 750px) and (max-device-width: 834px) and (orientation: portrait) {
+  @media only screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 759px) and (max-device-width: 834px) and (orientation: portrait) {
     font-size: 24px;
   }
 
@@ -127,8 +129,9 @@
   color: #003b4a;
   text-decoration: underline;
 
-  @media only screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) {
+  @media only screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait),
+    screen and (min-width: 930px) and (max-width: 1024px) {
     flex-direction: column;
     width: 130px;
   }
@@ -209,15 +212,9 @@
     flex: 1;
   }
   &.viewSchedule {
-    @media only screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-      screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) {
-      flex-direction: column;
-      width: 130px;
-    }
-  }
-  &.viewSchedule {
-    @media only screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-      screen and (min-device-width: 750px) and (max-device-width: 1024px) and (orientation: portrait) {
+    @media only screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+      screen and (min-device-width: 759px) and (max-device-width: 1024px) and (orientation: portrait),
+      screen and (min-width: 930px) and (max-width: 1024px) {
       flex-direction: column;
       width: 130px;
     }

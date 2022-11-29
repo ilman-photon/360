@@ -25,22 +25,24 @@ const launchURL = () => {
     });
   });
   container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-}
+};
 
 const navigateToPatientPortalApp = () => {
-  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  mock
+    .onGet(`https://api.ipify.org?format=json`)
+    .reply(200, { ip: "10.10.10.10" });
   act(() => {
     container = renderWithProviders(<AuthPage />, {
       container: document.body.appendChild(element),
       legacyRoot: true,
     });
   });
-}
+};
 
 const landOnPatientPortalScreen = () => {
   const title = container.getByText("formTitle");
   expect("formTitle").toEqual(title.textContent);
-}
+};
 
 defineFeature(feature, (test) => {
   test('EPIC_EPP-7_STORY_EPP-217 - Verify user should be able to reset the old password by answering the security questions via "Answer security questions" mode', ({
@@ -51,15 +53,15 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("use launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when('user lands onto "Patient Login" screen', () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
     and("user clicks on 'Forgot Password' link", () => {
@@ -73,7 +75,7 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
       expect(usernameField.id).toEqual("username");
     });
 
@@ -122,10 +124,10 @@ defineFeature(feature, (test) => {
       container = render(
         <PasswordSecurityQuestion
           showPostMessage={true}
-          setShowPostMessage={() => { }}
+          setShowPostMessage={() => {}}
           securityQuestionData={securityQuestions}
-          onContinueButtonClicked={() => { }}
-          onBackToLoginClicked={() => { }}
+          onContinueButtonClicked={() => {}}
+          onBackToLoginClicked={() => {}}
         />
       );
 
@@ -200,15 +202,15 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("use launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when('user lands onto "Patient Login" screen', () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
     and("user clicks on 'Forgot Password' link", () => {
@@ -222,7 +224,7 @@ defineFeature(feature, (test) => {
         });
       });
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
       expect(usernameField.id).toEqual("username");
     });
 
@@ -271,10 +273,10 @@ defineFeature(feature, (test) => {
       container = render(
         <PasswordSecurityQuestion
           showPostMessage={true}
-          setShowPostMessage={() => { }}
+          setShowPostMessage={() => {}}
           securityQuestionData={securityQuestions}
-          onContinueButtonClicked={() => { }}
-          onBackToLoginClicked={() => { }}
+          onContinueButtonClicked={() => {}}
+          onBackToLoginClicked={() => {}}
         />
       );
 
@@ -347,20 +349,25 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-7_STORY_EPP-217 - Verify user should be able to reset the old password by answering the security questions if  "one-time link" is not received', ({ given, and, when, then }) => {
-    given('use launch the \'XXX\' url', () => {
+  test('EPIC_EPP-7_STORY_EPP-217 - Verify user should be able to reset the old password by answering the security questions if  "one-time link" is not received', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("use launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
-    when('user lands onto “Patient Login” screen', () => {
+    when("user lands onto “Patient Login” screen", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
+    and("user clicks on 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
     });
 
@@ -376,9 +383,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -400,13 +410,19 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/,
+      (arg0, arg1, arg2) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should select only (\d+) "(.*)" as "(.*)"$/,
+      (arg0, arg1, arg2) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -424,9 +440,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button \(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button \(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)"$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -440,17 +459,23 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the questions fields', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*)for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -460,7 +485,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see update password fields', () => {
+    and("user should see update password fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -513,20 +538,25 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-7_STORY_EPP-217 - Verify user should be able to reset the old password using "one-time link"', ({ given, and, when, then }) => {
-    given('use launch the \'XXX\' url', () => {
+  test('EPIC_EPP-7_STORY_EPP-217 - Verify user should be able to reset the old password using "one-time link"', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("use launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
-    when('user lands onto “Patient Login” screen', () => {
+    when("user lands onto “Patient Login” screen", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
+    and("user clicks on 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
     });
 
@@ -542,9 +572,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is not set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -554,7 +587,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see the mail with Email Subject', () => {
+    and("user should see the mail with Email Subject", () => {
       expect(true).toBeTruthy();
     });
 
@@ -566,7 +599,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see update password fields', () => {
+    and("user should see update password fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -615,20 +648,25 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-7_STORY_EPP-217  - Verify user  is not able to view "Password Recovery Security Questions" page on clicking "Answer security question" when Internet connection is unavailable', ({ given, and, when, then }) => {
-    given('use launch the \'XXX\' url', () => {
+  test('EPIC_EPP-7_STORY_EPP-217  - Verify user  is not able to view "Password Recovery Security Questions" page on clicking "Answer security question" when Internet connection is unavailable', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("use launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
-    when('user lands onto “Patient Login” screen', () => {
+    when("user lands onto “Patient Login” screen", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
+    and("user clicks on 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
     });
 
@@ -644,9 +682,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -664,25 +705,30 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see appropriate error message', () => {
+    then("user should see appropriate error message", () => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('EPIC_EPP-7_STORY_EPP-217  - Verify user  is not able to view "Password Recovery Security Questions" page on clicking "Answer security question" when service is unavailable', ({ given, and, when, then }) => {
+  test('EPIC_EPP-7_STORY_EPP-217  - Verify user  is not able to view "Password Recovery Security Questions" page on clicking "Answer security question" when service is unavailable', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
     given(/^use launch the "(.*)" url$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
-    when('user lands onto “Patient Login” screen', () => {
+    when("user lands onto “Patient Login” screen", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
+    and("user clicks on 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
     });
 
@@ -698,9 +744,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button\(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -718,25 +767,30 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see appropriate error message', () => {
+    then("user should see appropriate error message", () => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('EPIC_EPP-7_STORY_EPP-217 - Verify user should see And user should see update password screen with blank field when user refresh the screen', ({ given, and, when, then }) => {
-    given('use launch the \'XXX\' url', () => {
+  test("EPIC_EPP-7_STORY_EPP-217 - Verify user should see And user should see update password screen with blank field when user refresh the screen", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("use launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
-    when('user lands onto “Patient Login” screen', () => {
+    when("user lands onto “Patient Login” screen", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
+    and("user clicks on 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
     });
 
@@ -752,9 +806,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button \(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button \(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -772,17 +829,23 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the questions fields', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and(/^user fills in (.*) and (.*) for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*) for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -792,7 +855,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should see update password fields', () => {
+    and("user should see update password fields", () => {
       expect(true).toBeTruthy();
     });
 
@@ -800,29 +863,34 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    when('user click on reload page', () => {
+    when("user click on reload page", () => {
       expect(true).toBeTruthy();
     });
 
-    then('user should see update password screen fields blank', () => {
+    then("user should see update password screen fields blank", () => {
       expect(true).toBeTruthy();
     });
   });
 
-  test('EPIC_EPP-7_STORY_EPP-216 - Verify user should see Update Password screen loaded within 3 seconds', ({ given, and, when, then }) => {
-    given('use launch the \'XXX\' url', () => {
+  test("EPIC_EPP-7_STORY_EPP-216 - Verify user should see Update Password screen loaded within 3 seconds", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("use launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
-    when('user lands onto “Patient Login” screen', () => {
+    when("user lands onto “Patient Login” screen", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
+    and("user clicks on 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
     });
 
@@ -838,9 +906,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button \(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button \(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -858,17 +929,23 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the questions fields', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and(/^user fills in (.*) and (.*) for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*) for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -887,20 +964,25 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-7 _STORY_EPP-217 - Verify user should not see any error after click on F12', ({ given, and, when, then }) => {
-    given('use launch the \'XXX\' url', () => {
+  test("EPIC_EPP-7 _STORY_EPP-217 - Verify user should not see any error after click on F12", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("use launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       expect(true).toBeTruthy();
     });
 
-    when('user lands onto “Patient Login” screen', () => {
+    when("user lands onto “Patient Login” screen", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
+    and("user clicks on 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
     });
 
@@ -916,9 +998,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" button \(if security questions is set\)$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" button \(if security questions is set\)$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -936,17 +1021,23 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the text “Answer the following questions to reset your password”', () => {
+    and(
+      "user should view the text “Answer the following questions to reset your password”",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
+
+    and("user should view the questions fields", () => {
       expect(true).toBeTruthy();
     });
 
-    and('user should view the questions fields', () => {
-      expect(true).toBeTruthy();
-    });
-
-    and(/^user fills in (.*) and (.*) for the security questions they set up$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user fills in (.*) and (.*) for the security questions they set up$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
     when(/^user click on "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -956,8 +1047,11 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" screen loaded less than (\d+) seconds$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see "(.*)" screen loaded less than (\d+) seconds$/,
+      (arg0, arg1) => {
+        expect(true).toBeTruthy();
+      }
+    );
   });
 });

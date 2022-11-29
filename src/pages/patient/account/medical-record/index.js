@@ -334,9 +334,7 @@ export default function MedicalRecordPage() {
 MedicalRecordPage.getLayout = function getLayout(page, store, router) {
   return (
     <Provider store={store}>
-      <PrescriptionLayout title={"Test & Lab Results"}>
-        {page}
-      </PrescriptionLayout>
+      <PrescriptionLayout>{page}</PrescriptionLayout>
     </Provider>
   );
 };

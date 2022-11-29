@@ -1,4 +1,5 @@
 import * as React from "react";
+import Head from "next/head";
 import Cookies from "universal-cookie";
 import ModalConfirmContent from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmContent";
 import styles from "./styles.module.scss";
@@ -65,31 +66,39 @@ export default function ScheduleAppointmentConfirmationPage() {
   }, [isLoggedIn]);
 
   return (
-    <section>
-      <BaseHeader />
-      <Grid
-        width="100%"
-        container
-        className={styles.container}
-        sx={isDesktop ? { p: "24px 40px" } : { p: 0 }}
-      >
-        <div className={styles.pageWrapper}>
-          <Grid
-            className={styles.examForComponent}
-            p={{ xs: "16px 14px", md: "24px 0 0" }}
-            sx={{ width: { xs: "100%", md: "65%" } }}
-          >
-            <ModalConfirmContent
-              isLoggedIn={isLoggedIn}
-              patientData={appointmentScheduleData.patientInfo}
-              providerData={appointmentScheduleData.providerInfo}
-              appointmentData={appointmentScheduleData.appointmentInfo}
-              isPage
-            />
-          </Grid>
-        </div>
-      </Grid>
-    </section>
+    <>
+      <Head>
+        <title>
+          EyeCare Patient Portal - Schedule Appointment Confirmation Page
+        </title>
+      </Head>
+      <section>
+        <BaseHeader />
+        <Grid
+          width="100%"
+          container
+          className={styles.container}
+          sx={isDesktop ? { p: "24px 40px" } : { p: 0 }}
+        >
+          <div className={styles.pageWrapper}>
+            <Grid
+              className={styles.examForComponent}
+              p={{ xs: "16px 14px", md: "24px 0 0" }}
+              sx={{ width: { xs: "100%", md: "65%" } }}
+              aria-label="Appointment confirmation page"
+            >
+              <ModalConfirmContent
+                isLoggedIn={isLoggedIn}
+                patientData={appointmentScheduleData.patientInfo}
+                providerData={appointmentScheduleData.providerInfo}
+                appointmentData={appointmentScheduleData.appointmentInfo}
+                isPage
+              />
+            </Grid>
+          </div>
+        </Grid>
+      </section>
+    </>
   );
 }
 

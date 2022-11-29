@@ -256,7 +256,12 @@ export default function AppointmentForm({
         )}
         {isForMyself ? (
           <Box sx={{ mt: 2, display: "flex" }}>
-            <Typography sx={styles.sigInInfoLabel} variant="h1">
+            <Typography
+              sx={styles.signInInfoLabel}
+              tabIndex={0}
+              aria-label={`${t("sigInInfo")}`}
+              aria-roledescription=""
+            >
               {t("sigInInfo")}
             </Typography>
             <Link
@@ -289,6 +294,8 @@ export default function AppointmentForm({
                 variant="filled"
                 helperText={error ? error.message : null}
                 maxLength={50}
+                aria-label={"First Name text field"}
+                InputLabelProps={{ "aria-hidden": true }}
                 sx={
                   isDesktop
                     ? { m: 1, width: "70%" }
@@ -325,6 +332,8 @@ export default function AppointmentForm({
                 variant="filled"
                 helperText={error ? error.message : null}
                 maxLength={50}
+                aria-label={"Last Name text field"}
+                InputLabelProps={{ "aria-hidden": true }}
                 sx={
                   isDesktop
                     ? { m: 1, width: "70%" }
@@ -361,6 +370,8 @@ export default function AppointmentForm({
                 size="small"
                 variant="filled"
                 helperText={error ? error.message : null}
+                aria-label={"Email text field"}
+                InputLabelProps={{ "aria-hidden": true }}
                 sx={
                   isDesktop
                     ? { m: 1, width: "70%" }
@@ -398,6 +409,8 @@ export default function AppointmentForm({
                 size="small"
                 variant="filled"
                 helperText={error ? error.message : null}
+                aria-label={"Mobile Number field"}
+                InputLabelProps={{ "aria-hidden": true }}
                 sx={
                   isDesktop
                     ? { m: 1, width: "70%" }

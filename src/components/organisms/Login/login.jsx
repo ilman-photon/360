@@ -100,9 +100,12 @@ export function Login({
                   }) => {
                     return (
                       <StyledInput
-                        tabIndex={0}
                         inputRef={inputRef}
-                        InputLabelProps={{ "aria-hidden": true }}
+                        InputLabelProps={{
+                          "aria-hidden": true,
+                          "aria-label":
+                            "Email or Phone number required text field",
+                        }}
                         aria-label={"Email or Phone number required text field"}
                         id="username"
                         label={t("emailUserLabel")}
@@ -126,7 +129,7 @@ export function Login({
                   }}
                 />
                 <Controller
-                  tabIndex={0}
+                  // tabIndex={0}
                   aria-label={"Password required text field"}
                   name="password"
                   control={control}
@@ -137,10 +140,7 @@ export function Login({
                   }) => {
                     return (
                       <StyledInput
-                        tabIndex={0}
                         inputRef={inputPassword}
-                        InputLabelProps={{ "aria-hidden": true }}
-                        aria-label={"Password required text field"}
                         id="password"
                         data-testid={LOGIN_TEST_ID.passwordField}
                         label={t("passwordLabel")}

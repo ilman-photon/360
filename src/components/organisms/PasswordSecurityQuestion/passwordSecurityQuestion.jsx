@@ -81,15 +81,10 @@ const PasswordSecurityQuestion = ({
         <Card
           className={globalStyles.container}
           sx={{ minWidth: 275, padding: "16px" }}
-          tabIndex={0}
           aria-label={`${t("title")} view`}
         >
           <CardContent style={styles.cardContentStyle}>
-            <HeadingTitle
-              variant={constants.H2}
-              title={t("title")}
-              tabIndex="0"
-            />
+            <HeadingTitle variant={constants.H2} title={t("title")} />
             <Typography
               variant={constants.BODY_REGULAR}
               style={styles.subTitleMargin}
@@ -134,6 +129,9 @@ const PasswordSecurityQuestion = ({
                           inputRef={(el) =>
                             (inputRef.current = [...inputRef.current, el])
                           }
+                          InputLabelProps={{
+                            "aria-hidden": true,
+                          }}
                           style={styles.margin}
                           key={`securityQuestion${i}`}
                           value={value}

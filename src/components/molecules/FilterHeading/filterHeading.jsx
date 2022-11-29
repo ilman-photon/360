@@ -33,9 +33,10 @@ export const imageSrcState = "/bx_insurance_card.png";
 export const muiInputRoot = "& .MuiFilledInput-root";
 
 export function keyDownPress(e, handleCloseDialog) {
+  const code = e.code || e.key;
   if (Regex.specialRegex.test(e.key)) {
     e.preventDefault();
-  } else if (e.code && e.code.toLowerCase() === "enter" && e.target.value) {
+  } else if (code.toLowerCase() === "enter" && e.target.value) {
     handleCloseDialog();
     e.preventDefault();
   }
@@ -172,6 +173,7 @@ export function onGetInsuranceCarrierStyle(isDesktop = true) {
     border: !isDesktop ? "1px solid #BDBDBD" : "none",
     borderRadius: !isDesktop ? "4px" : "auto",
     backgroundColor: "#fff",
+    overflow: "hidden",
   };
 }
 
@@ -186,7 +188,6 @@ export function onRenderInputInsurance(
       sx={{
         display: "flex",
         alignItems: "flex-end",
-        paddingLeft: "15px",
       }}
       aria-label="Insurance carrier field"
       tabIndex={0}
@@ -244,76 +245,99 @@ export function renderInsuranceCarrier(
       control={control}
       render={({ field: { onChange, value }, fieldState: { _error } }) => {
         return (
-          <Autocomplete
-            {...isOpenProps}
-            freeSolo={true}
-            id="insurance-carrier"
-            data-testid={testid}
-            disableClearable={true}
-            options={insuranceCarrierData}
-            groupBy={(option) => option.category}
-            getOptionLabel={(option) => {
-              // Value selected with enter, right from the input
-              if (typeof option === "string") {
+          <Box
+            sx={{
+              ...onGetInsuranceCarrierStyle(isDesktop),
+            }}
+          >
+            <Autocomplete
+              {...isOpenProps}
+              sx={{
+                paddingLeft: "15px",
+              }}
+              freeSolo={true}
+              id="insurance-carrier"
+              data-testid={testid}
+              disableClearable={true}
+              options={insuranceCarrierData}
+              groupBy={(option) => option.category}
+              getOptionLabel={(option) => {
+                // Value selected with enter, right from the input
+                if (typeof option === "string") {
+                  return option;
+                }
+                // Add "xxx" option created dynamically
+                if (option.name) {
+                  return option.name;
+                }
+                // Regular option
                 return option;
+              }}
+              componentsProps={{
+                popper: {
+                  className: !isDesktop
+                    ? "filter-heading-mobile"
+                    : "filter-heading-dekstop",
+                },
+              }}
+              value={value}
+              onChange={(_e, data) => {
+                onChange(data);
+                if (!isDesktop) {
+                  handleCloseDialog();
+                }
+              }}
+              onInputChange={(_e, newInputValue) => {
+                onChange(newInputValue);
+              }}
+              renderInput={(params) =>
+                onRenderInputInsurance(params, handleCloseDialog)
               }
-              // Add "xxx" option created dynamically
-              if (option.name) {
-                return option.name;
-              }
-              // Regular option
-              return option;
-            }}
-            sx={{ ...onGetInsuranceCarrierStyle(isDesktop) }}
-            componentsProps={{
-              popper: {
-                className: !isDesktop
-                  ? "filter-heading-mobile"
-                  : "filter-heading-dekstop",
-              },
-            }}
-            value={value}
-            onChange={(_e, data) => {
-              onChange(data);
-              if (!isDesktop) {
-                handleCloseDialog();
-              }
-            }}
-            onInputChange={(_e, newInputValue) => {
-              onChange(newInputValue);
-            }}
-            renderInput={(params) =>
-              onRenderInputInsurance(params, handleCloseDialog)
-            }
-            PaperComponent={(props) => {
-              return (
-                <Paper
-                  {...props}
-                  sx={{ height: isDesktop ? "auto" : "349px" }}
-                />
-              );
-            }}
-            PopperComponent={CustomPopper}
-            renderOption={(props, option) => {
-              return (
-                <Box key={props["data-option-index"]}>
-                  <li {...props} tabIndex={"0"}>
-                    {option.name}
-                  </li>
-                  {option.divider ? (
-                    <Divider
-                      sx={{
-                        marginRight: "12px",
-                        marginLeft: "8px",
-                      }}
-                    />
-                  ) : (
-                    <></>
-                  )}
-                </Box>
-              );
-            }}
-          />
+              PaperComponent={(props) => {
+                return (
+                  <Paper
+                    {...props}
+                    sx={{
+                      height: isDesktop ? "auto" : "349px",
+                      marginTop: "2px",
+                    }}
+                  />
+                );
+              }}
+              PopperComponent={CustomPopper}
+              renderOption={(props, option) => {
+                return (
+                  <Box key={props["data-option-index"]}>
+                    <li {...props} tabIndex={"0"}>
+                      {option.name}
+                    </li>
+                    {option.divider ? (
+                      <Divider
+                        sx={{
+                          marginRight: "12px",
+                          marginLeft: "8px",
+                        }}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </Box>
+                );
+              }}
+            />
+            <Typography
+              className={styles.optionalPurposeText}
+              variant={"bodyTinyRegular"}
+              sx={{
+                position: "absolute",
+                bottom: "-25px",
+                color: "#ffffff",
+                opacity: "0.8",
+              }}
+            >
+              (Optional)
+            </Typography>
+          </Box>
         );
       }}
     />
@@ -415,88 +439,99 @@ const FilterHeading = ({
         control={control}
         render={({ field: { onChange, value }, fieldState: { _error } }) => {
           return (
-            <Autocomplete
-              freeSolo
-              id="location"
-              data-testid={APPOINTMENT_TEST_ID.locationInput}
-              value={value}
-              onChange={(_e, data) => {
-                onChange(data);
-              }}
-              onInputChange={(_e, newInputValue) => {
-                onHideMandatoryFieldError();
-                onChange(newInputValue);
-                if (newInputValue === "Use my current location") {
-                  onChange("");
-                  onChangeLocation();
-                }
-              }}
-              onKeyDown={(e) => {
-                if (Regex.specialRegex.test(e.key)) e.preventDefault();
-              }}
-              disableClearable={true}
-              options={mapsData}
+            <Box
               sx={{
                 width: "75%",
-                background: "#FFF",
-                borderRadius: "100%",
+                overflow: "hidden",
+                width: "75%",
               }}
-              renderInput={(params) => (
-                <Box
-                  className={isEmptyLocation ? styles.errorField : ""}
-                  sx={{
-                    display: "flex",
-                    alignItems: "flex-end",
-                    paddingLeft: "15px",
-                  }}
-                  aria-label="City, state, or zip code field"
-                  tabIndex={0}
-                >
-                  {locationIconUI(isDesktop)}
-                  <StyledInput
-                    type="default"
-                    variant="filled"
-                    {...params}
-                    aria-hidden={true}
-                    label="City, state, or zip code"
-                    tabIndex={-1}
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <NearMeOutlinedIcon
-                            sx={{
-                              width: "18px",
-                              height: "18px",
-                              right: "10px",
-                              margin: "0",
-                              position: "absolute",
-                              top: "38%",
-                            }}
-                          />
-                        </InputAdornment>
-                      ),
-                    }}
+            >
+              <Autocomplete
+                freeSolo
+                id="location"
+                data-testid={APPOINTMENT_TEST_ID.locationInput}
+                value={value}
+                onChange={(_e, data) => {
+                  onChange(data);
+                }}
+                onInputChange={(_e, newInputValue) => {
+                  onHideMandatoryFieldError();
+                  onChange(newInputValue);
+                  if (newInputValue === "Use my current location") {
+                    onChange("");
+                    onChangeLocation();
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (Regex.specialRegex.test(e.key)) e.preventDefault();
+                }}
+                disableClearable={true}
+                options={mapsData}
+                sx={{
+                  background: "#FFF",
+                  borderRadius: "100%",
+                }}
+                renderInput={(params) => (
+                  <Box
+                    className={isEmptyLocation ? styles.errorField : ""}
                     sx={{
-                      borderTopLeftRadius: "50px",
-                      borderTopRightRadius: "50px",
-                      [muiInputRoot]: {
-                        border: "0px",
-                        backgroundColor: "#fff",
-                      },
-                      ".MuiInputLabel-filled": {
-                        fontStyle: "normal",
-                        fontWeight: "400",
-                        fontSize: "16px",
-                        lineHeight: "18px",
-                        color: "#303030",
-                      },
+                      display: "flex",
+                      alignItems: "flex-end",
+                      paddingLeft: "15px",
                     }}
-                    maxLength={50}
-                  />
-                </Box>
-              )}
-            />
+                    aria-label="City, state, or zip code field"
+                    tabIndex={0}
+                  >
+                    {locationIconUI(isDesktop)}
+                    <StyledInput
+                      type="default"
+                      variant="filled"
+                      {...params}
+                      aria-hidden={true}
+                      label="City, state, or zip code"
+                      tabIndex={-1}
+                      InputProps={{
+                        ...params.InputProps,
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <NearMeOutlinedIcon
+                              sx={{
+                                width: "18px",
+                                height: "18px",
+                                right: "10px",
+                                margin: "0",
+                                position: "absolute",
+                                top: "38%",
+                              }}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      sx={{
+                        borderTopLeftRadius: "50px",
+                        borderTopRightRadius: "50px",
+                        [muiInputRoot]: {
+                          border: "0px",
+                          backgroundColor: "#fff",
+                        },
+                        ".MuiInputLabel-filled": {
+                          fontStyle: "normal",
+                          fontWeight: "400",
+                          fontSize: "16px",
+                          lineHeight: "18px",
+                          color: "#303030",
+                          width: "75%",
+                        },
+                      }}
+                      maxLength={50}
+                    />
+                  </Box>
+                )}
+              />
+              <Box sx={{ position: "absolute", bottom: "-30px" }}>
+                {renderMandatoryFieldError()}
+              </Box>
+            </Box>
           );
         }}
       />
@@ -520,6 +555,7 @@ const FilterHeading = ({
                 paddingLeft: "15px",
                 borderRadius: 0,
                 marginTop: "0px",
+                overflow: "hidden",
               }}
             >
               <CalendarTodayIcon
@@ -546,6 +582,7 @@ const FilterHeading = ({
                 inputProps={{
                   "aria-label": "Date field",
                   readOnly: true,
+                  isTransparent: true,
                 }}
                 sx={{
                   margin: 0,
@@ -560,6 +597,9 @@ const FilterHeading = ({
                     color: "#303030",
                     lineHeight: "18px",
                     fontStyle: "normal",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    width: { xs: "100px", md: "unset" },
                   },
                 }}
                 onClick={() => setOpen(true)}
@@ -587,59 +627,86 @@ const FilterHeading = ({
           return (
             <Box
               sx={{
-                display: "flex",
-                alignItems: "flex-end",
-                background: "#fff",
                 width: isDesktop ? "70%" : "auto",
-                paddingLeft: "15px",
-                marginTop: isDesktop ? "0px" : "16px",
+                overflow: "hidden",
               }}
             >
-              <VisibilityOutlinedIcon
+              <Box
                 sx={{
-                  margin: "auto",
-                  width: "24px",
-                  height: "24px",
-                  color: colors.darkGreen,
+                  display: "flex",
+                  alignItems: "flex-end",
+                  background: "#fff",
+                  marginLeft: "15px",
+                  marginTop: isDesktop ? "0px" : "16px",
                 }}
-              />
-              <SelectOptionButton
-                sx={{
-                  fontSize: "16px",
-                  [muiInputRoot]: {
-                    border: "0px solid #bbb",
-                    backgroundColor: "#fff",
-                    "&.Mui-focused": {
-                      boxShadow: "none",
-                      color: "#003B4A",
-                    },
-                  },
-                  ".MuiInputLabel-filled": {
-                    fontWeight: "400",
+              >
+                <VisibilityOutlinedIcon
+                  sx={{
+                    margin: "auto",
+                    width: "24px",
+                    height: "24px",
+                    color: colors.darkGreen,
+                  }}
+                />
+                <SelectOptionButton
+                  sx={{
                     fontSize: "16px",
-                    lineHeight: "18px",
-                    fontStyle: "normal",
-                    color: "#303030",
-                  },
-                  ".MuiInputLabel-shrink": {
-                    color: "#003B4A !important",
-                    fontWeight: "600",
-                  },
+                    [muiInputRoot]: {
+                      border: "0px solid #bbb",
+                      backgroundColor: "#fff",
+                      "&.Mui-focused": {
+                        boxShadow: "none",
+                        color: "#003B4A",
+                      },
+                    },
+                    ".MuiInputLabel-filled": {
+                      fontWeight: "400",
+                      fontSize: "16px",
+                      lineHeight: "18px",
+                      fontStyle: "normal",
+                      color: "#303030",
+                    },
+                    ".MuiInputLabel-shrink": {
+                      color: "#003B4A !important",
+                      fontWeight: "600",
+                    },
+                  }}
+                  ariaLabel={"Purpose of Visit dropdown"}
+                  role="menu"
+                  label={"Purpose of Visit"}
+                  labelId={`purposes-of-visit`}
+                  id={`purposes-of-visit`}
+                  options={purposeOfVisitData}
+                  onChange={onChange}
+                  value={value}
+                  renderMenuListUI={menuListUI}
+                  data-testid={APPOINTMENT_TEST_ID.purposeInput}
+                  renderValue={(selected) => {
+                    return selected;
+                  }}
+                  MenuProps={{
+                    PaperProps: {
+                      style: {
+                        maxHeight: 500,
+                        width: 300,
+                      },
+                    },
+                    getContentAnchorEl: null,
+                  }}
+                />
+              </Box>
+              <Typography
+                className={styles.optionalPurposeText}
+                variant={"bodyTinyRegular"}
+                sx={{
+                  position: "absolute",
+                  bottom: "-25px",
+                  color: "#ffffff",
+                  opacity: "0.8",
                 }}
-                ariaLabel={"Purpose of Visit dropdown"}
-                role="menu"
-                label={"Purpose of Visit"}
-                labelId={`purposes-of-visit`}
-                id={`purposes-of-visit`}
-                options={purposeOfVisitData}
-                onChange={onChange}
-                value={value}
-                renderMenuListUI={menuListUI}
-                data-testid={APPOINTMENT_TEST_ID.purposeInput}
-                renderValue={(selected) => {
-                  return selected;
-                }}
-              />
+              >
+                (Optional)
+              </Typography>
             </Box>
           );
         }}
@@ -658,7 +725,7 @@ const FilterHeading = ({
         }}
       >
         <Box
-          className={styles.centeredElement}
+          className={styles.centeredElementNew}
           sx={{ top: title && subtitle ? "50%" : "58%" }}
         >
           {title && subtitle && (
@@ -675,14 +742,15 @@ const FilterHeading = ({
               </Typography>
             </Stack>
           )}
-          <Stack direction={"row"}>
+          <Stack direction={"row"} sx={{ position: "relative" }}>
             <form
               onSubmit={handleSubmit(onSubmit)}
               style={{
                 display: "flex",
                 background: "#fff",
                 borderRadius: "50px",
-                width: isTablet ? "85vw" : "80vw",
+                // width: isTablet ? "100%" : "85vw",
+                width: "100%",
               }}
             >
               {renderLocationFilter()}
@@ -734,39 +802,6 @@ const FilterHeading = ({
               </Stack>
             )}
           </Stack>
-          <Grid container className={styles.centeredField}>
-            <Grid
-              item
-              xs={isDashboard ? 6 : 5.7}
-              lg={isDashboard ? 5.45 : 5.2}
-              xl={isDashboard ? 5.5 : 5.47}
-            >
-              {renderMandatoryFieldError()}
-            </Grid>
-            <Grid
-              item
-              xs={isDashboard ? 3.1 : 3}
-              lg={isDashboard ? 2.9 : 2.77}
-              xl={2.9}
-            >
-              <Typography
-                className={styles.optionalPurposeText}
-                variant={"bodyTinyRegular"}
-                sx={{ top: title && subtitle ? "89%" : "77%" }}
-              >
-                (Optional)
-              </Typography>
-            </Grid>
-            <Grid item lg={2}>
-              <Typography
-                className={styles.optionalInsuranceText}
-                variant={"bodyTinyRegular"}
-                sx={{ top: title && subtitle ? "89%" : "77%" }}
-              >
-                (Optional)
-              </Typography>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
     );
@@ -945,13 +980,11 @@ const FilterHeading = ({
         additionalProps={{
           control,
           isEmptyLocation,
-          isGeolocationEnabled,
           minDate,
           maxDate,
           purposeOfVisitData,
           insuranceCarrierData,
           isDesktop,
-          onChangeLocation,
         }}
       />
     );

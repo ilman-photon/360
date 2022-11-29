@@ -134,6 +134,9 @@ const SecurityQuestion = ({
                       fontWeight: "600",
                     },
                   }}
+                  inputProps={{
+                    "aria-label": `Question ${index} Dropdown Menu - Required`,
+                  }}
                   label={`Question ${index}`}
                   labelId={`question-label-${index}`}
                   id={`question-id-${index}`}
@@ -172,11 +175,14 @@ const SecurityQuestion = ({
                       backgroundColor: "#fff",
                     },
                   }}
+                  inputProps={{
+                    maxLength: 20,
+                    "aria-label": `Answer ${index} - Required`,
+                  }}
                   label={`Answer ${index}`}
                   id={`answer-${index}`}
                   variant="filled"
                   value={value}
-                  inputProps={{ maxLength: 20 }}
                   style={styles.answerInputStyle}
                   onChange={(event) => {
                     onChange(event);

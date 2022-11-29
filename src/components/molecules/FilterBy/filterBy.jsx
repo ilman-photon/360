@@ -23,6 +23,7 @@ const FilterBy = ({
   filter,
   activedFilter = [],
   isPrescription = false,
+  isDoctorSearch = false,
 }) => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [expand, setExpand] = React.useState(false);
@@ -70,14 +71,28 @@ const FilterBy = ({
         </Typography>
         <FormGroup
           className={
-            !isPrescription && !expand
+            !isDoctorSearch && !isPrescription && !expand
               ? styles.checkBoxGroup
               : styles.checkBoxGroupExpand
+          }
+          sx={
+            isDoctorSearch && {
+              height: {
+                sm: "calc((100vh - 335px)/2) !important",
+                md: "280px !important",
+              },
+              flexWrap: "nowrap",
+              overflow: "scroll",
+
+              "& .MuiFormControlLabel-root": {
+                marginLeft: "unset",
+              },
+            }
           }
         >
           {isMultiple ? (
             category.checklist.map((item, index) => {
-              if (index > 5 && !expand) return false;
+              if (index > 5 && !expand && !isDoctorSearch) return false;
               return (
                 <CustomCheckbox
                   label={item.name}
@@ -107,7 +122,7 @@ const FilterBy = ({
             />
           )}
         </FormGroup>
-        {isShowSeeMore && (
+        {isShowSeeMore && !isDoctorSearch && (
           <Box marginTop={"10px"} className={styles.buttonLinkContainer}>
             <Button
               role={"link"}
@@ -137,10 +152,21 @@ const FilterBy = ({
       variant="temporary"
     >
       <>
+        {isDoctorSearch && (
+          <Typography
+            variant="h2"
+            sx={{
+              position: "absolute",
+              margin: "16px",
+              fontSize: "26px",
+            }}
+          >
+            Filters
+          </Typography>
+        )}
         <IconButton
           aria-label="close"
-          aria-hidden
-          tabIndex="0"
+          tabIndex={0}
           component="label"
           role="button"
           className={styles.closeButton}
@@ -148,7 +174,15 @@ const FilterBy = ({
         >
           <CloseIcon className={styles.closeImage}></CloseIcon>
         </IconButton>
-        <Divider className={styles.topDivider}></Divider>
+        <Divider
+          className={styles.topDivider}
+          sx={
+            isDoctorSearch && {
+              display: "block !important",
+              margin: "10px 16px 0 16px",
+            }
+          }
+        ></Divider>
         <Box className={styles.checBoxListContainer} id="checkboxGroup">
           {filter.map((item, index) => {
             const isLastIndex = index === filter.length - 1;

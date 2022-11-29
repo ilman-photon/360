@@ -60,7 +60,7 @@ export default function CareTeamCard({ provider }) {
     <Box className={styles.careTeamContainer}>
       <Box>
         <IconButton
-          aria-label="more"
+          aria-label="more option"
           id="more-button"
           sx={{
             position: "absolute",
@@ -84,6 +84,7 @@ export default function CareTeamCard({ provider }) {
             alt="Doctor Image"
             fallbackSrc={"/defaultImageMyCare.png"}
             aria-label="Doctor/Optometrist image"
+            priority
           />
         </Box>
         <Box className={styles.addressContainer}>
@@ -95,7 +96,7 @@ export default function CareTeamCard({ provider }) {
           >
             {provider.name}
           </Typography>
-          <Box display="flex" flexDirection="row">
+          <Box display="flex" flexDirection="row" sx={{ mt: 2 }}>
             <LocationOnOutlinedIcon
               sx={{
                 fontSize: {

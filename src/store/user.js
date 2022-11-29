@@ -102,7 +102,6 @@ const buildProfilePostBody = (postBody, payload) => {
     },
     address: addressData,
     sex: getGenderCode(payload.gender),
-    ssn: payload.ssn,
     title: getTitleCode(payload.title),
     patientDetails: patientDetailsData,
   };
