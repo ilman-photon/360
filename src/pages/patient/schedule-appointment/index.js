@@ -25,6 +25,8 @@ import {
   Dialog,
   DialogTitle,
   DialogActions,
+  DialogContent,
+  DialogContentText,
 } from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
@@ -596,16 +598,21 @@ export default function ScheduleAppointmentPage() {
         open={modalConfirmReschedule}
         sx={{
           ".MuiPaper-root": {
-            minWidth: "500px",
+            minWidth: { xs: "90%", sm: "500px" },
           },
           ".MuiDialogActions-root": {
             padding: 2,
           },
         }}
       >
-        <DialogTitle sx={{ color: colors.darkGreen, fontSize: "22px" }}>
-          Are you sure you want to reschedule?
-        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            sx={{ color: colors.darkGreen, fontSize: "22px" }}
+          >
+            Are you sure you want to reschedule?
+          </DialogContentText>
+        </DialogContent>
         <DialogActions>
           <Stack direction="row" alignItems="center" spacing={"10px"}>
             <StyledButton

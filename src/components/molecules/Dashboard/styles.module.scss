@@ -42,6 +42,14 @@
     @media (max-width: 767px) {
       font-size: 18px;
     }
+
+    @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+      font-size: 24px;
+    }
+
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+      font-size: 24px;
+    }
   }
 }
 
@@ -274,7 +282,21 @@
       width: 100%;
       margin-top: 0px;
       margin-right: 0px;
-      height: 32px;
+      height: auto;
+      min-height: 32px;
+    }
+  }
+
+  .customGridHeight {
+    margin: 10px 0;
+    height: 40px;
+    width: 30%;
+    margin-right: 24px;
+    @media (max-width: 834px) {
+      width: 100%;
+      margin-right: 0px;
+      height: auto;
+      min-height: 32px;
     }
   }
 
@@ -296,6 +318,10 @@
     @media (max-width: 767px) {
       line-height: 32px;
     }
+  }
+  .customGridText {
+    line-height: 20px !important;
+    align-self: center;
   }
 
   .buttomContiner {
@@ -502,4 +528,14 @@
   color: #008294 !important;
   cursor: pointer;
   text-decoration-color: inherit !important;
+}
+
+.directionContent {
+  @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    flex-flow: inherit !important;
+  }
+
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    flex-flow: inherit !important;
+  }
 }

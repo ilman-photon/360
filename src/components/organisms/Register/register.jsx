@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Divider, Typography } from "@mui/material";
+import { Divider, Typography, useMediaQuery } from "@mui/material";
 import Link from "next/link";
 import { useForm, Controller, useFormState } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
@@ -16,6 +16,8 @@ import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
+import { resetFormMessage } from "../../../store";
+import { useDispatch } from "react-redux";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch, setValue } = useForm({
@@ -32,6 +34,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   const { errors, isSubmitting } = useFormState({
     control,
   });
+  const [open, setOpen] = React.useState(false);
+  const isDesktop = useMediaQuery("(min-width: 769px)");
   const { REGISTER_TEST_ID } = constants.TEST_ID;
   const validatePassword = (errors1 = [], errors2 = []) => {
     return errors1.length === 0 && errors2.length <= 1;
@@ -127,6 +131,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       OnRegisterClicked(data, router);
     }
   };
+  const msgRef = React.useRef(null);
+
   const inputRef = React.useRef(null);
   const inputLastName = React.useRef(null);
   const inputDob = React.useRef(null);
@@ -164,6 +170,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedEmail, watchedMobile]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(resetFormMessage());
+  }, []);
 
   const formMessageComp = useRef(null);
   useEffect(() => {
@@ -240,6 +251,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
+                  required
                   type="text"
                   id="firstName"
                   label="First Name"
@@ -255,7 +267,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  required
                   sx={{
                     margin: "8px",
                   }}
@@ -319,6 +330,16 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
+                  required
+                  open={open}
+                  onOpen={() => setOpen(true)}
+                  onClose={() => {
+                    setOpen(false);
+                    setTimeout(() => {
+                      inputDob?.current?.focus();
+                    }, 1);
+                  }}
+                  onClick={() => setOpen(true)}
                   aria-hidden={true}
                   tabIndex={-1}
                   type="dob"
@@ -328,19 +349,18 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   InputLabel={{ "aria-hidden": true }}
                   InputLabelProps={{
                     "aria-hidden": true,
-                    "aria-label": "Date of Birth required text field",
                   }}
                   InputProps={{
+                    ref: inputDob,
                     tabIndex: 0,
                     "data-testid": REGISTER_TEST_ID.dateofbirth,
-                    "aria-hidden": "false",
                     "aria-label": "Date of Birth required text field",
                   }}
                   inputProps={{
-                    "aria-hidden": "true",
-                    "aria-label": "Date of Birth - required",
+                    tabIndex: -1,
+                    readOnly: !isDesktop,
+                    isTransparent: true,
                   }}
-                  aria-label="Date of Birth required text field"
                   label="Date of Birth"
                   variant="filled"
                   value={value}
@@ -492,6 +512,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
 
           <div style={styles.registeredUsernameWrapper}>
             <Typography
+              ref={msgRef}
               variant="bodyMedium"
               sx={{ fontWeight: 500, color: colors.darkGreen }}
             >

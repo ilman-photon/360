@@ -21,6 +21,7 @@ import TableRow from "@mui/material/TableRow";
 import React, { useEffect, useState } from "react";
 import { TEST_ID } from "../../../utils/constants";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
+
 function AppointmentDetailTable(alergies, isExpandAll) {
   const [openAllergies, setOpenAllergies] = useState(isExpandAll);
   const handleClickAllergies = () => {
@@ -158,6 +159,17 @@ export default function DetailAppointment({ data }) {
   const addressLabel = `address : ${providerInfo.address.addressLine1}.
                   ${providerInfo.address.city}, ${providerInfo.address.state}, 
                   ${providerInfo.address.zipcode}`;
+
+  useEffect(() => {
+    if (isDownload && isExpandAll) {
+      setTimeout(() => {
+        downloadPDF();
+      }, [2000]);
+    } else if (isDownload && !isExpandAll) {
+      setIsExpandAll(true);
+    }
+  }, [isExpandAll, isDownload]);
+
   return (
     <Box className={styles.upcomingAppointments} ref={container}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>
@@ -197,9 +209,7 @@ export default function DetailAppointment({ data }) {
                   }}
                   onClick={() => {
                     setIsDownload(true);
-                    setTimeout(() => {
-                      downloadPDF();
-                    }, 200);
+                    setIsExpandAll(!isExpandAll);
                   }}
                 >
                   <DownloadIcon sx={{ color: blueGrey[200] }} />
