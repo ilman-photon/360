@@ -52,6 +52,12 @@ export default function Bio({ embedApi, bio }) {
     return data.split(", ");
   };
 
+  function sortPrimaryAddress(address) {
+    return address.sort(function (x, y) {
+      return y.primaryAddress - x.primaryAddress;
+    });
+  }
+
   const mapper = (response) => {
     const designation = response.designation ? `, ${response.designation}` : "";
     const name = `${response.firstName || ""} ${
@@ -60,8 +66,9 @@ export default function Bio({ embedApi, bio }) {
     const genderCode = response.sex?.key;
     const femaleGender = genderCode === 12 ? "Female" : "Unknown";
     const gender = genderCode === 11 ? "Male" : femaleGender;
-    const address = response.offices;
+    let address = response.offices;
     const language = getLanguage(response.providerDetails);
+    address = sortPrimaryAddress(address);
 
     const data = {
       providerId: response.id || "",
