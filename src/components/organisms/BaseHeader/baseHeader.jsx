@@ -144,6 +144,7 @@ export default function BaseHeader({
   };
 
   const actionNotificationRedirect = (data) => {
+    const id = data.typeId;
     let path = "#";
     switch (data.type) {
       case "prescription":
@@ -154,7 +155,7 @@ export default function BaseHeader({
       case "appointment":
       case "appointment-second-reminder":
       case "appointment-one":
-        path = `/patient/appointments/detail-appointments/${data.details?.appointmentData?.appointmentId}`;
+        path = `/patient/appointments/detail-appointments/${id}`;
         break;
       case "test-result":
         path = "/patient/account/medical-records?type=test-lab-result";

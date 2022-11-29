@@ -16,6 +16,10 @@ export const getPrescriptionType = (string) => {
     .trim();
 };
 
+const getAppointmentType = (string) => {
+  return string.split("You have an")[1].split("appointment")[0].trim();
+};
+
 export const getIcon = (data) => {
   const getPrescriptionIcon = (string) => {
     const type = getPrescriptionType(string);
@@ -81,14 +85,16 @@ export const getDescription = (data) => {
     case "appointment":
       return (
         <>
-          You have an <b>eye test appointment</b> in 3 days.
+          You have an <b>{getAppointmentType(data.text)}</b> appointment in 3
+          days.
         </>
       );
     case "appointment-second-reminder":
     case "appointment-one":
       return (
         <>
-          You have an <b>eye test appointment</b> tomorrow.
+          You have an <b>{getAppointmentType(data.text)}</b> appointment
+          tomorrow.
         </>
       );
     case "test-result":
