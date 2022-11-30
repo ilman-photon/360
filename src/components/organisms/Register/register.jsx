@@ -20,7 +20,7 @@ import { resetFormMessage } from "../../../store";
 import { useDispatch } from "react-redux";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
-  const { handleSubmit, control, watch, setValue } = useForm({
+  const { handleSubmit, control, watch, setValue, resetField } = useForm({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -156,24 +156,34 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     } else if (errors.preferredCommunication) {
       inputPrefentComunnication.current.focus();
     }
+
+    // unfocus focused element
+    document.activeElement.blur();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSubmitting]);
   useEffect(() => {
-    if (!!watchedEmail && !!watchedMobile) {
-      setValue("preferredCommunication", "both");
-    } else if (!!watchedMobile) {
-      setValue("preferredCommunication", "phone");
-    } else if (!!watchedEmail) {
+    const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
+    if (watchedEmail && isMobileInputEmpty) {
       setValue("preferredCommunication", "email");
+    } else if (!watchedEmail && isMobileInputEmpty) {
+      setValue("preferredCommunication", "phone");
     } else {
       setValue("preferredCommunication", "both");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedEmail, watchedMobile]);
 
+  useEffect(() => {
+    if (watchedPreferredCommunication === "email") {
+      inputEmail.current.focus();
+    }
+  }, [watchedPreferredCommunication]);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(resetFormMessage());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formMessageComp = useRef(null);
@@ -339,7 +349,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       inputDob?.current?.focus();
                     }, 1);
                   }}
-                  onClick={() => setOpen(true)}
+                  // onClick={() => setOpen(true)}
                   aria-hidden={true}
                   tabIndex={-1}
                   type="dob"

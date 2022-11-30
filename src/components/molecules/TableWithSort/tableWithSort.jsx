@@ -128,7 +128,7 @@ const EnhancedTableHead = (props) => {
                   padding={headCell.disablePadding ? "none" : "normal"}
                   sortDirection={orderBy === headCell.id ? order : false}
                   width={headCell.width}
-                  role={"rowheader"}
+                  aria-label={headCell.label}
                   sx={{
                     py: "15px",
                     color: "#003B4A",
