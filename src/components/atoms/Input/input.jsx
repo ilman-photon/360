@@ -323,7 +323,7 @@ export const CustomInput = styled(({ ...props }) => {
                   }}
                   {...params}
                   onClick={props.onClick}
-                  error={props.error || params.error}
+                  error={props.error}
                   helperText={props.helperText}
                   onPaste={preventPasteHandler}
                   required={props.required}
