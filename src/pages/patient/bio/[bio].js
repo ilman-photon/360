@@ -53,9 +53,12 @@ export default function Bio({ embedApi, bio }) {
   };
 
   function sortPrimaryAddress(address) {
-    return address.sort(function (x, y) {
-      return y.primaryAddress - x.primaryAddress;
-    });
+    if (address && address.length > 0) {
+      return address.sort(function (x, y) {
+        return y.primaryAddress - x.primaryAddress;
+      });
+    }
+    return address;
   }
 
   const mapper = (response) => {
