@@ -11,7 +11,7 @@ export default function SubNavigation({ backTitle, onClick }) {
         <Link
           className={styles.link}
           data-testid={constants.TEST_ID.SUBNAVIGATION}
-          aria-roledescription="Link"
+          role="Link"
           aria-label={`${backTitle} link`}
           tabIndex={0}
           onClick={() => {
