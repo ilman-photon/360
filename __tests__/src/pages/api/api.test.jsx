@@ -400,9 +400,7 @@ describe("Api test", () => {
     const expectedResult = {
       message: "Your refill request has been canceled",
     };
-    mock
-      .onPost(`http://localhost/api/dummy/prescription/cancelRequestRefill`)
-      .reply(200, expectedResult);
+    mock.onPost(`/ecp/prescriptions/cancelRefill`).reply(200, expectedResult);
 
     const api = new Api();
     const result = await api.doMedicationCancelRequestRefill({
