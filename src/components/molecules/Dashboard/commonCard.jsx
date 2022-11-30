@@ -46,9 +46,17 @@ export default function CommonCard({
   content = {},
   navRouter = "",
   viewAllText = "",
-  customClassName = {},
+  customClassName = "",
 }) {
   const router = useRouter();
+
+  function handleViewClicked() {
+    if (typeof navRouter === "function") {
+      navRouter();
+    } else if (typeof navRouter === "string") {
+      router.push(navRouter);
+    }
+  }
 
   return (
     <ThemeProvider theme={patientTypography}>
@@ -62,6 +70,10 @@ export default function CommonCard({
           ".MuiCardContent-root": {
             p: 0,
             position: "relative",
+            flex: "1",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
           },
           ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
             p: { xs: "24px 15.5px", md: "24px" },
@@ -81,14 +93,10 @@ export default function CommonCard({
             className={styles.viewPrescriptionText}
             sx={{ color: "#008294", fontFamily: "Inter" }}
             onClick={() => {
-              if (navRouter) {
-                router.push(navRouter);
-              }
+              handleViewClicked();
             }}
             onKeyPress={(e) => {
-              if (navRouter) {
-                router.push(navRouter);
-              }
+              handleViewClicked();
             }}
             {...getLinkAria(`${viewAllText} option`)}
             tabIndex={0}

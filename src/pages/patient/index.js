@@ -38,6 +38,7 @@ import Navbar from "../../components/molecules/Navbar/Navbar";
 import HealthRecordCard from "../../components/molecules/Dashboard/healthRecordCard";
 import TestLabReportCard from "../../components/molecules/Dashboard/testLabReportCard";
 import PayMyBillCard from "../../components/molecules/Dashboard/payMyBillCard";
+import EducationMaterialCard from "../../components/molecules/Dashboard/educationMaterialCard";
 
 export async function getStaticProps() {
   return {
@@ -392,7 +393,7 @@ export default function HomePage({ googleApiKey }) {
                 paddingLeft: { xs: "16px !important", md: "24px !important" },
               }}
             >
-              {/* Education Material Widget */}
+              <EducationMaterialCard />
             </Grid>
             <Grid
               item

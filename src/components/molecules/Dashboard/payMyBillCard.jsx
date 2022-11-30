@@ -2,9 +2,7 @@ import * as React from "react";
 import styles from "./styles.module.scss";
 import {
   Box,
-  Link,
   Stack,
-  ThemeProvider,
   Paper,
   TableContainer,
   Table,
@@ -83,13 +81,11 @@ export default function PayMyBillCard({}) {
           mode={"primary"}
           size={"small"}
           gradient={false}
-          onClick={() => {
-            navigateToScheduleAppointment();
-          }}
+          onClick={() => {}}
           data-testid="schedule-btn"
           sx={{
             "&.sxButton": {
-              minWidth: isDesktop ? "inherit" : "100%",
+              minWidth: isDesktop ? "inherit" : "100% !important",
             },
           }}
         >

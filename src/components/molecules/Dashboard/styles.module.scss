@@ -153,6 +153,9 @@
 }
 
 .appointmentContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   @media print {
     display: none !important;
   }
@@ -693,5 +696,69 @@
     margin-top: 16px;
     position: relative;
     width: 100%;
+  }
+}
+
+.slackGridItem {
+  .materialTitle {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    color: #003b4a;
+    margin-bottom: 16px;
+  }
+
+  .materialDate {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #575757;
+    margin-bottom: 16px;
+  }
+
+  .materialDescription {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.0016em;
+    color: #191919;
+    margin-bottom: 16px;
+  }
+
+  .menuContainer {
+    width: 104px;
+    height: 40px;
+    background: #f4f4f4;
+    border-radius: 4px;
+    margin-left: auto;
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+
+    .menuItem {
+      width: 52px;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: unset;
+
+      @media (max-width: 700px) {
+        width: 50%;
+      }
+    }
   }
 }
