@@ -219,7 +219,7 @@ export default function Prescriptions({
       if (isViewAll) {
         return styles.quarteBox;
       }
-      return styles.halfBox;
+      return styles.fullBox;
     }
     return {};
   }

@@ -359,7 +359,11 @@ export default function AppointmentCard({
 
   return (
     <CommonCard
-      title={"Health Records"}
+      title={
+        appointmentCount > 0
+          ? `Appointments (${appointmentCount})`
+          : `Appointment`
+      }
       titleIcon={
         <CalendarTodayOutlinedIcon
           sx={{ color: "#007787" }}
@@ -370,60 +374,5 @@ export default function AppointmentCard({
       navRouter={onViewAppointment}
       viewAllText={"View Appointments"}
     />
-    // <ThemeProvider theme={patientTypography}>
-    //   <AccountCard
-    //     className={styles.appointmentContainer}
-    //     isAppoinment={true}
-    //     isDashboard={true}
-    //     titleIcon={
-    //       <CalendarTodayOutlinedIcon
-    //         sx={{ color: "#007787" }}
-    //         aria-hidden="false"
-    //       />
-    //     }
-    //     title={
-    //       appointmentCount > 0
-    //         ? `Appointments (${appointmentCount})`
-    //         : `Appointment`
-    //     }
-    //     sx={{
-    //       ".MuiCardContent-root": {
-    //         p: 0,
-    //         position: "relative",
-    //       },
-    //       ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
-    //         p: { xs: "24px 15.5px", md: "24px" },
-    //       },
-    //     }}
-    //   >
-    //     {renderAppointmentUI()}
-    //     <Box
-    //       className={[styles.flexDisplay, styles.viewPrescription]}
-    //       sx={{
-    //         borderTop: 1,
-    //         borderColor: "divider",
-    //         paddingTop: "20px",
-    //       }}
-    //     >
-    //       <Link
-    //         className={styles.viewPrescriptionText}
-    //         sx={{ color: "#008294", fontFamily: "Inter" }}
-    //         onClick={() => {
-    //           onViewAppointment();
-    //         }}
-    //         onKeyPress={(e) => {
-    //           if (e.key === "Enter") {
-    //             onViewAppointment();
-    //           }
-    //         }}
-    //         {...getLinkAria("View appointments option")}
-    //         tabIndex={0}
-    //       >
-    //         View Appointments
-    //       </Link>
-    //       <KeyboardArrowRightIcon />
-    //     </Box>
-    //   </AccountCard>
-    // </ThemeProvider>
   );
 }
