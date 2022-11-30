@@ -11,9 +11,6 @@ export const FormMessage = (
     onClose = () => {
       // This is intended
     },
-    onClose = () => {
-      // This is intended
-    },
     accessibility = {},
     ...props
   },
