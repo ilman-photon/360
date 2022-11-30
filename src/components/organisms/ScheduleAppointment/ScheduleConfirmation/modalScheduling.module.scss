@@ -48,6 +48,8 @@
     font-weight: 700;
     line-height: 24px;
     font-size: 16px;
+    font-family: "Libre Franklin", sans-serif;
+    color: #000000;
   }
 
   .addCalendarButton {
@@ -63,7 +65,7 @@
     background: #ffffff;
     border: 1px solid #003b4a;
     border-radius: 4px;
-    text-transform: capitalize;
+    text-transform: none;
   }
 
   .card {
