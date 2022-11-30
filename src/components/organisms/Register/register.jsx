@@ -183,6 +183,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(resetFormMessage());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formMessageComp = useRef(null);
