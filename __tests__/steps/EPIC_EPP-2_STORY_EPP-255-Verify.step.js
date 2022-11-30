@@ -1,9 +1,12 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPassword";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import Cookies from "universal-cookie";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import "@testing-library/jest-dom";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -27,7 +30,15 @@ const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-255.feature"
 );
 
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+
 defineFeature(feature, (test) => {
+  afterEach(() => {
+    jest.clearAllMocks();
+    cleanup();
+  });
   test('EPIC_EPP-2_STORY_EPP-255 - Verify if user able view the to set password screen', ({ }) => { });
 
   test('EPIC_EPP-2_STORY_EPP-255 - Verify if user able to set the password by click the link receive through Email or phone number', ({ }) => { });
@@ -82,7 +93,19 @@ defineFeature(feature, (test) => {
     });
 
     then('user User lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
   });
 
@@ -112,23 +135,45 @@ defineFeature(feature, (test) => {
     });
 
     then('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     and(/^User should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     and('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see password field and confirm password field "(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     when(/^user provide the same password details to the field  (.*),(.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "user123@A" } });
+      expect(password.value).toEqual("user123@A");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "user123@A" } });
+      expect(confirmPassword.value).toEqual("user123@A");
     });
 
     and(/^user click on "(.*)" button$/, (arg0) => {
@@ -166,19 +211,34 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should  see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     and('user should to view and fill the following fields', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see the field "(.*)","(.*)"$/, (arg0, arg1) => {
@@ -220,19 +280,34 @@ defineFeature(feature, (test) => {
     });
 
     and('User lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^User should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     and('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see field "(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     when('user leave \'Confirm password\' field blank', () => {
@@ -270,27 +345,48 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" and "(.*)" field$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     and(/^user enter the value 'abcd(\d+)' in Password field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abcd1234" } });
+      expect(password.value).toEqual("abcd1234");
     });
 
     and(/^user enter the value 'abcd(\d+)' in Confirm password field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abcd1234" } });
+      expect(confirmPassword.value).toEqual("abcd1234");
     });
 
     then('user see the error message “Password does not match”', () => {
@@ -324,27 +420,48 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see field "(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     when(/^user enter the value 'abcd(\d+)#' password field length range from (\d+) to (\d+) characters$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abcd1234" } });
+      expect(password.value).toEqual("abcd1234");
     });
 
     and(/^user enter the value 'abcd(\d+)#' in Confirm password field range from (\d+) to (\d+) character$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abcd1234" } });
+      expect(confirmPassword.value).toEqual("abcd1234");
     });
   });
 
@@ -374,19 +491,34 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see the field "(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     when(/^user enter the value 'abcd(\d+)#' length less than (\d+) characters$/, (arg0, arg1) => {
@@ -432,23 +564,45 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see field "(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     when(/^user enter the value '(\d+)#' without alphabets in Password field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "1234" } });
+      expect(password.value).toEqual("1234");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "1234" } });
+      expect(confirmPassword.value).toEqual("1234");
     });
 
     then(/^user should see the error message "(.*)"$/, (arg0) => {
@@ -482,23 +636,45 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see field "(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     when(/^user enter the value 'abcd(\d+)' without special charaters in Password field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abcd1234" } });
+      expect(password.value).toEqual("abcd1234");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abcd1234" } });
+      expect(confirmPassword.value).toEqual("abcd1234");
     });
 
     then(/^user should see the error message "(.*)"$/, (arg0) => {
@@ -532,23 +708,45 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see field"(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     when(/^user enter the value 'abcabcabc(\d+)#' (\d+) or more identical characters consecutively in Password field$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abcd1234" } });
+      expect(password.value).toEqual("abcd1234");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abcd1234" } });
+      expect(confirmPassword.value).toEqual("abcd1234");
     });
 
     then(/^user should see the error message "(.*)"$/, (arg0) => {
@@ -582,23 +780,45 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see field"(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     when('user enter the value \'abc@gmail.com\' in Password field', () => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abc@gmail.com" } });
+      expect(password.value).toEqual("abc@gmail.com");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abc@gmail.com" } });
+      expect(confirmPassword.value).toEqual("abc@gmail.com");
     });
 
     then(/^user should see the error message "(.*)"$/, (arg0) => {
@@ -606,7 +826,12 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user enter the value '(\d+)' in Password field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abc@gmail.com" } });
+      expect(password.value).toEqual("abc@gmail.com");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abc@gmail.com" } });
+      expect(confirmPassword.value).toEqual("abc@gmail.com");
     });
 
     then(/^user should see the error message "(.*)"$/, (arg0) => {
@@ -640,23 +865,45 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see field"(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     when(/^user enter the value 'abcd(\d+)#' previously used password in Password field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abc@gmail.com" } });
+      expect(password.value).toEqual("abc@gmail.com");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abc@gmail.com" } });
+      expect(confirmPassword.value).toEqual("abc@gmail.com");
     });
 
     then(/^user should see the error message "(.*)"$/, (arg0) => {
@@ -690,27 +937,54 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      // const usernameField = container.getByLabelText(/username/i);
+      // expect(usernameField).toBeInTheDocument();
     });
 
     and(/^user should see field"(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     when(/^user enter the value 'abcd(\d+)#' in Password field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abcd1234" } });
+      expect(password.value).toEqual("abcd1234");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abcd1234" } });
+      expect(confirmPassword.value).toEqual("abcd1234");
     });
 
     then('user should see the password field with masking the value \'******* entered', () => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abcd1234" } });
+      expect(password.value).toEqual("abcd1234");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abcd1234" } });
+      expect(confirmPassword.value).toEqual("abcd1234");
     });
   });
 
@@ -740,27 +1014,56 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Set Password” screen', () => {
-      expect(true).toBeTruthy();
+      container = render(
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"smith1@photon.com"}
+          onSetPasswordClicked={jest.fn()}
+          showBackToLogin={false}
+          ctaButtonLabel={"Set Password"}
+          isUpdatePassword={true}
+        />
+      );
+      const title = container.getAllByText("Set Password")[0];
+      expect("Set Password").toEqual(title.textContent);
     });
 
     then(/^user should see the verbiage "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const verbiage = container.getByText(/Enter a password to setup your account./i);
+      expect(verbiage).toBeInTheDocument();
     });
 
     then('user should see Email or phone number is auto populated', () => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     and(/^user should see field"(.*)","(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByText(/password/i)[0];
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      expect(password).toBeInTheDocument();
+      expect(confirmPassword).toBeInTheDocument();
     });
 
     when(/^user enter the value 'abcd(\d+)#' in Password field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abcd1234" } });
+      expect(password.value).toEqual("abcd1234");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abcd1234" } });
+      expect(confirmPassword.value).toEqual("abcd1234");
     });
 
     then('user should see the password field with masking the value \'*******\' entered.', () => {
-      expect(true).toBeTruthy();
+      const password = container.getAllByLabelText(/password/i)[0];
+      fireEvent.change(password, { target: { value: "abcd1234" } });
+      expect(password.value).toEqual("abcd1234");
+      const confirmPassword = container.getByTestId(/confirmPassword/i);
+      fireEvent.change(confirmPassword, { target: { value: "abcd1234" } });
+      expect(confirmPassword.value).toEqual("abcd1234");
     });
 
     and('user have an option to unmask the value', () => {

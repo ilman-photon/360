@@ -11,6 +11,10 @@ import { Login } from "../../src/components/organisms/Login/login";
 import { renderWithProviders } from "../src/utils/test-util";
 import { TEST_ID } from "../../src/utils/constants";
 import { renderLogin, renderForgotPassword, clickContinueForgot } from "../../__mocks__/commonSteps";
+import UpdatePasswordPage from "../../src/pages/patient/update-password";
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-220.feature"
@@ -132,11 +136,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should view the page with “Password Reset” heading', () => {
@@ -171,20 +177,42 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      useRouter.query = jest
+        .fn()
+        .mockReturnValue({ username: "smith1@photon.com" });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {UpdatePasswordPage.getLayout(<UpdatePasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getByText("title"));
+      const title = container.getByText("title");
+      expect("title").toEqual(title.textContent);
     });
 
     and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByLabelText("passwordPlaceHolder *")
+      ).toBeInTheDocument();
+      expect(
+        container.getByLabelText("confirmPasswordPlaceHolder *")
+      ).toBeInTheDocument();
     });
 
     when(/^User should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getByLabelText("passwordPlaceHolder *");
+      fireEvent.change(password, { target: { value: "Password@123" } });
+      expect(password.value).toEqual("Password@123");
     });
 
     and(/^User should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getByLabelText("passwordPlaceHolder *");
+      fireEvent.change(password, { target: { value: "Password@123" } });
+      expect(password.value).toEqual("Password@123");
     });
 
     then('user should see mask the entered password along with an option to unmask it by default', () => {
@@ -192,11 +220,23 @@ defineFeature(feature, (test) => {
     });
 
     and(/^User should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const continueId = container.getByRole("button", {
+        name: /ctaButtonLabel/i,
+      });
+      expect(continueId).toBeInTheDocument();
     });
 
-    when(/^User should click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^User should click on "(.*)" button$/, async (arg0) => {
+      const continueId = container.getByRole("button", {
+        name: /ctaButtonLabel/i,
+      });
+      fireEvent.change(container.getByLabelText("confirmPasswordPlaceHolder *"), {
+        target: { value: "user12" },
+      });
+      fireEvent.change(container.getByLabelText("passwordPlaceHolder *"), {
+        target: { value: "user12" },
+      });
+      await fireEvent.click(continueId);
     });
 
     then('user should see appropriate error message', () => {
@@ -293,11 +333,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should view the page with “Password Reset” heading', () => {
@@ -332,8 +374,21 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      useRouter.query = jest
+        .fn()
+        .mockReturnValue({ username: "smith1@photon.com" });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {UpdatePasswordPage.getLayout(<UpdatePasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getByText("title"));
+      const title = container.getByText("title");
+      expect("title").toEqual(title.textContent);
     });
 
     and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -438,11 +493,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should view the page with “Password Reset” heading', () => {
@@ -477,20 +534,42 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      useRouter.query = jest
+        .fn()
+        .mockReturnValue({ username: "smith1@photon.com" });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {UpdatePasswordPage.getLayout(<UpdatePasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getByText("title"));
+      const title = container.getByText("title");
+      expect("title").toEqual(title.textContent);
     });
 
     and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByLabelText("passwordPlaceHolder *")
+      ).toBeInTheDocument();
+      expect(
+        container.getByLabelText("confirmPasswordPlaceHolder *")
+      ).toBeInTheDocument();
     });
 
     when(/^User should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getByLabelText("passwordPlaceHolder *");
+      fireEvent.change(password, { target: { value: "Password@123" } });
+      expect(password.value).toEqual("Password@123");
     });
 
     and(/^User should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getByLabelText("passwordPlaceHolder *");
+      fireEvent.change(password, { target: { value: "Password@123" } });
+      expect(password.value).toEqual("Password@123");
     });
 
     then('user should see mask the entered password along with an option to unmask it by default', () => {
@@ -498,11 +577,23 @@ defineFeature(feature, (test) => {
     });
 
     and(/^User should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const continueId = container.getByRole("button", {
+        name: /ctaButtonLabel/i,
+      });
+      expect(continueId).toBeInTheDocument();
     });
 
-    when(/^User should click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^User should click on "(.*)" button$/, async (arg0) => {
+      const continueId = container.getByRole("button", {
+        name: /ctaButtonLabel/i,
+      });
+      fireEvent.change(container.getByLabelText("confirmPasswordPlaceHolder *"), {
+        target: { value: "user12" },
+      });
+      fireEvent.change(container.getByLabelText("passwordPlaceHolder *"), {
+        target: { value: "user12" },
+      });
+      await fireEvent.click(continueId);
     });
 
     then('user should see appropriate error message', () => {
@@ -599,11 +690,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should view the page with “Password Reset” heading', () => {
@@ -638,20 +731,42 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      useRouter.query = jest
+        .fn()
+        .mockReturnValue({ username: "smith1@photon.com" });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {UpdatePasswordPage.getLayout(<UpdatePasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getByText("title"));
+      const title = container.getByText("title");
+      expect("title").toEqual(title.textContent);
     });
 
     and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByLabelText("passwordPlaceHolder *")
+      ).toBeInTheDocument();
+      expect(
+        container.getByLabelText("confirmPasswordPlaceHolder *")
+      ).toBeInTheDocument();
     });
 
     when(/^User should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getByLabelText("passwordPlaceHolder *");
+      fireEvent.change(password, { target: { value: "Password@123" } });
+      expect(password.value).toEqual("Password@123");
     });
 
     and(/^User should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getByLabelText("passwordPlaceHolder *");
+      fireEvent.change(password, { target: { value: "Password@123" } });
+      expect(password.value).toEqual("Password@123");
     });
 
     then('user should see mask the entered password along with an option to unmask it by default', () => {
@@ -659,11 +774,23 @@ defineFeature(feature, (test) => {
     });
 
     and(/^User should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const continueId = container.getByRole("button", {
+        name: /ctaButtonLabel/i,
+      });
+      expect(continueId).toBeInTheDocument();
     });
 
-    when(/^User should click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^User should click on "(.*)" button$/, async (arg0) => {
+      const continueId = container.getByRole("button", {
+        name: /ctaButtonLabel/i,
+      });
+      fireEvent.change(container.getByLabelText("confirmPasswordPlaceHolder *"), {
+        target: { value: "user12" },
+      });
+      fireEvent.change(container.getByLabelText("passwordPlaceHolder *"), {
+        target: { value: "user12" },
+      });
+      await fireEvent.click(continueId);
     });
 
     then(/^User should see "(.*)" screen$/, (arg0) => {
@@ -764,11 +891,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should view the page with “Password Reset” heading', () => {
@@ -803,20 +932,42 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      useRouter.query = jest
+        .fn()
+        .mockReturnValue({ username: "smith1@photon.com" });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {UpdatePasswordPage.getLayout(<UpdatePasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getByText("title"));
+      const title = container.getByText("title");
+      expect("title").toEqual(title.textContent);
     });
 
     and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByLabelText("passwordPlaceHolder *")
+      ).toBeInTheDocument();
+      expect(
+        container.getByLabelText("confirmPasswordPlaceHolder *")
+      ).toBeInTheDocument();
     });
 
     when(/^User should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getByLabelText("passwordPlaceHolder *");
+      fireEvent.change(password, { target: { value: "Password@123" } });
+      expect(password.value).toEqual("Password@123");
     });
 
     and(/^User should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const password = container.getByLabelText("passwordPlaceHolder *");
+      fireEvent.change(password, { target: { value: "Password@123" } });
+      expect(password.value).toEqual("Password@123");
     });
 
     then('user should see mask the entered password along with an option to unmask it by default', () => {
@@ -824,11 +975,23 @@ defineFeature(feature, (test) => {
     });
 
     and(/^User should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const continueId = container.getByRole("button", {
+        name: /ctaButtonLabel/i,
+      });
+      expect(continueId).toBeInTheDocument();
     });
 
-    when(/^User should click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^User should click on "(.*)" button$/, async (arg0) => {
+      const continueId = container.getByRole("button", {
+        name: /ctaButtonLabel/i,
+      });
+      fireEvent.change(container.getByLabelText("confirmPasswordPlaceHolder *"), {
+        target: { value: "user12" },
+      });
+      fireEvent.change(container.getByLabelText("passwordPlaceHolder *"), {
+        target: { value: "user12" },
+      });
+      await fireEvent.click(continueId);
     });
 
     then('User refresh the page', () => {
@@ -929,11 +1092,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should view the page with “Password Reset” heading', () => {
@@ -968,8 +1133,21 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      useRouter.query = jest
+        .fn()
+        .mockReturnValue({ username: "smith1@photon.com" });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {UpdatePasswordPage.getLayout(<UpdatePasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getByText("title"));
+      const title = container.getByText("title");
+      expect("title").toEqual(title.textContent);
     });
 
     when(/^user press F(\d+) on the console$/, (arg0) => {
@@ -1070,11 +1248,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should view the page with “Password Reset” heading', () => {
@@ -1109,8 +1289,21 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      useRouter.query = jest
+        .fn()
+        .mockReturnValue({ username: "smith1@photon.com" });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {UpdatePasswordPage.getLayout(<UpdatePasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getByText("title"));
+      const title = container.getByText("title");
+      expect("title").toEqual(title.textContent);
     });
 
     and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -1304,11 +1497,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should view the page with “Password Reset” heading', () => {
@@ -1343,8 +1538,21 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      useRouter.query = jest
+        .fn()
+        .mockReturnValue({ username: "smith1@photon.com" });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {UpdatePasswordPage.getLayout(<UpdatePasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getByText("title"));
+      const title = container.getByText("title");
+      expect("title").toEqual(title.textContent);
     });
   });
 
@@ -1437,11 +1645,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId("phone-test")
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then('user should view the page with “Password Reset” heading', () => {
@@ -1476,8 +1686,21 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      useRouter.query = jest
+        .fn()
+        .mockReturnValue({ username: "smith1@photon.com" });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {UpdatePasswordPage.getLayout(<UpdatePasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getByText("title"));
+      const title = container.getByText("title");
+      expect("title").toEqual(title.textContent);
     });
   });
 
@@ -1763,7 +1986,9 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
-      expect(true).toBeTruthy();
+      // expect(
+      //   container.getByTestId("phone-test")
+      // ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)"$/, (arg0) => {
