@@ -70,8 +70,12 @@ const ConfirmationForm = ({
                 success={isSuccessPostMessage}
                 sx={styles.postMessage}
                 title={postMessageTitle}
-                tabIndex={0}
-                aria-label={postMessage}
+                tabIndex={"0"}
+                accessibility={{
+                  tabIndex: "0",
+                  role: "text",
+                  ariaRoleDescription: "",
+                }}
                 textRole="text"
               >
                 {postMessage}

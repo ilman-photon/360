@@ -307,6 +307,15 @@ export default function ScheduleAppointmentPage() {
   };
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const formMessageComp = React.useRef(null);
+
+  React.useEffect(() => {
+    if (formMessageComp.current) {
+      formMessageComp.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeStep]);
+
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
@@ -515,7 +524,7 @@ export default function ScheduleAppointmentPage() {
   return (
     <section>
       <Head>
-        <title>Review appointment details page</title>
+        <title>{headerText[activeStep]} page</title>
       </Head>
 
       <BaseHeader />
@@ -546,6 +555,9 @@ export default function ScheduleAppointmentPage() {
         className={isDesktop ? styles.container : ""}
         p={{ xs: "24px 14px 0", md: "30px 40px 0" }}
         sx={{ justifyContent: "center" }}
+        aria-live="polite"
+        aria-label={`${headerText[activeStep]} page`}
+        ref={formMessageComp}
       >
         <Box className={styles.pageWrapper}>
           <Button
@@ -594,6 +606,8 @@ export default function ScheduleAppointmentPage() {
 
       {/* confirmation dialog */}
       <Dialog
+        role={"polite"}
+        aria-describedby="alert-dialog-description"
         onClose={handleCancelReschedule}
         open={modalConfirmReschedule}
         sx={{
@@ -607,6 +621,7 @@ export default function ScheduleAppointmentPage() {
       >
         <DialogContent>
           <DialogContentText
+            role={"polite"}
             id="alert-dialog-description"
             sx={{ color: colors.darkGreen, fontSize: "22px" }}
           >

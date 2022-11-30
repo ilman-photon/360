@@ -8,7 +8,7 @@ import { colors } from "../../../styles/theme";
 
 export const FormMessage = (
   {
-    onClick = () => {
+    onClose = () => {
       // This is intended
     },
     onClose = () => {
@@ -23,7 +23,6 @@ export const FormMessage = (
     <>
       <Box
         ref={ref}
-        onClick={onClick}
         sx={{
           backgroundColor: props.success ? colors.foundationGreen : "#B93632",
           width: "auto",
