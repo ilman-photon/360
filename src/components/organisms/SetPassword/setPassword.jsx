@@ -140,8 +140,8 @@ const SetPasswordComponent = ({
         watchedPassword?.length < 1
           ? true
           : watchedPassword?.indexOf(
-            !isUpdatePassword ? watchedEmail : username
-          ) > -1,
+              !isUpdatePassword ? watchedEmail : username
+            ) > -1,
       mandatory: true,
     },
     {
@@ -300,8 +300,8 @@ const SetPasswordComponent = ({
                 {subtitle}
               </Typography>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
 
             <div>
               {showPostMessage ? (
@@ -309,8 +309,8 @@ const SetPasswordComponent = ({
                   {postMessage}
                 </FormMessage>
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
 
               {formMessage && formMessage.content ? (
                 <FormMessage
@@ -322,8 +322,8 @@ const SetPasswordComponent = ({
                   {formMessage.content}
                 </FormMessage>
               ) : (
-                  ""
-                )}
+                ""
+              )}
             </div>
 
             <form
@@ -371,8 +371,8 @@ const SetPasswordComponent = ({
                   }}
                 />
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
               <Controller
                 name="password"
                 control={control}
@@ -414,8 +414,8 @@ const SetPasswordComponent = ({
                   validateErrorPassword,
                 })
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
               <Controller
                 name="confirmPassword"
                 control={control}
@@ -458,8 +458,8 @@ const SetPasswordComponent = ({
                   validateErrorPassword,
                 })
               ) : (
-                  <></>
-                )}
+                <></>
+              )}
               <StyledButton
                 type="submit"
                 theme="patient"
@@ -488,8 +488,8 @@ const SetPasswordComponent = ({
                 {t("backButtonLink")}
               </Link>
             ) : (
-                <></>
-              )}
+              <></>
+            )}
           </CardContent>
         </Card>
       )}

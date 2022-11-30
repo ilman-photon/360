@@ -73,7 +73,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
                 <Link
                   className={styles.viewAllLink}
                   data-testid={BIOGRAPHY_TEST_ID.viewAll}
-                  aria-roledescription="Link"
+                  role="Link"
                   aria-label="View All"
                   tabIndex={0}
                   onClick={() => {
@@ -297,7 +297,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             className={styles.menuText}
             onClick={onClickAbout}
             aria-label={`About Tab`}
-            aria-roledescription="Link"
+            role="Link"
             tabIndex={0}
           >
             About
@@ -306,7 +306,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             className={styles.menuText}
             onClick={onClickLocation}
             aria-label={`Locations Tab`}
-            aria-roledescription="Link"
+            role="Link"
             tabIndex={0}
           >
             Locations
@@ -315,7 +315,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             className={styles.menuText}
             onClick={onClickInsurances}
             aria-label={`Insurances Tab`}
-            aria-roledescription="Link"
+            role="Link"
             tabIndex={0}
           >
             Insurances
@@ -324,7 +324,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             className={styles.menuText}
             onClick={onClickEducation}
             aria-label={`Education Tab`}
-            aria-roledescription="Link"
+            role="Link"
             tabIndex={0}
           >
             Education
@@ -365,9 +365,9 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
         <Typography tabIndex={0} aria-label={"Languages heading"} variant="h3">
           Languages
         </Typography>
-        <Typography variant="body2" tabIndex={0}>
-          {providerData.language &&
-            providerData.language.map((item, index) => {
+        {providerData.language.length > 0 && (
+          <Typography variant="body2" tabIndex={0}>
+            {providerData.language.map((item, index) => {
               const isLastIndex = providerData.language.length - 1 === index;
               if (!isLastIndex && item !== "") {
                 return `${item}, `;
@@ -375,7 +375,8 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
                 return item;
               }
             })}
-        </Typography>
+          </Typography>
+        )}
         <Typography
           variant="h3"
           aria-label={"In-network insurances heading"}
