@@ -18,6 +18,18 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
 import { resetFormMessage } from "../../../store";
 import { useDispatch } from "react-redux";
+
+export const isDOB = (value) => {
+  let date = new Date().getFullYear();
+  if (value.getYear() < 0) {
+    return false;
+  }
+  if (value.getFullYear() <= date) {
+    return true;
+  }
+  return false;
+};
+
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch, setValue, resetField } = useForm({
@@ -194,16 +206,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         inline: "nearest",
       });
   }, [formMessage]);
-  const isDOB = (value) => {
-    let date = new Date().getFullYear();
-    if (value.getYear() < 0) {
-      return false;
-    }
-    if (value.getFullYear() <= date) {
-      return true;
-    }
-    return false;
-  };
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":

@@ -24,6 +24,7 @@ import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
 import { RELATIONSHIP_LIST } from "../../../utils/constantData";
 import { colors } from "../../../styles/theme";
+import { isDOB } from "../Register/register";
 
 export default function InsuranceForm({
   formData = DEFAULT_INSURANCE_DATA,
@@ -230,7 +231,6 @@ export default function InsuranceForm({
                   return (
                     <StyledInput
                       type="text"
-                      tabIndex={0}
                       label="Subscriber ID/ Member ID"
                       value={value}
                       onChange={onChange}
@@ -268,7 +268,6 @@ export default function InsuranceForm({
                   return (
                     <StyledInput
                       type="text"
-                      tabIndex={0}
                       label="Group #"
                       value={value}
                       onChange={onChange}
@@ -310,12 +309,11 @@ export default function InsuranceForm({
 
           <Controller
             name="isSubscriber"
-            aria-live="assertive"
+            // aria-live="assertive"
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <RowRadioButtonsGroup
-                  tabIndex={0}
                   error={!!error}
                   value={value}
                   onChange={onChange}
@@ -357,8 +355,6 @@ export default function InsuranceForm({
                           <StyledInput
                             type="text"
                             label="Subscriber First Name"
-                            tabIndex={0}
-                            aria-live="assertive"
                             minLength={2}
                             maxLength={50}
                             value={value}
@@ -373,6 +369,10 @@ export default function InsuranceForm({
                         );
                       }}
                       rules={{
+                        pattern: {
+                          value: Regex.nameValidation,
+                          message: "Incorrect format",
+                        },
                         validate: {
                           requiredIfSubscriber,
                           isMin2Max50Length: (v) =>
@@ -398,6 +398,8 @@ export default function InsuranceForm({
                           <StyledInput
                             type="text"
                             label="Subscriber Last Name"
+                            minLength={2}
+                            maxLength={50}
                             value={value}
                             onChange={onChange}
                             error={!!error}
@@ -410,6 +412,10 @@ export default function InsuranceForm({
                         );
                       }}
                       rules={{
+                        pattern: {
+                          value: Regex.nameValidation,
+                          message: "Incorrect format",
+                        },
                         validate: {
                           requiredIfSubscriber,
                           isMin2Max50Length: (v) =>
@@ -463,12 +469,9 @@ export default function InsuranceForm({
                       rules={{
                         validate: {
                           requiredIfSubscriber,
-                          isValidDate: (v) => {
+                          isValidDate: (value) => {
                             if (watchedSubscriber === "No") {
-                              return (
-                                (v instanceof Date && !isNaN(v)) ||
-                                "Incorrect date format"
-                              );
+                              if (!isDOB(value)) return "Incorrect date format";
                             }
                             return true;
                           },
@@ -514,7 +517,6 @@ export default function InsuranceForm({
                                 color: colors.darkGreen,
                               },
                             }}
-                            tabIndex={0}
                             label="Relationship"
                             options={RELATIONSHIP_LIST}
                             value={value}
@@ -539,7 +541,7 @@ export default function InsuranceForm({
             component="div"
             sx={{
               fontFamily: "Libre Franklin",
-              fontWeight: 500,
+              fontWeight: 700,
               color: colors.grayscaleBlack,
               fontSize: { xs: "22px", md: "18px" },
             }}
