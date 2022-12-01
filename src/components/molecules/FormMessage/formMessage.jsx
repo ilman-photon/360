@@ -8,9 +8,6 @@ import { colors } from "../../../styles/theme";
 
 export const FormMessage = (
   {
-    onClick = () => {
-      // This is intended
-    },
     onClose = () => {
       // This is intended
     },
@@ -23,7 +20,6 @@ export const FormMessage = (
     <>
       <Box
         ref={ref}
-        onClick={onClick}
         sx={{
           backgroundColor: props.success ? colors.foundationGreen : "#B93632",
           width: "auto",
@@ -68,11 +64,16 @@ export const FormMessage = (
           {...accessibility}
         >
           {props.title ? (
-            <div style={{ fontWeight: "600" }}>{props.title}</div>
+            <div tabIndex={0} aria-level="2" style={{ fontWeight: "600" }}>
+              {props.title}
+            </div>
           ) : (
             <></>
           )}
-          <div style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}>
+          <div
+            tabIndex={0}
+            style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}
+          >
             {props.children}
             {props.isBackToLogin ? (
               <Link href="/patient/login">

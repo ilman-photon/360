@@ -1,4 +1,4 @@
-import { Stack, useMediaQuery } from "@mui/material";
+import { CircularProgress, Stack, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
@@ -14,6 +14,7 @@ export default function PrescriptionPage() {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [requestRefillResponse, setRequestRefillResponse] =
     React.useState(null);
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
@@ -24,6 +25,11 @@ export default function PrescriptionPage() {
       })
       .catch(function () {
         //Handle error getAllPrescriptions
+      })
+      .finally(function () {
+        setTimeout(() => {
+          setIsLoaded(true);
+        }, 200);
       });
   }
 
@@ -35,8 +41,19 @@ export default function PrescriptionPage() {
     const api = new Api();
     const userData = JSON.parse(localStorage.getItem("userData"));
     if (isCancelRequest) {
+      const refillCancelBody = {
+        subject: "Refill Cancel",
+        bodyNote: `${prescriptionData.medications[index]?.drug?.DrugDescription}, ${prescriptionData.medications[index]?.drug?.NDCID}, ${prescriptionData.medications[index].id}`,
+        senderIsPatient: true,
+        messageStatus: "DRAFT",
+        senderPatientId: userData?.patientId,
+        messageReceipients: [],
+        digitalAssets: [],
+        priority: "HIGH",
+        deliveryDate: mmddyyDateFormat(new Date()),
+      };
       api
-        .doMedicationCancelRequestRefill(postBody)
+        .doMedicationCancelRequestRefill(refillCancelBody)
         .then(function (response) {
           const data = JSON.parse(JSON.stringify(prescriptionData));
           data.medications[index].status = "";
@@ -103,7 +120,6 @@ export default function PrescriptionPage() {
 
   return (
     <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
-      {/* {isLoaded && ( */}
       <Stack
         sx={{
           padding: isMobile ? "16px" : "44px 24px 24px 24px",
@@ -114,14 +130,21 @@ export default function PrescriptionPage() {
           width: "100%",
         }}
       >
-        <Prescriptions
-          prescriptionData={prescriptionData}
-          isViewAll={true}
-          onMedicationRequestRefill={onMedicationRequestRefill}
-          requestRefillResponseData={requestRefillResponse}
-        />
+        {isLoaded ? (
+          <Prescriptions
+            prescriptionData={prescriptionData}
+            isViewAll={true}
+            onMedicationRequestRefill={onMedicationRequestRefill}
+            requestRefillResponseData={requestRefillResponse}
+          />
+        ) : (
+          <CircularProgress
+            sx={{
+              margin: "0 auto",
+            }}
+          />
+        )}
       </Stack>
-      {/* )} */}
     </Stack>
   );
 }

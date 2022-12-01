@@ -302,9 +302,7 @@ export class Api {
   }
 
   doMedicationCancelRequestRefill(postBody) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/prescription/cancelRequestRefill`;
-
+    const url = `/ecp/prescriptions/cancelRefill`;
     return this.getResponse(url, postBody, "post");
   }
 

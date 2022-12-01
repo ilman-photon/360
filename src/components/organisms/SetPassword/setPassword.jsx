@@ -433,6 +433,7 @@ const SetPasswordComponent = ({
                       inputRef={confirmRef}
                       inputProps={{
                         "aria-label": `${confirmPasswordPlaceHolder} - required`,
+                        "data-testid": "confirmPassword",
                       }}
                       onChange={(event) => {
                         onChange(event);

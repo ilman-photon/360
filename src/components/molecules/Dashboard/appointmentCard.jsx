@@ -138,15 +138,14 @@ export default function AppointmentCard({
         estimationTime = `${totalHours} Hours`;
       }
       return (
-        <Box
-          sx={{
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
-          <Grid container columns={5} spacing={2} p={3}>
+        <Box>
+          <Grid
+            container
+            columns={5}
+            spacing={2}
+            p={3}
+            className={styles.directionContent}
+          >
             <Grid item xs={5} sm={5} md={2.5}>
               <Box className={styles.flexDisplay}>
                 <Box pr={1}>

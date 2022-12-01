@@ -323,7 +323,7 @@ export const CustomInput = styled(({ ...props }) => {
                   }}
                   {...params}
                   onClick={props.onClick}
-                  error={props.error || params.error}
+                  error={props.error}
                   helperText={props.helperText}
                   onPaste={preventPasteHandler}
                   required={props.required}
@@ -347,7 +347,12 @@ export const CustomInput = styled(({ ...props }) => {
       return (
         <>
           <CustomFormControl variant="filled">
-            <InputMask mask="(999) 999-9999" maskPlaceholder="" {...props}>
+            <InputMask
+              mask="(999) 999-9999"
+              maskChar={null}
+              maskPlaceholder=""
+              {...props}
+            >
               <StyledRedditField name="phone" type="text" />
             </InputMask>
           </CustomFormControl>

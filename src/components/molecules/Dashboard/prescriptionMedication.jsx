@@ -113,8 +113,8 @@ export default function PrescriptionMedication({
     }, 500);
   };
 
-  const onSetFilter = (newFilterData) => {
-    setFilterOpen(!filterOpen);
+  const onSetFilter = (newFilterData, isCloseAppliedFilter = false) => {
+    !isCloseAppliedFilter && setFilterOpen(!filterOpen);
     setActiveFilter([...newFilterData]);
 
     if (newFilterData.length > 0) {
@@ -284,6 +284,7 @@ export default function PrescriptionMedication({
                 const data = activeFilter;
                 data.splice(id, 1);
                 setActiveFilter([...data]);
+                onSetFilter(data, true);
               }
             }}
           />
@@ -556,7 +557,7 @@ export default function PrescriptionMedication({
   }
 
   function renderUIFilter() {
-    if (medications?.active?.length > 0) {
+    if (medications?.active?.length > 0 || medications?.past?.length > 0) {
       return (
         <Box
           className={[

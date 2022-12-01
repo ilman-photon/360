@@ -128,7 +128,7 @@ const EnhancedTableHead = (props) => {
                   padding={headCell.disablePadding ? "none" : "normal"}
                   sortDirection={orderBy === headCell.id ? order : false}
                   width={headCell.width}
-                  role={"rowheader"}
+                  aria-label={headCell.label}
                   sx={{
                     py: "15px",
                     color: "#003B4A",
@@ -240,6 +240,7 @@ export default function TableWithSort({
 
   // menu MoreVertIcon
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [moreMenuIdx, setMoreMenuIdx] = React.useState(null);
   const MyOptions = [
     {
       id: "download",
@@ -263,9 +264,17 @@ export default function TableWithSort({
       ariaLabel: "print option",
     },
   ];
-  const handleMenuClick = (event, row) => {
+  const handleMenuClick = (event, row, rowIdx) => {
+    setMoreMenuIdx(rowIdx);
     setAnchorEl(event.currentTarget);
     setActiveMenuData(row);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+    setTimeout(() => {
+      inputRef.current[moreMenuIdx]?.focus();
+    }, 40);
   };
   const isMenuOpen = Boolean(anchorEl);
   const handleMoreMenu = async (action, row) => {
@@ -439,7 +448,8 @@ export default function TableWithSort({
                 borderRadius: "50%",
               }}
               aria-label="more option"
-              onClick={handleMenuClick}
+              onClick={(event) => handleMenuClick(event, row, rowIdx)}
+              ref={(el) => (inputRef.current[rowIdx] = el)}
               aria-haspopup="true"
               aria-controls="menu-appbar"
               data-testid="more-vert-button"
@@ -450,8 +460,16 @@ export default function TableWithSort({
               sx={{ mt: "40px" }}
               id="menu-more"
               anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
               keepMounted
-              onClose={handleMoreMenu}
+              onClose={handleCloseMenu}
               data-testid={TEST_ID.MEDICAL_RECORD.moreMenu}
               open={isMenuOpen}
             >
@@ -507,8 +525,6 @@ export default function TableWithSort({
         return (
           <div
             style={cell.contentStyle}
-            tabIndex={0}
-            aria-label={`${cell.valueKey}. ${ref(row, cell.valueKey)}`}
             className={[styles.tableCell, cell.contentClass].join(" ")}
           >
             {getTextValue(row, cell)}
@@ -516,6 +532,8 @@ export default function TableWithSort({
         );
     }
   };
+
+  const inputRef = React.useRef([]);
 
   return (
     <>

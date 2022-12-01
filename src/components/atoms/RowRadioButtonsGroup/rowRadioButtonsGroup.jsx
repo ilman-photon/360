@@ -8,7 +8,7 @@ import { FormHelperText, IconButton } from "@mui/material";
 import { colors } from "../../../styles/theme";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -64,7 +64,7 @@ export default function RowRadioButtonsGroup({
                 style={{ cursor: "pointer" }}
                 aria-label={"Information Icon"}
               >
-                <ErrorOutlineOutlinedIcon
+                <InfoOutlinedIcon
                   sx={{
                     width: "19.21px",
                     height: "19.21px",
@@ -81,20 +81,21 @@ export default function RowRadioButtonsGroup({
       <RadioGroup
         row={row}
         aria-labelledby="row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
+        name={props.name}
         sx={{ ...textSx, marginTop: isCancelSchedule ? "16px" : "unset" }}
+        value={props.value}
+        onChange={props.onChange}
       >
         {options.map((option, idx) => {
           return (
             <FormControlLabel
               key={idx}
               value={option.value}
-              tabindex={0}
               data-testid={`${option.value}-test`}
               control={
                 <Radio
                   checked={props.value === option.value}
-                  data-testid={option.testId}
+                  data-testid={props.testId}
                   sx={{
                     ".MuiSvgIcon-root": {
                       width: iconSize,

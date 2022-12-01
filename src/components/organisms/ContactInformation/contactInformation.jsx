@@ -70,6 +70,7 @@ export default function ContactInformation({
     if (firstErrorKey) {
       setFocus(firstErrorKey);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Object.keys(errors)]);
 
   const isOneOfPreferredValid = (name, value) => {

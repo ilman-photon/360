@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./labelWithInfo.module.scss";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { IconButton, Stack, Tooltip, Typography } from "@mui/material";
 
 export const LabelWithInfo = ({
@@ -50,7 +50,7 @@ export const LabelWithInfo = ({
             aria-label={`Information Icon - ${tooltipContent}`}
           >
             <IconButton sx={{ p: 0 }}>
-              <ErrorOutlineOutlinedIcon
+              <InfoOutlinedIcon
                 sx={{ width: "19.21px", height: "19.21px", color: "#00000080" }}
               />
             </IconButton>

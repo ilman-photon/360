@@ -16,9 +16,23 @@ import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
+import { resetFormMessage } from "../../../store";
+import { useDispatch } from "react-redux";
+
+export const isDOB = (value) => {
+  let date = new Date().getFullYear();
+  if (value.getYear() < 0) {
+    return false;
+  }
+  if (value.getFullYear() <= date) {
+    return true;
+  }
+  return false;
+};
+
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
-  const { handleSubmit, control, watch, setValue } = useForm({
+  const { handleSubmit, control, watch, setValue, resetField } = useForm({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -154,20 +168,35 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     } else if (errors.preferredCommunication) {
       inputPrefentComunnication.current.focus();
     }
+
+    // unfocus focused element
+    document.activeElement.blur();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSubmitting]);
   useEffect(() => {
-    if (!!watchedEmail && !!watchedMobile) {
-      setValue("preferredCommunication", "both");
-    } else if (!!watchedMobile) {
-      setValue("preferredCommunication", "phone");
-    } else if (!!watchedEmail) {
+    const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
+    if (watchedEmail && isMobileInputEmpty) {
       setValue("preferredCommunication", "email");
+    } else if (!watchedEmail && isMobileInputEmpty) {
+      setValue("preferredCommunication", "phone");
     } else {
       setValue("preferredCommunication", "both");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedEmail, watchedMobile]);
+
+  useEffect(() => {
+    if (watchedPreferredCommunication === "email") {
+      inputEmail.current.focus();
+    }
+  }, [watchedPreferredCommunication]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(resetFormMessage());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const formMessageComp = useRef(null);
   useEffect(() => {
@@ -178,16 +207,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         inline: "nearest",
       });
   }, [formMessage]);
-  const isDOB = (value) => {
-    let date = new Date().getFullYear();
-    if (value.getYear() < 0) {
-      return false;
-    }
-    if (value.getFullYear() <= date) {
-      return true;
-    }
-    return false;
-  };
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
@@ -244,6 +263,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
+                  required
                   type="text"
                   id="firstName"
                   label="First Name"
@@ -259,7 +279,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  required
                   sx={{
                     margin: "8px",
                   }}
@@ -323,6 +342,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
+                  required
                   open={open}
                   onOpen={() => setOpen(true)}
                   onClose={() => {
@@ -331,7 +351,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       inputDob?.current?.focus();
                     }, 1);
                   }}
-                  onClick={() => setOpen(true)}
+                  // onClick={() => setOpen(true)}
                   aria-hidden={true}
                   tabIndex={-1}
                   type="dob"

@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { styles } from "./style";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { StyledInput } from "../../atoms/Input/input";
 import { Regex } from "../../../utils/regex";
@@ -71,6 +71,7 @@ export default function AppointmentForm({
   const { handleSubmit, control, watch } = useForm({
     defaultValues: patientData,
   });
+  const [open, setOpen] = React.useState(false);
 
   const router = useRouter();
 
@@ -261,6 +262,7 @@ export default function AppointmentForm({
               tabIndex={0}
               aria-label={`${t("sigInInfo")}`}
               aria-roledescription=""
+              variant="h1"
             >
               {t("sigInInfo")}
             </Typography>
@@ -440,19 +442,42 @@ export default function AppointmentForm({
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
-                  disableFuture
-                  type="dob"
-                  id="dob"
-                  InputProps={{
-                    "data-testid": SCHEDULE_GUEST_TEST_ID.dateofbirth,
+                  disableFuture //
+                  open={open}
+                  onOpen={() => setOpen(true)}
+                  onClose={() => {
+                    setOpen(false);
                   }}
+                  onClick={() => setOpen(true)}
+                  aria-hidden={true}
+                  tabIndex={-1}
+                  type="dob"
+                  // inputRef={inputDob}
+                  id="dob"
+                  // data-testid={REGISTER_TEST_ID.dateofbirth}
+                  InputLabel={{ "aria-hidden": false }}
+                  InputLabelProps={{
+                    "aria-hidden": true,
+                  }}
+                  InputProps={{
+                    tabIndex: 0,
+                    "data-testid": SCHEDULE_GUEST_TEST_ID.dateofbirth,
+                    "aria-label": "Date of Birth required text field",
+                  }}
+                  inputProps={{
+                    tabIndex: -1,
+                    readOnly: !isDesktop,
+                    isTransparent: true,
+                    // "aria-hidden": true,
+                    // "aria-disabled": "false",
+                  }}
+                  // aria-label="Date of Birth required text field"
                   label="Date of Birth"
                   variant="filled"
                   value={value}
                   onChange={onChange}
                   error={!!error}
-                  helperText={!!error ? error.message : "Month, Day, Year"}
-                  sx={{ m: 1 }}
+                  helperText={error ? error.message : null}
                 />
               );
             }}

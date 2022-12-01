@@ -334,9 +334,14 @@ export default function HomePage({ googleApiKey }) {
             spacing={3}
             p={3}
             sx={{
+              maxWidth: "1553px",
+              alignSelf: "center",
               paddingTop: isDesktop ? "30px" : "46px",
               paddingRight: { xs: "16px !important", md: "24px !important" },
-              flexDirection: !isDesktop ? "column-reverse" : "unset",
+              flexDirection: {
+                xs: "column-reverse",
+                lg: "unset",
+              },
               "@media print": {
                 paddingTop: "30px !important",
               },
@@ -346,7 +351,8 @@ export default function HomePage({ googleApiKey }) {
               item
               xs={5}
               sm={5}
-              md={2}
+              // md={2}
+              lg={2}
               sx={{
                 paddingLeft: { xs: "16px !important", md: "24px !important" },
               }}
@@ -361,7 +367,8 @@ export default function HomePage({ googleApiKey }) {
               item
               xs={5}
               sm={5}
-              md={3}
+              // md={3}
+              lg={3}
               sx={{
                 paddingLeft: { xs: "16px !important", md: "24px !important" },
               }}
