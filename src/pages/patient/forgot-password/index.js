@@ -76,7 +76,13 @@ const backToLoginProps = {
     router.push("/patient/login");
   },
 };
-export default function ForgotPasswordPage() {
+
+export async function getServerSideProps(context) {
+  return {
+    props: { isAppointment: context.req.url == "/patient/sync" }, // will be passed to the page component as props
+  };
+}
+export default function ForgotPasswordPage(props) {
   const NEXT_PUBLIC_SYNC_LINK = process.env.NEXT_PUBLIC_SYNC_LINK;
   const NEXT_PUBLIC_ONE_TIME_LINK = process.env.NEXT_PUBLIC_ONE_TIME_LINK;
   const { t } = useTranslation("translation", {
@@ -101,7 +107,7 @@ export default function ForgotPasswordPage() {
     useState(false);
   const [showOneTimeLink, setShowOneTimeLink] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
-  const [isAppointment, setAppointment] = useState(true);
+  const [isAppointment, setAppointment] = useState(props.isAppointment);
   const bodyScrollLock = require("body-scroll-lock");
   const disableBodyScroll = bodyScrollLock.disableBodyScroll;
   const enableBodyScroll = bodyScrollLock.enableBodyScroll;
@@ -525,7 +531,7 @@ export default function ForgotPasswordPage() {
           setShowPostMessage={setShowPostMessage}
           securityQuestionData={patientData.securityQuestions}
           onContinueButtonClicked={onCalledValidateSubmitSecurityQuestion}
-          title={"Security Question page"}
+          title={"Password Recovery Security Questions Page"}
         />
       ) : (
         <></>
