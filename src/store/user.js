@@ -76,7 +76,7 @@ const buildProfilePostBody = (postBody, payload) => {
             "profile"
           ),
         }
-      : null,
+      : postBody.profilePhoto,
     stateIssuedId: payload.issuedCardFront?.uid
       ? { digitalAsset: payload.issuedCardFront }
       : payload.issuedCardFront
