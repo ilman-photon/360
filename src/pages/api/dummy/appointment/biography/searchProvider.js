@@ -188,7 +188,7 @@ export default function getProviderList(req, res) {
         _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
       });
     }
-    if (req.query.speciality === "Glaucoma") {
+    if (req.query.specialty === "Glaucoma") {
       response.push({
         designation: "MBBS, MD",
         firstName: "Jaco",
@@ -281,7 +281,7 @@ export default function getProviderList(req, res) {
         _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
       });
     }
-    if (req.query.speciality === "Ophthalmology") {
+    if (req.query.specialty === "Ophthalmology") {
       response.push({
         designation: "MD",
         firstName: "Robert",
@@ -371,7 +371,7 @@ export default function getProviderList(req, res) {
         _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
       });
     }
-    if (req.query.speciality === "Dry+Eye") {
+    if (req.query.specialty === "Dry+Eye") {
       response.push({
         designation: "MBBS, MD",
         firstName: "John",
@@ -468,7 +468,7 @@ export default function getProviderList(req, res) {
     if (
       req.query.name === "" &&
       req.query.location === "" &&
-      req.query.speciality === ""
+      req.query.specialty === ""
     ) {
       response.push(
         {
@@ -747,7 +747,7 @@ export default function getProviderList(req, res) {
     if (
       req.query.name === undefined &&
       req.query.location === undefined &&
-      req.query.speciality === undefined
+      req.query.specialty === undefined
     ) {
       response.push(
         {

@@ -9,6 +9,7 @@ import MyCareTeamLayout from "../../../components/templates/myCareTeamLayout";
 import store from "../../../store/store";
 import { getArrayValue } from "../../../utils/bioUtils";
 import { Api } from "../../api/api";
+import { sortPrimaryAddress } from "../bio/[bio]";
 
 export default function SearchDoctorPage() {
   const [isRequested, setIsRequested] = useState(false);
@@ -18,7 +19,7 @@ export default function SearchDoctorPage() {
   const [showNumberResult, setShowNumberResult] = useState(false);
   const [filteredData, setFilteredData] = useState();
   const [locationList, setLocationList] = useState();
-  const [specialityList, setSpecialityList] = useState();
+  const [specialtyList, setSpecialtyList] = useState();
   const [filter, setFilter] = useState();
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -27,7 +28,7 @@ export default function SearchDoctorPage() {
 
   const mapper = (responses, showNumber) => {
     const data = [];
-    let speciality = [];
+    let specialty = [];
     let city = [];
     responses.map((response) => {
       const designation = response.designation
@@ -37,6 +38,8 @@ export default function SearchDoctorPage() {
         response.lastName || ""
       }${designation}`;
 
+      const officesAddress = sortPrimaryAddress(response.offices);
+
       const providerItem = {
         providerId: response._id || "",
         name,
@@ -44,25 +47,23 @@ export default function SearchDoctorPage() {
         phone: response.workPhone || "",
         image: response.providerDetails?.profilePhoto?.digitalAsset || "",
         specialties: getArrayValue(response.providerDetails?.specialization),
-        address: response.offices[0],
+        address: officesAddress[0],
       };
 
       data.push(providerItem);
-      speciality.push(providerItem.specialties[0] || "");
+      specialty.push(providerItem.specialties[0] || "");
       city.push(providerItem.address?.city || "");
     });
-    speciality = [...new Set(speciality)];
-    speciality = speciality.filter((e) => e);
+    specialty = [...new Set(specialty)];
+    specialty = specialty.filter((e) => e);
     city = [...new Set(city)];
     city = city.filter((e) => e);
     isRequest = false;
-    specialityList === undefined && setSpecialityList(speciality);
-    locationList === undefined && setLocationList(city);
     setProviderData(data);
     setIsRequested(true);
     setShowNumberResult(showNumber);
     setLoading(false);
-    getFilter(city, speciality);
+    getFilter(city, specialty);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,7 +71,7 @@ export default function SearchDoctorPage() {
     query = {
       name: "",
       location: "",
-      speciality: "",
+      specialty: "",
     },
     showNumber = false
   ) => {
@@ -90,9 +91,37 @@ export default function SearchDoctorPage() {
       });
   };
 
-  const getFilter = (city, speciality) => {
+  const getSpecialtyList = () => {
+    const api = new Api();
+    api
+      .getDoctorSpecialties()
+      .then((responses) => {
+        let specialty = [...new Set(responses.specializations)];
+        specialty = specialty.filter((e) => e);
+        setSpecialtyList(specialty);
+      })
+      .catch(() => {
+        setSpecialtyList([]);
+      });
+  };
+
+  const getLocationList = () => {
+    const api = new Api();
+    api
+      .getDoctorLocations()
+      .then((responses) => {
+        let city = [...new Set(responses.cities)];
+        city = city.filter((e) => e);
+        setLocationList(city);
+      })
+      .catch(() => {
+        setLocationList([]);
+      });
+  };
+
+  const getFilter = (city, specialty) => {
     const cityChecklist = [];
-    const specialityChecklist = [];
+    const specialtyChecklist = [];
     city.map((item) => {
       cityChecklist.push({
         name: item,
@@ -100,10 +129,10 @@ export default function SearchDoctorPage() {
         checked: false,
       });
     });
-    speciality.map((item) => {
-      specialityChecklist.push({
+    specialty.map((item) => {
+      specialtyChecklist.push({
         name: item,
-        type: "Speciality",
+        type: "Specialty",
         checked: false,
       });
     });
@@ -113,8 +142,8 @@ export default function SearchDoctorPage() {
         checklist: cityChecklist,
       },
       {
-        name: "Speciality",
-        checklist: specialityChecklist,
+        name: "Specialty",
+        checklist: specialtyChecklist,
       },
     ];
     setFilter(filters);
@@ -127,7 +156,7 @@ export default function SearchDoctorPage() {
         if (filterItem.type === "City" && !show) {
           show = filterItem.name === item.address?.city;
         }
-        if (filterItem.type === "Speciality" && !show) {
+        if (filterItem.type === "Specialty" && !show) {
           show = item.specialties.some(
             (specialties) => specialties === filterItem.name
           );
@@ -149,8 +178,17 @@ export default function SearchDoctorPage() {
   useEffect(() => {
     if (!loading) {
       !isRequest && !isRequested && getProviderList();
+      specialtyList === undefined && getSpecialtyList();
+      locationList === undefined && getLocationList();
     }
-  }, [getProviderList, isRequest, isRequested, loading]);
+  }, [
+    getProviderList,
+    isRequest,
+    isRequested,
+    loading,
+    specialtyList,
+    locationList,
+  ]);
 
   const removeFilter = async (data) => {
     const id = activeFilter.findIndex((x) => x.name === data.name);
@@ -199,7 +237,7 @@ export default function SearchDoctorPage() {
         >
           <SearchBar
             locationList={locationList}
-            specialityList={specialityList}
+            specialtyList={specialtyList}
             activeFilter={activeFilter}
             onRemoveFilter={removeFilter}
             openFilter={() => {

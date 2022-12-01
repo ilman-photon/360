@@ -415,14 +415,14 @@ export class Api {
     const isAllEmpty =
       !notEmpty(query.name) &&
       !notEmpty(query.location) &&
-      !notEmpty(query.speciality);
+      !notEmpty(query.specialty);
 
     const name = query.name.split(" ");
-    const firstName = notEmpty(name[0]) ? `(firstName=eq=${name[0]})` : "";
+    const firstName = notEmpty(name[0]) ? `(firstName=co=${name[0]})` : "";
     const lastNameRaw =
       name.length > 1
-        ? `AND(lastName=eq=${name[name.length - 1]})`
-        : `OR(lastName=eq=${name[0]})`;
+        ? `AND(lastName=co=${name[name.length - 1]})`
+        : `OR(lastName=co=${name[0]})`;
     const lastName = notEmpty(query.name) ? lastNameRaw : "";
     const location = query.location;
     let city = "";
@@ -431,18 +431,28 @@ export class Api {
       if (Regex.isZip.test(location)) {
         zip = `AND(offices.zip=eq=${location})`;
       } else {
-        city = `AND(offices.city=eq=${location})`;
+        city = `AND(offices.city=co=${location})`;
       }
     }
-    const speciality = notEmpty(query.speciality)
-      ? `AND(providerDetails.specialization=eq=${query.speciality})`
+    const specialty = notEmpty(query.specialty)
+      ? `AND(providerDetails.specialization=co=${query.specialty})`
       : "";
 
     const queryString = isAllEmpty
       ? ""
-      : `(${firstName}${lastName}${zip}${city}${speciality})`;
+      : `(${firstName}${lastName}${zip}${city}${specialty})`;
 
     const url = `/ecp/appointments/getDoctorDetails?pageSize=300&search.query=${queryString}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getDoctorLocations() {
+    const url = `/ecp/appointments/getOfficeDetails`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getDoctorSpecialties() {
+    const url = `/ecp/appointments/getSpecialization?search.query=((entityName=eq=document)AND(attributeName=eq=specialization))`;
     return this.getResponse(url, {}, "get");
   }
 
