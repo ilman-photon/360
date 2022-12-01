@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
@@ -8,6 +8,12 @@ import AuthPage from "../../src/pages/patient/login";
 import Cookies from "universal-cookie";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
+import { Login } from "../../src/components/organisms/Login/login";
+import { renderWithProviders } from "../src/utils/test-util";
+import { TEST_ID } from "../../src/utils/constants";
+import { renderLogin, renderForgotPassword, clickContinueForgot, navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
+import UpdatePasswordPage from "../../src/pages/patient/update-password";
+
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-269.feature",
@@ -34,6 +40,29 @@ jest.mock("universal-cookie", () => {
   return MockCookies;
 });
 
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+
+const launchURL = () => {
+  const mockOnLoginClicked = jest.fn((data, route, callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+}
+
+const navigateToPatientPortalApp = () => {
+  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  act(() => {
+    container = renderWithProviders(<AuthPage />, {
+      container: document.body.appendChild(element),
+      legacyRoot: true,
+    });
+  });
+}
+
 defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
@@ -46,20 +75,22 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
       async (arg0, arg1) => {
+        cleanup();
         Cookies.result = { mfa: true };
 
         const userData = {
@@ -97,15 +128,18 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     and(
@@ -116,19 +150,22 @@ defineFeature(feature, (test) => {
     );
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      fireEvent.click(submitButton);
     });
 
-    then(/^user shoud see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user shoud see "(.*)" screen$/, async (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -163,20 +200,22 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
       async (arg0, arg1) => {
+        cleanup();
         Cookies.result = { mfa: true };
 
         const userData = {
@@ -214,15 +253,18 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     and(
@@ -233,19 +275,22 @@ defineFeature(feature, (test) => {
     );
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      fireEvent.click(submitButton);
     });
 
-    then(/^user shoud see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user shoud see "(.*)" screen$/, async (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -315,20 +360,22 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
       async (arg0, arg1) => {
+        cleanup();
         Cookies.result = { mfa: true };
 
         const userData = {
@@ -366,15 +413,18 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     and("user tries to login from another device", () => {
@@ -386,19 +436,22 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      fireEvent.click(submitButton);
     });
 
-    then(/^user shoud see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user shoud see "(.*)" screen$/, async (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -468,20 +521,22 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
       async (arg0, arg1) => {
+        cleanup();
         Cookies.result = { mfa: true };
 
         const userData = {
@@ -519,15 +574,18 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     and("user tries to login from another device", () => {
@@ -539,19 +597,22 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      fireEvent.click(submitButton);
     });
 
-    then(/^user shoud see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user shoud see "(.*)" screen$/, async (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -625,20 +686,22 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
       async (arg0, arg1) => {
+        cleanup();
         Cookies.result = { mfa: true };
 
         const userData = {
@@ -676,15 +739,18 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     and("user tries to login from another device", () => {
@@ -696,19 +762,22 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      fireEvent.click(submitButton);
     });
 
-    then(/^user shoud see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user shoud see "(.*)" screen$/, async (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -786,20 +855,22 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
       async (arg0, arg1) => {
+        cleanup();
         Cookies.result = { mfa: true };
 
         const userData = {
@@ -837,15 +908,18 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     and("user tries to login from another device", () => {
@@ -857,19 +931,22 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      fireEvent.click(submitButton);
     });
 
-    then(/^user shoud see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user shoud see "(.*)" screen$/, async (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -936,20 +1013,22 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
       async (arg0, arg1) => {
+        cleanup();
         Cookies.result = { mfa: true };
 
         const userData = {
@@ -987,15 +1066,18 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     and("user tries to login from another device", () => {
@@ -1007,19 +1089,22 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      fireEvent.click(submitButton);
     });
 
-    then(/^user shoud see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user shoud see "(.*)" screen$/, async (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -1089,20 +1174,22 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
       async (arg0, arg1) => {
+        cleanup();
         Cookies.result = { mfa: true };
 
         const userData = {
@@ -1140,15 +1227,18 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     and("user tries to login from another device", () => {
@@ -1160,19 +1250,22 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      fireEvent.click(submitButton);
     });
 
-    then(/^user shoud see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user shoud see "(.*)" screen$/, async (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -1242,20 +1335,22 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup()
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up on device A$/,
       async (arg0, arg1) => {
+        cleanup();
         Cookies.result = { mfa: true };
 
         const userData = {
@@ -1293,15 +1388,18 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     and(
@@ -1312,19 +1410,22 @@ defineFeature(feature, (test) => {
     );
 
     when(/^user checklist the "(.*)" option$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      fireEvent.click(remeberMe);
     });
 
     then(/^user should see the "(.*)" option has been selected$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const remeberMe = container.getByText("rememberMeLabel");
+      expect(remeberMe).toBeInTheDocument();
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      fireEvent.click(submitButton);
     });
 
-    then(/^user shoud see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    then(/^user shoud see "(.*)" screen$/, async (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {

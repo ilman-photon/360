@@ -6,8 +6,6 @@ import {
   AccordionSummary,
   Box,
   Dialog,
-  DialogTitle,
-  DialogContentText,
   DialogActions,
   DialogContent,
   Divider,
