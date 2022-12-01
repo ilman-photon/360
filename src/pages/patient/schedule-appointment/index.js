@@ -23,7 +23,6 @@ import {
   useMediaQuery,
   Stack,
   Dialog,
-  DialogTitle,
   DialogActions,
   DialogContent,
   DialogContentText,

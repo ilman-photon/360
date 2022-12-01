@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { styles } from "./style";
-import { useForm, Controller, useFormState } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { StyledInput } from "../../atoms/Input/input";
 import { Regex } from "../../../utils/regex";
