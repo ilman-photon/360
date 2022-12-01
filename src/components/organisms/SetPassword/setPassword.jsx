@@ -17,6 +17,7 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { colors } from "../../../styles/theme";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import Head from "next/head";
 
 const cardContentStyle = {
   display: "flex",
@@ -283,6 +284,9 @@ const SetPasswordComponent = ({
 
   return (
     <>
+      <Head>
+        <title>{`EyeCare Patient Portal - ${title}`}</title>
+      </Head>
       {ready && (
         <Card
           className={globalStyles.container}
