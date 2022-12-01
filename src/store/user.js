@@ -17,17 +17,34 @@ let url;
  * @returns
  */
 const buildProfilePostBody = (postBody, payload) => {
+  console.log({ postBody, payload });
   let emailData = postBody.contactInformation.emails;
-  emailData[0] = {
-    ...emailData[0],
-    email: payload.email,
-  };
+  if (emailData) {
+    emailData[0] = {
+      ...emailData[0],
+      email: payload.email,
+    };
+  } else {
+    emailData = [
+      {
+        email: payload.email,
+      },
+    ];
+  }
 
   let phoneData = postBody.contactInformation.phones;
-  phoneData[0] = {
-    ...phoneData[0],
-    number: payload.mobile,
-  };
+  if (phoneData) {
+    phoneData[0] = {
+      ...phoneData[0],
+      number: payload.mobile,
+    };
+  } else {
+    phoneData = [
+      {
+        number: payload.mobile,
+      },
+    ];
+  }
 
   let addressData = postBody.address;
   if (payload.address) {
@@ -115,19 +132,21 @@ const buildProfilePostBody = (postBody, payload) => {
  */
 const buildDigitalAssetObject = (payload, type) => {
   if (!payload) return null;
-  if (!payload._id) return null;
+  const id = payload._id || payload.uid;
+  const fileName = payload.name || payload.fileName;
+  if (!id) return null;
   switch (type) {
     case "profile":
       return {
-        uid: payload._id,
-        fileName: payload.name,
+        uid: id,
+        fileName: fileName,
         assetUrl: "/v1/patient",
         _version: payload._version,
       };
     case "insurance":
       return {
-        uid: payload._id,
-        fileName: payload.name,
+        uid: id,
+        fileName: fileName,
         metaInfo: {},
         _version: payload._version,
       };
