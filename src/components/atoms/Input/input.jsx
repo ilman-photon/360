@@ -12,7 +12,9 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import InputMask from "react-input-mask";
 import Tooltip from "@mui/material/Tooltip";
-import { primaryTheme } from "../../../styles/theme";
+import { colors, primaryTheme } from "../../../styles/theme";
+import { PickersDay, pickersDayClasses } from "@mui/x-date-pickers";
+
 export const CustomFormControl = styled((props) => <FormControl {...props} />)(
   ({ theme }) => ({
     "&.MuiFormControl-root": {
@@ -155,6 +157,19 @@ export const RedditTextField = React.forwardRef((props, ref) => {
 });
 RedditTextField.displayName = "RedditTextField";
 
+const renderWeekPickerDay = (date, selectedDates, pickersDayProps) => {
+  return (
+    <PickersDay
+      {...pickersDayProps}
+      sx={{
+        [`&&.${pickersDayClasses.selected}`]: {
+          backgroundColor: colors.primaryButton,
+        },
+      }}
+    />
+  );
+};
+
 export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
   ".MuiInputLabel-root": {
     color: "#303030",
@@ -287,6 +302,7 @@ export const CustomInput = styled(({ ...props }) => {
               label={props.label}
               onChange={props.onChange}
               value={props.value}
+              renderDay={renderWeekPickerDay}
               onClose={() => {
                 setTimeout(() => {
                   dobInputRef?.current?.blur();
@@ -294,6 +310,18 @@ export const CustomInput = styled(({ ...props }) => {
                 props?.onClose && props?.onClose();
               }}
               inputRef={dobInputRef}
+              PaperProps={{
+                sx: {
+                  "& .MuiPickersDay-root": {
+                    "&.Mui-selected": {
+                      backgroundColor: colors.primaryButton,
+                      "&:hover": {
+                        backgroundColor: colors.primaryButton,
+                      },
+                    },
+                  },
+                },
+              }}
               getOpenDialogAriaText={(date, utils) => {
                 if (date instanceof Date && !isNaN(date))
                   return `Choose date, selected date is ${utils.format(
