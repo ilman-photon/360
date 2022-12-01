@@ -15,6 +15,19 @@ const feature = loadFeature(
     "./__tests__/feature/Patient Portal/Sprint8/EPP-6698.feature"
 );
 
+const locationMock = {
+	"cities": [
+		"Yorktown",
+		"Chicago"
+	]
+}
+
+const specialtiesMock = [
+	"Glaucoma",
+	"Ophthalmology",
+	"Dry Eye"
+]
+
 const mockApi = () => {
     const mock = new MockAdapter(axios);
     const domain = window.location.origin;
@@ -27,6 +40,16 @@ const mockApi = () => {
     mock
         .onGet(
             `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, {});
+    mock
+        .onGet(
+            `/ecp/appointments/getOfficeDetails`
+        )
+        .reply(200, {});
+    mock
+        .onGet(
+            `/ecp/appointments/getSpecialization?search.query=((entityName=eq=document)AND(attributeName=eq=specialization))`
         )
         .reply(200, {});
 };
@@ -153,7 +176,7 @@ defineFeature(feature, (test) => {
                 .onGet(
                     `/ecp/appointments/getDoctorDetails?pageSize=300&search.query=`
                 )
-                .reply(200, {"entities": []});
+                .reply(200, { "entities": [] });
             act(() => {
                 container = render(
                     <Provider store={store}>{SearchDoctorPage.getLayout(<SearchDoctorPage />)}</Provider>

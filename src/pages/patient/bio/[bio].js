@@ -27,6 +27,14 @@ export async function getServerSideProps(context) {
   };
 }
 
+export function sortPrimaryAddress(address) {
+  if (address && address.length > 0) {
+    return address.sort(function (x, y) {
+      return y.primaryAddress - x.primaryAddress;
+    });
+  }
+  return address;
+}
 export default function Bio({ embedApi, bio }) {
   const [providerData, setProviderData] = useState();
   const insuranceCarrierList = useSelector((state) => state.provider.list);
@@ -51,15 +59,6 @@ export default function Bio({ embedApi, bio }) {
   const splitByComa = (data) => {
     return data.split(", ");
   };
-
-  function sortPrimaryAddress(address) {
-    if (address && address.length > 0) {
-      return address.sort(function (x, y) {
-        return y.primaryAddress - x.primaryAddress;
-      });
-    }
-    return address;
-  }
 
   const mapper = (response) => {
     const designation = response.designation ? `, ${response.designation}` : "";
