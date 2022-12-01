@@ -40,20 +40,24 @@ const modeOfCommuicationUI = function (control) {
       testId: constants.TEST_ID.REGISTER_TEST_ID.phoneradio,
     },
   ];
+
   return (
     <Controller
       name={constants.MODE_COMMUNICATION_KEY}
       control={control}
-      render={({ field: { onChange, value } }) => {
+      render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <RowRadioButtonsGroup
+            error={!!error}
             label="Mode of Communication"
             options={options}
             value={value}
+            helperText={error ? error.message : null}
             onChange={onChange}
           />
         );
       }}
+      rules={{ required: "This field is required" }}
     />
   );
 };
@@ -540,6 +544,7 @@ export default function ForgotPasswordPage(props) {
         <ConfirmationForm
           {...confirmationFormProps}
           {...backToLoginProps}
+          defaultValue={{ [constants.MODE_COMMUNICATION_KEY]: constants.EMAIL }}
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
         />
@@ -550,6 +555,7 @@ export default function ForgotPasswordPage(props) {
         <ConfirmationForm
           {...confirmationFormProps}
           {...backToLoginProps}
+          defaultValue={{ [constants.MODE_COMMUNICATION_KEY]: constants.EMAIL }}
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
         />

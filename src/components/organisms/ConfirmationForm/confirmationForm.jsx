@@ -33,6 +33,7 @@ const ConfirmationForm = ({
   formStyle = additional ? styles.margin : styles.marginDescription,
   pageTitle = "",
   isSendLink = false,
+  defaultValue = {},
 }) => {
   const router = useRouter();
   const { t, ready } = useTranslation("translation", {
@@ -40,7 +41,9 @@ const ConfirmationForm = ({
     useSuspense: false,
   });
 
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control } = useForm({
+    defaultValues: defaultValue,
+  });
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = (data) => {
     onCTAButtonClicked(additional ? { data, router } : constants.EMPTY_STRING);
