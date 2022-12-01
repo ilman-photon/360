@@ -26,6 +26,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ImageFallback from "../../atoms/Image/image";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Regex } from "../../../utils/regex";
 
 export default function PersonalInformation({
   userData = {},
@@ -380,6 +381,12 @@ export default function PersonalInformation({
                     />
                   </>
                 );
+              }}
+              rules={{
+                pattern: {
+                  value: Regex.nameValidation,
+                  message: "Incorrect format",
+                },
               }}
             />
 
