@@ -90,7 +90,18 @@ export default function EducationMaterialCard({}) {
                     />
                   </Box>
                 </Grid>
-                <Grid item xs={3} sm={2} className={styles.slackGridItem}>
+                <Grid
+                  item
+                  xs={3}
+                  sm={2}
+                  className={styles.slackGridItem}
+                  sx={{
+                    paddingLeft: "32px",
+                    " @media (max-width: 767px)": {
+                      paddingLeft: "0px",
+                    },
+                  }}
+                >
                   <Typography className={styles.materialTitle}>
                     {item.title}
                   </Typography>

@@ -278,6 +278,50 @@ export default function HomePage({ googleApiKey }) {
     }
   };
 
+  function renderFirstColumn() {
+    const prescriptionUI = (
+      <Grid
+        item
+        xs={5}
+        sm={5}
+        lg={2}
+        sx={{
+          paddingLeft: { xs: "16px !important", md: "24px !important" },
+        }}
+      >
+        <Prescriptions
+          prescriptionData={prescriptionData}
+          onViewPrescriptions={onViewPrescriptions}
+          renderRirstOnly={true}
+        />
+      </Grid>
+    );
+    const appointmentUI = (
+      <Grid
+        item
+        xs={5}
+        sm={5}
+        lg={3}
+        sx={{
+          paddingLeft: { xs: "16px !important", md: "24px !important" },
+        }}
+      >
+        <AppointmentCard
+          appointmentData={appointmentData}
+          OnClickCancel={handleClickCancel}
+          onViewAppointment={onViewAppointment}
+          onClickReschedule={onClickReschedule}
+        />
+      </Grid>
+    );
+
+    if (isDesktop) {
+      return [prescriptionUI, appointmentUI];
+    } else {
+      return [appointmentUI, prescriptionUI];
+    }
+  }
+
   return (
     <>
       {isAuthenticated && !isAdmin() && (
@@ -339,7 +383,6 @@ export default function HomePage({ googleApiKey }) {
               paddingTop: isDesktop ? "30px" : "46px",
               paddingRight: { xs: "16px !important", md: "24px !important" },
               flexDirection: {
-                xs: "column-reverse",
                 lg: "unset",
               },
               "@media print": {
@@ -347,39 +390,7 @@ export default function HomePage({ googleApiKey }) {
               },
             }}
           >
-            <Grid
-              item
-              xs={5}
-              sm={5}
-              // md={2}
-              lg={2}
-              sx={{
-                paddingLeft: { xs: "16px !important", md: "24px !important" },
-              }}
-            >
-              <Prescriptions
-                prescriptionData={prescriptionData}
-                onViewPrescriptions={onViewPrescriptions}
-                renderRirstOnly={true}
-              />
-            </Grid>
-            <Grid
-              item
-              xs={5}
-              sm={5}
-              // md={3}
-              lg={3}
-              sx={{
-                paddingLeft: { xs: "16px !important", md: "24px !important" },
-              }}
-            >
-              <AppointmentCard
-                appointmentData={appointmentData}
-                OnClickCancel={handleClickCancel}
-                onViewAppointment={onViewAppointment}
-                onClickReschedule={onClickReschedule}
-              />
-            </Grid>
+            {renderFirstColumn()}
             <Grid
               item
               xs={5}
