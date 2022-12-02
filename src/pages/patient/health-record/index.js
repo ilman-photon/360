@@ -183,8 +183,6 @@ export default function HealthRecord() {
     } else {
       healthRecordTemp = rows;
     }
-
-    console.log(healthRecordTemp);
     setHealthRecordDocument(healthRecordTemp);
   }, [documentList, rows]);
 
@@ -206,12 +204,12 @@ export default function HealthRecord() {
     if (userStorageData) {
       dispatch(
         fetchMedicalRecordDocuments({
-          patientId: "a3e61090-270e-4ab6-903b-192700ee09be",
+          patientId: userStorageData?.patientId,
         })
       );
       dispatch(
         fetchDocuments({
-          patientId: "a3e61090-270e-4ab6-903b-192700ee09be",
+          patientId: userStorageData?.patientId,
           category: "health-record",
         })
       );

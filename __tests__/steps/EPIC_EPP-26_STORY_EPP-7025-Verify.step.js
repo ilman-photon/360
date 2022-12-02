@@ -11,7 +11,7 @@ import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import store from "../../src/store/store";
 import Cookies from "universal-cookie";
-import { medicalRecordMockData } from "../../__mocks__/mockResponse";
+import { medicalRecordMockData, medicationsRecordDocoumentMock } from "../../__mocks__/mockResponse";
 import { createMatchMedia } from "../../__mocks__/commonSteps";
 import HealthRecord from "../../src/pages/patient/health-record";
 
@@ -36,11 +36,15 @@ defineFeature(feature, (test) => {
   const renderHealthRecord = async (mockResponse, status = 200) => {
     //TODO: Remove
     mock.reset();
+    const domain = window.location.origin;
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = userData.patientId;
     mock
       .onGet(`/ecp/patient/phr/patientchart/${patientId}`)
       .reply(status, mockResponse);
+    mock
+      .onGet(`${domain}/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=Medical-Record))`)
+      .reply(status, medicationsRecordDocoumentMock);
 
     act(() => {
       container = render(HealthRecord.getLayout(<HealthRecord />, store));
