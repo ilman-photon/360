@@ -560,6 +560,9 @@ export default function AppointmentForm({
                       id="password"
                       data-testid={SCHEDULE_GUEST_TEST_ID.passwordField}
                       label={t("passwordLabel")}
+                      inputProps={{
+                        "aria-label": `Password - optional -`,
+                      }}
                       type={constants.INPUT_PASSWORD}
                       size={constants.SMALL}
                       variant={constants.FILLED}
