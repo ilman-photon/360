@@ -51,10 +51,12 @@ const documentSlice = createSlice({
   initialState: {
     documentList: [],
     status: null,
+    healthRecordList: [],
   },
   reducers: {
     resetDocuments: (state) => {
       state.documentList = [];
+      state.healthRecordList = [];
     },
   },
   extraReducers: {
@@ -72,7 +74,7 @@ const documentSlice = createSlice({
       state.status = "loading";
     },
     [fetchMedicalRecordDocuments.fulfilled]: (state, { payload }) => {
-      state.documentList = parseMedicalRecordData(payload.entities);
+      state.healthRecordList = parseMedicalRecordData(payload.entities);
       state.status = "success";
     },
     [fetchMedicalRecordDocuments.rejected]: (state) => {
