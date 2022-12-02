@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import moment from "moment";
-import { connect } from "react-redux";
 import { Api } from "../pages/api/api";
 
 function parseMedicalRecordData(data) {

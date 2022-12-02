@@ -40,20 +40,24 @@ const modeOfCommuicationUI = function (control) {
       testId: constants.TEST_ID.REGISTER_TEST_ID.phoneradio,
     },
   ];
+
   return (
     <Controller
       name={constants.MODE_COMMUNICATION_KEY}
       control={control}
-      render={({ field: { onChange, value } }) => {
+      render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
           <RowRadioButtonsGroup
+            error={!!error}
             label="Mode of Communication"
             options={options}
             value={value}
+            helperText={error ? error.message : null}
             onChange={onChange}
           />
         );
       }}
+      rules={{ required: "This field is required" }}
     />
   );
 };
@@ -76,7 +80,13 @@ const backToLoginProps = {
     router.push("/patient/login");
   },
 };
-export default function ForgotPasswordPage() {
+
+export async function getServerSideProps(context) {
+  return {
+    props: { isAppointment: context.req.url == "/patient/sync" }, // will be passed to the page component as props
+  };
+}
+export default function ForgotPasswordPage(props) {
   const NEXT_PUBLIC_SYNC_LINK = process.env.NEXT_PUBLIC_SYNC_LINK;
   const NEXT_PUBLIC_ONE_TIME_LINK = process.env.NEXT_PUBLIC_ONE_TIME_LINK;
   const { t } = useTranslation("translation", {
@@ -101,7 +111,7 @@ export default function ForgotPasswordPage() {
     useState(false);
   const [showOneTimeLink, setShowOneTimeLink] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
-  const [isAppointment, setAppointment] = useState(true);
+  const [isAppointment, setAppointment] = useState(props.isAppointment);
   const bodyScrollLock = require("body-scroll-lock");
   const disableBodyScroll = bodyScrollLock.disableBodyScroll;
   const enableBodyScroll = bodyScrollLock.enableBodyScroll;
@@ -525,7 +535,7 @@ export default function ForgotPasswordPage() {
           setShowPostMessage={setShowPostMessage}
           securityQuestionData={patientData.securityQuestions}
           onContinueButtonClicked={onCalledValidateSubmitSecurityQuestion}
-          title={"Security Question page"}
+          title={"Password Recovery Security Questions Page"}
         />
       ) : (
         <></>
@@ -534,6 +544,7 @@ export default function ForgotPasswordPage() {
         <ConfirmationForm
           {...confirmationFormProps}
           {...backToLoginProps}
+          defaultValue={{ [constants.MODE_COMMUNICATION_KEY]: constants.EMAIL }}
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
         />
@@ -544,6 +555,7 @@ export default function ForgotPasswordPage() {
         <ConfirmationForm
           {...confirmationFormProps}
           {...backToLoginProps}
+          defaultValue={{ [constants.MODE_COMMUNICATION_KEY]: constants.EMAIL }}
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
         />

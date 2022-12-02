@@ -63,6 +63,12 @@ export default function UpdatePasswordPage() {
       });
   };
 
+  let pageTitleAcc = confirmationFormProps.pageTitle;
+
+  if (showUpdatePassword) {
+    pageTitleAcc = "Update Password Page";
+  }
+
   return (
     <Box className={globalStyles.containerPage}>
       {showUpdatePassword ? (
@@ -90,6 +96,9 @@ export default function UpdatePasswordPage() {
       ) : (
         <></>
       )}
+      <div style={{ display: "none" }} role={"alert"}>
+        {pageTitleAcc}
+      </div>
     </Box>
   );
 }

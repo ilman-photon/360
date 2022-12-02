@@ -5,7 +5,6 @@ import {
   Grid,
   Table,
   TableContainer,
-  TableHead,
   TableRow,
   Typography,
   TableCell,

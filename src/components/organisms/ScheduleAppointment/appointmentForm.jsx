@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { styles } from "./style";
-import { useForm, Controller, useFormState } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { StyledInput } from "../../atoms/Input/input";
 import { Regex } from "../../../utils/regex";
@@ -530,7 +530,7 @@ export default function AppointmentForm({
           />
         </div>
 
-        <Divider />
+        {!isForMyself && <Divider />}
 
         {isForMyself ? (
           <>
@@ -560,6 +560,9 @@ export default function AppointmentForm({
                       id="password"
                       data-testid={SCHEDULE_GUEST_TEST_ID.passwordField}
                       label={t("passwordLabel")}
+                      inputProps={{
+                        "aria-label": `Password - optional -`,
+                      }}
                       type={constants.INPUT_PASSWORD}
                       size={constants.SMALL}
                       variant={constants.FILLED}
@@ -596,7 +599,7 @@ export default function AppointmentForm({
                 validatePassword={validatePassword}
               />
 
-              <div style={styles.registeredUsernameWrapper}>
+              <div style={styles.registeredUsernameWrapper} tabIndex={"0"}>
                 <div>Your username will be {getRegisteredUsername()}</div>
               </div>
             </Stack>
@@ -619,6 +622,8 @@ export default function AppointmentForm({
               },
             }}
             style={styles.continueButton}
+            role={"button"}
+            aria-label={t("scheduleAppoinment")}
           >
             {t("scheduleAppoinment")}
           </Button>
