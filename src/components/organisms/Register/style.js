@@ -11,7 +11,7 @@ export const styles = {
   },
   form: {
     display: "grid",
-    marginTop: "8px",
+    marginTop: 0,
   },
   titleStyles: {
     paddingTop: "6px",

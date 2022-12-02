@@ -350,11 +350,11 @@ export class Api {
     return this.getResponse(url, postBody, "put");
   }
 
-  getPrescriptionMedication() {
+  getPrescriptionMedication(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `/${userData?.patientId}`;
     const url = `/ecp/prescriptions/patient${patientId}`;
-    return this.getResponse(url, {}, "get");
+    return this.getResponse(url, {}, "get", showError);
   }
 
   getPrescriptionGlasses() {
