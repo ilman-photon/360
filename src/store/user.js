@@ -17,7 +17,6 @@ let url;
  * @returns
  */
 const buildProfilePostBody = (postBody, payload) => {
-  console.log({ postBody, payload });
   let emailData = postBody.contactInformation.emails;
   if (emailData) {
     emailData[0] = {
@@ -112,6 +111,8 @@ const buildProfilePostBody = (postBody, payload) => {
     nickName: payload.preferredName,
     contactInformation: {
       ...postBody.contactInformation,
+      emails: emailData,
+      phones: phoneData,
       contactPreferenceDetail: {
         ...postBody.contactInformation.contactPreferenceDetail,
         ...contactPreferenceDetailData,
@@ -159,7 +160,11 @@ const buildDigitalAssetObject = (payload, type) => {
  * @param {*} payload
  * @returns
  */
-const buildInsurancePostBody = (postBody = {}, payload = {}) => {
+const buildInsurancePostBody = (
+  postBody = {},
+  payload = {},
+  isEdit = false
+) => {
   const subscriberData = payload.subscriberData;
   const subscriberDob = subscriberData.dob
     ? new moment(subscriberData.dob).format("MM/DD/YYYY")
@@ -169,7 +174,8 @@ const buildInsurancePostBody = (postBody = {}, payload = {}) => {
 
   const frontCardData = payload.frontCard;
   const backCardData = payload.backCard;
-  return {
+
+  const returnedData = {
     _version: postBody._version,
     insuranceType: "VISION",
     group: payload.groupID,
@@ -191,11 +197,9 @@ const buildInsurancePostBody = (postBody = {}, payload = {}) => {
     planName: payloadPlanData.name || postBody.planName,
     planPhone: payloadPlanData.phone1 || postBody.planPhone,
     subscriber: {
-      // ...postBody.subscriber,
       firstName: subscriberData.firstName,
       lastName: subscriberData.lastName,
       dob: subscriberDob, // MM/DD/YYYY,
-      _id: payload.memberID,
     },
     digitalAssets: {
       master_front: frontCardData?.uid
@@ -206,6 +210,12 @@ const buildInsurancePostBody = (postBody = {}, payload = {}) => {
         : buildDigitalAssetObject(payload.backCard, "insurance"),
     },
   };
+
+  if (!isEdit) {
+    returnedData.subscriber._id = payload.memberID;
+  }
+
+  return returnedData;
 };
 
 export const fetchUser = createAsyncThunk(
@@ -268,7 +278,8 @@ export const updateInsurance = createAsyncThunk(
     try {
       const postBody = buildInsurancePostBody(
         state.user.rawUserInsuranceData[foundIndex],
-        payload
+        payload,
+        true
       );
       const response = await api.getResponse(
         `/ecp/insurance/beneficiaries/${patientId}/coverages/${coverageId}`,
@@ -390,11 +401,11 @@ const buildUserData = (payload) => {
     ssn: formatSocialSecurity(payload.ssn),
     email: payload.contactInformation.emails[0]
       ? payload.contactInformation.emails[0].email
-      : "-",
+      : "",
     mobile:
       payload.contactInformation.phones && payload.contactInformation.phones[0]
         ? payload.contactInformation.phones[0].number
-        : "-",
+        : "",
     address: userAddress.addressLine1 || "",
     city: userAddress.city || "",
     state: userAddress.state || "",

@@ -241,7 +241,7 @@ export default function ContactInformation({
             ariaLabel="Phone Number"
             label="Phone Number"
           >
-            {userData.mobile && <PhoneNumber phone={userData.mobile} />}
+            {showOrReturnEmpty(userData.mobile)}
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
