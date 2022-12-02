@@ -530,7 +530,7 @@ export default function AppointmentForm({
           />
         </div>
 
-        <Divider />
+        {!isForMyself && <Divider />}
 
         {isForMyself ? (
           <>
@@ -596,7 +596,7 @@ export default function AppointmentForm({
                 validatePassword={validatePassword}
               />
 
-              <div style={styles.registeredUsernameWrapper}>
+              <div style={styles.registeredUsernameWrapper} tabIndex={"0"}>
                 <div>Your username will be {getRegisteredUsername()}</div>
               </div>
             </Stack>
@@ -619,6 +619,8 @@ export default function AppointmentForm({
               },
             }}
             style={styles.continueButton}
+            role={"button"}
+            aria-label={t("scheduleAppoinment")}
           >
             {t("scheduleAppoinment")}
           </Button>
