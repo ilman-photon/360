@@ -1,10 +1,10 @@
 import { Api } from "../pages/api/api";
 
-function onCalledMedicationAPI(resolve, reject) {
+function onCalledMedicationAPI(resolve, reject, showError = true) {
   let medicationData = [];
   const api = new Api();
   api
-    .getPrescriptionMedication()
+    .getPrescriptionMedication(showError)
     .then(function (response) {
       medicationData = response;
     })
@@ -53,9 +53,9 @@ function onCalledContactsAPI(medicationData, glassesData, resolve, reject) {
     });
 }
 
-export function onCallGetPrescriptionData() {
+export function onCallGetPrescriptionData(showError = true) {
   return new Promise((resolve, reject) => {
-    onCalledMedicationAPI(resolve, reject);
+    onCalledMedicationAPI(resolve, reject, showError);
   });
 }
 
