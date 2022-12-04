@@ -38603,7 +38603,8 @@ export const medicalRecordMockData = {
   "entities": [
     {
       "encounter": {
-        "_id": "6de55801-e5de-4344-84d0-dd9fa90f8700"
+        "_id": "6de55801-e5de-4344-84d0-dd9fa90f8700",
+        "encounterNo": "10000643",
       },
       "provider": {
         "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
@@ -38635,6 +38636,162 @@ export const medicalRecordMockData = {
   "_links": {
     "self": {
       "href": "/emr?pageNo=0&pageSize=20"
+    }
+  }
+}
+
+export const medicationsRecordDocoumentMock = {
+  "count": 3,
+  "entities": [
+    {
+      "name": "SBMSD-Chandi",
+      "documentType": "application/pdf",
+      "category": "Medical-Record",
+      "encounterNo": "10000643",
+      "uploadedBy": {
+        "uid": "a677f406-56b3-4f25-b7a5-37d9266675ba",
+        "firstName": "Test",
+        "lastName": "Photon",
+        "_createdBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        },
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
+      },
+      "patientId": "a3e61090-270e-4ab6-903b-192700ee09be",
+      "status": "CREATED",
+      "digital_assets": {
+        "_id": "15cb6bf9-32b3-41c0-a31e-eb4bcc063281"
+      },
+      "_id": "5da9333e-b18e-4068-9395-abcfb8d2ad0a",
+      "_version": "474765cf-afd9-411c-8917-d9f3dadbc749",
+      "_created": "Dec 1, 2022, 2:01:00 PM",
+      "_updated": "Dec 1, 2022, 2:01:00 PM",
+      "_createdBy": {
+        "_id": "a677f406-56b3-4f25-b7a5-37d9266675ba",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/a677f406-56b3-4f25-b7a5-37d9266675ba"
+          }
+        }
+      },
+      "_links": {
+        "self": {
+          "href": "/v1/patients/5da9333e-b18e-4068-9395-abcfb8d2ad0a"
+        }
+      }
+    },
+    {
+      "name": "Doctor or Optometrist Bio",
+      "documentType": "image/png",
+      "category": "Medical-Record",
+      "uploadedBy": {
+        "uid": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "firstName": "Portal",
+        "lastName": "User",
+        "_createdBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        },
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
+      },
+      "patientId": "a3e61090-270e-4ab6-903b-192700ee09be",
+      "status": "CREATED",
+      "digital_assets": {
+        "_id": "5e45d065-bac3-4c7f-87ff-74e967418838"
+      },
+      "_id": "1d7b9f92-0900-4adb-8e32-e47c50f25417",
+      "_version": "949b3b6c-f138-42d0-98b5-557e6a7caabc",
+      "_created": "Nov 24, 2022, 2:04:06 PM",
+      "_updated": "Nov 24, 2022, 2:04:06 PM",
+      "_createdBy": {
+        "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+          }
+        }
+      },
+      "_links": {
+        "self": {
+          "href": "/v1/patients/1d7b9f92-0900-4adb-8e32-e47c50f25417"
+        }
+      }
+    },
+    {
+      "name": "Appointment Detail Don John",
+      "documentType": "application/pdf",
+      "category": "Medical-Record",
+      "uploadedBy": {
+        "uid": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "firstName": "Portal",
+        "lastName": "User",
+        "_createdBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        },
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
+      },
+      "patientId": "a3e61090-270e-4ab6-903b-192700ee09be",
+      "status": "CREATED",
+      "digital_assets": {
+        "_id": "a28b0199-ad4e-4d98-87f0-5560367f45c7"
+      },
+      "_id": "22a81610-330f-4e85-b889-68516adc3426",
+      "_version": "b2dea1ee-b5e6-4cd1-a5fa-d43b8152032f",
+      "_created": "Nov 24, 2022, 2:03:36 PM",
+      "_updated": "Nov 24, 2022, 2:03:36 PM",
+      "_createdBy": {
+        "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+          }
+        }
+      },
+      "_links": {
+        "self": {
+          "href": "/v1/patients/22a81610-330f-4e85-b889-68516adc3426"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/patient-management?pageNo=0&pageSize=10"
     }
   }
 }
