@@ -178,7 +178,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
     if (watchedEmail && isMobileInputEmpty) {
       setValue("preferredCommunication", "email");
-    } else if (!watchedEmail && isMobileInputEmpty) {
+    } else if (!watchedEmail && !isMobileInputEmpty) {
       setValue("preferredCommunication", "phone");
     } else {
       setValue("preferredCommunication", "both");
@@ -239,7 +239,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             fontWeight: "400",
             fontSize: "12px",
             color: "#6C6C6C",
-            margin: "10px !important",
+            mx: "10px !important",
+            my: "8px !important",
           }}
         >
           *Required Fields

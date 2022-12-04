@@ -122,6 +122,13 @@ export const CustomPasswordInput = styled((props) => (
       color: "#B93632",
     },
   },
+  "& .MuiFormLabel-asterisk.MuiInputLabel-asterisk": {
+    visibility: "hidden",
+    "&::before": {
+      content: '"*"',
+      visibility: "visible",
+    },
+  },
 }));
 
 export const RedditTextField = React.forwardRef((props, ref) => {
@@ -229,6 +236,13 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
   },
   ".Mui-disabled input": {
     backgroundColor: "#efefef",
+  },
+  "& .MuiFormLabel-asterisk.MuiInputLabel-asterisk": {
+    visibility: "hidden",
+    "&::before": {
+      content: '"*"',
+      visibility: "visible",
+    },
   },
 }));
 
