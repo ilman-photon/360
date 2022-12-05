@@ -61,7 +61,7 @@ export const AccountDrawer = ({
       },
       {
         label: "Prescriptions",
-        href: "/patient/account/medical-record?type=test-lab-result",
+        href: "/patient/prescription",
         icon: <PrescriptionIcon sx={{ fill: colors.darkGreen }} />,
       },
       {
