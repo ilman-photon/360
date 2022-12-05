@@ -295,9 +295,9 @@ export default function ScheduleAppointmentPage() {
     if (router.query.reschedule) {
       setIsReschedule(true);
     }
-    // if (!appointmentScheduleData.appointmentInfo.appointmentType) {
-    //   router.push("/patient/appointment");
-    // }
+    if (!appointmentScheduleData.appointmentInfo.appointmentType) {
+      router.push("/patient/appointment");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
