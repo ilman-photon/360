@@ -529,7 +529,6 @@ export default function PersonalInformation({
                     sx={{
                       ".MuiInputBase-root": {
                         color: "#A5A5AC",
-                        fontWeight: "700",
                         fontFamily: "Roboto",
                       },
                     }}
