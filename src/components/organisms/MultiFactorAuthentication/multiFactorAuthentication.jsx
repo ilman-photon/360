@@ -39,6 +39,9 @@ export default function MultiFactorAuthentication({
           ) {
             e.preventDefault();
           }
+          if (e.keyCode === 13) {
+            onSubmitClicked(mfaCode, checkMessage);
+          }
         }}
         fullWidth
         inputProps={{ minLength: 6, maxLength: 6 }}
