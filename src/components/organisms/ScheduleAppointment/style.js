@@ -1,6 +1,9 @@
 import { colors } from "../../../styles/theme";
 
 export const styles = {
+  examFor: {
+    fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+  },
   primaryText: {
     color: "#0095A9",
     fontSize: "18px",
@@ -23,6 +26,8 @@ export const styles = {
     fontSize: "18px",
   },
   continueButton: {
+    fontFamily: "Libre Franklin",
+    fontSize: "16px",
     height: "40px",
     alignSelf: "self-end",
     borderRadius: "46px",

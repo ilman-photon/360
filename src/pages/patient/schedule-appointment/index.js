@@ -378,7 +378,8 @@ export default function ScheduleAppointmentPage() {
         .then(() => {
           getPatientId(
             {
-              username: postBody.email,
+              username:
+                postBody.email || postBody.mobileNumber.replace(/[^\d\+]/g, ""),
             },
             mmddyyDateFormat(data.dob)
           );
