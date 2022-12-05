@@ -529,9 +529,14 @@ export default function ContactInformation({
                           "&.MuiFormControl-root": {
                             m: 0,
                           },
-
                           ".MuiFilledInput-root": {
                             backgroundColor: "#FFF",
+                          },
+                          ".MuiInputBase-root": {
+                            ".MuiOutlinedInput-notchedOutline": {
+                              background: "transparent",
+                              borderColor: "#BDBDBD"
+                            }
                           },
                         }}
                       >
