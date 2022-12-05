@@ -400,7 +400,6 @@ export const CustomInput = styled(({ ...props }) => {
           </CustomFormControl>
         </>
       );
-
     default:
       return (
         <>
