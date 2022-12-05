@@ -225,7 +225,7 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
       color: "#303030",
     },
     "input::placeholder": {
-      fontSize: 12,
+      fontSize: 16,
       color: "#303030",
     },
   },
