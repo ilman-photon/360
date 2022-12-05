@@ -42,6 +42,12 @@ const CustomSelect = (props) => {
           "::after": {
             borderBottom: "none",
           },
+          ".MuiInputBase-input": {
+            "&:focus": {
+              background: "transparent",
+              outlineColor: "#BDBDBD"
+            }
+          },
           ...props.sx,
         }}
         onChange={props.onChange}
