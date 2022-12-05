@@ -320,7 +320,23 @@ export default function Appointment({ googleApiKey }) {
       })
       .catch(function () {
         if (!isOverlay) {
-          dispatch(setProviderListData([]));
+          if (!isResetProvider) {
+            const rangeDate = {
+              startDate: startDateRequest,
+              endDate: endDateRequest,
+            };
+
+            const providerTemp = updateProviderTimeSchedule(
+              providerListData,
+              [],
+              startDateRequest,
+              endDateRequest
+            );
+            dispatch(setProviderListData(providerTemp));
+            setRangeDate(rangeDate);
+          } else {
+            dispatch(setProviderListData([]));
+          }
         }
       })
       .finally(function () {
