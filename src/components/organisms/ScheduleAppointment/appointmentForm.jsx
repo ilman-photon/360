@@ -295,6 +295,7 @@ export default function AppointmentForm({
                 size="small"
                 variant="filled"
                 helperText={error ? error.message : null}
+                minLength={2}
                 maxLength={50}
                 aria-label={"First Name text field"}
                 InputLabelProps={{ "aria-hidden": true }}
@@ -333,6 +334,7 @@ export default function AppointmentForm({
                 size="small"
                 variant="filled"
                 helperText={error ? error.message : null}
+                minLength={2}
                 maxLength={50}
                 aria-label={"Last Name text field"}
                 InputLabelProps={{ "aria-hidden": true }}
