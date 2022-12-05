@@ -319,13 +319,22 @@ export default function Appointment({ googleApiKey }) {
         }
       })
       .catch(function () {
-        if (!isOverlay) {
-          if (!isResetProvider) {
-            const rangeDate = {
-              startDate: startDateRequest,
-              endDate: endDateRequest,
-            };
+        if (!isResetProvider) {
+          const rangeDate = {
+            startDate: startDateRequest,
+            endDate: endDateRequest,
+          };
 
+          if (isOverlay) {
+            const providerOverview = getProvideOverlay(
+              providerDataOverview,
+              [],
+              startDateRequest,
+              endDateRequest
+            );
+            setRangeDateOverview(rangeDate);
+            setProviderDataOverview(providerOverview);
+          } else {
             const providerTemp = updateProviderTimeSchedule(
               providerListData,
               [],
@@ -334,9 +343,9 @@ export default function Appointment({ googleApiKey }) {
             );
             dispatch(setProviderListData(providerTemp));
             setRangeDate(rangeDate);
-          } else {
-            dispatch(setProviderListData([]));
           }
+        } else if (!isOverlay) {
+          dispatch(setProviderListData([]));
         }
       })
       .finally(function () {
