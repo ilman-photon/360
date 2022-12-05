@@ -7,7 +7,6 @@ Feature: Patient Portal: Admin – View locked accounts –Sort option
   @Regression
   @Sprint9
   Scenario: EPIC_EPP-29_STORY_EPP-7518- Verify User should be able to view the list of patients sorted by latest locked date by default
-    Scenario: EPIC_EPP-29_STORY_EPP-7518- Verify User should be able to view the list of patients sorted by latest locked date by default
 
     Given User has logged into the patient portal 
     And User launch Patient Portal url		
@@ -30,7 +29,6 @@ Feature: Patient Portal: Admin – View locked accounts –Sort option
   @Patient_Portal
   @Sprint9
   Scenario: EPIC_EPP-29_STORY_EPP-7518- Verify User should be able to see the list sorted 
-    Scenario: EPIC_EPP-29_STORY_EPP-7518- Verify User should be able to see the list sorted 
 
     Given User has logged into the patient portal 
     And User launch Patient Portal url		
@@ -51,7 +49,6 @@ Feature: Patient Portal: Admin – View locked accounts –Sort option
   @Patient_Portal
   @Sprint9
   Scenario: EPIC_EPP-29_STORY_EPP-7518- Verify User should be able to view the option to sort the list by Patient Name, Email, Phone, Patient ID and Locked Date & Time
-    Scenario: EPIC_EPP-29_STORY_EPP-7518- Verify User should be able to view the option to sort the list by Patient Name, Email, Phone, Patient ID and Locked Date & Time
 
     Given User has logged into the patient portal 
     And User launch Patient Portal url		
