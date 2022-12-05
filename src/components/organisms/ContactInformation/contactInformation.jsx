@@ -6,6 +6,7 @@ import {
   Fade,
   Grid,
   MenuItem,
+  Paper,
   Stack,
   useMediaQuery,
 } from "@mui/material";
@@ -569,11 +570,13 @@ export default function ContactInformation({
                           },
                         }}
                       >
-                        {usStatesList.map((item, idx) => (
-                          <MenuItem key={idx} value={item.value}>
-                            {item.label}
-                          </MenuItem>
-                        ))}
+                        <Paper sx={{ maxHeight: 300, boxShadow: "none" }}>
+                          {usStatesList.map((item, idx) => (
+                            <MenuItem key={idx} value={item.value}>
+                              {item.label}
+                            </MenuItem>
+                          ))}
+                        </Paper>
                       </StyledInput>
                     );
                   }}
