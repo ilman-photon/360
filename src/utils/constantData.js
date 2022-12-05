@@ -11,6 +11,6 @@ export const GENDER_LIST = [
   "Third gender",
 ];
 
-export const TITLE_LIST = ["Dr.", "Mr.", "Mrs.", "Miss", "Ms."];
+export const TITLE_LIST = ["Dr.", "Mr.", "Mrs.", "Miss.", "Ms."];
 
 export const RELATIONSHIP_LIST = ["Spouse", "Father", "Mother", "Self", "Son"];

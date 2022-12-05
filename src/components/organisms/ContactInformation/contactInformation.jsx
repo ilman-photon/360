@@ -540,6 +540,8 @@ export default function ContactInformation({
                         label="State"
                         autoComplete="address-level1"
                         data-testid="styled-select-state"
+                        size="small"
+                        variant="filled"
                         value={value}
                         onChange={onChange}
                         error={!!error}
@@ -551,6 +553,13 @@ export default function ContactInformation({
                           },
                           ".MuiFilledInput-root": {
                             backgroundColor: "#FFF",
+                          },
+                          ".MuiOutlinedInput-root.Mui-focused": {
+                            backgroundColor: "#efefef",
+                            ".MuiOutlinedInput-notchedOutline": {
+                              borderWidth: "1px",
+                              borderColor: "#BDBDBD",
+                            },
                           },
                           ".MuiInputBase-root": {
                             ".MuiOutlinedInput-notchedOutline": {
