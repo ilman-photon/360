@@ -169,6 +169,26 @@ export default function ContactInformation({
     }
   };
 
+  useEffect(() => {
+    const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
+    if (watchedEmail && isMobileInputEmpty) {
+      setValue("preferredCommunication", "email");
+    } else if (!watchedEmail && isMobileInputEmpty) {
+      setValue("preferredCommunication", "phone");
+    } else {
+      setValue("preferredCommunication", "both");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watchedEmail, watchedMobile]);
+
+  useEffect(() => {
+    if (watchedPreferredCommunication === "email") {
+      if (isEditing) {
+        setFocus("email");
+      }
+    }
+  }, [watchedPreferredCommunication, setFocus]);
+
   const [placeDetailsState, setPlaceDetailsState] = useState(null);
   useEffect(() => {
     // fetch place details for the first element in placePredictions array
