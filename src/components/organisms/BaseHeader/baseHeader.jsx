@@ -394,27 +394,31 @@ export default function BaseHeader({
                     data-testid="user-menu-close"
                     onClose={handleCloseUserMenu}
                   >
-                    <MenuItem sx={{ mb: 1 }}>
+                    <MenuItem
+                      sx={{ mb: 1 }}
+                      onClick={() => {
+                        router.push("/patient/account/profile-info");
+                      }}
+                    >
                       <Button
                         variant="text"
                         sx={styles.buttonProfileMenu}
                         data-testid={HOME_TEST_ID.account}
-                        onClick={() => {
-                          router.push("/patient/account/profile-info");
-                        }}
                       >
                         Account
                       </Button>
                     </MenuItem>
-                    <MenuItem onClick={handleCloseNavMenu}>
+                    <MenuItem
+                      onClick={(e) => {
+                        OnLogoutClicked(router);
+                        handleCloseNavMenu(e);
+                      }}
+                    >
                       <Button
                         variant="text"
                         sx={styles.buttonProfileMenu}
                         data-testid={HOME_TEST_ID.logout}
                         startIcon={<ExitToAppIcon />}
-                        onClick={() => {
-                          OnLogoutClicked(router);
-                        }}
                       >
                         Logout
                       </Button>
