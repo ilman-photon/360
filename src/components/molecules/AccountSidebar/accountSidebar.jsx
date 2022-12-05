@@ -87,12 +87,11 @@ export const AccountSidebar = ({ ...props }, ref) => {
               key={idx}
               flexDirection="row"
               alignItems="center"
-              color={colors.iconGrey}
               sx={{ width: "100%" }}
             >
               <SidebarLink router={router} href={link.href} child={link.child}>
-                {link.icon}
-                {link.label}
+                <div style={{ color: colors.iconGrey }}>{link.icon}</div>
+                <div style={{ color: colors.grayscaleBlack }}>{link.label}</div>
               </SidebarLink>
             </Stack>
           ) : (
@@ -100,7 +99,6 @@ export const AccountSidebar = ({ ...props }, ref) => {
               <Stack
                 flexDirection="row"
                 alignItems="center"
-                color={colors.iconGrey}
                 sx={{ cursor: "pointer" }}
                 onClick={() => toggleSidebarChild("documents")}
               >
