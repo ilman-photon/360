@@ -555,8 +555,8 @@ export default function ContactInformation({
                           ".MuiInputBase-root": {
                             ".MuiOutlinedInput-notchedOutline": {
                               background: "transparent",
-                              borderColor: "#BDBDBD"
-                            }
+                              borderColor: "#BDBDBD",
+                            },
                           },
                         }}
                       >

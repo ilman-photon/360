@@ -45,8 +45,8 @@ const CustomSelect = (props) => {
           ".MuiInputBase-input": {
             "&:focus": {
               background: "transparent",
-              outlineColor: "#BDBDBD"
-            }
+              outlineColor: "#BDBDBD",
+            },
           },
           ...props.sx,
         }}

@@ -27,9 +27,12 @@ export class Api {
   }
 
   errorGenericValidation = (err) => {
+    const errors = err.response.data._errors;
     return (
       err &&
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+        errors &&
+        errors[0]?.description?.indexOf(`No results found`) < 0 &&
         err.response?.data?.ResponseCode === undefined) ||
         err.code === constants.ERROR_CODE.NETWORK_ERR ||
         [500].indexOf(err.response?.status) !== -1) &&
@@ -64,11 +67,15 @@ export class Api {
             ResponseCode: err.response.status || err.code,
           });
         } else if (err && err.response && err.response.data) {
-          reject(err.response.data);
           const errors = err.response.data._errors;
-          if (errors && showError) {
+          if (
+            errors &&
+            showError &&
+            errors[0]?.description?.indexOf(`No results found`) < 0
+          ) {
             store.dispatch(setGenericErrorMessage(errors[0].description));
           }
+          reject(err.response.data);
         } else if (err.code === "ECONNABORTED" && showError) {
           store.dispatch(setGenericErrorMessage(err.message));
           reject(err);
