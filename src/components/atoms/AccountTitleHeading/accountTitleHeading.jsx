@@ -13,9 +13,11 @@ const AccountTitleHeading = ({ title, sx = {}, sxContainer = {} }) => {
       aria-label={`${title} heading`}
       tabIndex={"0"}
     >
+      {/* <div style={{maxWidth: "1536px"}}> */}
       <Typography className={styles.title} sx={sx} aria-hidden={true}>
         {title}
       </Typography>
+      {/* </div> */}
     </div>
   );
 };

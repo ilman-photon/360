@@ -27,6 +27,7 @@ export default function RowRadioButtonsGroup({
   isInsuranceForm = false,
   isRegistrationForm = false,
   customTooltipWidth,
+  customRadioLabel,
   ...props
 }) {
   const options = props.options || [];
@@ -107,7 +108,7 @@ export default function RowRadioButtonsGroup({
                   }}
                 />
               }
-              label={option.label}
+              label={customRadioLabel ? customRadioLabel(option) : option.label}
               sx={{
                 "& .MuiRadio-root": {
                   padding: isCancelSchedule ? "2px 9px 2px 16px" : "9px",

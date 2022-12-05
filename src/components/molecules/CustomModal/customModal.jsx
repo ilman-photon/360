@@ -1,6 +1,5 @@
 import { Box } from "@mui/system";
 import { StyledButton } from "../../atoms/Button/button";
-import styles from "./styles.module.scss";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import { IconButton } from "@mui/material";
@@ -19,6 +18,7 @@ export default function CustomModal({
   ariaDescribedBy = "",
   open,
   sx,
+  buttonSx = {},
 }) {
   return (
     <Dialog
@@ -40,6 +40,7 @@ export default function CustomModal({
       <DialogContent>
         {onClickCloseButton && (
           <IconButton
+            data-testid="custom-modal-close-btn"
             onClick={onClickCloseButton}
             sx={{
               position: "absolute",
@@ -58,7 +59,15 @@ export default function CustomModal({
           </IconButton>
         )}
         <Box>{children}</Box>
-        <Box className={styles.buttonContainer}>
+        <Box
+          sx={{
+            pt: 2,
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "8px",
+            ...buttonSx,
+          }}
+        >
           {onClickSecondaryButton && (
             <StyledButton
               theme={constants.PATIENT}
