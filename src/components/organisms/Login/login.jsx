@@ -121,10 +121,18 @@ export function Login({
                         error={!!error}
                         required
                         helperText={error ? error.message : null}
+                        inputProps={{ maxLength: 50 }}
                       />
                     );
                   }}
                   rules={{
+                    validate: {
+                      isMinChar: (value) => {
+                        if (value.length < 2) {
+                          return "Incorrect format";
+                        } else return true;
+                      },
+                    },
                     required: t("thisFieldRequired"),
                   }}
                 />
@@ -156,10 +164,20 @@ export function Login({
                         aria
                         required
                         helperText={error ? error.message : null}
+                        inputProps={{ maxLength: 50 }}
                       />
                     );
                   }}
-                  rules={{ required: t("thisFieldRequired") }}
+                  rules={{
+                    validate: {
+                      isMinChar: (value) => {
+                        if (value.length < 2) {
+                          return "Incorrect format";
+                        } else return true;
+                      },
+                    },
+                    required: t("thisFieldRequired"),
+                  }}
                 />
 
                 <Grid container justifyContent={constants.FLEX_END}>
