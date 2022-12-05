@@ -171,7 +171,7 @@ export default function ContactInformation({
   };
 
   useEffect(() => {
-    const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
+    const isMobileInputEmpty = watchedMobile == "(" || !watchedMobile;
     if (watchedEmail && isMobileInputEmpty) {
       setValue("preferredCommunication", "email");
     } else if (!watchedEmail && isMobileInputEmpty) {
@@ -183,11 +183,12 @@ export default function ContactInformation({
   }, [watchedEmail, watchedMobile]);
 
   useEffect(() => {
-    if (watchedPreferredCommunication === "email") {
+    if (watchedPreferredCommunication == "email") {
       if (isEditing) {
         setFocus("email");
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedPreferredCommunication, setFocus]);
 
   const [placeDetailsState, setPlaceDetailsState] = useState(null);

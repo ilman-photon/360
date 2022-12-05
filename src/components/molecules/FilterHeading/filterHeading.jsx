@@ -442,7 +442,6 @@ const FilterHeading = ({
               sx={{
                 width: "75%",
                 overflow: "hidden",
-                width: "75%",
               }}
             >
               <Autocomplete
