@@ -138,7 +138,7 @@ export default function HomePage({ googleApiKey }) {
   }
 
   function onCalledAllPrescription() {
-    onCallGetPrescriptionData()
+    onCallGetPrescriptionData(false)
       .then(function (response) {
         const prescriptionDataTemp = { ...response };
         if (response?.glasses?.length > 0) {

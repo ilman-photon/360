@@ -106,7 +106,7 @@ const buildProfilePostBody = (postBody, payload) => {
     return TITLE_LIST.findIndex((v) => v === title) + 1;
   };
 
-  return {
+  const returnedData = {
     ...postBody,
     nickName: payload.preferredName,
     contactInformation: {
@@ -123,6 +123,18 @@ const buildProfilePostBody = (postBody, payload) => {
     title: getTitleCode(payload.title),
     patientDetails: patientDetailsData,
   };
+
+  // removing phone field if emptied
+  if (!payload.mobile) {
+    delete returnedData.contactInformation.phones;
+  }
+
+  // removing phone field if emptied
+  if (!payload.email) {
+    delete returnedData.contactInformation.emails;
+  }
+
+  return returnedData;
 };
 
 /**

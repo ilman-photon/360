@@ -178,7 +178,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
     if (watchedEmail && isMobileInputEmpty) {
       setValue("preferredCommunication", "email");
-    } else if (!watchedEmail && isMobileInputEmpty) {
+    } else if (!watchedEmail && !isMobileInputEmpty) {
       setValue("preferredCommunication", "phone");
     } else {
       setValue("preferredCommunication", "both");
@@ -239,7 +239,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             fontWeight: "400",
             fontSize: "12px",
             color: "#6C6C6C",
-            margin: "10px !important",
+            mx: "10px !important",
+            my: "8px !important",
           }}
         >
           *Required Fields
@@ -265,6 +266,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 <StyledInput
                   required
                   type="text"
+                  minLength={2}
+                  maxLength={50}
                   id="firstName"
                   label="First Name"
                   aria-label="First name required text field"
@@ -301,6 +304,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               return (
                 <StyledInput
                   type="text"
+                  minLength={2}
+                  maxLength={50}
                   id="lastName"
                   label="Last Name"
                   inputRef={inputLastName}

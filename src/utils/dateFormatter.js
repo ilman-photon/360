@@ -49,7 +49,7 @@ export function formatAppointmentDate(date) {
     return "-";
   } else {
     const momentDate = new moment(date);
-    return momentDate.format("dddd, MMM DD, YYYY [AT] h:mm");
+    return momentDate.format("dddd, MMM DD, YYYY, [AT] h:mm [EST]");
   }
 }
 
