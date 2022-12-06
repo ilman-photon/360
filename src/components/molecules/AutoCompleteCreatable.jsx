@@ -82,6 +82,7 @@ export const AutoCompleteCreatable = ({
             props.onChange(newValue);
           }
         }}
+        inputRef={props.inputRef}
         isOptionEqualToValue={(option, value) => {
           if (value.label) {
             return option.label === value.label;
@@ -158,6 +159,7 @@ export const AutoCompleteCreatable = ({
                 required={props.required}
                 //error={props.error}
                 //helperText={props.helperText}
+                inputRef={props.inputRef}
                 InputProps={{
                   ...params.InputProps,
                   sx: {

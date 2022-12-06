@@ -477,7 +477,7 @@ defineFeature(feature, (test) => {
   };
 
   const provideFirstLastNameValid = async () => {
-    await waitFor(() => container.getByText("First Name"));
+    await waitFor(() => container.getAllByText(/First Name/i));
     const field1 = container.getAllByLabelText(/First Name/i)[0];
     fireEvent.change(field1, { target: { value: "first" } });
 

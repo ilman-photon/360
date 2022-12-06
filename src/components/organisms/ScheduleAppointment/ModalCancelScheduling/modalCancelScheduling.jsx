@@ -1,7 +1,7 @@
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import RowRadioButtonsGroup from "../../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { StyledInput } from "../../../atoms/Input/input";
 import styles from "./modalScheduling.module.scss";
@@ -19,6 +19,20 @@ export default function ModalCancelScheduling({
     defaultValues: {},
   });
 
+  const cancelRef = React.useRef(null);
+
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
+  React.useEffect(() => {
+    console.log(errors);
+    if (errors.cancelOther) {
+      cancelRef.current?.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
+  
   React.useEffect(() => {
     reset({
       cancelReason: "",
@@ -108,7 +122,11 @@ export default function ModalCancelScheduling({
           {t("cancelTitle")}
         </Typography>
         <DialogContent className={styles.checkBoxContainer}>
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.formStyle}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.formStyle}
+            noValidate
+          >
             <Controller
               name="cancelSchedule"
               control={control}
@@ -171,6 +189,8 @@ export default function ModalCancelScheduling({
                               error={!!error}
                               helperText={error ? error.message : null}
                               sx={{ pb: 2, width: { xs: "100%", md: "70%" } }}
+                              required
+                              inputRef={cancelRef}
                             />
                           );
                         }}

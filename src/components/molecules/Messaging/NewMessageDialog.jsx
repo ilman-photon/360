@@ -10,7 +10,7 @@ import { Box, Button, Typography } from "@mui/material";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useFormState } from "react-hook-form";
 import StyledInput from "../../atoms/Input/input";
 import AttachmentFile from "./AttachmentFile";
 import styles from "./styles.module.scss";
@@ -54,6 +54,25 @@ export const NewMessageDialog = ({
       message: "",
     },
   });
+
+  const nameRef = React.useRef(null);
+  const subjectRef = React.useRef(null);
+  const messageRef = React.useRef(null);
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
+  React.useEffect(() => {
+    console.log(errors);
+    if (errors.name) {
+      nameRef.current?.focus();
+    } else if (errors.subject) {
+      subjectRef.current?.focus();
+    } else if (errors.message) {
+      messageRef.current?.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   const [watchedName, watchedMessage] = watch(["name", "message"]);
 
@@ -121,7 +140,7 @@ export const NewMessageDialog = ({
 
   function getNewMessageContentView() {
     return (
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <DialogContent
           sx={{
             display: "flex",
@@ -188,7 +207,7 @@ export const NewMessageDialog = ({
                     <StyledInput
                       {...getInputProps()}
                       aria-label="Type a Name"
-                      label={`${t("typeName")}*`}
+                      label={t("typeName")}
                       id="name"
                       maxLength={254}
                       variant="filled"
@@ -215,6 +234,8 @@ export const NewMessageDialog = ({
                         },
                       }}
                       error={!!error}
+                      required
+                      inputRef={nameRef}
                     />
                   );
                 }}
@@ -240,7 +261,7 @@ export const NewMessageDialog = ({
               return (
                 <StyledInput
                   aria-label="Subject"
-                  label={`${t("subject")}*`}
+                  label={t("subject")}
                   id="subject"
                   maxLength={254}
                   variant="filled"
@@ -264,6 +285,8 @@ export const NewMessageDialog = ({
                   }}
                   error={!!error}
                   helperText={error ? error.message : null}
+                  required
+                  inputRef={subjectRef}
                 />
               );
             }}
@@ -291,7 +314,7 @@ export const NewMessageDialog = ({
                 return (
                   <StyledInput
                     aria-label="Write a message"
-                    label={`${t("writeMessages")}*`}
+                    label={t("writeMessages")}
                     id="message"
                     maxLength={254}
                     ref={refAttachments}
@@ -320,6 +343,8 @@ export const NewMessageDialog = ({
                       },
                     }}
                     error={!!error}
+                    required
+                    inputRef={messageRef}
                     // helperText={error ? error.message : null}
                   />
                 );
