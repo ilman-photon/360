@@ -112,7 +112,7 @@ export const loginProps = {
             userType: response.patientType,
           };
           localStorage.setItem("userData", JSON.stringify(adminData));
-          _router.push("/patient/");
+          _router.push("/patient/admin/locked-accounts");
         } else {
           cookies.set("username", postbody.username, { path: "/patient" });
           const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;

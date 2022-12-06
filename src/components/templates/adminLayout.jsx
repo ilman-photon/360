@@ -8,6 +8,7 @@ import { Provider, connect } from "react-redux";
 import store from "../../store/store";
 import { logoutProps } from "../../utils/authetication";
 import AdminNavbar from "../molecules/AdminNavbar/adminNavbar";
+import { useLogin } from "../../utils/customHook";
 
 function AdminLayout({
   pageMessage,
@@ -16,6 +17,7 @@ function AdminLayout({
   pageTitle = "",
   children,
 }) {
+  const isLogin = useLogin(true);
   const isPatient = theme === "patient";
 
   const getHeadingTitle = (pageName) => {
@@ -36,29 +38,31 @@ function AdminLayout({
       <Head>
         <title>EyeCare Patient Portal - {pageTitle}</title>
       </Head>
-      <div style={{ background: "#F4F4F4", minHeight: "100vh" }}>
-        <ThemeProvider
-          theme={isPatient ? patientTypography : providerTypography}
-        >
-          <BaseHeader {...logoutProps} isAdmin />
-          <AdminNavbar />
-          <AccountTitleHeading
-            title={getHeadingTitle(currentActivePage)}
-            sx={{
-              fontWeight: { xs: "500", md: "inherit" },
-              textAlign: { xs: "center", sm: "inherit" },
-              padding: {
-                sm: "0 !important",
-                md: "0 24px",
-              },
-            }}
-            sxContainer={{
-              display: "grid",
-            }}
-          />
-          {children}
-        </ThemeProvider>
-      </div>
+      {isLogin && (
+        <div style={{ background: "#F4F4F4", minHeight: "100vh" }}>
+          <ThemeProvider
+            theme={isPatient ? patientTypography : providerTypography}
+          >
+            <BaseHeader {...logoutProps} isAdmin />
+            <AdminNavbar />
+            <AccountTitleHeading
+              title={getHeadingTitle(currentActivePage)}
+              sx={{
+                fontWeight: { xs: "500", md: "inherit" },
+                textAlign: { xs: "center", sm: "inherit" },
+                padding: {
+                  sm: "0 !important",
+                  md: "0 24px",
+                },
+              }}
+              sxContainer={{
+                display: "grid",
+              }}
+            />
+            {children}
+          </ThemeProvider>
+        </div>
+      )}
     </Provider>
   );
 }

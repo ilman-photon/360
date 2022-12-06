@@ -1,6 +1,6 @@
 import { Check, Link, LockOpenOutlined } from "@mui/icons-material";
 import { Menu, MenuItem, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import QAIcon from "../../../assets/icons/QAIcon";
 import ShareIcon from "../../../assets/icons/ShareIcon";
 
@@ -11,7 +11,9 @@ export default function MenuAccountRecoveryMore({
   open,
   keepMounted,
   activeMenuData,
-  onMoreClicked = () => {},
+  onMoreClicked = () => {
+    //this is intentional
+  },
 }) {
   const [menus, setMenus] = React.useState([]);
 

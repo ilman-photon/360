@@ -138,6 +138,13 @@ defineFeature(feature, (test) => {
     expect(true).toBeTruthy();
   };
 
+  beforeEach(() => {
+    Object.defineProperty(document, "cookie", {
+        writable: true,
+        value: "authorized=true;accessToken=1234",
+      });
+  })
+
   const expectUnlockCTA = () => {
     expect(
       container.getAllByRole("button", { name: /Unlock/i }).length > 0
