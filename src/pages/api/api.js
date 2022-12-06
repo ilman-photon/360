@@ -26,13 +26,11 @@ export class Api {
     this.maxRequestCounter = 3;
   }
 
-  errorGenericValidation = (err) => {
-    const errors = err.response.data._errors;
+  errorGenericValidation = (err, url) => {
     return (
       err &&
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
-        errors &&
-        errors[0]?.description?.indexOf(`No results found`) < 0 &&
+        url.indexOf(`/available-slot`) < 0 &&
         err.response?.data?.ResponseCode === undefined) ||
         err.code === constants.ERROR_CODE.NETWORK_ERR ||
         [500].indexOf(err.response?.status) !== -1) &&
@@ -57,7 +55,7 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (api.errorGenericValidation(err) && showError) {
+        if (api.errorGenericValidation(err, url) && showError) {
           store.dispatch(
             setGenericErrorMessage("Please try again after sometime.")
           );
@@ -68,11 +66,7 @@ export class Api {
           });
         } else if (err && err.response && err.response.data) {
           const errors = err.response.data._errors;
-          if (
-            errors &&
-            showError &&
-            errors[0]?.description?.indexOf(`No results found`) < 0
-          ) {
+          if (errors && showError && url.indexOf(`/available-slot`) < 0) {
             store.dispatch(setGenericErrorMessage(errors[0].description));
           }
           reject(err.response.data);
