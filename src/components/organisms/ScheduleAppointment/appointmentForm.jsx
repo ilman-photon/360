@@ -129,7 +129,6 @@ export default function AppointmentForm({
     { label: "Both", value: "both", testId: SCHEDULE_GUEST_TEST_ID.bothradio },
   ];
 
-  const inputDob = React.useRef(null);
   const watchedPassword = watch("password", "");
   const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
     "email",
@@ -489,21 +488,20 @@ export default function AppointmentForm({
                   onClose={() => {
                     setOpen(false);
                     setTimeout(() => {
-                      inputDob?.current?.focus();
+                      dobRef?.current?.focus();
                     }, 1);
                   }}
                   // onClick={() => setOpen(true)}
                   aria-hidden={true}
                   tabIndex={-1}
                   type="dob"
-                  inputRef={inputDob}
                   id="dob"
                   InputLabel={{ "aria-hidden": false }}
                   InputLabelProps={{
                     "aria-hidden": true,
                   }}
                   InputProps={{
-                    ref: inputDob,
+                    ref: dobRef,
                     tabIndex: 0,
                     "data-testid": SCHEDULE_GUEST_TEST_ID.dateofbirth,
                     "aria-label": "Date of Birth required text field",
