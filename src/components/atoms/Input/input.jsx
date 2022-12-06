@@ -225,7 +225,7 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
       color: "#303030",
     },
     "input::placeholder": {
-      fontSize: 12,
+      fontSize: 16,
       color: "#303030",
     },
   },
@@ -371,6 +371,7 @@ export const CustomInput = styled(({ ...props }) => {
                   required={props.required}
                   inputProps={{
                     ...params.inputProps,
+                    placeholder: "MM/DD/YYYY",
                     readOnly: props.inputProps?.readOnly,
                     className:
                       props.inputProps?.readOnly &&
@@ -400,7 +401,6 @@ export const CustomInput = styled(({ ...props }) => {
           </CustomFormControl>
         </>
       );
-
     default:
       return (
         <>

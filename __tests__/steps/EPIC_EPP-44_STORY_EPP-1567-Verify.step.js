@@ -460,13 +460,13 @@ defineFeature(feature, (test) => {
   };
 
   const provideDetailsValid = () => {
-    const field1 = container.getByLabelText("First Name");
+    const field1 = container.getAllByLabelText(/First Name/i)[0];
     fireEvent.change(field1, { target: { value: "1" } });
 
-    const field2 = container.getByLabelText("Last Name");
+    const field2 = container.getAllByLabelText(/Last Name/i)[0];
     fireEvent.change(field2, { target: { value: "2" } });
 
-    const field3 = container.getByLabelText("Mobile Number");
+    const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
     fireEvent.change(field3, { target: { value: "3" } });
 
     const field4 = container.getAllByLabelText("Email")[0];

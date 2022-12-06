@@ -104,6 +104,7 @@ export default function AppointmentForm({
     { label: "Both", value: "both", testId: SCHEDULE_GUEST_TEST_ID.bothradio },
   ];
 
+  const inputDob = React.useRef(null);
   const watchedPassword = watch("password", "");
   const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
     "email",
@@ -287,7 +288,7 @@ export default function AppointmentForm({
               <StyledInput
                 type="text"
                 id="firstName"
-                label="First Name"
+                label="First Name *"
                 value={value}
                 data-testid={SCHEDULE_GUEST_TEST_ID.firstname}
                 onChange={onChange}
@@ -326,7 +327,7 @@ export default function AppointmentForm({
               <StyledInput
                 type="text"
                 id="lastName"
-                label="Last Name"
+                label="Last Name *"
                 data-testid={SCHEDULE_GUEST_TEST_ID.lastname}
                 value={value}
                 onChange={onChange}
@@ -366,7 +367,7 @@ export default function AppointmentForm({
               <StyledInput
                 type="text"
                 id="email"
-                label="Email"
+                label="Email *"
                 value={value}
                 data-testid={SCHEDULE_GUEST_TEST_ID.email}
                 onChange={onChange}
@@ -406,7 +407,7 @@ export default function AppointmentForm({
                 type="phone"
                 id="mobile"
                 data-testid={SCHEDULE_GUEST_TEST_ID.mobilenumber}
-                label="Mobile Number"
+                label="Mobile Number *"
                 value={value}
                 onChange={onChange}
                 error={!!error}
@@ -441,27 +442,35 @@ export default function AppointmentForm({
           <Controller
             name="dob"
             control={control}
+            tabIndex={0}
+            InputPropsLabel={{
+              "aria-label": "Date of Birth required text field",
+            }}
+            aria-label="Date of Birth required text field"
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
-                  disableFuture //
+                  disableFuture
                   open={open}
                   onOpen={() => setOpen(true)}
                   onClose={() => {
                     setOpen(false);
+                    setTimeout(() => {
+                      inputDob?.current?.focus();
+                    }, 1);
                   }}
-                  onClick={() => setOpen(true)}
+                  // onClick={() => setOpen(true)}
                   aria-hidden={true}
                   tabIndex={-1}
                   type="dob"
-                  // inputRef={inputDob}
+                  inputRef={inputDob}
                   id="dob"
-                  // data-testid={REGISTER_TEST_ID.dateofbirth}
                   InputLabel={{ "aria-hidden": false }}
                   InputLabelProps={{
                     "aria-hidden": true,
                   }}
                   InputProps={{
+                    ref: inputDob,
                     tabIndex: 0,
                     "data-testid": SCHEDULE_GUEST_TEST_ID.dateofbirth,
                     "aria-label": "Date of Birth required text field",
@@ -470,11 +479,8 @@ export default function AppointmentForm({
                     tabIndex: -1,
                     readOnly: !isDesktop,
                     isTransparent: true,
-                    // "aria-hidden": true,
-                    // "aria-disabled": "false",
                   }}
-                  // aria-label="Date of Birth required text field"
-                  label="Date of Birth"
+                  label="Date of Birth *"
                   variant="filled"
                   value={value}
                   onChange={onChange}

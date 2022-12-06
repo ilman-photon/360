@@ -76,7 +76,7 @@ export default function HomePage({ googleApiKey }) {
   const dispatch = useDispatch();
 
   const isAdmin = () => {
-    return JSON.parse(localStorage.getItem("userData")).userType === "admin";
+    return JSON.parse(localStorage.getItem("userData"))?.userType === "admin";
   };
 
   function onCalledGetAppointmentTypesAPI() {
@@ -201,6 +201,9 @@ export default function HomePage({ googleApiKey }) {
       onCalledAllPrescription();
       dispatch(fetchAllPayers());
     }
+    if (isAdmin()) {
+      router.push("/patient/admin/locked-accounts");
+    }
     const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
     if (userStorageData) {
       let firstName = userStorageData?.firstName || "";
@@ -213,12 +216,12 @@ export default function HomePage({ googleApiKey }) {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    onCalledGetAllAppointment();
+    !isAdmin() && onCalledGetAllAppointment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterSuggestionData.purposeOfVisit]);
 
   useEffect(() => {
-    onCalledGetAppointmentTypesAPI();
+    !isAdmin() && onCalledGetAppointmentTypesAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [insuranceCarrierList]);
 

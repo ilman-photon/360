@@ -30,4 +30,3 @@ Feature: Patient Portal : Dashboard - Test / Lab Reports Widget
     And user lands on the Dashboard screen
     And user should be able to view Test/ Lab reports widget in the dashboard.
     And user should see the message “You do not have any test/lab reports.” when there are no test/lab reports available
-

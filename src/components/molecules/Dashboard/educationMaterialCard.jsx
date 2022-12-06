@@ -108,17 +108,26 @@ export default function EducationMaterialCard({}) {
                   <Typography className={styles.materialDate} tabIndex={0}>
                     {new moment(item.date).format("MMMM DD, YYYY")}
                   </Typography>
-                  <Typography className={styles.materialDescription} tabIndex={0}>
+                  <Typography
+                    className={styles.materialDescription}
+                    tabIndex={0}
+                  >
                     {item.descriptionn}
                   </Typography>
                   <Stack direction={"row"} className={styles.menuContainer}>
-                    <IconButton className={styles.menuItem} aria-label={"download"}>
+                    <IconButton
+                      className={styles.menuItem}
+                      aria-label={"download"}
+                    >
                       <FileDownloadOutlinedIcon
                         sx={{ color: "#003B4A" }}
                         aria-hidden="false"
                       />
                     </IconButton>
-                    <IconButton className={styles.menuItem} aria-label={"print"}>
+                    <IconButton
+                      className={styles.menuItem}
+                      aria-label={"print"}
+                    >
                       <LocalPrintshopOutlinedIcon
                         sx={{ color: "#003B4A" }}
                         aria-hidden="false"

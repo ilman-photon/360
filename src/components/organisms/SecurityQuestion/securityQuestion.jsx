@@ -178,6 +178,7 @@ const SecurityQuestion = ({
                   inputProps={{
                     maxLength: 20,
                     "aria-label": `Answer ${index} - Required`,
+                    autocomplete: "off",
                   }}
                   label={`Answer ${index}`}
                   id={`answer-${index}`}

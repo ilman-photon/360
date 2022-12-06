@@ -144,7 +144,7 @@ describe("App", () => {
   });
 
   const setTextFieldValue = (container, id, value) => {
-    const field = container.queryAllByLabelText(id)[0];
+    const field = container.getAllByLabelText(id)[0];
     fireEvent.change(field, { target: { value: value } });
     expect(field.value).toEqual(value);
   };
@@ -153,10 +153,10 @@ describe("App", () => {
     await waitFor(() =>
       container.getByTestId(TEST_ID.SCHEDULE_GUEST_TEST_ID.firstname)
     );
-    setTextFieldValue(container, "First Name", "TestFirstName");
-    setTextFieldValue(container, "Last Name", "TestLastName");
-    setTextFieldValue(container, "Email", "patient1@gmail.com");
-    setTextFieldValue(container, "Mobile Number", "(123) 123-1234");
+    setTextFieldValue(container, /First Name/i, "TestFirstName");
+    setTextFieldValue(container, /Last Name/i, "TestLastName");
+    setTextFieldValue(container, /Email/i, "patient1@gmail.com");
+    setTextFieldValue(container, /Mobile Number/i, "(123) 123-1234");
     await waitFor(() => container.getByLabelText("Double tap to Choose date"));
     fireEvent.click(container.getByLabelText("Double tap to Choose date"));
     await waitFor(() =>
@@ -177,10 +177,10 @@ describe("App", () => {
     await waitFor(() =>
       container.getByTestId(TEST_ID.SCHEDULE_GUEST_TEST_ID.firstname)
     );
-    setTextFieldValue(container, "First Name", "TestFirstName");
-    setTextFieldValue(container, "Last Name", "TestLastName");
-    setTextFieldValue(container, "Email", "patient1@gmail.com");
-    setTextFieldValue(container, "Mobile Number", "(123) 123-1234");
+    setTextFieldValue(container, /First Name/i, "TestFirstName");
+    setTextFieldValue(container, /Last Name/i, "TestLastName");
+    setTextFieldValue(container, /Email/i, "patient1@gmail.com");
+    setTextFieldValue(container, /Mobile Number/i, "(123) 123-1234");
     await waitFor(() => container.getByLabelText("Double tap to Choose date"));
     fireEvent.click(container.getByLabelText("Double tap to Choose date"));
     await waitFor(() =>

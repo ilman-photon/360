@@ -682,6 +682,7 @@ export default function InsuranceForm({
                     fontStyle: "italic",
                     textAlign: "right",
                     marginLeft: "auto",
+                    marginTop: "7px",
                   }}
                 >
                   JPG or PNG file formats only. (File size limit is 4 MB)

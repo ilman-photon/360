@@ -6,6 +6,7 @@ import {
   Fade,
   Grid,
   MenuItem,
+  Paper,
   Stack,
   useMediaQuery,
 } from "@mui/material";
@@ -170,7 +171,7 @@ export default function ContactInformation({
   };
 
   useEffect(() => {
-    const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
+    const isMobileInputEmpty = watchedMobile == "(" || !watchedMobile;
     if (watchedEmail && isMobileInputEmpty) {
       setValue("preferredCommunication", "email");
     } else if (!watchedEmail && isMobileInputEmpty) {
@@ -182,11 +183,12 @@ export default function ContactInformation({
   }, [watchedEmail, watchedMobile]);
 
   useEffect(() => {
-    if (watchedPreferredCommunication === "email") {
+    if (watchedPreferredCommunication == "email") {
       if (isEditing) {
         setFocus("email");
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedPreferredCommunication, setFocus]);
 
   const [placeDetailsState, setPlaceDetailsState] = useState(null);
@@ -540,8 +542,12 @@ export default function ContactInformation({
                         label="State"
                         autoComplete="address-level1"
                         data-testid="styled-select-state"
+                        size="small"
+                        variant="filled"
                         value={value}
-                        onChange={onChange}
+                        onChange={(e) => {
+                          onChange(e);
+                        }}
                         error={!!error}
                         helperText={error ? error.message : null}
                         sx={{
@@ -551,6 +557,13 @@ export default function ContactInformation({
                           },
                           ".MuiFilledInput-root": {
                             backgroundColor: "#FFF",
+                          },
+                          ".MuiOutlinedInput-root.Mui-focused": {
+                            backgroundColor: "#efefef",
+                            ".MuiOutlinedInput-notchedOutline": {
+                              borderWidth: "1px",
+                              borderColor: "#BDBDBD",
+                            },
                           },
                           ".MuiInputBase-root": {
                             ".MuiOutlinedInput-notchedOutline": {

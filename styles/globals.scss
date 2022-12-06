@@ -238,3 +238,10 @@ input::-ms-clear {
     height: 32px !important;
   }
 }
+
+.MuiPopover-root {
+  ul.MuiList-root {
+    max-height: 300px;
+    box-shadow: none;
+  }
+}

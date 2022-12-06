@@ -203,7 +203,7 @@ export default function PersonalInformation({
           </LabelWithInfo>
 
           <LabelWithInfo label="Preferred Name" ariaLabel={"Preferred Name"}>
-            <div tabIndex={0}>{userData.preferredName || "---"}</div>
+            <div tabIndex={0}>{userData.preferredName || "-"}</div>
           </LabelWithInfo>
 
           <LabelWithInfo label="Title" ariaLabel={"Title"}>

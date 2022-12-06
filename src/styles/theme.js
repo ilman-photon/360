@@ -12,7 +12,8 @@ export const colors = {
   teal15: "#DDF1F3",
   teal75: "#3EAFBD",
   teal50: "#7FCAD3",
-  teal25: "#BFE$E8",
+  teal25: "#BFE4E8",
+  teal20: "#007787",
   peach: "#F2EAE6",
   peach75: "#F2EAE6",
   peach50: "#F9F5F3",
@@ -32,6 +33,10 @@ export const colors = {
   iconGrey: "#757575",
   dark1: "#d4d4d4",
   grayscaleBlack: "#292929",
+  grayscaleGrey: "#fafafa",
+  inputPlaceholder: "#6c6c6c",
+  inputPlaceholderDark: "#303030",
+  blackInactive: "#0000008a",
 };
 
 // declare module '@mui/material/styles' {

@@ -46,7 +46,9 @@ export default function PayMyBillCard({}) {
         }}
       >
         <Box tabIndex={0} aria-label={`${title} title`}>
-          <Typography aria-hidden={true} className={styles.hightLightTitle}>{title}</Typography>
+          <Typography aria-hidden={true} className={styles.hightLightTitle}>
+            {title}
+          </Typography>
         </Box>
         <Typography className={styles.hightLightValue} tabIndex={0}>
           {value}

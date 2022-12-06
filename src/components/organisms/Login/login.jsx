@@ -121,6 +121,7 @@ export function Login({
                         error={!!error}
                         required
                         helperText={error ? error.message : null}
+                        inputProps={{ maxLength: 50 }}
                       />
                     );
                   }}
@@ -156,10 +157,13 @@ export function Login({
                         aria
                         required
                         helperText={error ? error.message : null}
+                        inputProps={{ maxLength: 50 }}
                       />
                     );
                   }}
-                  rules={{ required: t("thisFieldRequired") }}
+                  rules={{
+                    required: t("thisFieldRequired"),
+                  }}
                 />
 
                 <Grid container justifyContent={constants.FLEX_END}>
