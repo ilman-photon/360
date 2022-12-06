@@ -371,6 +371,7 @@ export const CustomInput = styled(({ ...props }) => {
                   required={props.required}
                   inputProps={{
                     ...params.inputProps,
+                    placeholder: "MM/DD/YYYY",
                     readOnly: props.inputProps?.readOnly,
                     className:
                       props.inputProps?.readOnly &&
