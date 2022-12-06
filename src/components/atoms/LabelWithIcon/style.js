@@ -1,7 +1,12 @@
 import { colors } from "../../../styles/theme";
 
 export const styles = {
-  boxContainer: { display: "flex", flexDirection: "row", marginTop: "15px" },
+  boxContainer: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: "15px",
+    alignItems: "center",
+  },
   successTextColor: {
     marginLeft: 10,
     color: colors.green,
