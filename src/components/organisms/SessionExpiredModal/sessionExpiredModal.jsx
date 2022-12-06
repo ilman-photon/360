@@ -88,14 +88,11 @@ function SessionExpiredModal() {
       role={"dialog"}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      sx={{
-        zIndex: 3000,
-      }}
+      sx={{ zIndex: "modal" }}
     >
       <DialogTitle
         id="alert-dialog-title"
         style={styles.containerPadding}
-        tabindex={0}
         aria-live={"assertive"}
         aria-label={
           !isExpired ? "Session Timeout heading" : "Session Expired heading"
@@ -105,6 +102,7 @@ function SessionExpiredModal() {
       </DialogTitle>
       <DialogContent
         style={{ ...styles.containerPadding, paddingBottom: "16px" }}
+        id="alert-dialog-description"
         sx={{
           width: "500px",
           "@media (max-width: 992px)": {
@@ -116,7 +114,6 @@ function SessionExpiredModal() {
           success={false}
           tabIndex={0}
           aria-live="assertive"
-          id="alert-dialog-description"
           sx={styles.postMessage}
           aria-label={
             !isExpired
