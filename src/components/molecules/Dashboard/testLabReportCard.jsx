@@ -251,7 +251,7 @@ export default function TestLabReportCard({}) {
       titleIcon={<Image alt="" src={iconTestTube} width={32} height={32} />}
       content={
         <>
-          <Typography className={styles.testLabTitle}>Eye Exam</Typography>
+          <Typography className={styles.testLabTitle} tabIndex={0}>Eye Exam</Typography>
           {isDesktop ? renderDekstopView() : renderMobileView()}
         </>
       }

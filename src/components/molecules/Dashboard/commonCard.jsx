@@ -30,10 +30,10 @@ export function onRenderButtonView(
         },
       }}
       data-testid="view-record-btn"
-      tabindex="1"
+      tabindex="0"
       onClick={onClickViewButton}
       aria-live={"polite"}
-      aria-label={"View record button"}
+      aria-label={"View"}
     >
       View
     </StyledButton>

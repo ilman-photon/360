@@ -45,8 +45,12 @@ export default function PayMyBillCard({}) {
           borderRadius: "4px",
         }}
       >
-        <Typography className={styles.hightLightTitle}>{title}</Typography>
-        <Typography className={styles.hightLightValue}>{value}</Typography>
+        <Box tabIndex={0} aria-label={`${title} title`}>
+          <Typography aria-hidden={true} className={styles.hightLightTitle}>{title}</Typography>
+        </Box>
+        <Typography className={styles.hightLightValue} tabIndex={0}>
+          {value}
+        </Typography>
       </Stack>
     );
   }
@@ -76,7 +80,7 @@ export default function PayMyBillCard({}) {
       <Box className={styles.makePaymentContainer}>
         <StyledButton
           tabIndex={0}
-          aria-label={"Schedule Appointment"}
+          aria-label={"Make a Payment"}
           theme={"patient"}
           mode={"primary"}
           size={"small"}
@@ -129,6 +133,7 @@ export default function PayMyBillCard({}) {
                     key={`mybill-${idx}-tabel-header`}
                     tabIndex={0}
                     className="MuiTableCell-customHead"
+                    aria-label={header === "DOS" ? "Date of Service" : header}
                   >
                     {header}
                   </StyledTableCell>
