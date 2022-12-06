@@ -126,13 +126,6 @@ export function Login({
                     );
                   }}
                   rules={{
-                    validate: {
-                      isMinChar: (value) => {
-                        if (value.length < 2) {
-                          return "Incorrect format";
-                        } else return true;
-                      },
-                    },
                     required: t("thisFieldRequired"),
                   }}
                 />
@@ -169,13 +162,6 @@ export function Login({
                     );
                   }}
                   rules={{
-                    validate: {
-                      isMinChar: (value) => {
-                        if (value.length < 2) {
-                          return "Incorrect format";
-                        } else return true;
-                      },
-                    },
                     required: t("thisFieldRequired"),
                   }}
                 />
