@@ -47,6 +47,11 @@ export const ImageUploader = ({
 
   useEffect(() => {
     if (source) fetchImageURL();
+
+    return () => {
+      setImageSource(null);
+      setPreview(null);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [source]);
 
