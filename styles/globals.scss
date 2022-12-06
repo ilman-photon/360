@@ -209,3 +209,10 @@ input::-ms-clear {
 .atcb-icon .atcb-icon-ms365 svg {
   fill: #ea3e23;
 }
+
+.MuiPopover-root {
+  ul.MuiList-root {
+    max-height: 300px;
+    box-shadow: none;
+  }
+}

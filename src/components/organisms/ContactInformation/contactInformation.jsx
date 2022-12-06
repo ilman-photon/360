@@ -545,7 +545,9 @@ export default function ContactInformation({
                         size="small"
                         variant="filled"
                         value={value}
-                        onChange={onChange}
+                        onChange={(e) => {
+                          onChange(e);
+                        }}
                         error={!!error}
                         helperText={error ? error.message : null}
                         sx={{
@@ -571,13 +573,11 @@ export default function ContactInformation({
                           },
                         }}
                       >
-                        <Paper sx={{ maxHeight: 300, boxShadow: "none" }}>
-                          {usStatesList.map((item, idx) => (
-                            <MenuItem key={idx} value={item.value}>
-                              {item.label}
-                            </MenuItem>
-                          ))}
-                        </Paper>
+                        {usStatesList.map((item, idx) => (
+                          <MenuItem key={idx} value={item.value}>
+                            {item.label}
+                          </MenuItem>
+                        ))}
                       </StyledInput>
                     );
                   }}
