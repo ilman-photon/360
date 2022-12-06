@@ -76,6 +76,13 @@ const createMatchMedia = (width) => {
 defineFeature(feature, (test) => {
   let container;
 
+  beforeEach(() => {
+        Object.defineProperty(document, "cookie", {
+            writable: true,
+            value: "authorized=true;accessToken=1234",
+          });
+      })
+
   const userIsLoggedIn = () => {
     const mockOnLoginClicked = jest.fn((data, route, callback) => {
       callback({

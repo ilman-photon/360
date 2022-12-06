@@ -48,7 +48,6 @@ export default function LockedAccount() {
   const [showModal, setShowModal] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const [searchKeyTemp, setSearchKeyTemp] = useState("");
-
   let firstLoad = false;
 
   const tableConfiguration = {
