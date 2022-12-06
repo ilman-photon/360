@@ -473,7 +473,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const mfaField = container.getByLabelText("mfaLabel");
+      const mfaField = container.getByLabelText(/mfaLabel/i);
       expect(mfaField).toBeVisible();
     });
 

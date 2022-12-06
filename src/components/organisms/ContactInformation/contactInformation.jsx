@@ -46,7 +46,7 @@ export default function ContactInformation({
     reset,
     setValue,
     setFocus,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     // defaultValues: DEFAULT_CONTACT_INFO,
     defaultValues: userData, // Object.assign({}, userData),
@@ -72,7 +72,7 @@ export default function ContactInformation({
       setFocus(firstErrorKey);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Object.keys(errors)]);
+  }, [isSubmitting]);
 
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
@@ -107,7 +107,7 @@ export default function ContactInformation({
   };
 
   const onSubmit = (data) => {
-    OnSaveClicked(data);
+    OnSaveClicked({ ...data, mobile: data.mobile.replace(/\D/g, "") });
   };
 
   // GAPI autocomplete
@@ -149,7 +149,12 @@ export default function ContactInformation({
             }
 
             case "administrative_area_level_1": {
-              setValue("state", component.short_name);
+              const isStateValid = usStatesList.find(
+                (v) => v.label === component.short_name
+              );
+              if (isStateValid) {
+                setValue("state", component.short_name);
+              }
               break;
             }
 
@@ -262,23 +267,34 @@ export default function ContactInformation({
             tabIndex={0}
             ariaLabel="Phone Number"
             label="Phone Number"
+            required
           >
             {showOrReturnEmpty(userData.mobile)}
           </LabelWithInfo>
 
-          <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
+          <LabelWithInfo
+            tabIndex={0}
+            ariaLabel="Email ID"
+            label="Email ID"
+            required
+          >
             <div tabIndex={0} aria-label={showOrReturnEmpty(userData.email)}>
               {showOrReturnEmpty(userData.email)}
             </div>
           </LabelWithInfo>
 
-          <LabelWithInfo tabIndex={0} ariaLabel="Address" label="Address">
+          <LabelWithInfo
+            tabIndex={0}
+            ariaLabel="Address"
+            label="Address"
+            required
+          >
             <div tabIndex={0} aria-label={showOrReturnEmpty(userData.address)}>
               {showOrReturnEmpty(userData.address)}
             </div>
           </LabelWithInfo>
 
-          <LabelWithInfo tabIndex={0} ariaLabel="City" label="City">
+          <LabelWithInfo tabIndex={0} ariaLabel="City" label="City" required>
             <div tabIndex={0} aria-label={showOrReturnEmpty(userData.city)}>
               {showOrReturnEmpty(userData.city)}
             </div>
@@ -286,7 +302,12 @@ export default function ContactInformation({
 
           <Grid container>
             <Grid item xs={6} sm={4} lg={6} p={0}>
-              <LabelWithInfo tabIndex={0} ariaLabel="State" label="State">
+              <LabelWithInfo
+                tabIndex={0}
+                ariaLabel="State"
+                label="State"
+                required
+              >
                 <div
                   tabIndex={0}
                   aria-label={showOrReturnEmpty(userData.state)}
@@ -297,7 +318,7 @@ export default function ContactInformation({
             </Grid>
 
             <Grid item xs={6} sm={4} lg={6} p={0}>
-              <LabelWithInfo label="Zip" tabIndex={0} ariaLabel="Zip">
+              <LabelWithInfo label="Zip" tabIndex={0} ariaLabel="Zip" required>
                 <div tabIndex={0} aria-label={showOrReturnEmpty(userData.zip)}>
                   {showOrReturnEmpty(userData.zip)}
                 </div>
@@ -328,7 +349,7 @@ export default function ContactInformation({
         </Stack>
       </Fade>
       <Fade in={isEditing} unmountOnExit>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <Stack spacing={2} divider={<Divider />}>
             <Controller
               name="mobile"
@@ -359,6 +380,7 @@ export default function ContactInformation({
                         backgroundColor: "#FFF",
                       },
                     }}
+                    required
                   />
                 );
               }}
@@ -368,10 +390,14 @@ export default function ContactInformation({
                     if (!isOneOfPreferredValid("phone", value))
                       return "Email ID or Mobile Number is required";
                   },
-                },
-                pattern: {
-                  value: Regex.isValidPhoneFormat,
-                  message: "Incorrect format",
+                  isValidNumber: (value) => {
+                    if (
+                      value &&
+                      !Regex.isValidPhoneFormat.test(value) &&
+                      !Regex.REGEX_PHONE_NUMBER_ONLY.test(value)
+                    )
+                      return "Incorrect format";
+                  },
                 },
               }}
             />
@@ -403,6 +429,7 @@ export default function ContactInformation({
                         backgroundColor: "#FFF",
                       },
                     }}
+                    required
                   />
                 );
               }}
@@ -430,7 +457,6 @@ export default function ContactInformation({
                 return (
                   <Autocomplete
                     freeSolo
-                    inputRef={ref}
                     options={placePredictions.map(
                       (option) => option.description
                     )}
@@ -451,6 +477,7 @@ export default function ContactInformation({
                             backgroundColor: "#FFF",
                           },
                         }}
+                        inputRef={ref}
                         value={value}
                         onChange={(event) => {
                           onChange(event.target.value);
@@ -461,12 +488,14 @@ export default function ContactInformation({
                         size="small"
                         variant="filled"
                         helperText={error ? error.message : null}
+                        required
                       />
                     )}
                   />
                 );
               }}
               rules={{
+                required: "This field is required",
                 validate: {
                   incorrectFormat: (value) => {
                     if (value) {
@@ -509,10 +538,12 @@ export default function ContactInformation({
                         backgroundColor: "#FFF",
                       },
                     }}
+                    required
                   />
                 );
               }}
               rules={{
+                required: "This field is required",
                 validate: {
                   incorrectFormat: (value) => {
                     if (value) {
@@ -572,6 +603,7 @@ export default function ContactInformation({
                             },
                           },
                         }}
+                        required
                       >
                         {usStatesList.map((item, idx) => (
                           <MenuItem key={idx} value={item.value}>
@@ -580,6 +612,9 @@ export default function ContactInformation({
                         ))}
                       </StyledInput>
                     );
+                  }}
+                  rules={{
+                    required: "This field is required",
                   }}
                 />
               </Grid>
@@ -628,10 +663,12 @@ export default function ContactInformation({
                             backgroundColor: "#FFF",
                           },
                         }}
+                        required
                       />
                     );
                   }}
                   rules={{
+                    required: "This field is required",
                     pattern: {
                       value: Regex.isZip,
                       message: "Incorrect format",

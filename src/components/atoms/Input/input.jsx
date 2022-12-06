@@ -41,8 +41,10 @@ export const CustomFormControl = styled((props) => <FormControl {...props} />)(
 
 export const CustomPasswordInput = styled((props) => (
   <TextField
+    aria-label={
+      props.required ? "Password required text field" : "Password text field"
+    }
     // tabIndex={0}
-    aria-label={"Password required text field"}
     InputProps={{
       disableUnderline: true,
       endAdornment: (
@@ -311,7 +313,9 @@ export const CustomInput = styled(({ ...props }) => {
               disableOpenPicker={props.selectorDisabled}
               disableFuture={props.disableFuture}
               disablePast={props.disablePast}
-              ariaLabel={props.label}
+              ariaLabel={
+                props.required ? `${props.label} required` : props.label
+              }
               ariaLive={props.label}
               label={props.label}
               onChange={props.onChange}

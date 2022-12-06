@@ -198,6 +198,7 @@ export default function PersonalInformation({
             ariaLabel="Name"
             tooltipContent={tooltipContentDefault}
             value={userData.name || ""}
+            required
           >
             <div aria-hidden={true}>{userData.name || "-"}</div>
           </LabelWithInfo>
@@ -219,6 +220,7 @@ export default function PersonalInformation({
             value={
               userData.dob ? new Date(userData.dob).toLocaleDateString() : ""
             }
+            required
           >
             <div aria-hidden={true}>
               {userData.dob ? new Date(userData.dob).toLocaleDateString() : "-"}
@@ -230,6 +232,7 @@ export default function PersonalInformation({
             ariaLabel={"Age"}
             tooltipContent={tooltipContentDefault}
             value={userData.age || ""}
+            required
           >
             <div aria-hidden={true}>{userData.age || "-"}</div>
           </LabelWithInfo>
@@ -245,6 +248,7 @@ export default function PersonalInformation({
             ariaLabel={"SSN"}
             tooltipContent={tooltipContentDefault}
             value={formatSocialSecurity(String(userData.ssn))}
+            required
           >
             <div aria-hidden={true}>{userData.ssn}</div>
           </LabelWithInfo>
@@ -378,6 +382,7 @@ export default function PersonalInformation({
                       size="small"
                       variant="filled"
                       helperText={error ? error.message : null}
+                      required
                     />
                   </>
                 );
@@ -472,6 +477,7 @@ export default function PersonalInformation({
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : "Month, date, year"}
+                    required
                   />
                 );
               }}
@@ -501,6 +507,7 @@ export default function PersonalInformation({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
+                    required
                   />
                 );
               }}
@@ -560,6 +567,7 @@ export default function PersonalInformation({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
+                    required
                   />
                 );
               }}

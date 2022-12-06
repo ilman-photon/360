@@ -166,7 +166,7 @@ defineFeature(feature, (test) => {
       fireEvent.click(confirm);
       await waitFor(() => container.getByText("mfaTitle"));
 
-      const mfaField = container.getByLabelText("mfaLabel");
+      const mfaField = container.getByLabelText(/mfaLabel/i);
       fireEvent.change(mfaField, { target: { value: "123456" } });
 
       const success = {
@@ -305,7 +305,7 @@ defineFeature(feature, (test) => {
       fireEvent.click(confirm);
       await waitFor(() => container.getByText("mfaTitle"));
 
-      const mfaField = container.getByLabelText("mfaLabel");
+      const mfaField = container.getByLabelText(/mfaLabel/i);
       fireEvent.change(mfaField, { target: { value: "660927" } });
 
       const success = {
@@ -439,7 +439,7 @@ defineFeature(feature, (test) => {
       fireEvent.click(confirm);
       await waitFor(() => container.getByText("mfaTitle"));
 
-      const mfaField = container.getByLabelText("mfaLabel");
+      const mfaField = container.getByLabelText(/mfaLabel/i);
       fireEvent.change(mfaField, { target: { value: "660927" } });
 
       const success = {
@@ -581,7 +581,7 @@ defineFeature(feature, (test) => {
       fireEvent.click(confirm);
       await waitFor(() => container.getByText("mfaTitle"));
 
-      const mfaField = container.getByLabelText("mfaLabel");
+      const mfaField = container.getByLabelText(/mfaLabel/i);
       fireEvent.change(mfaField, { target: { value: "660927" } });
 
       const success = {
@@ -772,7 +772,7 @@ defineFeature(feature, (test) => {
       fireEvent.click(confirm);
       await waitFor(() => container.getByText("mfaTitle"));
 
-      const mfaField = container.getByLabelText("mfaLabel");
+      const mfaField = container.getByLabelText(/mfaLabel/i);
       fireEvent.change(mfaField, { target: { value: "660927" } });
 
       const success = {

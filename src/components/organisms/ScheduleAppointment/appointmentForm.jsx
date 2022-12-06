@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { styles } from "./style";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { StyledInput } from "../../atoms/Input/input";
 import { Regex } from "../../../utils/regex";
@@ -72,6 +72,31 @@ export default function AppointmentForm({
     defaultValues: patientData,
   });
   const [open, setOpen] = React.useState(false);
+
+  const firstNameRef = React.useRef(null);
+  const lastNameRef = React.useRef(null);
+  const emailRef = React.useRef(null);
+  const mobileRef = React.useRef(null);
+  const dobRef = React.useRef(null);
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
+  React.useEffect(() => {
+    console.log(errors);
+    if (errors.firstName) {
+      firstNameRef.current?.focus();
+    } else if (errors.lastName) {
+      lastNameRef.current?.focus();
+    } else if (errors.email) {
+      emailRef.current?.focus();
+    } else if (errors.mobile) {
+      mobileRef.current?.focus();
+    } else if (errors.dob) {
+      dobRef.current?.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   const router = useRouter();
 
@@ -279,7 +304,7 @@ export default function AppointmentForm({
         ) : null}
       </Box>
 
-      <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} style={styles.form} noValidate>
         <Controller
           name="firstName"
           control={control}
@@ -305,6 +330,8 @@ export default function AppointmentForm({
                     ? { m: 1, width: "70%" }
                     : { m: 1, pr: 1, width: "100%" }
                 }
+                required
+                inputRef={firstNameRef}
               />
             );
           }}
@@ -344,6 +371,8 @@ export default function AppointmentForm({
                     ? { m: 1, width: "70%" }
                     : { m: 1, pr: 1, width: "100%" }
                 }
+                required
+                inputRef={lastNameRef}
               />
             );
           }}
@@ -382,6 +411,8 @@ export default function AppointmentForm({
                     ? { m: 1, width: "70%" }
                     : { m: 1, pr: 1, width: "100%" }
                 }
+                required
+                inputRef={emailRef}
               />
             );
           }}
@@ -421,6 +452,8 @@ export default function AppointmentForm({
                     ? { m: 1, width: "70%" }
                     : { m: 1, pr: 1, width: "100%" }
                 }
+                required
+                inputRef={mobileRef}
               />
             );
           }}
@@ -485,6 +518,9 @@ export default function AppointmentForm({
                   value={value}
                   onChange={onChange}
                   error={!!error}
+                  sx={{ m: 1 }}
+                  required
+                  inputRef={dobRef}
                   helperText={error ? error.message : null}
                 />
               );
