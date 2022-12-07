@@ -73,6 +73,7 @@ export default function ModalConfirmContent({
   },
   onAddToCalendarClicked,
   isPage = false,
+  isModalRegistered = false,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const { REGISTER_TEST_ID } = constants.TEST_ID;
@@ -323,7 +324,22 @@ export default function ModalConfirmContent({
           </CardContent>
         </Card>
 
-        {!isLoggedIn ? (
+        {isLoggedIn || isModalRegistered ? (
+          <div className={styles.okButtonRow}>
+            <Button
+              type="submit"
+              variant="contained"
+              onClick={handleClose}
+              className={styles.continueText}
+              sx={{
+                width: "131px",
+                background: "#007E8F",
+              }}
+            >
+              Ok
+            </Button>
+          </div>
+        ) : (
           <div className={styles.bottomParagraph}>
             <Typography
               variant="caption"
@@ -343,21 +359,6 @@ export default function ModalConfirmContent({
                 <a className={styles.loginLink}>Sign in</a>
               </Link>
             </Typography>
-          </div>
-        ) : (
-          <div className={styles.okButtonRow}>
-            <Button
-              type="submit"
-              variant="contained"
-              onClick={handleClose}
-              className={styles.continueText}
-              sx={{
-                width: "131px",
-                background: "#007E8F",
-              }}
-            >
-              Ok
-            </Button>
           </div>
         )}
       </DialogContent>
