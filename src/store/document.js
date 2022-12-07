@@ -15,7 +15,7 @@ export const fetchDocuments = createAsyncThunk(
     let url;
     let categoryId;
     if (category === "test-lab-result") {
-      url = `/ecp/testResult/${patientId}`;
+      url = `/ecp/testResult/${"3b38ebd3-43f1-438e-b101-ba38f01350f0"}`;
     } else {
       switch (category) {
         case "insurance-documents":
