@@ -60,6 +60,7 @@ function SessionExpiredModal() {
     if ((open && remaining <= 0) || (display < 0 && remaining < 59940)) {
       setIsExpired(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [remaining, open]);
 
   const onClickStayLoggedIn = () => {

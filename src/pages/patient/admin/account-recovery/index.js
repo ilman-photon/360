@@ -178,6 +178,7 @@ export default function AccountRecovery() {
 
   useEffect(() => {
     setPriorityOptions(buildPriorityOptions(activeModalData));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeModalData]);
 
   useEffect(() => {
@@ -190,6 +191,7 @@ export default function AccountRecovery() {
       else if (rowData.preferredCommunication === "both")
         setValue("communication", "both");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [priorityOptions]);
 
   const { handleSubmit, control, setValue } = useForm({
