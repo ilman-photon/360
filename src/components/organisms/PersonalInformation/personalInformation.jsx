@@ -410,6 +410,7 @@ export default function PersonalInformation({
                     label="Preferred Name"
                     inputProps={{
                       "aria-label": "Preferred Name field",
+                      maxLength: 50,
                     }}
                     value={value}
                     onChange={onChange}

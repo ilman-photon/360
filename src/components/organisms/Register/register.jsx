@@ -409,6 +409,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   aria-label={"Email required text field"}
                   inputProps={{
                     "aria-label": "Email - Required",
+                    maxLength: 50,
                   }}
                   value={value}
                   data-testid={REGISTER_TEST_ID.email}
@@ -493,6 +494,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   label="Password"
                   inputProps={{
                     "aria-label": `Password - required -`,
+                    maxLength: 50,
                   }}
                   data-testid={REGISTER_TEST_ID.password}
                   value={value}

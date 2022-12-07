@@ -417,6 +417,7 @@ export default function ContactInformation({
                     inputProps={{
                       "aria-label": "Email ID field",
                       "data-testid": "email-input-test",
+                      maxLength: 50,
                     }}
                     value={value}
                     onChange={onChange}

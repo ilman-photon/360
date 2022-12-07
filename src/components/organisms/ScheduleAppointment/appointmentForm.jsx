@@ -396,6 +396,9 @@ export default function AppointmentForm({
                 type="text"
                 id="email"
                 label="Email *"
+                inputProps={{
+                  maxLength: 50,
+                }}
                 value={value}
                 data-testid={SCHEDULE_GUEST_TEST_ID.email}
                 onChange={onChange}
@@ -604,6 +607,7 @@ export default function AppointmentForm({
                       label={t("passwordLabel")}
                       inputProps={{
                         "aria-label": `Password - optional -`,
+                        maxLength: 50,
                       }}
                       type={constants.INPUT_PASSWORD}
                       size={constants.SMALL}
