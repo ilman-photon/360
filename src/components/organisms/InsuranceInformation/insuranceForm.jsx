@@ -239,6 +239,7 @@ export default function InsuranceForm({
                       value={value}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      maxLength={50}
                       required
                       inputRef={planRef}
                     />
