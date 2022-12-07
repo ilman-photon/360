@@ -22,18 +22,48 @@ import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
 import CommonCard, { onRenderButtonView } from "./commonCard";
 import { dataPayMyBill } from "../../../pages/api/dummy/payMyBill/dataDummy";
+import { Api } from "../../../pages/api/api";
 
 export default function PayMyBillCard({}) {
   const [payMyBillData, setPayMyBillData] = React.useState({});
+  const [patientCredit, setPatientCredit] = React.useState({});
   const isDesktop = useMediaQuery("(min-width: 700px)");
 
+  // const rows = [];
   const rows = dataPayMyBill.entities;
 
+  const getPatientAccountBalance = async (data) => {
+    const api = new Api();
+    api
+      .getPatientAccountBalance()
+      .then((responses) => {
+        setPatientCredit(responses);
+      })
+      .catch(() => {
+        setPatientCredit({});
+      });
+  };
+
+  const getInvoiceWithPatientDetails = async (data) => {
+    const api = new Api();
+    api
+      .getInvoiceWithPatientDetails()
+      .then((responses) => {
+        if (responses && responses.entities?.length > 0) {
+          setPayMyBillData(responses.entities[0]);
+        } else {
+          setPayMyBillData({});
+        }
+      })
+      .catch(() => {
+        setPayMyBillData({});
+      });
+  };
+
   useEffect(() => {
-    if (rows && rows.length > 0) {
-      setPayMyBillData(rows[0]);
-    }
-  }, [rows]);
+    // getPatientAccountBalance()
+    // getInvoiceWithPatientDetails()
+  }, []);
 
   function renderHighlightBox(title, value) {
     return (
@@ -68,10 +98,6 @@ export default function PayMyBillCard({}) {
           },
         }}
       >
-        <Stack direction={"row"} sx={{ marginBottom: "16px" }}>
-          {renderHighlightBox("Account Credit Balance", "$450.50")}
-          {renderHighlightBox("Patient Due", "$450.50")}
-        </Stack>
         {isDesktop ? renderDekstopView() : renderMobileView()}
       </Box>
     );
@@ -102,76 +128,95 @@ export default function PayMyBillCard({}) {
     );
   }
 
+  function renderTotalBill() {
+    return (
+      <Stack direction={"row"} sx={{ marginBottom: "16px" }}>
+        {renderHighlightBox(
+          "Account Credit Balance",
+          patientCredit?.totalCreditBalance
+        )}
+        {renderHighlightBox("Patient Due", patientCredit?.totalDueAmount)}
+      </Stack>
+    );
+  }
+
   function renderDekstopView() {
     const tableHeader = ["Invoice #", "DOS", "Provider", "Balance", ""];
     return (
       <>
-        {payMyBillData ? (
-          <TableContainer
-            component={Paper}
-            sx={{ borderRadius: 0, marginBottom: "100px" }}
-          >
-            <Table
-              sx={{
-                minWidth: "90%",
-                fontSize: "14px",
-                ".MuiTableCell-body": {
-                  fontFamily: "Roboto",
-                  fontSize: "14px",
-                  fontWeight: "400",
-                },
-                ".MuiTableCell-customHead": {
-                  fontFamily: "Roboto",
-                  fontSize: "14px",
-                  fontWeight: "500",
-                  backgroundColor: "#F4F4F4",
-                },
-              }}
-              aria-label="my pay bill record"
+        {payMyBillData && Object.keys(payMyBillData).length > 0 ? (
+          <>
+            {renderTotalBill()}
+            <TableContainer
+              component={Paper}
+              sx={{ borderRadius: 0, marginBottom: "100px" }}
             >
-              <TableRow>
-                {tableHeader.map((header, idx) => (
-                  <StyledTableCell
-                    key={`mybill-${idx}-tabel-header`}
-                    tabIndex={0}
-                    className="MuiTableCell-customHead"
-                    aria-label={header === "DOS" ? "Date of Service" : header}
-                  >
-                    {header}
-                  </StyledTableCell>
-                ))}
-              </TableRow>
-              <TableBody>
-                <TableRow
-                  key={`mybill-0-tabel-body`}
-                  className={styles.tableHealthRecord}
-                  sx={{
-                    "&:last-child td, &:last-child th": { border: 0 },
-                  }}
-                >
-                  <TableCell scope="row" tabIndex={0} sx={{ maxWidth: "80px" }}>
-                    {payMyBillData._invoiceNumber}
-                  </TableCell>
-                  <TableCell tabIndex={0}>
-                    {new moment(payMyBillData.serviceDate).format("MM/DD/YY")}
-                  </TableCell>
-                  <TableCell tabIndex={0} sx={{ maxWidth: "80px" }}>{`${
-                    payMyBillData.provider?.designation || ""
-                  } ${payMyBillData.provider?.firstName} ${
-                    payMyBillData.provider?.lastName
-                  }`}</TableCell>
-                  <TableCell tabIndex={0}></TableCell>
-                  <TableCell tabIndex={0}>
-                    {onRenderButtonView(() => {}, isDesktop)}
-                  </TableCell>
+              <Table
+                sx={{
+                  minWidth: "90%",
+                  fontSize: "14px",
+                  ".MuiTableCell-body": {
+                    fontFamily: "Roboto",
+                    fontSize: "14px",
+                    fontWeight: "400",
+                  },
+                  ".MuiTableCell-customHead": {
+                    fontFamily: "Roboto",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    backgroundColor: "#F4F4F4",
+                  },
+                }}
+                aria-label="my pay bill record"
+              >
+                <TableRow>
+                  {tableHeader.map((header, idx) => (
+                    <StyledTableCell
+                      key={`mybill-${idx}-tabel-header`}
+                      tabIndex={0}
+                      className="MuiTableCell-customHead"
+                      aria-label={header === "DOS" ? "Date of Service" : header}
+                    >
+                      {header}
+                    </StyledTableCell>
+                  ))}
                 </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+                <TableBody>
+                  <TableRow
+                    key={`mybill-0-tabel-body`}
+                    className={styles.tableHealthRecord}
+                    sx={{
+                      "&:last-child td, &:last-child th": { border: 0 },
+                    }}
+                  >
+                    <TableCell
+                      scope="row"
+                      tabIndex={0}
+                      sx={{ maxWidth: "80px", wordBreak: "break-word" }}
+                    >
+                      {payMyBillData._invoiceNumber}
+                    </TableCell>
+                    <TableCell tabIndex={0}>
+                      {new moment(payMyBillData.serviceDate).format("MM/DD/YY")}
+                    </TableCell>
+                    <TableCell tabIndex={0} sx={{ maxWidth: "80px" }}>{`${
+                      payMyBillData.provider?.designation || ""
+                    } ${payMyBillData.provider?.firstName} ${
+                      payMyBillData.provider?.lastName
+                    }`}</TableCell>
+                    <TableCell tabIndex={0}></TableCell>
+                    <TableCell tabIndex={0}>
+                      {onRenderButtonView(() => {}, isDesktop)}
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+            {renderMakePaymentButton()}
+          </>
         ) : (
           <TableEmpty text={"You do not have any invoices."} />
         )}
-        {renderMakePaymentButton()}
       </>
     );
   }
@@ -179,62 +224,79 @@ export default function PayMyBillCard({}) {
   function renderMobileView() {
     return (
       <>
-        <Stack
-          key={`health-stack-list`}
-          className={styles.stackContainer}
-          sx={{ paddingBottom: "16px !important", margin: "0px !important" }}
-        >
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            className={styles.stackContent}
-          >
-            <Typography className={styles.titleStyle}>Invoice #</Typography>
-            <Typography className={styles.valueStyle}></Typography>
-          </Stack>
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            className={styles.stackContent}
-          >
-            <Stack direction={"row"} sx={{ alignItems: "center" }}>
-              <Typography className={styles.titleStyle}>DOS</Typography>
-            </Stack>
-            <Typography className={styles.valueStyle}>
-              {new moment(payMyBillData.serviceDate).format("MM/DD/YY")}
-            </Typography>
-          </Stack>
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            className={styles.stackContent}
-          >
-            <Stack direction={"row"} sx={{ alignItems: "center" }}>
-              <Typography className={styles.titleStyle}>Provider</Typography>
-            </Stack>
-            <Typography
-              className={styles.valueStyle}
-              sx={{ width: "50%", textAlign: "end" }}
+        {payMyBillData && Object.keys(payMyBillData).length > 0 ? (
+          <>
+            {renderTotalBill()}
+            <Stack
+              key={`health-stack-list`}
+              className={styles.stackContainer}
+              sx={{
+                paddingBottom: "16px !important",
+                margin: "0px !important",
+              }}
             >
-              {`${payMyBillData.provider?.designation || ""} ${
-                payMyBillData.provider?.firstName
-              } ${payMyBillData.provider?.lastName}`}
-            </Typography>
-          </Stack>
-          <Stack
-            direction={"row"}
-            justifyContent={"space-between"}
-            className={styles.stackContent}
-          >
-            <Stack direction={"row"} sx={{ alignItems: "center" }}>
-              <Typography className={styles.titleStyle}>Balance</Typography>
+              <Stack
+                direction={"row"}
+                justifyContent={"space-between"}
+                className={styles.stackContent}
+              >
+                <Typography className={styles.titleStyle}>Invoice #</Typography>
+                <Typography className={styles.valueStyle}>
+                  {payMyBillData._invoiceNumber}
+                </Typography>
+              </Stack>
+              <Stack
+                direction={"row"}
+                justifyContent={"space-between"}
+                className={styles.stackContent}
+              >
+                <Stack direction={"row"} sx={{ alignItems: "center" }}>
+                  <Typography className={styles.titleStyle}>DOS</Typography>
+                </Stack>
+                <Typography className={styles.valueStyle}>
+                  {new moment(payMyBillData.serviceDate).format("MM/DD/YY")}
+                </Typography>
+              </Stack>
+              <Stack
+                direction={"row"}
+                justifyContent={"space-between"}
+                className={styles.stackContent}
+              >
+                <Stack direction={"row"} sx={{ alignItems: "center" }}>
+                  <Typography className={styles.titleStyle}>
+                    Provider
+                  </Typography>
+                </Stack>
+                <Typography
+                  className={styles.valueStyle}
+                  sx={{ width: "50%", textAlign: "end" }}
+                >
+                  {`${payMyBillData.provider?.designation || ""} ${
+                    payMyBillData.provider?.firstName
+                  } ${payMyBillData.provider?.lastName}`}
+                </Typography>
+              </Stack>
+              <Stack
+                direction={"row"}
+                justifyContent={"space-between"}
+                className={styles.stackContent}
+              >
+                <Stack direction={"row"} sx={{ alignItems: "center" }}>
+                  <Typography className={styles.titleStyle}>Balance</Typography>
+                </Stack>
+                <Typography className={styles.valueStyle}></Typography>
+              </Stack>
+              <Divider sx={{ marginBottom: "18px" }} />
+              {onRenderButtonView(() => {}, isDesktop)}
             </Stack>
-            <Typography className={styles.valueStyle}></Typography>
-          </Stack>
-          <Divider sx={{ marginBottom: "18px" }} />
-          {onRenderButtonView(() => {}, isDesktop)}
-        </Stack>
-        {renderMakePaymentButton()}
+            {renderMakePaymentButton()}
+          </>
+        ) : (
+          <TableEmpty
+            text={"You do not have any invoices."}
+            sxContainer={{ textAlign: "center" }}
+          />
+        )}
       </>
     );
   }

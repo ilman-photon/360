@@ -492,4 +492,16 @@ export class Api {
     const url = `/ecp/accountRecovery/unlockAccountByAdmin/${query}`;
     return this.getResponse(url, {}, "get");
   }
+
+  getPatientAccountBalance() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const url = `/ecp/patientbillingsystem/getPatientCredits/${userData?.patientId}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getInvoiceWithPatientDetails() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const url = `/ecp/patientbillingsystem/getInvoiceWithPatientDetails?search.query=((patient.uid=eq=${userData?.patientId}))`;
+    return this.getResponse(url, {}, "get");
+  }
 }

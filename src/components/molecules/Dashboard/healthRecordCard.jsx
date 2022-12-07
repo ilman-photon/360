@@ -18,6 +18,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  fetchDocuments,
   fetchMedicalRecordDocuments,
   resetDocuments,
 } from "../../../store/document";
@@ -26,6 +27,27 @@ import { renderCTAIcon, StyledTableCell } from "./prescriptions";
 import moment from "moment";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import CommonCard, { onRenderButtonView } from "./commonCard";
+
+export function parseHealthRecordData(documentList, rows) {
+  let healthRecordTemp = [];
+  if (documentList && documentList.length > 0) {
+    for (const healthItem of rows) {
+      const currentDoc = documentList.find(
+        (item) => item.encounterNo === healthItem.encounter?.encounterNo
+      );
+      if (currentDoc) {
+        healthRecordTemp.push({
+          ...healthItem,
+          digital_assets: currentDoc.digital_assets,
+        });
+      }
+    }
+  } else {
+    healthRecordTemp = rows;
+  }
+
+  return healthRecordTemp;
+}
 
 export default function HealthRecordCard({}) {
   const [healthRecordData, setHealthRecordData] = React.useState({});
@@ -36,6 +58,10 @@ export default function HealthRecordCard({}) {
 
   const rows = useSelector((state) => {
     return state.document.healthRecordList;
+  });
+
+  const documentList = useSelector((state) => {
+    return state.document.documentList;
   });
 
   const handleAssetDownload = (id, print, newTab = true) => {
@@ -55,15 +81,28 @@ export default function HealthRecordCard({}) {
           patientId: userStorageData.patientId,
         })
       );
+      dispatch(
+        fetchDocuments({
+          patientId: userStorageData?.patientId,
+          category: "health-record",
+        })
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
+    setHealthRecordData(parseHealthRecordData(documentList, rows));
+  }, [documentList, rows]);
+
+  useEffect(() => {
     if (rows && rows.length > 0) {
-      setHealthRecordData(rows[0]);
+      const healthRecordTemp = parseHealthRecordData(documentList, rows);
+      if (healthRecordTemp && healthRecordTemp.length > 0) {
+        setHealthRecordData(healthRecordTemp[0]);
+      }
     }
-  }, [rows]);
+  }, [documentList, rows]);
 
   function onRenderCTA() {
     return renderCTAIcon(
@@ -90,7 +129,7 @@ export default function HealthRecordCard({}) {
           padding: "16px",
         }}
       >
-        {healthRecordData ? (
+        {healthRecordData && Object.keys(healthRecordData).length > 0 ? (
           <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
             <Table
               sx={{
@@ -144,7 +183,7 @@ export default function HealthRecordCard({}) {
             </Table>
           </TableContainer>
         ) : (
-          <TableEmpty text={"There are no health records available."} />
+          <TableEmpty text={"You do not have any health record."} />
         )}
       </Box>
     );
@@ -152,40 +191,51 @@ export default function HealthRecordCard({}) {
 
   function renderMobileView() {
     return (
-      <Stack key={`health-stack-list`} className={styles.stackContainer}>
-        <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          className={styles.stackContent}
-        >
-          <Typography className={styles.titleStyle}>Health Record</Typography>
-          <Typography className={styles.valueName}>
-            {healthRecordData.name}
-          </Typography>
-        </Stack>
-        <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          className={styles.stackContent}
-        >
-          <Typography className={styles.titleStyle}>Last Update</Typography>
-          <Typography className={styles.valueStyle}>
-            {new moment(healthRecordData._created).format("MM/DD/YYYY")}
-          </Typography>
-        </Stack>
-        <Divider />
-        <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          className={styles.stackContent}
-          sx={{
-            marginTop: "24px",
-          }}
-        >
-          {onRenderCTA()}
-          {onRenderButtonView(() => {}, isDesktop)}
-        </Stack>
-      </Stack>
+      <>
+        {healthRecordData && Object.keys(healthRecordData).length > 0 ? (
+          <Stack key={`health-stack-list`} className={styles.stackContainer}>
+            <Stack
+              direction={"row"}
+              justifyContent={"space-between"}
+              className={styles.stackContent}
+            >
+              <Typography className={styles.titleStyle}>
+                Health Record
+              </Typography>
+              <Typography className={styles.valueName}>
+                {healthRecordData.name}
+              </Typography>
+            </Stack>
+            <Stack
+              direction={"row"}
+              justifyContent={"space-between"}
+              className={styles.stackContent}
+            >
+              <Typography className={styles.titleStyle}>Last Update</Typography>
+              <Typography className={styles.valueStyle}>
+                {new moment(healthRecordData._created).format("MM/DD/YYYY")}
+              </Typography>
+            </Stack>
+            <Divider />
+            <Stack
+              direction={"row"}
+              justifyContent={"space-between"}
+              className={styles.stackContent}
+              sx={{
+                marginTop: "24px",
+              }}
+            >
+              {onRenderCTA()}
+              {onRenderButtonView(() => {}, isDesktop)}
+            </Stack>
+          </Stack>
+        ) : (
+          <TableEmpty
+            text={"You do not have any health record."}
+            sxContainer={{ m: "16px", textAlign: "center" }}
+          />
+        )}
+      </>
     );
   }
 

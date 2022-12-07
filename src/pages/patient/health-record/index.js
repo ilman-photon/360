@@ -167,23 +167,7 @@ export default function HealthRecord() {
   });
 
   useEffect(() => {
-    let healthRecordTemp = [];
-    if (documentList && documentList.length > 0) {
-      for (const healthItem of rows) {
-        const currentDoc = documentList.find(
-          (item) => item.encounterNo === healthItem.encounter?.encounterNo
-        );
-        if (currentDoc) {
-          healthRecordTemp.push({
-            ...healthItem,
-            digital_assets: currentDoc.digital_assets,
-          });
-        }
-      }
-    } else {
-      healthRecordTemp = rows;
-    }
-    setHealthRecordDocument(healthRecordTemp);
+    setHealthRecordDocument(parseHealthRecordData(documentList, rows));
   }, [documentList, rows]);
 
   const noResultText = () => {
