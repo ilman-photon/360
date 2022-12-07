@@ -27,91 +27,10 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { colors } from "../../../styles/theme";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { menus } from "../AdminNavbar/adminNavbar";
 
 export default function MobileMenu({
-  menu = [
-    {
-      label: "Dashboard",
-      href: "/patient",
-      icon: <AutoAwesomeMosaicOutlinedIcon sx={{ fill: colors.darkGreen }} />,
-    },
-    {
-      label: "Appointments",
-      icon: <CalendarTodayOutlinedIcon sx={{ fill: colors.darkGreen }} />,
-      submenu: [
-        {
-          label: "Find a Doctor",
-          href: "/patient/search-doctor",
-        },
-        {
-          label: "Upcoming Appointment",
-          href: "/patient/appointments",
-        },
-      ],
-    },
-    {
-      label: "Health Chart",
-      submenu: [
-        {
-          label: "Care Plan",
-          href: "/patient/account/medical-record?type=care-plan-overview",
-          icon: <CarePlanIcon sx={{ fill: colors.darkGreen }} />,
-        },
-        {
-          label: "Prescriptions",
-          href: "/patient/prescription",
-          icon: <PrescriptionIcon sx={{ fill: colors.darkGreen }} />,
-        },
-        {
-          label: "Test & Lab Results",
-          href: "/patient/account/medical-record?type=test-lab-result",
-          icon: <TestLabIcon sx={{ fill: colors.darkGreen }} />,
-        },
-      ],
-      icon: <CreateNewFolderOutlinedIcon sx={{ fill: colors.darkGreen }} />,
-    },
-    {
-      label: "My Care Team",
-      href: "/patient/my-care-team",
-      icon: <AutoAwesomeMosaicOutlinedIcon sx={{ fill: colors.darkGreen }} />,
-    },
-    {
-      label: "Pay My Bill",
-      href: "/patient",
-      icon: <PaymentOutlinedIcon sx={{ fill: colors.darkGreen }} />,
-    },
-    {
-      label: "Messaging",
-      href: "/patient/messaging",
-      icon: <MessageOutlinedIcon sx={{ fill: colors.darkGreen }} />,
-    },
-    {
-      label: "Documents",
-      submenu: [
-        {
-          label: "Intake Forms",
-          href: "/patient/account/documents?type=intake-forms",
-          icon: <IntakeFormsIcon sx={{ fill: colors.darkGreen }} />,
-        },
-        {
-          label: "Health Record",
-          href: "/patient/health-record",
-          icon: (
-            <Box sx={{ lineHeight: "15px" }}>
-              <Image
-                alt=""
-                src={"/iconCarePlanRecord.png"}
-                width={24}
-                height={24}
-                style={{ cursor: "pointer" }}
-              />
-            </Box>
-          ),
-        },
-      ],
-      icon: <DescriptionOutlinedIcon sx={{ fill: colors.darkGreen }} />,
-    },
-  ],
+  isAdmin = false,
   open = false,
   onClose = () => {
     //This is intentional
@@ -141,6 +60,96 @@ export default function MobileMenu({
       fontSize: "28px",
     },
   };
+
+  const menu = !isAdmin
+    ? [
+        {
+          label: "Dashboard",
+          href: "/patient",
+          icon: (
+            <AutoAwesomeMosaicOutlinedIcon sx={{ fill: colors.darkGreen }} />
+          ),
+        },
+        {
+          label: "Appointments",
+          icon: <CalendarTodayOutlinedIcon sx={{ fill: colors.darkGreen }} />,
+          submenu: [
+            {
+              label: "Find a Doctor",
+              href: "/patient/search-doctor",
+            },
+            {
+              label: "Upcoming Appointment",
+              href: "/patient/appointments",
+            },
+          ],
+        },
+        {
+          label: "Health Chart",
+          submenu: [
+            {
+              label: "Care Plan",
+              href: "/patient/account/medical-record?type=care-plan-overview",
+              icon: <CarePlanIcon sx={{ fill: colors.darkGreen }} />,
+            },
+            {
+              label: "Prescriptions",
+              href: "/patient/prescription",
+              icon: <PrescriptionIcon sx={{ fill: colors.darkGreen }} />,
+            },
+            {
+              label: "Test & Lab Results",
+              href: "/patient/account/medical-record?type=test-lab-result",
+              icon: <TestLabIcon sx={{ fill: colors.darkGreen }} />,
+            },
+          ],
+          icon: <CreateNewFolderOutlinedIcon sx={{ fill: colors.darkGreen }} />,
+        },
+        {
+          label: "My Care Team",
+          href: "/patient/my-care-team",
+          icon: (
+            <AutoAwesomeMosaicOutlinedIcon sx={{ fill: colors.darkGreen }} />
+          ),
+        },
+        {
+          label: "Pay My Bill",
+          href: "/patient",
+          icon: <PaymentOutlinedIcon sx={{ fill: colors.darkGreen }} />,
+        },
+        {
+          label: "Messaging",
+          href: "/patient/messaging",
+          icon: <MessageOutlinedIcon sx={{ fill: colors.darkGreen }} />,
+        },
+        {
+          label: "Documents",
+          submenu: [
+            {
+              label: "Intake Forms",
+              href: "/patient/account/documents?type=intake-forms",
+              icon: <IntakeFormsIcon sx={{ fill: colors.darkGreen }} />,
+            },
+            {
+              label: "Health Record",
+              href: "/patient/health-record",
+              icon: (
+                <Box sx={{ lineHeight: "15px" }}>
+                  <Image
+                    alt=""
+                    src={"/iconCarePlanRecord.png"}
+                    width={24}
+                    height={24}
+                    style={{ cursor: "pointer" }}
+                  />
+                </Box>
+              ),
+            },
+          ],
+          icon: <DescriptionOutlinedIcon sx={{ fill: colors.darkGreen }} />,
+        },
+      ]
+    : menus;
 
   const renderMenuList = () => (
     <Box

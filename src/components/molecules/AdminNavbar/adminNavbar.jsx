@@ -15,28 +15,28 @@ import React from "react";
 
 const iconIntakeForms = "/iconintakeFoms.png";
 
-const AdminNavbar = () => {
-  const menus = [
-    {
-      href: "/patient/admin/locked-accounts",
-      label: "Locked Accounts",
-    },
-    {
-      href: "/patient/admin/account-recovery",
-      label: "Account Recovery",
-    },
-    {
-      label: "Documents",
-      children: [
-        {
-          icon: iconIntakeForms,
-          href: "/patient/account/documents?type=intake-forms",
-          label: "Intake Forms",
-        },
-      ],
-    },
-  ];
+export const menus = [
+  {
+    href: "/patient/admin/locked-accounts",
+    label: "Locked Accounts",
+  },
+  {
+    href: "/patient/admin/account-recovery",
+    label: "Account Recovery",
+  },
+  {
+    label: "Documents",
+    submenu: [
+      {
+        icon: iconIntakeForms,
+        href: "/patient/account/documents?type=intake-forms",
+        label: "Intake Forms",
+      },
+    ],
+  },
+];
 
+const AdminNavbar = () => {
   const [anchorChildren, setAnchorChildren] = React.useState(null);
 
   const router = useRouter();
@@ -105,7 +105,7 @@ const AdminNavbar = () => {
             }}
           >
             {menus.map((menu, menuIdx) =>
-              menu.children ? (
+              menu.submenu ? (
                 <div key={menuIdx}>
                   <Button
                     href={menu.href}
@@ -150,7 +150,7 @@ const AdminNavbar = () => {
                     open={Boolean(anchorChildren)}
                     onClose={() => setAnchorChildren(null)}
                   >
-                    {menu.children.map((doc, docIdx) =>
+                    {menu.submenu.map((doc, docIdx) =>
                       MenuItemLabel(doc, docIdx)
                     )}
                   </Menu>
