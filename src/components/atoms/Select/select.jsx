@@ -25,7 +25,7 @@ const CustomSelect = (props) => {
           },
         }}
       >
-        {props.label}
+        {props.label} {props.required && <span>*</span>}
       </InputLabel>
       <Select
         label={props.label}
@@ -35,6 +35,11 @@ const CustomSelect = (props) => {
             background: "transparent",
             border: "solid 1px #e2e2e1",
             borderRadius: "4px",
+            ":not(.Mui-disabled)": {
+              "&:before": {
+                borderBottom: "none",
+              },
+            },
           },
           "::before": {
             borderBottom: "none",

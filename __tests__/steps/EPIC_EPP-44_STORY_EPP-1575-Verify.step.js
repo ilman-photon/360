@@ -1,4 +1,10 @@
-import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  cleanup,
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
@@ -44,8 +50,8 @@ defineFeature(feature, (test) => {
   function createMatchMedia(width) {
     return (query) => ({
       matches: mediaQuery.match(query, { width }),
-      addListener: () => { },
-      removeListener: () => { },
+      addListener: () => {},
+      removeListener: () => {},
     });
   }
 
@@ -159,16 +165,16 @@ defineFeature(feature, (test) => {
   };
 
   const provideDetailsValid = () => {
-    const field1 = container.getByLabelText("First Name");
+    const field1 = container.getAllByLabelText(/First Name/i)[0];
     fireEvent.change(field1, { target: { value: "1" } });
 
-    const field2 = container.getByLabelText("Last Name");
+    const field2 = container.getAllByLabelText(/Last Name/i)[0];
     fireEvent.change(field2, { target: { value: "2" } });
 
-    const field3 = container.getByLabelText("Mobile Number");
+    const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
     fireEvent.change(field3, { target: { value: "3" } });
 
-    const field4 = container.getByRole("textbox", { name: "Email" });
+    const field4 = container.getByLabelText("Email");
     fireEvent.change(field4, { target: { value: "4" } });
   };
 
@@ -281,7 +287,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user redirects to the login screen", async () => {
-      container = await renderLogin()
+      container = await renderLogin();
     });
 
     and("user clicks on the continue as guest", () => {
@@ -295,27 +301,27 @@ defineFeature(feature, (test) => {
     and(
       "user clicks on the Already have an appointment? Sync your appointment information button",
       async () => {
-        cleanup()
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        cleanup();
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     and("user enter the Email", async () => {
-      cleanup()
-      container = await renderForgotPassword()
-      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
+      cleanup();
+      container = await renderForgotPassword();
+      expect(
+        container.getByLabelText(/usernamePlaceHolder/i)
+      ).toBeInTheDocument();
     });
 
     and("user clicks the 'Continue' button.", async () => {
-      container.rerender(
-        <ForgotPassword isAppointment={true} />
-      );
+      container.rerender(<ForgotPassword isAppointment={true} />);
       expect(
-        await waitFor(() =>
-          container.getByText(/syncButton/i)
-        )
+        await waitFor(() => container.getByText(/syncButton/i))
       ).toBeInTheDocument();
       const syncButton = container.getByText(/syncButton/i);
       fireEvent.click(syncButton);
@@ -409,7 +415,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user redirects to the login screen", async () => {
-      container = await renderLogin()
+      container = await renderLogin();
     });
 
     and("user clicks on the continue as guest", () => {
@@ -423,27 +429,27 @@ defineFeature(feature, (test) => {
     and(
       "user clicks on the Already have an appointment? Sync your appointment information button",
       async () => {
-        cleanup()
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        cleanup();
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     and("user enter the Email", async () => {
-      cleanup()
-      container = await renderForgotPassword()
-      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
+      cleanup();
+      container = await renderForgotPassword();
+      expect(
+        container.getByLabelText(/usernamePlaceHolder/i)
+      ).toBeInTheDocument();
     });
 
     and("user clicks the 'Continue' button.", async () => {
-      container.rerender(
-        <ForgotPassword isAppointment={true} />
-      );
+      container.rerender(<ForgotPassword isAppointment={true} />);
       expect(
-        await waitFor(() =>
-          container.getByText(/syncButton/i)
-        )
+        await waitFor(() => container.getByText(/syncButton/i))
       ).toBeInTheDocument();
       const syncButton = container.getByText(/syncButton/i);
       fireEvent.click(syncButton);
@@ -537,7 +543,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user redirects to the login screen", async () => {
-      container = await renderLogin()
+      container = await renderLogin();
     });
 
     and("user clicks on the continue as guest", () => {
@@ -551,27 +557,27 @@ defineFeature(feature, (test) => {
     and(
       "user clicks on the Already have an appointment? Sync your appointment information button",
       async () => {
-        cleanup()
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        cleanup();
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     and("user enter the Email", async () => {
-      cleanup()
-      container = await renderForgotPassword()
-      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
+      cleanup();
+      container = await renderForgotPassword();
+      expect(
+        container.getByLabelText(/usernamePlaceHolder/i)
+      ).toBeInTheDocument();
     });
 
     and("user clicks the 'Continue' button.", async () => {
-      container.rerender(
-        <ForgotPassword isAppointment={true} />
-      );
+      container.rerender(<ForgotPassword isAppointment={true} />);
       expect(
-        await waitFor(() =>
-          container.getByText(/syncButton/i)
-        )
+        await waitFor(() => container.getByText(/syncButton/i))
       ).toBeInTheDocument();
       const syncButton = container.getByText(/syncButton/i);
       fireEvent.click(syncButton);
@@ -665,7 +671,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user redirects to the login screen", async () => {
-      container = await renderLogin()
+      container = await renderLogin();
     });
 
     and("user clicks on the continue as guest", () => {
@@ -679,27 +685,27 @@ defineFeature(feature, (test) => {
     and(
       "user clicks on the Already have an appointment? Sync your appointment information button",
       async () => {
-        cleanup()
-        container = await renderLogin()
-        const syncButton = container.getByText("syncYourAppointmentInformation");
+        cleanup();
+        container = await renderLogin();
+        const syncButton = container.getByText(
+          "syncYourAppointmentInformation"
+        );
         fireEvent.click(syncButton);
       }
     );
 
     and("user enter the Email", async () => {
-      cleanup()
-      container = await renderForgotPassword()
-      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
+      cleanup();
+      container = await renderForgotPassword();
+      expect(
+        container.getByLabelText(/usernamePlaceHolder/i)
+      ).toBeInTheDocument();
     });
 
     and("user clicks the 'Continue' button.", async () => {
-      container.rerender(
-        <ForgotPassword isAppointment={true} />
-      );
+      container.rerender(<ForgotPassword isAppointment={true} />);
       expect(
-        await waitFor(() =>
-          container.getByText(/syncButton/i)
-        )
+        await waitFor(() => container.getByText(/syncButton/i))
       ).toBeInTheDocument();
       const syncButton = container.getByText(/syncButton/i);
       fireEvent.click(syncButton);

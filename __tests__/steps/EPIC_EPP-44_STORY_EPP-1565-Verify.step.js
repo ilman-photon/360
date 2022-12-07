@@ -1115,16 +1115,13 @@ defineFeature(feature, (test) => {
     });
 
     then("user able to see Provide patient's baic information page", () => {
-      // const field1 = container.getByLabelText("First Name");
+      // const field1 = container.getAllByLabelText(/First Name/i)[0];
       // fireEvent.change(field1, { target: { value: "" } });
-
-      // const field2 = container.getByLabelText("Last Name");
+      // const field2 = container.getAllByLabelText(/Last Name/i)[0];
       // fireEvent.change(field2, { target: { value: "" } });
-
-      // const field3 = container.getByLabelText("Mobile Number");
+      // const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       // fireEvent.change(field3, { target: { value: "" } });
-
-      // const field4 = container.getByRole("textbox", { name: "Email" });
+      // const field4 = container.getByLabelText("Email");
       // fireEvent.change(field4, { target: { value: "" } });
     });
   });
@@ -1182,16 +1179,13 @@ defineFeature(feature, (test) => {
     then(
       "user should see fields First Name, Last Name, Date Of Birth,Email,Mobile Number, Preferred mode(s) of communication",
       () => {
-        // const field1 = container.getByLabelText("First Name");
+        // const field1 = container.getAllByLabelText(/First Name/i)[0];
         // fireEvent.change(field1, { target: { value: "" } });
-
-        // const field2 = container.getByLabelText("Last Name");
+        // const field2 = container.getAllByLabelText(/Last Name/i)[0];
         // fireEvent.change(field2, { target: { value: "" } });
-
-        // const field3 = container.getByLabelText("Mobile Number");
+        // const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
         // fireEvent.change(field3, { target: { value: "" } });
-
-        // const field4 = container.getByRole("textbox", { name: "Email" });
+        // const field4 = container.getByLabelText("Email");
         // fireEvent.change(field4, { target: { value: "" } });
       }
     );
@@ -1250,31 +1244,25 @@ defineFeature(feature, (test) => {
     then(
       "user should see fields First Name, Last Name, Date Of Birth,Email,Mobile Number and Preferred mode(s) of communication",
       () => {
-        // const field1 = container.getByLabelText("First Name");
+        // const field1 = container.getAllByLabelText(/First Name/i)[0];
         // fireEvent.change(field1, { target: { value: "" } });
-
-        // const field2 = container.getByLabelText("Last Name");
+        // const field2 = container.getAllByLabelText(/Last Name/i)[0];
         // fireEvent.change(field2, { target: { value: "" } });
-
-        // const field3 = container.getByLabelText("Mobile Number");
+        // const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
         // fireEvent.change(field3, { target: { value: "" } });
-
-        // const field4 = container.getByRole("textbox", { name: "Email" });
+        // const field4 = container.getByLabelText("Email");
         // fireEvent.change(field4, { target: { value: "" } });
       }
     );
 
     and("user provides valid patient details", () => {
-      // const field1 = container.getByLabelText("First Name");
+      // const field1 = container.getAllByLabelText(/First Name/i)[0];
       // fireEvent.change(field1, { target: { value: "first" } });
-
-      // const field2 = container.getByLabelText("Last Name");
+      // const field2 = container.getAllByLabelText(/Last Name/i)[0];
       // fireEvent.change(field2, { target: { value: "last" } });
-
-      // const field3 = container.getByLabelText("Mobile Number");
+      // const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       // fireEvent.change(field3, { target: { value: "1234567890" } });
-
-      // const field4 = container.getByRole("textbox", { name: "Email" });
+      // const field4 = container.getByLabelText("Email");
       // fireEvent.change(field4, { target: { value: "email@valid.com" } });
     });
 
@@ -1338,31 +1326,25 @@ defineFeature(feature, (test) => {
     then(
       "user should see fields First Name, Last Name, Date Of Birth,Email,Mobile Number and Preferred mode(s) of communication",
       () => {
-        // const field1 = container.getByLabelText("First Name");
+        // const field1 = container.getAllByLabelText(/First Name/i)[0];
         // fireEvent.change(field1, { target: { value: "" } });
-
-        // const field2 = container.getByLabelText("Last Name");
+        // const field2 = container.getAllByLabelText(/Last Name/i)[0];
         // fireEvent.change(field2, { target: { value: "" } });
-
-        // const field3 = container.getByLabelText("Mobile Number");
+        // const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
         // fireEvent.change(field3, { target: { value: "" } });
-
-        // const field4 = container.getByRole("textbox", { name: "Email" });
+        // const field4 = container.getByLabelText("Email");
         // fireEvent.change(field4, { target: { value: "" } });
       }
     );
 
     and("user provides valid patient details", () => {
-      // const field1 = container.getByLabelText("First Name");
+      // const field1 = container.getAllByLabelText(/First Name/i)[0];
       // fireEvent.change(field1, { target: { value: "first" } });
-
-      // const field2 = container.getByLabelText("Last Name");
+      // const field2 = container.getAllByLabelText(/Last Name/i)[0];
       // fireEvent.change(field2, { target: { value: "last" } });
-
-      // const field3 = container.getByLabelText("Mobile Number");
+      // const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       // fireEvent.change(field3, { target: { value: "1234567890" } });
-
-      // const field4 = container.getByRole("textbox", { name: "Email" });
+      // const field4 = container.getByLabelText("Email");
       // fireEvent.change(field4, { target: { value: "email@valid.com" } });
     });
 

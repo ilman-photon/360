@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { styles } from "./style";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { StyledInput } from "../../atoms/Input/input";
 import { Regex } from "../../../utils/regex";
@@ -72,6 +72,31 @@ export default function AppointmentForm({
     defaultValues: patientData,
   });
   const [open, setOpen] = React.useState(false);
+
+  const firstNameRef = React.useRef(null);
+  const lastNameRef = React.useRef(null);
+  const emailRef = React.useRef(null);
+  const mobileRef = React.useRef(null);
+  const dobRef = React.useRef(null);
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
+  React.useEffect(() => {
+    console.log(errors);
+    if (errors.firstName) {
+      firstNameRef.current?.focus();
+    } else if (errors.lastName) {
+      lastNameRef.current?.focus();
+    } else if (errors.email) {
+      emailRef.current?.focus();
+    } else if (errors.mobile) {
+      mobileRef.current?.focus();
+    } else if (errors.dob) {
+      dobRef.current?.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   const router = useRouter();
 
@@ -278,7 +303,7 @@ export default function AppointmentForm({
         ) : null}
       </Box>
 
-      <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+      <form onSubmit={handleSubmit(onSubmit)} style={styles.form} noValidate>
         <Controller
           name="firstName"
           control={control}
@@ -287,7 +312,7 @@ export default function AppointmentForm({
               <StyledInput
                 type="text"
                 id="firstName"
-                label="First Name"
+                label="First Name *"
                 value={value}
                 data-testid={SCHEDULE_GUEST_TEST_ID.firstname}
                 onChange={onChange}
@@ -304,6 +329,8 @@ export default function AppointmentForm({
                     ? { m: 1, width: "70%" }
                     : { m: 1, pr: 1, width: "100%" }
                 }
+                required
+                inputRef={firstNameRef}
               />
             );
           }}
@@ -326,7 +353,7 @@ export default function AppointmentForm({
               <StyledInput
                 type="text"
                 id="lastName"
-                label="Last Name"
+                label="Last Name *"
                 data-testid={SCHEDULE_GUEST_TEST_ID.lastname}
                 value={value}
                 onChange={onChange}
@@ -343,6 +370,8 @@ export default function AppointmentForm({
                     ? { m: 1, width: "70%" }
                     : { m: 1, pr: 1, width: "100%" }
                 }
+                required
+                inputRef={lastNameRef}
               />
             );
           }}
@@ -366,7 +395,7 @@ export default function AppointmentForm({
               <StyledInput
                 type="text"
                 id="email"
-                label="Email"
+                label="Email *"
                 value={value}
                 data-testid={SCHEDULE_GUEST_TEST_ID.email}
                 onChange={onChange}
@@ -381,6 +410,8 @@ export default function AppointmentForm({
                     ? { m: 1, width: "70%" }
                     : { m: 1, pr: 1, width: "100%" }
                 }
+                required
+                inputRef={emailRef}
               />
             );
           }}
@@ -406,7 +437,7 @@ export default function AppointmentForm({
                 type="phone"
                 id="mobile"
                 data-testid={SCHEDULE_GUEST_TEST_ID.mobilenumber}
-                label="Mobile Number"
+                label="Mobile Number *"
                 value={value}
                 onChange={onChange}
                 error={!!error}
@@ -420,6 +451,8 @@ export default function AppointmentForm({
                     ? { m: 1, width: "70%" }
                     : { m: 1, pr: 1, width: "100%" }
                 }
+                required
+                inputRef={mobileRef}
               />
             );
           }}
@@ -441,27 +474,34 @@ export default function AppointmentForm({
           <Controller
             name="dob"
             control={control}
+            tabIndex={0}
+            InputPropsLabel={{
+              "aria-label": "Date of Birth required text field",
+            }}
+            aria-label="Date of Birth required text field"
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
-                  disableFuture //
+                  disableFuture
                   open={open}
                   onOpen={() => setOpen(true)}
                   onClose={() => {
                     setOpen(false);
+                    setTimeout(() => {
+                      dobRef?.current?.focus();
+                    }, 1);
                   }}
-                  onClick={() => setOpen(true)}
+                  // onClick={() => setOpen(true)}
                   aria-hidden={true}
                   tabIndex={-1}
                   type="dob"
-                  // inputRef={inputDob}
                   id="dob"
-                  // data-testid={REGISTER_TEST_ID.dateofbirth}
                   InputLabel={{ "aria-hidden": false }}
                   InputLabelProps={{
                     "aria-hidden": true,
                   }}
                   InputProps={{
+                    ref: dobRef,
                     tabIndex: 0,
                     "data-testid": SCHEDULE_GUEST_TEST_ID.dateofbirth,
                     "aria-label": "Date of Birth required text field",
@@ -470,15 +510,15 @@ export default function AppointmentForm({
                     tabIndex: -1,
                     readOnly: !isDesktop,
                     isTransparent: true,
-                    // "aria-hidden": true,
-                    // "aria-disabled": "false",
                   }}
-                  // aria-label="Date of Birth required text field"
-                  label="Date of Birth"
+                  label="Date of Birth *"
                   variant="filled"
                   value={value}
                   onChange={onChange}
                   error={!!error}
+                  sx={{ m: 1 }}
+                  required
+                  inputRef={dobRef}
                   helperText={error ? error.message : null}
                 />
               );

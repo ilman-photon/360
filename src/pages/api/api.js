@@ -480,4 +480,17 @@ export class Api {
     const url = `${domain}/api/dummy/messaging/getDeleteMessages`;
     return this.getResponse(url, {}, "get");
   }
+
+  getLockedAccounts({ keyword }) {
+    const url =
+      keyword === ""
+        ? `/ecp/accountRecovery/getAllLockedAccounts`
+        : `/ecp/accountRecovery/getLockedAccountDetails/${keyword}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  unlockAccount(query) {
+    const url = `/ecp/accountRecovery/unlockAccountByAdmin/${query}`;
+    return this.getResponse(url, {}, "get");
+  }
 }

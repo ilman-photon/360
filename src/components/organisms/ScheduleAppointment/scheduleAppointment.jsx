@@ -37,8 +37,9 @@ export default function ScheduleAppointment({
     <Stack spacing={2}>
       <Stack spacing={2}>
         <Typography
-          sx={isDesktop ? { fontSize: "26px" } : { fontSize: "32px" }}
+          sx={isDesktop ? { fontSize: "32px" } : { fontSize: "26px" }}
           aria-label={"Who is this exam for?"}
+          style={styles.examFor}
           tabIndex={0}
         >
           {t("formTitle")}

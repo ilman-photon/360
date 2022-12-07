@@ -18,7 +18,7 @@ function GenericErrorModal({ storeContext = {} }) {
   });
 
   return (
-    <Dialog open={!!modalError} role={"alertdialog"}>
+    <Dialog sx={{ zIndex: "tooltip" }} open={!!modalError} role={"alertdialog"}>
       <DialogTitle
         id="alert-dialog-title"
         style={styles.containerPadding}

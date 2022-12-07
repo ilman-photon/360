@@ -4,9 +4,6 @@
   gap: 10px;
   background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
   z-index: 2;
-  // display: flex;
-  // justify-content: center;
-  // grid-template-columns: repeat(7, minmax(0, 1fr));
 
   @media (max-width: 767px) {
     padding: 0px 6px;
@@ -22,13 +19,9 @@
     flex-direction: row;
     align-items: center;
     max-width: 1536px;
-    width: 100%;
-    margin: 0 auto;
     padding: 0 24px;
-    // width: 100vw;
-    // justify-self: flex-end;
-    // grid-column: span 2 / span 2;
-    // margin-left: auto;
+    margin: auto;
+    width: 100%;
 
     @media (max-width: 767px) {
       font-style: normal;

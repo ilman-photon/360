@@ -10,14 +10,14 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import styles from "./InsuranceInformationNew.module.scss";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
 import FormLabel from "@mui/material/FormLabel";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
@@ -51,6 +51,17 @@ export default function InsuranceForm({
   const isMobile = useMediaQuery("(max-width: 768px)");
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
+  const providerRef = React.useRef(null);
+  const planRef = React.useRef(null);
+  const memberIdRef = React.useRef(null);
+  const subsFirstNameRef = React.useRef(null);
+  const subsLastNameRef = React.useRef(null);
+  const subsDobRef = React.useRef(null);
+
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
   const resetFormData = () => {
     reset(formData);
     setValue("memberID", memberId);
@@ -69,6 +80,24 @@ export default function InsuranceForm({
       setValue("priority", "SECONDARY");
     }
   });
+
+  useEffect(() => {
+    console.log(errors);
+    if (errors.provider) {
+      providerRef.current?.focus();
+    } else if (errors.plan) {
+      planRef.current?.focus();
+    } else if (errors.memberID) {
+      memberIdRef.current?.focus();
+    } else if (errors.subscriberData?.firstName) {
+      subsFirstNameRef.current?.focus();
+    } else if (errors.subscriberData?.lastName) {
+      subsLastNameRef.current?.focus();
+    } else if (errors.subscriberData?.dob) {
+      subsDobRef.current?.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   const isSubscriberOptions = [
     { label: "Yes", value: "Yes" },
@@ -180,6 +209,7 @@ export default function InsuranceForm({
                       error={!!error}
                       helperText={error ? error.message : null}
                       required
+                      inputRef={providerRef}
                     />
                   );
                 }}
@@ -210,6 +240,7 @@ export default function InsuranceForm({
                       error={!!error}
                       helperText={error ? error.message : null}
                       required
+                      inputRef={planRef}
                     />
                   );
                 }}
@@ -241,6 +272,7 @@ export default function InsuranceForm({
                       helperText={error ? error.message : null}
                       sx={{ width: "100%" }}
                       required
+                      inputRef={memberIdRef}
                     />
                   );
                 }}
@@ -365,6 +397,7 @@ export default function InsuranceForm({
                             helperText={error ? error.message : null}
                             sx={{ width: "100%" }}
                             required
+                            inputRef={subsFirstNameRef}
                           />
                         );
                       }}
@@ -408,6 +441,7 @@ export default function InsuranceForm({
                             helperText={error ? error.message : null}
                             sx={{ width: "100%" }}
                             required
+                            inputRef={subsLastNameRef}
                           />
                         );
                       }}
@@ -462,6 +496,7 @@ export default function InsuranceForm({
                               variant="filled"
                               helperText={error ? error.message : "MM/DD/YYYY"}
                               required
+                              inputRef={subsDobRef}
                             />
                           </>
                         );
@@ -682,6 +717,7 @@ export default function InsuranceForm({
                     fontStyle: "italic",
                     textAlign: "right",
                     marginLeft: "auto",
+                    marginTop: "7px",
                   }}
                 >
                   JPG or PNG file formats only. (File size limit is 4 MB)
