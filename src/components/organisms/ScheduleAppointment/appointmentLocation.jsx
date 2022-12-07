@@ -22,12 +22,12 @@ export default function AppointmentLocation({
   const getAddress = (address) => {
     if (!address) return;
     return (
-      <div tabIndex={"0"}>
-        {address.addressLine1}
-        <br />
-        {address.addressLine2}
-        <br />
-        {address.city}, {address.state}, {address.zipcode || address.zip}
+      <div style={styles.addressContent} tabIndex={"0"}>
+        <div>{address.addressLine1}</div>
+        <div>{address.addressLine2}</div>
+        <div>
+          {address.city}, {address.state}, {address.zipcode || address.zip}
+        </div>
       </div>
     );
   };
@@ -85,14 +85,18 @@ export default function AppointmentLocation({
           <Box>
             <Typography
               variant="h4"
-              style={{ ...styles.detailText, ...styles.boldText }}
+              style={{
+                ...styles.detailText,
+                ...styles.boldText,
+                ...styles.nameProviderText,
+              }}
               tabIndex={"0"}
             >
               {getName(providerData)}
             </Typography>
             <Typography
               variant="regularBold"
-              style={styles.detailText}
+              style={{ ...styles.detailText, ...styles.nomal400Text }}
               aria-label={"Myself"}
               data-testid={
                 TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION
@@ -104,7 +108,7 @@ export default function AppointmentLocation({
             <Typography
               variant="h4"
               aria-labelledby="provider-phone-number"
-              style={styles.detailText}
+              style={{ ...styles.detailText, ...styles.nomal400Text }}
             >
               <PhoneNumber
                 phone={providerData.phoneNumber || providerData.cellPhone}
@@ -112,7 +116,7 @@ export default function AppointmentLocation({
                   display: "flex",
                   alignContent: "center",
                   justifyContent: "flex-start",
-                  pt: 1,
+                  pt: 0.5,
                 }}
               />
             </Typography>
