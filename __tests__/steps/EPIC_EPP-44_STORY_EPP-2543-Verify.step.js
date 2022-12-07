@@ -11,7 +11,7 @@ const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 import mediaQuery from "css-mediaquery";
 import { TEST_ID } from "../../src/utils/constants";
-import { renderAppointmentDetail } from "../../__mocks__/commonSteps";
+import { provideFilters, renderAppointmentDetail } from "../../__mocks__/commonSteps";
 import {
   mockAppointmentTypes,
   mockInsurance,
@@ -91,9 +91,8 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("User should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("User should select the date of appointment", () => {
@@ -182,9 +181,8 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("User should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("User should select the date of appointment", () => {
@@ -268,9 +266,8 @@ defineFeature(feature, (test) => {
       renderAppointmentDetail();
     });
 
-    and("User should see the selected location along with the provider", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("User should see the selected location along with the provider", async () => {
+      await provideFilters(container)
     });
   });
 
@@ -310,9 +307,8 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("User should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("User should select the date of appointment", () => {
@@ -463,9 +459,8 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("User should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("User should select the date of appointment", () => {
@@ -586,9 +581,8 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("User should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("User should select the date of appointment", () => {
@@ -668,9 +662,8 @@ defineFeature(feature, (test) => {
       renderAppointmentDetail();
     });
 
-    and("User should see the selected location along with the provider", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("User should see the selected location along with the provider", async() => {
+      await provideFilters(container)
     });
 
     when(/^user clicks on F(\d+) on the console$/, (arg0) => {
@@ -718,9 +711,8 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("User should fill the location", async() => {
+      await provideFilters(container)
     });
 
     and("User should select the date of appointment", () => {
@@ -837,9 +829,8 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("User should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("User should select the date of appointment", () => {

@@ -1200,7 +1200,7 @@ export const inputPurpose = async (container) => {
   await waitFor(() => container.getByTestId("select-purposes-of-visit"));
   const purposeInput = container.getByTestId("select-purposes-of-visit");
   act(() => {
-    fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+    fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
   });
 };
 export const clickSearch = async (container) => {
