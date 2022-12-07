@@ -209,6 +209,7 @@ export default function InsuranceForm({
                       error={!!error}
                       helperText={error ? error.message : null}
                       required
+                      isMobileOption={isDesktop ? false : true}
                       inputRef={providerRef}
                     />
                   );
@@ -241,6 +242,7 @@ export default function InsuranceForm({
                       helperText={error ? error.message : null}
                       maxLength={50}
                       required
+                      isMobileOption={isDesktop ? false : true}
                       inputRef={planRef}
                     />
                   );
