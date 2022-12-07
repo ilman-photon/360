@@ -312,7 +312,7 @@ export default function AppointmentForm({
               <StyledInput
                 type="text"
                 id="firstName"
-                label="First Name *"
+                label="First Name"
                 value={value}
                 data-testid={SCHEDULE_GUEST_TEST_ID.firstname}
                 onChange={onChange}
@@ -353,7 +353,7 @@ export default function AppointmentForm({
               <StyledInput
                 type="text"
                 id="lastName"
-                label="Last Name *"
+                label="Last Name"
                 data-testid={SCHEDULE_GUEST_TEST_ID.lastname}
                 value={value}
                 onChange={onChange}
@@ -395,7 +395,7 @@ export default function AppointmentForm({
               <StyledInput
                 type="text"
                 id="email"
-                label="Email *"
+                label="Email"
                 inputProps={{
                   maxLength: 50,
                 }}
@@ -440,7 +440,7 @@ export default function AppointmentForm({
                 type="phone"
                 id="mobile"
                 data-testid={SCHEDULE_GUEST_TEST_ID.mobilenumber}
-                label="Mobile Number *"
+                label="Mobile Number"
                 value={value}
                 onChange={onChange}
                 error={!!error}
@@ -514,7 +514,7 @@ export default function AppointmentForm({
                     readOnly: !isDesktop,
                     isTransparent: true,
                   }}
-                  label="Date of Birth *"
+                  label="Date of Birth"
                   variant="filled"
                   value={value}
                   onChange={onChange}
