@@ -187,7 +187,7 @@ defineFeature(feature, (test) => {
     and('user should select the Purpose of visit', async() => {
       const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
       act(() => {
-        fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+        fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
       });
     });
 
@@ -273,7 +273,7 @@ defineFeature(feature, (test) => {
     and('user should select the Purpose of visit', async() => {
       const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
       act(() => {
-        fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+        fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
       });
     });
 
@@ -350,7 +350,7 @@ defineFeature(feature, (test) => {
       act(() => {
         fireEvent.change(locationInput, { target: { value: "Texas" } });
         fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
-        fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+        fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
         fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
       });
     });
@@ -430,7 +430,7 @@ defineFeature(feature, (test) => {
       act(() => {
         fireEvent.change(locationInput, { target: { value: "Texas" } });
         fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
-        fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+        fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
         fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
       });
     });
@@ -510,7 +510,7 @@ defineFeature(feature, (test) => {
       act(() => {
         fireEvent.change(locationInput, { target: { value: "Texas" } });
         fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
-        fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+        fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
         fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
       });
     });
@@ -590,7 +590,7 @@ defineFeature(feature, (test) => {
       act(() => {
         fireEvent.change(locationInput, { target: { value: "Texas" } });
         fireEvent.change(dateInput, { target: { value: "22/09/2022" } });
-        fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+        fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
         fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
       });
     });
@@ -669,7 +669,7 @@ defineFeature(feature, (test) => {
       act(() => {
         fireEvent.change(locationInput, { target: { value: "Texas" } });
         fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
-        fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+        fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
         fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
       });
     });
@@ -752,7 +752,7 @@ defineFeature(feature, (test) => {
     and('user should select the Purpose of visit', async() => {
       const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
       act(() => {
-        fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+        fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
       });
     });
 

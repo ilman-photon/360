@@ -371,15 +371,25 @@ const FilterHeading = ({
   });
 
   const [isEmptyLocation, setEmptyLocation] = useState(false);
+  const [isEmptyAppointmentType, setEmptyAppointmentType] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
   const [contentTypeDialog, setContentTypeDialog] = React.useState("");
   const mapsData = isGeolocationEnabled ? ["Use my current location"] : [];
 
   const onSubmit = (data) => {
-    if (!data.location.trim()) {
+    let isError = false;
+    if (!data.location?.trim()) {
+      isError = true;
       setEmptyLocation(true);
-    } else {
+    }
+
+    if (!data.purposeOfVisit?.trim()) {
+      isError = true;
+      setEmptyAppointmentType(true);
+    }
+
+    if (!isError) {
       onSearchProvider(data);
     }
   };
@@ -405,15 +415,16 @@ const FilterHeading = ({
     },
   };
 
-  function renderMandatoryFieldError() {
+  function renderMandatoryFieldError(isError) {
     return (
       <Typography
         className={styles.errorText}
         variant={"bodyMedium"}
         sx={{
-          visibility: isEmptyLocation ? "visible" : "hidden",
+          visibility: isError ? "visible" : "hidden",
           fontSize: isDesktop ? "16px" : "14px",
         }}
+        tabIndex={0}
       >
         This field is required
       </Typography>
@@ -423,6 +434,10 @@ const FilterHeading = ({
   function onHideMandatoryFieldError() {
     if (isEmptyLocation) {
       setEmptyLocation(false);
+    }
+
+    if (isEmptyAppointmentType) {
+      setEmptyAppointmentType(false);
     }
   }
 
@@ -527,7 +542,7 @@ const FilterHeading = ({
                 )}
               />
               <Box sx={{ position: "absolute", bottom: "-30px" }}>
-                {renderMandatoryFieldError()}
+                {renderMandatoryFieldError(isEmptyLocation)}
               </Box>
             </Box>
           );
@@ -624,6 +639,9 @@ const FilterHeading = ({
         render={({ field: { onChange, value }, fieldState: { _error } }) => {
           return (
             <Box
+              className={
+                isEmptyAppointmentType ? styles.errorFieldPurposes : ""
+              }
               sx={{
                 width: isDesktop ? "70%" : "auto",
                 overflow: "hidden",
@@ -675,7 +693,10 @@ const FilterHeading = ({
                   labelId={`purposes-of-visit`}
                   id={`purposes-of-visit`}
                   options={purposeOfVisitData}
-                  onChange={onChange}
+                  onChange={(event) => {
+                    onHideMandatoryFieldError();
+                    onChange(event.target.value);
+                  }}
                   value={value}
                   renderMenuListUI={menuListUI}
                   data-testid={APPOINTMENT_TEST_ID.purposeInput}
@@ -693,18 +714,9 @@ const FilterHeading = ({
                   }}
                 />
               </Box>
-              <Typography
-                className={styles.optionalPurposeText}
-                variant={"bodyTinyRegular"}
-                sx={{
-                  position: "absolute",
-                  bottom: "-25px",
-                  color: "#ffffff",
-                  opacity: "0.8",
-                }}
-              >
-                (Optional)
-              </Typography>
+              <Box sx={{ position: "absolute", bottom: "-30px" }}>
+                {renderMandatoryFieldError(isEmptyAppointmentType)}
+              </Box>
             </Box>
           );
         }}
@@ -809,10 +821,9 @@ const FilterHeading = ({
     icon,
     textField,
     controllerName,
-    isOptional = false
+    isOptional = false,
+    isError = false
   ) {
-    const isErrorMandatoryField =
-      controllerName === "location" && isEmptyLocation;
     return (
       <Box>
         <Controller
@@ -829,9 +840,7 @@ const FilterHeading = ({
                   width: "auto",
                   background: "#fff",
                   borderRadius: "50px",
-                  border: isErrorMandatoryField
-                    ? `2px solid ${colors.errorField}`
-                    : "none",
+                  border: isError ? `2px solid ${colors.errorField}` : "none",
                 }}
               >
                 {icon}
@@ -840,7 +849,7 @@ const FilterHeading = ({
             );
           }}
         />
-        {isErrorMandatoryField && renderMandatoryFieldError()}
+        {isError && renderMandatoryFieldError(isError)}
         {isOptional ? (
           <Typography
             variant={"bodyTinyMedium"}
@@ -859,6 +868,7 @@ const FilterHeading = ({
     const locationInput = function (onChange, value) {
       return (
         <StyledInput
+          data-testid="search-location"
           type="default"
           value={value}
           onChange={onChange}
@@ -889,7 +899,13 @@ const FilterHeading = ({
         />
       );
     };
-    return renderMobileField(locationIconUI(), locationInput, "location");
+    return renderMobileField(
+      locationIconUI(),
+      locationInput,
+      "location",
+      false,
+      isEmptyLocation
+    );
   }
 
   function renderMobileDateTextField() {
@@ -897,6 +913,7 @@ const FilterHeading = ({
       return (
         <StyledInput
           type="default"
+          data-testid="search-date"
           value={convertToDate(value)}
           onChange={onChange}
           variant="filled"
@@ -918,6 +935,7 @@ const FilterHeading = ({
     const purposeInput = function (onChange, value) {
       return (
         <StyledInput
+          data-testid="search-purpose"
           type="default"
           value={value}
           onChange={onChange}
@@ -925,6 +943,7 @@ const FilterHeading = ({
           label="Purpose of Visit"
           sx={sxTextField}
           onClick={() => {
+            onHideMandatoryFieldError();
             handleOpenDialog("purposeInput");
           }}
           InputProps={{
@@ -933,13 +952,20 @@ const FilterHeading = ({
         />
       );
     };
-    return renderMobileField(purposeIcon, purposeInput, "purposeOfVisit", true);
+    return renderMobileField(
+      purposeIcon,
+      purposeInput,
+      "purposeOfVisit",
+      false,
+      isEmptyAppointmentType
+    );
   }
 
   function renderMobileInsuranceTextField() {
     const insuranceInput = function (onChange, value) {
       return (
         <StyledInput
+          data-testid="search-insurance"
           type="default"
           value={value?.name || ""}
           onChange={onChange}

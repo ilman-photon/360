@@ -10,6 +10,7 @@ const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 import mediaQuery from "css-mediaquery";
 import { mockSubmitFilterReal } from "../../__mocks__/mockResponse";
+import { provideFilters } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2507.feature"
@@ -705,9 +706,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
-    and("user should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("user should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("user should select the date of appointment", defaultValidation);
@@ -781,9 +781,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
-    and("user should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("user should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("user should select the date of appointment", defaultValidation);
@@ -872,9 +871,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
-    and("user should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("user should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("user should select the date of appointment", defaultValidation);
@@ -959,9 +957,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
-    and("user should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("user should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("user should select the date of appointment", defaultValidation);
@@ -1046,9 +1043,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
-    and("user should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("user should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("user should select the date of appointment", defaultValidation);
@@ -1136,9 +1132,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
-    and("user should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("user should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("user should select the date of appointment", defaultValidation);
@@ -1232,9 +1227,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
-    and("user should fill the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("user should fill the location", async () => {
+      await provideFilters(container)
     });
 
     and("user should select the date of appointment", defaultValidation);

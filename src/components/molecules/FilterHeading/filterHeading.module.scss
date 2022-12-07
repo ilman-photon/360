@@ -168,6 +168,10 @@
   border-top-left-radius: 50px;
 }
 
+.errorFieldPurposes {
+  border: 1px solid $errorField;
+}
+
 .errorText {
   color: $errorTextField;
   margin-left: 21px;

@@ -28,6 +28,7 @@ const feature = loadFeature(
 const provideFilters = (container) => {
   inputLocation(container);
   inputInsurance(container);
+  inputPurpose(container)
 };
 
 const inputLocation = (container) => {
@@ -51,9 +52,9 @@ const inputPurpose = async (container) => {
     container.getByTestId("select-purposes-of-visit")
   );
   act(() => {
-    fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+    fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
   });
-  expect(purposeInput.value).toEqual("Eye Exam");
+  expect(purposeInput.value).toEqual("Clinical_Diagnosis");
 };
 
 const inputInsurance = (container) => {
@@ -127,8 +128,8 @@ defineFeature(feature, (test) => {
       container = await renderScheduleAppointment(mock);
     });
 
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters(container);
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', async () => {
+      await provideFilters(container);
     });
 
     and('click on Search button', async () => {
@@ -163,8 +164,8 @@ defineFeature(feature, (test) => {
       container = await renderScheduleAppointment(mock);
     });
 
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters(container);
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', async() => {
+      await provideFilters(container);
     });
 
     and('click on Search button', async () => {
@@ -197,8 +198,8 @@ defineFeature(feature, (test) => {
       container = await renderScheduleAppointment(mock);
     });
 
-    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      provideFilters(container);
+    and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', async () => {
+      await provideFilters(container);
     });
 
     and('click on Search button', async () => {
