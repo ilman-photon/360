@@ -212,7 +212,7 @@ export default function HomePage({ googleApiKey }) {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    !isAdmin() && onCalledGetAllAppointment();
+    !isAdmin() && isAuthenticated && onCalledGetAllAppointment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterSuggestionData.purposeOfVisit]);
 
