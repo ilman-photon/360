@@ -6,7 +6,6 @@ Feature: Patient Portal: Admin – Send password reset link CTA
   @Sprint9
   @admin
   Scenario: EPIC_EPP-30_STORY_EPP-7522- Verify admin should be able to view the list of all locked accounts of patients along with details
-    Scenario: EPIC_EPP-30_STORY_EPP-7522- Verify admin should be able to view the list of all locked accounts of patients along with details
 
     Given User has logged into the patient portal 	
     And User is logged in as admin
@@ -31,7 +30,6 @@ Feature: Patient Portal: Admin – Send password reset link CTA
   @Sprint9
   @admin
   Scenario: EPIC_EPP-30_STORY_EPP-7522- Verify admin should not be able to view mode of communication option phone if the phone number is not available in the patient information
-    EPIC_EPP-30_STORY_EPP-7522- Verify admin should not be able to view mode of communication option phone if the phone number is not available in the patient information 
 
     Given User has logged into the patient portal 	
     And User is logged in as admin
@@ -49,7 +47,6 @@ Feature: Patient Portal: Admin – Send password reset link CTA
   @Sprint9
   @admin
   Scenario: EPIC_EPP-30_STORY_EPP-7522- Verify admin should be able to view the confirmation message “Are you sure to send reset password link’ along with ‘Yes’ and ‘No’ options when mode of communication is selected
-    EPIC_EPP-30_STORY_EPP-7522- Verify admin should be able to view the confirmation message “Are you sure to send reset password link’ along with ‘Yes’ and ‘No’ options when mode of communication is selected 
 
     Given User has logged into the patient portal 	
     And User is logged in as admin
@@ -68,7 +65,6 @@ Feature: Patient Portal: Admin – Send password reset link CTA
   @Sprint9
   @admin
   Scenario: EPIC_EPP-30_STORY_EPP-7522- Verify admin should be able to view the success message ‘Password reset link sent to <Patient name> successfully’ if ‘yes’ is selected during confirmation
-    EPIC_EPP-30_STORY_EPP-7522- Verify admin should be able to view the success message ‘Password reset link sent to <Patient name> successfully’ if ‘yes’ is selected during confirmation 
 
     Given User has logged into the patient portal 	
     And User is logged in as admin
@@ -89,7 +85,6 @@ Feature: Patient Portal: Admin – Send password reset link CTA
   @Sprint9
   @admin
   Scenario: EPIC_EPP-30_STORY_EPP-7522- Verify the respective patient should receive the message with the password reset link in the mode of communication selected by admin
-    EPIC_EPP-30_STORY_EPP-7522- Verify the respective patient should receive the message with the password reset link in the mode of communication selected by admin 
 
     Given User has logged into the patient portal 	
     And User is logged in as admin
@@ -111,7 +106,6 @@ Feature: Patient Portal: Admin – Send password reset link CTA
   @Sprint9
   @admin
   Scenario: EPIC_EPP-30_STORY_EPP-7522- Verify the respective patient should not receive the message with the password reset link if No is selected during confirmation
-    EPIC_EPP-30_STORY_EPP-7522- Verify the respective patient should not receive the message with the password reset link if No is selected during confirmation 
 
     Given User has logged into the patient portal 	
     And User is logged in as admin

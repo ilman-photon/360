@@ -17,7 +17,7 @@ import store from "../../../../store/store";
 import { colors } from "../../../../styles/theme";
 import styles from "./styles.module.scss";
 import TableWithSort from "../../../../components/molecules/TableWithSort/tableWithSort";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SearchBar from "../../../../components/molecules/ManagePatientAccount/SearchBar";
 import PatientAcccountCard from "../../../../components/molecules/ManagePatientAccount/PatientAcccountCard";
 import CustomModal from "../../../../components/molecules/CustomModal/customModal";
@@ -32,12 +32,11 @@ import {
   onViewSecurityQuestions,
   setAccountDataById,
 } from "../../../../store/accountRecovery";
+import { setPageMessage } from "../../../../store";
 
 export default function AccountRecovery() {
   const dispatch = useDispatch();
   const communicationRef = useRef(null);
-
-  const isDesktop = useMediaQuery("(min-width: 769px)");
 
   const rows = useSelector((state) => state.accountRecovery.patientList);
   const searchStatus = useSelector((state) => state.accountRecovery.status);
@@ -49,6 +48,7 @@ export default function AccountRecovery() {
   const [activeModalData, setActiveModalData] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [firstSearch, setFirstSearch] = useState(false);
+  const [priorityOptions, setPriorityOptions] = useState([]);
 
   const tableConfiguration = {
     header: [
@@ -147,13 +147,52 @@ export default function AccountRecovery() {
     if (typeof action === "string") setIsModalOpened(true);
   };
 
-  const priorityOptions = [
-    { label: "Phone - (858) 289-9999", value: "phone", preferred: false },
-    { label: "Email - donJohn@yahoo.com", value: "email", preferred: true },
-    { label: "Both", value: "both", preferred: false },
-  ];
+  const buildPriorityOptions = (data) => {
+    if (!data.rowData) return [];
+    const rowData = data.rowData;
+    const options = [];
+    if (rowData.phoneNumber) {
+      options.push({
+        label: `Phone - ${rowData.phoneNumber}`,
+        value: "phone",
+        preferred: rowData.preferredCommunication === "phone",
+      });
+      setValue("communication", "phone");
+    }
+    if (rowData.emailId) {
+      options.push({
+        label: `Email - ${rowData.emailId}`,
+        value: "email",
+        preferred: rowData.preferredCommunication === "email",
+      });
+      setValue("communication", "email");
+    }
+    options.push({
+      label: "Both",
+      value: "both",
+      preferred: rowData.preferredCommunication === "both",
+    });
 
-  const { handleSubmit, control } = useForm({
+    return options;
+  };
+
+  useEffect(() => {
+    setPriorityOptions(buildPriorityOptions(activeModalData));
+  }, [activeModalData]);
+
+  useEffect(() => {
+    if (activeModalData.rowData) {
+      const rowData = activeModalData.rowData;
+      if (rowData.preferredCommunication === "phone")
+        setValue("communication", "phone");
+      else if (rowData.preferredCommunication === "email")
+        setValue("communication", "email");
+      else if (rowData.preferredCommunication === "both")
+        setValue("communication", "both");
+    }
+  }, [priorityOptions]);
+
+  const { handleSubmit, control, setValue } = useForm({
     defaultValues: { communication: "phone" },
   });
 
@@ -161,44 +200,56 @@ export default function AccountRecovery() {
     const { payload } = await dispatch(
       onActivate({ patientId: data.patientId })
     );
+    dispatch(setPageMessage(payload));
     if (payload.success) {
       await dispatch(setAccountDataById(payload.data));
       setTableFormMessage(
         `Account of ${payload.data.name} activated successfully`
       );
-      setIsModalOpened(false);
     }
+    setIsModalOpened(false);
   };
 
   const onUnlockAccount = async (data) => {
     const { payload } = await dispatch(onUnlock({ patientId: data.patientId }));
     if (payload.success) {
-      await dispatch(setAccountDataById(payload.data));
+      await dispatch(setAccountDataById({ ...data, status: "Y" }));
       setTableFormMessage(
-        `Account of ${payload.data.name} unlocked successfully`
+        `Account of ${data.name || "patient"} unlocked successfully`
       );
-      setIsModalOpened(false);
     }
+    setIsModalOpened(false);
   };
 
   const onSentPasswordSubmit = async (data) => {
     const { payload } = await dispatch(
-      onSendPasswordReset({ patientId: data.patientId })
+      onSendPasswordReset({
+        patientId: data.patientId,
+        patientData: data,
+        selectedCommunication: data.communication,
+      })
     );
     if (payload.success) {
-      setTableFormMessage(payload.message);
-      setIsModalOpened(false);
+      setTableFormMessage(
+        `Password reset link sent to ${data.name || "patient"} successfully`
+      );
     }
+    setIsModalOpened(false);
   };
 
   const onShareUsernameSubmit = async (data) => {
     const { payload } = await dispatch(
-      onShareUsername({ patientId: data.patientId })
+      onShareUsername({
+        patientId: data.patientId,
+        selectedCommunication: data.communication,
+      })
     );
     if (payload.success) {
-      setTableFormMessage(payload.message);
-      setIsModalOpened(false);
+      setTableFormMessage(
+        `Username shared to ${data.name || "patient"} successfully`
+      );
     }
+    setIsModalOpened(false);
   };
 
   const getModalProps = ({ action, rowData }) => {
@@ -248,25 +299,27 @@ export default function AccountRecovery() {
   };
 
   const getModalContent = ({ action, rowData }) => {
-    if (action === "view-security-questions") {
-    }
     switch (action) {
       case "activate-account":
         return (
           <Typography
-            aria-label={`Are you sure you want to activate ${rowData.name}?`}
+            aria-label={`Are you sure you want to activate ${
+              rowData.name || "patient"
+            }?`}
             sx={{ color: "#003B4A", fontSize: "22px" }}
           >
-            {`Are you sure you want to activate ${rowData.name}?`}
+            {`Are you sure you want to activate ${rowData.name || "patient"}?`}
           </Typography>
         );
       case "unlock-account":
         return (
           <Typography
-            aria-label={`Are you sure you want to unlock ${rowData.name}?`}
+            aria-label={`Are you sure you want to unlock ${
+              rowData.name || "patient"
+            }?`}
             sx={{ color: "#003B4A", fontSize: "22px" }}
           >
-            {`Are you sure you want to unlock ${rowData.name}?`}
+            {`Are you sure you want to unlock ${rowData.name || "patient"}?`}
           </Typography>
         );
       case "send-password-reset":
@@ -279,40 +332,35 @@ export default function AccountRecovery() {
               Are you sure you want to send password reset?
             </Typography>
             <Box sx={{ px: 1, py: 3 }}>
-              <form
-                ref={communicationRef}
-                onSubmit={handleSubmit(onSentPasswordSubmit)}
-                noValidate
-              >
-                <Controller
-                  name="communication"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => {
-                    return (
-                      <RowRadioButtonsGroup
-                        row={false}
-                        error={!!error}
-                        value={value}
-                        onChange={onChange}
-                        label="Select mode of communication where to send password reset link."
-                        customRadioLabel={(option) => {
-                          if (option.preferred) {
-                            return (
-                              <>
-                                {option.label} <b>(Prefered)</b>
-                              </>
-                            );
-                          } else return option.label;
-                        }}
-                        options={priorityOptions}
-                      />
-                    );
-                  }}
-                />
-              </form>
+              <Controller
+                name="communication"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <RowRadioButtonsGroup
+                      row={false}
+                      error={!!error}
+                      value={value}
+                      data-testid={"account-recovery-communication-mode-form"}
+                      onChange={onChange}
+                      label="Select mode of communication where to send password reset link."
+                      customRadioLabel={(option) => {
+                        if (option.preferred) {
+                          return (
+                            <>
+                              {option.label} <b>(Prefered)</b>
+                            </>
+                          );
+                        } else return option.label;
+                      }}
+                      options={priorityOptions}
+                    />
+                  );
+                }}
+              />
             </Box>
           </>
         );
@@ -326,31 +374,34 @@ export default function AccountRecovery() {
               Are you sure you want to share username?
             </Typography>
             <Box sx={{ px: 1, py: 3 }}>
-              <form
-                ref={communicationRef}
-                onSubmit={handleSubmit(onShareUsernameSubmit)}
-                noValidate
-              >
-                <Controller
-                  name="communication"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => {
-                    return (
-                      <RowRadioButtonsGroup
-                        row={false}
-                        error={!!error}
-                        value={value}
-                        onChange={onChange}
-                        label="Select mode of communication where to share username"
-                        options={priorityOptions}
-                      />
-                    );
-                  }}
-                />
-              </form>
+              <Controller
+                name="communication"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <RowRadioButtonsGroup
+                      row={false}
+                      error={!!error}
+                      value={value}
+                      onChange={onChange}
+                      label="Select mode of communication where to share username"
+                      customRadioLabel={(option) => {
+                        if (option.preferred) {
+                          return (
+                            <>
+                              {option.label} <b>(Prefered)</b>
+                            </>
+                          );
+                        } else return option.label;
+                      }}
+                      options={priorityOptions}
+                    />
+                  );
+                }}
+              />
             </Box>
           </>
         );
@@ -541,7 +592,9 @@ export default function AccountRecovery() {
         }}
         {...getModalProps(activeModalData)}
       >
-        {getModalContent(activeModalData)}
+        <form ref={communicationRef} noValidate>
+          {getModalContent(activeModalData)}
+        </form>
       </CustomModal>
     </>
   );

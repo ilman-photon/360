@@ -11,19 +11,19 @@ Feature: Patient Portal: Admin – View locked accounts – Share username CTA
     And Admin is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     And Admin click on three dots icon 
     When admin click on Share Username sub menu
     Then admin should be able to view overlay with title written as Are you sure you want to share username?
@@ -39,19 +39,19 @@ Feature: Patient Portal: Admin – View locked accounts – Share username CTA
     And Admin is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     And Admin click on three dots icon 
     When admin click on Share Username sub menu
     Then admin should be able to view overlay with title written as Are you sure you want to share username?
@@ -68,19 +68,19 @@ Feature: Patient Portal: Admin – View locked accounts – Share username CTA
     And Admin is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     And Admin click on three dots icon 
     When admin click on Share Username sub menu
     Then admin should be able to view overlay with title written as Are you sure you want to share username?
@@ -97,19 +97,19 @@ Feature: Patient Portal: Admin – View locked accounts – Share username CTA
     And Admin is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     And Admin click on three dots icon 
     When admin click on Share Username sub menu
     Then admin should be able to view overlay with title written as Are you sure you want to share username?
@@ -126,19 +126,19 @@ Feature: Patient Portal: Admin – View locked accounts – Share username CTA
     And Admin is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     And Admin click on three dots icon 
     When admin click on Share Username sub menu
     Then admin should be able to view overlay with title written as Are you sure you want to share username?
@@ -155,19 +155,19 @@ Feature: Patient Portal: Admin – View locked accounts – Share username CTA
     And Admin is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     And Admin click on three dots icon 
     When admin click on Share Username sub menu
     Then admin should be able to view overlay with title written as Are you sure you want to share username?
@@ -184,19 +184,19 @@ Feature: Patient Portal: Admin – View locked accounts – Share username CTA
     And Admin is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     And Admin click on three dots icon 
     When admin click on Share Username sub menu
     Then admin should be able to view overlay with title written as Are you sure you want to share username?
@@ -215,19 +215,19 @@ Feature: Patient Portal: Admin – View locked accounts – Share username CTA
     And Admin is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth| 
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     And Admin click on three dots icon 
     When admin click on Share Username sub menu
     Then admin should be able to view overlay with title written as Are you sure you want to share username?
@@ -247,19 +247,19 @@ Feature: Patient Portal: Admin – View locked accounts – Share username CTA
     And Admin is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     And Admin click on three dots icon 
     When admin click on Share Username sub menu
     Then admin should be able to view overlay with title written as Are you sure you want to share username?

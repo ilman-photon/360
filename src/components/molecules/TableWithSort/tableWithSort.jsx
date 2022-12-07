@@ -61,6 +61,7 @@ export const ref = (row, key) => {
 
 export const getUserStatus = (status) => {
   switch (status) {
+    case "locked":
     case "Locked":
       return (
         <Chip
@@ -657,7 +658,7 @@ export default function TableWithSort({
 
   return (
     <>
-      <TableContainer sx={{ boxShadow: "none" }}>
+      <TableContainer sx={{ boxShadow: "none" }} data-testid="table-container">
         <Table
           size={dense ? "small" : "medium"}
           sx={{

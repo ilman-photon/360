@@ -56,7 +56,7 @@ export const FormMessage = (
             fontSize: "14px",
             lineHeight: "20.02px",
             letterSpacing: "0.17px",
-            // width: props.isWidthFilled ? "-webkit-fill-available" : "",
+            width: props.isWidthFilled ? "-webkit-fill-available" : "",
           }}
           data-testid="submission-message"
           aria-live="polite"

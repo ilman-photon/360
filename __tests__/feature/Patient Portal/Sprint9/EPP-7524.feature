@@ -10,19 +10,19 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search res
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
 
   @BDDTEST-EPP-10447
   @Admin
@@ -34,19 +34,19 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search res
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no
+    |Patient name |
+    |Email ID |
+    |Phone no|
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     When The Experian validation has failed for that patient  
     Then Admin should be able to view Activate CTA
 
@@ -60,19 +60,19 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search res
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     When The Experian validation has failed for that patient
     Then Admin should be able to view only Activate CTA
 
@@ -86,19 +86,19 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search res
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     When The account of the patient is in locked status
     Then Admin should be able to view Unlock CTA
 
@@ -112,19 +112,19 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search res
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     When The account of the patient is in locked status 
     Then Admin should be able to view Locked date & time
 
@@ -138,19 +138,19 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search res
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     When The account of the patient is in locked status 
     Then Admin should be able to view Locked date & time
     And User should be able to view Send password reset link CTA
@@ -165,19 +165,19 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search res
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     When The account of the patient is in locked status 
     Then Admin should be able to view Locked date & time
     And User should be able to view Send password reset link CTA
@@ -194,19 +194,19 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search res
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name |
+    |Email ID |
+    |Phone no: |
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the search results based on search input 
     And Admin should be able to view the list of patients based on search along with
-    |Patient Name 
-    |Patient ID 
-    |Date of birth 
-    |Email ID 
-    |Phone Number 
-    |Username 
-    |Status
+    |Patient Name |
+    |Patient ID |
+    |Date of birth |
+    |Email ID |
+    |Phone Number |
+    |Username |
+    |Status|
     When The account of the patient is in locked status 
     Then Admin should be able to view Locked date & time
     And User should be able to view Send password reset link CTA
