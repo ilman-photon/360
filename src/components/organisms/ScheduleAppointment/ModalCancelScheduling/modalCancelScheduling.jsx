@@ -32,7 +32,7 @@ export default function ModalCancelScheduling({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSubmitting]);
-  
+
   React.useEffect(() => {
     reset({
       cancelReason: "",
