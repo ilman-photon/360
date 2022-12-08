@@ -9,7 +9,7 @@ import { Box } from "@mui/material";
 import SetPasswordComponent from "../../../components/organisms/SetPassword/setPassword";
 import globalStyles from "../../../styles/Global.module.scss";
 
-const setUsernameFromQuery = function (route) {
+export const setUsernameFromQuery = function (route) {
   const queryString = route.asPath?.split("?")[1];
   const splitQueryString = queryString?.split("=");
   return splitQueryString && splitQueryString.length > 0

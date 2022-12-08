@@ -13,23 +13,24 @@ import MESSAGES from "../../../utils/responseCodes";
 import { useRouter } from "next/router";
 import { loginProps } from "../login";
 import { useTranslation } from "next-i18next";
+import { setUsernameFromQuery } from "../update-password";
 
 export async function getServerSideProps({ query }) {
   return {
     props: {
-      username: query ? query.username : "",
       token: query.token ? query.token : "",
     },
   };
 }
 
-export default function SetPasswordPage({ username, token }) {
+export default function SetPasswordPage({ token }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const formMessage = useSelector((state) => state.index.formMessage);
   const [showPostMessage, setShowPostMessage] = useState(false);
   const [isAppointment, setAppointment] = useState(true);
   const [isloaded, setLoaded] = useState(false);
+  const username = setUsernameFromQuery(router);
 
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "ValidatePage",
