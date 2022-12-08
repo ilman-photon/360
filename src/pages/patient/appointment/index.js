@@ -600,9 +600,10 @@ export default function Appointment({ googleApiKey }) {
           data-testid={"container-result"}
           sx={{
             height: "calc(100vh - 215px)",
+            maxWidth: "1923px",
           }}
         >
-          <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
+          <Box sx={{ width: !isTablet ? "auto" : "unset", m: 3 }}>
             {providerListData.length > 0 ? (
               <FilterResult
                 onNextScheduleClicked={onNextScheduleClicked}
@@ -658,6 +659,7 @@ export default function Appointment({ googleApiKey }) {
         flex={1}
         sx={{
           alignSelf: !isLoading ? "none" : "center",
+          justifyContent: "center",
         }}
       >
         {renderFilterResultTabletView()}
