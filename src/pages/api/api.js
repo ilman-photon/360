@@ -492,4 +492,9 @@ export class Api {
     const url = `/ecp/accountRecovery/unlockAccountByAdmin/${query}`;
     return this.getResponse(url, {}, "get");
   }
+
+  getPasswordInfo(postBody) {
+    const url = `/ecp/patient/settings/validatePassword`;
+    return this.getResponse(url, postBody, "post", false);
+  }
 }
