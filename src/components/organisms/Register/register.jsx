@@ -18,6 +18,7 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
 import { resetFormMessage } from "../../../store";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "next-i18next";
 
 export const isDOB = (value) => {
   let date = new Date().getFullYear();
@@ -32,6 +33,12 @@ export const isDOB = (value) => {
 
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
+
+  const { t, ready } = useTranslation("translation", {
+    keyPrefix: "register",
+    useSuspense: false,
+  });
+
   const { handleSubmit, control, watch, setValue, resetField } = useForm({
     defaultValues: {
       firstName: "",
@@ -226,376 +233,400 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     }
   };
   return (
-    <Box className={globalStyles.container} sx={{ ...styles.overideContainer }}>
-      <Stack spacing={3}>
-        <HeadingTitle
-          variant={constants.H1}
-          sx={styles.titleStyles}
-          title={"User Registration"}
-        />
-        <Typography
-          sx={{
-            fontFamily: "Libre Franklin",
-            fontWeight: "400",
-            fontSize: "12px",
-            color: "#6C6C6C",
-            mx: "10px !important",
-            my: "8px !important",
-          }}
+    <>
+      {ready && (
+        <Box
+          className={globalStyles.container}
+          sx={{ ...styles.overideContainer }}
         >
-          *Required Fields
-        </Typography>
-        {formMessage?.content ? (
-          <FormMessage
-            ref={formMessageComp}
-            success={formMessage.success}
-            title={formMessage.title}
-            isBackToLogin={formMessage.isBackToLogin}
-          >
-            {formMessage.content}
-          </FormMessage>
-        ) : (
-          ""
-        )}
-        <form onSubmit={handleSubmit(onSubmit)} style={styles.form} noValidate>
-          <Controller
-            name="firstName"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  required
-                  type="text"
-                  minLength={2}
-                  maxLength={50}
-                  id="firstName"
-                  label="First Name"
-                  aria-label="First name required text field"
-                  inputRef={inputRef}
-                  inputProps={{
-                    "aria-label": "First Name - Required",
-                  }}
-                  value={value}
-                  data-testid={REGISTER_TEST_ID.firstname}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={{
-                    margin: "8px",
-                  }}
-                />
-              );
-            }}
-            rules={{
-              required: "This field is required",
-              pattern: {
-                value: Regex.nameValidation,
-                message: "Incorrect format",
-              },
-            }}
-          />
-
-          <Controller
-            name="lastName"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="text"
-                  minLength={2}
-                  maxLength={50}
-                  id="lastName"
-                  label="Last Name"
-                  inputRef={inputLastName}
-                  aria-label={"Last name required text field"}
-                  inputProps={{
-                    "aria-label": "Last Name - Required",
-                  }}
-                  data-testid={REGISTER_TEST_ID.lastname}
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={{
-                    margin: "8px",
-                  }}
-                  required
-                />
-              );
-            }}
-            rules={{
-              required: "This field is required",
-              pattern: {
-                value: Regex.nameValidation,
-                message: "Incorrect format",
-              },
-            }}
-          />
-
-          <Controller
-            name="dob"
-            control={control}
-            tabIndex={0}
-            InputPropsLabel={{
-              "aria-label": "Date of Birth required text field",
-            }}
-            aria-label="Date of Birth required text field"
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  required
-                  open={open}
-                  onOpen={() => setOpen(true)}
-                  onClose={() => {
-                    setOpen(false);
-                    setTimeout(() => {
-                      inputDob?.current?.focus();
-                    }, 1);
-                  }}
-                  // onClick={() => setOpen(true)}
-                  aria-hidden={true}
-                  tabIndex={-1}
-                  type="dob"
-                  id="dob"
-                  inputRef={inputDob}
-                  data-testid={REGISTER_TEST_ID.dateofbirth}
-                  InputLabel={{ "aria-hidden": true }}
-                  InputLabelProps={{
-                    "aria-hidden": true,
-                  }}
-                  InputProps={{
-                    ref: inputDob,
-                    tabIndex: 0,
-                    "data-testid": REGISTER_TEST_ID.dateofbirth,
-                    "aria-label": "Date of Birth required text field",
-                  }}
-                  inputProps={{
-                    tabIndex: -1,
-                    readOnly: !isDesktop,
-                    isTransparent: true,
-                  }}
-                  label="Date of Birth"
-                  variant="filled"
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  helperText={error ? error.message : null}
-                />
-              );
-            }}
-            rules={{
-              required: "This field is required",
-              validate: {
-                required: (value) => {
-                  if (!isDOB(value)) return "Invalid date of birth";
-                },
-              },
-            }}
-          />
-          <Controller
-            name="email"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="text"
-                  id="email"
-                  label="Email"
-                  inputRef={inputEmail}
-                  aria-label={"Email required text field"}
-                  inputProps={{
-                    "aria-label": "Email - Required",
-                    maxLength: 50,
-                  }}
-                  value={value}
-                  data-testid={REGISTER_TEST_ID.email}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={{
-                    margin: "8px",
-                  }}
-                  required
-                />
-              );
-            }}
-            rules={{
-              validate: {
-                required: (value) => {
-                  if (!isOneOfPreferredValid("email", value))
-                    return "Email ID or Mobile Number is required";
-                },
-              },
-              pattern: {
-                value: Regex.emailValidation,
-                message: "Incorrect email format",
-              },
-            }}
-          />
-          <Controller
-            name="mobileNumber"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="phone"
-                  inputRef={inputMobileNumber}
-                  id="mobileNumber"
-                  aria-label="Mobile Number required text field"
-                  data-testid={REGISTER_TEST_ID.mobilenumber}
-                  label="Mobile Number"
-                  inputProps={{
-                    "aria-label": `Mobile Number - Required`,
-                  }}
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={{
-                    m: 1,
-                  }}
-                  required
-                />
-              );
-            }}
-            rules={{
-              validate: {
-                required: (value) => {
-                  if (!isOneOfPreferredValid("phone", value))
-                    return "Email ID or Mobile Number is required";
-                },
-              },
-              pattern: {
-                value: Regex.isValidPhoneFormat,
-                message: "Incorrect mobile number format",
-              },
-            }}
-          />
-          <Typography sx={{ ...styles.passwordLabel, fontSize: "18px" }}>
-            Please create a password
-          </Typography>
-          <Controller
-            name="password"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="password"
-                  id="password"
-                  inputRef={inputPassword}
-                  label="Password"
-                  inputProps={{
-                    "aria-label": `Password - required -`,
-                    maxLength: 50,
-                  }}
-                  data-testid={REGISTER_TEST_ID.password}
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  required
-                />
-              );
-            }}
-            rules={{
-              required: "This field is required",
-              validate: {
-                isLength: (v) =>
-                  Regex.lengthRegex.test(v) ||
-                  "Password does not meet requirements",
-                isAtLeastOneNumber: (v) =>
-                  Regex.numberRegex.test(v) ||
-                  "Password does not meet requirements",
-                is3of4: (v) =>
-                  is3of4(v) || "Password does not meet requirements",
-              },
-            }}
-          />
-
-          <PasswordValidator
-            validator={passwordValidator}
-            isShowValidation={isPasswordError}
-            password={watchedPassword}
-            validatePassword={validatePassword}
-          />
-
-          <div style={styles.registeredUsernameWrapper}>
+          <Stack spacing={3}>
+            <HeadingTitle
+              variant={constants.H1}
+              sx={styles.titleStyles}
+              title={"User Registration"}
+            />
             <Typography
-              ref={msgRef}
-              variant="bodyMedium"
-              sx={{ fontWeight: 500, color: colors.darkGreen }}
+              sx={{
+                fontFamily: "Libre Franklin",
+                fontWeight: "400",
+                fontSize: "12px",
+                color: "#6C6C6C",
+                mx: "10px !important",
+                my: "8px !important",
+              }}
             >
-              Your username will be {getRegisteredUsername()}
+              *Required Fields
             </Typography>
-          </div>
-
-          <div style={styles.divMargin}>
-            <Controller
-              name="preferredCommunication"
-              control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <>
-                    <RowRadioButtonsGroup
+            {formMessage?.content ? (
+              <FormMessage
+                ref={formMessageComp}
+                success={formMessage.success}
+                title={formMessage.title}
+                isBackToLogin={formMessage.isBackToLogin}
+              >
+                {formMessage.content}
+              </FormMessage>
+            ) : (
+              ""
+            )}
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              style={styles.form}
+              noValidate
+            >
+              <Controller
+                name="firstName"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      required
+                      type="text"
+                      minLength={2}
+                      maxLength={50}
+                      id="firstName"
+                      label="First Name"
+                      aria-label="First name required text field"
+                      inputRef={inputRef}
+                      inputProps={{
+                        "aria-label": "First Name - Required",
+                      }}
+                      value={value}
+                      data-testid={REGISTER_TEST_ID.firstname}
+                      onChange={onChange}
                       error={!!error}
-                      inputRef={inputPrefentComunnication}
+                      size="small"
+                      variant="filled"
+                      helperText={error ? error.message : null}
+                      sx={{
+                        margin: "8px",
+                      }}
+                    />
+                  );
+                }}
+                rules={{
+                  required: t("requiredField"),
+                  pattern: {
+                    value: Regex.nameValidation,
+                    message: "Incorrect format",
+                  },
+                }}
+              />
+
+              <Controller
+                name="lastName"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      type="text"
+                      minLength={2}
+                      maxLength={50}
+                      id="lastName"
+                      label="Last Name"
+                      inputRef={inputLastName}
+                      aria-label={"Last name required text field"}
+                      inputProps={{
+                        "aria-label": "Last Name - Required",
+                      }}
+                      data-testid={REGISTER_TEST_ID.lastname}
                       value={value}
                       onChange={onChange}
-                      label="Preferred mode of Communication"
-                      inputProps={{
-                        "aria-label": `Preferred mode of Communication - required -`,
-                      }}
-                      options={options}
+                      error={!!error}
+                      size="small"
+                      variant="filled"
                       helperText={error ? error.message : null}
-                      isRegistrationForm={true}
+                      sx={{
+                        margin: "8px",
+                      }}
+                      required
                     />
-                  </>
-                );
-              }}
-              rules={{ required: "This field is required" }}
-            />
-          </div>
+                  );
+                }}
+                rules={{
+                  required: t("requiredField"),
+                  pattern: {
+                    value: Regex.nameValidation,
+                    message: "Incorrect format",
+                  },
+                }}
+              />
 
-          <Button
-            type="submit"
-            variant="contained"
-            sx={styles.containedButton}
-            data-testid={REGISTER_TEST_ID.registerbtn}
-          >
-            Register
-          </Button>
-        </form>
+              <Controller
+                name="dob"
+                control={control}
+                tabIndex={0}
+                InputPropsLabel={{
+                  "aria-label": "Date of Birth required text field",
+                }}
+                aria-label="Date of Birth required text field"
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      required
+                      open={open}
+                      onOpen={() => setOpen(true)}
+                      onClose={() => {
+                        setOpen(false);
+                        setTimeout(() => {
+                          inputDob?.current?.focus();
+                        }, 1);
+                      }}
+                      // onClick={() => setOpen(true)}
+                      aria-hidden={true}
+                      tabIndex={-1}
+                      type="dob"
+                      id="dob"
+                      inputRef={inputDob}
+                      data-testid={REGISTER_TEST_ID.dateofbirth}
+                      InputLabel={{ "aria-hidden": true }}
+                      InputLabelProps={{
+                        "aria-hidden": true,
+                      }}
+                      InputProps={{
+                        ref: inputDob,
+                        tabIndex: 0,
+                        "data-testid": REGISTER_TEST_ID.dateofbirth,
+                        "aria-label": "Date of Birth required text field",
+                      }}
+                      inputProps={{
+                        tabIndex: -1,
+                        readOnly: !isDesktop,
+                        isTransparent: true,
+                      }}
+                      label="Date of Birth"
+                      variant="filled"
+                      value={value}
+                      onChange={onChange}
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+                rules={{
+                  required: t("requiredField"),
+                  validate: {
+                    required: (value) => {
+                      if (!isDOB(value)) return t("invalidDOB");
+                    },
+                  },
+                }}
+              />
+              <Controller
+                name="email"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      type="text"
+                      id="email"
+                      label="Email"
+                      inputRef={inputEmail}
+                      aria-label={"Email required text field"}
+                      inputProps={{
+                        "aria-label": "Email - Required",
+                      }}
+                      value={value}
+                      data-testid={REGISTER_TEST_ID.email}
+                      onChange={onChange}
+                      error={!!error}
+                      size="small"
+                      variant="filled"
+                      helperText={error ? error.message : null}
+                      sx={{
+                        margin: "8px",
+                      }}
+                      required
+                    />
+                  );
+                }}
+                rules={{
+                  validate: {
+                    required: (value) => {
+                      if (!isOneOfPreferredValid("email", value))
+                        return "This field is required to proceed.";
+                    },
+                  },
+                  pattern: {
+                    value: Regex.emailValidation,
+                    message: t("incorrectEmail"),
+                  },
+                }}
+              />
+              <Controller
+                name="mobileNumber"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      type="phone"
+                      inputRef={inputMobileNumber}
+                      id="mobileNumber"
+                      aria-label="Mobile Number required text field"
+                      data-testid={REGISTER_TEST_ID.mobilenumber}
+                      label="Mobile Number"
+                      inputProps={{
+                        "aria-label": `Mobile Number - Required`,
+                      }}
+                      value={value}
+                      onChange={onChange}
+                      error={!!error}
+                      size="small"
+                      variant="filled"
+                      helperText={error ? error.message : null}
+                      sx={{
+                        m: 1,
+                      }}
+                      required
+                    />
+                  );
+                }}
+                rules={{
+                  validate: {
+                    required: (value) => {
+                      if (!isOneOfPreferredValid("phone", value))
+                        return "This field is required to proceed.";
+                    },
+                  },
+                  pattern: {
+                    value: Regex.isValidPhoneFormat,
+                    message: t("incorrectPhone"),
+                  },
+                }}
+              />
+              <Typography sx={{ ...styles.passwordLabel, fontSize: "18px" }}>
+                Please create a password
+              </Typography>
+              <Controller
+                name="password"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      type="password"
+                      id="password"
+                      inputRef={inputPassword}
+                      label="Password"
+                      inputProps={{
+                        "aria-label": `Password - required -`,
+                      }}
+                      data-testid={REGISTER_TEST_ID.password}
+                      value={value}
+                      onChange={onChange}
+                      error={!!error}
+                      size="small"
+                      variant="filled"
+                      helperText={error ? error.message : null}
+                      required
+                    />
+                  );
+                }}
+                rules={{
+                  required: t("requiredField"),
+                  validate: {
+                    isLength: (v) =>
+                      Regex.lengthRegex.test(v) || t("incorrectPassword"),
+                    isAtLeastOneNumber: (v) =>
+                      Regex.numberRegex.test(v) || t("incorrectPassword"),
+                    is3of4: (v) => is3of4(v) || t("incorrectPassword"),
+                  },
+                }}
+              />
 
-        <Typography variant="caption" style={styles.bottomParagraph}>
-          {`By registering, you accept to our Terms & Conditions and Privacy Policy`}
-        </Typography>
-        <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
-        <Typography variant="caption" style={styles.bottomParagraph}>
-          Already have an account?{" "}
-          <Link
-            href="/patient/login"
-            data-testid={REGISTER_TEST_ID.loginlink}
-            aria-label={`Login link`}
-          >
-            <a href="#" style={styles.loginLink}>
-              Login
-            </a>
-          </Link>
-        </Typography>
-      </Stack>
-    </Box>
+              <PasswordValidator
+                validator={passwordValidator}
+                isShowValidation={isPasswordError}
+                password={watchedPassword}
+                validatePassword={validatePassword}
+              />
+
+              <div style={styles.registeredUsernameWrapper}>
+                <Typography
+                  ref={msgRef}
+                  variant="bodyMedium"
+                  sx={{ fontWeight: 500, color: colors.darkGreen }}
+                >
+                  Your username will be {getRegisteredUsername()}
+                </Typography>
+              </div>
+
+              <div style={styles.divMargin}>
+                <Controller
+                  name="preferredCommunication"
+                  control={control}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => {
+                    return (
+                      <>
+                        <RowRadioButtonsGroup
+                          error={!!error}
+                          inputRef={inputPrefentComunnication}
+                          value={value}
+                          onChange={onChange}
+                          label="Preferred mode of Communication"
+                          inputProps={{
+                            "aria-label": `Preferred mode of Communication - required -`,
+                          }}
+                          options={options}
+                          helperText={error ? error.message : null}
+                          isRegistrationForm={true}
+                        />
+                      </>
+                    );
+                  }}
+                  rules={{ required: t("requiredField") }}
+                />
+              </div>
+
+              <Button
+                type="submit"
+                variant="contained"
+                sx={styles.containedButton}
+                data-testid={REGISTER_TEST_ID.registerbtn}
+              >
+                Register
+              </Button>
+            </form>
+
+            <Typography variant="caption" style={styles.bottomParagraph}>
+              {`By registering, you accept to our Terms & Conditions and Privacy Policy`}
+            </Typography>
+            <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
+            <Typography variant="caption" style={styles.bottomParagraph}>
+              Already have an account?{" "}
+              <Link
+                href="/patient/login"
+                data-testid={REGISTER_TEST_ID.loginlink}
+                aria-label={`Login link`}
+              >
+                <a href="#" style={styles.loginLink}>
+                  Login
+                </a>
+              </Link>
+            </Typography>
+          </Stack>
+        </Box>
+      )}
+    </>
   );
 }

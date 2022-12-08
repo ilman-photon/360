@@ -177,7 +177,7 @@ const ForgotPassword = ({
                         },
                       }}
                       rules={{
-                        required: "This field is required",
+                        required: t("errorEmptyField"),
                       }}
                       required
                       error={!!error}

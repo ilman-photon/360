@@ -17,7 +17,7 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function ValidatePage({ query }) {
-  const { t } = useTranslation("translation", {
+  const { t, ready } = useTranslation("translation", {
     keyPrefix: "ValidatePage",
   });
   const [isloaded, setLoaded] = useState(false);
@@ -43,19 +43,18 @@ export default function ValidatePage({ query }) {
     return (
       <Typography
         style={{ marginBottom: "22px" }}
-        aria-label={
-          "Link has expired. Go to Forgot password and request for a new link"
-        }
+        aria-label={`This link is now expired. Please go to “Forgot Password” to retrieve a new link.`}
       >
-        Link has expired. Go to{" '"}
+        {t("expiredLink1")}
+        {" '"}
         <Link
           href="/patient/forgot-password"
           style={{ cursor: "pointer", color: colors.teal }}
         >
-          Forgot password
+          {t("forgotPassword")}
         </Link>
         {"' "}
-        and request for a new link
+        {t("expiredLink2")}
       </Typography>
     );
   };
@@ -183,13 +182,20 @@ export default function ValidatePage({ query }) {
   }, []);
 
   return (
-    <Box className={globalStyles.containerPage}>
-      {showExpiredForm ? (
-        <ConfirmationForm {...confirmationFormData} showPostMessage={true} />
-      ) : (
-        <></>
+    <>
+      {ready && (
+        <Box className={globalStyles.containerPage}>
+          {showExpiredForm ? (
+            <ConfirmationForm
+              {...confirmationFormData}
+              showPostMessage={true}
+            />
+          ) : (
+            <></>
+          )}
+        </Box>
       )}
-    </Box>
+    </>
   );
 }
 

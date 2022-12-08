@@ -80,7 +80,7 @@ const SecurityQuestion = ({
     } else if (validate && !hasDuplicates(questionAnswer)) {
       onClickedSubmitButton(questionAnswer, checkSubmitMessage);
     } else {
-      onShowPostMessage("You must answer all security questions");
+      onShowPostMessage("You must answer all security questions in order to proceed.");
     }
   };
 
