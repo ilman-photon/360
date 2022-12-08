@@ -250,14 +250,14 @@ export const patientTypography = createTheme({
       fontSize: 16,
     },
     headlineH2: {
-      fontamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
       fontStyle: "normal",
       fontWeight: 400,
       fontSize: "32px",
       lineHeight: "44px",
     },
     headlineH3: {
-      fontamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
       fontStyle: "normal",
       fontWeight: 400,
       fontSize: "26px",
