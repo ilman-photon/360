@@ -385,10 +385,6 @@ export default function TableWithSort({
         <div
           style={tabelData.cell.contentStyle}
           tabIndex={0}
-          aria-label={`${tabelData.cell.valueKey}. ${ref(
-            tabelData.row,
-            tabelData.cell.valueKey
-          )}`}
           className={[styles.tableCell, tabelData.cell.contentClass].join(" ")}
         >
           {type === "date-time" ? getMultilineDate(dateValue) : dateValue}
