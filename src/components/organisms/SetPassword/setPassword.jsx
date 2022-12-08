@@ -406,7 +406,7 @@ const SetPasswordComponent = ({
                   );
                 }}
                 rules={{
-                  required: "This field is required",
+                  required: t("errorEmptyField"),
                   validate: !isUpdatePassword ? passwordRules() : {},
                 }}
               />

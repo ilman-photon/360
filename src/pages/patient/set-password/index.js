@@ -31,7 +31,7 @@ export default function SetPasswordPage({ username, token }) {
   const [isAppointment, setAppointment] = useState(true);
   const [isloaded, setLoaded] = useState(false);
 
-  const { t } = useTranslation("translation", {
+  const { t, ready } = useTranslation("translation", {
     keyPrefix: "ValidatePage",
   });
   const [confirmationFormData, setConfirmationFormData] = useState({
@@ -52,7 +52,7 @@ export default function SetPasswordPage({ username, token }) {
   const confirmationFormProps = {
     pageTitle: "Password Set page",
     title: "Password Set",
-    postMessage: "Password has been set",
+    postMessage: t("successSetPassword"),
     showPostMessage: true,
     isSuccessPostMessage: true,
     buttonLabel: "Back to Login",
@@ -167,21 +167,25 @@ export default function SetPasswordPage({ username, token }) {
       });
   };
   return (
-    <Box className={globalStyles.containerPage}>
-      {!showPostMessage ? (
-        <SetPasswordComponent
-          title={"Set Password"}
-          subtitle={"Enter a password to setup your account."}
-          username={username}
-          formMessage={formMessage}
-          onSetPasswordClicked={OnSetPasswordClicked}
-          showBackToLogin={false}
-          ctaButtonLabel={"Set Password"}
-        />
-      ) : (
-        <ConfirmationForm {...confirmationFormProps} />
+    <>
+      {ready && (
+        <Box className={globalStyles.containerPage}>
+          {!showPostMessage ? (
+            <SetPasswordComponent
+              title={"Set Password"}
+              subtitle={t("enterPassword")}
+              username={username}
+              formMessage={formMessage}
+              onSetPasswordClicked={OnSetPasswordClicked}
+              showBackToLogin={false}
+              ctaButtonLabel={"Set Password"}
+            />
+          ) : (
+            <ConfirmationForm {...confirmationFormProps} />
+          )}
+        </Box>
       )}
-    </Box>
+    </>
   );
 }
 

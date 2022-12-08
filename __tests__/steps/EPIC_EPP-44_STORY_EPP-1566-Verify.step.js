@@ -917,9 +917,7 @@ defineFeature(feature, (test) => {
     then(
       "user should get error message Incorrect mobile number format",
       async () => {
-        await waitFor(() =>
-          container.getByText("Incorrect mobile number format")
-        );
+        await waitFor(() => container.getByText(/incorrectPhone/i));
       }
     );
   });

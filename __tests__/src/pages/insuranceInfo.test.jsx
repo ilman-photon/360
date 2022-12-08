@@ -290,7 +290,7 @@ describe("InsuranceInformationPage Components", () => {
     );
     await waitFor(() =>
       container.getAllByText(
-        /Cannot add any more insurances. Maximum limit has been reached/i
+        /Maximum number of insurances has been reached./i
       )
     );
   });
