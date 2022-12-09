@@ -123,10 +123,28 @@ export default function ContactInformation({
     setValue("zip", "");
   };
 
-  const assignAddressFormValue = (oldValue) => {
-    if (!placeDetailsState) return;
-    const addressComponents = placeDetailsState.address_components;
+  /** GET Place Details */
+  const getPlaceDetails = (indexValue) => {
+    return new Promise(function (resolve) {
+      placesService.getDetails(
+        {
+          placeId: placePredictions[indexValue].place_id,
+        },
+        (placeDetails) => {
+          resolve(placeDetails);
+        }
+      );
+    });
+  };
 
+  const assignAddressFormValue = async (oldValue) => {
+    const indexValue = placePredictions.findIndex(
+      (item) => item.description === oldValue
+    );
+    let placesResponse = await getPlaceDetails(indexValue);
+
+    if (!placesResponse) return;
+    const addressComponents = placesResponse.address_components;
     if (addressComponents) {
       resetAddressForm();
       let address1 = "";
@@ -196,21 +214,6 @@ export default function ContactInformation({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedPreferredCommunication, setFocus]);
-
-  const [placeDetailsState, setPlaceDetailsState] = useState(null);
-  useEffect(() => {
-    // fetch place details for the first element in placePredictions array
-    if (placePredictions.length)
-      placesService?.getDetails(
-        {
-          placeId: placePredictions[0].place_id,
-        },
-        (placeDetails) => {
-          setPlaceDetailsState(placeDetails);
-        }
-      );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(placePredictions)]);
 
   const showOrReturnEmpty = (data) => {
     return data || "-";
@@ -463,7 +466,9 @@ export default function ContactInformation({
                       (option) => option.description
                     )}
                     onChange={(e, value) => {
-                      assignAddressFormValue(value);
+                      if (value) {
+                        assignAddressFormValue(value);
+                      }
                     }}
                     value={value}
                     autoComplete={false}
