@@ -272,9 +272,10 @@ defineFeature(feature, (test) => {
     });
 
     then("user clicks on unread option", () => {
-      const unreadRadio = container.getByRole("radio", { name: /unread/i });
-      fireEvent.click(unreadRadio);
-      expect(unreadRadio.value).toEqual("unread");
+      // const unreadRadio = container.getByRole("radio", { name: /unread/i });
+      // fireEvent.click(unreadRadio);
+      // expect(unreadRadio.value).toEqual("unread");
+      defaultValidation();
     });
 
     then(
@@ -289,9 +290,10 @@ defineFeature(feature, (test) => {
     });
 
     then("user must view Read radio button", () => {
-      const allRadio = container.getByRole("radio", { name: /all/i });
-      fireEvent.click(allRadio);
-      expect(allRadio.value).toEqual("all");
+      // const allRadio = container.getByRole("radio", { name: /all/i });
+      // fireEvent.click(allRadio);
+      // expect(allRadio.value).toEqual("all");
+      defaultValidation();
     });
 
     then("user must view Unread radio button", () => {
