@@ -92,7 +92,8 @@ export default function InsuranceInfoPage() {
         setPageMessage({
           isShow: true,
           error: true,
-          content: "Please upload both sides of your insurance card in order to proceed.",
+          content:
+            "Please upload both sides of your insurance card in order to proceed.",
         })
       );
       return false;
@@ -157,6 +158,7 @@ export default function InsuranceInfoPage() {
   const OnEditInsurance = async (postBody) => {
     if (!postBody) return;
     if (!checkInsuranceCardCompletion(postBody)) return;
+    const userStorageData = JSON.parse(localStorage.getItem("userData"));
 
     const { payload } = await dispatch(
       updateInsurance({
@@ -167,12 +169,13 @@ export default function InsuranceInfoPage() {
     );
     if (payload.success) {
       // after effect to edit state of rawuserinsuranceData manually and rebuild
-      dispatch(setUserInsuranceDataById(payload.response));
+      // dispatch(setUserInsuranceDataById(payload.response));
 
       // show messages or anything
       showSuccessMessage("Your changes were saved");
       setEditForm(null);
       setIsEditing(false);
+      dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
     }
   };
 
@@ -183,13 +186,13 @@ export default function InsuranceInfoPage() {
       dispatch(
         setPageMessage({
           isShow: true,
-          content:
-            "Maximum number of insurances has been reached.",
+          content: "Maximum number of insurances has been reached.",
           error: true,
         })
       );
     }
   };
+
   useEffect(() => {
     setTimeout(() => {
       // add delay to gives new form to render first.

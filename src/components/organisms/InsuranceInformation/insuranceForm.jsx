@@ -70,7 +70,7 @@ export default function InsuranceForm({
 
   const resetFormData = () => {
     reset(formData);
-    setValue("memberID", memberId);
+    // setValue("memberID", memberId);
   };
 
   // Later will be used for edit
@@ -153,10 +153,10 @@ export default function InsuranceForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedProvider]);
 
-  useEffect(() => {
-    setValue("memberID", memberId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [memberId]);
+  // useEffect(() => {
+  //   setValue("memberID", memberId);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [memberId]);
 
   const handleCancel = () => {
     OnCancelClicked();
@@ -206,20 +206,20 @@ export default function InsuranceForm({
                       fieldState: { error },
                     }) => {
                       return (
-                    <AutoCompleteCreatable
-                      tabIndex={0}
-                      isLoading={isAutocompleteLoading}
-                      options={providerList}
-                      testId={testIds.provider}
-                      inputLabel="Insurance Provider"
-                      onChange={onChange}
-                      value={value}
-                      error={!!error}
-                      helperText={error ? error.message : null}
-                      required
-                      isMobileOption={isDesktop ? false : true}
-                      inputRef={providerRef}
-                    />
+                        <AutoCompleteCreatable
+                          tabIndex={0}
+                          isLoading={isAutocompleteLoading}
+                          options={providerList}
+                          testId={testIds.provider}
+                          inputLabel="Insurance Provider"
+                          onChange={onChange}
+                          value={value}
+                          error={!!error}
+                          helperText={error ? error.message : null}
+                          required
+                          isMobileOption={isDesktop ? false : true}
+                          inputRef={providerRef}
+                        />
                       );
                     }}
                     rules={{
@@ -239,19 +239,19 @@ export default function InsuranceForm({
                     }) => {
                       return (
                         <AutoCompleteCreatable
-                        tabIndex={0}
-                        isLoading={isAutocompleteLoading}
-                        options={planList}
-                        testId={testIds.planName}
-                        inputLabel="Plan Name"
-                        onChange={onChange}
-                        value={value}
-                        error={!!error}
-                        helperText={error ? error.message : null}
-                        required
-                        inputRef={planRef}
-                        isMobileOption={isDesktop ? false : true}
-                      />
+                          tabIndex={0}
+                          isLoading={isAutocompleteLoading}
+                          options={planList}
+                          testId={testIds.planName}
+                          inputLabel="Plan Name"
+                          onChange={onChange}
+                          value={value}
+                          error={!!error}
+                          helperText={error ? error.message : null}
+                          required
+                          inputRef={planRef}
+                          isMobileOption={isDesktop ? false : true}
+                        />
                       );
                     }}
                     rules={{
@@ -421,14 +421,14 @@ export default function InsuranceForm({
                               value: Regex.nameValidation,
                               message: t("incorrectFormat"),
                             },
-                            validate: {
-                              requiredIfSubscriber,
-                              isMin2Max50Length: (v) =>
-                                watchedSubscriber === "No"
-                                  ? Regex.isMin2Max50Length.test(v) ||
-                                    t("firstNameValidation")
-                                  : true,
-                            },
+                            // validate: {
+                            //   requiredIfSubscriber,
+                            //   isMin2Max50Length: (v) =>
+                            //     watchedSubscriber === "No"
+                            //       ? Regex.isMin2Max50Length.test(v) ||
+                            //         t("firstNameValidation")
+                            //       : true,
+                            // },
                           }}
                         />
                       </Grid>
