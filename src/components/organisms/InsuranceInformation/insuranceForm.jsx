@@ -206,20 +206,20 @@ export default function InsuranceForm({
                       fieldState: { error },
                     }) => {
                       return (
-                    <AutoCompleteCreatable
-                      tabIndex={0}
-                      isLoading={isAutocompleteLoading}
-                      options={providerList}
-                      testId={testIds.provider}
-                      inputLabel="Insurance Provider"
-                      onChange={onChange}
-                      value={value}
-                      error={!!error}
-                      helperText={error ? error.message : null}
-                      required
-                      isMobileOption={isDesktop ? false : true}
-                      inputRef={providerRef}
-                    />
+                        <AutoCompleteCreatable
+                          tabIndex={0}
+                          isLoading={isAutocompleteLoading}
+                          options={providerList}
+                          testId={testIds.provider}
+                          inputLabel="Insurance Provider"
+                          onChange={onChange}
+                          value={value}
+                          error={!!error}
+                          helperText={error ? error.message : null}
+                          required
+                          isMobileOption={isDesktop ? false : true}
+                          inputRef={providerRef}
+                        />
                       );
                     }}
                     rules={{
@@ -239,19 +239,19 @@ export default function InsuranceForm({
                     }) => {
                       return (
                         <AutoCompleteCreatable
-                        tabIndex={0}
-                        isLoading={isAutocompleteLoading}
-                        options={planList}
-                        testId={testIds.planName}
-                        inputLabel="Plan Name"
-                        onChange={onChange}
-                        value={value}
-                        error={!!error}
-                        helperText={error ? error.message : null}
-                        required
-                        inputRef={planRef}
-                        isMobileOption={isDesktop ? false : true}
-                      />
+                          tabIndex={0}
+                          isLoading={isAutocompleteLoading}
+                          options={planList}
+                          testId={testIds.planName}
+                          inputLabel="Plan Name"
+                          onChange={onChange}
+                          value={value}
+                          error={!!error}
+                          helperText={error ? error.message : null}
+                          required
+                          inputRef={planRef}
+                          isMobileOption={isDesktop ? false : true}
+                        />
                       );
                     }}
                     rules={{
