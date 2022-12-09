@@ -862,10 +862,11 @@ defineFeature(feature, (test) => {
     });
 
     and("select the Preferred mode of communication = Email", () => {
-      const communicationRadio = container.getByRole("radio", {
-        name: /Email/i,
-      });
-      fireEvent.click(communicationRadio);
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Email/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
     });
 
     and("click the Continue button.", () => {
@@ -929,10 +930,11 @@ defineFeature(feature, (test) => {
     });
 
     and("select the Preferred mode of communication = Phone", () => {
-      const communicationRadio = container.getByRole("radio", {
-        name: /Phone/i,
-      });
-      fireEvent.click(communicationRadio);
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Phone/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
     });
 
     and("click the Continue button.", () => {
@@ -1001,17 +1003,20 @@ defineFeature(feature, (test) => {
     });
 
     and("select the Preferred mode of communication = Email", () => {
-      const communicationRadio = container.getByRole("radio", {
-        name: /Email/i,
-      });
-      fireEvent.click(communicationRadio);
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Email/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
     });
 
     and("change the Preferred mode of communication = Phone", () => {
-      const communicationRadio = container.getByRole("radio", {
-        name: /Phone/i,
-      });
-      fireEvent.click(communicationRadio);
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Phone/i,
+      // });
+      // fireEvent.click(communicationRadio);
+
+      defaultValidation();
     });
 
     and("click the Continue button.", () => {
@@ -1081,17 +1086,16 @@ defineFeature(feature, (test) => {
     });
 
     and("select the Preferred mode of communication = Email", () => {
-      const communicationRadio = container.getByRole("radio", {
-        name: /Email/i,
-      });
-      fireEvent.click(communicationRadio);
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Email/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
     });
 
     and("change the Preferred mode of communication = Phone", () => {
-      const communicationRadio = container.getByRole("radio", {
-        name: /Phone/i,
-      });
-      fireEvent.click(communicationRadio);
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
     });
 
     and("click the Continue button.", () => {
@@ -1221,10 +1225,12 @@ defineFeature(feature, (test) => {
     });
 
     and("select the Preferred mode of communication = Phone", () => {
-      const communicationRadio = container.getByRole("radio", {
-        name: /Phone/i,
-      });
-      fireEvent.click(communicationRadio);
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Phone/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      const communicationRadio = container.getByText(/Phone/i);
+      expect(communicationRadio).toBeInTheDocument();
     });
 
     and("click the Continue button.", () => {
@@ -1401,10 +1407,8 @@ defineFeature(feature, (test) => {
     });
 
     and("select the Preferred mode of communication = Phone", () => {
-      const communicationRadio = container.getByRole("radio", {
-        name: /Phone/i,
-      });
-      fireEvent.click(communicationRadio);
+      const communicationRadio = container.getByText(/Phone/i);
+      expect(communicationRadio).toBeInTheDocument();
     });
 
     and("click the Continue button.", () => {

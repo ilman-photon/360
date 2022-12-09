@@ -97,6 +97,10 @@ export default function RowRadioButtonsGroup({
                 <Radio
                   checked={props.value === option.value}
                   data-testid={props.testId}
+                  inputProps={{
+                    tabindex: -1,
+                    "aria-hidden": true,
+                  }}
                   sx={{
                     ".MuiSvgIcon-root": {
                       width: iconSize,
