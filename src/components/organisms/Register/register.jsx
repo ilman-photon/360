@@ -268,6 +268,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             <form
               onSubmit={handleSubmit(onSubmit)}
               style={styles.form}
+              autoComplete={"off"}
               noValidate
             >
               <Controller
@@ -526,6 +527,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       }}
                       data-testid={REGISTER_TEST_ID.password}
                       value={value}
+                      autoComplete={"new-password"}
                       onChange={onChange}
                       error={!!error}
                       size="small"

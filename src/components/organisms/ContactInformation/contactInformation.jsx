@@ -114,6 +114,7 @@ export default function ContactInformation({
   const { placesService, placePredictions, getPlacePredictions } =
     usePlacesService({
       apiKey: googleAPIKey,
+      options: { componentRestrictions: { country: ["us", "ca"] } },
     });
   const resetAddressForm = () => {
     setValue("address", "");

@@ -299,6 +299,7 @@ export const CustomInput = styled(({ ...props }) => {
               value={props.value}
               required={props.required}
               inputRef={props.inputRef}
+              autoComplete={props.autoComplete}
             />
           </CustomFormControl>
         </>
