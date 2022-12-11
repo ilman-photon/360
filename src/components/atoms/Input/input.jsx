@@ -82,6 +82,7 @@ export const CustomPasswordInput = styled((props) => (
       ),
     }}
     {...props}
+    inputProps={{ ...props.inputProps, maxlength: 20 }}
   />
 ))(({ theme }) => ({
   ".MuiInputLabel-root": {
