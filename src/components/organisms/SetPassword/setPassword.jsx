@@ -511,7 +511,7 @@ const SetPasswordComponent = ({
                 mode="primary"
                 size="small"
                 gradient={false}
-                style={{ ...styles.margin, margin: "0px 8px" }}
+                style={{ ...styles.margin, margin: "8px 8px 0px" }}
               >
                 {ctaButtonLabel}
               </StyledButton>
