@@ -666,6 +666,7 @@ defineFeature(feature, (test) => {
     useRouter.mockReturnValue({
       back: jest.fn(),
       push: jest.fn(),
+      beforePopState: jest.fn(),
     });
     window.scrollTo = jest.fn();
 
