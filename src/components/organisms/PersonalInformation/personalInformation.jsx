@@ -461,7 +461,7 @@ export default function PersonalInformation({
                         helperText={error ? error.message : null}
                         sx={{
                           ".MuiInputBase-root": {
-                            color: "#A5A5AC",
+                            color: "#303030",
                           },
                         }}
                         SelectProps={{
@@ -551,7 +551,7 @@ export default function PersonalInformation({
                         helperText={error ? error.message : null}
                         sx={{
                           ".MuiInputBase-root": {
-                            color: "#A5A5AC",
+                            color: "#303030",
                             fontFamily: "Roboto",
                           },
                         }}
