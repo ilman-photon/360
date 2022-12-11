@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
+import { logoutProps } from "./authetication";
 
 export function useLogin(admin = false) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,3 +23,17 @@ export function useLogin(admin = false) {
 
   return isAuthenticated;
 }
+
+export const useForceLogout = () => {
+  const router = useRouter();
+  const isIgnore = ["/patient/mfa"];
+  useEffect(() => {
+    router.beforePopState((e) => {
+      if (isIgnore.includes(e.url)) {
+        logoutProps.OnLogoutClicked(router);
+        return false;
+      }
+      return true;
+    });
+  }, [isIgnore, router, router.pathname]);
+};

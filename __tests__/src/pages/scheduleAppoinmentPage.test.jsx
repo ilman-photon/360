@@ -121,6 +121,7 @@ describe("App", () => {
         reschedule: true,
       },
       push: jest.fn(),
+      beforePopState: jest.fn(),
     });
 
     store.dispatch(
@@ -232,6 +233,7 @@ describe("App", () => {
         query: {
           reschedule: false,
         },
+        beforePopState: jest.fn(),
       })
     );
     container = render(<App Component={ScheduleAppointmentPage} />);
@@ -383,6 +385,7 @@ describe("App", () => {
         query: {
           reschedule: true,
         },
+        beforePopState: jest.fn(),
       })
     );
     await act(async () => {
