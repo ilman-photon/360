@@ -68,7 +68,7 @@ export default function AppointmentForm({
   },
   formMessage = null,
 }) {
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control, watch, setValue } = useForm({
     defaultValues: patientData,
   });
   const [open, setOpen] = React.useState(false);
@@ -173,7 +173,7 @@ export default function AppointmentForm({
     },
     {
       label: "Password should not contain your username",
-      validate: watchedPassword.indexOf(watchedEmail || watchedMobile) > -1,
+      validate: watchedPassword?.indexOf(watchedEmail || watchedMobile) > -1,
       mandatory: true,
     },
     {
@@ -181,7 +181,7 @@ export default function AppointmentForm({
       validate: false,
     },
   ];
-  const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
+  const isPasswordError = watchedPassword?.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
@@ -246,6 +246,18 @@ export default function AppointmentForm({
         inline: "nearest",
       });
   }, [formMessage]);
+
+  React.useEffect(() => {
+    const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
+    if (watchedEmail && isMobileInputEmpty) {
+      setValue("preferredCommunication", "email");
+    } else if (!watchedEmail && !isMobileInputEmpty) {
+      setValue("preferredCommunication", "phone");
+    } else {
+      setValue("preferredCommunication", "both");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watchedEmail, watchedMobile]);
 
   return (
     <>

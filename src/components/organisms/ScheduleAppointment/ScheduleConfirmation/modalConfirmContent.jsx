@@ -343,7 +343,7 @@ export default function ModalConfirmContent({
                     background: "#007E8F",
                   }}
                 >
-                  Ok
+                  OK
                 </Button>
               </div>
             ) : (

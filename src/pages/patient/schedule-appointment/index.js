@@ -374,6 +374,11 @@ export default function ScheduleAppointmentPage() {
     dispatch(resetFormMessage());
 
     try {
+      if (!postBody.email) {
+        delete postBody.email;
+      } else if (!postBody.mobileNumber) {
+        delete postBody.mobileNumber;
+      }
       await api
         .getResponse("/ecp/patient/userregistration", postBody, "post")
         .then(() => {
