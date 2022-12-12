@@ -339,15 +339,40 @@ export default function BaseHeader({
                   </IconButton>
                 </Box>
 
-                <ProfileDrawer
-                  onClose={() => {
-                    setOpenedProfileDrawer(false);
+                <Box
+                  sx={{
+                    display: {
+                      xs: "none",
+                      sm: "flex",
+                      md: "none",
+                    },
                   }}
-                  opened={openedProfileDrawer}
-                  onLogoutClicked={() => {
-                    OnLogoutClicked(router);
-                  }}
-                />
+                >
+                  <Button
+                    variant="text"
+                    sx={styles.boxButtonStyles}
+                    startIcon={
+                      <Avatar sx={{ background: "#003B4A" }}>
+                        {`${user.name.split(" ")[0][0].toUpperCase()}${user.name
+                          .split(" ")[1][0]
+                          .toUpperCase()}`}
+                      </Avatar>
+                    }
+                    data-testid="user-menu-open"
+                    endIcon={<ExpandMoreIcon />}
+                    onClick={() => setOpenedProfileDrawer(true)}
+                  />
+
+                  <ProfileDrawer
+                    onClose={() => {
+                      setOpenedProfileDrawer(false);
+                    }}
+                    opened={openedProfileDrawer}
+                    onLogoutClicked={() => {
+                      OnLogoutClicked(router);
+                    }}
+                  />
+                </Box>
 
                 <MobileMenu
                   onClose={() => {

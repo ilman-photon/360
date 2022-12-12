@@ -24,6 +24,11 @@ describe("ProfileInformationPage", () => {
   };
   afterEach(() => {});
   beforeEach(async () => {
+    Object.defineProperty(document, "cookie", {
+      writable: true,
+      value: "authorized=true;accessToken=1234",
+    });
+    
     const mock = new MockAdapter(axios);
     const userData = JSON.parse(localStorage.getItem("userData"));
     const mockUserDataNoImage = { ...mockUserData };

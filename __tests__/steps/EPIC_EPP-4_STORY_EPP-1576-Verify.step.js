@@ -67,7 +67,7 @@ defineFeature(feature, (test) => {
     // });
     container = render(<MfaPage />);
     ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
-    expect(container).toMatchSnapshot();
+    
   };
 
   test("EPIC_EPP-44_STORY_EPP-1576 - Verify user able to  view 'Already have an appointment? Sync your appointment information' CTA in the \"Patient Login\" page.", ({

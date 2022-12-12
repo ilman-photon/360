@@ -107,13 +107,22 @@ export const onViewSecurityQuestions = createAsyncThunk(
   "accountRecovery/onViewSecurityQuestions",
   async ({ patientId }) => {
     const api = new Api();
-    const url = `/ecp/accountRecovery/viewSecurityQuestions/${patientId}`;
-    const response = await api.getResponse(url, null, "get");
+    const url = `/ecp/accountRecovery/viewSecurityQuestions/${patientId}`; // d3724cd1-ebae-4f1a-82a5-544ff33b0313
 
-    return {
-      success: true,
-      response,
-    };
+    try {
+      const response = await api.getResponse(url, null, "get");
+
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
   }
 );
 
@@ -133,7 +142,7 @@ const buildAccountData = (data) => {
   return data.map((item) => {
     return {
       ...item,
-      name: item.patientName,
+      name: item.patientName || item.name,
       email: item.emailId,
       phone: item.phoneNumber,
       status: getPatientStatus(item),
@@ -144,6 +153,7 @@ const buildAccountData = (data) => {
 const INITIAL_STATE = {
   patientList: [],
   securityQuestions: [],
+  securityQuestionsRaw: {},
   status: null,
   error: null,
 };
@@ -191,6 +201,8 @@ export const accountRecoveryStore = createSlice({
             answer: securityQuestions[keys],
           };
         });
+
+        state.securityQuestionsRaw = response.SecurityQuestions;
       }
 
       state.securityQuestions = mapped;

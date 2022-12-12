@@ -30,6 +30,11 @@ function createMatchMedia(width) {
 describe("Account Layout Components", () => {
   let container;
   beforeEach(() => {
+    Object.defineProperty(document, "cookie", {
+      writable: true,
+      value: "authorized=true;accessToken=1234",
+    });
+
     window.matchMedia = createMatchMedia("700px");
     store.dispatch(setPageMessage({ isShow: true }));
     container = render(

@@ -82,7 +82,7 @@ defineFeature(feature, (test) => {
       </Provider>
     );
     ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
-    expect(container).toMatchSnapshot();
+    
   };
   test("EPIC_EPP-3_STORY_EPP-264 - Verify user should see set MFA screen after completing registration (Prefered Mode of Communication both)", ({
     given,
@@ -721,7 +721,7 @@ defineFeature(feature, (test) => {
         });
       });
       ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      
     });
 
     and(/^user should see screen title written as "(.*)"$/, (arg0) => {
@@ -862,7 +862,7 @@ defineFeature(feature, (test) => {
         });
       });
       ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      
     });
 
     and(/^user should see screen title written as "(.*)"$/, (arg0) => {
@@ -1005,7 +1005,7 @@ defineFeature(feature, (test) => {
         });
       });
       ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      
     });
 
     and(/^user should see screen title written as "(.*)"$/, (arg0) => {
@@ -1148,7 +1148,7 @@ defineFeature(feature, (test) => {
         });
       });
       ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      
     });
 
     and(/^user should see set MFA screen within (\d+) second$/, (arg0) => {

@@ -26,6 +26,7 @@ export function useLogin(admin = false) {
 
 export const useForceLogout = () => {
   const router = useRouter();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const isIgnore = ["/patient/mfa"];
   useEffect(() => {
     router.beforePopState((e) => {

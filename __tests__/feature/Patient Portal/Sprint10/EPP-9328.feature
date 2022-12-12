@@ -8,7 +8,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – View up
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9328- Verify User should be able to view all the 5 security questions and answers already set up
-    Scenario: EPIC_EPP-38_STORY_EPP-9328- Verify User should be able to view all the 5 security questions and answers already set up
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -25,7 +24,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – View up
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9328- Verify User should be able to view Update CTA
-    Scenario: EPIC_EPP-38_STORY_EPP-9328- Verify User should be able to view Update CTA
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -44,7 +42,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – View up
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9328- Verify User should be able to view Cancel CTA
-    Scenario: EPIC_EPP-38_STORY_EPP-9328- Verify User should be able to view Cancel CTA
 
     Given User has logged into the patient portal 
     And User has logged in as patient

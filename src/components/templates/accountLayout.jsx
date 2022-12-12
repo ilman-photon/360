@@ -9,6 +9,7 @@ import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import { Provider, connect } from "react-redux";
 import store from "../../store/store";
 import { logoutProps } from "../../utils/authetication";
+import { useLogin } from "../../utils/customHook";
 
 function AccountLayout({
   pageMessage,
@@ -17,16 +18,19 @@ function AccountLayout({
   children,
   pageTitle = "EyeCare Patient Portal - Profile Information",
 }) {
+  const isLogin = useLogin();
   const isPatient = theme === "patient";
-  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const getHeadingTitle = (pageName) => {
-    if (!isMobile) return "Your Account";
     switch (pageName) {
       case "profile-info":
         return "Profile Information";
       case "insurance-info":
         return "Insurance Documents";
+      case "login-&-security":
+        return "Login & Security";
+      case "security-question":
+        return "Security Question";
       default:
         return "Your Account";
     }
@@ -37,34 +41,38 @@ function AccountLayout({
       <Head>
         <title>{pageTitle} page</title>
       </Head>
-      <div
-        className={[
-          styles.accountLayout,
-          pageMessage.isShow ? styles.infoIsShowing : "",
-        ].join(" ")}
-      >
-        <ThemeProvider
-          theme={isPatient ? patientTypography : providerTypography}
+      {isLogin && (
+        <div
+          className={[
+            styles.accountLayout,
+            pageMessage.isShow ? styles.infoIsShowing : "",
+          ].join(" ")}
         >
-          <BaseHeader {...logoutProps} />
-          <AccountTitleHeading
-            title={getHeadingTitle(currentActivePage)}
-            sx={{
-              fontWeight: { xs: "500", md: "inherit" },
-              textAlign: { xs: "center", md: "inherit" },
-            }}
-            sxContainer={{
-              display: "grid",
-            }}
-          />
-          <div className={styles.container}>
-            <div className={styles.sidebarContainer}>
-              <AccountSidebar />
+          <ThemeProvider
+            theme={isPatient ? patientTypography : providerTypography}
+          >
+            <BaseHeader {...logoutProps} showNavbar={true} />
+            <AccountTitleHeading
+              title={getHeadingTitle(currentActivePage)}
+              sx={{
+                fontWeight: { xs: "500", md: "inherit" },
+                textAlign: { xs: "center", md: "inherit" },
+              }}
+              sxContainer={{
+                display: "grid",
+              }}
+            />
+            <div className={styles.container}>
+              <div className={styles.maxWidthWrapper}>
+                <div className={styles.sidebarContainer}>
+                  <AccountSidebar />
+                </div>
+                <div className={styles.pageContainer}>{children}</div>
+              </div>
             </div>
-            <div className={styles.pageContainer}>{children}</div>
-          </div>
-        </ThemeProvider>
-      </div>
+          </ThemeProvider>
+        </div>
+      )}
     </Provider>
   );
 }

@@ -8,7 +8,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Setup s
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9327- Verify User should be able to view Set security questions& answers CTA if security questions are not set by user during registration
-    Scenario: EPIC_EPP-38_STORY_EPP-9327- Verify User should be able to view Set security questions& answers CTA if security questions are not set by user during registration 
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -22,7 +21,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Setup s
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9327- Verify User should be able to click on the Set security questions& answers CTA
-    Scenario: EPIC_EPP-38_STORY_EPP-9327- Verify User should be able to click on the Set security questions& answers CTA
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -38,7 +36,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Setup s
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9327- Verify User should be navigated to Set security questions& answers screen
-    Scenario: EPIC_EPP-38_STORY_EPP-9327- Verify User should be navigated to Set security questions& answers screen
 
     Given User has logged into the patient portal 
     And User has logged in as patient
