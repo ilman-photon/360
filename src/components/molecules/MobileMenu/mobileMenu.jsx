@@ -184,8 +184,9 @@ export default function MobileMenu({
             >
               {item.href ? (
                 <ListItemButton
-                  onClick={() => {
-                    router.push(item.href);
+                  onClick={async () => {
+                    await router.push(item.href);
+                    onClose();
                   }}
                 >
                   <ListItemIcon sx={iconStyle}>{item.icon}</ListItemIcon>
@@ -240,8 +241,9 @@ export default function MobileMenu({
                       {submenu.map((subItem, subIndex) => (
                         <ListItem disablePadding key={subIndex}>
                           <ListItemButton
-                            onClick={() => {
-                              router.push(subItem.href);
+                            onClick={async () => {
+                              await router.push(subItem.href);
+                              onClose();
                             }}
                           >
                             <ListItemText
