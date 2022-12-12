@@ -524,6 +524,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       label="Password"
                       inputProps={{
                         "aria-label": `Password - required -`,
+                        maxLength: 20,
                       }}
                       data-testid={REGISTER_TEST_ID.password}
                       value={value}

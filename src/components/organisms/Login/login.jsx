@@ -157,7 +157,7 @@ export function Login({
                         aria
                         required
                         helperText={error ? error.message : null}
-                        inputProps={{ maxLength: 50 }}
+                        inputProps={{ maxLength: 20 }}
                       />
                     );
                   }}

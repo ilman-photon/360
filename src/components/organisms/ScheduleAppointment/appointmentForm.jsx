@@ -648,6 +648,7 @@ export default function AppointmentForm({
                           label={t("passwordLabel")}
                           inputProps={{
                             "aria-label": `Password - optional -`,
+                            maxLength: 20,
                           }}
                           type={constants.INPUT_PASSWORD}
                           size={constants.SMALL}
