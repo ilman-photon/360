@@ -439,6 +439,7 @@ const SetPasswordComponent = ({
                       }}
                       inputProps={{
                         "aria-label": `${passwordPlaceHolder} - required`,
+                        maxLength: 20,
                       }}
                       error={!!error}
                       required
