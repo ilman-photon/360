@@ -276,6 +276,11 @@ export const patientTypography = createTheme({
       fontWeight: 500,
       fontSize: "26px",
     },
+    cardLink: {
+      fontWeight: 500,
+      fontSize: 18,
+      lineHeight: "44px",
+    },
   },
 });
 

@@ -46,6 +46,11 @@ defineFeature(feature, (test) => {
     zip: "03245",
   };
   beforeEach(() => {
+    Object.defineProperty(document, "cookie", {
+      writable: true,
+      value: "authorized=true;accessToken=1234",
+    });
+
     const mockCallBack = jest.fn();
     container = render(
       <PersonalInformation

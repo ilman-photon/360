@@ -8,7 +8,6 @@ Feature:  Patient Portal: Settings – Change Username – Input New Username
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view an option to input new username
-    Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view an option to input new username
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -23,7 +22,6 @@ Feature:  Patient Portal: Settings – Change Username – Input New Username
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to input new username
-    Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to input new username
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -39,7 +37,6 @@ Feature:  Patient Portal: Settings – Change Username – Input New Username
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view the information message ” Enter a  valid email ID or phone number as your username”
-    Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view the information message ” Enter a  valid email ID or phone number as your username”
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -56,7 +53,6 @@ Feature:  Patient Portal: Settings – Change Username – Input New Username
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view Update CTA
-    Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view Update CTA
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -75,7 +71,6 @@ Feature:  Patient Portal: Settings – Change Username – Input New Username
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view Cancel CTA
-    Scenario: EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view Cancel CTA
 
     Given User has logged into the patient portal 
     And User has logged in as patient

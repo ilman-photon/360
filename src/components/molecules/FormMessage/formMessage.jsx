@@ -26,6 +26,7 @@ export const FormMessage = (
           padding: "12px 16px",
           borderRadius: "4px",
           display: "flex",
+          position: "relative",
           ...props.sx,
         }}
       >
@@ -91,6 +92,7 @@ export const FormMessage = (
                   top: 0,
                   height: "100%",
                 }}
+                data-testid="close-form-msg-btn"
                 onClick={onClose}
               >
                 <Close sx={{ color: "white" }} />

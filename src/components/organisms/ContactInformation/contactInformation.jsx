@@ -6,7 +6,6 @@ import {
   Fade,
   Grid,
   MenuItem,
-  Paper,
   Stack,
   useMediaQuery,
 } from "@mui/material";
@@ -18,11 +17,10 @@ import { StyledInput, StyledRedditField } from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { colors } from "../../../styles/theme";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 export default function ContactInformation({
   googleAPIKey = " ",

@@ -9,8 +9,6 @@ Feature: Patient Portal: Settings – Change Username – Cancel CTA
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should be able to view the confirmation message “Are you sure to cancel’ along with ‘Yes’ and ‘No’ options - when user Change Username
-    Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should be able to view the confirmation message “Are you sure to cancel’ along with ‘Yes’ and ‘No’ options - when user Change Username
-
     Given User has logged into the patient portal 
     And User has navigated to Change username screen 
     When User clicks on Cancel CTA
@@ -22,8 +20,6 @@ Feature: Patient Portal: Settings – Change Username – Cancel CTA
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should be able to view the confirmation message “Are you sure to cancel’ along with ‘Yes’ and ‘No’ options - when user Change Password
-    Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should be able to view the confirmation message “Are you sure to cancel’ along with ‘Yes’ and ‘No’ options - when user Change Password
-
     Given User has logged into the patient portal 
     And User has navigated to Change password screen 
     When User clicks on Cancel CTA
@@ -35,8 +31,6 @@ Feature: Patient Portal: Settings – Change Username – Cancel CTA
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should be able to view the confirmation message “Are you sure to cancel’ along with ‘Yes’ and ‘No’ options - when user Change Set-up/Update sec. question
-    Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should be able to view the confirmation message “Are you sure to cancel’ along with ‘Yes’ and ‘No’ options - when user Change Set-up/Update sec. question
-
     Given User has logged into the patient portal 
     And User has navigated to Set-up/ Update security question screen 
     When User clicks on Cancel CTA
@@ -49,8 +43,6 @@ Feature: Patient Portal: Settings – Change Username – Cancel CTA
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should be redirected back to Profile screen if ‘yes’ is selected during confirmation
-    Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should be redirected back to Profile screen if ‘yes’ is selected during confirmation 
-
     Given User has logged into the patient portal 
     And User has navigated to Change username screen or User has navigated to Change password screen or User has navigated to Set-up/ Update security question screen 
     When User clicks on Cancel CTA
@@ -65,8 +57,6 @@ Feature: Patient Portal: Settings – Change Username – Cancel CTA
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should stay in the same screen  if ‘No’ is selected during confirmation
-    Scenario: EPIC_EPP-36_STORY_EPP-7719- Verify User should stay in the same screen  if ‘No’ is selected during confirmation 
-
     Given User has logged into the patient portal 
     And User has navigated to Change username screen or User has navigated to Change password screen or User has navigated to Set-up/ Update security question screen 
     When User clicks on Cancel CTA

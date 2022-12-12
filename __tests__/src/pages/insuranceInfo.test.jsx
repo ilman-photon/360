@@ -44,6 +44,10 @@ describe("InsuranceInformationPage Components", () => {
   };
 
   beforeEach(async () => {
+    Object.defineProperty(document, "cookie", {
+      writable: true,
+      value: "authorized=true;accessToken=1234",
+    });
     window.matchMedia = createMatchMedia("800px");
     mock
       .onGet(`/ecp/appointments/insurance/allpayers`)
