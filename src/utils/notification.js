@@ -17,7 +17,7 @@ export const getPrescriptionType = (string) => {
 };
 
 const getAppointmentType = (string) => {
-  return string.split("You have an")[1]?.split("appointment")[0]?.trim();
+  return string?.split("You have an")[1]?.split("appointment")[0]?.trim();
 };
 
 const getAppointmentTime = (string) => {
