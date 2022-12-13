@@ -90,7 +90,7 @@ defineFeature(feature, (test) => {
                     });
                   });
                   await waitFor(() => container.getByText(/communicationMethodTitle/i));
-                  expect(container).toMatchSnapshot();
+                  
             });
     
             and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
@@ -108,7 +108,7 @@ defineFeature(feature, (test) => {
                     });
                   });
                   await waitFor(() => container.getByText(/communicationMethodTitle/i));
-                  expect(container).toMatchSnapshot();
+                  
             });
     
             and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async (arg0) => {
@@ -121,7 +121,7 @@ defineFeature(feature, (test) => {
                     });
                   });
                   await waitFor(() => container.getByText(/communicationMethodTitle/i));
-                  expect(container).toMatchSnapshot();
+                  
             });
     
             when(/^user clicks on "(.*)" button$/, async (arg0) => {
@@ -183,7 +183,7 @@ defineFeature(feature, (test) => {
                     });
                   });
                   await waitFor(() => container.getByText(/communicationMethodTitle/i));
-                  expect(container).toMatchSnapshot();
+                  
             });
     
             when(/^user clicks on "(.*)" button$/, async (arg0) => {
@@ -205,7 +205,7 @@ defineFeature(feature, (test) => {
                     });
                   });
                   await waitFor(() => container.getByText(/communicationMethodTitle/i));
-                  expect(container).toMatchSnapshot();
+                  
             });
     
             and(/^user should see (.*) field$/, async (arg0) => {
@@ -218,7 +218,7 @@ defineFeature(feature, (test) => {
                     });
                   });
                   await waitFor(() => container.getByText(/communicationMethodTitle/i));
-                  expect(container).toMatchSnapshot();
+                  
             });
     
             and(/^user fill (.*) field with valid code$/, async (arg0) => {
@@ -270,7 +270,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and('user navigates to the Patient Portal application', async () => {
@@ -283,7 +283,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user lands onto "(.*)" screen$/, async (arg0) => {
@@ -296,7 +296,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
@@ -309,7 +309,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
@@ -322,7 +322,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should fill valid (.*) field$/, async (arg0) => {
@@ -335,7 +335,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async (arg0) => {
@@ -348,7 +348,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user clicks on "(.*)" button$/, async (arg0) => {
@@ -361,7 +361,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then(/^user should see "(.*)" screen with all of component$/, async (arg0) => {
@@ -374,7 +374,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see (.*) field$/, async (arg0) => {
@@ -387,7 +387,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see checkbox section "(.*)"$/, async (arg0) => {
@@ -400,7 +400,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see description of check box written as "(.*)"$/, async (arg0) => {
@@ -413,7 +413,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see "(.*)" & "(.*)" button$/, async (arg0, arg1) => {
@@ -426,7 +426,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user clicks on "(.*)" button$/, async (arg0) => {
@@ -439,7 +439,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then('user receives an email/text message with the code to the email and mobile number', async () => {
@@ -452,7 +452,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see (.*) field$/, async (arg0) => {
@@ -465,7 +465,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user fill (.*) field with valid code$/, async (arg0) => {
@@ -478,7 +478,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user click on "(.*)" button$/, async (arg0) => {
@@ -491,7 +491,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then(/^user should see the page loads within "(.*)"$/, async (arg0) => {
@@ -504,7 +504,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see the following message "(.*)"$/, async (arg0) => {
@@ -517,7 +517,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
         });
     });
@@ -537,7 +537,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and('user navigates to the Patient Portal application', async () => {
@@ -550,7 +550,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user lands onto "(.*)" screen$/, async (arg0) => {
@@ -563,7 +563,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
@@ -576,7 +576,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
@@ -589,7 +589,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should fill valid (.*) field$/, async (arg0) => {
@@ -602,7 +602,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async (arg0) => {
@@ -615,7 +615,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user clicks on "(.*)" button$/, async (arg0) => {
@@ -628,7 +628,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then(/^user should see "(.*)" screen with all of component$/, async (arg0) => {
@@ -641,7 +641,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see (.*) field$/, async (arg0) => {
@@ -654,7 +654,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see checkbox section "(.*)"$/, async (arg0) => {
@@ -667,7 +667,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see description of check box written as "(.*)"$/, async (arg0) => {
@@ -684,7 +684,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user clicks on "(.*)" button$/, async (arg0) => {
@@ -697,7 +697,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then('user receives an email/text message with the code to the email and mobile number', async () => {
@@ -710,7 +710,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see (.*) field$/, async (arg0) => {
@@ -723,7 +723,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user fill (.*) field with valid code$/, async (arg0) => {
@@ -736,7 +736,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user click on "(.*)" button$/, async (arg0) => {
@@ -749,7 +749,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then('user should see the appropriate error message', async () => {
@@ -762,7 +762,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
         });
          
@@ -783,7 +783,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and('user navigates to the Patient Portal application', async () => {
@@ -796,7 +796,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user lands onto "(.*)" screen$/, async (arg0) => {
@@ -809,7 +809,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
@@ -822,7 +822,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
@@ -835,7 +835,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should fill valid (.*) field$/, async (arg0) => {
@@ -848,7 +848,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async (arg0) => {
@@ -861,7 +861,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user clicks on "(.*)" button$/, async (arg0) => {
@@ -874,7 +874,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then(/^user should see "(.*)" screen with all of component$/, async (arg0) => {
@@ -887,7 +887,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see (.*) field$/, async (arg0) => {
@@ -900,7 +900,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see checkbox section "(.*)"$/, async (arg0) => {
@@ -913,7 +913,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see description of check box written as "(.*)"$/, async (arg0) => {
@@ -926,7 +926,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see "(.*)" & "(.*)" button$/, async (arg0, arg1) => {
@@ -943,7 +943,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then('user receives an email/text message with the code to the email and mobile number', async () => {
@@ -956,7 +956,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user should see (.*) field$/, async (arg0) => {
@@ -969,7 +969,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             and(/^user fill (.*) field with valid code$/, async (arg0) => {
@@ -982,7 +982,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             when(/^user click on "(.*)" button$/, async (arg0) => {
@@ -995,7 +995,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             then(/^user should see the following message "(.*)"$/, async (arg0) => {
@@ -1008,7 +1008,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
             });
     
             
@@ -1038,7 +1038,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and('user navigates to the Patient Portal application', async () => {
@@ -1051,7 +1051,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         when(/^user lands onto "(.*)" screen$/, async () => {
@@ -1064,7 +1064,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
@@ -1077,7 +1077,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and(/^user should fill valid (.*) field with the Phone Number$/, async () => {
@@ -1090,7 +1090,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and(/^user should fill valid (.*) field$/, async () => {
@@ -1103,7 +1103,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async () => {
@@ -1116,7 +1116,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         when(/^user clicks on "(.*)" button$/, async () => {
@@ -1129,7 +1129,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         then(/^user should see "(.*)" screen with all of component$/, async () => {
@@ -1142,7 +1142,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and(/^user should see (.*) field$/, async () => {
@@ -1155,7 +1155,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and(/^user should see checkbox section "(.*)"$/, async () => {
@@ -1168,7 +1168,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and(/^user should see description of check box written as "(.*)"$/, async () => {
@@ -1181,7 +1181,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and(/^user should see "(.*)" & "(.*)" button$/, async (arg0, arg1) => {
@@ -1194,7 +1194,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         when(/^user clicks on "(.*)" button$/, async () => {
@@ -1207,7 +1207,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         then('user receives an email/text message with the code to the email and mobile number', async () => {
@@ -1220,7 +1220,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and(/^user should see (.*) field$/, async () => {
@@ -1233,7 +1233,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         and(/^user fill (.*) field with valid code$/, async () => {
@@ -1246,7 +1246,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         when(/^user click on "(.*)" button$/, async () => {
@@ -1259,7 +1259,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
 
         then('user should see the appropriate error message', async () => {
@@ -1272,7 +1272,7 @@ defineFeature(feature, (test) => {
                 });
               });
               await waitFor(() => container.getByText(/communicationMethodTitle/i));
-              expect(container).toMatchSnapshot();
+              
         });
     });
 });

@@ -75,9 +75,9 @@ describe("Home", () => {
       );
     });
     const { getByTestId, getAllByTestId } = container;
-    await waitFor(() => getByTestId("user-menu-open"));
+    await waitFor(() => getAllByTestId("user-menu-open")[0]);
     expect(getByTestId("user-menu-nav-open")).toBeInTheDocument();
-    fireEvent.click(getByTestId("user-menu-open"));
+    fireEvent.click(getAllByTestId("user-menu-open")[0]);
     fireEvent.click(getAllByTestId("logout")[0]);
     jest.resetAllMocks();
   });
@@ -103,8 +103,8 @@ describe("Home", () => {
       );
     });
     const { getByTestId, getAllByTestId } = container;
-    await waitFor(() => getByTestId("user-menu-open"));
-    fireEvent.click(getByTestId("user-menu-open"));
+    await waitFor(() => getAllByTestId("user-menu-open")[0]);
+    fireEvent.click(getAllByTestId("user-menu-open")[0]);
     fireEvent.click(getAllByTestId("logout")[0]);
     jest.resetAllMocks();
   });
@@ -124,8 +124,8 @@ describe("Home", () => {
       );
     });
     const { getByTestId, getAllByTestId } = container;
-    await waitFor(() => getByTestId("user-menu-open"));
-    fireEvent.click(getByTestId("user-menu-open"));
+    await waitFor(() => getAllByTestId("user-menu-open")[0]);
+    fireEvent.click(getAllByTestId("user-menu-open")[0]);
     expect(await getAllByTestId("logout")[0]).toBeInTheDocument();
     fireEvent.click(getByTestId("user-menu-close"));
     jest.resetAllMocks();

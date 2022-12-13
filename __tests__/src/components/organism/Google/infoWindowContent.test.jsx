@@ -532,7 +532,7 @@ describe("InfoWindowContent", () => {
   });
 
   it("InfoWindowContent render", async () => {
-    // expect(container).toMatchSnapshot();
+    
     expect(await container.getAllByTestId(constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
       .MAPS.infoWindow.timeslot)[0]).toBeInTheDocument();
     fireEvent.click(container.getAllByTestId(constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID

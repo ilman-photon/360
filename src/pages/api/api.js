@@ -480,6 +480,21 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  getPasswordLastUpdate(postBody) {
+    const url = `/ecp/patient/getLastUpdatedPasswordDate`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  changeUsername(postBody) {
+    const url = `/ecp/patient/settings/updateUsername`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  changePassword(postBody) {
+    const url = `/ecp/patient/settings/changePassword`;
+    return this.getResponse(url, postBody, "post");
+  }
+
   getLockedAccounts({ keyword }) {
     const url =
       keyword === ""
@@ -503,5 +518,20 @@ export class Api {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const url = `/ecp/patientbillingsystem/getInvoiceWithPatientDetails?search.query=((patient.uid=eq=${userData?.patientId}))`;
     return this.getResponse(url, {}, "get");
+  }
+
+  validatePassword(postBody) {
+    const url = `/ecp/patient/settings/validatePassword`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  updateSecurityQuestion(postBody) {
+    const url = `/ecp/patient/settings/updateSecurityQuestions`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  getPasswordInfo(postBody) {
+    const url = `/ecp/patient/settings/validatePassword`;
+    return this.getResponse(url, postBody, "post", false);
   }
 }

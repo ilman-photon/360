@@ -10,9 +10,9 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search Pat
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no:
+    |Patient name| 
+    |Email ID| 
+    |Phone no:|
 
   @BDDTEST-EPP-10443
   @Admin
@@ -25,9 +25,9 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search Pat
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name| 
+    |Email ID| 
+    |Phone no:| 
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the searc
     Then Admin should be able to view the search results based on search input
 
@@ -42,9 +42,9 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search Pat
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name| 
+    |Email ID| 
+    |Phone no:| 
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the search
     Then Admin should be able to view the message ‘No records found’ if the search result is empty
 
@@ -59,8 +59,8 @@ Feature: Patient Portal: Admin – Recover username/reset password –Search Pat
     And User is logged in as Admin
     And Admin lands on the Recover username/reset password screen 
     And Admin should be able to view the options for searching for a patient on Recover username/reset password screen such as
-    |Patient name 
-    |Email ID 
-    |Phone no: 
+    |Patient name| 
+    |Email ID| 
+    |Phone no:| 
     When Admin should be able to input Patient name, Email ID or Phone No to initiate the searc
     Then Admin should be able to view the search results based on search input

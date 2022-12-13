@@ -41,8 +41,10 @@ export const CustomFormControl = styled((props) => <FormControl {...props} />)(
 
 export const CustomPasswordInput = styled((props) => (
   <TextField
+    aria-label={
+      props.required ? "Password required text field" : "Password text field"
+    }
     // tabIndex={0}
-    aria-label={"Password required text field"}
     InputProps={{
       disableUnderline: true,
       endAdornment: (
@@ -80,6 +82,7 @@ export const CustomPasswordInput = styled((props) => (
       ),
     }}
     {...props}
+    inputProps={{ ...props.inputProps, maxlength: 20 }}
   />
 ))(({ theme }) => ({
   ".MuiInputLabel-root": {
@@ -273,7 +276,7 @@ export const CustomInput = styled(({ ...props }) => {
     case "password":
       return (
         <>
-          <CustomFormControl sx={{ m: 1 }} variant="filled">
+          <CustomFormControl sx={{ m: 1, width: "100%" }} variant="filled">
             <CustomPasswordInput
               error={!Boolean(values.value) && props.error}
               InputLabelProps={{
@@ -297,6 +300,7 @@ export const CustomInput = styled(({ ...props }) => {
               value={props.value}
               required={props.required}
               inputRef={props.inputRef}
+              autoComplete={props.autoComplete}
             />
           </CustomFormControl>
         </>
@@ -311,7 +315,9 @@ export const CustomInput = styled(({ ...props }) => {
               disableOpenPicker={props.selectorDisabled}
               disableFuture={props.disableFuture}
               disablePast={props.disablePast}
-              ariaLabel={props.label}
+              ariaLabel={
+                props.required ? `${props.label} required` : props.label
+              }
               ariaLive={props.label}
               label={props.label}
               onChange={props.onChange}

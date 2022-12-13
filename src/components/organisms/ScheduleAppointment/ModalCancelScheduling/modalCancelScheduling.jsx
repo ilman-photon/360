@@ -1,12 +1,13 @@
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import RowRadioButtonsGroup from "../../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { StyledInput } from "../../../atoms/Input/input";
 import styles from "./modalScheduling.module.scss";
 import constants from "../../../../utils/constants";
-
+import DialogTitle from "@mui/material/DialogTitle";
+import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { Box, Stack, Typography, Button } from "@mui/material";
 
@@ -18,6 +19,20 @@ export default function ModalCancelScheduling({
   const { handleSubmit, control, watch, reset } = useForm({
     defaultValues: {},
   });
+
+  const cancelRef = React.useRef(null);
+
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
+  React.useEffect(() => {
+    console.log(errors);
+    if (errors.cancelOther) {
+      cancelRef.current?.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   React.useEffect(() => {
     reset({
@@ -98,6 +113,18 @@ export default function ModalCancelScheduling({
         },
       }}
     >
+      <Head>
+        <title>Cancel Appointment popup </title>
+      </Head>
+      <DialogTitle
+        id="alert-dialog-title"
+        tabIndex={0}
+        aria-label={t("cancelTitle")}
+        className={styles.scheduledText}
+        data-testid="title-cancel"
+      >
+        {t("cancelTitle")}
+      </DialogTitle>
       <Box sx={{ width: "auto" }} className={styles.boxModalContents}>
         <Typography
           tabIndex={0}
@@ -108,7 +135,11 @@ export default function ModalCancelScheduling({
           {t("cancelTitle")}
         </Typography>
         <DialogContent className={styles.checkBoxContainer}>
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.formStyle}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={styles.formStyle}
+            noValidate
+          >
             <Controller
               name="cancelSchedule"
               control={control}
@@ -171,6 +202,8 @@ export default function ModalCancelScheduling({
                               error={!!error}
                               helperText={error ? error.message : null}
                               sx={{ pb: 2, width: { xs: "100%", md: "70%" } }}
+                              required
+                              inputRef={cancelRef}
                             />
                           );
                         }}

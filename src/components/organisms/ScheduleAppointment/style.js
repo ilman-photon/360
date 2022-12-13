@@ -143,4 +143,23 @@ export const styles = {
     backgroundColor: "#f2f7fd",
     wordBreak: "break-all",
   },
+
+  nameProviderText: {
+    fontFamily: "Libre Franklin",
+    fontSize: "16px",
+    fontStyle: "normal",
+    textTransform: "capitalize",
+  },
+  nomal400Text: {
+    fontFamily: "Libre Franklin",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontWeight: "400px",
+  },
+  addressContent: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "2px",
+    marginTop: "2px",
+  },
 };

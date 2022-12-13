@@ -43,7 +43,7 @@ function AdminLayout({
           <ThemeProvider
             theme={isPatient ? patientTypography : providerTypography}
           >
-            <BaseHeader {...logoutProps} isAdmin />
+            <BaseHeader {...logoutProps} isAdmin={true} />
             <AdminNavbar />
             <AccountTitleHeading
               title={getHeadingTitle(currentActivePage)}

@@ -25,7 +25,7 @@ const CustomSelect = (props) => {
           },
         }}
       >
-        {props.label}
+        {props.label} {props.required && <span>*</span>}
       </InputLabel>
       <Select
         label={props.label}

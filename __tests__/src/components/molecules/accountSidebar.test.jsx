@@ -8,6 +8,7 @@ describe("AccountSidebar Components", () => {
   let container;
   beforeEach(() => {
     container = render(<AccountSidebar />);
+    
   });
 
   it("AccountSidebar render", () => {
@@ -17,7 +18,7 @@ describe("AccountSidebar Components", () => {
     // expect(container.getByText("Test & Lab Results")).toBeInTheDocument();
     expect(container.getByText("Insurance documents")).toBeInTheDocument();
     expect(
-      container.getByText("Multi factor authentication")
+      container.getByText("Login & Security")
     ).toBeInTheDocument();
 
     setTimeout(() => {
@@ -26,7 +27,7 @@ describe("AccountSidebar Components", () => {
       // expect("Prescriptions").toBeVisible();
       // expect("Test & Lab Results").toBeVisible();
       expect("Insurance documents").toBeVisible();
-      expect("Multi factor authentication").toBeVisible();
+      expect("Login & Security").toBeVisible();
     }, 500);
   });
 });

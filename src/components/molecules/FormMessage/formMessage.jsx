@@ -26,6 +26,7 @@ export const FormMessage = (
           padding: "12px 16px",
           borderRadius: "4px",
           display: "flex",
+          position: "relative",
           ...props.sx,
         }}
       >
@@ -56,7 +57,7 @@ export const FormMessage = (
             fontSize: "14px",
             lineHeight: "20.02px",
             letterSpacing: "0.17px",
-            // width: props.isWidthFilled ? "-webkit-fill-available" : "",
+            width: props.isWidthFilled ? "-webkit-fill-available" : "",
           }}
           data-testid="submission-message"
           aria-live="polite"
@@ -91,6 +92,7 @@ export const FormMessage = (
                   top: 0,
                   height: "100%",
                 }}
+                data-testid="close-form-msg-btn"
                 onClick={onClose}
               >
                 <Close sx={{ color: "white" }} />

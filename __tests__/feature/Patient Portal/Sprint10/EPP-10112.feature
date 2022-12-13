@@ -1,11 +1,11 @@
 
 Feature: Patient Portal : Schedule Appointment from marketing site - Mandatory to select purpose of visit
-  User Story: As a user, it is mandatory for me to select the purpose of visit before scheduling an appointment.
 
   @BDDTEST-EPP-10697
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-44_STORY_EPP-10112- Verify User should be able to click on the 'Schedule your Eye  Exam' CTA from Marketing site
     Given User launches the Marketing site patient portal URL
@@ -15,6 +15,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Mandatory t
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-44_STORY_EPP-10112- Verify User should be able to view search for location, select the date of appointment as well as purpose of visit and insurance
     Given User launches the Marketing site patient portal URL
@@ -26,6 +27,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Mandatory t
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-44_STORY_EPP-10112- Verify User should be able to select purpose of visit
     Given User launches the Marketing site patient portal URL
@@ -38,6 +40,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Mandatory t
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-44_STORY_EPP-10112- Verify User should be prompted with inline validation error message “This field is required” when the purpose of visit field is not filled
     Given User launches the Marketing site patient portal URL
@@ -51,6 +54,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Mandatory t
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-44_STORY_EPP-10112- Verify User should not be able to create/ reschedule an appointment without selecting a ‘Purpose of Visit’
     Given User launches the Marketing site patient portal URL

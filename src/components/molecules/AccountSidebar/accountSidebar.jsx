@@ -8,6 +8,7 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import AccountSecurityIcon from "../../../assets/icons/AccountSecurity";
 import { colors } from "../../../styles/theme";
 
 export const AccountSidebar = ({ ...props }, ref) => {
@@ -55,9 +56,9 @@ export const AccountSidebar = ({ ...props }, ref) => {
       icon: <DescriptionOutlinedIcon sx={{ margin: "5px" }} />,
     },
     {
-      label: "Multi factor authentication",
-      href: "#",
-      icon: <LockOutlinedIcon sx={{ margin: "5px" }} />,
+      label: "Login & Security",
+      href: "/patient/account/login-&-security",
+      icon: <AccountSecurityIcon sx={{ margin: "5px" }} />,
     },
   ];
 

@@ -15,6 +15,7 @@ import { injectStore } from "./api/api";
 import Image from "next/image";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
+import { useForceLogout } from "../utils/customHook";
 
 function App({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
@@ -27,6 +28,7 @@ function App({ Component, pageProps }) {
   // inject api.js with redux
   injectStore(store);
 
+  useForceLogout();
   const isLogin = cookies.get("authorized") || cookies.get("mfa");
 
   useEffect(() => {

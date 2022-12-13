@@ -82,6 +82,7 @@ export const AutoCompleteCreatable = ({
             props.onChange(newValue);
           }
         }}
+        inputRef={props.inputRef}
         isOptionEqualToValue={(option, value) => {
           if (value.label) {
             return option.label === value.label;
@@ -133,9 +134,17 @@ export const AutoCompleteCreatable = ({
         //   renderOption={(props, option) => <li {...props}>{option.label}</li>}
         renderOption={(params, option) => {
           return (
-            <li {...params} key={option.id}>
-              {option.label}
-            </li>
+            <>
+              {props.isMobileOption ? (
+                <li {...params} key={option.id} role="none">
+                  <span tabIndex={0}>{option.label}</span>
+                </li>
+              ) : (
+                <li {...params} key={option.id}>
+                  {option.label}
+                </li>
+              )}
+            </>
           );
         }}
         renderInput={(params) => {
@@ -156,8 +165,8 @@ export const AutoCompleteCreatable = ({
                 {...params}
                 label={props.inputLabel}
                 required={props.required}
-                //error={props.error}
-                //helperText={props.helperText}
+                maxLength={50}
+                inputRef={props.inputRef}
                 InputProps={{
                   ...params.InputProps,
                   sx: {
