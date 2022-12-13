@@ -31,6 +31,7 @@ export default function StepperAppoinment({ ...props }) {
             aria-label={`${label} stage in progress bar`}
             sx={{
               marginBottom: { xs: "40px", md: "0" },
+              fontFamily: "Libre Franklin !important",
               "& .MuiStepLabel-root .Mui-completed": {
                 color: "#D5F1D4", // circle color (COMPLETED)
                 stroke: "#00B88C",
@@ -41,15 +42,17 @@ export default function StepperAppoinment({ ...props }) {
                 {
                   color: "black", // Just text label (COMPLETED)
                   background: "transparent",
+                  fontFamily: "Libre Franklin",
                 },
               "& .MuiStepLabel-root .MuiStepLabel-iconContainer .Mui-active": {
                 color: "#99d5dd", // circle color (ACTIVE)
                 border: "#CFEAED 1px solid",
                 borderRadius: "50%",
+                fontFamily: "Libre Franklin",
               },
               "& .MuiStepLabel-root .Mui-active text": {
                 fill: "black", // active label text
-                fontFamily: "Libre Franklin",
+                // fontFamily: "Libre Franklin",
                 fontWeight: "700",
                 fontSize: "14px",
               },
@@ -60,6 +63,7 @@ export default function StepperAppoinment({ ...props }) {
                   position: "absolute",
                   left: "-50%",
                   right: "-50%",
+                  fontFamily: "Libre Franklin !important",
                 },
               "& .Mui-disabled .MuiStepIcon-root": {
                 color: "transparent", // Hollow icon (INCOMPLETE)
@@ -80,7 +84,15 @@ export default function StepperAppoinment({ ...props }) {
                   {
                     marginTop: 1,
                     color: "#000000",
+                    fontSize: "15px",
+                    fontFamily: "Libre Franklin",
+                    fontWeight: "400",
                   },
+                ".css-farnub.MuiStepLabel-alternativeLabel": {
+                  fontFamily: "Libre Franklin",
+                  fontSize: "15px",
+                },
+                fontFamily: "Libre Franklin !important",
               }}
               tabIndex={"0"}
               aria-label={`Stepper ${idx + 1}. ${label} `}

@@ -68,7 +68,8 @@ export default function AppointmentDetails({
             sxText={{
               paddingLeft: "4px",
               color: colors.darkGreen,
-              fontWeight: "500",
+              fontWeight: "600",
+              fontSize: "16px",
             }}
           >
             <Typography
@@ -105,7 +106,8 @@ export default function AppointmentDetails({
             sxText={{
               paddingLeft: "4px",
               color: colors.darkGreen,
-              fontWeight: "500",
+              fontWeight: "600",
+              fontSize: "16px",
             }}
           >
             <Typography
@@ -143,7 +145,8 @@ export default function AppointmentDetails({
             sxText={{
               paddingLeft: "4px",
               color: colors.darkGreen,
-              fontWeight: "500",
+              fontWeight: "600",
+              fontSize: "16px",
             }}
           >
             <Typography
