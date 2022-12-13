@@ -70,7 +70,6 @@ export default function InsuranceForm({
 
   const resetFormData = () => {
     reset(formData);
-    // setValue("memberID", memberId);
   };
 
   // Later will be used for edit
@@ -88,7 +87,6 @@ export default function InsuranceForm({
   });
 
   useEffect(() => {
-    console.log(errors);
     if (errors.provider) {
       providerRef.current?.focus();
     } else if (errors.plan) {
@@ -152,11 +150,6 @@ export default function InsuranceForm({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedProvider]);
-
-  // useEffect(() => {
-  //   setValue("memberID", memberId);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [memberId]);
 
   const handleCancel = () => {
     OnCancelClicked();
@@ -421,14 +414,14 @@ export default function InsuranceForm({
                               value: Regex.nameValidation,
                               message: t("incorrectFormat"),
                             },
-                            // validate: {
-                            //   requiredIfSubscriber,
-                            //   isMin2Max50Length: (v) =>
-                            //     watchedSubscriber === "No"
-                            //       ? Regex.isMin2Max50Length.test(v) ||
-                            //         t("firstNameValidation")
-                            //       : true,
-                            // },
+                            validate: {
+                              requiredIfSubscriber,
+                              isMin2Max50Length: (v) =>
+                                watchedSubscriber === "No"
+                                  ? Regex.isMin2Max50Length.test(v) ||
+                                    t("firstNameValidation")
+                                  : true,
+                            },
                           }}
                         />
                       </Grid>
