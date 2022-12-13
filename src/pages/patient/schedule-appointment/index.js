@@ -36,6 +36,7 @@ import {
   editAppointmentScheduleData,
   rescheduleAppointment,
   resetAppointmentSchedule,
+  resetFilterData,
 } from "../../../store/appointment";
 import { fetchUser } from "../../../store/user";
 import { Api } from "../../api/api";
@@ -491,6 +492,7 @@ export default function ScheduleAppointmentPage() {
       await router.push("/patient");
     }
     dispatch(resetAppointmentSchedule());
+    dispatch(resetFilterData());
   };
 
   const handleCancelReschedule = () => {
