@@ -5,12 +5,12 @@ import { ThemeProvider } from "@mui/material/styles";
 import { patientTypography } from "../../styles/theme";
 import { useSelector } from "react-redux";
 
-export default function MFALayout({ children }) {
+export default function MFALayout({ children, customTitle }) {
   const pageTitle = useSelector((state) => state.index.mfaPageTitle);
   return (
     <>
       <Head>
-        <title>EyeCare Patient Portal - {pageTitle}</title>
+        <title>EyeCare Patient Portal - {customTitle || pageTitle}</title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader />

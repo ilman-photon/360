@@ -13,7 +13,7 @@ import LoginSecurityPage from "../../src/pages/patient/account/login-&-security"
 import { onViewSecurityQuestions } from "../../src/store/accountRecovery";
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint10/EPP-9328.feature"
+  "./__tests__/feature/Patient Portal/Sprint10/EPP-9329.feature"
 );
 
 const mock = new MockAdapter(axios);
@@ -73,7 +73,29 @@ defineFeature(feature, (test) => {
     fireEvent.click(updateBtn)
   }
 
+  const userSeeQuestionOne = async () => {
+    const questionOne = await waitFor(() => container.getByText(/What was the first book you read?/i))
+    expect(questionOne).toBeInTheDocument()
+  }
+
   const userLandsOnSecurityQuestionScreen = () => {
+    const mockSecurityQuestionList = {
+      SetUpSecurityQuestions: [
+        "What was the first concert you attended?",
+        "In what city or town did your parents meet?",
+        "What was the make and model of your first car?",
+        "Who is your all-time favorite movie character?",
+        "What was your favorite cartoon character during your childhood?",
+        "What was the first book you read?",
+        "What was the first thing you learned to cook?",
+        "What was the first film you saw in a theater?",
+        "Where did you go the first time you flew on a plane?",
+        "What is your favorite cold-weather activity?",
+      ]
+    }
+    mock
+      .onGet(`/ecp/patient/getsecurityQuestions`)
+      .reply(200, mockSecurityQuestionList);
     container.rerender(
       <Provider store={store}>
         <AccountSecurityQuestionPage />
@@ -81,22 +103,26 @@ defineFeature(feature, (test) => {
     )
   }
 
-  const userSeeQuestionOne = async () => {
-    const questionOne = await waitFor(() => container.getByText(/What was the first book you read?/i))
-    expect(questionOne).toBeInTheDocument()
+  const userChangeTheAnswerOfQuestionOne = () => {
+    const answer1 = container.getByLabelText(/Answer 1/i);
+    fireEvent.change(answer1, { target: { value: "change answer 1" } });
+    expect(answer1.value).toEqual("change answer 1");
   }
 
-  const userSeeUpdateCTA = async () => {
-    const updateBtn = await waitFor(() => container.getByTestId("action-update-security-question-btn"))
-    expect(updateBtn).toBeInTheDocument()
+  const userChangeTheQuestionOne = async () => {
+    const question1 = container.getByTestId("content-input-1")
+    fireEvent.change(question1, { target: { value: "What was the first film you saw in a theater?" } });
+    const question1Changed = await waitFor(() => container.getByText(/What was the first film you saw in a theater?/i))
+    expect(question1Changed.value).toEqual("What was the first film you saw in a theater?");
   }
 
-  const userSeeCancelCTA = async () => {
-    const cancelBtn = await waitFor(() => container.getByTestId("action-cancel-security-question-btn"))
-    expect(cancelBtn).toBeInTheDocument()
+  const userSeeAnswerOfQuestionOneBlank = async () => {
+    const answer1 = await waitFor(() => container.getByLabelText(/Answer 1/i))
+    fireEvent.change(answer1, { target: { value: "" } });
+    expect(answer1.value).toEqual("");
   }
 
-  test('EPIC_EPP-38_STORY_EPP-9328- Verify User should be able to view all the 5 security questions and answers already set up', ({ given, and, when, then }) => {
+  test('EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to change the answer for any of the questions', ({ given, and, when, then }) => {
     given('User has logged into the patient portal', async () => {
       cleanup()
       container = await renderLogin()
@@ -110,7 +136,7 @@ defineFeature(feature, (test) => {
       userHasSetupSecurityQuestion()
     });
 
-    when('User lands on Set-up/ Update Security Question screen', async () => {
+    when('User lands on Set-up/ Update Security Question screen', () => {
       userLandsOnLoginSecurityScreen()
     });
 
@@ -128,10 +154,14 @@ defineFeature(feature, (test) => {
 
     and(/^User should be able to view all the (\d+) security questions and answers already set up$/, (arg0) => {
       userSeeQuestionOne()
+    });
+
+    and('User should be able to change the answer for any of the questions', () => {
+      userChangeTheAnswerOfQuestionOne()
     });
   });
 
-  test('EPIC_EPP-38_STORY_EPP-9328- Verify User should be able to view Update CTA', ({ given, and, when, then }) => {
+  test('EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to select a new question from the list of questions available instead of the existing question', ({ given, and, when, then }) => {
     given('User has logged into the patient portal', async () => {
       cleanup()
       container = await renderLogin()
@@ -145,7 +175,7 @@ defineFeature(feature, (test) => {
       userHasSetupSecurityQuestion()
     });
 
-    when('User lands on Set-up/ Update Security Question screen', async () => {
+    when('User lands on Set-up/ Update Security Question screen', () => {
       userLandsOnLoginSecurityScreen()
     });
 
@@ -165,12 +195,16 @@ defineFeature(feature, (test) => {
       userSeeQuestionOne()
     });
 
-    and('User should be able to view Update CTA', () => {
-      userSeeUpdateCTA()
+    and('User should be able to change the answer for any of the questions', () => {
+      userChangeTheAnswerOfQuestionOne()
+    });
+
+    and('User should be able to select a new question from the list of questions available instead of the existing question', () => {
+      userChangeTheQuestionOne()
     });
   });
 
-  test('EPIC_EPP-38_STORY_EPP-9328- Verify User should be able to view Cancel CTA', ({ given, and, when, then }) => {
+  test('EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to view the field for answer as blank once the new question is selected', ({ given, and, when, then }) => {
     given('User has logged into the patient portal', async () => {
       cleanup()
       container = await renderLogin()
@@ -184,7 +218,7 @@ defineFeature(feature, (test) => {
       userHasSetupSecurityQuestion()
     });
 
-    when('User lands on Set-up/ Update Security Question screen', async () => {
+    when('User lands on Set-up/ Update Security Question screen', () => {
       userLandsOnLoginSecurityScreen()
     });
 
@@ -204,12 +238,67 @@ defineFeature(feature, (test) => {
       userSeeQuestionOne()
     });
 
-    and('User should be able to view Update CTA', () => {
-      userSeeUpdateCTA()
+    and('User should be able to change the answer for any of the questions', () => {
+      userChangeTheAnswerOfQuestionOne()
     });
 
-    and('User should be able to view Cancel CTA', () => {
-      userSeeCancelCTA()
+    and('User should be able to select a new question from the list of questions available instead of the existing question', () => {
+      userChangeTheQuestionOne()
+    });
+
+    and('User should be able to view the field for answer as blank once the new question is selected', () => {
+      userSeeAnswerOfQuestionOneBlank()
+    });
+  });
+
+  test('EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to answer the new question', ({ given, and, when, then }) => {
+    given('User has logged into the patient portal', async () => {
+      cleanup()
+      container = await renderLogin()
+    });
+
+    and('User has logged in as patient', () => {
+      doLogin(mock, container)
+    });
+
+    and('User has setup the security question & answers', () => {
+      userHasSetupSecurityQuestion()
+    });
+
+    when('User lands on Set-up/ Update Security Question screen', () => {
+      userLandsOnLoginSecurityScreen()
+    });
+
+    then('User should be able to view Set security questions& answers CTA if security questions are not set by user during registration', () => {
+      userSeeUpdateSecurityQuestionBtn()
+    });
+
+    when('User clicks on the Set security questions& answers CTA', () => {
+      userClickUpdateSecurityQuestionBtn()
+    });
+
+    then('User should be navigated to Set security questions& answers screen', () => {
+      userLandsOnSecurityQuestionScreen()
+    });
+
+    and(/^User should be able to view all the (\d+) security questions and answers already set up$/, (arg0) => {
+      userSeeQuestionOne()
+    });
+
+    and('User should be able to change the answer for any of the questions', () => {
+      userChangeTheAnswerOfQuestionOne()
+    });
+
+    and('User should be able to select a new question from the list of questions available instead of the existing question', () => {
+      userChangeTheQuestionOne()
+    });
+
+    and('User should be able to view the field for answer as blank once the new question is selected', () => {
+      userSeeAnswerOfQuestionOneBlank()
+    });
+
+    and('User should be able to answer the new question', () => {
+      userChangeTheAnswerOfQuestionOne()
     });
   });
 })
