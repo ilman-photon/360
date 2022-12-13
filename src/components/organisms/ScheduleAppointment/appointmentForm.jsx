@@ -110,7 +110,7 @@ export default function AppointmentForm({
     OnSubmit(data);
   };
 
-  const onSignIn = () => {
+  const onLogin = () => {
     OnClickSignIn();
     router.push("/patient/login");
   };
@@ -308,10 +308,10 @@ export default function AppointmentForm({
                 <Link
                   sx={styles.link}
                   data-testid={SCHEDULE_GUEST_TEST_ID.signInlink}
-                  {...getLinkAria(t("signIn"))}
-                  onClick={onSignIn}
+                  {...getLinkAria(t("login"))}
+                  onClick={onLogin}
                 >
-                  {t("signIn")}
+                  {t("login")}
                 </Link>
               </Box>
             ) : null}
