@@ -437,6 +437,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       }}
                       value={value}
                       data-testid={REGISTER_TEST_ID.email}
+                      autoComplete={"off"}
                       onChange={onChange}
                       error={!!error}
                       size="small"
@@ -481,6 +482,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                         "aria-label": `Mobile Number - Required`,
                       }}
                       value={value}
+                      autoComplete={"off"}
                       onChange={onChange}
                       error={!!error}
                       size="small"
@@ -528,6 +530,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       }}
                       data-testid={REGISTER_TEST_ID.password}
                       value={value}
+                      autoComplete={"off"}
                       onChange={onChange}
                       error={!!error}
                       size="small"
