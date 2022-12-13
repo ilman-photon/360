@@ -10,6 +10,7 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import { editAppointmentScheduleData } from "../../../store/appointment";
 import { fetchUser } from "../../../store/user";
+import { addToCalendar } from "../../../utils/addToCalendar";
 
 export const ModalConfirmSchedule = () => {
   return (
@@ -19,6 +20,7 @@ export const ModalConfirmSchedule = () => {
       patientData={appointmentScheduleData.patientInfo}
       providerData={appointmentScheduleData.providerInfo}
       appointmentData={appointmentScheduleData.appointmentInfo}
+      onAddToCalendarClicked={onAddToCalendarClicked}
     />
   );
 };
@@ -92,6 +94,7 @@ export default function ScheduleAppointmentConfirmationPage() {
                 patientData={appointmentScheduleData.patientInfo}
                 providerData={appointmentScheduleData.providerInfo}
                 appointmentData={appointmentScheduleData.appointmentInfo}
+                onAddToCalendarClicked={addToCalendar}
                 isPage
               />
             </Grid>
