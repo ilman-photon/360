@@ -171,7 +171,10 @@ export default function TestLabReportCard({}) {
             </TableContainer>
           </>
         ) : (
-          <TableEmpty text={"You do not have any test and lab reports."} />
+          <TableEmpty
+            text={"You do not have any test and lab reports."}
+            sxContainer={{ margin: "24px 0 8px 0" }}
+          />
         )}
       </Box>
     );

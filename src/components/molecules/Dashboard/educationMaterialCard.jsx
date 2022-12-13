@@ -22,32 +22,6 @@ export default function EducationMaterialCard({}) {
   const [educationMaterialData, setEducationMaterialData] = React.useState([]);
   const isDesktop = useMediaQuery("(min-width: 700px)");
 
-  useEffect(() => {
-    setEducationMaterialData([
-      {
-        image: "",
-        title: "Guide To Macular Degeneration Surgery",
-        date: "10/22/2022",
-        descriptionn:
-          "Age-related macular degeneration is an eye condition that can affect central vision. Macular degeneration surgery can help prevent further vision loss ...",
-      },
-      {
-        image: "",
-        title: "Guide To Macular Degeneration Surgery",
-        date: "10/22/2022",
-        descriptionn:
-          "Age-related macular degeneration is an eye condition that can affect central vision. Macular degeneration surgery can help prevent further vision loss ...",
-      },
-      {
-        image: "",
-        title: "Guide To Macular Degeneration Surgery",
-        date: "10/22/2022",
-        descriptionn:
-          "Age-related macular degeneration is an eye condition that can affect central vision. Macular degeneration surgery can help prevent further vision loss ...",
-      },
-    ]);
-  }, []);
-
   const settings = {
     dots: false,
     infinite: false,
@@ -153,7 +127,11 @@ export default function EducationMaterialCard({}) {
           >
             <TableEmpty
               text={"There is no educational material document."}
-              sxContainer={!isDesktop ? { m: "16px", textAlign: "center" } : {}}
+              sxContainer={
+                !isDesktop
+                  ? { m: "16px", textAlign: "center" }
+                  : { margin: "24px 0 8px 0" }
+              }
             />
           </Box>
         )}
