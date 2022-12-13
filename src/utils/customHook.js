@@ -49,6 +49,7 @@ export function useRedirectLogin() {
     if (!cookies.get("authorized")) {
       router.push("/patient/login");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }
 export const useForceLogout = () => {
