@@ -159,12 +159,14 @@ export default function BaseHeader({
         path = `/patient/appointments/detail-appointments/${id}`;
         break;
       case "test-result":
+      case "test/lab results":
         path = "/patient/account/medical-records?type=test-lab-result";
         break;
       case "message":
-        path = "/patient/message?conversationId=1234";
+        path = `/patient/message?conversationId=${id}`; // no test data yet
         break;
       case "invoice":
+        path = `/patient/pay-my-bill/summary-detail/${id}`;
         break;
       case "appointment-summary":
         break;
