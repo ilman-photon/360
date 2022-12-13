@@ -8,6 +8,7 @@ export const styles = {
     color: "#0095A9",
     fontSize: "18px",
     fontWeight: "600",
+    fontFamily: "Libre Franklin",
   },
   switchButton: {
     border: "1px solid #205A63",
@@ -22,8 +23,7 @@ export const styles = {
     marginTop: "2px",
   },
   boldText: {
-    fontWeight: "700",
-    fontSize: "18px",
+    fontWeight: "600",
   },
   continueButton: {
     fontFamily: "Libre Franklin",
@@ -46,8 +46,8 @@ export const styles = {
   },
   signInInfoLabel: {
     fontFamily: "Libre Franklin",
-    fontWeight: "600",
-    fontSize: "16px",
+    fontWeight: "500",
+    fontSize: "18px",
     color: "#000000",
     lineHeight: "1.167",
     letterSpacing: "-0.01562em",
@@ -58,14 +58,20 @@ export const styles = {
     fontWeight: "500",
     paddingLeft: "8px",
     fontSize: "16px",
+    fontFamily: "Libre Franklin",
   },
   linkText: {
     color: "#008294",
+  },
+  sigInInfoLabel: {
+    fontFamily: "Libre Franklin",
+    fontWeight: "600",
   },
   passwordLabel: {
     fontFamily: "Libre Franklin",
     fontSize: "16px",
     color: "#000000",
+    fontWeight: "400",
   },
   divMargin: {
     marginTop: "32px",
@@ -90,9 +96,12 @@ export const styles = {
     color: "#008294",
     textDecorationLine: "underline",
     textTransform: "capitalize",
-    fontSize: "15px",
+    fontFamily: "Libre Franklin",
+    fontWeight: "500",
+    fontSize: "16px",
   },
   scheduledText: {
+    fontFamily: "Bw Nista Geometric DEMO, sans-serif",
     color: colors.darkGreen,
     fontWeight: "700",
     display: "flex",
@@ -136,6 +145,7 @@ export const styles = {
   },
 
   registeredUsernameWrapper: {
+    fontFamily: "Libre Franklin",
     margin: "16px 8px 0",
     padding: 16,
     borderRadius: 4,

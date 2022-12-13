@@ -35,6 +35,7 @@ const DisclaimerText = (data) => {
         display: "inline-flex",
         alignItems: "center",
         color: "#424747",
+        fontFamily: "Libre Franklin",
       }}
     >
       {data.label}
@@ -226,8 +227,15 @@ export default function AppointmentForm({
   const getTitleStyle = () => {
     if (isForMyself) {
       return isDesktop
-        ? { fontSize: "32px", fontFamily: "Bw Nista Geometric DEMO" }
-        : { fontSize: "26px", fontFamily: "Bw Nista Geometric DEMO" };
+        ? {
+            fontSize: "32px",
+            fontFamily: "Bw Nista Geometric DEMO",
+            fontWeight: "500",
+          }
+        : {
+            fontSize: "26px",
+            fontFamily: "Bw Nista Geometric DEMO",
+          };
     } else {
       return {
         fontSize: isDesktop ? "26px" : "22px",
