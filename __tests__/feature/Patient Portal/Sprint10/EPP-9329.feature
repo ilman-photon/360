@@ -8,7 +8,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to change the answer for any of the questions
-    Scenario: EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to change the answer for any of the questions
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -26,7 +25,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to select a new question from the list of questions available instead of the existing question
-    Scenario: EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to select a new question from the list of questions available instead of the existing question
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -45,7 +43,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to view the field for answer as blank once the new question is selected
-    Scenario: EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to view the field for answer as blank once the new question is selected
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -66,7 +63,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to answer the new question
-    Scenario: EPIC_EPP-38_STORY_EPP-9329- Verify User should be able to answer the new question
 
     Given User has logged into the patient portal 
     And User has logged in as patient
