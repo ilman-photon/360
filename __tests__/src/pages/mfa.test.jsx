@@ -167,7 +167,7 @@ describe("Multi-Factor Authentication", () => {
 
     await waitFor(() => container.getByRole("button", { name: /submitBtn/i }));
 
-    const mfaField = container.getByLabelText("mfaLabel");
+    const mfaField = container.getByLabelText(/mfaLabel/i);
     fireEvent.change(mfaField, { target: { value: "123456" } });
 
     const submitButton = container.getByRole("button", { name: /submitBtn/i });
@@ -197,7 +197,7 @@ describe("Multi-Factor Authentication", () => {
     const remeberMe = container.getByText("rememberMeLabel");
     fireEvent.click(remeberMe);
 
-    const mfaField = container.getByLabelText("mfaLabel");
+    const mfaField = container.getByLabelText(/mfaLabel/i);
     fireEvent.change(mfaField, { target: { value: "123456" } });
 
     const submitButton = container.getByRole("button", { name: /submitBtn/i });
@@ -237,7 +237,7 @@ describe("Multi-Factor Authentication", () => {
 
     await waitFor(() => container.getByRole("button", { name: /submitBtn/i }));
 
-    const mfaField = container.getByLabelText("mfaLabel");
+    const mfaField = container.getByLabelText(/mfaLabel/i);
     fireEvent.change(mfaField, { target: { value: "111111" } });
 
     const submitButton = container.getByRole("button", { name: /submitBtn/i });
@@ -266,7 +266,7 @@ describe("Multi-Factor Authentication", () => {
 
     await waitFor(() => container.getByRole("button", { name: /submitBtn/i }));
 
-    const mfaField = container.getByLabelText("mfaLabel");
+    const mfaField = container.getByLabelText(/mfaLabel/i);
     fireEvent.change(mfaField, { target: { value: "999999" } });
 
     const submitButton = container.getByRole("button", { name: /submitBtn/i });
@@ -297,7 +297,7 @@ describe("Multi-Factor Authentication", () => {
 
     await waitFor(() => container.getByRole("button", { name: /submitBtn/i }));
 
-    const mfaField = container.getByLabelText("mfaLabel");
+    const mfaField = container.getByLabelText(/mfaLabel/i);
     fireEvent.change(mfaField, { target: { value: "999999" } });
 
     const submitButton = container.getByRole("button", { name: /submitBtn/i });

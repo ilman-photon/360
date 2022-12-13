@@ -24,6 +24,7 @@ export default function MfaPage() {
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [successSubmit, setSuccessSubmit] = React.useState(false);
+  const [otpValidation, setOTPValidation] = React.useState("");
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true);
@@ -70,6 +71,12 @@ export default function MfaPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const setTempValidation = (response) => {
+    if (process.env.ENV_NAME !== "prod" && response && response.mfaCode) {
+      setOTPValidation(response.mfaCode);
+    }
+  };
+
   function onConfirmClicked(communication, callback) {
     const deviceId = "";
     const postBody = {
@@ -80,6 +87,7 @@ export default function MfaPage() {
     api
       .sendMfaCode(postBody)
       .then((response) => {
+        setTempValidation(response);
         setComponentName(constants.MFA_COMPONENT_NAME);
         cookies.set("isStay", "stay", { path: "/patient" });
         cookies.set("mfaPreferredMode", communication, { path: "/patient" });
@@ -125,7 +133,7 @@ export default function MfaPage() {
           const token = JSON.parse(
             localStorage.getItem("userData")
           ).patientId.replace(/-/g, "");
-          const maxAge = 300;
+          const maxAge = process.env.NEXT_PUBLIC_MFA_TOKEN;
           cookies.set("mfaAccessToken", token, {
             path: "/patient",
             maxAge,
@@ -175,6 +183,7 @@ export default function MfaPage() {
     api
       .sendMfaCode(postBody)
       .then((response) => {
+        setTempValidation(response);
         callback({
           status: "success",
         });
@@ -269,6 +278,22 @@ export default function MfaPage() {
           setRememberMe={onSetRememberMe}
           testIds={MFA_TEST_ID}
         />
+        {otpValidation ? (
+          <Typography
+            aria-hidden={"true"}
+            style={{
+              opacity: 0.3,
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              fontSize: "12px",
+              display: "none",
+            }}
+            data-testid={"loc_validationMFA"}
+          >
+            {otpValidation}
+          </Typography>
+        ) : null}
       </>
     );
   } else if (componentName === constants.SQ_COMPONENT_NAME && isReady) {

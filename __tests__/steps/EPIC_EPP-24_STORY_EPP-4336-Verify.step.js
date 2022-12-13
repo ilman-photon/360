@@ -305,6 +305,19 @@ const imageMock = {
 	"presignedUrl": "https://dgassets-bucket1.s3.amazonaws.com/1ffaf737-57ac-4660-8a32-f0650e2285ae?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20221003T051746Z&X-Amz-SignedHeaders=host&X-Amz-Expires=900&X-Amz-Credential=AKIAQ2MAPFH4C64PCZO6%2F20221003%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=80e799bb9072758f67f3abd71e3ae8d8f8248cf8378fd7412d1e725cf4f88c96",
 }
 
+const locationMock = {
+	"cities": [
+		"Yorktown",
+		"Chicago"
+	]
+}
+
+const specialtiesMock = [
+	"Glaucoma",
+	"Ophthalmology",
+	"Dry Eye"
+]
+
 const mockApi = () => {
 	const mock = new MockAdapter(axios);
 	const domain = window.location.origin;
@@ -336,14 +349,24 @@ const mockApi = () => {
 		.reply(200, mockDoctorSearch);
 	mock
 		.onGet(
-			`/ecp/appointments/getDoctorDetails?pageSize=300&search.query=((firstName=eq=Robert)OR(lastName=eq=Robert))`
+			`/ecp/appointments/getDoctorDetails?pageSize=300&search.query=((firstName=co=Robert)OR(lastName=co=Robert))`
 		)
 		.reply(200, mockDoctorSearch);
 	mock
 		.onGet(
-			`/ecp/appointments/getDoctorDetails?pageSize=300&search.query=((firstName=eq=Robert)OR(lastName=eq=Robert)AND(offices.city=eq=Chicago))`
+			`/ecp/appointments/getDoctorDetails?pageSize=300&search.query=((firstName=co=Robert)OR(lastName=co=Robert)AND(offices.city=co=Chicago))`
 		)
 		.reply(200, mockDoctorSearch);
+	mock
+		.onGet(
+			`/ecp/appointments/getOfficeDetails`
+		)
+		.reply(200, locationMock);
+	mock
+		.onGet(
+			`/ecp/appointments/getSpecialization?search.query=((entityName=eq=document)AND(attributeName=eq=specialization))`
+		)
+		.reply(200, { specializations: specialtiesMock });
 };
 
 function createMatchMedia(width) {
@@ -423,253 +446,253 @@ defineFeature(feature, (test) => {
 	};
 
 	test('EPIC_EPP-24_STORY_EPP-4336 - Verify User searches and selects a ECP Practise location to filter the doctors', ({ given, and, when, then }) => {
-    	given('user launch Patient Portal url', () => {
+		given('user launch Patient Portal url', () => {
 			defaultValidation()
-    	});
+		});
 
-    	and('user is logged into the portal', () => {
+		and('user is logged into the portal', () => {
 			defaultValidation()
-    	});
+		});
 
-    	and('user lands on the dashboard screen', async() => {
+		and('user lands on the dashboard screen', async () => {
 			await renderDashboard()
-    	});
+		});
 
-    	and('user should see Top Navigation Menu such as', (table) => {
+		and('user should see Top Navigation Menu such as', (table) => {
 			expectMenu()
-    	});
+		});
 
-    	when('User Click on Appointment menu', () => {
+		when('User Click on Appointment menu', () => {
 			clickAppointmentsMenu()
-    	});
+		});
 
-    	then('Sub menu is displayed such as Find a Doctor, Upcoming & Past Appointment (TBD)', () => {
+		then('Sub menu is displayed such as Find a Doctor, Upcoming & Past Appointment (TBD)', () => {
 			expectAppointmentsMenu()
-    	});
+		});
 
-    	when('user click on Find a Doctor', () => {
+		when('user click on Find a Doctor', () => {
 			clickFindDoctor()
-    	});
+		});
 
-    	then('user should be able to navigated to search doctors screen', async() => {
+		then('user should be able to navigated to search doctors screen', async () => {
 			await renderFindDoctor()
-    	});
+		});
 
-    	and(/^user click on (.*) field$/, (arg0) => {
+		and(/^user click on (.*) field$/, (arg0) => {
 			defaultValidation()
-    	});
+		});
 
-    	and('user enter some keyword', () => {
+		and('user enter some keyword', () => {
 			fireEvent.change(container.container.querySelector("#doctor"), {
 				target: { value: "Robert" },
 			})
-    	});
+		});
 
-    	when('user click on search icon', async() => {
+		when('user click on search icon', async () => {
 			fireEvent.click(container.getByTestId("search-btn"))
 			await waitFor(() => {
 				container.getByText(/Robert Fox/i)
 			})
-    	});
+		});
 
-    	then('user should see result from keyword they search', () => {
+		then('user should see result from keyword they search', () => {
 			expect(container.getByText(/Robert Fox/i)).toBeInTheDocument()
-    	});
+		});
 
-    	and('user should view a card with basic details of a doctor', () => {
+		and('user should view a card with basic details of a doctor', () => {
 			expect(container.getByText(/Robert Fox/i)).toBeInTheDocument()
 			expect(container.getByText(/Chicago Eye Institute/i)).toBeInTheDocument()
 			expect(container.getAllByText("Email")[1]).toBeInTheDocument()
 			expect(container.getAllByText("Phone")[1]).toBeInTheDocument()
 			expect(container.getAllByText("Specialties")[1]).toBeInTheDocument()
-    	});
+		});
 
-    	when(/^user click on dropdown of (.*) field$/, (arg0) => {
+		when(/^user click on dropdown of (.*) field$/, (arg0) => {
 			fireEvent.change(container.container.querySelector("#location"), {
 				target: { value: "Chi" }
 			})
-    	});
+		});
 
-    	and('user click on one of ECP Practise location from the list', async() => {
+		and('user click on one of ECP Practise location from the list', async () => {
 			fireEvent.click(container.getByText("Chicago"))
 			fireEvent.click(container.getByTestId("search-btn"))
 			await waitFor(() => {
 				container.getByText(/Robert Fox/i)
 			})
-    	});
+		});
 
-    	then('user should be able to view list of doctor from the selected ECP Practise location', () => {
+		then('user should be able to view list of doctor from the selected ECP Practise location', () => {
 			expect(container.getByText(/Robert Fox/i)).toBeInTheDocument()
-    	});
-    });
+		});
+	});
 
-    test('EPIC_EPP-24_STORY_EPP-4336 - Verify User able to view filter result from ECP Practise location that they selected', ({ given, and, when, then }) => {
-    	given('user launch Patient Portal url', () => {
+	test('EPIC_EPP-24_STORY_EPP-4336 - Verify User able to view filter result from ECP Practise location that they selected', ({ given, and, when, then }) => {
+		given('user launch Patient Portal url', () => {
 			defaultValidation()
-    	});
+		});
 
-    	and('user is logged into the portal', () => {
+		and('user is logged into the portal', () => {
 			defaultValidation()
-    	});
+		});
 
-    	and('user lands on the dashboard screen', async() => {
+		and('user lands on the dashboard screen', async () => {
 			await renderDashboard()
-    	});
+		});
 
-    	and('user should see Top Navigation Menu such as', (table) => {
+		and('user should see Top Navigation Menu such as', (table) => {
 			expectMenu()
-    	});
+		});
 
-    	when('User Click on Appointment menu', () => {
+		when('User Click on Appointment menu', () => {
 			clickAppointmentsMenu()
-    	});
+		});
 
-    	then('Sub menu is displayed such as Find a Doctor, Upcoming & Past Appointment (TBD)', () => {
+		then('Sub menu is displayed such as Find a Doctor, Upcoming & Past Appointment (TBD)', () => {
 			expectAppointmentsMenu()
-    	});
+		});
 
-    	when('user click on Find a Doctor', () => {
+		when('user click on Find a Doctor', () => {
 			clickFindDoctor()
-    	});
+		});
 
-    	then('user should be able to navigated to search doctors screen', async() => {
+		then('user should be able to navigated to search doctors screen', async () => {
 			await renderFindDoctor()
-    	});
+		});
 
-    	and(/^user click on (.*) field$/, (arg0) => {
+		and(/^user click on (.*) field$/, (arg0) => {
 			defaultValidation()
-    	});
+		});
 
-    	and('user enter some keyword', () => {
+		and('user enter some keyword', () => {
 			fireEvent.change(container.container.querySelector("#doctor"), {
 				target: { value: "Robert" },
 			})
-    	});
+		});
 
-    	when('user click on search icon', async() => {
+		when('user click on search icon', async () => {
 			fireEvent.click(container.getByTestId("search-btn"))
 			await waitFor(() => {
 				container.getByText(/Robert Fox/i)
 			})
-    	});
+		});
 
-    	then('user should see result from keyword they search', () => {
+		then('user should see result from keyword they search', () => {
 			expect(container.getByText(/Robert Fox/i)).toBeInTheDocument()
-    	});
+		});
 
-    	and('user should view a card with basic details of a doctor', () => {
+		and('user should view a card with basic details of a doctor', () => {
 			expect(container.getByText(/Robert Fox/i)).toBeInTheDocument()
 			expect(container.getByText(/Chicago Eye Institute/i)).toBeInTheDocument()
 			expect(container.getAllByText("Email")[1]).toBeInTheDocument()
 			expect(container.getAllByText("Phone")[1]).toBeInTheDocument()
 			expect(container.getAllByText("Specialties")[1]).toBeInTheDocument()
-    	});
+		});
 
-    	when(/^user click on dropdown of (.*) field$/, (arg0) => {
+		when(/^user click on dropdown of (.*) field$/, (arg0) => {
 			fireEvent.change(container.container.querySelector("#location"), {
 				target: { value: "Chi" }
 			})
-    	});
+		});
 
-    	and('user click on one of ECP Practise location from the list', async() => {
+		and('user click on one of ECP Practise location from the list', async () => {
 			fireEvent.click(container.getByText("Chicago"))
 			fireEvent.click(container.getByTestId("search-btn"))
 			await waitFor(() => {
 				container.getByText(/Robert Fox/i)
 			})
-    	});
+		});
 
-    	then('user should be able to view list of doctor from the selected ECP Practise location', () => {
+		then('user should be able to view list of doctor from the selected ECP Practise location', () => {
 			expect(container.getByText(/Robert Fox/i)).toBeInTheDocument()
-    	});
+		});
 
-    	and('user able to view filter result from ECP Practise location that they selected', () => {
+		and('user able to view filter result from ECP Practise location that they selected', () => {
 			expect(container.getByText(/Results found with your search criteria/i)).toBeInTheDocument()
-    	});
-    });
+		});
+	});
 
-    test('EPIC_EPP-24_STORY_EPP-4336 - Verify User able to view filter button to open overlay', ({ given, and, when, then }) => {
-    	given('user launch Patient Portal url', () => {
+	test('EPIC_EPP-24_STORY_EPP-4336 - Verify User able to view filter button to open overlay', ({ given, and, when, then }) => {
+		given('user launch Patient Portal url', () => {
 			defaultValidation()
-    	});
+		});
 
-    	and('user is logged into the portal', () => {
+		and('user is logged into the portal', () => {
 			defaultValidation()
-    	});
+		});
 
-    	and('user lands on the dashboard screen', async() => {
+		and('user lands on the dashboard screen', async () => {
 			await renderDashboard()
-    	});
+		});
 
-    	and('user should see Top Navigation Menu such as', (table) => {
+		and('user should see Top Navigation Menu such as', (table) => {
 			expectMenu()
-    	});
+		});
 
-    	when('User Click on Appointment menu', () => {
+		when('User Click on Appointment menu', () => {
 			clickAppointmentsMenu()
-    	});
+		});
 
-    	then('Sub menu is displayed such as Find a Doctor, Upcoming & Past Appointment (TBD)', () => {
+		then('Sub menu is displayed such as Find a Doctor, Upcoming & Past Appointment (TBD)', () => {
 			expectAppointmentsMenu()
-    	});
+		});
 
-    	when('user click on Find a Doctor', () => {
+		when('user click on Find a Doctor', () => {
 			clickFindDoctor()
-    	});
+		});
 
-    	then('user should be able to navigated to search doctors screen', async() => {
+		then('user should be able to navigated to search doctors screen', async () => {
 			await renderFindDoctor()
-    	});
+		});
 
-    	and(/^user click on (.*) field$/, (arg0) => {
+		and(/^user click on (.*) field$/, (arg0) => {
 			defaultValidation()
-    	});
+		});
 
-    	and('user enter some keyword', () => {
+		and('user enter some keyword', () => {
 			fireEvent.change(container.container.querySelector("#doctor"), {
 				target: { value: "Robert" },
 			})
-    	});
+		});
 
-    	when('user click on search icon', async() => {
+		when('user click on search icon', async () => {
 			fireEvent.click(container.getByTestId("search-btn"))
 			await waitFor(() => {
 				container.getByText(/Robert Fox/i)
 			})
-    	});
+		});
 
-    	then('user should see result from keyword they search', () => {
+		then('user should see result from keyword they search', () => {
 			expect(container.getByText(/Robert Fox/i)).toBeInTheDocument()
-    	});
+		});
 
-    	and('user should view a card with basic details of a doctor', () => {
+		and('user should view a card with basic details of a doctor', () => {
 			expect(container.getByText(/Robert Fox/i)).toBeInTheDocument()
 			expect(container.getByText(/Chicago Eye Institute/i)).toBeInTheDocument()
 			expect(container.getAllByText("Email")[1]).toBeInTheDocument()
 			expect(container.getAllByText("Phone")[1]).toBeInTheDocument()
 			expect(container.getAllByText("Specialties")[1]).toBeInTheDocument()
-    	});
+		});
 
-    	when(/^user click on dropdown of (.*) field$/, (arg0) => {
+		when(/^user click on dropdown of (.*) field$/, (arg0) => {
 			fireEvent.change(container.container.querySelector("#location"), {
 				target: { value: "Chi" }
 			})
-    	});
+		});
 
-    	and('user click on one of ECP Practise location from the list', async() => {
+		and('user click on one of ECP Practise location from the list', async () => {
 			fireEvent.click(container.getByText("Chicago"))
 			fireEvent.click(container.getByTestId("search-btn"))
 			await waitFor(() => {
 				container.getByText(/Robert Fox/i)
 			})
-    	});
+		});
 
-    	then('user should be able to view list of doctor from the selected ECP Practise location', () => {
+		then('user should be able to view list of doctor from the selected ECP Practise location', () => {
 			expect(container.getByText(/Robert Fox/i)).toBeInTheDocument()
-    	});
+		});
 
-    	and('user able to view filter button to open overlay', () => {
+		and('user able to view filter button to open overlay', () => {
 			expect(container.getByText("Filters")).toBeInTheDocument()
-    	});
-    });
+		});
+	});
 })

@@ -5,6 +5,7 @@ import AccountCard from "../../molecules/AccountCard/accountCard";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import EyeIcon from "../../../assets/icons/EyeIcon";
 
 import { styles } from "./style";
 import { formatAppointmentDate } from "../../../utils/dateFormatter";
@@ -72,7 +73,12 @@ export default function AppointmentDetails({
           >
             <Typography
               variant="bodyMedium"
-              sx={{ color: colors.darkGreen }}
+              sx={{
+                color: colors.darkGreen,
+                fontFamily: "Libre Franklin",
+                fontSize: "16px",
+                fontWeight: "400",
+              }}
               tabIndex={"0"}
               data-testid={
                 TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date
@@ -104,7 +110,12 @@ export default function AppointmentDetails({
           >
             <Typography
               variant="bodyMedium"
-              sx={{ color: colors.darkGreen }}
+              sx={{
+                color: colors.darkGreen,
+                fontFamily: "Libre Franklin",
+                fontSize: "16px",
+                fontWeight: "400",
+              }}
               tabIndex={"0"}
             >
               {appointmentData.insuranceCarrier?.name
@@ -117,15 +128,16 @@ export default function AppointmentDetails({
             label="Purpose of visit"
             iconWidth={"24px"}
             titleIcon={
-              <Image
-                width="24"
-                height="24"
-                src={"/icon-building.png"}
-                alt="purpose of visit"
-                aria-label={"Building icon"}
-                aria-hidden={"false"}
-                sx={{ color: colors.darkGreen }}
-              />
+              <EyeIcon />
+              // <Image
+              //   width="24"
+              //   height="24"
+              //   src={"/icon-eye-contacts.png"}
+              //   alt="purpose of visit"
+              //   aria-label={"Building icon"}
+              //   aria-hidden={"false"}
+              //   sx={{ color: colors.darkGreen }}
+              // />
             }
             sxRow={{ justifyContent: "unset" }}
             sxText={{
@@ -136,7 +148,12 @@ export default function AppointmentDetails({
           >
             <Typography
               variant="bodyMedium"
-              sx={{ color: colors.darkGreen }}
+              sx={{
+                color: colors.darkGreen,
+                fontFamily: "Libre Franklin",
+                fontSize: "16px",
+                fontWeight: "400",
+              }}
               tabIndex={"0"}
               aria-label={
                 appointmentData.appointmentType ||

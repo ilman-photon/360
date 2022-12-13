@@ -10,6 +10,7 @@ const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 import mediaQuery from "css-mediaquery";
 import { mockSubmitFilterReal } from "../../__mocks__/mockResponse";
+import { provideFilters } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2538.feature"
@@ -180,9 +181,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
-    and("user enters the location", () => {
-      const locationField = container.container.querySelector("#location");
-      fireEvent.change(locationField, { target: { value: "Texas" } });
+    and("user enters the location", async () => {
+      await provideFilters(container)
     });
 
     and("user selects the date of appointment", () => {});
@@ -280,8 +280,7 @@ defineFeature(feature, (test) => {
     and(
       "user clicks on the schedule new appointments search button",
       async () => {
-        const locationField = container.container.querySelector("#location");
-        fireEvent.change(locationField, { target: { value: "Texas" } });
+        await provideFilters(container)
         const searchBtn = container.getByTestId("searchbtn");
         fireEvent.click(searchBtn);
 
@@ -376,11 +375,9 @@ defineFeature(feature, (test) => {
     and(
       "user clicks on the schedule new appointments search button",
       async () => {
-        const locationField = container.container.querySelector("#location");
-        fireEvent.change(locationField, { target: { value: "Texas" } });
+        await provideFilters(container)
         const searchBtn = container.getByTestId("searchbtn");
         fireEvent.click(searchBtn);
-
         await waitFor(() => {
           container.getByText(/Filter/i);
         });

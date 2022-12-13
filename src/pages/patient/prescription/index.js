@@ -41,8 +41,19 @@ export default function PrescriptionPage() {
     const api = new Api();
     const userData = JSON.parse(localStorage.getItem("userData"));
     if (isCancelRequest) {
+      const refillCancelBody = {
+        subject: "Refill Cancel",
+        bodyNote: `${prescriptionData.medications[index]?.drug?.DrugDescription}, ${prescriptionData.medications[index]?.drug?.NDCID}, ${prescriptionData.medications[index].id}`,
+        senderIsPatient: true,
+        messageStatus: "DRAFT",
+        senderPatientId: userData?.patientId,
+        messageReceipients: [],
+        digitalAssets: [],
+        priority: "HIGH",
+        deliveryDate: mmddyyDateFormat(new Date()),
+      };
       api
-        .doMedicationCancelRequestRefill(postBody)
+        .doMedicationCancelRequestRefill(refillCancelBody)
         .then(function (response) {
           const data = JSON.parse(JSON.stringify(prescriptionData));
           data.medications[index].status = "";

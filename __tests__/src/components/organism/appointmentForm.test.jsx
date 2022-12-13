@@ -45,7 +45,8 @@ describe("Appointment form", () => {
       container.getByTestId(SCHEDULE_GUEST_TEST_ID.mobilenumber)
     ).getByRole("textbox");
     const buttonSubmit = container.getByText(/scheduleAppoinment/i);
-    const radioPhone = container.getAllByTestId(/phoneradio/i);
+    // const radioPhone = container.getAllByTestId(/phoneradio/i);
+    const radioPhone = container.getAllByText(/phone/i);
 
     await waitFor(() => fireEvent.click(radioPhone[0]));
     fireEvent.change(email, { target: { value: "" } });
@@ -58,7 +59,8 @@ describe("Appointment form", () => {
       container.getByTestId(SCHEDULE_GUEST_TEST_ID.email)
     ).getByRole("textbox");
     const buttonSubmit = container.getByText(/scheduleAppoinment/i);
-    const emailPhone = container.getAllByTestId(/emailradio/i);
+    // const emailPhone = container.getAllByTestId(/emailradio/i);
+    const emailPhone = container.getAllByText(/email/i);
 
     await waitFor(() => fireEvent.click(emailPhone[0]));
     fireEvent.change(email, { target: { value: "" } });
@@ -74,7 +76,8 @@ describe("Appointment form", () => {
       container.getByTestId(SCHEDULE_GUEST_TEST_ID.mobilenumber)
     ).getByRole("textbox");
     const buttonSubmit = container.getByText(/scheduleAppoinment/i);
-    const bothRadio = container.getAllByTestId(/bothradio/i);
+    // const bothRadio = container.getAllByTestId(/bothradio/i);
+    const bothRadio = container.getAllByText(/both/i);
 
     await waitFor(() => fireEvent.click(bothRadio[0]));
     fireEvent.change(email, { target: { value: "unit@gmail.com" } });
@@ -91,7 +94,8 @@ describe("Appointment form", () => {
       container.getByTestId(SCHEDULE_GUEST_TEST_ID.mobilenumber)
     ).getByRole("textbox");
     const buttonSubmit = container.getByText(/scheduleAppoinment/i);
-    const bothRadio = container.getAllByTestId(/bothradio/i);
+    // const bothRadio = container.getAllByTestId(/bothradio/i);
+    const bothRadio = container.getAllByText(/both/i);
 
     await waitFor(() => fireEvent.click(bothRadio[0]));
     fireEvent.change(email, { target: { value: "" } });
@@ -109,7 +113,8 @@ describe("Appointment form", () => {
       container.getByTestId(SCHEDULE_GUEST_TEST_ID.lastname)
     ).getByRole("textbox");
     const buttonSubmit = container.getByText(/scheduleAppoinment/i);
-    const radioPhone = container.getAllByTestId(/phoneradio/i);
+    // const radioPhone = container.getAllByTestId(/phoneradio/i);
+    const radioPhone = container.getAllByText(/phone/i);
 
     await waitFor(() => fireEvent.click(radioPhone[0]));
     fireEvent.change(firstName, {
@@ -140,7 +145,8 @@ describe("Appointment form", () => {
     const dateBirth = container.getByTestId(
       SCHEDULE_GUEST_TEST_ID.dateofbirth
     ).firstChild;
-    const radioBoth = container.getAllByTestId(/bothradio/i);
+    // const radioBoth = container.getAllByTestId(/bothradio/i);
+    const radioBoth = container.getAllByText(/both/i);
 
     await waitFor(() => fireEvent.click(radioBoth[0]));
 
@@ -197,7 +203,8 @@ describe("Appointment form", () => {
     const dateBirth = container.getByTestId(
       SCHEDULE_GUEST_TEST_ID.dateofbirth
     ).firstChild;
-    const radioBoth = container.getAllByTestId(/bothradio/i);
+    // const radioBoth = container.getAllByTestId(/bothradio/i);
+    const radioBoth = container.getAllByText(/both/i);
 
     await waitFor(() => fireEvent.click(radioBoth[0]));
 
@@ -254,7 +261,8 @@ describe("Appointment form", () => {
     const dateBirth = container.getByTestId(
       SCHEDULE_GUEST_TEST_ID.dateofbirth
     ).firstChild;
-    const radioBoth = container.getAllByTestId(/bothradio/i);
+    // const radioBoth = container.getAllByTestId(/bothradio/i);
+    const radioBoth = container.getAllByText(/both/i);
 
     await waitFor(() => fireEvent.click(radioBoth[0]));
 

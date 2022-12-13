@@ -27,6 +27,14 @@ export async function getServerSideProps(context) {
   };
 }
 
+export function sortPrimaryAddress(address) {
+  if (address && address.length > 0) {
+    return address.sort(function (x, y) {
+      return y.primaryAddress - x.primaryAddress;
+    });
+  }
+  return address;
+}
 export default function Bio({ embedApi, bio }) {
   const [providerData, setProviderData] = useState();
   const insuranceCarrierList = useSelector((state) => state.provider.list);
@@ -60,8 +68,9 @@ export default function Bio({ embedApi, bio }) {
     const genderCode = response.sex?.key;
     const femaleGender = genderCode === 12 ? "Female" : "Unknown";
     const gender = genderCode === 11 ? "Male" : femaleGender;
-    const address = response.offices;
+    let address = response.offices;
     const language = getLanguage(response.providerDetails);
+    address = sortPrimaryAddress(address);
 
     const data = {
       providerId: response.id || "",

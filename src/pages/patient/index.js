@@ -72,7 +72,7 @@ export default function HomePage({ googleApiKey }) {
   const dispatch = useDispatch();
 
   const isAdmin = () => {
-    return JSON.parse(localStorage.getItem("userData")).userType === "admin";
+    return JSON.parse(localStorage.getItem("userData"))?.userType === "admin";
   };
 
   function onCalledGetAppointmentTypesAPI() {
@@ -134,7 +134,7 @@ export default function HomePage({ googleApiKey }) {
   }
 
   function onCalledAllPrescription() {
-    onCallGetPrescriptionData()
+    onCallGetPrescriptionData(false)
       .then(function (response) {
         const prescriptionDataTemp = { ...response };
         if (response?.glasses?.length > 0) {
@@ -185,7 +185,6 @@ export default function HomePage({ googleApiKey }) {
   useEffect(() => {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
-      router.push("/patient/login");
       setIsAuthenticated(false);
     } else {
       setIsAuthenticated(true);
@@ -196,6 +195,9 @@ export default function HomePage({ googleApiKey }) {
     if (isAuthenticated && !isAdmin()) {
       onCalledAllPrescription();
       dispatch(fetchAllPayers());
+    }
+    if (isAdmin()) {
+      router.push("/patient/admin/locked-accounts");
     }
     const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
     if (userStorageData) {
@@ -209,12 +211,12 @@ export default function HomePage({ googleApiKey }) {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    onCalledGetAllAppointment();
+    !isAdmin() && isAuthenticated && onCalledGetAllAppointment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterSuggestionData.purposeOfVisit]);
 
   useEffect(() => {
-    onCalledGetAppointmentTypesAPI();
+    !isAdmin() && onCalledGetAppointmentTypesAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [insuranceCarrierList]);
 

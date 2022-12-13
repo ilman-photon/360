@@ -17,6 +17,8 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { colors } from "../../../styles/theme";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import Head from "next/head";
+import { Api } from "../../../pages/api/api";
 
 const cardContentStyle = {
   display: "flex",
@@ -33,7 +35,7 @@ const getPasswordValidator = function ({
 }) {
   return (
     <PasswordValidator
-      validator={passwordValidator}
+      validator={passwordValidator(watchedPassword)}
       isShowValidation={showValidator}
       password={watchedPassword}
       validatePassword={validateErrorPassword}
@@ -66,6 +68,8 @@ const SetPasswordComponent = ({
   });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
   const [showValidation, setShowValidation] = useState(isUpdatePassword);
+  const [currentPassword, setCurrentPassword] = useState(false);
+  const [isCheckPassword, setIsCheckPassword] = useState(false);
   const inputRef = React.useRef(null);
   const confirmRef = React.useRef(null);
   const { errors, isSubmitting } = useFormState({
@@ -105,54 +109,57 @@ const SetPasswordComponent = ({
   const watchedPassword = watch("password", "");
   const [watchedEmail] = watch(["username"]); // you can also target specific fields by their names
 
-  const passwordValidator = [
-    {
-      label: "Length: 8-20 characters",
-      validate: !Regex.lengthRegex.test(watchedPassword),
-      mandatory: true,
-    },
-    {
-      label: "Contain at least 3 out of 4 types of characters below:",
-      passesValidation: 3,
-      text: true,
-      children: [
-        {
-          label: "At least One Numeric",
-          validate: Regex.numberRegex.test(watchedPassword),
-        },
-        {
-          label: "At least One Upper case Alpha",
-          validate: Regex.upperCaseRegex.test(watchedPassword),
-        },
-        {
-          label: "At least One Lower case Alpha",
-          validate: Regex.lowerCaseRegex.test(watchedPassword),
-        },
-        {
-          label: "At least One Special character (no spaces)",
-          validate: Regex.specialRegex.test(watchedPassword),
-        },
-      ],
-    },
-    {
-      label: "Password should not contain your username",
-      validate:
-        watchedPassword?.length < 1
-          ? true
-          : watchedPassword?.indexOf(
-              !isUpdatePassword ? watchedEmail : username
-            ) > -1,
-      mandatory: true,
-    },
-    {
-      label: "New password must not match current password",
-      validate:
-        watchedPassword?.length < 1
-          ? true
-          : Regex.hasTripleRegex.test(watchedPassword),
-      mandatory: true,
-    },
-  ];
+  const passwordValidator = (watched) => {
+    const passwordValidatorDefault = [
+      {
+        label: "Length: 8-20 characters",
+        validate: !Regex.lengthRegex.test(watched),
+        mandatory: true,
+      },
+      {
+        label: "Contain at least 3 out of 4 types of characters below:",
+        passesValidation: 3,
+        text: true,
+        children: [
+          {
+            label: "At least One Numeric",
+            validate: Regex.numberRegex.test(watched),
+          },
+          {
+            label: "At least One Upper case Alpha",
+            validate: Regex.upperCaseRegex.test(watched),
+          },
+          {
+            label: "At least One Lower case Alpha",
+            validate: Regex.lowerCaseRegex.test(watched),
+          },
+          {
+            label: "At least One Special character (no spaces)",
+            validate: Regex.specialRegex.test(watched),
+          },
+        ],
+      },
+      {
+        label: "Password should not contain your username",
+        validate:
+          watched?.length < 1
+            ? true
+            : watched?.indexOf(!isUpdatePassword ? watchedEmail : username) >
+              -1,
+        mandatory: true,
+      },
+    ];
+
+    if (isUpdatePassword) {
+      passwordValidatorDefault.push({
+        label: "New password must not match current password",
+        validate: !isCheckPassword ? true : currentPassword,
+        mandatory: true,
+      });
+    }
+    return passwordValidatorDefault;
+  };
+
   const isPasswordError = isUpdatePassword
     ? showValidation
     : watchedPassword?.length > 0;
@@ -174,37 +181,51 @@ const SetPasswordComponent = ({
     return passes >= 3 ? true : false;
   };
 
+  const isValidPassword = (watched, isSubmit = false) => {
+    const errors1 = [];
+    const errors2 = [];
+    const errorForkedValidation = [];
+
+    passwordValidator(watched).forEach((err) => {
+      if (err.mandatory && err.validate) {
+        if (
+          err.label == "New password must not match current password" &&
+          errors1.length == 0 &&
+          !isSubmit
+        ) {
+          //skip the error
+        } else {
+          errors1.push(err);
+          setCurrentPassword(false);
+          setIsCheckPassword(false);
+        }
+      } else if (err.validate) {
+        errors2.push(err);
+      }
+
+      //Validation children validatior
+      if (err.children && err.children.length > 0) {
+        let childrenValidation = 0;
+        err.children.forEach((child) => {
+          if (child.validate) {
+            ++childrenValidation;
+          }
+        });
+
+        if (childrenValidation < (err.passesValidation || 3)) {
+          errorForkedValidation.push(true);
+        }
+      }
+    });
+    return validateErrorPassword(errors1, errors2, errorForkedValidation);
+  };
+
   const onSubmit = (data) => {
     if (isUpdatePassword) {
       setShowValidation(false);
     }
     if (data.password.toLowerCase() === data.confirmPassword.toLowerCase()) {
-      const errors1 = [];
-      const errors2 = [];
-      const errorForkedValidation = [];
-      passwordValidator.forEach((err) => {
-        if (err.mandatory && err.validate) {
-          errors1.push(err.validate);
-        } else if (err.validate) {
-          errors2.push(err.validate);
-        }
-
-        //Validation children validatior
-        if (err.children && err.children.length > 0) {
-          let childrenValidation = 0;
-          err.children.forEach((child) => {
-            if (child.validate) {
-              ++childrenValidation;
-            }
-          });
-
-          if (childrenValidation < (err.passesValidation || 3)) {
-            errorForkedValidation.push(true);
-          }
-        }
-      });
-
-      if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
+      if (isValidPassword(watchedPassword, true)) {
         onSetPasswordClicked(data);
       } else {
         if (!isUpdatePassword) {
@@ -237,7 +258,7 @@ const SetPasswordComponent = ({
         "Password should not contain your username",
       isNotPreviousPassword: (v) => {
         if (!isUpdatePassword) return true;
-        return Regex.hasTripleRegex.test(v);
+        return currentPassword;
       },
     };
   };
@@ -281,8 +302,31 @@ const SetPasswordComponent = ({
     }
   };
 
+  const checkPassword = (value) => {
+    const password = value.target.value;
+    const postBody = {
+      password: password,
+      username: username,
+    };
+    if (isValidPassword(password)) {
+      setIsCheckPassword(true);
+      const api = new Api();
+      api
+        .getPasswordInfo(postBody)
+        .then(() => {
+          setCurrentPassword(true);
+        })
+        .catch(() => {
+          setCurrentPassword(false);
+        });
+    }
+  };
+
   return (
     <>
+      <Head>
+        <title>{`EyeCare Patient Portal - ${title}`}</title>
+      </Head>
       {ready && (
         <Card
           className={globalStyles.container}
@@ -391,9 +435,11 @@ const SetPasswordComponent = ({
                       onChange={(event) => {
                         onChange(event);
                         onChangePasswordValue();
+                        checkPassword(event);
                       }}
                       inputProps={{
                         "aria-label": `${passwordPlaceHolder} - required`,
+                        maxLength: 20,
                       }}
                       error={!!error}
                       required
@@ -402,7 +448,7 @@ const SetPasswordComponent = ({
                   );
                 }}
                 rules={{
-                  required: "This field is required",
+                  required: t("errorEmptyField"),
                   validate: !isUpdatePassword ? passwordRules() : {},
                 }}
               />
@@ -433,6 +479,7 @@ const SetPasswordComponent = ({
                       inputRef={confirmRef}
                       inputProps={{
                         "aria-label": `${confirmPasswordPlaceHolder} - required`,
+                        "data-testid": "confirmPassword",
                       }}
                       onChange={(event) => {
                         onChange(event);
@@ -465,7 +512,7 @@ const SetPasswordComponent = ({
                 mode="primary"
                 size="small"
                 gradient={false}
-                style={{ ...styles.margin, margin: "0px 8px" }}
+                style={{ ...styles.margin, margin: "8px 8px 0px" }}
               >
                 {ctaButtonLabel}
               </StyledButton>

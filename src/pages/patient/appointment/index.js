@@ -78,7 +78,7 @@ export default function Appointment({ googleApiKey }) {
     startDate: "",
     endDate: "",
   });
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isReschedule, setIsReschedule] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
@@ -104,7 +104,7 @@ export default function Appointment({ googleApiKey }) {
   const providerListData = useSelector(
     (state) => state.appointment.providerListData
   );
-  const { t } = useTranslation("translation", {
+  const { t, ready } = useTranslation("translation", {
     keyPrefix: "appointment",
   });
   useEffect(() => {
@@ -319,7 +319,32 @@ export default function Appointment({ googleApiKey }) {
         }
       })
       .catch(function () {
-        if (!isOverlay) {
+        if (!isResetProvider) {
+          const rangeDate = {
+            startDate: startDateRequest,
+            endDate: endDateRequest,
+          };
+
+          if (isOverlay) {
+            const providerOverview = getProvideOverlay(
+              providerDataOverview,
+              [],
+              startDateRequest,
+              endDateRequest
+            );
+            setRangeDateOverview(rangeDate);
+            setProviderDataOverview(providerOverview);
+          } else {
+            const providerTemp = updateProviderTimeSchedule(
+              providerListData,
+              [],
+              startDateRequest,
+              endDateRequest
+            );
+            dispatch(setProviderListData(providerTemp));
+            setRangeDate(rangeDate);
+          }
+        } else if (!isOverlay) {
           dispatch(setProviderListData([]));
         }
       })
@@ -541,9 +566,7 @@ export default function Appointment({ googleApiKey }) {
               <EmptyResult
                 isEmpty={isFilterApplied}
                 message={
-                  isFilterApplied
-                    ? "No results found. Please try again with a different search criteria."
-                    : getBaseEmptyText()
+                  isFilterApplied ? t("noResultMessage") : getBaseEmptyText()
                 }
               />
             )}
@@ -600,9 +623,10 @@ export default function Appointment({ googleApiKey }) {
           data-testid={"container-result"}
           sx={{
             height: "calc(100vh - 215px)",
+            maxWidth: "1923px",
           }}
         >
-          <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
+          <Box sx={{ width: !isTablet ? "auto" : "unset", m: 3 }}>
             {providerListData.length > 0 ? (
               <FilterResult
                 onNextScheduleClicked={onNextScheduleClicked}
@@ -626,9 +650,7 @@ export default function Appointment({ googleApiKey }) {
               <EmptyResult
                 isEmpty={isFilterApplied}
                 message={
-                  isFilterApplied
-                    ? "No results found. Please try again with a different search criteria."
-                    : getBaseEmptyText()
+                  isFilterApplied ? t("noResultMessage") : getBaseEmptyText()
                 }
               />
             )}
@@ -658,6 +680,7 @@ export default function Appointment({ googleApiKey }) {
         flex={1}
         sx={{
           alignSelf: !isLoading ? "none" : "center",
+          justifyContent: "center",
         }}
       >
         {renderFilterResultTabletView()}
@@ -732,30 +755,34 @@ export default function Appointment({ googleApiKey }) {
   };
 
   return (
-    <Stack sx={{ width: "100%" }}>
-      {!isFilterApplied || isDesktop ? (
-        <>
-          <FilterHeading
-            isDesktop={!isMobile}
-            isTablet={isTablet}
-            onSearchProvider={onSearchProvider}
-            onSwapButtonClicked={onSwapButtonClicked}
-            isGeolocationEnabled={isGeolocationEnabled}
-            filterData={filterData}
-            purposeOfVisitData={filterSuggestionData.purposeOfVisit}
-            insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-            isFixed={false}
-            currentCity={currentCity}
-            onChangeLocation={fetchCurrentLocation}
-          />
-        </>
-      ) : (
-        <></>
+    <>
+      {ready && (
+        <Stack sx={{ width: "100%" }}>
+          {!isFilterApplied || isDesktop ? (
+            <>
+              <FilterHeading
+                isDesktop={!isMobile}
+                isTablet={isTablet}
+                onSearchProvider={onSearchProvider}
+                onSwapButtonClicked={onSwapButtonClicked}
+                isGeolocationEnabled={isGeolocationEnabled}
+                filterData={filterData}
+                purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+                insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+                isFixed={false}
+                currentCity={currentCity}
+                onChangeLocation={fetchCurrentLocation}
+              />
+            </>
+          ) : (
+            <></>
+          )}
+          {renderFilterResult()}
+          {onRenderDialogView()}
+          {pendingAppointment && scheduleConfirmPopup()}
+        </Stack>
       )}
-      {renderFilterResult()}
-      {onRenderDialogView()}
-      {pendingAppointment && scheduleConfirmPopup()}
-    </Stack>
+    </>
   );
 }
 

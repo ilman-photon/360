@@ -46,6 +46,7 @@ export default function BaseHeader({
   onBackClicked,
   showNavbar = false,
   isNotShowHeader = false,
+  isAdmin = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
@@ -231,68 +232,75 @@ export default function BaseHeader({
               </Link>
               <Stack flexDirection="row" alignItems="center">
                 {/* Menu Desktop*/}
-                <EcommerceButton
-                  tabIndex={0}
-                  aria-label="Shop for Contacts button"
-                  wrapperStyle={{
-                    margin: "12px 16px",
-                    display: { xs: "none", sm: "flex" },
-                  }}
-                >
-                  Shop for Contacts
-                </EcommerceButton>
-                {/* Menu Desktop*/}
-                <StyledButton
-                  mode={constants.PRIMARY}
-                  size={constants.SMALL}
-                  gradient={false}
-                  data-testid={"Schedule Appointment"}
-                  onClick={() => {
-                    router.push("/patient/appointment");
-                  }}
-                  sx={{
-                    display: { xs: "none !important", sm: "flex !important" },
-                    height: "40px !important",
-                    fontFamily: "'Libre Franklin', sans-serif",
-                    fontWeight: "400 !important",
-                    fontSize: "14px",
-                    boxShadow: "none !important",
-                  }}
-                >
-                  Schedule Appointment
-                </StyledButton>
-                {/* notification badge */}
-                <IconButton
-                  tabIndex={0}
-                  aria-label="Notifications button"
-                  data-testid="notification-badge-icon"
-                  sx={{
-                    px: { xs: 2, sm: 3 },
-                    width: { xs: 24, md: 40 },
-                    height: { xs: 24, md: 40 },
-                  }}
-                  onClick={() => {
-                    setNotificationDrawerOpened(true);
-                  }}
-                >
-                  {notifications && notifications.some((v) => !v.isRead) ? (
-                    <Badge
-                      color="error"
-                      badgeContent={notifications.length > 0 ? " " : null}
-                      overlap="circular"
-                      sx={{
-                        ".MuiBadge-badge": {
-                          minWidth: 13.33,
-                          height: 13.33,
-                        },
+                {!isAdmin && (
+                  <>
+                    <EcommerceButton
+                      tabIndex={0}
+                      aria-label="Shop for Contacts button"
+                      wrapperStyle={{
+                        margin: "12px 16px",
+                        display: { xs: "none", sm: "flex" },
                       }}
                     >
-                      <NotificationsIcon sx={{ fill: colors.darkGreen }} />
-                    </Badge>
-                  ) : (
-                    <NotificationsIcon sx={{ fill: colors.darkGreen }} />
-                  )}
-                </IconButton>
+                      Shop for Contacts
+                    </EcommerceButton>
+                    {/* Menu Desktop*/}
+                    <StyledButton
+                      mode={constants.PRIMARY}
+                      size={constants.SMALL}
+                      gradient={false}
+                      data-testid={"Schedule Appointment"}
+                      onClick={() => {
+                        router.push("/patient/appointment");
+                      }}
+                      sx={{
+                        display: {
+                          xs: "none !important",
+                          sm: "flex !important",
+                        },
+                        height: "40px !important",
+                        fontFamily: "'Libre Franklin', sans-serif",
+                        fontWeight: "400 !important",
+                        fontSize: "14px",
+                        boxShadow: "none !important",
+                      }}
+                    >
+                      Schedule Appointment
+                    </StyledButton>
+                    {/* notification badge */}
+                    <IconButton
+                      tabIndex={0}
+                      aria-label="Notifications button"
+                      data-testid="notification-badge-icon"
+                      sx={{
+                        px: { xs: 2, sm: 3 },
+                        width: { xs: 24, md: 40 },
+                        height: { xs: 24, md: 40 },
+                      }}
+                      onClick={() => {
+                        setNotificationDrawerOpened(true);
+                      }}
+                    >
+                      {notifications && notifications.some((v) => !v.isRead) ? (
+                        <Badge
+                          color="error"
+                          badgeContent={notifications.length > 0 ? " " : null}
+                          overlap="circular"
+                          sx={{
+                            ".MuiBadge-badge": {
+                              minWidth: 13.33,
+                              height: 13.33,
+                            },
+                          }}
+                        >
+                          <NotificationsIcon sx={{ fill: colors.darkGreen }} />
+                        </Badge>
+                      ) : (
+                        <NotificationsIcon sx={{ fill: colors.darkGreen }} />
+                      )}
+                    </IconButton>
+                  </>
+                )}
 
                 {/* Menu Mobile*/}
                 <Box
@@ -300,21 +308,23 @@ export default function BaseHeader({
                   aria-label={"Username dropdown"}
                   sx={styles.boxStyledMobile}
                 >
-                  <IconButton
-                    size="large"
-                    onClick={() => setOpenedProfileDrawer(true)}
-                    data-testid={HOME_TEST_ID.header.userAvatar}
-                  >
-                    <Avatar
-                      sx={{
-                        background: "#003B4A",
-                        alignSelf: "center",
-                        width: "24px",
-                        height: "24px",
-                        mx: 2,
-                      }}
-                    />
-                  </IconButton>
+                  {!isAdmin && (
+                    <IconButton
+                      size="large"
+                      onClick={() => setOpenedProfileDrawer(true)}
+                      data-testid={HOME_TEST_ID.header.userAvatar}
+                    >
+                      <Avatar
+                        sx={{
+                          background: "#003B4A",
+                          alignSelf: "center",
+                          width: "24px",
+                          height: "24px",
+                          mx: 2,
+                        }}
+                      />
+                    </IconButton>
+                  )}
                   <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -330,15 +340,40 @@ export default function BaseHeader({
                   </IconButton>
                 </Box>
 
-                <ProfileDrawer
-                  onClose={() => {
-                    setOpenedProfileDrawer(false);
+                <Box
+                  sx={{
+                    display: {
+                      xs: "none",
+                      sm: "flex",
+                      md: "none",
+                    },
                   }}
-                  opened={openedProfileDrawer}
-                  onLogoutClicked={() => {
-                    OnLogoutClicked(router);
-                  }}
-                />
+                >
+                  <Button
+                    variant="text"
+                    sx={styles.boxButtonStyles}
+                    startIcon={
+                      <Avatar sx={{ background: "#003B4A" }}>
+                        {`${user.name.split(" ")[0][0].toUpperCase()}${user.name
+                          .split(" ")[1][0]
+                          .toUpperCase()}`}
+                      </Avatar>
+                    }
+                    data-testid="user-menu-open"
+                    endIcon={<ExpandMoreIcon />}
+                    onClick={() => setOpenedProfileDrawer(true)}
+                  />
+
+                  <ProfileDrawer
+                    onClose={() => {
+                      setOpenedProfileDrawer(false);
+                    }}
+                    opened={openedProfileDrawer}
+                    onLogoutClicked={() => {
+                      OnLogoutClicked(router);
+                    }}
+                  />
+                </Box>
 
                 <MobileMenu
                   onClose={() => {
@@ -348,6 +383,7 @@ export default function BaseHeader({
                   onLogout={() => {
                     OnLogoutClicked(router);
                   }}
+                  isAdmin={isAdmin}
                 ></MobileMenu>
 
                 {/* profile menu */}
@@ -395,27 +431,33 @@ export default function BaseHeader({
                     data-testid="user-menu-close"
                     onClose={handleCloseUserMenu}
                   >
-                    <MenuItem sx={{ mb: 1 }}>
-                      <Button
-                        variant="text"
-                        sx={styles.buttonProfileMenu}
-                        data-testid={HOME_TEST_ID.account}
+                    {!isAdmin && (
+                      <MenuItem
+                        sx={{ mb: 1 }}
                         onClick={() => {
                           router.push("/patient/account/profile-info");
                         }}
                       >
-                        Account
-                      </Button>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseNavMenu}>
+                        <Button
+                          variant="text"
+                          sx={styles.buttonProfileMenu}
+                          data-testid={HOME_TEST_ID.account}
+                        >
+                          Account
+                        </Button>
+                      </MenuItem>
+                    )}
+                    <MenuItem
+                      onClick={(e) => {
+                        OnLogoutClicked(router);
+                        handleCloseNavMenu(e);
+                      }}
+                    >
                       <Button
                         variant="text"
                         sx={styles.buttonProfileMenu}
                         data-testid={HOME_TEST_ID.logout}
                         startIcon={<ExitToAppIcon />}
-                        onClick={() => {
-                          OnLogoutClicked(router);
-                        }}
                       >
                         Logout
                       </Button>

@@ -8,6 +8,7 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import AccountSecurityIcon from "../../../assets/icons/AccountSecurity";
 import { colors } from "../../../styles/theme";
 
 export const AccountSidebar = ({ ...props }, ref) => {
@@ -55,9 +56,9 @@ export const AccountSidebar = ({ ...props }, ref) => {
       icon: <DescriptionOutlinedIcon sx={{ margin: "5px" }} />,
     },
     {
-      label: "Multi factor authentication",
-      href: "#",
-      icon: <LockOutlinedIcon sx={{ margin: "5px" }} />,
+      label: "Login & Security",
+      href: "/patient/account/login-&-security",
+      icon: <AccountSecurityIcon sx={{ margin: "5px" }} />,
     },
   ];
 
@@ -87,12 +88,11 @@ export const AccountSidebar = ({ ...props }, ref) => {
               key={idx}
               flexDirection="row"
               alignItems="center"
-              color={colors.iconGrey}
               sx={{ width: "100%" }}
             >
               <SidebarLink router={router} href={link.href} child={link.child}>
-                {link.icon}
-                {link.label}
+                <div style={{ color: colors.iconGrey }}>{link.icon}</div>
+                <div style={{ color: colors.grayscaleBlack }}>{link.label}</div>
               </SidebarLink>
             </Stack>
           ) : (
@@ -100,7 +100,6 @@ export const AccountSidebar = ({ ...props }, ref) => {
               <Stack
                 flexDirection="row"
                 alignItems="center"
-                color={colors.iconGrey}
                 sx={{ cursor: "pointer" }}
                 onClick={() => toggleSidebarChild("documents")}
               >

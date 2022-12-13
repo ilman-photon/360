@@ -23,7 +23,6 @@ import {
   useMediaQuery,
   Stack,
   Dialog,
-  DialogTitle,
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -248,6 +247,7 @@ export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isModalRegistered, setIsModalRegistered] = React.useState(false);
   const [isReschedule, setIsReschedule] = React.useState(false);
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
@@ -296,9 +296,9 @@ export default function ScheduleAppointmentPage() {
     if (router.query.reschedule) {
       setIsReschedule(true);
     }
-    // if (!appointmentScheduleData.appointmentInfo.appointmentType) {
-    //   router.push("/patient/appointment");
-    // }
+    if (!appointmentScheduleData.appointmentInfo.appointmentType) {
+      router.push("/patient/appointment");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
@@ -307,6 +307,15 @@ export default function ScheduleAppointmentPage() {
   };
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const formMessageComp = React.useRef(null);
+
+  React.useEffect(() => {
+    if (formMessageComp.current) {
+      formMessageComp.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeStep]);
+
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
@@ -339,12 +348,12 @@ export default function ScheduleAppointmentPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
-  function getPatientId(postBody, patientDob) {
+  function getPatientId(postBody, patientDob, isGuest) {
     api
       .getPatientId(postBody)
       .then((response) => {
         dispatch(fetchUser());
-        handleCreateAppointment(true, patientDob, response.ecpPatientId);
+        handleCreateAppointment(isGuest, patientDob, response.ecpPatientId);
       })
       .catch((err) => {
         console.error(err, "getPatientId error");
@@ -365,14 +374,21 @@ export default function ScheduleAppointmentPage() {
     dispatch(resetFormMessage());
 
     try {
+      if (!postBody.email) {
+        delete postBody.email;
+      } else if (!postBody.mobileNumber) {
+        delete postBody.mobileNumber;
+      }
       await api
         .getResponse("/ecp/patient/userregistration", postBody, "post")
         .then(() => {
           getPatientId(
             {
-              username: postBody.email,
+              username:
+                postBody.email || postBody.mobileNumber.replace(/[^\d\+]/g, ""),
             },
-            mmddyyDateFormat(data.dob)
+            mmddyyDateFormat(data.dob),
+            postBody.password.length == 0
           );
         });
     } catch (err) {
@@ -392,7 +408,7 @@ export default function ScheduleAppointmentPage() {
   };
 
   const handleCreateAppointment = (
-    isGuest = false,
+    isGuest = true,
     patientDob = "",
     guestId = ""
   ) => {
@@ -445,6 +461,7 @@ export default function ScheduleAppointmentPage() {
         if (isGuest) {
           router.push("/patient/schedule-appointment-confirmation");
         } else {
+          setIsModalRegistered(true);
           setActiveStep(4);
           setIsOpen(true);
         }
@@ -459,7 +476,7 @@ export default function ScheduleAppointmentPage() {
       if (isReschedule) {
         setModalConfirmReschedule(true);
       } else {
-        handleCreateAppointment();
+        handleCreateAppointment(false, false, false);
       }
     } else {
       setActiveStep(idx);
@@ -508,13 +525,14 @@ export default function ScheduleAppointmentPage() {
         OnOkClicked={handleOkClicked}
         isDesktop={isDesktop}
         onAddToCalendarClicked={addToCalendar}
+        isModalRegistered={isModalRegistered}
       />
     );
   };
   return (
     <section>
       <Head>
-        <title>Review appointment details page</title>
+        <title>{headerText[activeStep]} page</title>
       </Head>
 
       <BaseHeader />
@@ -545,6 +563,9 @@ export default function ScheduleAppointmentPage() {
         className={isDesktop ? styles.container : ""}
         p={{ xs: "24px 14px 0", md: "30px 40px 0" }}
         sx={{ justifyContent: "center" }}
+        aria-live="polite"
+        aria-label={`${headerText[activeStep]} page`}
+        ref={formMessageComp}
       >
         <Box className={styles.pageWrapper}>
           <Button
@@ -594,6 +615,8 @@ export default function ScheduleAppointmentPage() {
 
       {/* confirmation dialog */}
       <Dialog
+        role={"polite"}
+        aria-describedby="alert-dialog-description"
         onClose={handleCancelReschedule}
         open={modalConfirmReschedule}
         sx={{
@@ -607,6 +630,7 @@ export default function ScheduleAppointmentPage() {
       >
         <DialogContent>
           <DialogContentText
+            role={"polite"}
             id="alert-dialog-description"
             sx={{ color: colors.darkGreen, fontSize: "22px" }}
           >

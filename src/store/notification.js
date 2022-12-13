@@ -56,6 +56,7 @@ export const readNotificationItem = createAsyncThunk(
 const INITIAL_STATE = {
   list: [],
   status: "loading",
+  error: null,
 };
 
 export const notificationStore = createSlice({

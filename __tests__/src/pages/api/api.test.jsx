@@ -332,16 +332,19 @@ describe("Api test", () => {
         },
       };
       const api = new Api();
-      api.errorGenericValidation(err);
-      api.errorGenericValidation({ ...err, response: null });
-      api.errorGenericValidation({ ...err, data: null });
-      api.errorGenericValidation({
-        ...err,
-        data: {
-          ResponseCode: undefined,
+      api.errorGenericValidation(err, "/available-slot");
+      api.errorGenericValidation({ ...err, response: null }, "/login");
+      api.errorGenericValidation({ ...err, data: null }, "/login");
+      api.errorGenericValidation(
+        {
+          ...err,
+          data: {
+            ResponseCode: undefined,
+          },
         },
-      });
-      api.errorGenericValidation(err2);
+        "/login"
+      );
+      api.errorGenericValidation(err2), "/login";
     });
 
     it("responseCodeValidation", async () => {
@@ -400,9 +403,7 @@ describe("Api test", () => {
     const expectedResult = {
       message: "Your refill request has been canceled",
     };
-    mock
-      .onPost(`http://localhost/api/dummy/prescription/cancelRequestRefill`)
-      .reply(200, expectedResult);
+    mock.onPost(`/ecp/prescriptions/cancelRefill`).reply(200, expectedResult);
 
     const api = new Api();
     const result = await api.doMedicationCancelRequestRefill({

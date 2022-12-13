@@ -130,6 +130,8 @@ const localStorageMock = (function () {
             phone: "(977) 623-4567",
           },
           patientId: "98f9404b-6ea8-4732-b14f-9c1a168d8066",
+          userType: store.isAdmin == "true" ? "admin" : null,
+          username: "patient1@photoninfotech.net"
         });
       } else if (key === "userProfile") {
         return JSON.stringify({

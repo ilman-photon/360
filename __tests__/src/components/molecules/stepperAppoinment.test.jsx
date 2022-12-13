@@ -27,7 +27,7 @@ describe("StepperAppoinment Components", () => {
   });
 
   it("StepperAppoinment render (mobile)", () => {
-    expect(container).toMatchSnapshot();
+    
     expect(container.getByText("Location")).toBeInTheDocument();
     expect(container.getByText("Review")).toBeInTheDocument();
     expect(container.getByText("Appointment Details")).toBeInTheDocument();

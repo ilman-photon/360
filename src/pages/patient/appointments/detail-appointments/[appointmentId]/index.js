@@ -31,7 +31,6 @@ export default function AppointmentDetails() {
   useEffect(() => {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
-      router.push("/patient/login");
       setIsAuthenticated(false);
     } else {
       setIsAuthenticated(true);

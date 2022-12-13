@@ -44,6 +44,10 @@ describe("InsuranceInformationPage Components", () => {
   };
 
   beforeEach(async () => {
+    Object.defineProperty(document, "cookie", {
+      writable: true,
+      value: "authorized=true;accessToken=1234",
+    });
     window.matchMedia = createMatchMedia("800px");
     mock
       .onGet(`/ecp/appointments/insurance/allpayers`)
@@ -290,7 +294,7 @@ describe("InsuranceInformationPage Components", () => {
     );
     await waitFor(() =>
       container.getAllByText(
-        /Cannot add any more insurances. Maximum limit has been reached/i
+        /Maximum number of insurances has been reached./i
       )
     );
   });

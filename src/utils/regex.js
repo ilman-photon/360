@@ -1,7 +1,7 @@
 export class Regex {
   static lengthRegex = /^[^\s]{8,20}$/;
   static numberRegex = /\d/;
-  static alphabethOnly = /^[a-zA-Z ]*$/;
+  static alphabethOnly = /^[a-zA-Z]+$/;
   static numberOnly = /^\d*$/;
   static upperCaseRegex = /[A-Z]/;
   static lowerCaseRegex = /[a-z]/;
@@ -12,7 +12,7 @@ export class Regex {
   static hasAlpahabet = /^([A-Za-z ])+$/i;
   static isValidPhoneFormat = /^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$/i;
   static noSpecialRegex = /^[a-z0-9]+$/gi;
-  static nameValidation = /^(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+  static nameValidation = /^(?=.*[a-zA-Z])([a-zA-Z0-9,_\-.\s]+)$/;
   static emailValidation =
     /^(([^ @<>()\[\]\\,;:!#$%^&*={}"'?]+(\.[^\s"]+)*)|(".+\\"))@((([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/;
   static REGEX_PHONE_NUMBER = /^\d{10,}$/;

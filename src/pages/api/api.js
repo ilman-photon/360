@@ -26,10 +26,11 @@ export class Api {
     this.maxRequestCounter = 3;
   }
 
-  errorGenericValidation = (err) => {
+  errorGenericValidation = (err, url) => {
     return (
       err &&
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+        url.indexOf(`/available-slot`) < 0 &&
         err.response?.data?.ResponseCode === undefined) ||
         err.code === constants.ERROR_CODE.NETWORK_ERR ||
         [500].indexOf(err.response?.status) !== -1) &&
@@ -54,7 +55,7 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (api.errorGenericValidation(err) && showError) {
+        if (api.errorGenericValidation(err, url) && showError) {
           store.dispatch(
             setGenericErrorMessage("Please try again after sometime.")
           );
@@ -64,11 +65,11 @@ export class Api {
             ResponseCode: err.response.status || err.code,
           });
         } else if (err && err.response && err.response.data) {
-          reject(err.response.data);
           const errors = err.response.data._errors;
-          if (errors && showError) {
+          if (errors && showError && url.indexOf(`/available-slot`) < 0) {
             store.dispatch(setGenericErrorMessage(errors[0].description));
           }
+          reject(err.response.data);
         } else if (err.code === "ECONNABORTED" && showError) {
           store.dispatch(setGenericErrorMessage(err.message));
           reject(err);
@@ -302,9 +303,7 @@ export class Api {
   }
 
   doMedicationCancelRequestRefill(postBody) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/prescription/cancelRequestRefill`;
-
+    const url = `/ecp/prescriptions/cancelRefill`;
     return this.getResponse(url, postBody, "post");
   }
 
@@ -352,11 +351,11 @@ export class Api {
     return this.getResponse(url, postBody, "put");
   }
 
-  getPrescriptionMedication() {
+  getPrescriptionMedication(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `/${userData?.patientId}`;
     const url = `/ecp/prescriptions/patient${patientId}`;
-    return this.getResponse(url, {}, "get");
+    return this.getResponse(url, {}, "get", showError);
   }
 
   getPrescriptionGlasses() {
@@ -417,14 +416,14 @@ export class Api {
     const isAllEmpty =
       !notEmpty(query.name) &&
       !notEmpty(query.location) &&
-      !notEmpty(query.speciality);
+      !notEmpty(query.specialty);
 
     const name = query.name.split(" ");
-    const firstName = notEmpty(name[0]) ? `(firstName=eq=${name[0]})` : "";
+    const firstName = notEmpty(name[0]) ? `(firstName=co=${name[0]})` : "";
     const lastNameRaw =
       name.length > 1
-        ? `AND(lastName=eq=${name[name.length - 1]})`
-        : `OR(lastName=eq=${name[0]})`;
+        ? `AND(lastName=co=${name[name.length - 1]})`
+        : `OR(lastName=co=${name[0]})`;
     const lastName = notEmpty(query.name) ? lastNameRaw : "";
     const location = query.location;
     let city = "";
@@ -433,18 +432,28 @@ export class Api {
       if (Regex.isZip.test(location)) {
         zip = `AND(offices.zip=eq=${location})`;
       } else {
-        city = `AND(offices.city=eq=${location})`;
+        city = `AND(offices.city=co=${location})`;
       }
     }
-    const speciality = notEmpty(query.speciality)
-      ? `AND(providerDetails.specialization=eq=${query.speciality})`
+    const specialty = notEmpty(query.specialty)
+      ? `AND(providerDetails.specialization=co=${query.specialty})`
       : "";
 
     const queryString = isAllEmpty
       ? ""
-      : `(${firstName}${lastName}${zip}${city}${speciality})`;
+      : `(${firstName}${lastName}${zip}${city}${specialty})`;
 
     const url = `/ecp/appointments/getDoctorDetails?pageSize=300&search.query=${queryString}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getDoctorLocations() {
+    const url = `/ecp/appointments/getOfficeDetails`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getDoctorSpecialties() {
+    const url = `/ecp/appointments/getSpecialization?search.query=((entityName=eq=document)AND(attributeName=eq=specialization))`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -470,5 +479,48 @@ export class Api {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/messaging/getDeleteMessages`;
     return this.getResponse(url, {}, "get");
+  }
+
+  getPasswordLastUpdate(postBody) {
+    const url = `/ecp/patient/getLastUpdatedPasswordDate`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  changeUsername(postBody) {
+    const url = `/ecp/patient/settings/updateUsername`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  changePassword(postBody) {
+    const url = `/ecp/patient/settings/changePassword`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  getLockedAccounts({ keyword }) {
+    const url =
+      keyword === ""
+        ? `/ecp/accountRecovery/getAllLockedAccounts`
+        : `/ecp/accountRecovery/getLockedAccountDetails/${keyword}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  unlockAccount(query) {
+    const url = `/ecp/accountRecovery/unlockAccountByAdmin/${query}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  validatePassword(postBody) {
+    const url = `/ecp/patient/settings/validatePassword`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  updateSecurityQuestion(postBody) {
+    const url = `/ecp/patient/settings/updateSecurityQuestions`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  getPasswordInfo(postBody) {
+    const url = `/ecp/patient/settings/validatePassword`;
+    return this.getResponse(url, postBody, "post", false);
   }
 }

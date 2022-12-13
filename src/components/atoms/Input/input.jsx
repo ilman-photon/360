@@ -12,7 +12,9 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import InputMask from "react-input-mask";
 import Tooltip from "@mui/material/Tooltip";
-import { primaryTheme } from "../../../styles/theme";
+import { colors, primaryTheme } from "../../../styles/theme";
+import { PickersDay, pickersDayClasses } from "@mui/x-date-pickers";
+
 export const CustomFormControl = styled((props) => <FormControl {...props} />)(
   ({ theme }) => ({
     "&.MuiFormControl-root": {
@@ -39,8 +41,10 @@ export const CustomFormControl = styled((props) => <FormControl {...props} />)(
 
 export const CustomPasswordInput = styled((props) => (
   <TextField
+    aria-label={
+      props.required ? "Password required text field" : "Password text field"
+    }
     // tabIndex={0}
-    aria-label={"Password required text field"}
     InputProps={{
       disableUnderline: true,
       endAdornment: (
@@ -78,6 +82,7 @@ export const CustomPasswordInput = styled((props) => (
       ),
     }}
     {...props}
+    inputProps={{ ...props.inputProps, maxlength: 20 }}
   />
 ))(({ theme }) => ({
   ".MuiInputLabel-root": {
@@ -120,6 +125,13 @@ export const CustomPasswordInput = styled((props) => (
       color: "#B93632",
     },
   },
+  "& .MuiFormLabel-asterisk.MuiInputLabel-asterisk": {
+    visibility: "hidden",
+    "&::before": {
+      content: '"*"',
+      visibility: "visible",
+    },
+  },
 }));
 
 export const RedditTextField = React.forwardRef((props, ref) => {
@@ -154,6 +166,19 @@ export const RedditTextField = React.forwardRef((props, ref) => {
   );
 });
 RedditTextField.displayName = "RedditTextField";
+
+const renderWeekPickerDay = (date, selectedDates, pickersDayProps) => {
+  return (
+    <PickersDay
+      {...pickersDayProps}
+      sx={{
+        [`&&.${pickersDayClasses.selected}`]: {
+          backgroundColor: colors.primaryButton,
+        },
+      }}
+    />
+  );
+};
 
 export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
   ".MuiInputLabel-root": {
@@ -203,7 +228,7 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
       color: "#303030",
     },
     "input::placeholder": {
-      fontSize: 12,
+      fontSize: 16,
       color: "#303030",
     },
   },
@@ -214,6 +239,13 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
   },
   ".Mui-disabled input": {
     backgroundColor: "#efefef",
+  },
+  "& .MuiFormLabel-asterisk.MuiInputLabel-asterisk": {
+    visibility: "hidden",
+    "&::before": {
+      content: '"*"',
+      visibility: "visible",
+    },
   },
 }));
 
@@ -244,7 +276,7 @@ export const CustomInput = styled(({ ...props }) => {
     case "password":
       return (
         <>
-          <CustomFormControl sx={{ m: 1 }} variant="filled">
+          <CustomFormControl sx={{ m: 1, width: "100%" }} variant="filled">
             <CustomPasswordInput
               error={!Boolean(values.value) && props.error}
               InputLabelProps={{
@@ -268,6 +300,7 @@ export const CustomInput = styled(({ ...props }) => {
               value={props.value}
               required={props.required}
               inputRef={props.inputRef}
+              autoComplete={props.autoComplete}
             />
           </CustomFormControl>
         </>
@@ -282,11 +315,14 @@ export const CustomInput = styled(({ ...props }) => {
               disableOpenPicker={props.selectorDisabled}
               disableFuture={props.disableFuture}
               disablePast={props.disablePast}
-              ariaLabel={props.label}
+              ariaLabel={
+                props.required ? `${props.label} required` : props.label
+              }
               ariaLive={props.label}
               label={props.label}
               onChange={props.onChange}
               value={props.value}
+              renderDay={renderWeekPickerDay}
               onClose={() => {
                 setTimeout(() => {
                   dobInputRef?.current?.blur();
@@ -294,6 +330,18 @@ export const CustomInput = styled(({ ...props }) => {
                 props?.onClose && props?.onClose();
               }}
               inputRef={dobInputRef}
+              PaperProps={{
+                sx: {
+                  "& .MuiPickersDay-root": {
+                    "&.Mui-selected": {
+                      backgroundColor: colors.primaryButton,
+                      "&:hover": {
+                        backgroundColor: colors.primaryButton,
+                      },
+                    },
+                  },
+                },
+              }}
               getOpenDialogAriaText={(date, utils) => {
                 if (date instanceof Date && !isNaN(date))
                   return `Choose date, selected date is ${utils.format(
@@ -323,12 +371,13 @@ export const CustomInput = styled(({ ...props }) => {
                   }}
                   {...params}
                   onClick={props.onClick}
-                  error={props.error || params.error}
+                  error={props.error}
                   helperText={props.helperText}
                   onPaste={preventPasteHandler}
                   required={props.required}
                   inputProps={{
                     ...params.inputProps,
+                    placeholder: "MM/DD/YYYY",
                     readOnly: props.inputProps?.readOnly,
                     className:
                       props.inputProps?.readOnly &&
@@ -347,13 +396,17 @@ export const CustomInput = styled(({ ...props }) => {
       return (
         <>
           <CustomFormControl variant="filled">
-            <InputMask mask="(999) 999-9999" maskPlaceholder="" {...props}>
+            <InputMask
+              mask="(999) 999-9999"
+              maskChar={null}
+              maskPlaceholder=""
+              {...props}
+            >
               <StyledRedditField name="phone" type="text" />
             </InputMask>
           </CustomFormControl>
         </>
       );
-
     default:
       return (
         <>

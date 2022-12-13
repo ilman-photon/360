@@ -8,7 +8,7 @@ import { FormHelperText, IconButton } from "@mui/material";
 import { colors } from "../../../styles/theme";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -27,6 +27,7 @@ export default function RowRadioButtonsGroup({
   isInsuranceForm = false,
   isRegistrationForm = false,
   customTooltipWidth,
+  customRadioLabel,
   ...props
 }) {
   const options = props.options || [];
@@ -64,7 +65,7 @@ export default function RowRadioButtonsGroup({
                 style={{ cursor: "pointer" }}
                 aria-label={"Information Icon"}
               >
-                <ErrorOutlineOutlinedIcon
+                <InfoOutlinedIcon
                   sx={{
                     width: "19.21px",
                     height: "19.21px",
@@ -81,20 +82,25 @@ export default function RowRadioButtonsGroup({
       <RadioGroup
         row={row}
         aria-labelledby="row-radio-buttons-group-label"
-        name="row-radio-buttons-group"
+        name={props.name}
         sx={{ ...textSx, marginTop: isCancelSchedule ? "16px" : "unset" }}
+        value={props.value}
+        onChange={props.onChange}
       >
         {options.map((option, idx) => {
           return (
             <FormControlLabel
               key={idx}
               value={option.value}
-              tabindex={0}
               data-testid={`${option.value}-test`}
               control={
                 <Radio
                   checked={props.value === option.value}
-                  data-testid={option.testId}
+                  data-testid={props.testId}
+                  inputProps={{
+                    tabindex: -1,
+                    "aria-hidden": true,
+                  }}
                   sx={{
                     ".MuiSvgIcon-root": {
                       width: iconSize,
@@ -106,15 +112,16 @@ export default function RowRadioButtonsGroup({
                   }}
                 />
               }
-              label={option.label}
+              label={customRadioLabel ? customRadioLabel(option) : option.label}
               sx={{
                 "& .MuiRadio-root": {
                   padding: isCancelSchedule ? "2px 9px 2px 16px" : "9px",
                 },
-                ".MuiTypography-root":
-                  isInsuranceForm || isRegistrationForm || isCancelSchedule
-                    ? { fontSize: 16, color: "#242526" }
-                    : { fontSize: 14 },
+                ".MuiTypography-root": {
+                  fontSize: 16,
+                  color: "#242526",
+                  fontFamily: `"Libre Franklin", sans-serif`,
+                },
               }}
             />
           );

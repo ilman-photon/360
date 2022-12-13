@@ -9,11 +9,29 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { sleep } from "../../../__mocks__/util";
 import { renderWithProviders } from "../utils/test-util";
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 describe("Set Password", () => {
   let container;
+  const mockRouter = {
+    back: jest.fn(),
+    query: { username: "patient1@gmail.com" },
+    push: jest.fn(),
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+    pathname: "/patient/set-password",
+    asPath: "/patient/set-password?username=patient1@gmail.com",
+  };
   const mock = new MockAdapter(axios);
   const renderSetPassword = async (email = "") => {
+    useRouter.mockReturnValue(
+      email
+        ? {
+            ...mockRouter,
+            asPath: `/patient/set-password?username=${email}`,
+          }
+        : mockRouter
+    );
     const contex = {
       query: email
         ? {

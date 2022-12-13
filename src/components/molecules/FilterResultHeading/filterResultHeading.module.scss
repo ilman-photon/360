@@ -272,14 +272,14 @@
     padding-right: 15px;
   }
 
-  @media only screen and (min-device-width: 1024px) and (max-device-width: 1112px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 1024px) and (max-device-width: 1112px) and (orientation: portrait) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: portrait) {
     grid-template-columns: 20% 65% !important;
     padding-right: 15px;
   }
 
-  @media only screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 1112px) and (max-device-width: 1366px) and (orientation: landscape) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1440px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1024px) and (max-device-width: 1440px) and (orientation: landscape) {
     grid-template-columns: 20% 55% !important;
     padding-right: 15px;
   }
@@ -288,8 +288,8 @@
 .calendarHeading {
   gap: 8px;
 
-  @media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
-    screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) {
+  @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (orientation: landscape) {
     gap: 15px;
   }
 }

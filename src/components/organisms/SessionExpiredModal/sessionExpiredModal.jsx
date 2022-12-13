@@ -16,60 +16,57 @@ function SessionExpiredModal() {
   /** --------------------------------- New Code ------------------------------- */
   const cookies = new Cookies();
   const idleTime = cookies.get("IdleTimeOut") || 1000 * 60 * 20;
-  const timeout = parseInt(idleTime); //Idle Timer
+  const timeout = parseInt(idleTime);
   const promptTimeout = 60000; //Remaining Time
 
   // Time before idle
-  const [remaining, setRemaining] = useState(0);
+  const [remaining, setRemaining] = useState(null);
   const [open, setOpen] = useState(false);
   const [isExpired, setIsExpired] = useState(false);
-
-  const onPrompt = () => {
-    // onPrompt will be called after the timeout value is reached
-    // In this case 30 minutes. Here you can open your prompt.
-    // All events are disabled while the prompt is active.
-    // If the user wishes to stay active, call the `reset()` method.
-    // You can get the remaining prompt time with the `getRemainingTime()` method,
-    setRemaining(Math.ceil(promptTimeout / 1000));
-    setOpen(true);
-  };
-
+  const [display, setDisplay] = useState(60);
   const onIdle = () => {
     // onIdle will be called after the promptTimeout is reached.
     // In this case 30 seconds. Here you can close your prompt and
     // perform what ever idle action you want such as log out your user.
     // Events will be rebound as long as `stopOnMount` is not set.
-    setRemaining(0);
+    setRemaining(promptTimeout);
+    setOpen(true);
     pause();
   };
-
-  const { getRemainingTime, isPrompted, reset, pause } = useIdleTimer({
+  const { reset, pause } = useIdleTimer({
     timeout,
-    promptTimeout,
     onIdle,
-    onPrompt,
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (isPrompted()) {
-        setRemaining(Math.ceil(getRemainingTime() / 1000));
-      }
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [getRemainingTime, isPrompted]);
+    if (remaining < 1) {
+      setRemaining(0);
+    }
+  }, [pause, remaining]);
 
   useEffect(() => {
-    if (open && remaining <= 0) {
+    if (remaining || remaining > 0) {
+      const interval = setInterval(() => {
+        setRemaining(remaining - 1);
+        setDisplay((prevState) => prevState - 1);
+      }, 1000);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [remaining]);
+
+  useEffect(() => {
+    if ((open && remaining <= 0) || (display < 0 && remaining < 59940)) {
       setIsExpired(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [remaining, open]);
 
   const onClickStayLoggedIn = () => {
     setOpen(false);
     setIsExpired(false);
+    setDisplay(60);
     reset();
   };
 
@@ -88,14 +85,11 @@ function SessionExpiredModal() {
       role={"dialog"}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      sx={{
-        zIndex: 3000,
-      }}
+      sx={{ zIndex: "modal" }}
     >
       <DialogTitle
         id="alert-dialog-title"
         style={styles.containerPadding}
-        tabindex={0}
         aria-live={"assertive"}
         aria-label={
           !isExpired ? "Session Timeout heading" : "Session Expired heading"
@@ -105,6 +99,7 @@ function SessionExpiredModal() {
       </DialogTitle>
       <DialogContent
         style={{ ...styles.containerPadding, paddingBottom: "16px" }}
+        id="alert-dialog-description"
         sx={{
           width: "500px",
           "@media (max-width: 992px)": {
@@ -116,17 +111,16 @@ function SessionExpiredModal() {
           success={false}
           tabIndex={0}
           aria-live="assertive"
-          id="alert-dialog-description"
           sx={styles.postMessage}
           aria-label={
             !isExpired
-              ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
+              ? `Your session is about to time-out. You will be logged out in ${display} seconds.`
               : "Your session expired. Please login again."
           }
         >
           {!isExpired
             ? // ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
-              `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
+              `Your session is about to time-out. You will be logged out in ${display} seconds.`
             : "Your session expired. Please login again."}
         </FormMessage>
       </DialogContent>

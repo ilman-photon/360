@@ -1,6 +1,9 @@
 import { colors } from "../../../styles/theme";
 
 export const styles = {
+  examFor: {
+    fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+  },
   primaryText: {
     color: "#0095A9",
     fontSize: "18px",
@@ -23,6 +26,8 @@ export const styles = {
     fontSize: "18px",
   },
   continueButton: {
+    fontFamily: "Libre Franklin",
+    fontSize: "16px",
     height: "40px",
     alignSelf: "self-end",
     borderRadius: "46px",
@@ -137,5 +142,24 @@ export const styles = {
     color: "#366a70",
     backgroundColor: "#f2f7fd",
     wordBreak: "break-all",
+  },
+
+  nameProviderText: {
+    fontFamily: "Libre Franklin",
+    fontSize: "16px",
+    fontStyle: "normal",
+    textTransform: "capitalize",
+  },
+  nomal400Text: {
+    fontFamily: "Libre Franklin",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontWeight: "400px",
+  },
+  addressContent: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "2px",
+    marginTop: "2px",
   },
 };

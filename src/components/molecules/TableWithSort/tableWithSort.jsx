@@ -13,6 +13,9 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Chip,
+  Button,
+  TablePagination,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { visuallyHidden } from "@mui/utils";
@@ -22,9 +25,12 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ReplyIcon from "@mui/icons-material/Reply";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { TEST_ID } from "../../../utils/constants";
 import moment from "moment";
+import { MoreHoriz } from "@mui/icons-material";
 import { renderCTAIcon } from "../Dashboard/prescriptions";
+import MenuAccountRecoveryMore from "../MenuAccountRecoveryMore/menuAccountRecoveryMore";
 
 function descendingComparator(a, b, orderBy) {
   const refA = ref(a, orderBy);
@@ -38,13 +44,13 @@ function descendingComparator(a, b, orderBy) {
   return 0;
 }
 
-const getComparator = (order, orderBy) => {
+export const getComparator = (order, orderBy) => {
   return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 };
 
-const ref = (row, key) => {
+export const ref = (row, key) => {
   let returnedRow = row;
   key.split(".").forEach((k) => {
     if (returnedRow) returnedRow = returnedRow[k];
@@ -53,9 +59,51 @@ const ref = (row, key) => {
   return returnedRow;
 };
 
+export const getUserStatus = (status) => {
+  switch (status) {
+    case "locked":
+    case "Locked":
+      return (
+        <Chip
+          label="Locked"
+          sx={{
+            fontWeight: 700,
+            fontSize: 16,
+            color: "#E27A05",
+            backgroundColor: "#E27A051A",
+          }}
+        />
+      );
+    case "unlocked":
+      return (
+        <Chip
+          label="Unlocked"
+          sx={{
+            fontWeight: 700,
+            fontSize: 16,
+            color: "#0F8C4A",
+            backgroundColor: "#0F8C4A1A",
+          }}
+        />
+      );
+    case "inactive":
+      return (
+        <Chip
+          label="Inactive"
+          sx={{
+            fontWeight: 700,
+            fontSize: 16,
+            color: "#7B7B7B",
+            backgroundColor: "#7b7b7b1a",
+          }}
+        />
+      );
+  }
+};
+
 // This method is created for cross-browser compatibility, if you don't
 // need to support IE11, you can use Array.prototype.sort() directly
-const stableSort = (array, comparator) => {
+export const stableSort = (array, comparator) => {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -109,13 +157,13 @@ const EnhancedTableHead = (props) => {
                   padding={headCell.disablePadding ? "none" : "normal"}
                   width={headCell.width}
                   role={"rowheader"}
-                  sx={{
-                    py: "15px",
-                    ".MuiTableSortLabel-icon": {
-                      opacity: 0.5,
-                    },
-                    ...headCell.sx,
-                  }}
+                  // sx={{
+                  //   py: "15px",
+                  //   ".MuiTableSortLabel-icon": {
+                  //     opacity: 0.5,
+                  //   },
+                  //   ...headCell.sx,
+                  // }}
                 >
                   <b tabIndex={0}>{headCell.label}</b>
                 </TableCell>
@@ -128,7 +176,7 @@ const EnhancedTableHead = (props) => {
                   padding={headCell.disablePadding ? "none" : "normal"}
                   sortDirection={orderBy === headCell.id ? order : false}
                   width={headCell.width}
-                  role={"rowheader"}
+                  aria-label={headCell.label}
                   sx={{
                     py: "15px",
                     color: "#003B4A",
@@ -147,15 +195,6 @@ const EnhancedTableHead = (props) => {
                     direction={orderBy === headCell.id ? order : "asc"}
                     data-testid={"table-header-sort"}
                     onClick={createSortHandler(headCell.id)}
-                    sx={{
-                      "MuiTableSortLabel-icon:hover": {
-                        color: "#757575 !important",
-                        opacity: 1,
-                      },
-                      ".MuiTableSortLabel-icon": {
-                        color: "#003B4A !important",
-                      },
-                    }}
                   >
                     <b>{headCell.label}</b>
                     {orderBy === headCell.id ? (
@@ -181,14 +220,18 @@ export default function TableWithSort({
   onAssetDownload = () => {
     // This is intentional
   },
+  onActionClicked = () => {
+    // This is intentional
+  },
   additionalProps = {},
+  withNavigation = false,
 }) {
-  const [order, setOrder] = React.useState("asc");
+  const [order, setOrder] = React.useState("");
   const [orderBy, setOrderBy] = React.useState("");
   const [selected, setSelected] = React.useState([]);
-  const [page] = React.useState(0);
+  const [page, setPage] = React.useState(0);
   const [dense] = React.useState(false);
-  const [rowsPerPage] = React.useState(5);
+  const [rowsPerPage] = React.useState(10);
   const [activeMenuData, setActiveMenuData] = React.useState({});
 
   const handleRequestSort = (_event, property) => {
@@ -240,6 +283,7 @@ export default function TableWithSort({
 
   // menu MoreVertIcon
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [moreMenuIdx, setMoreMenuIdx] = React.useState(null);
   const MyOptions = [
     {
       id: "download",
@@ -263,9 +307,17 @@ export default function TableWithSort({
       ariaLabel: "print option",
     },
   ];
-  const handleMenuClick = (event, row) => {
+  const handleMenuClick = (event, row, rowIdx) => {
+    setMoreMenuIdx(rowIdx);
     setAnchorEl(event.currentTarget);
     setActiveMenuData(row);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+    setTimeout(() => {
+      inputRef.current[moreMenuIdx]?.focus();
+    }, 40);
   };
   const isMenuOpen = Boolean(anchorEl);
   const handleMoreMenu = async (action, row) => {
@@ -297,6 +349,19 @@ export default function TableWithSort({
     }
   };
 
+  // Account Recovery menus
+  const [anchorAccountRecoveryEl, setAnchorAccountRecoveryEl] =
+    React.useState(null);
+  const handleAccountRecoveryMenuClick = (event, row) => {
+    setAnchorAccountRecoveryEl(event.currentTarget);
+    setActiveMenuData(row);
+  };
+  const isAccountRecoveryMenuOpen = Boolean(anchorAccountRecoveryEl);
+  const handleAccountRecoveryMoreMenu = async (action, row) => {
+    setAnchorAccountRecoveryEl(null);
+    onActionClicked(action, row);
+  };
+
   function getMultilineDate(dateValue) {
     let intent = [];
     if (dateValue) {
@@ -320,10 +385,6 @@ export default function TableWithSort({
         <div
           style={tabelData.cell.contentStyle}
           tabIndex={0}
-          aria-label={`${tabelData.cell.valueKey}. ${ref(
-            tabelData.row,
-            tabelData.cell.valueKey
-          )}`}
           className={[styles.tableCell, tabelData.cell.contentClass].join(" ")}
         >
           {type === "date-time" ? getMultilineDate(dateValue) : dateValue}
@@ -439,7 +500,8 @@ export default function TableWithSort({
                 borderRadius: "50%",
               }}
               aria-label="more option"
-              onClick={handleMenuClick}
+              onClick={(event) => handleMenuClick(event, row, rowIdx)}
+              ref={(el) => (inputRef.current[rowIdx] = el)}
               aria-haspopup="true"
               aria-controls="menu-appbar"
               data-testid="more-vert-button"
@@ -450,8 +512,16 @@ export default function TableWithSort({
               sx={{ mt: "40px" }}
               id="menu-more"
               anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
               keepMounted
-              onClose={handleMoreMenu}
+              onClose={handleCloseMenu}
               data-testid={TEST_ID.MEDICAL_RECORD.moreMenu}
               open={isMenuOpen}
             >
@@ -502,13 +572,73 @@ export default function TableWithSort({
         return getDateTabelCell({ rowIdx, cellIdx, cell, row }, "date");
       case "date-time":
         return getDateTabelCell({ rowIdx, cellIdx, cell, row }, "date-time");
-      case "text":
-      default:
+      case "account-recovery-menu":
+        return (
+          <>
+            <IconButton
+              sx={{
+                width: 24,
+                height: 24,
+                color: "black",
+                m: 2,
+              }}
+              aria-label="more option"
+              data-testid="table-cell-account-recovery-more-menu-btn"
+              onClick={(e) => handleAccountRecoveryMenuClick(e, row)}
+              aria-haspopup="true"
+              aria-controls="menu-appbar"
+            >
+              <MoreHoriz />
+            </IconButton>
+            <MenuAccountRecoveryMore
+              keepMounted
+              anchorEl={anchorAccountRecoveryEl}
+              onClose={handleAccountRecoveryMoreMenu}
+              open={isAccountRecoveryMenuOpen}
+              activeMenuData={activeMenuData}
+              onMoreClicked={handleAccountRecoveryMoreMenu}
+            />
+          </>
+        );
+      case "unlock-button":
+        return (
+          <Button
+            startIcon={<LockOutlinedIcon />}
+            variant="contained"
+            onClick={() => {
+              onActionClicked(ref(row, cell.valueKey));
+            }}
+            sx={{
+              height: "36px",
+              background: "#007E8F !important",
+              borderRadius: "30px",
+              padding: "8px 16px",
+              fontWeight: "600",
+              fontSize: "16px",
+              lineHeight: "18px",
+              color: "white",
+              textTransform: "unset",
+            }}
+          >
+            Unlock
+          </Button>
+        );
+      case "user-status":
         return (
           <div
             style={cell.contentStyle}
             tabIndex={0}
             aria-label={`${cell.valueKey}. ${ref(row, cell.valueKey)}`}
+            className={[styles.tableCell, cell.contentClass].join(" ")}
+          >
+            {getUserStatus(ref(row, cell.valueKey))}
+          </div>
+        );
+      case "text":
+      default:
+        return (
+          <div
+            style={cell.contentStyle}
             className={[styles.tableCell, cell.contentClass].join(" ")}
           >
             {getTextValue(row, cell)}
@@ -517,9 +647,14 @@ export default function TableWithSort({
     }
   };
 
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+  const inputRef = React.useRef([]);
+
   return (
     <>
-      <TableContainer sx={{ boxShadow: "none" }}>
+      <TableContainer sx={{ boxShadow: "none" }} data-testid="table-container">
         <Table
           size={dense ? "small" : "medium"}
           sx={{
@@ -555,7 +690,10 @@ export default function TableWithSort({
             {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                 rows.slice().sort(getComparator(order, orderBy)) */}
             {stableSort(rows, getComparator(order, orderBy))
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .slice(
+                withNavigation ? page * rowsPerPage : 0,
+                withNavigation ? page * rowsPerPage + rowsPerPage : rows.length
+              )
               .map((row, rowIdx) => {
                 const isItemSelected = isSelected(row.id || row._id);
                 return mobileTestLab ? (
@@ -619,7 +757,7 @@ export default function TableWithSort({
                   </TableRow>
                 );
               })}
-            {emptyRows > 0 && (
+            {!withNavigation && emptyRows > 0 && (
               <TableRow
                 style={{
                   height: (dense ? 33 : 53) * emptyRows,
@@ -631,6 +769,20 @@ export default function TableWithSort({
           </TableBody>
         </Table>
       </TableContainer>
+      {withNavigation && (
+        <TablePagination
+          rowsPerPageOptions={[10]}
+          labelRowsPerPage={""}
+          labelDisplayedRows={({ from, to, count, page }) => {
+            return `${page + 1} of ${Math.ceil(count / rowsPerPage)}`;
+          }}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+        />
+      )}
     </>
   );
 }

@@ -90,7 +90,7 @@ export const AutoCompleteField = ({
 
 export default function SearchBar({
   locationList = [],
-  specialityList = [],
+  specialtyList = [],
   activeFilter = [],
   onRemoveFilter = () => {
     //this is intentional
@@ -107,7 +107,7 @@ export default function SearchBar({
 
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
-  const [speciality, setSpeciality] = useState("");
+  const [specialty, setSpecialty] = useState("");
 
   const mobileForm = () => (
     <>
@@ -301,21 +301,21 @@ export default function SearchBar({
             />
 
             <AutoCompleteField
-              id="speciality"
-              options={specialityList}
+              id="specialty"
+              options={specialtyList}
               sx={{
                 width: "auto",
                 background: "#FFFFFF",
                 border: "1px solid #BDBDBD",
                 borderRadius: "4px",
               }}
-              label="Speciality"
-              testId="speciality-field"
-              textfieldId="speciality-field"
+              label="Specialty"
+              testId="specialty-field"
+              textfieldId="specialty-field"
               isMobile
-              value={speciality}
+              value={specialty}
               onChange={(_event, newValue) => {
-                setSpeciality(newValue);
+                setSpecialty(newValue);
               }}
             />
 
@@ -327,7 +327,7 @@ export default function SearchBar({
                 onSearchDoctor({
                   name,
                   location,
-                  speciality,
+                  specialty,
                 });
               }}
               theme="patient"
@@ -409,20 +409,20 @@ export default function SearchBar({
         }}
       />
       <AutoCompleteField
-        id="speciality"
-        options={specialityList}
+        id="specialty"
+        options={specialtyList}
         sx={{
           width: {
             sm: "25%",
             md: "262px",
           },
         }}
-        label="Speciality"
-        testId="speciality-field"
-        textfieldId="speciality-field"
-        value={speciality}
+        label="Specialty"
+        testId="specialty-field"
+        textfieldId="specialty-field"
+        value={specialty}
         onChange={(_event, newValue) => {
-          setSpeciality(newValue);
+          setSpecialty(newValue);
         }}
       />
       <StyledButton
@@ -437,7 +437,7 @@ export default function SearchBar({
           onSearchDoctor({
             name,
             location,
-            speciality,
+            specialty,
           });
         }}
         sx={{

@@ -15,8 +15,16 @@ export const MESSAGES = {
     isBackToLogin: true,
   },
   3002: {
-    title: "Error",
-    content: "Internal server error",
+    title: "Existing User",
+    content: (
+      <>
+        <span>
+          You are already a registered user. Please login to the application
+          using your username and password.
+        </span>
+      </>
+    ),
+    isBackToLogin: true,
   },
   3500: {
     title: "Error",

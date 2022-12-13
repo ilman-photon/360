@@ -177,7 +177,7 @@ const ForgotPassword = ({
                         },
                       }}
                       rules={{
-                        required: "This field is required",
+                        required: t("errorEmptyField"),
                       }}
                       required
                       error={!!error}
@@ -208,11 +208,7 @@ const ForgotPassword = ({
             >
               <Link
                 color={colors.link}
-                aria-label={
-                  isAppointment
-                    ? t("backSignIn") + " Link"
-                    : t("backButtonLink") + " Link"
-                }
+                aria-label={t("backButtonLink") + " Link"}
                 data-testid={FORGOT_TEST_ID.loginLink}
                 onKeyPress={(event) => {
                   if (event.key === "Enter") {
@@ -222,11 +218,9 @@ const ForgotPassword = ({
                 onClick={function () {
                   onBackToLoginClicked(router);
                 }}
-                {...getLinkAria(
-                  isAppointment ? t("backSignIn") : t("backButtonLink")
-                )}
+                {...getLinkAria(t("backButtonLink"))}
               >
-                {isAppointment ? t("backSignIn") : t("backButtonLink")}
+                {t("backButtonLink")}
               </Link>
             </Typography>
           </CardContent>

@@ -1,4 +1,4 @@
-import { Button, IconButton, Slide, Stack } from "@mui/material";
+import { Box, Button, IconButton, Slide, Stack } from "@mui/material";
 import SwipeableDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -46,8 +46,8 @@ const ProfileDrawer = ({
         href: "/patient/account/insurance-info",
       },
       {
-        label: "Multi factor authentication",
-        href: "#",
+        label: "Login & Security",
+        href: "/patient/account/login-&-security",
       },
     ],
   },
@@ -84,28 +84,33 @@ const ProfileDrawer = ({
   };
 
   const drawerContent = () => (
-    <Stack
-      sx={{ width: "100vw", padding: "16px", flex: 1 }}
-      role="presentation"
-    >
+    <Stack sx={{ width: "85vw", flex: 1 }} role="presentation">
       <IconButton sx={{ alignSelf: "end" }} onClick={onClose}>
         <CloseOutlinedIcon />
       </IconButton>
       <List
         sx={{
           flex: 1,
-          ".MuiListItem-root": { borderBottomWidth: 1, borderColor: "#F3F3F3" },
+          ".MuiListItem-root": {
+            borderBottomWidth: 1,
+            borderColor: "#F3F3F3",
+            px: 0,
+            m: 2,
+            width: "auto",
+          },
         }}
       >
         {haveChildren && (
           <Slide direction="left" in={!!activeMenu} mountOnEnter unmountOnExit>
-            <ListItemButton sx={{ background: "#F4F4F4" }}>
+            <ListItemButton
+              sx={{ background: "#F4F4F4 !important" }}
+              onClick={() => setActiveMenu(null)}
+            >
               <ListItemIcon sx={{ placeContent: "start", minWidth: "unset" }}>
                 <ArrowBackIosIcon sx={{ width: 24, height: 24 }} />
               </ListItemIcon>
               <ListItemText
                 primary={getMenuTitle()}
-                onClick={() => setActiveMenu(null)}
                 sx={{
                   textAlign: "center",
                   ".css-10hburv-MuiTypography-root": {
@@ -160,24 +165,33 @@ const ProfileDrawer = ({
         </Slide>
       </List>
 
-      <Button
+      <Box
         sx={{
-          color: "black",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "8px 10px 8px 16px",
-          width: "216px",
-          height: "36px",
-          border: "1px solid #000000",
-          borderRadius: "28px",
-          margin: "auto",
+          position: "absolute",
+          bottom: 0,
+          width: "100%",
+          paddingBottom: "16px",
         }}
-        onClick={onLogoutClicked}
       >
-        LOG OUT
-      </Button>
+        <Button
+          sx={{
+            color: "black",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "8px 10px 8px 16px",
+            width: "216px",
+            height: "45px",
+            border: "1px solid #000000",
+            borderRadius: "28px",
+            margin: "auto",
+          }}
+          onClick={onLogoutClicked}
+        >
+          LOG OUT
+        </Button>
+      </Box>
     </Stack>
   );
 

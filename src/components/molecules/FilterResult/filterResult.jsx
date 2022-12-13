@@ -123,7 +123,7 @@ export const FilterResult = ({
     return (
       <Stack
         data-testid={TEST_ID.APPOINTMENT_TEST_ID.FILTER_RESULT.container}
-        sx={{ width: "calc(100vw - 32px)", overflowX: "auto" }}
+        // sx={{ width: "calc(100vw - 32px)", overflowX: "auto" }}
       >
         <Box>
           <FilterResultHeading
@@ -141,7 +141,6 @@ export const FilterResult = ({
         <div
           style={{
             marginTop: 8,
-            marginRight: 15,
           }}
           className="hide-scrollbar"
         >

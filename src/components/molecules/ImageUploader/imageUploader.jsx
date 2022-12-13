@@ -13,6 +13,7 @@ import { colors } from "../../../styles/theme";
 import { Regex } from "../../../utils/regex";
 import DigitalAssetsHandler from "../../../utils/digitalAssetsHandler";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 
 export const ImageUploader = ({
   label,
@@ -28,6 +29,9 @@ export const ImageUploader = ({
   testIds,
   labelVariant = "bodyRegular",
 }) => {
+  const { t, ready } = useTranslation("translation", {
+    keyPrefix: "imageUpload",
+  });
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(null);
   const [imageSource, setImageSource] = useState(null);
@@ -47,6 +51,11 @@ export const ImageUploader = ({
 
   useEffect(() => {
     if (source) fetchImageURL();
+
+    return () => {
+      setImageSource(null);
+      setPreview(null);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [source]);
 
@@ -135,7 +144,7 @@ export const ImageUploader = ({
         errorMessage = {
           success: false,
           title: null,
-          content: "Invalid file type",
+          content: t("invalidFileType"),
         };
         event.target.value = null;
       } else {
@@ -157,59 +166,63 @@ export const ImageUploader = ({
     }
   };
   return (
-    <Stack spacing={1}>
-      <Box
-        sx={{
-          border: "1px dashed #6c6c6c;",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "183px",
-          background: "#F9F9F9",
-        }}
-      >
-        <>
-          {loading ? <CircularProgress /> : renderBasedOnImgSource()}
-          <input
-            ref={inputImage}
-            type="file"
-            data-testid={"loc_uploadImage"}
-            accept="image/png, image/gif, image/jpeg"
-            hidden
-            onChange={handleInputChange}
-          />
-        </>
-      </Box>
-      {helperText ? (
-        <Typography variant="bodySmallMedium">
-          JPG or PNG file formats only. (File size limit is 4 MB)
-        </Typography>
-      ) : (
-        ""
-      )}
+    <>
+      {ready && (
+        <Stack spacing={1}>
+          <Box
+            sx={{
+              border: "1px dashed #6c6c6c;",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "183px",
+              background: "#F9F9F9",
+            }}
+          >
+            <>
+              {loading ? <CircularProgress /> : renderBasedOnImgSource()}
+              <input
+                ref={inputImage}
+                type="file"
+                data-testid={"loc_uploadImage"}
+                accept="image/png, image/gif, image/jpeg"
+                hidden
+                onChange={handleInputChange}
+              />
+            </>
+          </Box>
+          {helperText ? (
+            <Typography variant="bodySmallMedium">
+              JPG or PNG file formats only. (File size limit is 4 MB)
+            </Typography>
+          ) : (
+            ""
+          )}
 
-      {imageSource ? (
-        <Button
-          variant="text"
-          sx={{
-            textTransform: "none",
-            fontSize: "14px",
-            fontWeight: "400",
-            textDecoration: "underline",
-            width: "fit-content",
-            alignSelf: "center",
-            color: "#008294",
-          }}
-          data-testid={testIds}
-          onClick={() => {
-            inputImage.current.click();
-          }}
-        >
-          {changeLabel}
-        </Button>
-      ) : (
-        ""
+          {imageSource ? (
+            <Button
+              variant="text"
+              sx={{
+                textTransform: "none",
+                fontSize: "14px",
+                fontWeight: "400",
+                textDecoration: "underline",
+                width: "fit-content",
+                alignSelf: "center",
+                color: "#008294",
+              }}
+              data-testid={testIds}
+              onClick={() => {
+                inputImage.current.click();
+              }}
+            >
+              {changeLabel}
+            </Button>
+          ) : (
+            ""
+          )}
+        </Stack>
       )}
-    </Stack>
+    </>
   );
 };

@@ -680,7 +680,7 @@ function getProviderAddres(providerAddress) {
     addressLine2: "",
     city: providerAddress?.city || "",
     state: providerAddress?.state || "",
-    zipcode: providerAddress?.zip || "",
+    zip: providerAddress?.zip || "",
   };
 }
 
@@ -798,12 +798,14 @@ export async function parseProviderListData(
 
         providerTemp.providerId = providerId;
         providerTemp.providerTemplateId = providerTempItem._id;
-        providerTemp.name = `${provider.designation} ${provider.firstName} ${provider.lastName}`;
+        providerTemp.name = `${provider.designation || ""} ${
+          provider.firstName
+        } ${provider.lastName}`;
         providerTemp.availability.push(availabilityDate);
         providerTemp.filters["isAvailableToday"] = setAvailableToday(
           availabilityDate.date
         );
-        providerTemp.address = getProviderAddres(provider.address);
+        providerTemp.address = getProviderAddres(office);
         providerTemp.rating = provider.rating;
         providerTemp.phoneNumber = provider.workPhone;
         providerTemp.image = provider?.profilePhoto?.digitalAsset || null;

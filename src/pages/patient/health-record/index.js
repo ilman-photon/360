@@ -9,6 +9,7 @@ import TableWithSort from "../../../components/molecules/TableWithSort/tableWith
 import TableEmpty from "../../../components/atoms/TableEmpty/tableEmpty";
 import { colors } from "../../../styles/theme";
 import {
+  fetchDocuments,
   fetchMedicalRecordDocuments,
   resetDocuments,
 } from "../../../store/document";
@@ -21,6 +22,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 export default function HealthRecord() {
   const isDesktop = useMediaQuery("(min-width: 820px)");
   const dispatch = useDispatch();
+  const [healthRecordDocument, setHealthRecordDocument] = React.useState([]);
 
   const sortFilter = [
     {
@@ -125,7 +127,7 @@ export default function HealthRecord() {
         primary: true,
         hasAction: true,
         valueKey: "name",
-        additionalValueKey: "digitalSignature._id",
+        additionalValueKey: "digital_assets._id",
         cellProps: { padding: "none" },
         contentClass: isDesktop ? "" : "clipped clip-2",
         onClick: (id) => {
@@ -139,7 +141,7 @@ export default function HealthRecord() {
       },
       {
         type: "text",
-        valueKey: "digitalSignature.firstName,digitalSignature.lastName",
+        valueKey: "provider.firstName,provider.lastName",
         isMultipleKey: true,
         ...defaultCell,
       },
@@ -150,15 +152,39 @@ export default function HealthRecord() {
       },
       {
         type: "menu-cta",
-        valueKey: "digitalSignature._id",
+        valueKey: "digital_assets._id",
         contentStyle: { padding: "16px" },
       },
     ],
   };
 
   const rows = useSelector((state) => {
+    return state.document.healthRecordList;
+  });
+
+  const documentList = useSelector((state) => {
     return state.document.documentList;
   });
+
+  useEffect(() => {
+    let healthRecordTemp = [];
+    if (documentList && documentList.length > 0) {
+      for (const healthItem of rows) {
+        const currentDoc = documentList.find(
+          (item) => item.encounterNo === healthItem.encounter?.encounterNo
+        );
+        if (currentDoc) {
+          healthRecordTemp.push({
+            ...healthItem,
+            digital_assets: currentDoc.digital_assets,
+          });
+        }
+      }
+    } else {
+      healthRecordTemp = rows;
+    }
+    setHealthRecordDocument(healthRecordTemp);
+  }, [documentList, rows]);
 
   const noResultText = () => {
     return "There are no health records available.";
@@ -178,7 +204,13 @@ export default function HealthRecord() {
     if (userStorageData) {
       dispatch(
         fetchMedicalRecordDocuments({
-          patientId: userStorageData.patientId,
+          patientId: userStorageData?.patientId,
+        })
+      );
+      dispatch(
+        fetchDocuments({
+          patientId: userStorageData?.patientId,
+          category: "health-record",
         })
       );
     }
@@ -189,10 +221,10 @@ export default function HealthRecord() {
   function renderDekstopView() {
     return (
       <>
-        {rows?.length > 0 ? (
+        {healthRecordDocument?.length > 0 ? (
           <TableWithSort
             config={testLabConfig}
-            rows={rows}
+            rows={healthRecordDocument}
             onAssetDownload={handleAssetDownload}
             additionalProps={{
               tableProps: { "aria-label": `health-record` },
@@ -208,10 +240,10 @@ export default function HealthRecord() {
   function renderMobileView() {
     return (
       <>
-        {rows?.length > 0 ? (
+        {healthRecordDocument?.length > 0 ? (
           <StackList
             sortFilterData={sortFilter}
-            dataList={rows}
+            dataList={healthRecordDocument}
             onAssetDownload={handleAssetDownload}
           />
         ) : (

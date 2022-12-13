@@ -17,20 +17,43 @@ export default function MultiFactorAuthentication({
   const [postMessage, setPostMessage] = React.useState("");
   const [isEndView, setEndView] = React.useState(false);
   const [mfaCode, setMfaCode] = React.useState("");
+  const [inputError, setInputError] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const inputRef = React.useRef(null);
   const image = "/mail-mfa.png";
   const { t } = useTranslation("translation", {
     keyPrefix: "mfaPage",
     useSuspense: false,
   });
 
+  const onSubmit = () => {
+    setPostMessage("");
+    setIsSubmitting(!isSubmitting);
+    if (mfaCode === "") {
+      setInputError(true);
+    } else {
+      setInputError(false);
+      onSubmitClicked(mfaCode, checkMessage);
+    }
+  };
+
+  React.useEffect(() => {
+    if (inputError) {
+      inputRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
+
   const content = () => {
     return (
       <StyledInput
+        error={inputError}
         type="number"
         id="mfaCode"
         InputLabelProps={{ "aria-hidden": true }}
         aria-label={"Enter code text field"}
         label={t("mfaLabel")}
+        required
         onKeyDown={(e) => {
           if (
             !Regex.numberOnly.test(e.key) &&
@@ -39,12 +62,17 @@ export default function MultiFactorAuthentication({
           ) {
             e.preventDefault();
           }
+          if (e.keyCode === 13) {
+            onSubmitClicked(mfaCode, checkMessage);
+          }
         }}
         fullWidth
         inputProps={{ minLength: 6, maxLength: 6 }}
         value={mfaCode}
         data-testid={testIds.inputCode}
         variant={constants.FILLED}
+        helperText={inputError && "This field is required"}
+        inputRef={inputRef}
         onChange={(event) => {
           if (event.target.value.length > event.target.maxLength) {
             event.target.value = event.target.value.slice(
@@ -52,6 +80,8 @@ export default function MultiFactorAuthentication({
               event.target.maxLength
             );
           }
+          setPostMessage("");
+          setInputError(false);
           setMfaCode(event.target.value);
         }}
       />
@@ -81,9 +111,7 @@ export default function MultiFactorAuthentication({
           primaryButtonTitle={t("submitBtn")}
           secondaryButtonTitle={t("resendCodeBtn")}
           linkTitle={t("backToLoginBtn")}
-          onClickPrimaryButton={() => {
-            onSubmitClicked(mfaCode, checkMessage);
-          }}
+          onClickPrimaryButton={onSubmit}
           onClickSecondaryButton={() => {
             onResendCodeClicked(checkMessage);
           }}

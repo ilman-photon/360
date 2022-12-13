@@ -10,6 +10,7 @@ const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
 import { mockSubmitFilterReal } from "../../__mocks__/mockResponse";
+import { inputPurpose, provideFilters } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
 	"./__tests__/feature/Patient Portal/Sprint4/EPP-2506.feature"
@@ -184,9 +185,10 @@ defineFeature(feature, (test) => {
 			expect(pusposeField).toBeInTheDocument()
 		});
 
-		and('User should fill the insurance name', () => {
+		and('User should fill the insurance name', async () => {
 			const insuranceField = container.getByText(/Insurance Carrier/i);
 			expect(insuranceField).toBeInTheDocument()
+			await inputPurpose(container)
 		});
 
 		when('User clicks on the Search button', async () => {
@@ -263,12 +265,12 @@ defineFeature(feature, (test) => {
 
 		});
 
-		and('User should select the purpose of the visit', () => {
-
+		and('User should select the purpose of the visit', async () => {
+			await inputPurpose(container)
 		});
 
 		and('User should fill the insurance name', () => {
-
+			
 		});
 
 		when('User clicks on the Search button', async () => {
@@ -353,8 +355,8 @@ defineFeature(feature, (test) => {
 
 		});
 
-		and('User should select the purpose of the visit', () => {
-
+		and('User should select the purpose of the visit', async () => {
+			await inputPurpose(container)
 		});
 
 		and('User should fill the insurance name', () => {
@@ -593,20 +595,17 @@ defineFeature(feature, (test) => {
 		});
 
 		and('User should fill the location', () => {
-			const locationField = container.container.querySelector('#location');
-			fireEvent.change(locationField, {target: { value: "Texas" }})
 		});
 
 		and('User should select the date of appointment', () => {
 
 		});
 
-		and('User should select the purpose of the visit', () => {
-
+		and('User should select the purpose of the visit', async () => {
+			await provideFilters(container)
 		});
 
 		and('User should fill the insurance name', () => {
-
 		});
 
 		when('User clicks on the Search button', async () => {

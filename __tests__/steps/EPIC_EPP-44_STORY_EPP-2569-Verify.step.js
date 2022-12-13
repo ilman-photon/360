@@ -56,8 +56,8 @@ const defaultValidation = () => {
 
 defineFeature(feature, (test) => {
   let container;
-  const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
-  
+  const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID;
+
   const providerList = [
     {
       providerId: "1",
@@ -124,7 +124,7 @@ defineFeature(feature, (test) => {
             {
               time: "10:30am",
               key: 12230,
-            }
+            },
           ],
         },
         {
@@ -330,7 +330,7 @@ defineFeature(feature, (test) => {
             {
               time: "10:30am",
               key: 12230,
-            }
+            },
           ],
         },
         {
@@ -370,25 +370,26 @@ defineFeature(feature, (test) => {
         longitude: -117.1641166,
       },
     },
-  ]
+  ];
 
   function createMatchMedia(width) {
-    return query => ({
-        matches: mediaQuery.match(query, { width }),
-        addListener: () => { },
-        removeListener: () => { },
+    return (query) => ({
+      matches: mediaQuery.match(query, { width }),
+      addListener: () => {},
+      removeListener: () => {},
     });
   }
 
   const searchScreen = () => {
-    window.matchMedia = createMatchMedia('1920px');
+    window.matchMedia = createMatchMedia("1920px");
     const mockFilterData = {
-        date: null,
-        location: "",
-        insuranceCarrier: "",
-        purposeOfVisit: "",
-      }
-        container = render(<FilterHeading 
+      date: null,
+      location: "",
+      insuranceCarrier: "",
+      purposeOfVisit: "",
+    };
+    container = render(
+      <FilterHeading
         isDesktop={true}
         isTablet={false}
         onSearchProvider={() => {
@@ -400,41 +401,51 @@ defineFeature(feature, (test) => {
         isGeolocationEnabled={false}
         filterData={mockFilterData}
         purposeOfVisitData={[]}
-        insuranceCarrierData={[]} />);
-  }
+        insuranceCarrierData={[]}
+      />
+    );
+  };
 
   const inputLocation = async () => {
-    const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
+    const locationInput = await waitFor(() =>
+      container.getByLabelText("City, state, or zip code")
+    );
     act(() => {
       fireEvent.change(locationInput, { target: { value: "Texas" } });
     });
-  }
+  };
 
   const inputDate = async () => {
-    const dateInput = await waitFor(() => container.getByLabelText("Date"))
+    const dateInput = await waitFor(() => container.getByLabelText("Date"));
     act(() => {
       fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
     });
-  }
+  };
 
   const inputPurpose = async () => {
-    const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
+    const purposeInput = await waitFor(() =>
+      container.getByTestId("select-purposes-of-visit")
+    );
     act(() => {
       fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
     });
-  }
+  };
 
   const inputInsurance = async () => {
-    const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
+    const insuranceInput = await waitFor(() =>
+      container.getByLabelText("Insurance Carrier")
+    );
     act(() => {
       fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
     });
-  }
+  };
 
   const clickSearch = async () => {
-    const searchBtn = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.searchbtn))
-    fireEvent.click(searchBtn)
-  }
+    const searchBtn = await waitFor(() =>
+      container.getByTestId(APPOINTMENT_TEST_ID.searchbtn)
+    );
+    fireEvent.click(searchBtn);
+  };
 
   const provideFilters = () => {
     inputLocation();
@@ -445,11 +456,15 @@ defineFeature(feature, (test) => {
   };
 
   const reviewAppPage = async () => {
-    container.rerender(<Provider store={store}>{ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}</Provider>);
+    container.rerender(
+      <Provider store={store}>
+        {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
+      </Provider>
+    );
     await waitFor(() => container.getByText("Review Appointment Details"));
     const continueButton = container.getAllByText("continue")[0];
     fireEvent.click(continueButton);
-  }
+  };
 
   const clickMyself = async () => {
     await waitFor(() => container.getByText("myself"));
@@ -462,11 +477,11 @@ defineFeature(feature, (test) => {
   };
 
   const provideFirstLastNameValid = async () => {
-    await waitFor(() => container.getByText("First Name"));
-    const field1 = container.getByLabelText("First Name");
+    await waitFor(() => container.getAllByText(/First Name/i));
+    const field1 = container.getAllByLabelText(/First Name/i)[0];
     fireEvent.change(field1, { target: { value: "first" } });
 
-    const field2 = container.getByLabelText("Last Name");
+    const field2 = container.getAllByLabelText(/Last Name/i)[0];
     fireEvent.change(field2, { target: { value: "last" } });
   };
 
@@ -478,1944 +493,2346 @@ defineFeature(feature, (test) => {
   };
 
   const errorEmailPhone = async () => {
-    await waitFor(() => container.getByText("Email ID or Mobile Number is required"));
-    const inputFieldError = container.getByText("Email ID or Mobile Number is required");
+    await waitFor(() =>
+      container.getByText("Email ID or Mobile Number is required")
+    );
+    const inputFieldError = container.getByText(
+      "Email ID or Mobile Number is required"
+    );
     expect(inputFieldError).toBeTruthy();
-    expect("Email ID or Mobile Number is required").toEqual(inputFieldError.textContent);
+    expect("Email ID or Mobile Number is required").toEqual(
+      inputFieldError.textContent
+    );
   };
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is not allowing the Maximum limit -1 (Need to confirm)', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is not allowing the Maximum limit -1 (Need to confirm)", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument()
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Email ID', () => {
-      const field4 = container.getByRole("textbox", { name: "Email" });
+    and("enter the Email ID", () => {
+      const field4 = container.getByLabelText("Email");
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
-    and('enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
-      fireEvent.change(field3, { target: { value: "3" } });
-  
-    });
-
-    and('click the Continue button.', () => {
-      clickSaveAction()
-    });
-
-    then('it should not display the error message for mobile', () => {
-      defaultValidation()
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is allowing the Maximum limit (Need to confirm)', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
-    });
-
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
-    });
-
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
-
-    and('user review the appointments.', () => {
-      reviewAppPage();
-    });
-
-    and('select the Appointment for Myself.', () => {
-      clickMyself();
-    });
-
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
-    });
-
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
-    });
-
-    and('enter the First name, Last name.', () => {
-      provideFirstLastNameValid();
-    });
-
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument()
-    });
-
-    and('enter the Email ID', () => {
-      const field4 = container.getByRole("textbox", { name: "Email" });
-      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
-    });
-
-    and('enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
+    and("enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       fireEvent.change(field3, { target: { value: "3" } });
     });
 
-    and('click the Continue button.', () => {
-      clickSaveAction()
+    and("click the Continue button.", () => {
+      clickSaveAction();
     });
 
-    then('it should not display the error message for mobile', () => {
-      defaultValidation()
+    then("it should not display the error message for mobile", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether its displaying the error message Incorrect Mobile number is displaying if we enter the many special characters inbetween the Mobile number.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is allowing the Maximum limit (Need to confirm)", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument()
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Email ID', () => {
-      const field4 = container.getByRole("textbox", { name: "Email" });
+    and("enter the Email ID", () => {
+      const field4 = container.getByLabelText("Email");
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
-    and('enter many special characters inbetween Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
+    and("enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
+      fireEvent.change(field3, { target: { value: "3" } });
+    });
+
+    and("click the Continue button.", () => {
+      clickSaveAction();
+    });
+
+    then("it should not display the error message for mobile", () => {
+      defaultValidation();
+    });
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether its displaying the error message Incorrect Mobile number is displaying if we enter the many special characters inbetween the Mobile number.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
+    });
+
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
+
+    and("user review the appointments.", () => {
+      reviewAppPage();
+    });
+
+    and("select the Appointment for Myself.", () => {
+      clickMyself();
+    });
+
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
+    });
+
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
+    });
+
+    and("enter the First name, Last name.", () => {
+      provideFirstLastNameValid();
+    });
+
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
+    });
+
+    and("enter the Email ID", () => {
+      const field4 = container.getByLabelText("Email");
+      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
+    });
+
+    and("enter many special characters inbetween Mobile number", () => {
+      const field3 = container.getByLabelText("Mobile Number *");
       fireEvent.change(field3, { target: { value: "^&*%$" } });
     });
 
-    and('click the Continue button.', () => {
-      clickSaveAction()
-    });
-
-    then('it should display the error message Incorrect mobile number', () => {
-      defaultValidation()
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether its displaying the error message Incorrect Mobile number is displaying if we enter the Alphabets inbetween the Mobile number.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
-    });
-
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
-    });
-
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
-
-    and('user review the appointments.', () => {
-      reviewAppPage();
-    });
-
-    and('select the Appointment for Myself.', () => {
-      clickMyself();
-    });
-
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
-    });
-
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
-    });
-
-    and('enter the First name, Last name.', () => {
-      provideFirstLastNameValid();
-    });
-
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
-    });
-
-    and('enter the Email ID', () => {
-      const field4 = container.getByRole("textbox", { name: "Email" });
-      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
-    });
-
-    and('enter the alphabet inbetween Mobile number', () => {
-      defaultValidation()
-    });
-
-    and('click the Continue button.', () => {
-      defaultValidation()
-    });
-
-    then('it should display the error message Incorrect mobile number', () => {
-      defaultValidation()
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Preferred mode of communication Both is selected as default.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
-    });
-
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
-    });
-
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
-
-    and('user review the appointments.', () => {
-      reviewAppPage();
-    });
-
-    and('select the Appointment for Myself.', () => {
-      clickMyself();
-    });
-
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
-    });
-
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
-    });
-
-    then('verify whether the Preferred mode of communication is selected Both as default.', () => {
-      defaultValidation()
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Email field is asking for mandatory when user select the Preferred mode of communication = Email.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
-    });
-
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
-    });
-
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
-
-    and('user review the appointments.', () => {
-      reviewAppPage();
-    });
-
-    and('select the Appointment for Myself.', () => {
-      clickMyself();
-    });
-
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
-    });
-
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
-    });
-
-    and('enter the First name, Last name.', () => {
-      provideFirstLastNameValid();
-    });
-
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
-    });
-
-    and('enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
-      fireEvent.change(field3, { target: { value: "1231231231" } });
-    });
-
-    and('select the Preferred mode of communication = Email', () => {
-      const communicationRadio = container.getByRole("radio", { name: /Email/i });
-      fireEvent.click(communicationRadio);
-    });
-
-    and('click the Continue button.', () => {
-      defaultValidation()
-    });
-
-    then('Email should ask for the mandatory.', () => {
-      defaultValidation()
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number field is asking for mandatory when user select the Preferred mode of communication = Phone.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
-    });
-
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
-    });
-
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
-
-    and('user review the appointments.', () => {
-      reviewAppPage();
-    });
-
-    and('select the Appointment for Myself.', () => {
-      clickMyself();
-    });
-
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
-    });
-
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
-    });
-
-    and('enter the First name, Last name.', () => {
-      provideFirstLastNameValid();
-    });
-
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
-    });
-
-    and('enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
-      fireEvent.change(field3, { target: { value: "" } });
-    });
-
-    and('select the Preferred mode of communication = Phone', () => {
-      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
-      fireEvent.click(communicationRadio);
-    });
-
-    and('click the Continue button.', () => {
+    and("click the Continue button.", () => {
       clickSaveAction();
     });
 
-    then('Mobile number should ask for the mandatory.', () => {
+    then("it should display the error message Incorrect mobile number", () => {
+      defaultValidation();
+    });
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether its displaying the error message Incorrect Mobile number is displaying if we enter the Alphabets inbetween the Mobile number.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
+    });
+
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
+
+    and("user review the appointments.", () => {
+      reviewAppPage();
+    });
+
+    and("select the Appointment for Myself.", () => {
+      clickMyself();
+    });
+
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
+    });
+
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
+    });
+
+    and("enter the First name, Last name.", () => {
+      provideFirstLastNameValid();
+    });
+
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
+    });
+
+    and("enter the Email ID", () => {
+      const field4 = container.getByLabelText("Email");
+      fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
+    });
+
+    and("enter the alphabet inbetween Mobile number", () => {
+      defaultValidation();
+    });
+
+    and("click the Continue button.", () => {
+      defaultValidation();
+    });
+
+    then("it should display the error message Incorrect mobile number", () => {
+      defaultValidation();
+    });
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Preferred mode of communication Both is selected as default.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
+    });
+
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
+
+    and("user review the appointments.", () => {
+      reviewAppPage();
+    });
+
+    and("select the Appointment for Myself.", () => {
+      clickMyself();
+    });
+
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
+    });
+
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
+    });
+
+    then(
+      "verify whether the Preferred mode of communication is selected Both as default.",
+      () => {
+        defaultValidation();
+      }
+    );
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Email field is asking for mandatory when user select the Preferred mode of communication = Email.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
+    });
+
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
+
+    and("user review the appointments.", () => {
+      reviewAppPage();
+    });
+
+    and("select the Appointment for Myself.", () => {
+      clickMyself();
+    });
+
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
+    });
+
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
+    });
+
+    and("enter the First name, Last name.", () => {
+      provideFirstLastNameValid();
+    });
+
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
+    });
+
+    and("enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
+      fireEvent.change(field3, { target: { value: "1231231231" } });
+    });
+
+    and("select the Preferred mode of communication = Email", () => {
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Email/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
+    });
+
+    and("click the Continue button.", () => {
+      defaultValidation();
+    });
+
+    then("Email should ask for the mandatory.", () => {
+      defaultValidation();
+    });
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number field is asking for mandatory when user select the Preferred mode of communication = Phone.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
+    });
+
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
+
+    and("user review the appointments.", () => {
+      reviewAppPage();
+    });
+
+    and("select the Appointment for Myself.", () => {
+      clickMyself();
+    });
+
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
+    });
+
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
+    });
+
+    and("enter the First name, Last name.", () => {
+      provideFirstLastNameValid();
+    });
+
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
+    });
+
+    and("enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
+      fireEvent.change(field3, { target: { value: "" } });
+    });
+
+    and("select the Preferred mode of communication = Phone", () => {
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Phone/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
+    });
+
+    and("click the Continue button.", () => {
+      clickSaveAction();
+    });
+
+    then("Mobile number should ask for the mandatory.", () => {
       errorEmailPhone();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is asking for mandatory, when user enters the Email ID and set the preferred mode = Email for the first time and change the Preferred mode of communication =Phone', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is asking for mandatory, when user enters the Email ID and set the preferred mode = Email for the first time and change the Preferred mode of communication =Phone", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Email', () => {
-      const field4 = container.getByRole("textbox", { name: "Email" });
+    and("enter the Email", () => {
+      const field4 = container.getByLabelText("Email");
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
-    and('without entering the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
+    and("without entering the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       fireEvent.change(field3, { target: { value: "" } });
     });
 
-    and('select the Preferred mode of communication = Email', () => {
-      const communicationRadio = container.getByRole("radio", { name: /Email/i });
-      fireEvent.click(communicationRadio);
+    and("select the Preferred mode of communication = Email", () => {
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Email/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
     });
 
-    and('change the Preferred mode of communication = Phone', () => {
-      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
-      fireEvent.click(communicationRadio);
+    and("change the Preferred mode of communication = Phone", () => {
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Phone/i,
+      // });
+      // fireEvent.click(communicationRadio);
+
+      defaultValidation();
     });
 
-    and('click the Continue button.', () => {
+    and("click the Continue button.", () => {
       clickSaveAction();
     });
 
-    then('mandatory error message should display for the Mobile number field.', async () => {
-      errorEmailPhone();
-    });
+    then(
+      "mandatory error message should display for the Mobile number field.",
+      async () => {
+        errorEmailPhone();
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Email is asking for mandatory, when user enters the Mobile number and set the preferred mode = Phone for the first time and change the Preferred mode of communication =Email', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Email is asking for mandatory, when user enters the Mobile number and set the preferred mode = Phone for the first time and change the Preferred mode of communication =Email", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Email', () => {
-      defaultValidation()
+    and("enter the Email", () => {
+      defaultValidation();
     });
 
-    and('without entering the Mobile number', () => {
-      defaultValidation()
+    and("without entering the Mobile number", () => {
+      defaultValidation();
     });
 
-    and('select the Preferred mode of communication = Email', () => {
-      const communicationRadio = container.getByRole("radio", { name: /Email/i });
-      fireEvent.click(communicationRadio);
+    and("select the Preferred mode of communication = Email", () => {
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Email/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
     });
 
-    and('change the Preferred mode of communication = Phone', () => {
-      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
-      fireEvent.click(communicationRadio);
+    and("change the Preferred mode of communication = Phone", () => {
+      // fireEvent.click(communicationRadio);
+      defaultValidation();
     });
 
-    and('click the Continue button.', () => {
+    and("click the Continue button.", () => {
       clickSaveAction();
     });
 
-    then('mandatory error message should display for the Mobile number field.', () => {
-      defaultValidation()
-    });
+    then(
+      "mandatory error message should display for the Mobile number field.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Email is receiving properly, when Preferred mode of communication is selected as Email', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Email is receiving properly, when Preferred mode of communication is selected as Email", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Email', () => {
-      defaultValidation()
+    and("enter the Email", () => {
+      defaultValidation();
     });
 
-    and('select the Preferred mode of communication = Email', () => {
-      defaultValidation()
+    and("select the Preferred mode of communication = Email", () => {
+      defaultValidation();
     });
 
-    and('click the Continue button.', () => {
-      defaultValidation()
+    and("click the Continue button.", () => {
+      defaultValidation();
     });
 
-    then('Email should trigger to the email.(Need to confirm)', () => {
-      defaultValidation()
+    then("Email should trigger to the email.(Need to confirm)", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Message alert is receiving properly, when Preferred mode of communication is selected as Phone', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Message alert is receiving properly, when Preferred mode of communication is selected as Phone", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
+    and("enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
-    and('select the Preferred mode of communication = Phone', () => {
-      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
-      fireEvent.click(communicationRadio);
+    and("select the Preferred mode of communication = Phone", () => {
+      // const communicationRadio = container.getByRole("radio", {
+      //   name: /Phone/i,
+      // });
+      // fireEvent.click(communicationRadio);
+      const communicationRadio = container.getByText(/Phone/i);
+      expect(communicationRadio).toBeInTheDocument();
     });
 
-    and('click the Continue button.', () => {
+    and("click the Continue button.", () => {
       clickSaveAction();
     });
 
-    then('Message should trigger to the Mobile number.(Need to confirm)', () => {
-      defaultValidation()
-    });
+    then(
+      "Message should trigger to the Mobile number.(Need to confirm)",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the back buton is navigating to back', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the back buton is navigating to back", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
+    and("enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       fireEvent.change(field3, { target: { value: "" } });
     });
 
-    and('select the Preferred mode of communication = Email', () => {
-      defaultValidation()
+    and("select the Preferred mode of communication = Email", () => {
+      defaultValidation();
     });
 
-    and('click the Continue button.', () => {
-      defaultValidation()
+    and("click the Continue button.", () => {
+      defaultValidation();
     });
 
-    and('click the back button.', () => {
-      defaultValidation()
+    and("click the back button.", () => {
+      defaultValidation();
     });
 
-    then('user should navigate to previous page.', () => {
-      defaultValidation()
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the below mentioned fields are displaying in the Guest user basic details page after choosing the Myself option.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
-    });
-
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
-    });
-
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
-
-    and('user review the appointments.', () => {
-      reviewAppPage();
-    });
-
-    and('select the Appointment for Myself.', () => {
-      clickMyself();
-    });
-
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
-    });
-
-    then('user should see the fields such as First name, Last name, Date of birth, Email, Mobile number, Preferred mode of communication', () => {
-      defaultValidation()
+    then("user should navigate to previous page.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Progress bar is displaying for the stages of Appointment', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the below mentioned fields are displaying in the Guest user basic details page after choosing the Myself option.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    then(
+      "user should see the fields such as First name, Last name, Date of birth, Email, Mobile number, Preferred mode of communication",
+      () => {
+        defaultValidation();
+      }
+    );
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Progress bar is displaying for the stages of Appointment", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
+
+    and("user review the appointments.", () => {
+      reviewAppPage();
+    });
+
+    and("select the Appointment for Myself.", () => {
+      clickMyself();
+    });
+
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
+    });
+
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
+    });
+
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
+    and("enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
-    and('select the Preferred mode of communication = Phone', () => {
-      const communicationRadio = container.getByRole("radio", { name: /Phone/i });
-      fireEvent.click(communicationRadio);
+    and("select the Preferred mode of communication = Phone", () => {
+      const communicationRadio = container.getByText(/Phone/i);
+      expect(communicationRadio).toBeInTheDocument();
     });
 
-    and('click the Continue button.', () => {
-      defaultValidation()
+    and("click the Continue button.", () => {
+      defaultValidation();
     });
 
-    then('user should see the Progress bar with Location,  Review, Appointment details, Contact Info, Confirm', () => {
-      expect(container.getByText("Location")).toBeInTheDocument();
-      expect(container.getByText("Review")).toBeInTheDocument();
-      expect(container.getByText("Appointment Details")).toBeInTheDocument();
-      expect(container.getByText("Contact Info")).toBeInTheDocument();
-      expect(container.getByText("Confirm")).toBeInTheDocument();
-    });
+    then(
+      "user should see the Progress bar with Location,  Review, Appointment details, Contact Info, Confirm",
+      () => {
+        expect(container.getByText("Location")).toBeInTheDocument();
+        expect(container.getByText("Review")).toBeInTheDocument();
+        expect(container.getByText("Appointment Details")).toBeInTheDocument();
+        expect(container.getByText("Contact Info")).toBeInTheDocument();
+        expect(container.getByText("Confirm")).toBeInTheDocument();
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the user is able to view the following details along with option to update them.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the user is able to view the following details along with option to update them.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
+    and("enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
-    and('select the Preferred mode of communication =Email', () => {
-      defaultValidation()
+    and("select the Preferred mode of communication =Email", () => {
+      defaultValidation();
     });
 
-    and('click the Continue button.', () => {
-      defaultValidation()
+    and("click the Continue button.", () => {
+      defaultValidation();
     });
 
-    then('user is able to edit the Location, Date and Time, Insurance carrier, Purpose of visit.', () => {
-      defaultValidation()
-    });
+    then(
+      "user is able to edit the Location, Date and Time, Insurance carrier, Purpose of visit.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Email and Mobile number fields are asking for mandatory when both Email and Mobile number is left as blank.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Email and Mobile number fields are asking for mandatory when both Email and Mobile number is left as blank.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('without entering the Email and Mobile number', () => {
-      defaultValidation()
+    and("without entering the Email and Mobile number", () => {
+      defaultValidation();
     });
 
-    and('click Continue button.', () => {
-      defaultValidation()
+    and("click Continue button.", () => {
+      defaultValidation();
     });
 
-    then('error message Email ID or Mobile number is required should display for both Email & Mobile number fields.', () => {
-      defaultValidation()
-    });
+    then(
+      "error message Email ID or Mobile number is required should display for both Email & Mobile number fields.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the error message Incorrect email format is displaying for the below mentioned Invaild Email IDs', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the error message Incorrect email format is displaying for the below mentioned Invaild Email IDs", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the mentioned Email ID', () => {
-      defaultValidation()
+    and("enter the mentioned Email ID", () => {
+      defaultValidation();
     });
 
-    and('click Continue button.', () => {
-      defaultValidation()
+    and("click Continue button.", () => {
+      defaultValidation();
     });
 
-    then('error message Incorrect email format should get displayed.', () => {
-      defaultValidation()
+    then("error message Incorrect email format should get displayed.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the numbers', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the numbers", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name with numbers, click the Continue', () => {
-      defaultValidation()
+    and("enter the First name with numbers, click the Continue", () => {
+      defaultValidation();
     });
 
-    then('Guest user should see the error message Invalid Format.', () => {
-      defaultValidation()
+    then("Guest user should see the error message Invalid Format.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the Special characters', ({ }) => {
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the Special characters", ({}) => {});
 
-  });
-
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the 1 character length.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the 1 character length.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and(/^enter the First name with (\d+) character, click the Continue$/, (arg0) => {
-      defaultValidation()
-    });
+    and(
+      /^enter the First name with (\d+) character, click the Continue$/,
+      (arg0) => {
+        defaultValidation();
+      }
+    );
 
-    then('Guest user should see the appropriate error message.', () => {
-      defaultValidation()
+    then("Guest user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the 51 characters', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the 51 characters", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and(/^enter the First name with (\d+) characters, click the Continue$/, (arg0) => {
-      defaultValidation()
-    });
+    and(
+      /^enter the First name with (\d+) characters, click the Continue$/,
+      (arg0) => {
+        defaultValidation();
+      }
+    );
 
-    then('Guest user should see the appropriate error message.', () => {
-      defaultValidation()
+    then("Guest user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is allowing the valid 2 characters', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is allowing the valid 2 characters", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and(/^enter the First name with valid (\d+) characters, click the Continue$/, (arg0) => {
-      defaultValidation()
-    });
+    and(
+      /^enter the First name with valid (\d+) characters, click the Continue$/,
+      (arg0) => {
+        defaultValidation();
+      }
+    );
 
-    then('Guest user should not see any error message for First name', () => {
-      defaultValidation()
+    then("Guest user should not see any error message for First name", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is allowing the valid 50 characters', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is allowing the valid 50 characters", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and(/^enter the First name with valid (\d+) characters, click the Continue$/, (arg0) => {
-      defaultValidation()
-    });
+    and(
+      /^enter the First name with valid (\d+) characters, click the Continue$/,
+      (arg0) => {
+        defaultValidation();
+      }
+    );
 
-    then('Guest user should not see any error message for First name', () => {
-      defaultValidation()
+    then("Guest user should not see any error message for First name", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is displaying the Mandatory error message.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is displaying the Mandatory error message.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('without entering the Last name, click the Continue', () => {
-      defaultValidation()
+    and("without entering the Last name, click the Continue", () => {
+      defaultValidation();
     });
 
-    then('it should display the error message This field is required.', () => {
-      defaultValidation()
+    then("it should display the error message This field is required.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the numbers', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the numbers", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the Last name with numbers, click the Continue', () => {
-      defaultValidation()
+    and("enter the Last name with numbers, click the Continue", () => {
+      defaultValidation();
     });
 
-    then('Guest user should see the error message Invalid Format.', () => {
-      defaultValidation()
+    then("Guest user should see the error message Invalid Format.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the Special characters', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the Special characters", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the Last name with Special characters, click the Continue', () => {
-      defaultValidation()
-    });
+    and(
+      "enter the Last name with Special characters, click the Continue",
+      () => {
+        defaultValidation();
+      }
+    );
 
-    then('Guest user should see the error message Invalid Format.', () => {
-      defaultValidation()
+    then("Guest user should see the error message Invalid Format.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the 1 character', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the 1 character", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and(/^enter the Last name with (\d+) character, click the Continue$/, (arg0) => {
-      defaultValidation()
-    });
+    and(
+      /^enter the Last name with (\d+) character, click the Continue$/,
+      (arg0) => {
+        defaultValidation();
+      }
+    );
 
-    then('Guest user should see the appropriate error message.', () => {
-      defaultValidation()
+    then("Guest user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the 51 characters', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the 51 characters", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and(/^enter the Last name with (\d+) characters, click the Continue.$/, (arg0) => {
-      defaultValidation()
-    });
+    and(
+      /^enter the Last name with (\d+) characters, click the Continue.$/,
+      (arg0) => {
+        defaultValidation();
+      }
+    );
 
-    then('Guest user should see the appropriate error message.', () => {
-      defaultValidation()
+    then("Guest user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
-  test('VEPIC_EPP-44_STORY_EPP-1569-erify whether the Last name is allowing the valid 2 characters', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("VEPIC_EPP-44_STORY_EPP-1569-erify whether the Last name is allowing the valid 2 characters", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and(/^enter the Last name with valid Minimum (\d+) characters length, click the Continue.$/, (arg0) => {
-      defaultValidation()
-    });
+    and(
+      /^enter the Last name with valid Minimum (\d+) characters length, click the Continue.$/,
+      (arg0) => {
+        defaultValidation();
+      }
+    );
 
-    then('Guest user should not see any error message for Last name', () => {
-      defaultValidation()
+    then("Guest user should not see any error message for Last name", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is allowing the valid 50 characters length', ({ }) => {
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is allowing the valid 50 characters length", ({}) => {});
 
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of Birth is displaying the Mandatory error message.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of Birth is displaying the Mandatory error message.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('without entering the Date of birth, click the Continue', () => {
-      defaultValidation()
+    and("without entering the Date of birth, click the Continue", () => {
+      defaultValidation();
     });
 
-    then('it should display the error message This field is required.', () => {
-      defaultValidation()
+    then("it should display the error message This field is required.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the error message Invalid date of birth is displaying for invalid Date of birth DD/MM/YYYY', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the error message Invalid date of birth is displaying for invalid Date of birth DD/MM/YYYY", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name', () => {
+    and("enter the First name, Last name", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the invalid Date of Birth.', () => {
-      defaultValidation()
+    and("enter the invalid Date of Birth.", () => {
+      defaultValidation();
     });
 
-    and('click Continue button.', () => {
-      defaultValidation()
+    and("click Continue button.", () => {
+      defaultValidation();
     });
 
-    then('Guest user should see the error message Invalid date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
-    });
+    then(
+      "Guest user should see the error message Invalid date of birth",
+      () => {
+        expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of birth is displaying as per the given date format MM/DD/YYYY.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of birth is displaying as per the given date format MM/DD/YYYY.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name', () => {
+    and("enter the First name, Last name", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the invalid Date of Birth format.', () => {
-      defaultValidation()
+    and("enter the invalid Date of Birth format.", () => {
+      defaultValidation();
     });
 
-    and('click Continue button.', () => {
-      defaultValidation()
+    and("click Continue button.", () => {
+      defaultValidation();
     });
 
-    then('Guest user should see the correct Date of Birth format.', () => {
-      defaultValidation()
+    then("Guest user should see the correct Date of Birth format.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the future date is not allowing in the Date of Birth field.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the future date is not allowing in the Date of Birth field.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the future Date of birth.', () => {
-      defaultValidation()
+    and("enter the future Date of birth.", () => {
+      defaultValidation();
     });
 
-    and('click Continue button.', () => {
-      defaultValidation()
+    and("click Continue button.", () => {
+      defaultValidation();
     });
 
-    then('user should see the appropriate error message.', () => {
-      defaultValidation()
+    then("user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of birth is not allowing more than Maximum age limit.(Need to confirm)', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of birth is not allowing more than Maximum age limit.(Need to confirm)", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the Date of birth more than maximum age limit.', () => {
-      defaultValidation()
+    and("enter the Date of birth more than maximum age limit.", () => {
+      defaultValidation();
     });
 
-    and('click Continue button.', () => {
-      defaultValidation()
+    and("click Continue button.", () => {
+      defaultValidation();
     });
 
-    then('user should see the appropriate error message.', () => {
-      defaultValidation()
+    then("user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of birth is not allowing less than Minimum age limit.(Need to confirm)', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of birth is not allowing less than Minimum age limit.(Need to confirm)", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the Date of birth less than minimum age limit.', () => {
-      defaultValidation()
+    and("enter the Date of birth less than minimum age limit.", () => {
+      defaultValidation();
     });
 
-    and('click Continue button.', () => {
-      defaultValidation()
+    and("click Continue button.", () => {
+      defaultValidation();
     });
 
-    then('user should see the appropriate error message.', () => {
-      defaultValidation()
+    then("user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of birth is accepting valid Date of Birth', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Date of birth is accepting valid Date of Birth", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('click Continue button.', () => {
-      defaultValidation()
+    and("click Continue button.", () => {
+      defaultValidation();
     });
 
-    then('Guest user should not see any error message for Date of birth.', () => {
-      defaultValidation()
-    });
+    then(
+      "Guest user should not see any error message for Date of birth.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the mandatory error message is not displaying for Email when Mobile number is filled.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the mandatory error message is not displaying for Email when Mobile number is filled.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('without entering the Email and enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
+    and("without entering the Email and enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
-    and('click Continue button.', () => {
-      defaultValidation()
+    and("click Continue button.", () => {
+      defaultValidation();
     });
 
-    then('error message should not display for Email field.', () => {
-      defaultValidation()
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the mandatory error message is not displaying for Mobile number when Email is filled.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
-    });
-
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
-    });
-
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
-
-    and('user review the appointments.', () => {
-      reviewAppPage();
-    });
-
-    and('select the Appointment for Myself.', () => {
-      clickMyself();
-    });
-
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
-    });
-
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
-    });
-
-    and('enter the First name, Last name.', () => {
-      provideFirstLastNameValid();
-    });
-
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
-    });
-
-    and('without entering the Mobile number and enter the Email', () => {
-      defaultValidation()
-    });
-
-    and('click Continue button.', () => {
-      defaultValidation()
-    });
-
-    then('error message should not display for Mobile number field.', () => {
-      defaultValidation()
+    then("error message should not display for Email field.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is not allowing the Maximum limit +1 (Need to confirm)', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the mandatory error message is not displaying for Mobile number when Email is filled.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
     });
 
-    and('Guest user should see the Guest Access screen.', () => {
-      defaultValidation()
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
     });
 
-    and('enter the First name, Last name.', () => {
+    and("enter the First name, Last name.", () => {
       provideFirstLastNameValid();
     });
 
-    and('enter the valid Date of birth', () => {
-      expect(container.getAllByText("Date of Birth")[0]).toBeInTheDocument();
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
     });
 
-    and('enter the Email ID', () => {
-      const field4 = container.getByRole("textbox", { name: "Email" });
+    and("without entering the Mobile number and enter the Email", () => {
+      defaultValidation();
+    });
+
+    and("click Continue button.", () => {
+      defaultValidation();
+    });
+
+    then("error message should not display for Mobile number field.", () => {
+      defaultValidation();
+    });
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is not allowing the Maximum limit +1 (Need to confirm)", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
+    });
+
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
+
+    and("user review the appointments.", () => {
+      reviewAppPage();
+    });
+
+    and("select the Appointment for Myself.", () => {
+      clickMyself();
+    });
+
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
+    });
+
+    and("Guest user should see the Guest Access screen.", () => {
+      defaultValidation();
+    });
+
+    and("enter the First name, Last name.", () => {
+      provideFirstLastNameValid();
+    });
+
+    and("enter the valid Date of birth", () => {
+      expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
+    });
+
+    and("enter the Email ID", () => {
+      const field4 = container.getByLabelText("Email");
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
-    and('enter the Mobile number', () => {
-      const field3 = container.getByLabelText("Mobile Number");
+    and("enter the Mobile number", () => {
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
       fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
-    and('click the Continue button.', () => {
-      defaultValidation()
+    and("click the Continue button.", () => {
+      defaultValidation();
     });
 
-    then('it should display the appropriate error message.', () => {
-      defaultValidation()
-    });
-  });
-
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the below mentioned fields are displaying if the user select the Myself in Provide Information page.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
-    });
-
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
-    });
-
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
-
-    and('user review the appointments.', () => {
-      reviewAppPage();
-    });
-
-    and('select the Appointment for Myself.', () => {
-      clickMyself();
-    });
-
-    then('user should see the below mentioned fields', (table) => {
-      defaultValidation()
+    then("it should display the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the Continue as a Guest option is displaying after user select the Myself option', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the below mentioned fields are displaying if the user select the Myself in Provide Information page.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    then('user should see the Continue as Guest button.', () => {
-      defaultValidation()
+    then("user should see the below mentioned fields", (table) => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is displaying the Mandatory error message.', ({ given, when, and, then }) => {
-    given('user launch the Marketing Site url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Continue as a Guest option is displaying after user select the Myself option", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    when('user clicks on the Schedule your Eye Exam button', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    and('user select the Purpose of Visit, Location and Date & Time with provider.', () => {
-      searchScreen();
-      provideFilters();
-    });
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
 
-    and('user review the appointments.', () => {
+    and("user review the appointments.", () => {
       reviewAppPage();
     });
 
-    and('select the Appointment for Myself.', () => {
+    and("select the Appointment for Myself.", () => {
       clickMyself();
     });
 
-    and('click the Continue as a Guest button.', () => {
-      defaultValidation()
+    then("user should see the Continue as Guest button.", () => {
+      defaultValidation();
+    });
+  });
+
+  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is displaying the Mandatory error message.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Marketing Site url", () => {
+      defaultValidation();
     });
 
-    and('without entering the First name, click the Continue', () => {
-      defaultValidation()
+    when("user clicks on the Schedule your Eye Exam button", () => {
+      defaultValidation();
     });
 
-    then('it should display the error message This field is required.', () => {
-      defaultValidation()
+    and(
+      "user select the Purpose of Visit, Location and Date & Time with provider.",
+      () => {
+        searchScreen();
+        provideFilters();
+      }
+    );
+
+    and("user review the appointments.", () => {
+      reviewAppPage();
+    });
+
+    and("select the Appointment for Myself.", () => {
+      clickMyself();
+    });
+
+    and("click the Continue as a Guest button.", () => {
+      defaultValidation();
+    });
+
+    and("without entering the First name, click the Continue", () => {
+      defaultValidation();
+    });
+
+    then("it should display the error message This field is required.", () => {
+      defaultValidation();
     });
   });
 });

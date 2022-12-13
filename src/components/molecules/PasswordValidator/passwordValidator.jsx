@@ -1,6 +1,6 @@
 import React from "react";
 import { LabelWithIcon } from "../../atoms/LabelWithIcon/labelWithIcon";
-import { Box, Typography, Collapse } from "@mui/material";
+import { Box, Typography, Collapse, CircularProgress } from "@mui/material";
 import { styles } from "./style";
 import { colors } from "../../../styles/theme";
 
@@ -64,7 +64,12 @@ export const PasswordValidator = ({ ...props }) => {
           : {}
       }
     >
-      <Collapse in={props.isShowValidation}>
+      <Collapse
+        in={props.isShowValidation}
+        sx={{
+          ...props.sx,
+        }}
+      >
         <>
           {validator.map((err, i) => {
             if (err.mandatory) {
@@ -75,7 +80,23 @@ export const PasswordValidator = ({ ...props }) => {
             return err.children ? (
               getParentView(err, i)
             ) : (
-              <LabelWithIcon key={i} error={err.validate} label={err.label} />
+              <Box
+                display={"flex"}
+                sx={{
+                  alignItems: "baseline",
+                  gap: 1,
+                }}
+              >
+                <LabelWithIcon key={i} error={err.validate} label={err.label} />
+                {props.isLoading && err.hasLoading && (
+                  <CircularProgress
+                    sx={{
+                      width: "20px !important",
+                      height: "20px !important",
+                    }}
+                  />
+                )}
+              </Box>
             );
           })}
           {props.validatePassword(errors1, errors2)}

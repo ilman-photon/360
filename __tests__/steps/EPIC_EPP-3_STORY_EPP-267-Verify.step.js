@@ -217,7 +217,7 @@ defineFeature(feature, (test) => {
         await waitFor(() => container.getByText(/Phone/i));
         const phoneRadio = container.getByText(/Phone/i);
         expect(phoneRadio).toBeVisible();
-        // expect(container).toMatchSnapshot();
+        
       }
     );
   });
@@ -270,7 +270,7 @@ defineFeature(feature, (test) => {
     and(/^user should see text  "(.*)"$/, (arg0) => {
       const email = container.getByText(/Email/i);
       expect(email).toBeVisible();
-      // expect(container).toMatchSnapshot();
+      
     });
 
     and(/^user should see checkbox section "(.*)"$/, (arg0) => {
@@ -473,7 +473,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-      const mfaField = container.getByLabelText("mfaLabel");
+      const mfaField = container.getByLabelText(/mfaLabel/i);
       expect(mfaField).toBeVisible();
     });
 
