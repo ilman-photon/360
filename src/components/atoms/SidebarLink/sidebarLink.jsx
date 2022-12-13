@@ -2,6 +2,9 @@ import { Divider, Stack, Typography } from "@mui/material";
 import React from "react";
 import { colors } from "../../../styles/theme";
 import styles from "./sidebarLink.module.scss";
+import * as accountLayoutStyles from "../../templates/accountLayout.module.scss";
+
+// export const widthSidebarLink = "324px";
 
 const SidebarLink = ({ router, href, isLeftSideBar = false, children }) => {
   const isCurrentPath = router.pathname === href || router.asPath === href;
@@ -21,7 +24,8 @@ const SidebarLink = ({ router, href, isLeftSideBar = false, children }) => {
       alignItems="center"
       sx={{
         background: isCurrentPath ? "#EFEFEF" : "transparent",
-        width: "97%",
+        // width: "97%",
+        width: accountLayoutStyles.widthSidebarLink,
       }}
     >
       <Divider

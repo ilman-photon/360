@@ -92,7 +92,8 @@ export default function InsuranceInfoPage() {
         setPageMessage({
           isShow: true,
           error: true,
-          content: "Please upload both sides of your insurance card.",
+          content:
+            "Please upload both sides of your insurance card in order to proceed.",
         })
       );
       return false;
@@ -183,8 +184,7 @@ export default function InsuranceInfoPage() {
       dispatch(
         setPageMessage({
           isShow: true,
-          content:
-            "Cannot add any more insurances. Maximum limit has been reached",
+          content: "Maximum number of insurances has been reached.",
           error: true,
         })
       );

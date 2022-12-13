@@ -61,6 +61,7 @@ export const ref = (row, key) => {
 
 export const getUserStatus = (status) => {
   switch (status) {
+    case "locked":
     case "Locked":
       return (
         <Chip
@@ -384,10 +385,6 @@ export default function TableWithSort({
         <div
           style={tabelData.cell.contentStyle}
           tabIndex={0}
-          aria-label={`${tabelData.cell.valueKey}. ${ref(
-            tabelData.row,
-            tabelData.cell.valueKey
-          )}`}
           className={[styles.tableCell, tabelData.cell.contentClass].join(" ")}
         >
           {type === "date-time" ? getMultilineDate(dateValue) : dateValue}
@@ -657,7 +654,7 @@ export default function TableWithSort({
 
   return (
     <>
-      <TableContainer sx={{ boxShadow: "none" }}>
+      <TableContainer sx={{ boxShadow: "none" }} data-testid="table-container">
         <Table
           size={dense ? "small" : "medium"}
           sx={{

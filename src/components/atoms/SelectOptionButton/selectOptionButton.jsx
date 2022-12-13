@@ -1,6 +1,6 @@
 import * as React from "react";
 import FormControl from "@mui/material/FormControl";
-import { InputLabel, MenuItem, Select } from "@mui/material";
+import { FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import { colors } from "../../../styles/theme";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -52,6 +52,9 @@ export default function SelectOptionButton({
   onChange,
   renderMenuListUI = null,
   ariaLabel = "",
+  helperText = "",
+  inputProps = {},
+  renderValue = () => {},
   ...props
 }) {
   return (
@@ -71,6 +74,11 @@ export default function SelectOptionButton({
             fontWeight: 600,
             fontFamily: "Libre Franklin",
             fontSize: "1rem",
+          },
+          "&.Mui-error": {
+            borderColor: "#B93632",
+            backgroundColor: "#FBF4F4",
+            color: "#6C6C6C",
           },
           ...props.inputPropsSx,
         }}
@@ -95,11 +103,17 @@ export default function SelectOptionButton({
           "aria-label": `${label}. ${value}`,
           "aria-live": "polite",
           "data-testid": `select-${id}`,
-          ...props.inputProps,
+          ...inputProps,
         }}
         MenuProps={props.MenuProps}
         {...props.menuProps}
-        renderValue={props.renderValue}
+        renderValue={
+          renderValue ||
+          ((select) => {
+            return select;
+          })
+        }
+        {...props}
       >
         {options.map((option, idx) => {
           if (renderMenuListUI) {
@@ -110,10 +124,10 @@ export default function SelectOptionButton({
                 key={idx}
                 value={option}
                 sx={{ fontSize: "16px" }}
-                inputProps={{
-                  "aria-label": `${option}`,
-                  "aria-live": "polite",
-                }}
+                // inputProps={{
+                //   "aria-label": `${option}`,
+                //   "aria-live": "polite",
+                // }}
               >
                 {option}
               </MenuItem>
@@ -121,6 +135,14 @@ export default function SelectOptionButton({
           }
         })}
       </Select>
+      <FormHelperText
+        sx={{
+          color: props.error ? colors.error : colors.darkGreen,
+          fontSize: "12px",
+        }}
+      >
+        {helperText}
+      </FormHelperText>
     </CustomFormControl>
   );
 }

@@ -21,7 +21,7 @@
     "errorAysncUser": "Login",
     "errorLoginLockedTitle": "Account Locked",
     "errorLoginLockedMessage": "Your account has been locked after too many failed attempts. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
-    "errorFailedLogin": "Invalid Username or Password"
+    "errorFailedLogin": "The selected username/password is invalid, please try again."
   },
   "Input": {
     "usernameLable": "Patient Login",
@@ -30,10 +30,10 @@
   "ForgotPassword": {
     "title": "Forgot Password",
     "description": "Enter your email address or phone number bellow and we'll send you an-email to reset it.",
-    "errorUsernameNotFound": "Patient with the given Email or Phone number not found. Please make sure that you entered it correctly and try again",
+    "errorUsernameNotFound": "This username is not found. Please ensure that all characters are typed correctly and try again.",
     "errorInValidUserameOrPhone": "Enter a valid Email or Phone Number",
-    "errorEmptyField": "This field is required",
-    "errorInvalidEmailPhone": "Enter a valid Email or Phone Number",
+    "errorEmptyField": "This field is required to proceed.",
+    "errorInvalidEmailPhone": "The selected username is not found. Please enter in a valid email or phone number.",
     "resetPasswordText": "Continue",
     "usernamePlaceHolder": "Email or Phone Number",
     "backButtonLink": "Back to Log in",
@@ -55,10 +55,10 @@
   "PasswordSecurityQuestion": {
     "title": "Password Recovery Security Questions",
     "subtitle": "Answer the following questions to reset your password.",
-    "errorIncorrectAnswer": "Incorrect answer(s)",
+    "errorIncorrectAnswer": "The submitted response does not match security question. Please contact support.",
     "errorAccountLockTitle": "Account Locked",
     "errorAccountLock": "Your account has been locked after too many failed attempts. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
-    "errorEmptyField": "This field is required",
+    "errorEmptyField": "This field is required to proceed.",
     "continueButton": "Continue",
     "backButtonLink": "Back to Log in"
   },
@@ -69,10 +69,10 @@
     "backButtonLink": "Back to Log in"
   },
   "SetPassword":{
-    "errorEmptyField": "This field is required",
+    "errorEmptyField": "This field is required to proceed.",
     "backButtonLink": "Back to Log in",
-    "passwordNotMatch":"Passwords do not match",
-    "passwordNotMeetRequirements" :"Password does not meet requirements",
+    "passwordNotMatch":"Selected passwords do no match. Please review and try again.",
+    "passwordNotMeetRequirements" :"The selected password does not meet requirements. Please try again.",
     "passwordPlaceHolder": "Password",
     "confirmPasswordPlaceHolder": "Confirm Password",
     "ctaButtonLabel": "Create Account"
@@ -101,8 +101,8 @@
     "noSecurityButtonTextOneTime": "Receive link to reset password",
     "answerSecurityQuestionsLabel": "Answer security questions",
     "receiveLinkToResetPasswordLabel": "Receive link to reset password",
-    "postMessageOneTime": "One-time link is sent",
-    "successLabel": "Success",
+    "postMessageOneTime": "A one-time link has been sent to you. View the instructions on the link and complete the next steps.",
+    "successLabel": "Success!",
     "backButtonLink": "Back to Login"
   },
   "UpdatePasswordPage":{
@@ -111,7 +111,7 @@
     "confirmPasswordPlaceHolder": "Confirm Password",
     "ctaButtonLabel": "Update",
     "successUpdatePassword": "Password Updated",
-    "postMessage": "Password has been updated",
+    "postMessage": "Success! This password has now been updated.",
     "backButtonLink": "Back to Log in"
   },
   "ValidatePage":{
@@ -119,7 +119,12 @@
     "expiredPostmessageOneTime": "One-time link has been expired",
     "expiredTitleResetPassword": "Reset Password link expired",
     "expiredPostmessageResetPassword": "Reset Password link has been expired",
-    "backButtonLink": "Back to Log in"
+    "backButtonLink": "Back to Log in",
+    "successSetPassword": "Your password has been set successfully.",
+    "enterPassword": "Please enter a password to finalize setting up your account.",
+    "expiredLink1" : "This link is now expired. Please go to",
+    "expiredLink2" : "to retrieve a new link.",
+    "forgotPassword" : "Forgot Password"
   },
   "mfaPage": {
     "setMFATitle": "Set Multi-Factor Authentication",
@@ -139,11 +144,11 @@
     "rememberMeLabel": "Remember me",
     "rememberMeDescription": "This means you won't have to authenticate at every sign-in",
     
-    "mfaFailedTitle": "Incorrect Code.",
+    "mfaFailedTitle": "This code is invalid.",
     "mfaFailedDescription": "Please try again.",
-    "mfaLockTitle": "Too many attempts.",
-    "mfaLockDescription": "Please try setting up multi factor authentication after 30 minutes.",
-    "resendCodeLockDescription": "Code sent multiple times. Please try again after 30 minutes."
+    "mfaLockTitle": "Max amount of attempts at setting up multi-factor authentication has been reached.",
+    "mfaLockDescription": "Please wait 30 minutes and try again.",
+    "resendCodeLockDescription": "The multi-factor authentication code has been sent too many times. Please wait 30 minutes and try again."
 
   },
   "scheduleAppoinment": {
@@ -162,25 +167,29 @@
     "passwordInfo": "Create a password to have access to your dashboard, manage, and track your appointment details.",
     "passwordLabel": "Password",
     "scheduleAppoinment": "Schedule Appointment",
-    "thisFieldRequired" : "This field is required",
+    "thisFieldRequired" : "This field is required to proceed.",
     "preferredCommunication": "Preferred mode of Communication",
     "scheduled": "You’re Scheduled!",
     "isEmergency": "Is this a medical emergency?",
     "isEmergencyTooltip": "If this is a medical emergency, please call 911",
     "thanksBar" : "Thank you for scheduling your appointment. We will send a confirmation Email/Text shortly.",
-    "thanksBarReschedule" : "Thank you for rescheduling your appointment. We will send a confirmation Email/Text shortly.",
+    "thanksBarReschedule" : "Thank you for scheduling an appointment with us. We will send a confirmation email/text to you shortly.",
     "patientInformation": "Patient Information",
     "cancelTitle": "Are you sure you want to cancel?",
     "cancelReason": "Reason for cancelation",
     "cancelOther": "Enter other reason for cancelation",
     "btnCancel": "Cancel appointment",
-    "btnKeep": "Keep appointment"
+    "btnKeep": "Keep appointment",
+    "incorrectEmail": "The selected email is not formatted correctly. Please try again.",
+    "invalidDOB": "The selected date of birth is invalid, please try again.",
+    "incorrectPhone": "The selected phone number is not formatted correctly. Please try again."
   },
   "medicalRecord": {
     "labelAvaible": "Your lab results are available. Please reach out to your provider. "
   },
   "appointment": {
-    "baseText": "Enter a city, state, or zip code to view results"
+    "baseText": "Enter a city, state, or zip code to view results",
+    "noResultMessage": "No results found using search criteria. Please try again."
   },
   "messaging": {
     "messagingText": "Messaging",
@@ -193,7 +202,7 @@
     "allText": "All",
     "unreadText": "Unread",
     "searchText": "Search",
-    "noResultMessage": "No results found. Please try again with a different search criteria.",
+    "noResultMessage": "No results found using search criteria. Please try again.",
     "noReceivedMessages": "You have no received messages",
     "noSentMessages": "You have no sent messages",
     "noDraftMessages": "You have no draft messages",
@@ -214,5 +223,28 @@
     "floatingMsgSendSuccess": "All your messages have been successfully deleted",
     "thisFieldRequired": "This field is required",
     "discardBtn": "Discard"
+  },
+  "imageUpload": {
+    "invalidFileType": "This file type is invalid. Please submit a different file."
+  },
+  "insuranceForm": {
+    "requiredField": "This field is required to proceed.",
+    "incorrectFormat": "The selected field is not formatted correctly. Please try again.",
+    "tooltipValue": "You are legally able to use multiple insurance to cover eyecare expenses. Please select a primary insurance to determine which one takes priority.",
+    "lastNameValidation" : "Last Name does not meet requirements",
+    "firstNameValidation" : "First Name does not meet requirements"
+  },
+  "personalInfo": {
+    "requiredField": "This field is required to proceed.",
+    "incorrectFormat": "The selected field is not formatted correctly. Please try again.",
+    "tooltipValue": "This field is secure. If you wish to change this information, please contact Customer Support for assistance."
+  },
+  "register": {
+    "requiredField": "This field is required to proceed.",
+    "invalidDOB": "The selected date of birth is invalid, please try again.",
+    "incorrectFormat": "The selected field is not formatted correctly. Please try again.",
+    "incorrectEmail": "The selected email is not formatted correctly. Please try again.",
+    "incorrectPhone": "The selected phone number is not formatted correctly. Please try again.",
+    "incorrectPassword": "The selected password does not meet requirements. Please try again."
   }
 }

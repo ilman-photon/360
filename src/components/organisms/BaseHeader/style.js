@@ -42,7 +42,7 @@ export const styles = {
     display: { xs: "block", md: "none" },
   },
   menuItemMobile: { color: "black" },
-  boxProfileMenuStyles: { flexGrow: 0, display: { xs: "none", sm: "flex" } },
+  boxProfileMenuStyles: { flexGrow: 0, display: { xs: "none", md: "flex" } },
   boxButtonStyles: { color: "black", textTransform: "none" },
   userText: {
     fontWeight: "700 !important",

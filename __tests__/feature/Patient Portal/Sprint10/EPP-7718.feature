@@ -9,7 +9,6 @@ Feature: Patient Portal: Settings– Change username – Error message
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7718 - Verify User should be able to view the error message “Please enter a valid email ID or Phone number” if the new email ID or phone number entered is not in correct format
-    EPIC_EPP-36_STORY_EPP-7718 - Verify User should be able to view the error message “Please enter a valid email ID or Phone number” if the new email ID or phone number entered is not in correct format 
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -30,9 +29,6 @@ Feature: Patient Portal: Settings– Change username – Error message
     When user click on Update button
     Then user should be able to view the error message “Please enter a valid email ID or Phone number” if the new email ID or phone number entered is not in correct format
 
-    Example:
-    |Username|
-    |xxxxxxxx|
 
   @BDDTEST-EPP-10954
   @P1
@@ -41,7 +37,6 @@ Feature: Patient Portal: Settings– Change username – Error message
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7718 - Verify User should be able to view the error message “Please enter a different username other than the previous username” if the new username matches with the previous username
-    EPIC_EPP-36_STORY_EPP-7718 - Verify User should be able to view the error message “Please enter a different username other than the previous username” if the new username matches with the previous username
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -62,9 +57,6 @@ Feature: Patient Portal: Settings– Change username – Error message
     When user click on Update button
     Then user should be able to view the error message “Please enter a different username other than the previous username” if the new username matches with the previous username
 
-    Example:
-    |Username|
-    |xxxxxxxx|
 
   @BDDTEST-EPP-10955
   @P1
@@ -73,7 +65,6 @@ Feature: Patient Portal: Settings– Change username – Error message
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7718 - Verify User should be able to view the error message “Please enter a valid email ID or Phone number ” if anything other than email ID or Phone number is entered as username
-    EPIC_EPP-36_STORY_EPP-7718 - Verify User should be able to view the error message “Please enter a valid email ID or Phone number ” if anything other than email ID or Phone number is entered as username
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -93,7 +84,3 @@ Feature: Patient Portal: Settings– Change username – Error message
     And user should be able to view Cancel button
     When user click on Update button
     Then user should be able to view the error message “Please enter a different username other than the previous username” if the new username matches with the previous username
-
-    Example:
-    |Username|
-    |xxxxxxxx|

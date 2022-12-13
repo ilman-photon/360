@@ -73,7 +73,12 @@ export default function AppointmentDetails({
           >
             <Typography
               variant="bodyMedium"
-              sx={{ color: colors.darkGreen }}
+              sx={{
+                color: colors.darkGreen,
+                fontFamily: "Libre Franklin",
+                fontSize: "16px",
+                fontWeight: "400",
+              }}
               tabIndex={"0"}
               data-testid={
                 TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date
@@ -105,7 +110,12 @@ export default function AppointmentDetails({
           >
             <Typography
               variant="bodyMedium"
-              sx={{ color: colors.darkGreen }}
+              sx={{
+                color: colors.darkGreen,
+                fontFamily: "Libre Franklin",
+                fontSize: "16px",
+                fontWeight: "400",
+              }}
               tabIndex={"0"}
             >
               {appointmentData.insuranceCarrier?.name
@@ -138,7 +148,12 @@ export default function AppointmentDetails({
           >
             <Typography
               variant="bodyMedium"
-              sx={{ color: colors.darkGreen }}
+              sx={{
+                color: colors.darkGreen,
+                fontFamily: "Libre Franklin",
+                fontSize: "16px",
+                fontWeight: "400",
+              }}
               tabIndex={"0"}
               aria-label={
                 appointmentData.appointmentType ||

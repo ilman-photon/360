@@ -144,14 +144,14 @@ export default function PatientAcccountCard({
               borderRadius: 2,
               background: "#FFFFFF",
             }}
-            key={i}
+            key={`patient-${i}`}
           >
             {config.cells.map((cell, idx) => {
               switch (cell.type) {
                 case "text":
                   return (
                     <Box
-                      key={idx}
+                      key={`row-${i}-cell-${idx}`}
                       sx={{
                         display: "flex",
                         flexDirection: "row",
@@ -191,7 +191,7 @@ export default function PatientAcccountCard({
                 case "date":
                   return (
                     <Box
-                      key={idx}
+                      key={`row-${i}-cell-${idx}`}
                       sx={{
                         display: "flex",
                         flexDirection: "row",
@@ -231,7 +231,7 @@ export default function PatientAcccountCard({
                 case "user-status":
                   return (
                     <Box
-                      key={idx}
+                      key={`row-${i}-cell-${idx}`}
                       sx={{
                         display: "flex",
                         flexDirection: "row",
@@ -256,7 +256,7 @@ export default function PatientAcccountCard({
                 case "unlock-button":
                   return (
                     <Stack
-                      key={idx}
+                      key={`row-${i}-cell-${idx}`}
                       sx={{
                         borderTop: "0.5px solid #dadada",
                         pt: 2,
@@ -287,7 +287,7 @@ export default function PatientAcccountCard({
                 case "account-recovery-menu":
                   return (
                     <Box
-                      key={idx}
+                      key={`row-${i}-cell-${idx}`}
                       sx={{
                         borderTop: "0.5px solid #dadada",
                         pt: 2,

@@ -141,7 +141,6 @@ export const FilterResult = ({
         <div
           style={{
             marginTop: 8,
-            marginRight: 15,
           }}
           className="hide-scrollbar"
         >

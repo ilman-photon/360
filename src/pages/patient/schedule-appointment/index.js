@@ -247,6 +247,7 @@ export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isModalRegistered, setIsModalRegistered] = React.useState(false);
   const [isReschedule, setIsReschedule] = React.useState(false);
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
@@ -347,12 +348,12 @@ export default function ScheduleAppointmentPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
-  function getPatientId(postBody, patientDob) {
+  function getPatientId(postBody, patientDob, isGuest) {
     api
       .getPatientId(postBody)
       .then((response) => {
         dispatch(fetchUser());
-        handleCreateAppointment(true, patientDob, response.ecpPatientId);
+        handleCreateAppointment(isGuest, patientDob, response.ecpPatientId);
       })
       .catch((err) => {
         console.error(err, "getPatientId error");
@@ -373,6 +374,11 @@ export default function ScheduleAppointmentPage() {
     dispatch(resetFormMessage());
 
     try {
+      if (!postBody.email) {
+        delete postBody.email;
+      } else if (!postBody.mobileNumber) {
+        delete postBody.mobileNumber;
+      }
       await api
         .getResponse("/ecp/patient/userregistration", postBody, "post")
         .then(() => {
@@ -381,7 +387,8 @@ export default function ScheduleAppointmentPage() {
               username:
                 postBody.email || postBody.mobileNumber.replace(/[^\d\+]/g, ""),
             },
-            mmddyyDateFormat(data.dob)
+            mmddyyDateFormat(data.dob),
+            postBody.password.length == 0
           );
         });
     } catch (err) {
@@ -401,7 +408,7 @@ export default function ScheduleAppointmentPage() {
   };
 
   const handleCreateAppointment = (
-    isGuest = false,
+    isGuest = true,
     patientDob = "",
     guestId = ""
   ) => {
@@ -454,6 +461,7 @@ export default function ScheduleAppointmentPage() {
         if (isGuest) {
           router.push("/patient/schedule-appointment-confirmation");
         } else {
+          setIsModalRegistered(true);
           setActiveStep(4);
           setIsOpen(true);
         }
@@ -468,7 +476,7 @@ export default function ScheduleAppointmentPage() {
       if (isReschedule) {
         setModalConfirmReschedule(true);
       } else {
-        handleCreateAppointment();
+        handleCreateAppointment(false, false, false);
       }
     } else {
       setActiveStep(idx);
@@ -517,6 +525,7 @@ export default function ScheduleAppointmentPage() {
         OnOkClicked={handleOkClicked}
         isDesktop={isDesktop}
         onAddToCalendarClicked={addToCalendar}
+        isModalRegistered={isModalRegistered}
       />
     );
   };

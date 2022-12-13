@@ -191,8 +191,9 @@ describe("App", () => {
     fireEvent.click(Searchbutton);
 
     await waitFor(() => {
-      container.getByText(/is required/i);
-      expect(container.getByText(/is required/i)).toBeInTheDocument();
+      container.getAllByText(/is required/i);
+      expect(container.getAllByText(/is required/i)[0]).toBeInTheDocument();
+      expect(container.getAllByText(/is required/i)[1]).toBeInTheDocument();
     });
   }, 30000);
 
@@ -211,6 +212,12 @@ describe("App", () => {
     fireEvent.keyDown(autocomplete, { key: "ArrowDown" });
     fireEvent.keyDown(autocomplete, { key: "Enter" });
     await waitFor(() => container.getByDisplayValue("Kabupaten Bogor"));
+    const purposeInput = await waitFor(() =>
+      container.getByTestId("select-purposes-of-visit")
+    );
+    fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
+    expect(purposeInput.value).toEqual("Clinical_Diagnosis");
+
     act(() => {
       fireEvent.click(
         container.getAllByTestId(TEST_ID.APPOINTMENT_TEST_ID.searchbtn)[0]

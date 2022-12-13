@@ -194,7 +194,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
                   rel="noopener"
                   tabIndex={0}
                 >
-                  Get directions
+                  Get Directions
                 </Link>
               </Box>
             </Box>

@@ -50,6 +50,13 @@ const landOnPatientPortalScreen = () => {
 }
 
 defineFeature(feature, (test) => {
+    beforeEach(async () => {
+        Object.defineProperty(document, "cookie", {
+          writable: true,
+          value: "authorized=true;accessToken=1234",
+        });
+    })
+
     test('EPIC_EPP-10_STORY_EPP-949 - Verify if "New insurance button" is enabled for user', ({ given, and, when, then }) => {
         given('Launch  the Browser Enter \'XXX\' URL', () => {
             launchURL();
@@ -149,7 +156,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -194,7 +201,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -259,7 +266,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -324,7 +331,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -390,7 +397,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -455,7 +462,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -536,7 +543,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -601,7 +608,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -670,7 +677,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -735,7 +742,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -804,7 +811,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -869,7 +876,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {
@@ -918,7 +925,7 @@ defineFeature(feature, (test) => {
                 </Provider>
             )
             await waitFor(() => container.getByText(/You have no insurance on file./i));
-            // expect(container).toMatchSnapshot();
+            
         });
 
         and(/^clicks on"(.*)"$/, (arg0) => {

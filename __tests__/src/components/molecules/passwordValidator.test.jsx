@@ -22,7 +22,7 @@ describe("StyledInput", () => {
     //     name: "Contain at least 3 our of 4 types",
     //   })
     // ).toBeVisible();
-    expect(container).toMatchSnapshot();
+    
   });
 
   it("renders input components with type text", async () => {
@@ -72,6 +72,6 @@ describe("StyledInput", () => {
     // const node = screen.getByText("Reset");
     // expect(button.closest("button")).toHaveProperty("error", "true");
     // expect(container.firstChild).toMatchSnapshot()
-    // expect(container).toMatchSnapshot();
+    
   });
 });

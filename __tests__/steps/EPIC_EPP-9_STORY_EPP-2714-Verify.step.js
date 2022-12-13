@@ -31,6 +31,11 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
   beforeEach(async () => {
+    Object.defineProperty(document, "cookie", {
+      writable: true,
+      value: "authorized=true;accessToken=1234",
+    });
+    
     const categoryId = "Intake-Forms";
     const patientId = "98f9404b-6ea8-4732-b14f-9c1a168d8066";
     mock

@@ -73,11 +73,12 @@ export default function ModalConfirmContent({
   },
   onAddToCalendarClicked,
   isPage = false,
+  isModalRegistered = false,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const { REGISTER_TEST_ID } = constants.TEST_ID;
 
-  const { t } = useTranslation("translation", {
+  const { t, ready } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
 
@@ -103,264 +104,273 @@ export default function ModalConfirmContent({
   };
 
   return (
-    <Box
-      sx={{ width: { xs: "auto", md: "max-content" } }}
-      className={styles.boxModalContents}
-      aria-label="Appointment confirmation page"
-    >
-      <BootstrapDialogTitle
-        id="customized-dialog-title"
-        onClose={handleClose}
-        sx={{ textAlign: "center", fontSize: "22px" }}
-        isPage={isPage}
-        tabIndex={0}
-        aria-hidden={false}
-        aria-label={
-          isReschedule
-            ? "Reschedule Appointment Successful"
-            : "You’re Scheduled!"
-        }
-      >
-        <Typography variant="bodyMedium" className={styles.scheduledText}>
-          <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />
-          <div>
-            {isReschedule
-              ? "Reschedule Appointment Successful"
-              : "You’re Scheduled!"}
-          </div>
-        </Typography>
-      </BootstrapDialogTitle>
-      <DialogContent
-        sx={{
-          "&.MuiDialogContent-root": {
-            px: { xs: 2, md: 3 },
-            pt: { xs: 0, md: 0 },
-            pb: { xs: 2, md: 3 },
-          },
-        }}
-      >
-        <div
-          className={styles.registeredUsernameWrapper}
-          sx={{ m: { xs: 0, md: 2 } }}
-          aria-hidden={false}
-          aria-label={isReschedule ? t("thanksBarReschedule") : t("thanksBar")}
-          tabIndex={0}
+    <>
+      {ready && (
+        <Box
+          sx={{ width: { xs: "auto", md: "max-content" } }}
+          className={styles.boxModalContents}
+          aria-label="Appointment confirmation page"
         >
-          <Box
-            className={styles.thanksBar}
-            sx={{
-              flexDirection: { xs: "column", md: "row" },
-              textAlign: { xs: "center", md: "left" },
-              padding: { xs: "8px", md: "12px 100px" },
-            }}
-            aria-label={
-              isReschedule ? t("thanksBarReschedule") : t("thanksBar")
-            }
+          <BootstrapDialogTitle
+            id="customized-dialog-title"
+            onClose={handleClose}
+            sx={{ textAlign: "center", fontSize: "22px" }}
+            isPage={isPage}
             tabIndex={0}
             aria-hidden={false}
+            aria-label={
+              isReschedule
+                ? "Reschedule Appointment Successful"
+                : "You’re Scheduled!"
+            }
           >
-            <MailOutlineIcon sx={{ mr: 1, height: "35px", width: "28px" }} />{" "}
-            {isReschedule ? t("thanksBarReschedule") : t("thanksBar")}
-          </Box>
-        </div>
-
-        <div className={styles.bottomParagraph}>
-          <Tooltip
-            title="If this is a medical emergency, please call 911"
-            ariaLabel={"If this is a medical emergency, please call 911"}
-            PopperProps={{
-              role: "alert",
-            }}
-            tabIndex={0}
-          >
-            <Link
-              data-testid={REGISTER_TEST_ID.loginlink}
-              aria-label={`${t("isEmergency")}. ${t("isEmergencyTooltip")}.`}
-              aria-roledescription=""
-              role="link"
-              tabIndex={"0"}
-            >
-              <span className={styles.medicLink}>{t("isEmergency")}</span>
-            </Link>
-          </Tooltip>
-        </div>
-
-        <Card variant="outlined" className={styles.cardDate}>
-          <CardContent
-            sx={{
-              px: { xs: 3, md: 3 },
-              py: { xs: 3, md: 3 },
-              textAlign: "-moz-center",
-            }}
-          >
-            <Typography
-              className={styles.dateBold}
-              sx={{ pb: 2 }}
-              aria-label={appointmentData?.date}
-              tabIndex={"0"}
-            >
-              {formatAppointmentDate(appointmentData.date)}
+            <Typography variant="bodyMedium" className={styles.scheduledText}>
+              <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />
+              <div>
+                {isReschedule
+                  ? "Reschedule Appointment Successful"
+                  : "You’re Scheduled!"}
+              </div>
             </Typography>
-
-            <div style={{ display: "inline-flex" }}>
-              <Button
-                className={styles.addCalendarButton}
+          </BootstrapDialogTitle>
+          <DialogContent
+            sx={{
+              "&.MuiDialogContent-root": {
+                px: { xs: 2, md: 3 },
+                pt: { xs: 0, md: 0 },
+                pb: { xs: 2, md: 3 },
+              },
+            }}
+          >
+            <div
+              className={styles.registeredUsernameWrapper}
+              sx={{ m: { xs: 0, md: 2 } }}
+              aria-hidden={false}
+              aria-label={
+                isReschedule ? t("thanksBarReschedule") : t("thanksBar")
+              }
+              tabIndex={0}
+            >
+              <Box
+                className={styles.thanksBar}
                 sx={{
-                  backgroundColor: "#EEF5F7",
-                  mb: 2,
+                  flexDirection: { xs: "column", md: "row" },
+                  textAlign: { xs: "center", md: "left" },
+                  padding: { xs: "8px", md: "12px 100px" },
                 }}
-                onClick={() => {
-                  onAddToCalendarClicked({
-                    name: "ECP Appointment",
-                    description: `Patient: ${getName()}, Purpose of Visit: ${
-                      appointmentData.appointmentType
-                    }`,
-                    date: appointmentData.date,
-                    location:
-                      providerData.address.addressLine1 +
-                      ` ` +
-                      providerData.address.addressLine2 +
-                      ` ` +
-                      providerData.address.city +
-                      ` ` +
-                      providerData.address.state +
-                      ` ` +
-                      providerData.address.zipcode,
-                  });
+                aria-label={
+                  isReschedule ? t("thanksBarReschedule") : t("thanksBar")
+                }
+                tabIndex={0}
+                aria-hidden={false}
+              >
+                <MailOutlineIcon
+                  sx={{ mr: 1, height: "35px", width: "28px" }}
+                />{" "}
+                {isReschedule ? t("thanksBarReschedule") : t("thanksBar")}
+              </Box>
+            </div>
+
+            <div className={styles.bottomParagraph}>
+              <Tooltip
+                title="If this is a medical emergency, please call 911"
+                ariaLabel={"If this is a medical emergency, please call 911"}
+                PopperProps={{
+                  role: "alert",
+                }}
+                tabIndex={0}
+              >
+                <Link
+                  data-testid={REGISTER_TEST_ID.loginlink}
+                  aria-label={`${t("isEmergency")}. ${t(
+                    "isEmergencyTooltip"
+                  )}.`}
+                  aria-roledescription=""
+                  role="link"
+                  tabIndex={"0"}
+                >
+                  <span className={styles.medicLink}>{t("isEmergency")}</span>
+                </Link>
+              </Tooltip>
+            </div>
+
+            <Card variant="outlined" className={styles.cardDate}>
+              <CardContent
+                sx={{
+                  px: { xs: 3, md: 3 },
+                  py: { xs: 3, md: 3 },
+                  textAlign: "-moz-center",
                 }}
               >
                 <Typography
-                  sx={{
-                    mb: 1,
-                    display: "contents",
-                    fontWeight: "600",
-                    fontSize: "14px",
-                    fontFamily: "Libre Franklin",
-                  }}
-                  aria-label={"Add to calendar"}
+                  className={styles.dateBold}
+                  sx={{ pb: 2 }}
+                  aria-label={appointmentData?.date}
+                  tabIndex={"0"}
                 >
-                  <CalendarTodayIcon
-                    aria-hidden={"false"}
-                    sx={{ color: "#003B4A" }}
-                  />{" "}
-                  Add to calendar
+                  {formatAppointmentDate(appointmentData.date)}
                 </Typography>
-              </Button>
-            </div>
 
-            <Typography
-              className={styles.dateBold}
-              aria-label={"Purpose of Visit"}
-              tabIndex={"0"}
-            >
-              Purpose of Visit
-            </Typography>
-            <Typography
-              aria-label={appointmentData.appointmentType || "Eye exam"}
-              tabIndex={"0"}
-            >
-              {appointmentData.appointmentType || "Eye exam"}
-            </Typography>
-          </CardContent>
-        </Card>
-
-        <Card variant="outlined" className={styles.card}>
-          <CardContent sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
-            <Stack spacing={2}>
-              <Grid container sx={{ placeContent: "center" }}>
-                <Grid>
-                  <ProviderProfile
-                    variant={"appointment"}
-                    showPosition
-                    providerData={providerData}
-                    isDayAvailableView={true}
-                  />
-                  <Box
-                    className={styles.getDirectionLink}
+                <div style={{ display: "inline-flex" }}>
+                  <Button
+                    className={styles.addCalendarButton}
+                    sx={{
+                      backgroundColor: "#EEF5F7",
+                      mb: 2,
+                    }}
                     onClick={() => {
-                      getDirection(getProviderLocation());
+                      onAddToCalendarClicked({
+                        name: "ECP Appointment",
+                        description: `Patient: ${getName()}, Purpose of Visit: ${
+                          appointmentData.appointmentType
+                        }`,
+                        date: appointmentData.date,
+                        location:
+                          providerData.address.addressLine1 +
+                          ` ` +
+                          providerData.address.addressLine2 +
+                          ` ` +
+                          providerData.address.city +
+                          ` ` +
+                          providerData.address.state +
+                          ` ` +
+                          providerData.address.zipcode,
+                      });
                     }}
                   >
-                    <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
-                    <Link
-                      className={styles.getDirectionLinkText}
-                      {...getLinkAria("Get directions")}
+                    <Typography
+                      sx={{
+                        mb: 1,
+                        display: "contents",
+                        fontWeight: "600",
+                        fontSize: "14px",
+                        fontFamily: "Libre Franklin",
+                      }}
+                      aria-label={"Add to calendar"}
                     >
-                      Get directions
-                    </Link>
-                  </Box>
-                </Grid>
-              </Grid>
-            </Stack>
-          </CardContent>
-        </Card>
+                      <CalendarTodayIcon
+                        aria-hidden={"false"}
+                        sx={{ color: "#003B4A" }}
+                      />{" "}
+                      Add to calendar
+                    </Typography>
+                  </Button>
+                </div>
 
-        <Card variant="outlined" className={styles.cardPatient}>
-          <CardContent sx={{ px: { xs: 3, md: 3 }, py: { xs: 3, md: 3 } }}>
-            <Typography
-              className={styles.patientBoxLabel}
-              sx={{ mb: 2 }}
-              aria-label={"Patient Information heading"}
-              aria-roledescription="Heading"
-              tabIndex={"0"}
-            >
-              {t("patientInformation")}
-            </Typography>
+                <Typography
+                  className={styles.dateBold}
+                  aria-label={"Purpose of Visit"}
+                  tabIndex={"0"}
+                >
+                  Purpose of Visit
+                </Typography>
+                <Typography
+                  aria-label={appointmentData.appointmentType || "Eye exam"}
+                  tabIndex={"0"}
+                >
+                  {appointmentData.appointmentType || "Eye exam"}
+                </Typography>
+              </CardContent>
+            </Card>
 
-            <LabelWithInfo
-              label="Name"
-              sxRow={{ justifyContent: "unset" }}
-              sxText={{ color: colors.darkGreen, fontSize: "16px" }}
-            >
-              <Typography
-                variant="bodyMedium"
-                sx={{ color: colors.darkGreen }}
-                tabIndex={"0"}
-              >
-                {getName()}
-              </Typography>
-            </LabelWithInfo>
-          </CardContent>
-        </Card>
+            <Card variant="outlined" className={styles.card}>
+              <CardContent sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
+                <Stack spacing={2}>
+                  <Grid container sx={{ placeContent: "center" }}>
+                    <Grid>
+                      <ProviderProfile
+                        variant={"appointment"}
+                        showPosition
+                        providerData={providerData}
+                        isDayAvailableView={true}
+                      />
+                      <Box
+                        className={styles.getDirectionLink}
+                        onClick={() => {
+                          getDirection(getProviderLocation());
+                        }}
+                      >
+                        <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
+                        <Link
+                          className={styles.getDirectionLinkText}
+                          {...getLinkAria("Get directions")}
+                        >
+                          Get directions
+                        </Link>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Stack>
+              </CardContent>
+            </Card>
 
-        {!isLoggedIn ? (
-          <div className={styles.bottomParagraph}>
-            <Typography
-              variant="caption"
-              sx={{
-                fontSize: "16px",
-                fontFamily: "Libre Franklin",
-                float: isMobile ? "left" : "unset",
-              }}
-              aria-label={"Already have an account? Sign in"}
-              tabIndex={0}
-            >
-              Already have an account?{" "}
-              <Link
-                href="/patient/login"
-                data-testid={REGISTER_TEST_ID.loginlink}
-              >
-                <a className={styles.loginLink}>Sign in</a>
-              </Link>
-            </Typography>
-          </div>
-        ) : (
-          <div className={styles.okButtonRow}>
-            <Button
-              type="submit"
-              variant="contained"
-              onClick={handleClose}
-              className={styles.continueText}
-              sx={{
-                width: "131px",
-                background: "#007E8F",
-              }}
-            >
-              Ok
-            </Button>
-          </div>
-        )}
-      </DialogContent>
-    </Box>
+            <Card variant="outlined" className={styles.cardPatient}>
+              <CardContent sx={{ px: { xs: 3, md: 3 }, py: { xs: 3, md: 3 } }}>
+                <Typography
+                  className={styles.patientBoxLabel}
+                  sx={{ mb: 2 }}
+                  aria-label={"Patient Information heading"}
+                  aria-roledescription="Heading"
+                  tabIndex={"0"}
+                >
+                  {t("patientInformation")}
+                </Typography>
+
+                <LabelWithInfo
+                  label="Name"
+                  sxRow={{ justifyContent: "unset" }}
+                  sxText={{ color: colors.darkGreen, fontSize: "16px" }}
+                >
+                  <Typography
+                    variant="bodyMedium"
+                    sx={{ color: colors.darkGreen }}
+                    tabIndex={"0"}
+                  >
+                    {getName()}
+                  </Typography>
+                </LabelWithInfo>
+              </CardContent>
+            </Card>
+            {isLoggedIn || isModalRegistered ? (
+              <div className={styles.okButtonRow}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  onClick={handleClose}
+                  className={styles.continueText}
+                  sx={{
+                    width: "131px",
+                    background: "#007E8F",
+                  }}
+                >
+                  OK
+                </Button>
+              </div>
+            ) : (
+              <div className={styles.bottomParagraph}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    fontSize: "16px",
+                    fontFamily: "Libre Franklin",
+                    float: isMobile ? "left" : "unset",
+                  }}
+                  aria-label={"Already have an account? Sign in"}
+                  tabIndex={0}
+                >
+                  Already have an account?{" "}
+                  <Link
+                    href="/patient/login"
+                    data-testid={REGISTER_TEST_ID.loginlink}
+                  >
+                    <a className={styles.loginLink}>Sign in</a>
+                  </Link>
+                </Typography>
+              </div>
+            )}
+          </DialogContent>
+        </Box>
+      )}
+    </>
   );
 }
