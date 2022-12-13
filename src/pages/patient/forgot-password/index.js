@@ -168,7 +168,7 @@ export default function ForgotPasswordPage(props) {
         ? api
             .validateUserType(postbody)
             .then((res) => {
-              if (res.patientType === "R") {
+              if (res.patientType === "R" || res.patientType === "S") {
                 setRegistered(true);
                 setShowPostMessage(true);
               } else if (res.patientType === "G") {
