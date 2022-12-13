@@ -105,7 +105,7 @@ export default function MedicalRecordPage() {
       },
       {
         type: "text",
-        valueKey: "data.testingOrder.orderDetails.status",
+        valueKey: "status",
         cellProps: { align: "left", tabIndex: 0 },
         contentStyle: {
           padding: "12px 0",
