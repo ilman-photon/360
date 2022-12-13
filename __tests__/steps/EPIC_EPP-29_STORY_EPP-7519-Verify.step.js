@@ -77,11 +77,11 @@ defineFeature(feature, (test) => {
   let container;
 
   beforeEach(() => {
-        Object.defineProperty(document, "cookie", {
-            writable: true,
-            value: "authorized=true;accessToken=1234",
-          });
-      })
+    Object.defineProperty(document, "cookie", {
+      writable: true,
+      value: "authorized=true;accessToken=1234",
+    });
+  });
 
   const userIsLoggedIn = () => {
     const mockOnLoginClicked = jest.fn((data, route, callback) => {
@@ -128,7 +128,6 @@ defineFeature(feature, (test) => {
   };
 
   const mockApi = (mockData = mockLockedAccounts) => {
-    console.log(">>>", mockData);
     mock
       .onGet(`/ecp/accountRecovery/getAllLockedAccounts`)
       .reply(200, mockData);

@@ -248,7 +248,7 @@ export default function AppointmentForm({
   }, [formMessage]);
 
   React.useEffect(() => {
-    const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
+    const isMobileInputEmpty = watchedMobile == "(" || !watchedMobile;
     if (watchedEmail && isMobileInputEmpty) {
       setValue("preferredCommunication", "email");
     } else if (!watchedEmail && !isMobileInputEmpty) {
