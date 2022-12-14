@@ -18,6 +18,7 @@ import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import StackList from "../../../components/organisms/StackList/StackList";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { parseHealthRecordData } from "../../../components/molecules/Dashboard/healthRecordCard";
 
 export default function HealthRecord() {
   const isDesktop = useMediaQuery("(min-width: 820px)");
