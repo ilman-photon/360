@@ -419,7 +419,7 @@ describe("App", () => {
 
   it("renders App unchanged", () => {
     const { container } = render(<App Component={HomePage} />);
-    // expect(container).toMatchSnapshot();
+    
   });
 
   it("renders App login and session log off", async () => {

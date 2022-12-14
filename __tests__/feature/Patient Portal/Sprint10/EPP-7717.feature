@@ -8,7 +8,6 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7717 - Verify user should be able to view sub menu under Profile to setup change user name
-    EPIC_EPP-36_STORY_EPP-7717 - Verify user should be able to view sub menu under Profile to setup change user name
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -24,7 +23,6 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7717 - Verify user should be able to view "Login" screen sub menu
-    EPIC_EPP-36_STORY_EPP-7717 - Verify user should be able to view "Login" screen sub menu
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -43,7 +41,6 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7717 - Verify user should be able to view Username & Password section along with 'Update' Link
-    EPIC_EPP-36_STORY_EPP-7717 - Verify user should be able to view Username & Password section along with 'Update' Link
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -63,7 +60,6 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7717 - Verify user should be able navigated to Update Username screen
-    EPIC_EPP-36_STORY_EPP-7717 - Verify user should be able navigated to Update Username screen
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -92,7 +88,6 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7717 - Verify user has provided new username and confirm new username
-    EPIC_EPP-36_STORY_EPP-7717 - Verify user has provided new username and confirm new username 
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -113,10 +108,6 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
     When user click on Update button
     Then user should be navigated back to "Login" screen sub menu along with success message 'Your username was successfully updated.'
 
-    Example:
-    |Username|
-    |xxxxxxxx|
-
   @BDDTEST-EPP-10937
   @P1
   @Patient_Portal
@@ -124,7 +115,6 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7717 - Verify user should be able to receive the alert for changing the username in preferred mode of communication
-    EPIC_EPP-36_STORY_EPP-7717 - Verify user  should be able to receive the alert for changing the username in preferred mode of communication
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -146,11 +136,6 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
     Then user should be navigated back to "Login" screen sub menu along with success message 'Your username was successfully updated.'
     And user should be able to receive the alert for changing the username in preferred mode of communication
 
-
-    Example:
-    |Username|
-    |xxxxxxxx|
-
   @BDDTEST-EPP-10938
   @P1
   @Patient_Portal
@@ -158,7 +143,6 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
   @Settings
   @Sprint10
   Scenario: EPIC_EPP-36_STORY_EPP-7717 - Verify username should not be changed if No is selected during confirmation
-    EPIC_EPP-36_STORY_EPP-7717 - Verify username should not be changed if No is selected during confirmation 
 
     Given User launch Patient Portal url		
     And user is logged into the portal with valid credential
@@ -178,7 +162,3 @@ Feature: Patient Portal: Settings – Change username – Update Username CTA
     And user should be able to view Cancel button
     When user click on Cancel button
     Then user should be navigated back to "Login" screen and username isn't update
-
-    Example:
-    |Username|
-    |xxxxxxxx|

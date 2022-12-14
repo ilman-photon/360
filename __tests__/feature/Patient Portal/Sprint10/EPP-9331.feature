@@ -9,7 +9,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Error m
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9331- Verify User should be able to view the error message “You must answer all security questions”
-    Scenario: EPIC_EPP-38_STORY_EPP-9331- Verify User should be able to view the error message “You must answer all security questions”
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -30,7 +29,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Error m
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9331- Verify User should be able to view the error message “No updated made” if the questions or answers are not changed
-    Scenario: EPIC_EPP-38_STORY_EPP-9331- Verify User should be able to view the error message “No updated made” if the questions or answers are not changed
 
     Given User has logged into the patient portal 
     And User has logged in as patient

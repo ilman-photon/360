@@ -8,7 +8,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be able to view the confirmation message “Are you sure to update security question’ along with ‘Yes’ and ‘No’ options
-    Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be able to view the confirmation message “Are you sure to update security question’ along with ‘Yes’ and ‘No’ options 
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -31,7 +30,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be able to view the success message ‘Security question updated  successfully’ if ‘yes’ is selected during confirmation
-    Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be able to view the success message ‘Security question updated  successfully’ if ‘yes’ is selected during confirmation 
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -56,7 +54,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be navigated to Set security questions& answers screen when User selects No option
-    Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be navigated to Set security questions& answers screen when User selects No option
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -81,7 +78,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Patient_Portal
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be able to see the security question & answers of the respective patient is updated
-    Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be able to see the security question & answers of the respective patient is updated
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -109,7 +105,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be redirected to Profile screen
-    Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify User should be redirected to Profile screen 
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -137,7 +132,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify The respective patient should receive the alert in preferred mode of communication
-    Scenario: The respective patient should receive the alert in preferred mode of communication 
 
     Given User has logged into the patient portal 
     And User has logged in as patient
@@ -166,7 +160,6 @@ Feature: Patient Portal: Settings– Setup/update security questions – Update 
   @Regression
   @Sprint10
   Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify The Security question should not get updated if No is selected during confirmation
-    Scenario: EPIC_EPP-38_STORY_EPP-9330- Verify The Security question should not get updated if No is selected during confirmation 
 
     Given User has logged into the patient portal 
     And User has logged in as patient

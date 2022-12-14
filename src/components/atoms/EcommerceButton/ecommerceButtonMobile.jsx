@@ -8,9 +8,10 @@ export default function EcommerceButtonMobile({ menu = [] }) {
           xs: "flex",
           sm: "none",
         },
-        padding: "8px 33px",
+        padding: "8px 20px",
         backgroundColor: "#DDF1F3",
         gap: "24px",
+        justifyContent: "space-between",
       }}
     >
       {menu.map((item, index) => (

@@ -332,16 +332,19 @@ describe("Api test", () => {
         },
       };
       const api = new Api();
-      api.errorGenericValidation(err);
-      api.errorGenericValidation({ ...err, response: null });
-      api.errorGenericValidation({ ...err, data: null });
-      api.errorGenericValidation({
-        ...err,
-        data: {
-          ResponseCode: undefined,
+      api.errorGenericValidation(err, "/available-slot");
+      api.errorGenericValidation({ ...err, response: null }, "/login");
+      api.errorGenericValidation({ ...err, data: null }, "/login");
+      api.errorGenericValidation(
+        {
+          ...err,
+          data: {
+            ResponseCode: undefined,
+          },
         },
-      });
-      api.errorGenericValidation(err2);
+        "/login"
+      );
+      api.errorGenericValidation(err2), "/login";
     });
 
     it("responseCodeValidation", async () => {

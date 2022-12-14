@@ -9,7 +9,7 @@ import { useForm, Controller, useFormState } from "react-hook-form";
 import { styles } from "./style";
 import { useTranslation } from "next-i18next";
 import FormMessage from "../../molecules/FormMessage/formMessage";
-import { Link, Typography } from "@mui/material";
+import { Link, Typography, useMediaQuery } from "@mui/material";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 import { Regex } from "../../../utils/regex";
 import constants from "../../../utils/constants";
@@ -75,6 +75,8 @@ const SetPasswordComponent = ({
   const { errors, isSubmitting } = useFormState({
     control,
   });
+
+const isTablet = useMediaQuery("(max-width: 1024px)");
 
   React.useEffect(() => {
     if (errors.password) {
@@ -432,6 +434,7 @@ const SetPasswordComponent = ({
                       type="password"
                       value={value}
                       inputRef={inputRef}
+                      passwordWidth={isTablet ? "310px" : "352px"}
                       onChange={(event) => {
                         onChange(event);
                         onChangePasswordValue();
@@ -439,6 +442,7 @@ const SetPasswordComponent = ({
                       }}
                       inputProps={{
                         "aria-label": `${passwordPlaceHolder} - required`,
+                        maxLength: 20,
                       }}
                       error={!!error}
                       required
@@ -476,6 +480,7 @@ const SetPasswordComponent = ({
                       type="password"
                       value={value}
                       inputRef={confirmRef}
+                      passwordWidth={isTablet ? "310px" : "352px"}
                       inputProps={{
                         "aria-label": `${confirmPasswordPlaceHolder} - required`,
                         "data-testid": "confirmPassword",
@@ -511,7 +516,7 @@ const SetPasswordComponent = ({
                 mode="primary"
                 size="small"
                 gradient={false}
-                style={{ ...styles.margin, margin: "0px 8px" }}
+                style={{ ...styles.margin, margin: "8px 8px 0px" }}
               >
                 {ctaButtonLabel}
               </StyledButton>

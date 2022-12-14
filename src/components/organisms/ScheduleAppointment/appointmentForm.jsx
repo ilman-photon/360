@@ -35,6 +35,7 @@ const DisclaimerText = (data) => {
         display: "inline-flex",
         alignItems: "center",
         color: "#424747",
+        fontFamily: "Libre Franklin",
       }}
     >
       {data.label}
@@ -68,7 +69,7 @@ export default function AppointmentForm({
   },
   formMessage = null,
 }) {
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control, watch, setValue } = useForm({
     defaultValues: patientData,
   });
   const [open, setOpen] = React.useState(false);
@@ -110,7 +111,7 @@ export default function AppointmentForm({
     OnSubmit(data);
   };
 
-  const onSignIn = () => {
+  const onLogin = () => {
     OnClickSignIn();
     router.push("/patient/login");
   };
@@ -173,7 +174,7 @@ export default function AppointmentForm({
     },
     {
       label: "Password should not contain your username",
-      validate: watchedPassword.indexOf(watchedEmail || watchedMobile) > -1,
+      validate: watchedPassword?.indexOf(watchedEmail || watchedMobile) > -1,
       mandatory: true,
     },
     {
@@ -181,7 +182,7 @@ export default function AppointmentForm({
       validate: false,
     },
   ];
-  const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
+  const isPasswordError = watchedPassword?.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
@@ -226,8 +227,15 @@ export default function AppointmentForm({
   const getTitleStyle = () => {
     if (isForMyself) {
       return isDesktop
-        ? { fontSize: "32px", fontFamily: "Bw Nista Geometric DEMO" }
-        : { fontSize: "26px", fontFamily: "Bw Nista Geometric DEMO" };
+        ? {
+            fontSize: "32px",
+            fontFamily: "Bw Nista Geometric DEMO",
+            fontWeight: "500",
+          }
+        : {
+            fontSize: "26px",
+            fontFamily: "Bw Nista Geometric DEMO",
+          };
     } else {
       return {
         fontSize: isDesktop ? "26px" : "22px",
@@ -246,6 +254,18 @@ export default function AppointmentForm({
         inline: "nearest",
       });
   }, [formMessage]);
+
+  React.useEffect(() => {
+    const isMobileInputEmpty = watchedMobile == "(" || !watchedMobile;
+    if (watchedEmail && isMobileInputEmpty) {
+      setValue("preferredCommunication", "email");
+    } else if (!watchedEmail && !isMobileInputEmpty) {
+      setValue("preferredCommunication", "phone");
+    } else {
+      setValue("preferredCommunication", "both");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watchedEmail, watchedMobile]);
 
   return (
     <>
@@ -296,10 +316,10 @@ export default function AppointmentForm({
                 <Link
                   sx={styles.link}
                   data-testid={SCHEDULE_GUEST_TEST_ID.signInlink}
-                  {...getLinkAria(t("signIn"))}
-                  onClick={onSignIn}
+                  {...getLinkAria(t("login"))}
+                  onClick={onLogin}
                 >
-                  {t("signIn")}
+                  {t("login")}
                 </Link>
               </Box>
             ) : null}
@@ -636,6 +656,7 @@ export default function AppointmentForm({
                           label={t("passwordLabel")}
                           inputProps={{
                             "aria-label": `Password - optional -`,
+                            maxLength: 20,
                           }}
                           type={constants.INPUT_PASSWORD}
                           size={constants.SMALL}

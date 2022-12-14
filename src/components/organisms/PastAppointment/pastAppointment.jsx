@@ -46,6 +46,15 @@ export function PastAppointmentCard({ data, threshold }) {
             tabIndex={0}
             aria-label={`Past appointment year of ${year}`}
             variant="h4"
+            sx={{
+              width: "46px",
+              height: "24px",
+              fontStyle: "normal",
+              fontWeight: "500",
+              fontSize: "18px",
+              lineWeight: "24px",
+              color: "#003B4A",
+            }}
           >
             {year}
           </Typography>

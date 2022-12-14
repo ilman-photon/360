@@ -26,10 +26,11 @@ export class Api {
     this.maxRequestCounter = 3;
   }
 
-  errorGenericValidation = (err) => {
+  errorGenericValidation = (err, url) => {
     return (
       err &&
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+        url.indexOf(`/available-slot`) < 0 &&
         err.response?.data?.ResponseCode === undefined) ||
         err.code === constants.ERROR_CODE.NETWORK_ERR ||
         [500].indexOf(err.response?.status) !== -1) &&
@@ -54,7 +55,7 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (api.errorGenericValidation(err) && showError) {
+        if (api.errorGenericValidation(err, url) && showError) {
           store.dispatch(
             setGenericErrorMessage("Please try again after sometime.")
           );
@@ -64,11 +65,11 @@ export class Api {
             ResponseCode: err.response.status || err.code,
           });
         } else if (err && err.response && err.response.data) {
-          reject(err.response.data);
           const errors = err.response.data._errors;
-          if (errors && showError) {
+          if (errors && showError && url.indexOf(`/available-slot`) < 0) {
             store.dispatch(setGenericErrorMessage(errors[0].description));
           }
+          reject(err.response.data);
         } else if (err.code === "ECONNABORTED" && showError) {
           store.dispatch(setGenericErrorMessage(err.message));
           reject(err);
@@ -480,6 +481,21 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  getPasswordLastUpdate(postBody) {
+    const url = `/ecp/patient/getLastUpdatedPasswordDate`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  changeUsername(postBody) {
+    const url = `/ecp/patient/settings/updateUsername`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  changePassword(postBody) {
+    const url = `/ecp/patient/settings/changePassword`;
+    return this.getResponse(url, postBody, "post");
+  }
+
   getLockedAccounts({ keyword }) {
     const url =
       keyword === ""
@@ -491,6 +507,16 @@ export class Api {
   unlockAccount(query) {
     const url = `/ecp/accountRecovery/unlockAccountByAdmin/${query}`;
     return this.getResponse(url, {}, "get");
+  }
+
+  validatePassword(postBody) {
+    const url = `/ecp/patient/settings/validatePassword`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  updateSecurityQuestion(postBody) {
+    const url = `/ecp/patient/settings/updateSecurityQuestions`;
+    return this.getResponse(url, postBody, "post");
   }
 
   getPasswordInfo(postBody) {

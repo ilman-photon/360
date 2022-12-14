@@ -10,11 +10,21 @@ import SetPasswordComponent from "../../../components/organisms/SetPassword/setP
 import globalStyles from "../../../styles/Global.module.scss";
 
 export const setUsernameFromQuery = function (route) {
-  const queryString = route.asPath?.split("?")[1];
-  const splitQueryString = queryString?.split("=");
-  return splitQueryString && splitQueryString.length > 0
-    ? splitQueryString[1]
-    : "";
+  let splitQueryString = {};
+  try {
+    const queryString = route.asPath.substr(route.asPath.indexOf("?") + 1);
+    splitQueryString = JSON.parse(
+      '{"' +
+        decodeURI(queryString)
+          .replace(/"/g, '\\"')
+          .replace(/&/g, '","')
+          .replace(/=/g, '":"') +
+        '"}'
+    );
+  } catch (error) {
+    console.error("URL parsedError");
+  }
+  return splitQueryString?.username;
 };
 
 export default function UpdatePasswordPage() {

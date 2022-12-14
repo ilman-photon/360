@@ -7,6 +7,12 @@ export default function FloatingMessage({
   autoHideDuration = 0,
   onOpen,
   onClose,
+  sx = {
+    top: {
+      xs: "134px",
+      sm: "210px",
+    },
+  },
 }) {
   const [open, setOpen] = useState(false);
 
@@ -28,12 +34,7 @@ export default function FloatingMessage({
       autoHideDuration={autoHideDuration}
       onClose={handleClose}
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      sx={{
-        top: {
-          xs: "134px",
-          sm: "210px",
-        },
-      }}
+      sx={sx}
     >
       <Alert
         icon={<CheckCircleOutlineIcon />}
@@ -46,7 +47,6 @@ export default function FloatingMessage({
             xs: "100%",
             sm: "503px",
           },
-          height: "48px",
           backgroundColor: "#04844B",
           padding: "12px 16px",
           "& .MuiAlert-icon": {

@@ -5,9 +5,11 @@ import { Login as LoginComponent } from "../../../components/organisms/Login/log
 import { useEffect } from "react";
 import constants from "../../../utils/constants";
 import { removeAuthCookies } from "../../../utils/authetication";
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../../store/user";
 import store from "../../../store/store";
+import FloatingMessage from "../../../components/molecules/FloatingMessage/floatingMessage";
+import { setLoginMessage } from "../../../store";
 
 const api = new Api();
 const cookies = new Cookies();
@@ -28,6 +30,7 @@ function getUserData(postbody, callback) {
           communicationMethod: response.communicationMethod,
           patientId,
           userType: "patient",
+          username: postbody.username,
         };
         localStorage.setItem("userData", JSON.stringify(userData));
         !isHasMfaAccessToken &&
@@ -178,13 +181,32 @@ export const loginProps = {
 };
 
 export default function LoginPage() {
+  const loginMessage = useSelector((state) => state.index.loginMessage);
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     removeAuthCookies();
   });
   const dispatch = useDispatch();
 
-  return <LoginComponent {...loginProps} dispatch={dispatch} />;
+  return (
+    <>
+      <FloatingMessage
+        text={loginMessage}
+        autoHideDuration={100000}
+        onOpen={loginMessage !== null}
+        sx={{
+          top: {
+            xs: "85px",
+          },
+        }}
+        onClose={(openFloatingMsg) => {
+          dispatch(setLoginMessage(null));
+        }}
+      />
+      <LoginComponent {...loginProps} dispatch={dispatch} />
+    </>
+  );
 }
 
 LoginPage.getLayout = function getLayout(page) {

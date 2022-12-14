@@ -701,13 +701,19 @@ export default function TableWithSort({
                     <TableCell colspan={3}>
                       <Grid container spacing={2}>
                         <Grid tabIndex={0} xs={4} p={2}>
-                          {row.name}
+                          {row.data.testingOrder.orderDetails.testType.name}
                         </Grid>
                         <Grid xs={4} p={2}>
-                          {row.orderBy}
+                          {
+                            row.data.testingOrder.orderDetails.orderingProvider
+                              .firstName
+                          }
                         </Grid>
                         <Grid xs={4} p={2} sx={{ paddingLeft: "40px" }}>
-                          {row.date}
+                          {moment(
+                            row.data.testingOrder.orderDetails.dateTime
+                              .startDate
+                          ).format("MM/DD/YYYY")}
                         </Grid>
                         <hr className={styles.hrTestLab} />
                         <Grid xs={12} p={2} textAlign={"end"}>

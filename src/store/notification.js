@@ -8,7 +8,7 @@ export const fetchNotifications = createAsyncThunk(
   async ({ patientId }) => {
     const api = new Api();
     return api.getResponse(
-      `/ecp/messagealert/getalerts/${patientId}`, // "7dba6139-e2aa-4994-bb72-af6f1b11b94a"
+      `/ecp/messagealert/getalerts/${patientId}`, // "a3e61090-270e-4ab6-903b-192700ee09be"
       null,
       "get"
     );
@@ -19,7 +19,7 @@ export const readNotificationItem = createAsyncThunk(
   "notification/readNotificationItem",
   async ({ patientId, notificationIds }) => {
     const api = new Api();
-    url = `/ecp/messagealert/getMessageDetails/${patientId}`; // "7dba6139-e2aa-4994-bb72-af6f1b11b94a"
+    url = `/ecp/messagealert/getMessageDetails/${patientId}`; // "a3e61090-270e-4ab6-903b-192700ee09be"
     let postBodyValue = [];
     notificationIds.forEach((element) => {
       postBodyValue.push({

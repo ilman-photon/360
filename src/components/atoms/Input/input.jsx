@@ -82,6 +82,7 @@ export const CustomPasswordInput = styled((props) => (
       ),
     }}
     {...props}
+    inputProps={{ ...props.inputProps, maxlength: 20 }}
   />
 ))(({ theme }) => ({
   ".MuiInputLabel-root": {
@@ -275,7 +276,7 @@ export const CustomInput = styled(({ ...props }) => {
     case "password":
       return (
         <>
-          <CustomFormControl sx={{ m: 1 }} variant="filled">
+          <CustomFormControl sx={{ m: 1, width: props.passwordWidth || "100%" }} variant="filled">
             <CustomPasswordInput
               error={!Boolean(values.value) && props.error}
               InputLabelProps={{

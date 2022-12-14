@@ -10,7 +10,10 @@ export const AccountCard = ({
   actionContent,
   isAppoinment,
   isDashboard,
+  headerAlwaysShow = false,
+  hideFixedAction = false,
   textStyle = {},
+  contentSx = {},
   ...props
 }) => {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -28,7 +31,7 @@ export const AccountCard = ({
           borderRadius: 0,
         }}
       >
-        {(isDesktop || isAppoinment) && (
+        {(headerAlwaysShow || isDesktop || isAppoinment) && (
           <CardHeader
             className={
               isDashboard
@@ -78,12 +81,13 @@ export const AccountCard = ({
             borderColor: "#F3F3F3",
             px: { xs: 2, md: 4 },
             py: { xs: 2, md: 4 },
+            ...contentSx,
           }}
         >
           {children}
         </CardContent>
       </Card>
-      {!isDesktop && !isEditing && !isAppoinment ? (
+      {!hideFixedAction && !isDesktop && !isEditing && !isAppoinment ? (
         <div style={{ position: "fixed", bottom: 16, right: 16 }}>
           {actionContent}
         </div>

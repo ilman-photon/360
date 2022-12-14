@@ -36,6 +36,7 @@ import {
   editAppointmentScheduleData,
   rescheduleAppointment,
   resetAppointmentSchedule,
+  resetFilterData,
 } from "../../../store/appointment";
 import { fetchUser } from "../../../store/user";
 import { Api } from "../../api/api";
@@ -374,6 +375,11 @@ export default function ScheduleAppointmentPage() {
     dispatch(resetFormMessage());
 
     try {
+      if (!postBody.email) {
+        delete postBody.email;
+      } else if (!postBody.mobileNumber) {
+        delete postBody.mobileNumber;
+      }
       await api
         .getResponse("/ecp/patient/userregistration", postBody, "post")
         .then(() => {
@@ -486,6 +492,7 @@ export default function ScheduleAppointmentPage() {
       await router.push("/patient");
     }
     dispatch(resetAppointmentSchedule());
+    dispatch(resetFilterData());
   };
 
   const handleCancelReschedule = () => {

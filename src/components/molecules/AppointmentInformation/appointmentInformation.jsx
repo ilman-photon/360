@@ -125,7 +125,7 @@ export default function AppointmentInformation({ data }) {
               href={getProviderLocation(data.providerInfo.address)}
               target="_blank"
             >
-              Get directions
+              Get Directions
             </Link>
           </Box>
         </Box>

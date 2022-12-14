@@ -97,6 +97,10 @@ export default function RowRadioButtonsGroup({
                 <Radio
                   checked={props.value === option.value}
                   data-testid={props.testId}
+                  inputProps={{
+                    tabindex: -1,
+                    "aria-hidden": true,
+                  }}
                   sx={{
                     ".MuiSvgIcon-root": {
                       width: iconSize,
@@ -113,10 +117,11 @@ export default function RowRadioButtonsGroup({
                 "& .MuiRadio-root": {
                   padding: isCancelSchedule ? "2px 9px 2px 16px" : "9px",
                 },
-                ".MuiTypography-root":
-                  isInsuranceForm || isRegistrationForm || isCancelSchedule
-                    ? { fontSize: 16, color: "#242526" }
-                    : { fontSize: 14 },
+                ".MuiTypography-root": {
+                  fontSize: 16,
+                  color: "#242526",
+                  fontFamily: `"Libre Franklin", sans-serif`,
+                },
               }}
             />
           );

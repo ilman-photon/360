@@ -12,6 +12,7 @@ const SecurityQuestion = ({
   securityQuestionList = [],
   propsShowPostMessage = false,
   securityQuestionCount = 5,
+  updateMode = false,
 
   onClickedSubmitButton = () => {
     // This is intentional
@@ -19,10 +20,10 @@ const SecurityQuestion = ({
   onClickedSkipButton = () => {
     // This is intentional
   },
-  testIds,
+  testIds = {},
 }) => {
   const [questionVals, setQuestionVals] = useState([null, null, null]);
-  const [questionValsDua] = useState(securityQuestionList);
+  // const [questionValsDua] = useState(securityQuestionList);
 
   const handleQuestionValChange = (option, index) => {
     const newQuestionVals = questionVals;
@@ -31,10 +32,16 @@ const SecurityQuestion = ({
   };
 
   const getAvailableOptions = () => {
-    const availableOptionsLeft = questionValsDua;
-    return availableOptionsLeft.filter((questionOption) => {
+    // const availableOptionsLeft = questionValsDua;
+    console.log({ securityQuestionList });
+    // console.log({availableOptionsLeft})
+    const questions = securityQuestionList.filter((questionOption) => {
       return questionVals.indexOf(questionOption) === -1;
     });
+
+    console.log({ questions });
+
+    return questions;
   };
 
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
@@ -80,7 +87,9 @@ const SecurityQuestion = ({
     } else if (validate && !hasDuplicates(questionAnswer)) {
       onClickedSubmitButton(questionAnswer, checkSubmitMessage);
     } else {
-      onShowPostMessage("You must answer all security questions in order to proceed.");
+      onShowPostMessage(
+        "You must answer all security questions in order to proceed."
+      );
     }
   };
 
@@ -218,7 +227,8 @@ const SecurityQuestion = ({
         <Box
           style={styles.buttonContainer}
           sx={{
-            flexDirection: "row",
+            flexDirection: updateMode ? "row-reverse" : "row",
+            justifyContent: updateMode ? "flex-end" : "flex-start",
             ["@media (max-width: 992px)"]: {
               flexDirection: "column",
             },
@@ -238,7 +248,7 @@ const SecurityQuestion = ({
               },
             }}
           >
-            Submit
+            {updateMode ? "Update" : "Submit"}
           </StyledButton>
           <StyledButton
             theme="patient"
@@ -254,7 +264,7 @@ const SecurityQuestion = ({
               },
             }}
           >
-            Skip
+            {updateMode ? "Cancel" : "Skip"}
           </StyledButton>
         </Box>
       </form>
