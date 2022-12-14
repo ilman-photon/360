@@ -2,14 +2,15 @@ import AuthLayout from "../../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import { Api } from "../../api/api";
 import { Login as LoginComponent } from "../../../components/organisms/Login/login";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import constants from "../../../utils/constants";
 import { removeAuthCookies } from "../../../utils/authetication";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../../store/user";
 import store from "../../../store/store";
 import FloatingMessage from "../../../components/molecules/FloatingMessage/floatingMessage";
-import { setLoginMessage } from "../../../store";
+import { setLoading, setLoginMessage } from "../../../store";
+import { LoadingModal } from "../../../components/molecules/LoadingModal/LoadingModal";
 
 const api = new Api();
 const cookies = new Cookies();
@@ -58,6 +59,7 @@ function getPatientId(postBody, callback) {
 
 export const loginProps = {
   OnLoginClicked: function (postbody, _router, callback, dispatch) {
+    dispatch(setLoading(true))
     api
       .login(postbody)
       .then(function (response) {
@@ -115,6 +117,7 @@ export const loginProps = {
             userType: response.patientType,
           };
           localStorage.setItem("userData", JSON.stringify(adminData));
+          dispatch(setLoading(false))
           _router.push("/patient/admin/locked-accounts");
         } else {
           cookies.set("username", postbody.username, { path: "/patient" });
@@ -168,6 +171,7 @@ export const loginProps = {
                   description: "errorFailedLogin",
                 },
           });
+          dispatch(setLoading(false))
         }
       });
   },
@@ -182,11 +186,19 @@ export const loginProps = {
 
 export default function LoginPage() {
   const loginMessage = useSelector((state) => state.index.loginMessage);
-
+  const loading = useSelector((state) => state.index.loading)
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     removeAuthCookies();
   });
+
+  useEffect(() => {
+    return () => {
+      dispatch(setLoading(false))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
   const dispatch = useDispatch();
 
   return (
@@ -205,6 +217,7 @@ export default function LoginPage() {
         }}
       />
       <LoginComponent {...loginProps} dispatch={dispatch} />
+      <LoadingModal open={loading} />
     </>
   );
 }
