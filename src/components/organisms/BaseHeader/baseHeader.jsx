@@ -37,6 +37,7 @@ import Link from "next/link";
 import EcommerceButton from "../../atoms/EcommerceButton/ecommerceButton";
 import EcommerceButtonMobile from "../../atoms/EcommerceButton/ecommerceButtonMobile";
 import { StyledButton } from "../../atoms/Button/button";
+import { stringAvatar } from "../../../utils/avatar";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -355,11 +356,10 @@ export default function BaseHeader({
                     variant="text"
                     sx={styles.boxButtonStyles}
                     startIcon={
-                      <Avatar sx={{ background: "#003B4A" }}>
-                        {`${user.name.split(" ")[0][0]?.toUpperCase()}${user.name
-                          .split(" ")[1][0]
-                          .toUpperCase()}`}
-                      </Avatar>
+                      <Avatar
+                        {...stringAvatar(user.name)}
+                        sx={{ background: "#003B4A" }}
+                      ></Avatar>
                     }
                     data-testid="user-menu-open"
                     endIcon={<ExpandMoreIcon />}

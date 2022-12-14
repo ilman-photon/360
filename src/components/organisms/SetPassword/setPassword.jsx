@@ -76,7 +76,7 @@ const SetPasswordComponent = ({
     control,
   });
 
-const isTablet = useMediaQuery("(max-width: 1024px)");
+  const isTablet = useMediaQuery("(max-width: 1024px)");
 
   React.useEffect(() => {
     if (errors.password) {
