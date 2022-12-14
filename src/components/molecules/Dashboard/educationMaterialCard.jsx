@@ -8,7 +8,6 @@ import {
   Grid,
   IconButton,
 } from "@mui/material";
-import { useEffect } from "react";
 import moment from "moment";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
@@ -18,7 +17,7 @@ import Slider from "react-slick";
 import ImageFallback from "../../atoms/Image/image";
 import TableEmpty from "../../atoms/TableEmpty/tableEmpty";
 
-export default function EducationMaterialCard({}) {
+export default function EducationMaterialCard() {
   const [educationMaterialData, setEducationMaterialData] = React.useState([]);
   const isDesktop = useMediaQuery("(min-width: 700px)");
 

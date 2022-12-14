@@ -24,11 +24,10 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import CommonCard from "./commonCard";
 import { StyledTableCell } from "./prescriptions";
 
-export default function TestLabReportCard({}) {
+export default function TestLabReportCard() {
   const [testLabReportData, setTestLabReportData] = React.useState({});
   const isDesktop = useMediaQuery("(min-width: 700px)");
   const iconTestTube = "/icon-testtube.png";
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const rows = useSelector((state) => {

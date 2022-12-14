@@ -21,18 +21,14 @@ import { StyledButton } from "../../atoms/Button/button";
 import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
 import CommonCard, { onRenderButtonView } from "./commonCard";
-import { dataPayMyBill } from "../../../pages/api/dummy/payMyBill/dataDummy";
 import { Api } from "../../../pages/api/api";
 
-export default function PayMyBillCard({}) {
+export default function PayMyBillCard() {
   const [payMyBillData, setPayMyBillData] = React.useState({});
   const [patientCredit, setPatientCredit] = React.useState({});
   const isDesktop = useMediaQuery("(min-width: 700px)");
 
-  // const rows = [];
-  const rows = dataPayMyBill.entities;
-
-  const getPatientAccountBalance = async (data) => {
+  const getPatientAccountBalance = async () => {
     const api = new Api();
     api
       .getPatientAccountBalance()
@@ -44,7 +40,7 @@ export default function PayMyBillCard({}) {
       });
   };
 
-  const getInvoiceWithPatientDetails = async (data) => {
+  const getInvoiceWithPatientDetails = async () => {
     const api = new Api();
     api
       .getInvoiceWithPatientDetails()
@@ -61,8 +57,8 @@ export default function PayMyBillCard({}) {
   };
 
   useEffect(() => {
-    // getPatientAccountBalance()
-    // getInvoiceWithPatientDetails()
+    getPatientAccountBalance();
+    getInvoiceWithPatientDetails();
   }, []);
 
   function renderHighlightBox(title, value) {
@@ -113,7 +109,9 @@ export default function PayMyBillCard({}) {
           mode={"primary"}
           size={"small"}
           gradient={false}
-          onClick={() => {}}
+          onClick={() => {
+            //this is intentional
+          }}
           data-testid="schedule-btn"
           sx={{
             "&.sxButton": {
@@ -138,6 +136,22 @@ export default function PayMyBillCard({}) {
         {renderHighlightBox("Patient Due", patientCredit?.totalDueAmount)}
       </Stack>
     );
+  }
+
+  function getBalanceData(data) {
+    const summary = data.summary;
+    const totalBalance =
+      summary.totalRetail -
+      summary.totalInsurance -
+      summary.totalDiscount +
+      summary.totalTax -
+      summary.totalAdjustment -
+      summary.totalPayment;
+    const formatter = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+    return formatter.format(totalBalance);
   }
 
   function renderDekstopView() {
@@ -204,7 +218,9 @@ export default function PayMyBillCard({}) {
                     } ${payMyBillData.provider?.firstName} ${
                       payMyBillData.provider?.lastName
                     }`}</TableCell>
-                    <TableCell tabIndex={0}></TableCell>
+                    <TableCell tabIndex={0}>
+                      {getBalanceData(payMyBillData)}
+                    </TableCell>
                     <TableCell tabIndex={0}>
                       {onRenderButtonView(() => {}, isDesktop)}
                     </TableCell>
@@ -284,7 +300,9 @@ export default function PayMyBillCard({}) {
                 <Stack direction={"row"} sx={{ alignItems: "center" }}>
                   <Typography className={styles.titleStyle}>Balance</Typography>
                 </Stack>
-                <Typography className={styles.valueStyle}></Typography>
+                <Typography className={styles.valueStyle}>
+                  {getBalanceData(payMyBillData)}
+                </Typography>
               </Stack>
               <Divider sx={{ marginBottom: "18px" }} />
               {onRenderButtonView(() => {}, isDesktop)}

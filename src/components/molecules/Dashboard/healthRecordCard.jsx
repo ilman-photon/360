@@ -49,7 +49,7 @@ export function parseHealthRecordData(documentList, rows) {
   return healthRecordTemp;
 }
 
-export default function HealthRecordCard({}) {
+export default function HealthRecordCard() {
   const [healthRecordData, setHealthRecordData] = React.useState({});
   const isDesktop = useMediaQuery("(min-width: 700px)");
   const iconPrescription = "/icon-Health-Record.png";
@@ -176,7 +176,9 @@ export default function HealthRecordCard({}) {
                   </TableCell>
                   <TableCell tabIndex={0}>{onRenderCTA()}</TableCell>
                   <TableCell tabIndex={0}>
-                    {onRenderButtonView(() => {}, isDesktop)}
+                    {onRenderButtonView(() => {
+                      //this is intentional
+                    }, isDesktop)}
                   </TableCell>
                 </TableRow>
               </TableBody>
@@ -226,7 +228,9 @@ export default function HealthRecordCard({}) {
               }}
             >
               {onRenderCTA()}
-              {onRenderButtonView(() => {}, isDesktop)}
+              {onRenderButtonView(() => {
+                //this is intentional
+              }, isDesktop)}
             </Stack>
           </Stack>
         ) : (
