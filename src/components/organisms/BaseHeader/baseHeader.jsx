@@ -356,7 +356,7 @@ export default function BaseHeader({
                     sx={styles.boxButtonStyles}
                     startIcon={
                       <Avatar sx={{ background: "#003B4A" }}>
-                        {`${user.name.split(" ")[0][0].toUpperCase()}${user.name
+                        {`${user.name.split(" ")[0][0]?.toUpperCase()}${user.name
                           .split(" ")[1][0]
                           .toUpperCase()}`}
                       </Avatar>
