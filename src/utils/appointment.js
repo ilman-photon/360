@@ -810,10 +810,7 @@ export async function parseProviderListData(
         providerTemp.phoneNumber = provider.workPhone;
         providerTemp.image = provider?.profilePhoto?.digitalAsset || null;
 
-        providerTemp.coordinate = await getCoords(
-          googleApiKey,
-          provider.address
-        );
+        providerTemp.coordinate = await getCoords(googleApiKey, office);
 
         providerTemp.distance = await getDistanceMatrix(
           // { lat: 36.8493937, lng: -76.0106753 }, // Testing from 1456 Reynard Dr, Virginia Beach, VA 23451, USA
