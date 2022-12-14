@@ -162,6 +162,7 @@ export default function LoginSecurityPage() {
                 size="small"
                 onClick={handleSetupSecurityQuestionClicked}
                 aria-label={"Update Security Question"}
+                data-testid="update-security-question-btn"
               >
                 <Stack direction="row" alignItems="center" component="span">
                   <EditOutlined
@@ -223,6 +224,7 @@ export default function LoginSecurityPage() {
           <IconButton
             sx={{ position: "absolute", top: 16, right: 16, p: 0 }}
             onClick={() => setModalConfirmPasswordOpened(false)}
+            aria-label="close"
           >
             <Close />
           </IconButton>

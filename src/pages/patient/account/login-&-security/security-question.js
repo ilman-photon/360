@@ -53,24 +53,34 @@ const AccountSecurityQuestionPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleUpdateSecurityQuestion = async (data) => {
-    const api = new Api();
-    const postBody = {
-      SecurityQuestions: [data],
-      username: cookies.get("username"),
-    };
-    try {
-      await api.updateSecurityQuestion(postBody);
+  const handleUpdateSecurityQuestion = async (data, same) => {
+    if (same) {
+      await router.push("/patient/account/login-&-security");
       dispatch(
         setFormMessage({
           success: true,
-          content: "Security questions successfully updated",
+          content: "No updated made",
         })
       );
-      router.push("/patient/account/login-&-security");
-    } catch (error) {
-      console.error({ error });
-      dispatch(setGenericErrorMessage(error.responseType));
+    } else {
+      const api = new Api();
+      const postBody = {
+        SecurityQuestions: [data],
+        username: cookies.get("username"),
+      };
+      try {
+        await api.updateSecurityQuestion(postBody);
+        await router.push("/patient/account/login-&-security");
+        dispatch(
+          setFormMessage({
+            success: true,
+            content: "Security questions successfully updated",
+          })
+        );
+      } catch (error) {
+        console.error({ error });
+        dispatch(setGenericErrorMessage(error.responseType));
+      }
     }
   };
 
@@ -86,7 +96,12 @@ const AccountSecurityQuestionPage = () => {
           sx={{ cursor: "pointer" }}
         >
           <KeyboardArrowLeft sx={{ color: colors.teal20 }} />
-          <Typography variant="bodyRegularSemiBold" color={colors.teal20}>
+          <Typography
+            variant="bodyRegularSemiBold"
+            color={colors.teal20}
+            tabIndex={0}
+            role="link"
+          >
             Back to Login & Security
           </Typography>
         </Stack>
@@ -110,7 +125,7 @@ AccountSecurityQuestionPage.getLayout = function getLayout(page) {
     <Provider store={store}>
       <MfaLayout
         currentActivePage={"security-question"}
-        pageTitle="EyeCare Patient Portal - Login & Security"
+        customTitle="Security Questions page"
       >
         {page}
       </MfaLayout>

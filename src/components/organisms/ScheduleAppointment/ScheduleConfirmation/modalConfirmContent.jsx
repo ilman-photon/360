@@ -157,6 +157,7 @@ export default function ModalConfirmContent({
                   flexDirection: { xs: "column", md: "row" },
                   textAlign: { xs: "center", md: "left" },
                   padding: { xs: "8px", md: "12px 100px" },
+                  fontFamily: "Libre Franklin",
                 }}
                 aria-label={
                   isReschedule ? t("thanksBarReschedule") : t("thanksBar")
@@ -267,6 +268,9 @@ export default function ModalConfirmContent({
                 <Typography
                   aria-label={appointmentData.appointmentType || "Eye exam"}
                   tabIndex={"0"}
+                  sx={{
+                    fontFamily: "Libre Franklin",
+                  }}
                 >
                   {appointmentData.appointmentType || "Eye exam"}
                 </Typography>
@@ -323,7 +327,10 @@ export default function ModalConfirmContent({
                 >
                   <Typography
                     variant="bodyMedium"
-                    sx={{ color: colors.darkGreen }}
+                    sx={{
+                      color: colors.darkGreen,
+                      fontFamily: "Libre Franklin",
+                    }}
                     tabIndex={"0"}
                   >
                     {getName()}
