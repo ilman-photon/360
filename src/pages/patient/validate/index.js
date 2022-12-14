@@ -9,6 +9,7 @@ import { Api } from "../../api/api";
 import { colors } from "../../../styles/theme";
 import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
 import globalStyles from "../../../styles/Global.module.scss";
+import { setUsernameFromQuery } from "../update-password";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -36,8 +37,9 @@ export default function ValidatePage({ query }) {
       router.push(`/patient/login`);
     },
   });
-  const queryParam = query;
+  const queryParam = query || {};
   const router = useRouter();
+  queryParam.username = setUsernameFromQuery(router);
 
   const expiredOneTimeLinkDescription = function () {
     return (
