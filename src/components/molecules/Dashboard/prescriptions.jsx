@@ -65,6 +65,7 @@ export function renderCTAIcon(
       data-testid={"download-icon"}
       onClick={onClickDownload}
       aria-label={"Download option"}
+      sx={{ minWidth: "40px" }}
     >
       <Image alt="" src={iconDownload} width={15} height={15} />
     </Button>
@@ -76,6 +77,7 @@ export function renderCTAIcon(
       data-testid={"shared-icon"}
       aria-label={"Share option"}
       onClick={onClickShare}
+      sx={{ minWidth: "40px" }}
     >
       <Image alt="" src={iconShare} width={15} height={15} />
     </Button>
@@ -87,6 +89,7 @@ export function renderCTAIcon(
       onClick={onClickPrint}
       aria-label={"Print option"}
       data-testid={"print-icon"}
+      sx={{ minWidth: "40px" }}
     >
       <LocalPrintshopOutlinedIcon
         sx={{
@@ -524,7 +527,11 @@ export default function Prescriptions({
           >
             <Link
               className={styles.viewPrescriptionText}
-              sx={{ color: "#008294", fontFamily: "Inter" }}
+              sx={{
+                color: "#008294",
+                fontFamily: "Inter",
+                paddingRight: "7px",
+              }}
               tabIndex={0}
               {...getLinkAria("View prescriptions option")}
             >
@@ -583,7 +590,11 @@ export default function Prescriptions({
               >
                 <Link
                   className={styles.viewPrescriptionText}
-                  sx={{ color: "#008294", fontFamily: "Inter" }}
+                  sx={{
+                    color: "#008294",
+                    fontFamily: "Inter",
+                    paddingRight: "7px",
+                  }}
                   tabIndex={0}
                   {...getLinkAria("View prescriptions option")}
                 >
@@ -639,7 +650,11 @@ export default function Prescriptions({
               >
                 <Link
                   className={styles.viewPrescriptionText}
-                  sx={{ color: "#008294", fontFamily: "Inter" }}
+                  sx={{
+                    color: "#008294",
+                    fontFamily: "Inter",
+                    paddingRight: "7px",
+                  }}
                   tabIndex={0}
                   {...getLinkAria("View prescriptions option")}
                 >

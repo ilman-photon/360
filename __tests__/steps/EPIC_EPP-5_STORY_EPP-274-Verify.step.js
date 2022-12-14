@@ -242,8 +242,11 @@ defineFeature(feature, (test) => {
       /^user should validate the message "(.*)" with  "(.*)" Button$/,
       async (arg0, arg1) => {
         await sleep(65000);
-        await waitFor(() =>
-          container.getByText(/Your session expired. Please login again/i)
+        await waitFor(
+          () =>
+            container.getAllByText(
+              /Your session expired. Please login again/i
+            )[0]
         );
         const logoutBtn = container.getByTestId("session-ok-btn");
         expect(logoutBtn).toBeVisible();
@@ -318,8 +321,11 @@ defineFeature(feature, (test) => {
       /^user should validate the message "(.*)" with  "(.*)" Button$/,
       async (arg0, arg1) => {
         await sleep(65000);
-        await waitFor(() =>
-          container.getByText(/Your session expired. Please login again/i)
+        await waitFor(
+          () =>
+            container.getAllByText(
+              /Your session expired. Please login again/i
+            )[0]
         );
         const logoutBtn = container.getByTestId("session-ok-btn");
         expect(logoutBtn).toBeVisible();
@@ -406,8 +412,11 @@ defineFeature(feature, (test) => {
       /^user should validate the message "(.*)" with  "(.*)" Button$/,
       async (arg0, arg1) => {
         await sleep(65000);
-        await waitFor(() =>
-          container.getByText(/Your session expired. Please login again/i)
+        await waitFor(
+          () =>
+            container.getAllByText(
+              /Your session expired. Please login again/i
+            )[0]
         );
         const logoutBtn = container.getByTestId("session-ok-btn");
         expect(logoutBtn).toBeVisible();

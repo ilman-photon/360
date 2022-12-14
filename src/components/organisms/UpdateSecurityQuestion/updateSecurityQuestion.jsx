@@ -72,6 +72,7 @@ const UpdateSecurityQuestion = ({
     const newSelectedQuestion = Array.from(selectedQuestion);
     newSelectedQuestion[index] = option;
     setSelectedQuestion(newSelectedQuestion);
+    setValue(`answer-${index + 1}`, "");
   };
 
   useEffect(() => {
@@ -111,7 +112,19 @@ const UpdateSecurityQuestion = ({
         payload[question] = answer;
       }
     });
-    onUpdateSecurityQuestion(payload);
+
+    function arraysEqual(a, b) {
+      const a1 = Object.keys(a);
+      const b1 = Object.keys(b);
+      return (
+        a1.length == b1.length &&
+        a1.every(function (element, index) {
+          return element === b1[index];
+        })
+      );
+    }
+    let same = arraysEqual(payload, userQuestion[0]);
+    onUpdateSecurityQuestion(payload, same);
   };
 
   const showErrorMessage = () => {
@@ -125,7 +138,12 @@ const UpdateSecurityQuestion = ({
 
   return (
     <Stack spacing={3} sx={{ px: 3, py: 4 }}>
-      <Typography variant="headlineH2" color={colors.darkGreen}>
+      <Typography
+        variant="headlineH2"
+        color={colors.darkGreen}
+        tabIndex={0}
+        role="heading"
+      >
         Security Questions
       </Typography>
 
@@ -232,6 +250,7 @@ const UpdateSecurityQuestion = ({
                         inputProps={{
                           maxLength: 20,
                           autoComplete: "off",
+                          "aria-label": `Answer ${i + 1}`,
                         }}
                         value={value}
                         onChange={onChange}
@@ -254,12 +273,18 @@ const UpdateSecurityQuestion = ({
             <StyledButton
               size="small"
               mode="secondary"
+              data-testid="action-cancel-security-question-btn"
               onClick={onCancelUpdateSecurityQuestion}
-              sx={{ display: { xs: "none !important", sm: "block" } }}
+              sx={{ display: { xs: "none !important", sm: "flex !important" } }}
             >
               Cancel
             </StyledButton>
-            <StyledButton size="small" type="submit" sx={{ width: "100%" }}>
+            <StyledButton
+              data-testid="action-update-security-question-btn"
+              size="small"
+              type="submit"
+              sx={{ width: { xs: "100%", sm: "unset" } }}
+            >
               Update
             </StyledButton>
           </Stack>

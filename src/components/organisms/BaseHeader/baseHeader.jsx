@@ -37,6 +37,7 @@ import Link from "next/link";
 import EcommerceButton from "../../atoms/EcommerceButton/ecommerceButton";
 import EcommerceButtonMobile from "../../atoms/EcommerceButton/ecommerceButtonMobile";
 import { StyledButton } from "../../atoms/Button/button";
+import { stringAvatar } from "../../../utils/avatar";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -145,6 +146,7 @@ export default function BaseHeader({
   };
 
   const actionNotificationRedirect = (data) => {
+    const id = data.typeId;
     let path = "#";
     switch (data.type) {
       case "prescription":
@@ -155,15 +157,17 @@ export default function BaseHeader({
       case "appointment":
       case "appointment-second-reminder":
       case "appointment-one":
-        path = `/patient/appointments/detail-appointments/${data.details?.appointmentData?.appointmentId}`;
+        path = `/patient/appointments/detail-appointments/${id}`;
         break;
       case "test-result":
+      case "test/lab results":
         path = "/patient/account/medical-records?type=test-lab-result";
         break;
       case "message":
-        path = "/patient/message?conversationId=1234";
+        path = `/patient/message?conversationId=${id}`; // no test data yet
         break;
       case "invoice":
+        path = `/patient/pay-my-bill/summary-detail/${id}`;
         break;
       case "appointment-summary":
         break;
@@ -352,11 +356,10 @@ export default function BaseHeader({
                     variant="text"
                     sx={styles.boxButtonStyles}
                     startIcon={
-                      <Avatar sx={{ background: "#003B4A" }}>
-                        {`${user.name.split(" ")[0][0].toUpperCase()}${user.name
-                          .split(" ")[1][0]
-                          .toUpperCase()}`}
-                      </Avatar>
+                      <Avatar
+                        {...stringAvatar(user.name)}
+                        sx={{ background: "#003B4A" }}
+                      ></Avatar>
                     }
                     data-testid="user-menu-open"
                     endIcon={<ExpandMoreIcon />}

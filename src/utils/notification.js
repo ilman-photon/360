@@ -16,11 +16,19 @@ export const getPrescriptionType = (string) => {
     .trim();
 };
 
+const getAppointmentType = (string) => {
+  return string?.split("You have an")[1]?.split("appointment")[0]?.trim();
+};
+
+const getAppointmentTime = (string) => {
+  return string?.split("You have an")[1]?.split("appointment")[1]?.trim();
+};
+
 export const getIcon = (data) => {
   const getPrescriptionIcon = (string) => {
     const type = getPrescriptionType(string);
     switch (type) {
-      case "Isopto Carpine":
+      default:
         return <PrescriptionIcon width={24} height={24} />;
     }
   };
@@ -34,6 +42,7 @@ export const getIcon = (data) => {
     case "appointment":
       return <CalendarTodayIcon width={24} height={24} />;
     case "test-result":
+    case "test/lab results":
       return <TestTubeIcon width={24} height={24} />;
     case "message":
       return <MessageIcon width={24} height={24} />;
@@ -80,17 +89,20 @@ export const getDescription = (data) => {
     case "appointment":
       return (
         <>
-          You have an <b>eye test appointment</b> in 3 days.
+          You have an <b>{getAppointmentType(data.text)}</b> appointment{" "}
+          {getAppointmentTime(data.text)}
         </>
       );
     case "appointment-second-reminder":
     case "appointment-one":
       return (
         <>
-          You have an <b>eye test appointment</b> tomorrow.
+          You have an <b>{getAppointmentType(data.text)}</b> appointment{" "}
+          {getAppointmentTime(data.text)}
         </>
       );
     case "test-result":
+    case "test/lab results":
       return (
         <>
           Your <b>lab test results</b> are available now.

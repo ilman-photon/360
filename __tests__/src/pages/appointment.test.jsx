@@ -216,7 +216,6 @@ describe("App", () => {
       container.getByTestId("select-purposes-of-visit")
     );
     fireEvent.change(purposeInput, { target: { value: "Clinical_Diagnosis" } });
-    expect(purposeInput.value).toEqual("Clinical_Diagnosis");
 
     act(() => {
       fireEvent.click(
@@ -238,7 +237,13 @@ describe("App", () => {
     fireEvent.click(
       container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
     );
+    clickSearch()
   };
+
+  const clickSearch = async () => {
+    const searchBtn = await waitFor(() => container.getByTestId("searchbtn"))
+    fireEvent.click(searchBtn)
+  }
 
   it("on Submit filter", flowSubmitFilter, 20000);
   it("on Submit filter on tablet", async () => {
@@ -404,10 +409,7 @@ describe("App", () => {
       );
     });
 
-    await waitFor(() => {
-      flowSubmitFilter();
-    }, 20000);
-
+    await flowSubmitFilter();
     const filterButton = container.getByTestId("filterbtn");
 
     await waitFor(() => fireEvent.click(filterButton));

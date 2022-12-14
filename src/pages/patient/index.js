@@ -142,10 +142,10 @@ export default function HomePage({ googleApiKey }) {
       .then(function (response) {
         const prescriptionDataTemp = { ...response };
         if (response?.glasses?.length > 0) {
-          prescriptionDataTemp["glasses"] = [response.glasses[0]];
+          prescriptionDataTemp["glasses"] = response.glasses;
         }
         if (response?.contacts?.length > 0) {
-          prescriptionDataTemp["contacts"] = [response.contacts[0]];
+          prescriptionDataTemp["contacts"] = response.contacts;
         }
         setPrescriptionData(prescriptionDataTemp);
       })
@@ -189,7 +189,6 @@ export default function HomePage({ googleApiKey }) {
   useEffect(() => {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
-      router.push("/patient/login");
       setIsAuthenticated(false);
     } else {
       setIsAuthenticated(true);

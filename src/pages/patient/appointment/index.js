@@ -78,7 +78,7 @@ export default function Appointment({ googleApiKey }) {
     startDate: "",
     endDate: "",
   });
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isReschedule, setIsReschedule] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
@@ -210,33 +210,43 @@ export default function Appointment({ googleApiKey }) {
   }
 
   function onFilterByApplied(filterApplied, providerData) {
-    setFilterProviderData([...providerData]);
-    let filterResult = [...providerData];
-    for (const filter of filterApplied) {
-      if (filter.name === "Available Today" && filter.checked) {
-        filterResult = filterResult.filter((v) => v.filters.isAvailableToday);
-      }
+    let filterResult = [];
 
-      if (filter.type === "languange") {
-        filterResult = filterResult.filter(
-          (v) => v.filters.language.indexOf(filter.name) > -1
-        );
-      }
-
-      if (filter.type === "gender") {
-        filterResult = filterResult.filter(
-          (v) => v.filters.gender === filter.name
-        );
-      }
+    if (filterProviderData.length > 0) {
+      filterResult = [...filterProviderData];
+    } else {
+      filterResult = [...providerData];
     }
+    /**
+     * Filter Data Based on Filter selected
+     */
+    filterResult = filterResult.filter((filterData) => {
+      const { filters } = filterData;
+      /** Check Availability */
+      const findDataFilter = filterApplied.find((ft) => {
+        if (
+          filters.gender === ft.name ||
+          (ft.name === "Available Today" && filters.isAvailableToday) ||
+          ft.language?.indexOf(filter.name) > -1
+        )
+          return true;
+        return false;
+      });
+      return findDataFilter;
+    });
 
-    if (filterApplied.length === 0) {
+    if (filterApplied.length == 0) {
       if (filterProviderData.length > 0) {
         dispatch(setProviderListData(filterProviderData));
       } else {
         onCallSubmitFilterAPI(filterData, [], false, true);
       }
+      setFilterProviderData([]);
     } else {
+      //Set default data
+      if (filterProviderData.length == 0) {
+        setFilterProviderData([...providerData]);
+      }
       dispatch(setProviderListData(filterResult));
     }
   }
@@ -319,7 +329,32 @@ export default function Appointment({ googleApiKey }) {
         }
       })
       .catch(function () {
-        if (!isOverlay) {
+        if (!isResetProvider) {
+          const rangeDate = {
+            startDate: startDateRequest,
+            endDate: endDateRequest,
+          };
+
+          if (isOverlay) {
+            const providerOverview = getProvideOverlay(
+              providerDataOverview,
+              [],
+              startDateRequest,
+              endDateRequest
+            );
+            setRangeDateOverview(rangeDate);
+            setProviderDataOverview(providerOverview);
+          } else {
+            const providerTemp = updateProviderTimeSchedule(
+              providerListData,
+              [],
+              startDateRequest,
+              endDateRequest
+            );
+            dispatch(setProviderListData(providerTemp));
+            setRangeDate(rangeDate);
+          }
+        } else if (!isOverlay) {
           dispatch(setProviderListData([]));
         }
       })

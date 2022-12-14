@@ -245,3 +245,9 @@ input::-ms-clear {
     box-shadow: none;
   }
 }
+
+.MuiYearPicker-root {
+  .Mui-selected {
+    background-color: #007e8f !important;
+  }
+}

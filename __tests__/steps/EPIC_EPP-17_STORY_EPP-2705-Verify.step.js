@@ -198,7 +198,7 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByText("Medications")[0]);
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 

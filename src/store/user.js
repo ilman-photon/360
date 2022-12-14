@@ -212,6 +212,7 @@ const buildInsurancePostBody = (
       firstName: subscriberData.firstName,
       lastName: subscriberData.lastName,
       dob: subscriberDob, // MM/DD/YYYY,
+      _id: payload.memberID,
     },
     digitalAssets: {
       master_front: frontCardData?.uid
@@ -222,10 +223,6 @@ const buildInsurancePostBody = (
         : buildDigitalAssetObject(payload.backCard, "insurance"),
     },
   };
-
-  if (!isEdit) {
-    returnedData.subscriber._id = payload.memberID;
-  }
 
   return returnedData;
 };

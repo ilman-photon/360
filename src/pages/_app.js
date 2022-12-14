@@ -15,7 +15,7 @@ import { injectStore } from "./api/api";
 import Image from "next/image";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
-import { useForceLogout } from "../utils/customHook";
+import { useForceLogout, useRedirectLogin } from "../utils/customHook";
 
 function App({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
@@ -24,6 +24,11 @@ function App({ Component, pageProps }) {
   const getLayout = Component.getLayout || ((page) => page);
 
   const [isOnline, setOnline] = useState(true);
+
+  /**
+   * FIX BUGS EPP-11653
+   */
+  useRedirectLogin();
 
   // inject api.js with redux
   injectStore(store);
@@ -62,6 +67,7 @@ function App({ Component, pageProps }) {
           loading={"eager"}
         />
       </Box>
+
       {isLogin ? <SessionExpiredModal /> : <></>}
       <GenericErrorModal storeContext={store} />
       <Component {...pageProps} />

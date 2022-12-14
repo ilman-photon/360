@@ -506,15 +506,15 @@ const FilterHeading = ({
                       InputProps={{
                         ...params.InputProps,
                         endAdornment: (
-                          <InputAdornment position="end">
+                          <InputAdornment position="start">
                             <NearMeOutlinedIcon
                               sx={{
-                                width: "18px",
-                                height: "18px",
+                                width: "22px",
+                                height: "22px",
                                 right: "10px",
-                                margin: "0",
+                                // margin: "0",
                                 position: "absolute",
-                                top: "38%",
+                                top: "30%",
                               }}
                             />
                           </InputAdornment>

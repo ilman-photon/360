@@ -48,8 +48,10 @@ export function formatAppointmentDate(date) {
   if (!date) {
     return "-";
   } else {
+    const timezone = moment.tz.guess();
     const momentDate = new moment(date);
-    return momentDate.format("dddd, MMM DD, YYYY, [AT] h:mm [EST]");
+    const dateTimezone = momentDate.tz(timezone);
+    return dateTimezone.format("dddd, MMM DD, YYYY, [AT] h:mm A z");
   }
 }
 

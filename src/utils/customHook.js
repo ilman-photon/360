@@ -24,6 +24,34 @@ export function useLogin(admin = false) {
   return isAuthenticated;
 }
 
+/**
+ * FIX BUGS EPP-11653
+ */
+export function useRedirectLogin() {
+  const router = useRouter();
+  const pageWithoutAuthorize = [
+    "/patient/login",
+    "/patient/auth/create-account",
+    "/patient/appointment",
+    "/patient/schedule-appointment",
+    "/patient/validate",
+    "/patient/update-password",
+    "/patient/set-password",
+    "/patient/forgot-password",
+    "/patient/bio",
+    "/patient/mfa",
+  ];
+  const isPageWithoutAuthorize = pageWithoutAuthorize.includes(router.pathname);
+
+  useEffect(() => {
+    if (isPageWithoutAuthorize) return;
+    const cookies = new Cookies();
+    if (!cookies.get("authorized")) {
+      router.push("/patient/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
 export const useForceLogout = () => {
   const router = useRouter();
   // eslint-disable-next-line react-hooks/exhaustive-deps

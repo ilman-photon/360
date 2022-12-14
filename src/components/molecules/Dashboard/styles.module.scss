@@ -69,6 +69,11 @@
   width: 100%;
 }
 
+.halfBox {
+  width: 50%;
+  flex-basis: fit-content;
+}
+
 .quarteBox {
   width: 30%;
   @media print {
