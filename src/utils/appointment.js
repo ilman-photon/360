@@ -339,7 +339,9 @@ export function parsePrescriptionItemData(prescriptionData, key) {
     }
 
     itemData.date = itemData.date ? mmddyyDateFormat(itemData.date) : "N/A";
-    itemData.expirationDate = itemData.expirationDate ? mmddyyDateFormat(itemData.expirationDate) : "N/A";
+    itemData.expirationDate = itemData.expirationDate
+      ? mmddyyDateFormat(itemData.expirationDate)
+      : "N/A";
     data.push(itemData);
   }
 
