@@ -764,7 +764,7 @@ export default function Prescriptions({
           label={`Medications (${
             prescription?.medications?.active?.length > 0
               ? prescription?.medications?.active?.length
-              : ""
+              : "0"
           })`}
           data-testid={"menu-medication"}
           tabIndex={0}
