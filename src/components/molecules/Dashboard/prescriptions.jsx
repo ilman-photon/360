@@ -761,7 +761,11 @@ export default function Prescriptions({
           }}
         />
         <Tab
-          label={`Medications (${prescription?.medications?.active?.length})`}
+          label={`Medications (${
+            prescription?.medications?.active?.length > 0
+              ? prescription?.medications?.active?.length
+              : ""
+          })`}
           data-testid={"menu-medication"}
           tabIndex={0}
           icon={
