@@ -8,7 +8,11 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
-import { TEMP_DATA_GLASSES, TEMP_DATA_CONTACTS, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
+import {
+  TEMP_DATA_GLASSES,
+  TEMP_DATA_CONTACTS,
+  TEMP_DATA_MEDICATION,
+} from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -47,7 +51,7 @@ defineFeature(feature, (test) => {
     jest.useFakeTimers("modern");
     jest.setSystemTime(new Date(2022, 3, 1));
   });
-  
+
   test("EPIC_EPP-19_STORY_EPP-2709 - Verify User should be able to see the option to cancel the requested refill", ({
     given,
     when,
@@ -86,19 +90,20 @@ defineFeature(feature, (test) => {
         Cookies.result = "true";
         const domain = window.location.origin;
         mock
-        .onGet(
-          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, TEMP_DATA_MEDICATION);
+          .onGet(
+            `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+          )
+          .reply(200, TEMP_DATA_MEDICATION);
         mock
-        .onGet(
-          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-        )
-        .reply(200, TEMP_DATA_CONTACTS);
+          .onGet(
+            `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+          )
+          .reply(200, TEMP_DATA_CONTACTS);
         mock
-        .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-        )
-        .reply(200, TEMP_DATA_GLASSES);
+          .onGet(
+            `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+          )
+          .reply(200, TEMP_DATA_GLASSES);
         window.matchMedia = createMatchMedia("1920px");
 
         act(() => {
@@ -108,7 +113,8 @@ defineFeature(feature, (test) => {
             </Provider>
           );
         });
-        await waitFor(() => container.getByText("Medications"));
+        await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
         expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
       }
     );
@@ -117,9 +123,9 @@ defineFeature(feature, (test) => {
       "User should be able to view options to filter the prescriptions with details as below:",
       async () => {
         const medicationMenu = container.getByTestId("menu-medication");
-        fireEvent.click(medicationMenu)
-        await waitFor(()=> container.getByText(/Active Medications/i));
-          
+        fireEvent.click(medicationMenu);
+        await waitFor(() => container.getByText(/Active Medications/i));
+
         const filterButton = container.getByTestId("medication-filter-button");
         act(() => {
           fireEvent.click(filterButton);
