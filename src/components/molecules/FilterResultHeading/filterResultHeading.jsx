@@ -359,7 +359,7 @@ export const FilterResultHeading = ({
                 >
                   {filterData.location || "City, state, or zip code"}
                 </Typography>
-                {renderSubFilter}
+                <div className={styles.renderSubFilter}>{renderSubFilter}</div>
               </Button>
             </Box>
             <Box
