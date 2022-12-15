@@ -633,7 +633,7 @@ export default function AppointmentForm({
                       width: { xs: "100%", md: "70%" },
                     }}
                   >
-                    <Typography sx={{ ...styles.sigInInfoLabel, mb: 1 }}>
+                    <Typography sx={styles.optionalInfoLabel}>
                       {t("optional")}
                     </Typography>
                     <Typography sx={styles.passwordLabel}>
