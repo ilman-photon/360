@@ -15,6 +15,7 @@ import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
 import { fetchDocuments, resetDocuments } from "../../../../store/document";
 import { DOCUMENT_STATUS } from "../../../../utils/constants";
 import { useTranslation } from "next-i18next";
+import PatientAcccountCard from "../../../../components/molecules/ManagePatientAccount/PatientAcccountCard";
 
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -120,24 +121,57 @@ export default function MedicalRecordPage() {
     header: [
       {
         type: "text",
-        id: "name",
+        id: "data.testingOrder.orderDetails.testType.name",
         numeric: false,
-        disablePadding: false,
         label: "Procedure",
       },
       {
         type: "text",
-        id: "orderBy",
+        id: "data.testingOrder.orderDetails.orderingProvider.firstName",
         numeric: false,
-        disablePadding: false,
-        label: "Ordered By",
+        label: "Ordered by",
       },
       {
         type: "text",
-        id: "date",
+        id: "data.testingOrder.orderDetails.dateTime.startDate",
         numeric: false,
-        disablePadding: false,
         label: "Test Date",
+      },
+      {
+        type: "text",
+        id: "status",
+        numeric: false,
+        label: "Test Status",
+      },
+    ],
+    cells: [
+      {
+        type: "text",
+        valueKey: "data.testingOrder.orderDetails.testType.name",
+        sx: {
+          fontWeight: "400",
+        },
+      },
+      {
+        type: "text",
+        valueKey: "data.testingOrder.orderDetails.orderingProvider.firstName",
+        sx: {
+          fontWeight: "400",
+        },
+      },
+      {
+        type: "date",
+        valueKey: "data.testingOrder.orderDetails.dateTime.startDate",
+        sx: {
+          fontWeight: "400",
+        },
+      },
+      {
+        type: "text",
+        valueKey: "status",
+        sx: {
+          fontWeight: "400",
+        },
       },
     ],
   };
@@ -198,6 +232,10 @@ export default function MedicalRecordPage() {
     return state.document.documentList;
   });
 
+  const status = useSelector((state) => {
+    return state.document.status;
+  });
+
   useEffect(() => {
     let count = 0;
     if (rows && rows.length > 0) {
@@ -255,30 +293,12 @@ export default function MedicalRecordPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
-  const testLabConfig = isDesktop ? tableDesktopTestLab : tableMobileTestLab;
-  return (
-    <div className={styles.documentPageWrapper}>
-      <Controller
-        name="category"
-        control={control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
-          return (
-            <StyledSelect
-              options={categories}
-              onChange={(v) =>
-                router.push(
-                  `/patient/account/medical-record?type=${v.target.value}`
-                )
-              }
-              value={value}
-              label="Choose a category"
-              sx={{ m: 0, display: isDesktop ? "none" : "" }}
-            />
-          );
-        }}
-      />
 
-      {!isHideDisclaimer && watchedCategory === "test-lab-result" && (
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
+  const notifDocument = () => {
+    if (!isHideDisclaimer && watchedCategory === "test-lab-result") {
+      return (
         <div className={styles.disclaimerWrapper}>
           <div className={styles.disclaimerText}>
             <span
@@ -306,15 +326,42 @@ export default function MedicalRecordPage() {
             </IconButton>
           </div>
         </div>
-      )}
+      );
+    } else {
+      return null;
+    }
+  };
 
-      <Stack spacing={3} sx={{ mt: 1 }}>
-        {rows?.length > 0 ? (
+  const renderResults = () => {
+    if (isMobile && watchedCategory !== "care-plan-overview") {
+      return (
+        <PatientAcccountCard
+          config={tableMobileTestLab}
+          rows={rows}
+          showResultNum={false}
+          additionalContent={notifDocument}
+          cardSx={{
+            borderColor: "#ECECEC",
+            borderStyle: "solid",
+            mb: 1,
+          }}
+          sortSx={{
+            width: "100vw",
+            ml: -2,
+            mt: -2,
+            background: "#EFF6F7",
+          }}
+        />
+      );
+    } else {
+      return (
+        <>
+          {notifDocument()}
           <TableWithSort
             config={
               watchedCategory === "care-plan-overview"
                 ? tableCarePlan
-                : testLabConfig
+                : tableDesktopTestLab
             }
             rows={rows}
             onAssetDownload={handleAssetDownload}
@@ -323,9 +370,43 @@ export default function MedicalRecordPage() {
               tableProps: { "aria-label": `${watchedCategory}` },
             }}
           />
-        ) : (
-          <TableEmpty text={noResultText()} />
-        )}
+        </>
+      );
+    }
+  };
+
+  return (
+    <div className={styles.documentPageWrapper}>
+      <Controller
+        name="category"
+        control={control}
+        render={({ field: { onChange, value }, fieldState: { error } }) => {
+          return (
+            <StyledSelect
+              options={categories}
+              onChange={(v) =>
+                router.push(
+                  `/patient/account/medical-record?type=${v.target.value}`
+                )
+              }
+              value={value}
+              label="Choose a category"
+              sx={{
+                m: 0,
+                display:
+                  isDesktop || watchedCategory !== "care-plan-overview"
+                    ? "none"
+                    : "",
+              }}
+            />
+          );
+        }}
+      />
+
+      <Stack spacing={1}>
+        {rows?.length > 0 && status === "success"
+          ? renderResults()
+          : status !== "loading" && <TableEmpty text={noResultText()} />}
       </Stack>
     </div>
   );
