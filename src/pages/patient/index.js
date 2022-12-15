@@ -39,6 +39,7 @@ import HealthRecordCard from "../../components/molecules/Dashboard/healthRecordC
 import TestLabReportCard from "../../components/molecules/Dashboard/testLabReportCard";
 import PayMyBillCard from "../../components/molecules/Dashboard/payMyBillCard";
 import EducationMaterialCard from "../../components/molecules/Dashboard/educationMaterialCard";
+import { mmddyyDateFormat } from "../../utils/dateFormatter";
 
 export async function getStaticProps() {
   return {
@@ -95,6 +96,10 @@ export default function HomePage({ googleApiKey }) {
       });
   }
 
+  function compareDate(date) {
+    return new Date() > new Date(date);
+  }
+
   //Call API for submitFilter
   async function onCallSubmitFilterAPI(requestData) {
     const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
@@ -106,7 +111,9 @@ export default function HomePage({ googleApiKey }) {
       appointmentType: {
         code: selectedAppointmentType?.id || "ALL",
       },
-      currentDate: startDateRequest,
+      currentDate: compareDate(startDateRequest)
+        ? mmddyyDateFormat(new Date())
+        : startDateRequest,
       numDays: 6,
       days: ["ALL"],
       prefTime: "ALL",
@@ -117,7 +124,7 @@ export default function HomePage({ googleApiKey }) {
       .then(async function (response) {
         const parseProviderData = await parseProviderListData(
           response,
-          postBody.currentDate,
+          startDateRequest,
           endDateRequest,
           googleApiKey,
           currentCoordinate
