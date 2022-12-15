@@ -3,8 +3,10 @@ import { colors } from "../../../styles/theme";
 export const styles = {
   examFor: {
     fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+    fontWeight: 500,
   },
   primaryText: {
+    fontFamily: "Libre Franklin",
     color: "#0095A9",
     fontSize: "18px",
     fontWeight: "600",
@@ -52,6 +54,15 @@ export const styles = {
     lineHeight: "1.167",
     letterSpacing: "-0.01562em",
   },
+  optionalInfoLabel: {
+    fontFamily: "Libre Franklin",
+    fontWeight: "600",
+    fontSize: "16px",
+    color: "#000000",
+    lineHeight: "1.167",
+    letterSpacing: "-0.01562em",
+    marginBottom: "8px",
+  },
   link: {
     color: "#008294",
     cursor: "pointer",
@@ -97,7 +108,7 @@ export const styles = {
     textDecorationLine: "underline",
     textTransform: "capitalize",
     fontFamily: "Libre Franklin",
-    fontWeight: "500",
+    fontWeight: 500,
     fontSize: "16px",
   },
   scheduledText: {

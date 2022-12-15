@@ -108,7 +108,7 @@ const InfoWindowContent = ({
       </Grid>
 
       <Stack alignItems="center" spacing={2}>
-        <Stack spacing={2} maxWidth="100%">
+        <Stack spacing={2} maxWidth="100%" width={"100%"}>
           {data[counter - 1]
             ? data[counter - 1].availability.map((v, idx) => {
                 return (

@@ -338,8 +338,8 @@ export function parsePrescriptionItemData(prescriptionData, key) {
       }
     }
 
-    itemData.date = mmddyyDateFormat(itemData.date);
-    itemData.expirationDate = mmddyyDateFormat(itemData.expirationDate);
+    itemData.date = itemData.date ? mmddyyDateFormat(itemData.date) : "N/A";
+    itemData.expirationDate = itemData.expirationDate ? mmddyyDateFormat(itemData.expirationDate) : "N/A";
     data.push(itemData);
   }
 
@@ -510,7 +510,7 @@ function parsePrescriptionDetailsData(prescriptionDetails, type) {
       data.push(
         createContactDataTable({
           eye: prescription.eye || "-",
-          sph: prescription.eye || "-",
+          sph: prescription.sph || "-",
           bc: prescription.bc || "-",
           cyl: prescription.cyl || "-",
           axis: prescription.axis || "-",
@@ -810,10 +810,7 @@ export async function parseProviderListData(
         providerTemp.phoneNumber = provider.workPhone;
         providerTemp.image = provider?.profilePhoto?.digitalAsset || null;
 
-        providerTemp.coordinate = await getCoords(
-          googleApiKey,
-          provider.address
-        );
+        providerTemp.coordinate = await getCoords(googleApiKey, office);
 
         providerTemp.distance = await getDistanceMatrix(
           // { lat: 36.8493937, lng: -76.0106753 }, // Testing from 1456 Reynard Dr, Virginia Beach, VA 23451, USA
