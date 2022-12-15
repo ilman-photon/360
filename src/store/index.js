@@ -19,7 +19,7 @@ const DEFAULT_PAGE_MESSAGE = {
 };
 
 const INITIAL_STATE = {
-  loading: false,
+  loading: true,
   counter: 0,
   formMessage: DEFAULT_FORM_MESSAGE,
   pageMessage: DEFAULT_PAGE_MESSAGE,

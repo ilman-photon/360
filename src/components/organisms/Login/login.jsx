@@ -16,6 +16,7 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { colors } from "../../../styles/theme";
 const constants = require("../../../utils/constants");
+import { LoadingModal } from "../../molecules/LoadingModal/LoadingModal";
 
 export function Login({
   OnLoginClicked,
@@ -25,6 +26,7 @@ export function Login({
   dispatch,
 }) {
   const [postMessage, setPostMessage] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
   const router = useRouter();
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "Login",
@@ -33,10 +35,12 @@ export function Login({
   const { LOGIN_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm();
   const onSubmit = ({ username, password }) => {
+    setLoading(true);
     OnLoginClicked({ username, password }, router, checkMessage, dispatch);
   };
 
   const checkMessage = (message) => {
+    message !== "success" && setLoading(false);
     setPostMessage(message);
   };
 
@@ -255,6 +259,7 @@ export function Login({
           </Stack>
         </Box>
       )}
+      <LoadingModal open={loading} />
     </>
   );
 }
