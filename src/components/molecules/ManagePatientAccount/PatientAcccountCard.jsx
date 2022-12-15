@@ -33,6 +33,10 @@ export default function PatientAcccountCard({
   onActionClicked = () => {
     //this is intentional
   },
+  additionalContent = () => <></>,
+  showResultNum = true,
+  cardSx = {},
+  sortSx = {},
 }) {
   const [activeMenuData, setActiveMenuData] = React.useState({});
   const [selectedSort, setSelectedSort] = React.useState("");
@@ -143,6 +147,7 @@ export default function PatientAcccountCard({
               mb: 2,
               borderRadius: 2,
               background: "#FFFFFF",
+              ...cardSx,
             }}
             key={`patient-${i}`}
           >
@@ -182,6 +187,7 @@ export default function PatientAcccountCard({
                           color: "#191919",
                           textAlign: "end",
                           flex: 1,
+                          ...cell.sx,
                         }}
                       >
                         {ref(item, cell.valueKey)}
@@ -222,6 +228,7 @@ export default function PatientAcccountCard({
                           color: "#191919",
                           flex: 1,
                           textAlign: "end",
+                          ...cell.sx,
                         }}
                       >
                         {moment(ref(item, cell.valueKey)).format("MM/DD/YYYY")}
@@ -340,6 +347,7 @@ export default function PatientAcccountCard({
           backgroundColor: "#f3f5f6",
           gap: 2,
           mt: 0,
+          ...sortSx,
         }}
       >
         <Typography
@@ -377,12 +385,15 @@ export default function PatientAcccountCard({
           </Select>
         )}
       </Stack>
-      <Typography
-        variant="headlineH4"
-        sx={{ fontSize: "16px", p: 2, background: "white", mb: 0.1 }}
-      >
-        {`${rows.length} Results found using your search criteria`}
-      </Typography>
+      {additionalContent()}
+      {showResultNum && (
+        <Typography
+          variant="headlineH4"
+          sx={{ fontSize: "16px", p: 2, background: "white", mb: 0.1 }}
+        >
+          {`${rows.length} Results found using your search criteria`}
+        </Typography>
+      )}
 
       <InfiniteScroll
         pageStart={0}
