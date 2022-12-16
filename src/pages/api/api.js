@@ -1,6 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 import { setGenericErrorMessage } from "../../store";
+import { getLocationName } from "../../utils/appointment";
 import constants from "../../utils/constants";
 import { Regex } from "../../utils/regex";
 
@@ -347,8 +348,14 @@ export class Api {
   }
 
   submitFilter(locationName, postBody) {
-    const url = `/ecp/appointments/available-slot?searchText=${locationName}`;
+    const tempLocation = getLocationName(locationName);
+    const url = `/ecp/appointments/available-slot?searchText=${tempLocation}`;
     return this.getResponse(url, postBody, "put");
+  }
+
+  getSuggestionLocation(locationName) {
+    const url = `/ecp/appointments/getLocationsBasedOnSearch?search.query=${locationName}`;
+    return this.getResponse(url, {}, "get", false);
   }
 
   getPrescriptionMedication(showError = true) {

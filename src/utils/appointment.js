@@ -938,3 +938,12 @@ export async function onCallSubmitFilterAPI(
       router.push("/patient/appointment");
     });
 }
+
+export function getLocationName(location) {
+  if (location.indexOf(",") > -1) {
+    const tempLocation = location.split(",");
+    return tempLocation[0];
+  } else {
+    return location;
+  }
+}
