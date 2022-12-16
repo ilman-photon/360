@@ -15,7 +15,7 @@ export const setUsernameFromQuery = function (route) {
     const queryString = route.asPath.substr(route.asPath.indexOf("?") + 1);
     splitQueryString = JSON.parse(
       '{"' +
-        decodeURI(queryString)
+        decodeURIComponent(queryString)
           .replace(/"/g, '\\"')
           .replace(/&/g, '","')
           .replace(/=/g, '":"') +
