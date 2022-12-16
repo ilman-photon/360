@@ -187,6 +187,7 @@ export function onRenderInputInsurance(
       sx={{
         display: "flex",
         alignItems: "flex-end",
+        height: "100%",
       }}
       aria-label="Insurance carrier field"
       tabIndex={0}
@@ -253,6 +254,10 @@ export function renderInsuranceCarrier(
               {...isOpenProps}
               sx={{
                 paddingLeft: "15px",
+                height: "100%",
+                ".custom-input": {
+                  height: "93%",
+                },
               }}
               freeSolo={true}
               id="insurance-carrier"
@@ -423,6 +428,7 @@ const FilterHeading = ({
         sx={{
           visibility: isError ? "visible" : "hidden",
           fontSize: isDesktop ? "16px" : "14px",
+          color: "#F98F85 !important",
         }}
         tabIndex={0}
       >
@@ -457,6 +463,7 @@ const FilterHeading = ({
               sx={{
                 width: "75%",
                 overflow: "hidden",
+                height: "100%",
               }}
             >
               <Autocomplete
@@ -483,6 +490,7 @@ const FilterHeading = ({
                 sx={{
                   background: "#FFF",
                   borderRadius: "100%",
+                  height: "100%",
                 }}
                 renderInput={(params) => (
                   <Box
@@ -491,6 +499,7 @@ const FilterHeading = ({
                       display: "flex",
                       alignItems: "flex-end",
                       paddingLeft: "15px",
+                      height: "100%",
                     }}
                     aria-label="City, state, or zip code field"
                     tabIndex={0}
@@ -521,6 +530,7 @@ const FilterHeading = ({
                         ),
                       }}
                       sx={{
+                        height: "93%",
                         borderTopLeftRadius: "50px",
                         borderTopRightRadius: "50px",
                         [muiInputRoot]: {
@@ -532,8 +542,8 @@ const FilterHeading = ({
                           fontWeight: "400",
                           fontSize: "16px",
                           lineHeight: "18px",
-                          color: "#303030",
                           width: "75%",
+                          color: `${isEmptyLocation ? "#B93632" : "#303030"}`,
                         },
                       }}
                       maxLength={50}
@@ -645,6 +655,7 @@ const FilterHeading = ({
               sx={{
                 width: isDesktop ? "70%" : "auto",
                 overflow: "hidden",
+                height: "100%",
               }}
             >
               <Box
@@ -654,6 +665,7 @@ const FilterHeading = ({
                   background: "#fff",
                   marginLeft: "15px",
                   marginTop: isDesktop ? "0px" : "16px",
+                  height: "100%",
                 }}
               >
                 <VisibilityOutlinedIcon
@@ -667,6 +679,7 @@ const FilterHeading = ({
                 <SelectOptionButton
                   sx={{
                     fontSize: "16px",
+                    height: "93%",
                     [muiInputRoot]: {
                       border: "0px solid #bbb",
                       backgroundColor: "#fff",
@@ -680,7 +693,9 @@ const FilterHeading = ({
                       fontSize: "16px",
                       lineHeight: "18px",
                       fontStyle: "normal",
-                      color: "#303030",
+                      color: `${
+                        isEmptyAppointmentType ? "#B93632" : "#303030"
+                      }`,
                     },
                     ".MuiInputLabel-shrink": {
                       color: "#003B4A !important",
@@ -788,7 +803,7 @@ const FilterHeading = ({
                 gradient={false}
                 data-testid={APPOINTMENT_TEST_ID.searchbtn}
                 sx={{
-                  height: isEmptyLocation ? "54px" : "52px",
+                  height: "100% !important",
                   background: "#BFE4E8",
                   border: "0px",
                   cursor: "pointer",
