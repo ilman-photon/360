@@ -159,6 +159,9 @@ export default function InsuranceForm({
   };
 
   const onSubmit = (data) => {
+    if (!isDOB(new Date(data?.subscriberData?.dob))) {
+      data.subscriberData.dob = null;
+    }
     OnSaveClicked(data);
   };
 
