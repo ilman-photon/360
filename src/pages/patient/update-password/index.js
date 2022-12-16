@@ -21,6 +21,12 @@ export const setUsernameFromQuery = function (route) {
           .replace(/=/g, '":"') +
         '"}'
     );
+    if (
+      splitQueryString.username &&
+      splitQueryString.username.indexOf(" ") > -1
+    ) {
+      splitQueryString.username = splitQueryString?.username.replace(/ /g, "+");
+    }
   } catch (error) {
     console.error("URL parsedError");
   }
