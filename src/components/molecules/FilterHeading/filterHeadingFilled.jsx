@@ -32,6 +32,7 @@ const FilterHeadingFilled = ({
     // This is intentional
   },
   currentCity = "",
+  googleApiKey = "",
 }) => {
   const { handleSubmit, control, setValue, watch } = useForm({
     defaultValues: { ...filterData },
@@ -291,6 +292,7 @@ const FilterHeadingFilled = ({
           insuranceCarrierData,
           isDesktop: false,
           onChangeLocation,
+          googleApiKey,
         }}
       />
     );

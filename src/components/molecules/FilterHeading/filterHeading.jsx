@@ -27,6 +27,7 @@ import Image from "next/image";
 import CustomizedDialogs from "../../molecules/FilterAppointmentDialog/dialog";
 import { convertToDate } from "../../../utils/dateFormatter";
 import { Regex } from "../../../utils/regex";
+import { Api } from "../../../pages/api/api";
 
 export const imageSrcState = "/bx_insurance_card.png";
 export const muiInputRoot = "& .MuiFilledInput-root";
@@ -369,6 +370,7 @@ const FilterHeading = ({
   isFixed = true,
   currentCity = "",
   isDashboard = false,
+  googleApiKey = " ",
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control, setValue } = useForm({
@@ -380,7 +382,26 @@ const FilterHeading = ({
   const [open, setOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
   const [contentTypeDialog, setContentTypeDialog] = React.useState("");
+  const [suggestionData, setSuggestionData] = useState([]);
   const mapsData = isGeolocationEnabled ? ["Use my current location"] : [];
+
+  function getPlaceSuggestion(value) {
+    const api = new Api();
+    api
+      .getSuggestionLocation(value)
+      .then(function (response) {
+        if (response && response.locationData?.length > 0) {
+          const listData = [];
+          for (const item of response.locationData) {
+            listData.push(`${item.city}, ${item.state}, ${item.zip}`);
+          }
+          setSuggestionData(listData);
+        }
+      })
+      .catch(function () {
+        setSuggestionData([]);
+      });
+  }
 
   const onSubmit = (data) => {
     let isError = false;
@@ -471,6 +492,7 @@ const FilterHeading = ({
                 id="location"
                 data-testid={APPOINTMENT_TEST_ID.locationInput}
                 value={value}
+                options={[...mapsData, ...suggestionData]}
                 onChange={(_e, data) => {
                   onChange(data);
                 }}
@@ -486,7 +508,6 @@ const FilterHeading = ({
                   if (Regex.specialRegex.test(e.key)) e.preventDefault();
                 }}
                 disableClearable={true}
-                options={mapsData}
                 sx={{
                   background: "#FFF",
                   borderRadius: "100%",
@@ -512,6 +533,10 @@ const FilterHeading = ({
                       aria-hidden={true}
                       label="City, state, or zip code"
                       tabIndex={-1}
+                      onChange={(event) => {
+                        onChange(event.target.value);
+                        getPlaceSuggestion(event.target.value);
+                      }}
                       InputProps={{
                         ...params.InputProps,
                         endAdornment: (
@@ -1024,6 +1049,8 @@ const FilterHeading = ({
           purposeOfVisitData,
           insuranceCarrierData,
           isDesktop,
+          isGeolocationEnabled,
+          googleApiKey,
         }}
       />
     );
