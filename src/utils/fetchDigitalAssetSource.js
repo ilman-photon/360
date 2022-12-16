@@ -18,7 +18,7 @@ async function print(url) {
   const response = await axios.get(url, { responseType: "blob" });
   const blobURL = URL.createObjectURL(response.data);
   const a = document.createElement("a");
-  a.href = `javascript: var w=window.open("${blobURL}"); function printContent() {w.print(); w.focus(); }; printContent(); w.close()`;
+  a.href = `javascript: var w=window.open("${blobURL}"); function printContent() {w.print(); w.focus(); }; printContent();`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);

@@ -528,7 +528,7 @@ export default function TableWithSort({
               {MyOptions.map((more, moreIdx) => (
                 <MenuItem
                   key={`menu-${moreIdx}`}
-                  onClick={() => handleMoreMenu(more.id, row)}
+                  onClick={() => handleMoreMenu(more.id, activeMenuData)}
                   aria-label={`${more.ariaLabel}`}
                   aria-live="polite"
                 >

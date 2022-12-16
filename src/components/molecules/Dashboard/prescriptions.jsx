@@ -694,7 +694,7 @@ export default function Prescriptions({
         }}
       >
         <Tab
-          label="Glasses"
+          label={`Glasses (${prescription?.glasses?.length})`}
           data-testid={"menu-glasses"}
           tabIndex={0}
           icon={
@@ -728,7 +728,7 @@ export default function Prescriptions({
           }}
         />
         <Tab
-          label="Contacts"
+          label={`Contacts (${prescription?.contacts?.length})`}
           data-testid={"menu-contact"}
           tabIndex={0}
           icon={
@@ -762,7 +762,11 @@ export default function Prescriptions({
           }}
         />
         <Tab
-          label="Medications"
+          label={`Medications (${
+            prescription?.medications?.active?.length > 0
+              ? prescription?.medications?.active?.length
+              : "0"
+          })`}
           data-testid={"menu-medication"}
           tabIndex={0}
           icon={

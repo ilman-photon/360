@@ -180,6 +180,7 @@ export const FilterResult = ({
             isGeolocationEnabled={isGeolocationEnabled}
             onChangeLocation={onChangeLocation}
             currentCity={currentCity}
+            googleApiKey={googleApiKey}
           />
           <Stack
             direction={"row"}

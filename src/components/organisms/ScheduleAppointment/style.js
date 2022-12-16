@@ -10,7 +10,6 @@ export const styles = {
     color: "#0095A9",
     fontSize: "18px",
     fontWeight: "600",
-    fontFamily: "Libre Franklin",
   },
   switchButton: {
     border: "1px solid #205A63",
