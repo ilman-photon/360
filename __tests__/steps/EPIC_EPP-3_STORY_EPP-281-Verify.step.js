@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
@@ -7,6 +7,12 @@ import "@testing-library/jest-dom";
 import Cookies from "universal-cookie";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
+import { Login } from "../../src/components/organisms/Login/login";
+import { renderWithProviders } from "../src/utils/test-util";
+import { TEST_ID } from "../../src/utils/constants";
+import { renderLogin, renderForgotPassword, clickContinueForgot, navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
+import UpdatePasswordPage from "../../src/pages/patient/update-password";
+import AuthPage from "../../src/pages/patient/login";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -32,17 +38,62 @@ const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-281.feature"
 );
 
-defineFeature(feature, (test) => {
-  let container;
-  beforeEach(async () => {
-    Cookies.result = { mfa: true };
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+
+const launchURL = () => {
+  const mockOnLoginClicked = jest.fn((data, route, callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+}
+
+const navigateToPatientPortalApp = () => {
+  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  act(() => {
+    container = renderWithProviders(<AuthPage />, {
+      container: document.body.appendChild(element),
+      legacyRoot: true,
+    });
+  });
+}
+
+const renderMFA = async () => {
+  cleanup();
+  Cookies.result = { mfa: true };
+  const userData = {
+    communicationMethod: {
+      email: "user1@photon.com",
+      phone: "9998887772",
+    },
+    ResponseCode: 4000,
+    ResponseType: "success",
+  };
+  mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+  act(() => {
     container = render(
       <Provider store={store}>
         <MfaPage />
-      </Provider>
+      </Provider>,
+      {
+        container: document.body.appendChild(element),
+        legacyRoot: true,
+      }
     );
-    await waitFor(() => container.getByText("setMFATitle"));
   });
+  await waitFor(() => container.getByText("backToLoginBtn"));
+  expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
+}
+
+defineFeature(feature, (test) => {
+  let container;
+  beforeEach(async () => {
+    cleanup();
+  });
+
   test('EPIC_EPP-3_STORY_EPP-281 - user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail id', ({
     given,
     and,
@@ -50,45 +101,54 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the email$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalHome();
     });
   });
 
@@ -99,41 +159,50 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the email$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     then(/^user should see the page loads within "(.*)"$/, (arg0) => {
@@ -141,7 +210,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalHome();
     });
   });
 
@@ -152,41 +221,50 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the phone number$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     and("user clicks on the console", () => {
@@ -205,41 +283,50 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the email$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     then("user should see the appropriate error message", () => {
@@ -254,41 +341,50 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the email$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     then("user should see the appropriate error message", () => {
@@ -303,45 +399,54 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the phone number$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalHome();
     });
   });
 
@@ -352,41 +457,50 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the phone number$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     then(/^user should see the page loads within "(.*)"$/, (arg0) => {
@@ -394,7 +508,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalHome();
     });
   });
 
@@ -405,41 +519,50 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the phone number$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     then("user should see the appropriate error message", () => {
@@ -454,41 +577,50 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the phone number$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     then("user should see the appropriate error message", () => {
@@ -503,41 +635,50 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given(/^user launch the "(.*)" url$/, (arg0) => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp();
     });
 
-    when(/^user lands onto "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+    when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+      cleanup();
+      container = await renderLogin();
     });
 
     then(
       /^user see (.*) and (.*) fields that was MFA was set up$/,
-      (arg0, arg1) => {
-        expect(true).toBeTruthy();
+      async (arg0, arg1) => {
+        renderMFA();
       }
     );
 
     and(/^user should fill valid (.*) field with the email$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(/^user should fill valid (.*) field$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByTestId(/loc_RadioEmail/i);
+      fireEvent.change(usernameField, {
+        target: { label: "patient1@email.com" },
+      });
+      expect(usernameField.label).toEqual("patient1@email.com");
     });
 
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
       }
     );
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
     then(/^user should see the page loads within "(.*)"$/, (arg0) => {
@@ -545,7 +686,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalHome();
     });
 
     when("user clicks on the console", () => {

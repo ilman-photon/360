@@ -38795,3 +38795,531 @@ export const medicationsRecordDocoumentMock = {
     }
   }
 }
+
+export const MOCK_PAST = {
+  "count": 1,
+  "entities": [
+    {
+      "appointmentType": {
+        "code": "Glaucome_Appointment",
+        "name": "Glaucoma_Appointment"
+      },
+      "patient": {
+        "firstName": "demo",
+        "lastName": "nikita",
+        "dob": "11/25/1992",
+        "age": "29",
+        "sex": "1",
+        "patientDetails": {
+          "isFlagNew": false,
+          "isFlagInCollection": false,
+          "isFlagBadCheck": false,
+          "isFlagDeceased": false,
+          "isFlagChartless": false,
+          "_id": "bc5335d3-e802-47bc-afb5-d30241b4ea66",
+          "_version": "209451a6-2b8b-4729-8c0a-2859beeef5b5",
+          "_created": "Jul 4, 2022, 4:42:40 AM",
+          "_updated": "Aug 25, 2022, 10:31:54 AM",
+          "_createdBy": {
+            "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            "_links": {
+              "self": {
+                "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+              }
+            }
+          },
+          "_updatedBy": {
+            "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            "_links": {
+              "self": {
+                "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+              }
+            }
+          }
+        },
+        "isEmergencyContactAvailable": false,
+        "contactPrefrence": false,
+        "specialService": {
+          "isHearingImpaired": false,
+          "isMobilityImpaired": false,
+          "interpreterService": {
+            "interpreterServiceRequired": false,
+            "interpreterRequired": false
+          }
+        },
+        "status": "UPDATED",
+        "_id": "fd7beec7-1a6a-49f2-afd9-ebca6fb78568",
+        "_version": "22dc0908-8d27-46e4-b5ec-6035e7e11f33",
+        "_created": "Jul 4, 2022, 4:42:40 AM",
+        "_updated": "Aug 25, 2022, 10:31:54 AM",
+        "_createdBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        },
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
+      },
+      "provider": {
+        "firstName": "Steve",
+        "lastName": "Adam",
+        "designation": "Dr",
+        "inHouse": false,
+        "workPhone": "3219898898",
+        "rating": 9,
+        "profilePhoto": {
+          "digitalAsset": {
+            "uid": "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+            "fileName": "test",
+            "assetUrl": "/v1/patient",
+            "_version": "d72b0b16-99ab-4ae4-aba3-13b81930b77a"
+          }
+        },
+        "address": {
+          "addressLine1": "800 14th St Apt B",
+          "city": "Virginia Beach",
+          "state": "VA",
+          "zip": "23451"
+        },
+        "_id": "19f1c186-37a8-46ef-a731-0a1f022be782",
+        "_version": "6b5fb285-bcca-4a3f-8a47-369fe2babf8b",
+        "_updated": "Oct 17, 2022, 5:53:20 PM",
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
+      },
+      "office": {
+        "name": "Ballwin",
+        "_id": "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        "_version": "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        "_updated": "Sep 17, 2022, 10:14:52 AM",
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
+      },
+      "appointmentDate": "09/15/2022",
+      "appointmentTime": "19:20",
+      "appointmentEndTime": "19:25",
+      "appointmentLength": 5,
+      "isConfirmed": true,
+      "confirmationDetail": {
+        "confirmationDate": "09/15/2022",
+        "confirmationTime": "16:51",
+        "confirmationBy": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+      },
+      "appointmentHistory": [],
+      "state": {
+        "subState": {
+          "subState": "UPDATED",
+          "_id": "42dc9428-c7a0-4c71-94bb-b1240b45d0f5",
+          "_version": "ccc0145a-0975-42c9-94b1-94028a834438",
+          "_created": "Sep 15, 2022, 9:30:00 PM",
+          "_updated": "Sep 15, 2022, 9:30:00 PM",
+          "_createdBy": {
+            "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            "_links": {
+              "self": {
+                "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+              }
+            }
+          }
+        },
+        "state": "NO_SHOW",
+        "_id": "5252e529-1d52-4490-981a-3693a9388a87",
+        "_version": "aa52376a-93b8-4362-ac1a-c707b17b2d9d",
+        "_created": "Sep 15, 2022, 11:21:05 AM",
+        "_updated": "Sep 15, 2022, 9:30:00 PM",
+        "_createdBy": {
+          "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+            }
+          }
+        },
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
+      },
+      "notes": [],
+      "allowCreate": false,
+      "paymentMethod": {
+        "noInsuranceInformation": {},
+        "insuranceInfoUsedForBilling": {
+          "financialClassBasedInformation": {}
+        },
+        "paymentMode": "SELF_PAY"
+      },
+      "appointmentNo": 1000000911,
+      "newPatient": false,
+      "insurancePayers": [],
+      "override": false,
+      "quickAppointmentflag": false,
+      "isPrimaryMember": true,
+      "status": "UPDATED",
+      "_links": {
+        "self": {
+          "href": "/v1/appointments/e701cfa3-a968-4cb8-bdc4-8f0f0504584a"
+        }
+      },
+      "_id": "e701cfa3-a968-4cb8-bdc4-8f0f0504584a",
+      "_version": "73fc4151-63f8-41d8-9b14-56518724e2ae",
+      "_created": "Sep 15, 2022, 11:21:05 AM",
+      "_updated": "Sep 15, 2022, 9:30:00 PM",
+      "_createdBy": {
+        "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+          }
+        }
+      },
+      "_updatedBy": {
+        "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+          }
+        }
+      }
+    },
+  ]
+}
+
+export const providerList = [
+  {
+    providerId: "1",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "2",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "3",
+    name: "Paul Wagner Md",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+];
