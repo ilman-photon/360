@@ -1,4 +1,3 @@
-
 Feature: Patient Portal : Dashboard - Health Records Widget
   User Story: As a user, I should be able to view Health Record widget in the dashboard.
 

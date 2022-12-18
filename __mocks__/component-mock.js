@@ -131,7 +131,7 @@ const localStorageMock = (function () {
           },
           patientId: "98f9404b-6ea8-4732-b14f-9c1a168d8066",
           userType: store.isAdmin == "true" ? "admin" : null,
-          username: "patient1@photoninfotech.net"
+          username: "patient1@photoninfotech.net",
         });
       } else if (key === "userProfile") {
         return JSON.stringify({
@@ -450,6 +450,16 @@ jest.mock("jszip", () => {
   });
 });
 
+window.matchMedia =
+  window.matchMedia ||
+  function () {
+    return {
+      matches: false,
+      addListener: function () {},
+      removeListener: function () {},
+    };
+  };
+
 // jest.mock("react-idle-timer", () => ({
 //   useIdleTimer: jest.fn().mockReturnValue({
 //     getRemainingTime: jest.fn(),
@@ -457,3 +467,4 @@ jest.mock("jszip", () => {
 //     activate: jest.fn(),
 //   }),
 // }));
+//

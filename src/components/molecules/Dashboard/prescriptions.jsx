@@ -32,6 +32,17 @@ import PrescriptionMedication from "./prescriptionMedication";
 import { savePDF } from "@progress/kendo-react-pdf";
 import { getLinkAria } from "../../../utils/viewUtil";
 
+export const StyledTableCell = styled(TableCell)(() => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#F4F4F4",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontFamily: "Roboto",
+    fontWeight: 500,
+    fontSize: 14,
+  },
+}));
+
 export function renderCTAIcon(
   onClickDownload = () => {
     //this is intentional
@@ -43,7 +54,8 @@ export function renderCTAIcon(
     //this is intentional
   },
   buttonList = ["download", "share", "print"],
-  customButtonClass = ""
+  customButtonClass = "",
+  customButtonContainer = ""
 ) {
   const iconShare = "/icon-share.png";
   const iconDownload = "/icon-download.png";
@@ -92,7 +104,7 @@ export function renderCTAIcon(
   );
   return (
     <Stack
-      className={styles.ctaContainer}
+      className={[styles.ctaContainer, customButtonContainer].join(" ")}
       direction={"row"}
       alignSelf={"center"}
       sx={{ marginLeft: "auto" }}
@@ -204,23 +216,12 @@ export default function Prescriptions({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prescriptionData]);
 
-  const StyledTableCell = styled(TableCell)(() => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#F4F4F4",
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontFamily: "Roboto",
-      fontWeight: 500,
-      fontSize: 14,
-    },
-  }));
-
   function getBoxStyle() {
     if (!isMobile) {
       if (isViewAll) {
         return styles.quarteBox;
       }
-      return styles.halfBox;
+      return styles.fullBox;
     }
     return {};
   }

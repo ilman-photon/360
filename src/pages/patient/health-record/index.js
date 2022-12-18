@@ -18,6 +18,7 @@ import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import StackList from "../../../components/organisms/StackList/StackList";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { parseHealthRecordData } from "../../../components/molecules/Dashboard/healthRecordCard";
 
 export default function HealthRecord() {
   const isDesktop = useMediaQuery("(min-width: 820px)");
@@ -167,23 +168,7 @@ export default function HealthRecord() {
   });
 
   useEffect(() => {
-    let healthRecordTemp = [];
-    if (documentList && documentList.length > 0) {
-      for (const healthItem of rows) {
-        const currentDoc = documentList.find(
-          (item) => item.encounterNo === healthItem.encounter?.encounterNo
-        );
-        if (currentDoc) {
-          healthRecordTemp.push({
-            ...healthItem,
-            digital_assets: currentDoc.digital_assets,
-          });
-        }
-      }
-    } else {
-      healthRecordTemp = rows;
-    }
-    setHealthRecordDocument(healthRecordTemp);
+    setHealthRecordDocument(parseHealthRecordData(documentList, rows));
   }, [documentList, rows]);
 
   const noResultText = () => {
