@@ -250,7 +250,7 @@ describe("Home", () => {
     fireEvent.click(getByTestId(TEST_ID.CANCEL_SCHEDULE_TEST_ID.btnCancel));
     expect(getAllByTestId("CancelOutlinedIcon").length).toEqual(1);
 
-    fireEvent.click(getByLabelText("View appointments option"));
+    // fireEvent.click(getByLabelText("View appointments option"));
     jest.resetAllMocks();
   });
 

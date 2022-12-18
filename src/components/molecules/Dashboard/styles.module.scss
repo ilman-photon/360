@@ -65,6 +65,10 @@
   justify-content: space-between;
 }
 
+.fullBox {
+  width: 100%;
+}
+
 .halfBox {
   width: 50%;
   flex-basis: fit-content;
@@ -162,6 +166,9 @@
 }
 
 .appointmentContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   @media print {
     display: none !important;
   }
@@ -529,6 +536,243 @@
   color: #008294 !important;
   cursor: pointer;
   text-decoration-color: inherit !important;
+}
+
+.tableHealthRecord {
+  .butttonIconContainer {
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    min-width: 22px;
+    margin: 0;
+    margin: 0 10px;
+  }
+}
+
+.stackContainer {
+  background: #ffffff;
+  border: 2px solid #ececec;
+  padding: 16px 16px 0px 16px;
+  margin: 16px;
+  border-radius: 4px;
+
+  .stackContentButton {
+    margin-bottom: 5px;
+    margin-top: 28px;
+  }
+
+  .stackContent {
+    margin-bottom: 16px;
+  }
+
+  .valueStyle {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    letter-spacing: 0.0016em;
+    color: #191919;
+  }
+
+  .titleStyle {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+  }
+
+  .butttonIconContainer {
+    padding: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    min-width: 15px;
+    margin: 0;
+    margin: 0 10px;
+  }
+
+  .buttonContainer {
+    margin-left: 0 !important;
+  }
+
+  .valueName {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    letter-spacing: 0.0016em;
+    color: #191919;
+    word-break: break-word;
+    text-align: end;
+    @media (max-width: 600px) {
+      width: 60%;
+    }
+  }
+}
+
+.testLabContainer {
+  .testLabTitle {
+    margin-top: 24px;
+    padding-left: 16px;
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    color: #003b4a;
+    @media (max-width: 700px) {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  .statusStyle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 10px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    width: 120px;
+    height: 24px;
+    border-radius: 100px;
+  }
+
+  .statusPending {
+    background: #e8f3f9;
+    color: #003b4a;
+  }
+
+  .statusComplete {
+    background: rgba(15, 140, 74, 0.1);
+    color: #0f8c4a;
+  }
+
+  .statusError {
+    background: rgba(226, 122, 5, 0.1);
+    color: #e27a05;
+  }
+
+  .statusNaturalError {
+    background: rgba(123, 123, 123, 0.1);
+    color: #7b7b7b;
+  }
+}
+
+.hightLightContainer {
+  margin-right: 16px;
+  .hightLightTitle {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+  }
+
+  .hightLightValue {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #008294;
+  }
+}
+
+.hightLightContainer:nth-child(even) {
+  margin-right: 0px;
+}
+
+.makePaymentContainer {
+  position: absolute;
+  bottom: 0px;
+  @media (max-width: 700px) {
+    margin-top: 16px;
+    position: relative;
+    width: 100%;
+  }
+}
+
+.slackGridItem {
+  .materialTitle {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    color: #003b4a;
+    margin-bottom: 16px;
+  }
+
+  .materialDate {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #575757;
+    margin-bottom: 16px;
+  }
+
+  .materialDescription {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.0016em;
+    color: #191919;
+    margin-bottom: 16px;
+  }
+
+  .menuContainer {
+    width: 104px;
+    height: 40px;
+    background: #f4f4f4;
+    border-radius: 4px;
+    margin-left: auto;
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+
+    .menuItem {
+      width: 52px;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: unset;
+
+      @media (max-width: 700px) {
+        width: 50%;
+      }
+    }
+  }
 }
 
 .directionContent {

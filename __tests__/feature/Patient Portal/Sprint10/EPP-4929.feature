@@ -1,4 +1,3 @@
-
 Feature: Patient Portal : Dashboard - Test / Lab Reports Widget 
   User Story: As a user, I should be able to view Test/ Lab reports widget in the dashboard.
 
