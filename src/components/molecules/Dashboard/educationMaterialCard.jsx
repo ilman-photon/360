@@ -31,6 +31,9 @@ export default function EducationMaterialCard() {
   };
 
   function renderDekstopView() {
+    const tableEmptyStyle = !isDesktop
+      ? { m: "16px", textAlign: "center" }
+      : { margin: "24px 0 8px 0" };
     return (
       <>
         {educationMaterialData && educationMaterialData.length > 0 ? (
@@ -126,11 +129,7 @@ export default function EducationMaterialCard() {
           >
             <TableEmpty
               text={"There is no educational material document."}
-              sxContainer={
-                !isDesktop
-                  ? { m: "16px", textAlign: "center" }
-                  : { margin: "24px 0 8px 0" }
-              }
+              sxContainer={tableEmptyStyle}
             />
           </Box>
         )}

@@ -1,28 +1,54 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
-import constants from "../../src/utils/constants";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import {
-  createMatchMedia,
-  defaultValidation,
-  renderAppointmentDetail,
-} from "../../__mocks__/commonSteps";
+import "@testing-library/jest-dom";
+import Cookies from "universal-cookie";
+import { Login } from "../../src/components/organisms/Login/login";
+import { renderWithProviders } from "../src/utils/test-util";
+import { TEST_ID } from "../../src/utils/constants";
+import { createMatchMedia, renderForgotPassword, clickContinueForgot, navigateToPatientPortalHome, renderAppointmentDetail } from "../../__mocks__/commonSteps";
+import UpdatePasswordPage from "../../src/pages/patient/update-password";
+import AuthPage from "../../src/pages/patient/login";
+import Appointment from "../../src/pages/patient/appointment";
+import store from "../../src/store/store";
+import { Provider } from "react-redux";
 import {
   mockAppointmentTypes,
   submitFilter,
+  MOCK_SUGESTION,
+  MOCK_APPOINTMENT,
+  MOCK_PAST,
+  providerList
 } from "../../__mocks__/mockResponse";
-
+import Appointments from "../../src/pages/patient/appointments";
+import InfoWindowContent from "../../src/components/organisms/Google/Maps/infoWindowContent";
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1560.feature"
 );
 
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+let appointmentsContainer;
+
+const launchURL = () => {
+  const mockOnLoginClicked = jest.fn((data, route, callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+}
+
+const userSeeScheduleScreen = () => {
+  expect(container.getAllByText("Date and time")).toBeTruthy();
+  expect(container.getAllByText("Insurance")).toBeTruthy();
+  expect(container.getAllByText("No Insurance provided")).toBeTruthy();
+  expect(container.getAllByText("Purpose of visit")).toBeTruthy();
+};
+
 defineFeature(feature, (test) => {
-  let container;
-  const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID;
-  const mock = new MockAdapter(axios);
   beforeEach(() => {
     const mockGeolocation = {
       getCurrentPosition: jest.fn(),
@@ -39,21 +65,53 @@ defineFeature(feature, (test) => {
     window.matchMedia = createMatchMedia("1920px");
   });
 
+  const defaultValidation = () => {
+    expect(true).toBeTruthy();
+  };
+
   test("EPIC_EPP-44_STORY_EPP-1560 - Verify user able to change the 'Date and Time' while reviewing the appointment.", ({
     given,
     and,
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
-    and("user clicks on the Schedule your Eye Exam button", () => {
-      defaultValidation();
+    and("user clicks on the Schedule your Eye Exam button", async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
-    then("user navigates to the search screen", () => {
-      defaultValidation();
+    then("user navigates to the search screen", async () => {
+      await renderAppointmentDetail();
+      userSeeScheduleScreen();
     });
 
     and("user enters the location", () => {
@@ -61,15 +119,15 @@ defineFeature(feature, (test) => {
     });
 
     and("user selects the date of appointment", () => {
-      defaultValidation();
+      expect(container.getAllByText("Date and time")).toBeTruthy();
     });
 
     and("user chooses the purpose of the visit", () => {
-      defaultValidation();
+      expect(container.getAllByText("Purpose of visit")).toBeTruthy();
     });
 
     and("user enters the insurance name", () => {
-      defaultValidation();
+      expect(container.getAllByText("Insurance")).toBeTruthy();
     });
 
     and("user clicks on the Search button", () => {
@@ -85,7 +143,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+      userSeeScheduleScreen();
     });
 
     and("user view the location", () => {
@@ -93,7 +151,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user view the date of appointment", () => {
-      defaultValidation();
+      expect(container.getAllByText("Date and time")).toBeTruthy();
     });
 
     then("user clicks on the edit to change the date and time", () => {
@@ -109,7 +167,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user enters the insurance name", () => {
-      defaultValidation();
+      expect(container.getAllByText("Insurance")).toBeTruthy();
     });
 
     and("user clicks on the Search button", () => {
@@ -125,7 +183,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+      userSeeScheduleScreen();
     });
   });
 
@@ -135,15 +193,43 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
-    and("user clicks on the Schedule your Eye Exam button", () => {
-      defaultValidation();
+    and("user clicks on the Schedule your Eye Exam button", async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
-    then("user navigates to the search screen", () => {
-      defaultValidation();
+    then("user navigates to the search screen", async () => {
+      await renderAppointmentDetail();
+      userSeeScheduleScreen();
     });
 
     and("user enters the location", () => {
@@ -151,7 +237,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user selects the date of appointment", () => {
-      defaultValidation();
+      expect(container.getAllByText("Date and time")).toBeTruthy();
     });
 
     and("user not selecting the purpose of the visit", () => {
@@ -159,7 +245,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user enters the insurance name", () => {
-      defaultValidation();
+      expect(container.getAllByText("Insurance")).toBeTruthy();
     });
 
     and("user clicks on the Search button", () => {
@@ -175,7 +261,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+      userSeeScheduleScreen();
     });
 
     and("user view the location", () => {
@@ -183,7 +269,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user view the date of appointment", () => {
-      defaultValidation();
+      expect(container.getAllByText("Date and time")).toBeTruthy();
     });
 
     then("user clicks on the edit to change the date and time", () => {
@@ -199,7 +285,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user enters the insurance name", () => {
-      defaultValidation();
+      expect(container.getAllByText("Insurance")).toBeTruthy();
     });
 
     and("user clicks on the Search button", () => {
@@ -215,10 +301,10 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+      userSeeScheduleScreen();
     });
   });
-  test("EPIC_EPP-44_STORY_EPP-1560 - Verify user able to change the 'Date and Time' while reviewing the appointment and user not providing the purpose of visit.", ({}) => {
+  test("EPIC_EPP-44_STORY_EPP-1560 - Verify user able to change the 'Date and Time' while reviewing the appointment and user not providing the purpose of visit.", ({ }) => {
     defaultValidation();
   });
 
@@ -228,15 +314,43 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
-    and("user clicks on the Schedule your Eye Exam button", () => {
-      defaultValidation();
+    and("user clicks on the Schedule your Eye Exam button", async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
-    then("user navigates to the search screen", () => {
-      defaultValidation();
+    then("user navigates to the search screen", async () => {
+      await renderAppointmentDetail();
+      userSeeScheduleScreen();
     });
 
     and("user enters the location", () => {
@@ -244,11 +358,11 @@ defineFeature(feature, (test) => {
     });
 
     and("user selects the date of appointment", () => {
-      defaultValidation();
+      expect(container.getAllByText("Date and time")).toBeTruthy();
     });
 
     and("user chooses the purpose of the visit", () => {
-      defaultValidation();
+      expect(container.getAllByText("Purpose of visit")).toBeTruthy();
     });
 
     and("user not providing the insurance name", () => {
@@ -268,7 +382,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+      userSeeScheduleScreen();
     });
 
     and("user view the location", () => {
@@ -276,7 +390,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user view the date of appointment", () => {
-      defaultValidation();
+      expect(container.getAllByText("Date and time")).toBeTruthy();
     });
 
     then("user clicks on the edit to change the date and time", () => {
@@ -308,7 +422,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+      userSeeScheduleScreen();
     });
   });
 
@@ -318,15 +432,43 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
-    and("user clicks on the Schedule your Eye Exam button", () => {
-      defaultValidation();
+    and("user clicks on the Schedule your Eye Exam button", async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
-    then("user navigates to the search screen", () => {
-      defaultValidation();
+    then("user navigates to the search screen", async () => {
+      await renderAppointmentDetail();
+      userSeeScheduleScreen();
     });
 
     and("user enters the location", () => {
@@ -334,7 +476,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user selects the date of appointment", () => {
-      defaultValidation();
+      expect(container.getAllByText("Date and time")).toBeTruthy();
     });
 
     and("user not selecting the purpose of the visit", () => {
@@ -358,7 +500,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+      userSeeScheduleScreen();
     });
 
     and("user view the location", () => {
@@ -366,7 +508,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user view the date of appointment", () => {
-      defaultValidation();
+      expect(container.getAllByText("Date and time")).toBeTruthy();
     });
 
     then("user clicks on the edit to change the date and time", () => {
@@ -398,7 +540,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on the review of the appointment details", () => {
-      defaultValidation();
+      userSeeScheduleScreen();
     });
   });
 });
