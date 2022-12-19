@@ -18,6 +18,7 @@ import ImageFallback from "../../atoms/Image/image";
 import TableEmpty from "../../atoms/TableEmpty/tableEmpty";
 import { Api } from "../../../pages/api/api";
 import { useEffect } from "react";
+import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 
 export default function EducationMaterialCard() {
   const [educationMaterialData, setEducationMaterialData] = React.useState([]);
@@ -62,6 +63,10 @@ export default function EducationMaterialCard() {
     onCalledGetEducationMaterialsData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleAssetDownload = (id, isPrint = false) => {
+    fetchSource(id, isPrint);
+  };
 
   function renderDekstopView() {
     const tableEmptyStyle = !isDesktop
@@ -130,6 +135,9 @@ export default function EducationMaterialCard() {
                         <IconButton
                           className={styles.menuItem}
                           aria-label={"download"}
+                          onClick={() => {
+                            handleAssetDownload(item?.digital_assets?._id);
+                          }}
                         >
                           <FileDownloadOutlinedIcon
                             sx={{ color: "#003B4A" }}
@@ -139,6 +147,12 @@ export default function EducationMaterialCard() {
                         <IconButton
                           className={styles.menuItem}
                           aria-label={"print"}
+                          onClick={() => {
+                            handleAssetDownload(
+                              item?.digital_assets?._id,
+                              true
+                            );
+                          }}
                         >
                           <LocalPrintshopOutlinedIcon
                             sx={{ color: "#003B4A" }}
@@ -176,7 +190,7 @@ export default function EducationMaterialCard() {
         <SchoolOutlinedIcon sx={{ color: "#003B4A" }} aria-hidden="false" />
       }
       content={renderDekstopView()}
-      navRouter={"/patient"}
+      navRouter={"/patient/education-materials"}
       viewAllText={"View Education Materials"}
     />
   );
