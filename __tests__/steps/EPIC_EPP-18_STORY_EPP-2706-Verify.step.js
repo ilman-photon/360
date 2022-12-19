@@ -8,7 +8,11 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
-import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
+import {
+  TEMP_DATA_CONTACTS,
+  TEMP_DATA_GLASSES,
+  TEMP_DATA_MEDICATION,
+} from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -42,7 +46,7 @@ const defaultValidation = () => {
 defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
-  
+
   test("EPIC_EPP-18_STORY_EPP-2706- To verify whether the patient is able to view the option to Refill the Prescription.", ({
     given,
     when,
@@ -63,19 +67,20 @@ defineFeature(feature, (test) => {
     and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-      )
-      .reply(200, TEMP_DATA_MEDICATION);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-      )
-      .reply(200, TEMP_DATA_CONTACTS);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, TEMP_DATA_CONTACTS);
       mock
-      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-      )
-      .reply(200, TEMP_DATA_GLASSES);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1920px");
 
       act(() => {
@@ -85,14 +90,17 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
-    then("patient should see the option to Refill the Prescription.", async () => {
-      
-      expect(true).toBeTruthy();
-    });
+    then(
+      "patient should see the option to Refill the Prescription.",
+      async () => {
+        expect(true).toBeTruthy();
+      }
+    );
   });
 
   test("EPIC_EPP-18_STORY_EPP-2706- To verify whether the Patient is not able to request for the expired prescription.", ({
@@ -116,19 +124,20 @@ defineFeature(feature, (test) => {
       Cookies.result = "true";
       mock.reset();
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-      )
-      .reply(200, TEMP_DATA_MEDICATION);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-      )
-      .reply(200, TEMP_DATA_CONTACTS);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, TEMP_DATA_CONTACTS);
       mock
-      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-      )
-      .reply(200, TEMP_DATA_GLASSES);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1920px");
 
       act(() => {
@@ -138,16 +147,22 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
-    and("patient should see the option to Refill the Prescription.", async () => {
-      const medicationMenu = container.getByTestId("menu-medication");
-      fireEvent.click(medicationMenu)
-      await waitFor(()=> container.getByText(/Active Medications/i));
-      expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
-    });
+    and(
+      "patient should see the option to Refill the Prescription.",
+      async () => {
+        const medicationMenu = container.getByTestId("menu-medication");
+        fireEvent.click(medicationMenu);
+        await waitFor(() => container.getByText(/Active Medications/i));
+        expect(
+          container.getAllByText(/Request Refill/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
 
     and("request for the expired prescription.", async () => {
       const mockResponse = {
@@ -155,24 +170,22 @@ defineFeature(feature, (test) => {
       };
 
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-      )
-      .reply(200, TEMP_DATA_MEDICATION);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-      )
-      .reply(200, TEMP_DATA_CONTACTS);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, TEMP_DATA_CONTACTS);
       mock
-      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-      )
-      .reply(200, TEMP_DATA_GLASSES);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, TEMP_DATA_GLASSES);
 
-      mock
-      .onPost(`/ecp/prescriptions/requestRefill`
-      )
-      .reply(200, {});
+      mock.onPost(`/ecp/prescriptions/requestRefill`).reply(200, {});
 
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
@@ -207,19 +220,20 @@ defineFeature(feature, (test) => {
         const mockq = new MockAdapter(axios);
         mockq.reset();
         mockq
-        .onGet(
-          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, TEMP_DATA_MEDICATION);
+          .onGet(
+            `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+          )
+          .reply(200, TEMP_DATA_MEDICATION);
         mockq
-        .onGet(
-          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-        )
-        .reply(200, {});
+          .onGet(
+            `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+          )
+          .reply(200, {});
         mockq
-        .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-        )
-        .reply(200, {});
+          .onGet(
+            `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+          )
+          .reply(200, {});
         window.matchMedia = createMatchMedia("1920px");
 
         act(() => {
@@ -233,8 +247,8 @@ defineFeature(feature, (test) => {
         expect(container.getAllByText(/Medications/i)[0]).toBeInTheDocument();
 
         const medicationMenu = container.getAllByTestId("menu-medication")[0];
-        fireEvent.click(medicationMenu)
-        await waitFor(()=> container.getByText(/Active Medications/i));
+        fireEvent.click(medicationMenu);
+        await waitFor(() => container.getByText(/Active Medications/i));
 
         await waitFor(() => expiredContainer.getByText(/Past Medications/i));
         // expect(expiredContainer.getAllByText(/Request Refill/i)[0]).not.toBeInTheDocument();

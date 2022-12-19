@@ -24,6 +24,10 @@ export const CustomButton = styled(Button)(
   text-transform: none;
   border-radius: 46px;
 
+  &.MuiButton-root.Mui-disabled {
+    color: white;
+  }
+
   :hover {
     background:${theme.button.background};
     border-color:${theme.button.borderColor};

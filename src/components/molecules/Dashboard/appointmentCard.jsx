@@ -1,32 +1,23 @@
 import * as React from "react";
-import AccountCard from "../AccountCard/accountCard";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import PortraitOutlinedIcon from "@mui/icons-material/PortraitOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import styles from "./styles.module.scss";
-import {
-  Box,
-  Grid,
-  Typography,
-  Link,
-  Stack,
-  ThemeProvider,
-} from "@mui/material";
+import { Box, Grid, Typography, Link, Stack } from "@mui/material";
 import { StyledButton } from "../../atoms/Button/button";
-import { patientTypography, colors } from "../../../styles/theme";
 import { parseAppointmentCardData } from "../../../utils/appointment";
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
-import { getLinkAria } from "../../../utils/viewUtil";
 import ImageFallback from "../../atoms/Image/image";
 import { getProviderLocation } from "../AppointmentInformation/appointmentInformation";
+import CommonCard from "./commonCard";
+import { colors } from "../../../styles/theme";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -356,60 +347,21 @@ export default function AppointmentCard({
   }
 
   return (
-    <ThemeProvider theme={patientTypography}>
-      <AccountCard
-        className={styles.appointmentContainer}
-        isAppoinment={true}
-        isDashboard={true}
-        titleIcon={
-          <CalendarTodayOutlinedIcon
-            sx={{ color: "#007787" }}
-            aria-hidden="false"
-          />
-        }
-        title={
-          appointmentCount > 0
-            ? `Appointments (${appointmentCount})`
-            : `Appointment`
-        }
-        sx={{
-          ".MuiCardContent-root": {
-            p: 0,
-            position: "relative",
-          },
-          ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
-            p: { xs: "24px 15.5px", md: "24px" },
-          },
-        }}
-      >
-        {renderAppointmentUI()}
-        <Box
-          className={[styles.flexDisplay, styles.viewPrescription]}
-          sx={{
-            borderTop: 1,
-            borderColor: "divider",
-            paddingTop: "20px",
-          }}
-        >
-          <Link
-            className={styles.viewPrescriptionText}
-            sx={{ color: "#008294", fontFamily: "Inter" }}
-            onClick={() => {
-              onViewAppointment();
-            }}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                onViewAppointment();
-              }
-            }}
-            {...getLinkAria("View appointments option")}
-            tabIndex={0}
-          >
-            View Appointments
-          </Link>
-          <KeyboardArrowRightIcon />
-        </Box>
-      </AccountCard>
-    </ThemeProvider>
+    <CommonCard
+      title={
+        appointmentCount > 0
+          ? `Appointments (${appointmentCount})`
+          : `Appointment`
+      }
+      titleIcon={
+        <CalendarTodayOutlinedIcon
+          sx={{ color: "#007787" }}
+          aria-hidden="false"
+        />
+      }
+      content={renderAppointmentUI()}
+      navRouter={onViewAppointment}
+      viewAllText={"View Appointments"}
+    />
   );
 }

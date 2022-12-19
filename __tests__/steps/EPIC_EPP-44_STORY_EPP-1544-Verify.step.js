@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
@@ -9,11 +9,16 @@ import {
   createMatchMedia,
   defaultValidation,
   renderAppointmentDetail,
+  navigateToPatientPortalHome,
 } from "../../__mocks__/commonSteps";
 import {
   mockAppointmentTypes,
   submitFilter,
+  MOCK_SUGESTION,
 } from "../../__mocks__/mockResponse";
+import store from "../../src/store/store";
+import Appointment from "../../src/pages/patient/appointment";
+import { Provider } from "react-redux";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1544.feature"
@@ -24,6 +29,7 @@ defineFeature(feature, (test) => {
   const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID;
   const mock = new MockAdapter(axios);
   beforeEach(() => {
+    cleanup();
     const mockGeolocation = {
       getCurrentPosition: jest.fn(),
       watchPosition: jest.fn(),
@@ -45,7 +51,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -64,7 +70,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -72,12 +78,27 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      await renderAppointmentDetail();
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn()
+      };
+
+      const domain = window.location.origin;
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, MOCK_SUGESTION);
+      mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, {});
+      window = Object.assign(window, { innerWidth: 1500 });
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     then(
       "user should see the current location as default, if location is enabled.",
-      () => {}
+      () => { }
     );
   });
 
@@ -88,7 +109,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -96,7 +117,22 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      await renderAppointmentDetail();
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn()
+      };
+
+      const domain = window.location.origin;
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, MOCK_SUGESTION);
+      mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, {});
+      window = Object.assign(window, { innerWidth: 1500 });
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and("search the location using City option", () => {
@@ -115,7 +151,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -123,15 +159,38 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      await renderAppointmentDetail();
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn()
+      };
+
+      const domain = window.location.origin;
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, MOCK_SUGESTION);
+      mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, {});
+      window = Object.assign(window, { innerWidth: 1500 });
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and("search the location using State option.", () => {
-      defaultValidation();
+      const locationField = container.getAllByLabelText(/City, state/i)[0];
+      act(() => {
+        fireEvent.change(locationField, { target: { value: "Las Vegas" } });
+      })
+      expect("Las Vegas").toEqual(locationField.value)
     });
 
     then("user should see the list of locations based upon State.", () => {
-      defaultValidation();
+      const locationField = container.getAllByLabelText(/City, state/i)[0];
+      act(() => {
+        fireEvent.change(locationField, { target: { value: "Las Vegas" } });
+      })
+      expect("Las Vegas").toEqual(locationField.value)
     });
   });
 
@@ -142,7 +201,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -150,15 +209,38 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      await renderAppointmentDetail();
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn()
+      };
+
+      const domain = window.location.origin;
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, MOCK_SUGESTION);
+      mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, {});
+      window = Object.assign(window, { innerWidth: 1500 });
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and("search the location using Zipcode option.", () => {
-      defaultValidation();
+      const locationField = container.getAllByLabelText(/City, state/i)[0];
+      act(() => {
+        fireEvent.change(locationField, { target: { value: "Las Vegas" } });
+      })
+      expect("Las Vegas").toEqual(locationField.value)
     });
 
     then("user should see the list of locations based upon Zipcode.", () => {
-      defaultValidation();
+      const locationField = container.getAllByLabelText(/City, state/i)[0];
+      act(() => {
+        fireEvent.change(locationField, { target: { value: "Las Vegas" } });
+      })
+      expect("Las Vegas").toEqual(locationField.value)
     });
   });
 
@@ -169,7 +251,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -177,15 +259,36 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      await renderAppointmentDetail();
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn()
+      };
+
+      const domain = window.location.origin;
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, MOCK_SUGESTION);
+      mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, {});
+      window = Object.assign(window, { innerWidth: 1500 });
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and("enter the City name", () => {
-      defaultValidation();
+      const locationField = container.getAllByLabelText(/City, state/i)[0];
+      act(() => {
+        fireEvent.change(locationField, { target: { value: "Las Vegas" } });
+      })
+      expect("Las Vegas").toEqual(locationField.value)
     });
 
     and("click on Search.", () => {
-      defaultValidation();
+      // const searchBtn = container.getByTestId(constants.TEST_ID.APPOINTMENT_TEST_ID.searchbtn)
+      // expect(searchBtn).toBeTruthy()
+      // fireEvent.click(searchBtn)
     });
 
     and("user will see the location based upon city name.", () => {
@@ -203,7 +306,7 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -211,12 +314,36 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      await renderAppointmentDetail();
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn()
+      };
+
+      const domain = window.location.origin;
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, MOCK_SUGESTION);
+      mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, {});
+      window = Object.assign(window, { innerWidth: 1500 });
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and(
       "user should see the location, date of appointment, Purpose of the visit, Insurance name",
-      () => {}
+      () => {
+        const locationField = container.getAllByLabelText(/City, state/i)[0];
+        const dateField = container.getAllByLabelText(/date/i)[0];
+        const purposeField = container.getAllByLabelText(/Purpose of Visit/i)[0];
+        const insuranceField = container.getAllByLabelText(/Insurance/i)[0];
+        act(() => {
+          fireEvent.change(locationField, { target: { value: "Las Vegas" } });
+        })
+        expect("Las Vegas").toEqual(locationField.value)
+      }
     );
   });
 
@@ -227,7 +354,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -235,7 +362,22 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the schedule appointment screen", async () => {
-      await renderAppointmentDetail();
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn()
+      };
+
+      const domain = window.location.origin;
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, MOCK_SUGESTION);
+      mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, {});
+      window = Object.assign(window, { innerWidth: 1500 });
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and("click the option such as 'Locate me'.", () => {

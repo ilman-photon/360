@@ -116,7 +116,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
@@ -198,7 +199,7 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getAllByText("Medications")[0]);
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
@@ -280,7 +281,7 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
@@ -369,7 +370,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 

@@ -32,6 +32,17 @@ import PrescriptionMedication from "./prescriptionMedication";
 import { savePDF } from "@progress/kendo-react-pdf";
 import { getLinkAria } from "../../../utils/viewUtil";
 
+export const StyledTableCell = styled(TableCell)(() => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#F4F4F4",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontFamily: "Roboto",
+    fontWeight: 500,
+    fontSize: 14,
+  },
+}));
+
 export function renderCTAIcon(
   onClickDownload = () => {
     //this is intentional
@@ -43,7 +54,8 @@ export function renderCTAIcon(
     //this is intentional
   },
   buttonList = ["download", "share", "print"],
-  customButtonClass = ""
+  customButtonClass = "",
+  customButtonContainer = ""
 ) {
   const iconShare = "/icon-share.png";
   const iconDownload = "/icon-download.png";
@@ -53,7 +65,7 @@ export function renderCTAIcon(
       data-testid={"download-icon"}
       onClick={onClickDownload}
       aria-label={"Download option"}
-      sx={{minWidth: "40px"}}
+      sx={{ minWidth: "40px" }}
     >
       <Image alt="" src={iconDownload} width={15} height={15} />
     </Button>
@@ -65,7 +77,7 @@ export function renderCTAIcon(
       data-testid={"shared-icon"}
       aria-label={"Share option"}
       onClick={onClickShare}
-      sx={{minWidth: "40px"}}
+      sx={{ minWidth: "40px" }}
     >
       <Image alt="" src={iconShare} width={15} height={15} />
     </Button>
@@ -77,7 +89,7 @@ export function renderCTAIcon(
       onClick={onClickPrint}
       aria-label={"Print option"}
       data-testid={"print-icon"}
-      sx={{minWidth: "40px"}}
+      sx={{ minWidth: "40px" }}
     >
       <LocalPrintshopOutlinedIcon
         sx={{
@@ -92,7 +104,7 @@ export function renderCTAIcon(
   );
   return (
     <Stack
-      className={styles.ctaContainer}
+      className={[styles.ctaContainer, customButtonContainer].join(" ")}
       direction={"row"}
       alignSelf={"center"}
       sx={{ marginLeft: "auto" }}
@@ -204,23 +216,12 @@ export default function Prescriptions({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prescriptionData]);
 
-  const StyledTableCell = styled(TableCell)(() => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#F4F4F4",
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontFamily: "Roboto",
-      fontWeight: 500,
-      fontSize: 14,
-    },
-  }));
-
   function getBoxStyle() {
     if (!isMobile) {
       if (isViewAll) {
         return styles.quarteBox;
       }
-      return styles.halfBox;
+      return styles.fullBox;
     }
     return {};
   }
@@ -526,7 +527,11 @@ export default function Prescriptions({
           >
             <Link
               className={styles.viewPrescriptionText}
-              sx={{ color: "#008294", fontFamily: "Inter", paddingRight: "7px" }}
+              sx={{
+                color: "#008294",
+                fontFamily: "Inter",
+                paddingRight: "7px",
+              }}
               tabIndex={0}
               {...getLinkAria("View prescriptions option")}
             >
@@ -585,7 +590,11 @@ export default function Prescriptions({
               >
                 <Link
                   className={styles.viewPrescriptionText}
-                  sx={{ color: "#008294", fontFamily: "Inter", paddingRight: "7px" }}
+                  sx={{
+                    color: "#008294",
+                    fontFamily: "Inter",
+                    paddingRight: "7px",
+                  }}
                   tabIndex={0}
                   {...getLinkAria("View prescriptions option")}
                 >
@@ -641,7 +650,11 @@ export default function Prescriptions({
               >
                 <Link
                   className={styles.viewPrescriptionText}
-                  sx={{ color: "#008294", fontFamily: "Inter", paddingRight: "7px" }}
+                  sx={{
+                    color: "#008294",
+                    fontFamily: "Inter",
+                    paddingRight: "7px",
+                  }}
                   tabIndex={0}
                   {...getLinkAria("View prescriptions option")}
                 >
@@ -681,7 +694,7 @@ export default function Prescriptions({
         }}
       >
         <Tab
-          label="Glasses"
+          label={`Glasses (${prescription?.glasses?.length})`}
           data-testid={"menu-glasses"}
           tabIndex={0}
           icon={
@@ -715,7 +728,7 @@ export default function Prescriptions({
           }}
         />
         <Tab
-          label="Contacts"
+          label={`Contacts (${prescription?.contacts?.length})`}
           data-testid={"menu-contact"}
           tabIndex={0}
           icon={
@@ -749,7 +762,11 @@ export default function Prescriptions({
           }}
         />
         <Tab
-          label="Medications"
+          label={`Medications (${
+            prescription?.medications?.active?.length > 0
+              ? prescription?.medications?.active?.length
+              : "0"
+          })`}
           data-testid={"menu-medication"}
           tabIndex={0}
           icon={

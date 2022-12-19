@@ -30,6 +30,7 @@ import {
   muiInputRoot,
   renderInsuranceCarrier,
 } from "../FilterHeading/filterHeading";
+import { Api } from "../../../pages/api/api";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -98,12 +99,32 @@ export default function CustomizedDialogs({
     purposeOfVisitData: [],
     insuranceCarrierData: [],
     isDesktop: false,
+    googleApiKey: "",
     onChangeLocation: () => {
       //This is intended
     },
   },
 }) {
   const [source, setSource] = React.useState("");
+  const [suggestionData, setSuggestionData] = React.useState([]);
+
+  function getPlaceSuggestion(value) {
+    const api = new Api();
+    api
+      .getSuggestionLocation(value)
+      .then(function (response) {
+        if (response && response.locationData?.length > 0) {
+          const listData = [];
+          for (const item of response.locationData) {
+            listData.push(`${item.city}, ${item.state}, ${item.zip}`);
+          }
+          setSuggestionData(listData);
+        }
+      })
+      .catch(function () {
+        setSuggestionData([]);
+      });
+  }
 
   React.useEffect(() => {
     if (open || type === "filterMenu") {
@@ -259,78 +280,99 @@ export default function CustomizedDialogs({
       );
     } else if (type === "location") {
       child = (
-        <Box>
-          <Box
-            className={additionalProps.isEmptyLocation ? styles.errorField : ""}
-            sx={{
-              display: "flex",
-              alignItems: "flex-end",
-              paddingLeft: "15px",
-              border: "1px solid #BDBDBD",
-              borderRadius: "4px",
-            }}
-          >
-            {locationIconUI()}
-            <Controller
-              name={"location"}
-              control={additionalProps.control}
-              render={({
-                field: { onChange, value },
-                fieldState: { _error },
-              }) => {
-                return (
-                  <StyledInput
-                    autoFocus
-                    value={value}
-                    onChange={onChange}
-                    maxLength={50}
-                    type="default"
-                    variant="filled"
-                    label="City, state, or zip code"
-                    data-testid={"location-field-dialog"}
+        <Box className={styles.dialogContainer}>
+          <Controller
+            name={"location"}
+            control={additionalProps.control}
+            render={({
+              field: { onChange, value },
+              fieldState: { _error },
+            }) => {
+              return (
+                <>
+                  <Box
+                    className={
+                      additionalProps.isEmptyLocation ? styles.errorField : ""
+                    }
                     sx={{
-                      width: "100%",
-                      [muiInputRoot]: {
-                        border: "0px",
-                        background: "#fff",
-                      },
+                      display: "flex",
+                      alignItems: "flex-end",
+                      paddingLeft: "15px",
+                      border: "1px solid #BDBDBD",
+                      borderRadius: "4px",
                     }}
-                    onKeyDown={(e) => {
-                      keyDownPress(e, handleClose);
-                    }}
-                  />
-                );
-              }}
-            />
-          </Box>
-          {additionalProps.isGeolocationEnabled && (
-            <Box
-              className={styles.linkContainer}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: "6px",
-              }}
-              onClick={() => {
-                if (additionalProps?.onChangeLocation) {
-                  additionalProps.onChangeLocation();
-                }
-                handleClose();
-              }}
-            >
-              <NearMeOutlinedIcon
-                sx={{
-                  width: "22px",
-                  height: "22px",
-                  color: colors.darkGreen,
-                }}
-              />
-              <Link className={styles.linkUseMyLocationStyle}>
-                Use my current location
-              </Link>
-            </Box>
-          )}
+                  >
+                    {locationIconUI()}
+                    <StyledInput
+                      autoFocus
+                      value={value}
+                      onChange={(event) => {
+                        onChange(event.target.value);
+                        getPlaceSuggestion(event.target.value);
+                      }}
+                      maxLength={50}
+                      type="default"
+                      variant="filled"
+                      label="City, state, or zip code"
+                      data-testid={"location-field-dialog"}
+                      sx={{
+                        width: "100%",
+                        [muiInputRoot]: {
+                          border: "0px",
+                          background: "#fff",
+                        },
+                      }}
+                      onKeyDown={(e) => {
+                        keyDownPress(e, handleClose);
+                      }}
+                    />
+                  </Box>
+                  {additionalProps.isGeolocationEnabled && (
+                    <Box
+                      className={styles.linkContainer}
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        marginTop: "6px",
+                      }}
+                      onClick={() => {
+                        if (additionalProps?.onChangeLocation) {
+                          additionalProps.onChangeLocation();
+                        }
+                        handleClose();
+                      }}
+                    >
+                      <NearMeOutlinedIcon
+                        sx={{
+                          width: "22px",
+                          height: "22px",
+                          color: colors.darkGreen,
+                        }}
+                      />
+                      <Link className={styles.linkUseMyLocationStyle}>
+                        Use my current location
+                      </Link>
+                    </Box>
+                  )}
+                  {suggestionData.map((item, idx) => {
+                    return (
+                      <Typography
+                        className={styles.linkItem}
+                        key={idx}
+                        onClick={() => {
+                          onChange(item);
+                          handleClose();
+                        }}
+                      >
+                        {item}
+                      </Typography>
+                    );
+                  })}
+                </>
+              );
+            }}
+          />
         </Box>
       );
     }

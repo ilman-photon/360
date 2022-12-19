@@ -119,10 +119,10 @@ defineFeature(feature, (test) => {
 
   beforeEach(() => {
     Object.defineProperty(document, "cookie", {
-        writable: true,
-        value: "authorized=true;accessToken=1234",
-      });
-  })
+      writable: true,
+      value: "authorized=true;accessToken=1234",
+    });
+  });
 
   const userIsLoggedIn = () => {
     const mockOnLoginClicked = jest.fn((data, route, callback) => {
@@ -165,7 +165,7 @@ defineFeature(feature, (test) => {
         </Provider>
       );
     });
-    await waitFor(() => container.getByText(wait));
+    await waitFor(() => container.getAllByText(wait)[0]);
   };
 
   const mockApi = (mockData = mockLockedAccounts) => {

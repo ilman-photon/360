@@ -12,11 +12,13 @@ import {
   expectPushRouter,
 } from "../../../__mocks__/commonSteps";
 import {
+  medicalRecordMockData,
   mockAppointmentTypes,
   prescriptionContact,
   prescriptionGlasses,
   prescriptionMedication,
   submitFilter,
+  testLab,
   upcomingResponse,
 } from "../../../__mocks__/mockResponse";
 import { TEST_ID } from "../../../src/utils/constants";
@@ -164,6 +166,20 @@ describe("Home", () => {
         `/ecp/prescriptions/patient/${userData?.patientId}/getContactsData`
       )
       .reply(200, prescriptionContact);
+    mock
+      .onGet(
+        `/ecp/patientbillingsystem/getPatientCredits/${userData?.patientId}`
+      )
+      .reply(200, {});
+    mock
+      .onGet(
+        `/ecp/patientbillingsystem/getInvoiceWithPatientDetails?search.query=((patient.uid=eq=${userData?.patientId}))`
+      )
+      .reply(200, {});
+    mock
+      .onGet(`/ecp/patient/phr/patientchart/${userData?.patientId}`)
+      .reply(200, medicalRecordMockData);
+    mock.onGet(`/ecp/testResult/${userData?.patientId}`).reply(200, testLab);
 
     let container;
     const props = await getStaticProps();
@@ -250,7 +266,7 @@ describe("Home", () => {
     fireEvent.click(getByTestId(TEST_ID.CANCEL_SCHEDULE_TEST_ID.btnCancel));
     expect(getAllByTestId("CancelOutlinedIcon").length).toEqual(1);
 
-    fireEvent.click(getByLabelText("View appointments option"));
+    // fireEvent.click(getByLabelText("View appointments option"));
     jest.resetAllMocks();
   });
 
@@ -270,6 +286,14 @@ describe("Home", () => {
     fireEvent.click(getByTestId("noNeeded-test"));
     fireEvent.click(getByTestId(TEST_ID.CANCEL_SCHEDULE_TEST_ID.btnCancel));
     expect(getAllByTestId("CancelOutlinedIcon").length).toEqual(1);
+    jest.resetAllMocks();
+  });
+
+  it("renders homepage validate card", async () => {
+    window.matchMedia = createMatchMedia("480px");
+    const { getByTestId, getAllByTestId, getByLabelText, mock } =
+      await renderHome();
+
     jest.resetAllMocks();
   });
 });

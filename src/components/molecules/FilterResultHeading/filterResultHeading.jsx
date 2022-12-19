@@ -48,6 +48,7 @@ export const FilterResultHeading = ({
     // This is intentional
   },
   currentCity = "",
+  googleApiKey = "",
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -402,6 +403,7 @@ export const FilterResultHeading = ({
             isGeolocationEnabled={isGeolocationEnabled}
             onChangeLocation={onChangeLocation}
             currentCity={currentCity}
+            googleApiKey={googleApiKey}
           />
         }
       </Box>

@@ -52,7 +52,18 @@ export default function InsuranceView({
           const categoryName = category.toLowerCase();
           if (items.length > 0) {
             return (
-              <Accordion key={idx}>
+              <Accordion
+                key={idx}
+                sx={{
+                  "&.MuiAccordion-root": {
+                    boxShadow: "none",
+                    border: "1px solid #F3F3F3",
+                  },
+                  ".MuiAccordionDetails-root": {
+                    borderTop: "1px solid #F3F3F3",
+                  },
+                }}
+              >
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"

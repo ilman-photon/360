@@ -121,9 +121,11 @@ export default function Appointment({ googleApiKey }) {
   const pendingAppointment =
     cookies.get("dashboardState", { path: "/patient" }) === "true";
 
-  const { isLoaded } = useLoadScript({
+  const googleConfiguration = {
     googleMapsApiKey: googleApiKey,
-  });
+    libraries: ["places"],
+  };
+  const { isLoaded } = useLoadScript(googleConfiguration);
 
   const isFilterApplied = useSelector(
     (state) => state.appointment.isFilterApplied
@@ -782,6 +784,7 @@ export default function Appointment({ googleApiKey }) {
                 isFixed={false}
                 currentCity={currentCity}
                 onChangeLocation={fetchCurrentLocation}
+                googleApiKey={googleApiKey}
               />
             </>
           ) : (

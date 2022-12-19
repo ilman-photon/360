@@ -35,6 +35,10 @@ import { colors } from "../../styles/theme";
 import { appointmentParser } from "../../utils/appointmentsModel";
 import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
+import HealthRecordCard from "../../components/molecules/Dashboard/healthRecordCard";
+import TestLabReportCard from "../../components/molecules/Dashboard/testLabReportCard";
+import PayMyBillCard from "../../components/molecules/Dashboard/payMyBillCard";
+import EducationMaterialCard from "../../components/molecules/Dashboard/educationMaterialCard";
 import { mmddyyDateFormat } from "../../utils/dateFormatter";
 
 export async function getStaticProps() {
@@ -94,7 +98,7 @@ export default function HomePage({ googleApiKey }) {
 
   function compareDate(date) {
     return new Date() > new Date(date);
-  } 
+  }
 
   //Call API for submitFilter
   async function onCallSubmitFilterAPI(requestData) {
@@ -108,8 +112,8 @@ export default function HomePage({ googleApiKey }) {
         code: selectedAppointmentType?.id || "ALL",
       },
       currentDate: compareDate(startDateRequest)
-      ? mmddyyDateFormat(new Date())
-      : startDateRequest,
+        ? mmddyyDateFormat(new Date())
+        : startDateRequest,
       numDays: 6,
       days: ["ALL"],
       prefTime: "ALL",
@@ -283,6 +287,50 @@ export default function HomePage({ googleApiKey }) {
     }
   };
 
+  function renderFirstColumn() {
+    const prescriptionUI = (
+      <Grid
+        item
+        xs={5}
+        sm={5}
+        lg={2}
+        sx={{
+          paddingLeft: { xs: "16px !important", md: "24px !important" },
+        }}
+      >
+        <Prescriptions
+          prescriptionData={prescriptionData}
+          onViewPrescriptions={onViewPrescriptions}
+          renderRirstOnly={true}
+        />
+      </Grid>
+    );
+    const appointmentUI = (
+      <Grid
+        item
+        xs={5}
+        sm={5}
+        lg={3}
+        sx={{
+          paddingLeft: { xs: "16px !important", md: "24px !important" },
+        }}
+      >
+        <AppointmentCard
+          appointmentData={appointmentData}
+          OnClickCancel={handleClickCancel}
+          onViewAppointment={onViewAppointment}
+          onClickReschedule={onClickReschedule}
+        />
+      </Grid>
+    );
+
+    if (isDesktop) {
+      return [prescriptionUI, appointmentUI];
+    } else {
+      return [appointmentUI, prescriptionUI];
+    }
+  }
+
   return (
     <>
       {isAuthenticated && !isAdmin() && (
@@ -344,7 +392,6 @@ export default function HomePage({ googleApiKey }) {
               paddingTop: isDesktop ? "30px" : "46px",
               paddingRight: { xs: "16px !important", md: "24px !important" },
               flexDirection: {
-                xs: "column-reverse",
                 lg: "unset",
               },
               "@media print": {
@@ -352,38 +399,50 @@ export default function HomePage({ googleApiKey }) {
               },
             }}
           >
+            {renderFirstColumn()}
             <Grid
               item
               xs={5}
               sm={5}
-              // md={2}
-              lg={2}
+              md={2}
               sx={{
                 paddingLeft: { xs: "16px !important", md: "24px !important" },
               }}
             >
-              <Prescriptions
-                prescriptionData={prescriptionData}
-                onViewPrescriptions={onViewPrescriptions}
-                renderRirstOnly={true}
-              />
+              <PayMyBillCard />
             </Grid>
             <Grid
               item
               xs={5}
               sm={5}
-              // md={3}
-              lg={3}
+              md={3}
               sx={{
                 paddingLeft: { xs: "16px !important", md: "24px !important" },
               }}
             >
-              <AppointmentCard
-                appointmentData={appointmentData}
-                OnClickCancel={handleClickCancel}
-                onViewAppointment={onViewAppointment}
-                onClickReschedule={onClickReschedule}
-              />
+              <EducationMaterialCard />
+            </Grid>
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              md={2}
+              sx={{
+                paddingLeft: { xs: "16px !important", md: "24px !important" },
+              }}
+            >
+              <HealthRecordCard />
+            </Grid>
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              md={3}
+              sx={{
+                paddingLeft: { xs: "16px !important", md: "24px !important" },
+              }}
+            >
+              <TestLabReportCard />
             </Grid>
           </Grid>
           <CustomModal

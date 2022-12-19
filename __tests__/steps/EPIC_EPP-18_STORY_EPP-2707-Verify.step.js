@@ -12,8 +12,8 @@ import mediaQuery from "css-mediaquery";
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => { },
-    removeListener: () => { },
+    addListener: () => {},
+    removeListener: () => {},
   });
 }
 
@@ -412,10 +412,10 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => { }
+      () => {}
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
     and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
@@ -447,7 +447,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
@@ -503,10 +504,10 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => { }
+      () => {}
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
     and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
@@ -538,7 +539,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
@@ -593,10 +595,10 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => { }
+      () => {}
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
     and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
@@ -628,7 +630,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
@@ -685,12 +688,12 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => { }
+      () => {}
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and("clicks  on login button.", () => { });
+    and("clicks  on login button.", () => {});
 
     and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
@@ -718,7 +721,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
@@ -769,12 +773,12 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => { }
+      () => {}
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and("clicks  on login button.", () => { });
+    and("clicks  on login button.", () => {});
 
     and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
@@ -802,7 +806,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
@@ -856,12 +861,12 @@ defineFeature(feature, (test) => {
   }) => {
     given(
       "Patient Launch  the browser and enter the Patient portal URL",
-      () => { }
+      () => {}
     );
 
-    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => { });
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and("clicks  on login button.", () => { });
+    and("clicks  on login button.", () => {});
 
     and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
@@ -889,7 +894,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
+      await waitFor(() => container.getAllByTestId("menu-medication")[0]);
+
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 

@@ -27,6 +27,7 @@ import Image from "next/image";
 import CustomizedDialogs from "../../molecules/FilterAppointmentDialog/dialog";
 import { convertToDate } from "../../../utils/dateFormatter";
 import { Regex } from "../../../utils/regex";
+import { Api } from "../../../pages/api/api";
 
 export const imageSrcState = "/bx_insurance_card.png";
 export const muiInputRoot = "& .MuiFilledInput-root";
@@ -187,6 +188,7 @@ export function onRenderInputInsurance(
       sx={{
         display: "flex",
         alignItems: "flex-end",
+        height: "100%",
       }}
       aria-label="Insurance carrier field"
       tabIndex={0}
@@ -253,6 +255,10 @@ export function renderInsuranceCarrier(
               {...isOpenProps}
               sx={{
                 paddingLeft: "15px",
+                height: "100%",
+                ".custom-input": {
+                  height: "93%",
+                },
               }}
               freeSolo={true}
               id="insurance-carrier"
@@ -364,6 +370,7 @@ const FilterHeading = ({
   isFixed = true,
   currentCity = "",
   isDashboard = false,
+  googleApiKey = " ",
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control, setValue } = useForm({
@@ -375,7 +382,26 @@ const FilterHeading = ({
   const [open, setOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
   const [contentTypeDialog, setContentTypeDialog] = React.useState("");
+  const [suggestionData, setSuggestionData] = useState([]);
   const mapsData = isGeolocationEnabled ? ["Use my current location"] : [];
+
+  function getPlaceSuggestion(value) {
+    const api = new Api();
+    api
+      .getSuggestionLocation(value)
+      .then(function (response) {
+        if (response && response.locationData?.length > 0) {
+          const listData = [];
+          for (const item of response.locationData) {
+            listData.push(`${item.city}, ${item.state}, ${item.zip}`);
+          }
+          setSuggestionData(listData);
+        }
+      })
+      .catch(function () {
+        setSuggestionData([]);
+      });
+  }
 
   const onSubmit = (data) => {
     let isError = false;
@@ -423,6 +449,7 @@ const FilterHeading = ({
         sx={{
           visibility: isError ? "visible" : "hidden",
           fontSize: isDesktop ? "16px" : "14px",
+          color: "#F98F85 !important",
         }}
         tabIndex={0}
       >
@@ -457,6 +484,7 @@ const FilterHeading = ({
               sx={{
                 width: "75%",
                 overflow: "hidden",
+                height: "100%",
               }}
             >
               <Autocomplete
@@ -464,6 +492,7 @@ const FilterHeading = ({
                 id="location"
                 data-testid={APPOINTMENT_TEST_ID.locationInput}
                 value={value}
+                options={[...mapsData, ...suggestionData]}
                 onChange={(_e, data) => {
                   onChange(data);
                 }}
@@ -479,10 +508,10 @@ const FilterHeading = ({
                   if (Regex.specialRegex.test(e.key)) e.preventDefault();
                 }}
                 disableClearable={true}
-                options={mapsData}
                 sx={{
                   background: "#FFF",
                   borderRadius: "100%",
+                  height: "100%",
                 }}
                 renderInput={(params) => (
                   <Box
@@ -491,6 +520,7 @@ const FilterHeading = ({
                       display: "flex",
                       alignItems: "flex-end",
                       paddingLeft: "15px",
+                      height: "100%",
                     }}
                     aria-label="City, state, or zip code field"
                     tabIndex={0}
@@ -503,6 +533,10 @@ const FilterHeading = ({
                       aria-hidden={true}
                       label="City, state, or zip code"
                       tabIndex={-1}
+                      onChange={(event) => {
+                        onChange(event.target.value);
+                        getPlaceSuggestion(event.target.value);
+                      }}
                       InputProps={{
                         ...params.InputProps,
                         endAdornment: (
@@ -521,6 +555,7 @@ const FilterHeading = ({
                         ),
                       }}
                       sx={{
+                        height: "93%",
                         borderTopLeftRadius: "50px",
                         borderTopRightRadius: "50px",
                         [muiInputRoot]: {
@@ -532,8 +567,8 @@ const FilterHeading = ({
                           fontWeight: "400",
                           fontSize: "16px",
                           lineHeight: "18px",
-                          color: "#303030",
                           width: "75%",
+                          color: `${isEmptyLocation ? "#B93632" : "#303030"}`,
                         },
                       }}
                       maxLength={50}
@@ -645,6 +680,7 @@ const FilterHeading = ({
               sx={{
                 width: isDesktop ? "70%" : "auto",
                 overflow: "hidden",
+                height: "100%",
               }}
             >
               <Box
@@ -654,6 +690,7 @@ const FilterHeading = ({
                   background: "#fff",
                   marginLeft: "15px",
                   marginTop: isDesktop ? "0px" : "16px",
+                  height: "100%",
                 }}
               >
                 <VisibilityOutlinedIcon
@@ -667,6 +704,7 @@ const FilterHeading = ({
                 <SelectOptionButton
                   sx={{
                     fontSize: "16px",
+                    height: "93%",
                     [muiInputRoot]: {
                       border: "0px solid #bbb",
                       backgroundColor: "#fff",
@@ -680,7 +718,9 @@ const FilterHeading = ({
                       fontSize: "16px",
                       lineHeight: "18px",
                       fontStyle: "normal",
-                      color: "#303030",
+                      color: `${
+                        isEmptyAppointmentType ? "#B93632" : "#303030"
+                      }`,
                     },
                     ".MuiInputLabel-shrink": {
                       color: "#003B4A !important",
@@ -788,7 +828,7 @@ const FilterHeading = ({
                 gradient={false}
                 data-testid={APPOINTMENT_TEST_ID.searchbtn}
                 sx={{
-                  height: isEmptyLocation ? "54px" : "52px",
+                  height: "100% !important",
                   background: "#BFE4E8",
                   border: "0px",
                   cursor: "pointer",
@@ -1009,6 +1049,8 @@ const FilterHeading = ({
           purposeOfVisitData,
           insuranceCarrierData,
           isDesktop,
+          isGeolocationEnabled,
+          googleApiKey,
         }}
       />
     );

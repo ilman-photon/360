@@ -277,7 +277,7 @@ export default function InsuranceInfoPage() {
             <Stack>
               <AccountCard
                 titleIcon={<AccountCircleOutlined />}
-                title="Insurance Document"
+                title="Insurance Documents"
                 sx={{
                   border: "2px solid #F3F3F3",
                 }}

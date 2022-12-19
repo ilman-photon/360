@@ -657,7 +657,7 @@ defineFeature(feature, (test) => {
     });
 
     await waitFor(() => {
-      container.getByText(/Primary Address/i);
+      container.getAllByText(/Primary Address/i)[0];
     });
 
     return container;
@@ -668,6 +668,7 @@ defineFeature(feature, (test) => {
       back: jest.fn(),
       push: jest.fn(),
       beforePopState: jest.fn(),
+      events: { on: jest.fn() },
     });
     window.scrollTo = jest.fn();
 

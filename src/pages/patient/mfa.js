@@ -231,7 +231,7 @@ export default function MfaPage() {
 
     const postBody = {
       username: cookies.get("username", { path: "/patient" }),
-      SetUpSecurityQuestions: [questionAnswer],
+      SecurityQuestions: [questionAnswer],
     };
     api
       .submitSecurityQuestion(postBody)

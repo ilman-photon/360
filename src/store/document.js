@@ -51,12 +51,16 @@ const documentSlice = createSlice({
   initialState: {
     documentList: [],
     status: null,
+    selectedEducationMaterial: null,
     healthRecordList: [],
   },
   reducers: {
     resetDocuments: (state) => {
       state.documentList = [];
       state.healthRecordList = [];
+    },
+    setEducationMaterial: (state, { payload }) => {
+      state.selectedEducationMaterial = payload;
     },
   },
   extraReducers: {
@@ -84,6 +88,6 @@ const documentSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { resetDocuments } = documentSlice.actions;
+export const { resetDocuments, setEducationMaterial } = documentSlice.actions;
 
 export default documentSlice.reducer;

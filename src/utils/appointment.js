@@ -339,7 +339,9 @@ export function parsePrescriptionItemData(prescriptionData, key) {
     }
 
     itemData.date = itemData.date ? mmddyyDateFormat(itemData.date) : "N/A";
-    itemData.expirationDate = itemData.expirationDate ? mmddyyDateFormat(itemData.expirationDate) : "N/A";
+    itemData.expirationDate = itemData.expirationDate
+      ? mmddyyDateFormat(itemData.expirationDate)
+      : "N/A";
     data.push(itemData);
   }
 
@@ -935,4 +937,13 @@ export async function onCallSubmitFilterAPI(
     .finally(function () {
       router.push("/patient/appointment");
     });
+}
+
+export function getLocationName(location) {
+  if (location.indexOf(",") > -1) {
+    const tempLocation = location.split(",");
+    return tempLocation[0];
+  } else {
+    return location;
+  }
 }

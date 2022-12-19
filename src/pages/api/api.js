@@ -1,6 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 import { setGenericErrorMessage } from "../../store";
+import { getLocationName } from "../../utils/appointment";
 import constants from "../../utils/constants";
 import { Regex } from "../../utils/regex";
 
@@ -347,8 +348,14 @@ export class Api {
   }
 
   submitFilter(locationName, postBody) {
-    const url = `/ecp/appointments/available-slot?searchText=${locationName}`;
+    const tempLocation = getLocationName(locationName);
+    const url = `/ecp/appointments/available-slot?searchText=${tempLocation}`;
     return this.getResponse(url, postBody, "put");
+  }
+
+  getSuggestionLocation(locationName) {
+    const url = `/ecp/appointments/getLocationsBasedOnSearch?search.query=${locationName}`;
+    return this.getResponse(url, {}, "get", false);
   }
 
   getPrescriptionMedication(showError = true) {
@@ -509,6 +516,18 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  getPatientAccountBalance() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const url = `/ecp/patientbillingsystem/getPatientCredits/${userData?.patientId}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getInvoiceWithPatientDetails() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const url = `/ecp/patientbillingsystem/getInvoiceWithPatientDetails?search.query=((patient.uid=eq=${userData?.patientId}))`;
+    return this.getResponse(url, {}, "get");
+  }
+
   validatePassword(postBody) {
     const url = `/ecp/patient/settings/validatePassword`;
     return this.getResponse(url, postBody, "post");
@@ -522,5 +541,11 @@ export class Api {
   getPasswordInfo(postBody) {
     const url = `/ecp/patient/settings/validatePassword`;
     return this.getResponse(url, postBody, "post", false);
+  }
+
+  getEducationMaterial() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const url = `/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`;
+    return this.getResponse(url, {}, "get");
   }
 }
