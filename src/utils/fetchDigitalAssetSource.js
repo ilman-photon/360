@@ -24,7 +24,18 @@ async function print(url) {
   document.body.removeChild(a);
 }
 
-export const fetchSource = async (id, isPrint = false, newTab = true) => {
+async function openNewTab(url) {
+  const response = await axios.get(url, { responseType: "blob" });
+  const fileURL = URL.createObjectURL(response.data);
+  window.open(fileURL, "_blank");
+}
+
+export const fetchSource = async (
+  id,
+  isPrint = false,
+  newTab = true,
+  isOpenPdf = false
+) => {
   if (!id) {
     return;
   }
@@ -39,6 +50,8 @@ export const fetchSource = async (id, isPrint = false, newTab = true) => {
     if (response) {
       if (isPrint) {
         print(response.presignedUrl);
+      } else if (isOpenPdf) {
+        openNewTab(response.presignedUrl);
       } else {
         download(response.presignedUrl, newTab);
       }

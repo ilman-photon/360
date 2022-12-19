@@ -9,7 +9,6 @@ Feature: Patient Portal : Education Materials - Read more CTA
   @Regression
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to view the entire content of education material
-    Scenario: EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to view the entire content of education material
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -26,7 +25,6 @@ Feature: Patient Portal : Education Materials - Read more CTA
   @Regression
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to see that the education material document & Print
-    Scenario: EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to see that the education material document & Print
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -46,7 +44,6 @@ Feature: Patient Portal : Education Materials - Read more CTA
   @Regression
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to view Print CTA which when clicked will print the education material document
-    Scenario: EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to view Print CTA which when clicked will print the education material document
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -64,7 +61,6 @@ Feature: Patient Portal : Education Materials - Read more CTA
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to view Back to education material CTA which when clicked will take the user back to Education materials screen
-    Scenario: EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to view Back to education material CTA which when clicked will take the user back to Education materials screen
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -83,7 +79,6 @@ Feature: Patient Portal : Education Materials - Read more CTA
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-8548 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User clicks on Read more CTA
-    Scenario: EPIC_EPP-24_STORY_EPP-8548 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User clicks on Read more CTA
 
     Given User is logged into the portal
     And User lands on the dashboard screen
@@ -103,7 +98,6 @@ Feature: Patient Portal : Education Materials - Read more CTA
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-24_STORY_EPP-8548 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when User clicks on Read more CTA
-    Scenario: EPIC_EPP-24_STORY_EPP-8548 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when User clicks on Read more CTA
 
     Given User is logged into the portal
     And User lands on the dashboard screen

@@ -542,4 +542,10 @@ export class Api {
     const url = `/ecp/patient/settings/validatePassword`;
     return this.getResponse(url, postBody, "post", false);
   }
+
+  getEducationMaterial() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const url = `/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`;
+    return this.getResponse(url, {}, "get");
+  }
 }
