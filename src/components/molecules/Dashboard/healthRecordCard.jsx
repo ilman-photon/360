@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchDocuments,
@@ -53,7 +52,6 @@ export default function HealthRecordCard() {
   const [healthRecordData, setHealthRecordData] = React.useState({});
   const isDesktop = useMediaQuery("(min-width: 700px)");
   const iconPrescription = "/icon-Health-Record.png";
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const rows = useSelector((state) => {

@@ -1,33 +1,23 @@
 import * as React from "react";
-import AccountCard from "../AccountCard/accountCard";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import CalendarTodayRoundedIcon from "@mui/icons-material/CalendarTodayRounded";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import PortraitOutlinedIcon from "@mui/icons-material/PortraitOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import styles from "./styles.module.scss";
-import {
-  Box,
-  Grid,
-  Typography,
-  Link,
-  Stack,
-  ThemeProvider,
-} from "@mui/material";
+import { Box, Grid, Typography, Link, Stack } from "@mui/material";
 import { StyledButton } from "../../atoms/Button/button";
-import { patientTypography, colors } from "../../../styles/theme";
 import { parseAppointmentCardData } from "../../../utils/appointment";
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
-import { getLinkAria } from "../../../utils/viewUtil";
 import ImageFallback from "../../atoms/Image/image";
 import { getProviderLocation } from "../AppointmentInformation/appointmentInformation";
 import CommonCard from "./commonCard";
+import { colors } from "../../../styles/theme";
 
 export default function AppointmentCard({
   appointmentData = [],

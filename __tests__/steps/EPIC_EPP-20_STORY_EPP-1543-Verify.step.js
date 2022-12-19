@@ -667,6 +667,7 @@ defineFeature(feature, (test) => {
       back: jest.fn(),
       push: jest.fn(),
       beforePopState: jest.fn(),
+      events: { on: jest.fn() },
     });
     window.scrollTo = jest.fn();
 

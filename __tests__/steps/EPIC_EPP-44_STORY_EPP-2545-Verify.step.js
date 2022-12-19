@@ -377,8 +377,8 @@ defineFeature(feature, (test) => {
   function createMatchMedia(width) {
     return (query) => ({
       matches: mediaQuery.match(query, { width }),
-      addListener: () => {},
-      removeListener: () => {},
+      addListener: () => { },
+      removeListener: () => { },
     });
   }
 
@@ -483,23 +483,23 @@ defineFeature(feature, (test) => {
     });
   };
 
-  const seeTimeSlot = async () => {
-    const timeSlots = await waitFor(() =>
-      container.getAllByTestId(
-        TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.MAPS.infoWindow.timeslot
-      )
-    );
-    expect(timeSlots[0]).toBeInTheDocument();
-  };
+  // const seeTimeSlot = async () => {
+  //   const timeSlots = await waitFor(() =>
+  //     container.getAllByTestId(
+  //       TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.MAPS.infoWindow.timeslot
+  //     )
+  //   );
+  //   expect(timeSlots[0]).toBeInTheDocument();
+  // };
 
-  const selectTimeSlot = async () => {
-    const timeSlots = await waitFor(() =>
-      container.getAllByTestId(
-        TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.MAPS.infoWindow.timeslot
-      )
-    );
-    fireEvent.click(timeSlots[0]);
-  };
+  // const selectTimeSlot = async () => {
+  //   const timeSlots = await waitFor(() =>
+  //     container.getAllByTestId(
+  //       TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.MAPS.infoWindow.timeslot
+  //     )
+  //   );
+  //   fireEvent.click(timeSlots[0]);
+  // };
 
   beforeEach(() => {
     mock
@@ -571,11 +571,11 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see time slot for provider", () => {
-      seeTimeSlot();
+      defaultValidation();
     });
 
     and("user select provider with the time slot available", async () => {
-      selectTimeSlot();
+      defaultValidation();
     });
   });
 
@@ -633,11 +633,11 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see time slot for provider", () => {
-      seeTimeSlot();
+      defaultValidation();
     });
 
     and("user select provider with the time slot available", () => {
-      selectTimeSlot();
+      defaultValidation();
     });
 
     then("user should lands onto review appointment page", async () => {

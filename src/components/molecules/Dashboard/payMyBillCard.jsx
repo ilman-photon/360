@@ -222,7 +222,9 @@ export default function PayMyBillCard() {
                       {getBalanceData(payMyBillData)}
                     </TableCell>
                     <TableCell tabIndex={0}>
-                      {onRenderButtonView(() => {}, isDesktop)}
+                      {onRenderButtonView(() => {
+                        // This is intentional
+                      }, isDesktop)}
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -305,7 +307,9 @@ export default function PayMyBillCard() {
                 </Typography>
               </Stack>
               <Divider sx={{ marginBottom: "18px" }} />
-              {onRenderButtonView(() => {}, isDesktop)}
+              {onRenderButtonView(() => {
+                // This is intentional
+              }, isDesktop)}
             </Stack>
             {renderMakePaymentButton()}
           </>

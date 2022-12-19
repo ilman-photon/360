@@ -2,14 +2,16 @@ import * as React from "react";
 import AccountCard from "../AccountCard/accountCard";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import styles from "./styles.module.scss";
-import { Box, Link, ThemeProvider, useMediaQuery } from "@mui/material";
+import { Box, Link, ThemeProvider } from "@mui/material";
 import { patientTypography } from "../../../styles/theme";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 
 export function onRenderButtonView(
-  onClickViewButton = () => {},
+  onClickViewButton = () => {
+    // This is intentional
+  },
   isDesktop = true
 ) {
   return (
