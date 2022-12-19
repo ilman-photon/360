@@ -46,9 +46,10 @@ export default function LoginSecurityPage() {
   const DEFAULT_FORM_VALUES = {
     password: "",
   };
-  const { handleSubmit, control, reset } = useForm({
+  const { handleSubmit, control, reset, formState } = useForm({
     defaultValues: DEFAULT_FORM_VALUES,
   });
+  const { isDirty } = formState;
 
   const isSecurityQuestionNotEmpty =
     securityQuestions[0] && Object.keys(securityQuestions[0]).length > 0;
@@ -282,8 +283,8 @@ export default function LoginSecurityPage() {
                     required: "This field is required",
                   }}
                 />
-
                 <StyledButton
+                  disabled={!isDirty}
                   type="submit"
                   mode="primary"
                   size="small"
