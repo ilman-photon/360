@@ -1,0 +1,12 @@
+.educationMaterialsWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1477px;
+  margin: 0 auto 35px auto;
+  background: white;
+  padding: 24px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+}

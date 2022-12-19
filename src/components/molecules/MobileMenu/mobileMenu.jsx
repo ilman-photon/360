@@ -28,6 +28,7 @@ import { colors } from "../../../styles/theme";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { menus } from "../AdminNavbar/adminNavbar";
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 
 export default function MobileMenu({
   isAdmin = false,
@@ -144,6 +145,11 @@ export default function MobileMenu({
                   />
                 </Box>
               ),
+            },
+            {
+              label: "Education Materials",
+              href: "/patient/education-materials",
+              icon: <SchoolOutlinedIcon sx={{ width: "16px" }} />,
             },
           ],
           icon: <DescriptionOutlinedIcon sx={{ fill: colors.darkGreen }} />,

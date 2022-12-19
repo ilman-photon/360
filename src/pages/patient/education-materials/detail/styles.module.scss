@@ -1,0 +1,68 @@
+.containerDetail {
+  display: flex;
+  flex-direction: column;
+  max-width: 1477px;
+  margin: 0 auto 35px auto;
+  background: white;
+  padding: 24px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+}
+
+.titleDetail {
+  font-family: "Bw Nista Geometric DEMO", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 60px;
+  color: #003b4a;
+  @media (max-width: 600px) {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+  padding: 16px 0px;
+  gap: 8px;
+  width: 100%;
+  max-width: 925px;
+  height: 56px;
+  background: #eef5f7;
+}
+
+.buttonTxt {
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: 600;
+  font-size: 16px !important;
+  line-height: 24px;
+  color: #007787;
+  margin-left: 10px;
+}
+
+.contentWrapper {
+  width: 100%;
+  max-width: 925px;
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  //   font-weight: 600;
+  font-size: 18px !important;
+  line-height: 26px;
+  .titleContent {
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 18px !important;
+    color: #191919;
+  }
+  .bodyContent {
+    font-weight: 400;
+    margin-bottom: 20px;
+    font-size: 18px !important;
+    color: #191919;
+  }
+}
