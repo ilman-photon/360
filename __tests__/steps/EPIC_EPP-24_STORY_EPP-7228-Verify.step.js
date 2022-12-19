@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 import SearchDoctorPage from "../../src/pages/patient/search-doctor";
+import { educationMaterials } from "../../__mocks__/mockResponse";
 
 jest.setTimeout(20000);
 
@@ -367,6 +368,9 @@ const mockApi = () => {
 			`/ecp/appointments/getSpecialization?search.query=((entityName=eq=document)AND(attributeName=eq=specialization))`
 		)
 		.reply(200, {specializations:specialtiesMock});
+	mock
+		.onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+		.reply(200, educationMaterials);
 };
 
 function createMatchMedia(width) {

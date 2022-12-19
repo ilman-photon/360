@@ -34,23 +34,28 @@ export default function EducationMaterialCard() {
 
   function onCalledGetEducationMaterialsData() {
     const api = new Api();
-    api.getEducationMaterial(false).then(function (response) {
-      if (response && response?.entities.length > 0) {
-        const listData = [];
-        for (const item of response?.entities) {
-          listData.push({
-            id: item._id,
-            title: item.name,
-            imgSrc: "/image166.png",
-            author: `${item.uploadedBy?.firstName} ${item.uploadedBy?.lastName}`,
-            date: new moment(item._created).format("MMM dd, yyyy"),
-            digital_assets: item.digital_assets,
-            desc: "",
-          });
+    api
+      .getEducationMaterial(false)
+      .then(function (response) {
+        if (response && response?.entities.length > 0) {
+          const listData = [];
+          for (const item of response?.entities) {
+            listData.push({
+              id: item._id,
+              title: item.name,
+              imgSrc: "/image166.png",
+              author: `${item.uploadedBy?.firstName} ${item.uploadedBy?.lastName}`,
+              date: new moment(item._created).format("MMM dd, yyyy"),
+              digital_assets: item.digital_assets,
+              desc: "",
+            });
+          }
+          setEducationMaterialData(listData);
         }
-        setEducationMaterialData(listData);
-      }
-    });
+      })
+      .catch(() => {
+        //Handle error code
+      });
   }
 
   useEffect(() => {
