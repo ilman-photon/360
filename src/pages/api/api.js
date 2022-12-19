@@ -545,7 +545,6 @@ export class Api {
 
   getEducationMaterial(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = "d183504b-e6c2-44a3-bcc0-6a37094a4ec5"; //`/${userData?.patientId}`;
     const url = `/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`;
     return this.getResponse(url, {}, "get", showError);
   }

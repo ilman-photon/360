@@ -20,6 +20,7 @@ import HomePage from "../../src/pages/patient";
 import { renderScheduleAppointment } from "../../__mocks__/commonSteps";
 import Appointment from "../../src/pages/patient/appointment";
 import { Login } from "../../src/components/organisms/Login/login";
+import { educationMaterials } from "../../__mocks__/mockResponse";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-2696.feature"
@@ -361,6 +362,9 @@ const navigateToPatientPortalHome = async () => {
   mock
     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
     .reply(200, MOCK_PRESCRIPTION);
+  mock
+    .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+    .reply(200, educationMaterials);
   const response = await getServerSideProps({
     req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
     res: jest.fn(),

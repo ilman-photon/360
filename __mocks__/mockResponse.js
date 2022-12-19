@@ -38795,3 +38795,167 @@ export const medicationsRecordDocoumentMock = {
     }
   }
 }
+
+export const educationMaterials = {
+  "count": 3,
+  "entities": [
+      {
+          "name": "Guide To Macular Degeneration Surgery",
+          "documentType": "application/pdf",
+          "category": "EducationMaterials",
+          "encounterNo": 10000515,
+          "digital_assets": {
+              "_id": "99049981-0cea-44a9-8b9d-5961da3b13db"
+          },
+          "uploadedBy": {
+              "uid": "2818ef11-208b-4f43-b471-06ad495381f1",
+              "firstName": "Satia",
+              "lastName": "Rahman",
+              "designation": "Mr",
+              "_createdBy": {
+                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+                  "_links": {
+                      "self": {
+                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+                      }
+                  }
+              },
+              "_updatedBy": {
+                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+                  "_links": {
+                      "self": {
+                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+                      }
+                  }
+              }
+          },
+          "_links": {
+              "self": {
+                  "href": "/v1/patients/6ed9b624-9bc4-4953-b660-1a745a3de765"
+              }
+          },
+          "description": "Age-related macular degeneration is an eye condition that can affect central vision. Macular degeneration surgery can help prevent further vision loss. Learn more about this condition with Clarkson Eyecare. Age-related macular degeneration is an ",
+          "patientId": "d183504b-e6c2-44a3-bcc0-6a37094a4ec5",
+          "_id": "6ed9b624-9bc4-4953-b660-1a745a3de765",
+          "_version": "5851ae84-b1df-4836-90bc-d63655f59379",
+          "_created": "Oct 30, 2022, 9:38:54 AM",
+          "_updated": "Nov 10, 2022, 9:38:54 AM",
+          "status": "CREATED",
+          "_createdBy": {
+              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
+              "_links": {
+                  "self": {
+                      "href": "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1"
+                  }
+              }
+          }
+      },
+      {
+          "name": "What Causes Floaters and Flashes in the Eye?",
+          "documentType": "application/pdf",
+          "category": "EducationMaterials",
+          "encounterNo": 10000515,
+          "digital_assets": {
+              "_id": "99049981-0cea-44a9-8b9d-5961da3b13db"
+          },
+          "uploadedBy": {
+              "uid": "2818ef11-208b-4f43-b471-06ad495381f1",
+              "firstName": "Arief",
+              "lastName": "Rahman",
+              "designation": "Mr",
+              "_createdBy": {
+                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+                  "_links": {
+                      "self": {
+                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+                      }
+                  }
+              },
+              "_updatedBy": {
+                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+                  "_links": {
+                      "self": {
+                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+                      }
+                  }
+              }
+          },
+          "_links": {
+              "self": {
+                  "href": "/v1/patients/6ed9b624-9bc4-4953-b660-1a745a3de765"
+              }
+          },
+          "description": "Learn more from the doctors at Clarkson Eyecare about what causes floaters and flashes in the eye, symptoms, and treatment options.",
+          "patientId": "d183504b-e6c2-44a3-bcc0-6a37094a4ec5",
+          "_id": "6ed9b624-9bc4-4953-b660-1a745a3de765",
+          "_version": "5851ae84-b1df-4836-90bc-d63655f59379",
+          "_created": "Nov 04, 2022, 9:38:54 AM",
+          "_updated": "Nov 10, 2022, 9:38:54 AM",
+          "status": "CREATED",
+          "_createdBy": {
+              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
+              "_links": {
+                  "self": {
+                      "href": "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1"
+                  }
+              }
+          }
+      },
+      {
+          "name": "What is Astigmatism?",
+          "documentType": "application/pdf",
+          "category": "EducationMaterials",
+          "encounterNo": 10000515,
+          "digital_assets": {
+              "_id": "99049981-0cea-44a9-8b9d-5961da3b13db"
+          },
+          "uploadedBy": {
+              "uid": "2818ef11-208b-4f43-b471-06ad495381f1",
+              "firstName": "Sharif",
+              "lastName": "Rahman",
+              "designation": "Mr",
+              "_createdBy": {
+                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+                  "_links": {
+                      "self": {
+                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+                      }
+                  }
+              },
+              "_updatedBy": {
+                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+                  "_links": {
+                      "self": {
+                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+                      }
+                  }
+              }
+          },
+          "_links": {
+              "self": {
+                  "href": "/v1/patients/6ed9b624-9bc4-4953-b660-1a745a3de765"
+              }
+          },
+          "description": "At first glance, the human eye appears perfectly round. But for many people with astigmatism, that's not necessarily the case. Astigmatism is a common and treatable eye condition that affects about one in three Americans to some degree",
+          "patientId": "d183504b-e6c2-44a3-bcc0-6a37094a4ec5",
+          "_id": "6ed9b624-9bc4-4953-b660-1a745a3de765",
+          "_version": "5851ae84-b1df-4836-90bc-d63655f59379",
+          "_created": "Oct 19, 2022, 9:38:54 AM",
+          "_updated": "Nov 10, 2022, 9:38:54 AM",
+          "status": "CREATED",
+          "_createdBy": {
+              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
+              "_links": {
+                  "self": {
+                      "href": "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1"
+                  }
+              }
+          }
+      }
+  ],
+  "_links": {
+      "self": {
+          "href": "/patient-management?pageNo=0&pageSize=10"
+      }
+  }
+}

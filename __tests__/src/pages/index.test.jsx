@@ -12,6 +12,7 @@ import {
   expectPushRouter,
 } from "../../../__mocks__/commonSteps";
 import {
+  educationMaterials,
   mockAppointmentTypes,
   prescriptionContact,
   prescriptionGlasses,
@@ -164,7 +165,9 @@ describe("Home", () => {
         `/ecp/prescriptions/patient/${userData?.patientId}/getContactsData`
       )
       .reply(200, prescriptionContact);
-
+    mock
+      .onGet(`/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+      .reply(200, educationMaterials);
     let container;
     const props = await getStaticProps();
     act(() => {
