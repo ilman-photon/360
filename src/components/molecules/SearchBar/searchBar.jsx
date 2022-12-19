@@ -155,7 +155,7 @@ export default function SearchBar({
                   }
             }
           >
-            Search by name, email or phone
+            Doctor name or practice name
           </Typography>
           {name !== "" && (
             <Typography
@@ -246,7 +246,7 @@ export default function SearchBar({
               InputLabelProps={{ "aria-hidden": true }}
               aria-label={"Doctor name, practice name"}
               id="doctor"
-              label="Doctor name, practice name"
+              label="Doctor name or practice name"
               variant="filled"
               data-testid="doctor-name"
               type="text"
@@ -453,7 +453,7 @@ export default function SearchBar({
   );
 
   const filterPil = () => (
-    <Box flexDirection={"row"} display={"flex"} gap={"10px"}>
+    <Box flexDirection={"row"} display={"flex"} gap={"10px"} flexWrap={"wrap"}>
       <Button
         onClick={() => {
           openFilter();
@@ -467,6 +467,7 @@ export default function SearchBar({
           fontSize: "14px",
           lineHeight: "18px",
           height: "30px",
+          width: "112px",
         }}
         startIcon={<FilterListOutlinedIcon sx={{ fill: "black" }} />}
         endIcon={
@@ -488,6 +489,7 @@ export default function SearchBar({
             lineHeight: "18px",
             padding: "0 8px",
             height: "30px",
+            whiteSpace: "nowrap",
           }}
         >
           {item.name}
