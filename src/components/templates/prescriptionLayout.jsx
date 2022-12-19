@@ -10,13 +10,16 @@ import { useRouter } from "next/router";
 
 export default function PrescriptionLayout({
   children,
-  pageTitle = "EyeCare Patient Portal - Prescription",
+  pageTitle,
+  isHeading = true,
+  backTitle = "",
   title = "",
   customClassName = "",
 }) {
   const router = useRouter();
 
   const headingTitle = (isTitle = false) => {
+    console.log(router);
     switch (router.query.type) {
       case "intake-forms":
         return "Intake Forms";
@@ -41,7 +44,9 @@ export default function PrescriptionLayout({
   return (
     <>
       <Head>
-        <title>EyeCare Patient Portal - {headingTitle(true)} Page</title>
+        <title>
+          EyeCare Patient Portal - {pageTitle || headingTitle(true)} Page
+        </title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader {...logoutProps} />

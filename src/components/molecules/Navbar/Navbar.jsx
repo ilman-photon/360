@@ -12,6 +12,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "@mui/material";
 import { patientTypography } from "../../../styles/theme";
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 
 const iconintakeFoms = "/iconintakeFoms.png";
 const iconCardinsuranceCard = "/iconCardinsuranceCard.png";
@@ -43,6 +44,11 @@ const documents = [
     label: "Health Record",
     href: "/patient/health-record",
     icon: iconHealthRecord,
+  },
+  {
+    iconMui: <SchoolOutlinedIcon sx={{ width: "16px" }} />,
+    href: "/patient/education-materials",
+    label: "Education Materials",
   },
 ];
 
@@ -118,7 +124,11 @@ const Navbar = ({ isDashboard = false }) => {
         onClick={() => handleCloseMenu(item.href)}
         aria-label={`${item.label} menu`}
       >
-        <Image alt="" src={item.icon} width={"16px"} height={"16px"} />
+        {item.icon && (
+          <Image alt="" src={item?.icon} width={"16px"} height={"16px"} />
+        )}
+        {item?.iconMui}
+        <iconMui />
         <Typography
           textAlign="center"
           sx={{
@@ -328,9 +338,11 @@ const Navbar = ({ isDashboard = false }) => {
                     borderRadius: "2px 2px 0px 0px",
                     borderTop: "solid 4px transparent",
                     paddingBottom: "1px",
-                    borderBottom: isCurrentPath("/patient/account/documents")
-                      ? "solid 4px #D9D9D9"
-                      : "solid 4px transparent",
+                    borderBottom:
+                      isCurrentPath("/patient/education-materials") ||
+                      isCurrentPath("/patient/account/documents")
+                        ? "solid 4px #D9D9D9"
+                        : "solid 4px transparent",
                     fontSize: {
                       sm: "14px",
                       md: "16px",
