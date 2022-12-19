@@ -16,6 +16,7 @@ import CommonCard from "./commonCard";
 import Slider from "react-slick";
 import ImageFallback from "../../atoms/Image/image";
 import TableEmpty from "../../atoms/TableEmpty/tableEmpty";
+import { Api } from "../../../pages/api/api";
 
 export default function EducationMaterialCard() {
   const [educationMaterialData, setEducationMaterialData] = React.useState([]);
@@ -29,6 +30,32 @@ export default function EducationMaterialCard() {
     slidesToShow: isDesktop ? 1 : 1.3,
     slidesToScroll: 1,
   };
+
+  function onCalledGetEducationMaterialsData() {
+    const api = new Api();
+    api.getEducationMaterial(false).then(function (response) {
+      if (response && response?.entities.length > 0) {
+        const listData = [];
+        for (const item of response?.entities) {
+          listData.push({
+            id: item._id,
+            title: item.name,
+            imgSrc: "/image166.png",
+            author: `${item.uploadedBy?.firstName} ${item.uploadedBy?.lastName}`,
+            date: new moment(item._created).format("MMM dd, yyyy"),
+            digital_assets: item.digital_assets,
+            desc: "",
+          });
+        }
+        setEducationMaterialData(listData);
+      }
+    });
+  }
+
+  useEffect(() => {
+    onCalledGetEducationMaterialsData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function renderDekstopView() {
     return (
