@@ -17,6 +17,7 @@ import Slider from "react-slick";
 import ImageFallback from "../../atoms/Image/image";
 import TableEmpty from "../../atoms/TableEmpty/tableEmpty";
 import { Api } from "../../../pages/api/api";
+import { useEffect } from "react";
 
 export default function EducationMaterialCard() {
   const [educationMaterialData, setEducationMaterialData] = React.useState([]);
