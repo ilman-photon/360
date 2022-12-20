@@ -1,9 +1,10 @@
 import Cookies from "universal-cookie";
 import { Api } from "../pages/api/api";
+import { resetFilterData } from "../store/appointment";
 
 const cookies = new Cookies();
 
-export const removeAuthCookies = () => {
+export const removeAuthCookies = (dispatch = null) => {
   cookies.remove("authorized", { path: "/patient" });
   cookies.remove("username", { path: "/patient" });
   cookies.remove("mfa", { path: "/patient" });
@@ -15,10 +16,13 @@ export const removeAuthCookies = () => {
   cookies.remove("isSecurityQuestionStep", { path: "/patient" });
   cookies.remove("mfaPreferredMode", { path: "/patient" });
   localStorage.removeItem("userData");
+  if (dispatch) {
+    dispatch(resetFilterData());
+  }
 };
 
 export const logoutProps = {
-  OnLogoutClicked: async function (router) {
+  OnLogoutClicked: async function (router, dispatch = null) {
     const api = new Api();
     const postbody = {
       username: cookies.get("username"),
@@ -29,7 +33,7 @@ export const logoutProps = {
     return api
       .logout(postbody)
       .then(function () {
-        removeAuthCookies();
+        removeAuthCookies(dispatch);
         router.push("/patient/login");
       })
       .catch(() => {
