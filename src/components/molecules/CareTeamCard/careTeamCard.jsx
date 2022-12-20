@@ -43,15 +43,20 @@ export default function CareTeamCard({ provider }) {
       location = provider.address.zip;
     }
 
-    const filterData = {
-      location,
-      date: moment().format("MM/DD/YYYY"),
-      purposeOfVisit: provider.specialties,
-    };
-
-    dispatch(setFilterData(filterData));
-    dispatch(setIsFilterApplied(true));
     onCalledGetAppointmentTypesAPI(insuranceCarrierList, (filterSuggestion) => {
+      const selectedAppointmentType = filterSuggestion?.purposeOfVisit?.find(
+        (element) => element.title === provider.specialties
+      );
+
+      const filterData = {
+        location,
+        date: moment().format("MM/DD/YYYY"),
+        purposeOfVisit: selectedAppointmentType?.title || "ALL",
+      };
+
+      dispatch(setFilterData(filterData));
+      dispatch(setIsFilterApplied(true));
+
       onCallSubmitFilterAPI(filterData, filterSuggestion, dispatch, router);
     });
   };

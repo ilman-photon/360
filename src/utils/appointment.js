@@ -918,8 +918,11 @@ export async function onCallSubmitFilterAPI(
         response,
         startDateRequest,
         endDateRequest,
-        googleApiKey,
-        currentCoordinate
+        process.env.NEXT_PUBLIC_EMBED_API,
+        {
+          lat: 0,
+          lng: 0,
+        }
       );
       if (response?.offices?.length > 0) {
         dispatch(setProviderListData(parseProviderData?.listOfProvider));
