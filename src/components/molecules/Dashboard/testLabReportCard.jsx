@@ -14,49 +14,36 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchDocuments, resetDocuments } from "../../../store/document";
 import TableEmpty from "../../atoms/TableEmpty/tableEmpty";
 import moment from "moment";
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import CommonCard from "./commonCard";
 import { StyledTableCell } from "./prescriptions";
+import { Api } from "../../../pages/api/api";
 
 export default function TestLabReportCard() {
   const [testLabReportData, setTestLabReportData] = React.useState({});
   const isDesktop = useMediaQuery("(min-width: 700px)");
   const iconTestTube = "/icon-testtube.png";
-  const dispatch = useDispatch();
 
-  const rows = useSelector((state) => {
-    return state.document.documentList;
-  });
+  function onCalledGetTestLabData() {
+    const api = new Api();
+    api
+      .getTestLabData()
+      .then(function (response) {
+        if (response && response?.entities.length > 0) {
+          setTestLabReportData(response.entities[0]);
+        }
+      })
+      .catch(() => {
+        //Handle error code
+      });
+  }
 
   useEffect(() => {
-    dispatch(resetDocuments());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    onCalledGetTestLabData();
   }, []);
-
-  useEffect(() => {
-    const userStorageData = JSON.parse(localStorage.getItem("userData"));
-    if (userStorageData) {
-      dispatch(
-        fetchDocuments({
-          patientId: userStorageData.patientId,
-          category: "test-lab-result",
-        })
-      );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (rows && rows.length > 0) {
-      setTestLabReportData(rows[0]);
-    }
-  }, [rows]);
 
   function renderStatusTestLab(status) {
     let statusStyle = "";
@@ -129,16 +116,23 @@ export default function TestLabReportCard() {
                       tabIndex={0}
                       className="MuiTableCell-customHead"
                     >
-                      {tableHeaderIcon[idx] && (
-                        <Image
-                          alt=""
-                          src={tableHeaderIcon[idx]}
-                          width={18}
-                          height={18}
-                          className={styles.imageTableHeader}
-                        />
-                      )}
-                      {header}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          gap: "12px",
+                        }}
+                      >
+                        {tableHeaderIcon[idx] && (
+                          <Image
+                            alt=""
+                            src={tableHeaderIcon[idx]}
+                            width={18}
+                            height={18}
+                            className={styles.imageTableHeader}
+                          />
+                        )}
+                        {header}
+                      </Box>
                     </StyledTableCell>
                   ))}
                 </TableRow>
