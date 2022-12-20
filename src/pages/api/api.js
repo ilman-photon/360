@@ -548,4 +548,10 @@ export class Api {
     const url = `/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`;
     return this.getResponse(url, {}, "get", showError);
   }
+
+  getTestLabData() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const url = `/ecp/testResult/${userData?.patientId}`;
+    return this.getResponse(url, {}, "get", false);
+  }
 }
