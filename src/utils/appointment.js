@@ -686,7 +686,7 @@ function setAvailableToday(dateSchedule) {
   return dateSchedule === newDate;
 }
 
-function getProviderAddres(providerAddress) {
+function getProviderAddress(providerAddress) {
   return {
     addressLine1: providerAddress?.addressLine1 || "",
     addressLine2: "",
@@ -817,7 +817,7 @@ export async function parseProviderListData(
         providerTemp.filters["isAvailableToday"] = setAvailableToday(
           availabilityDate.date
         );
-        providerTemp.address = getProviderAddres(office);
+        providerTemp.address = getProviderAddress(office);
         providerTemp.rating = provider.rating;
         providerTemp.phoneNumber = provider.workPhone;
         providerTemp.image = provider?.profilePhoto?.digitalAsset || null;
@@ -827,7 +827,7 @@ export async function parseProviderListData(
         providerTemp.distance = await getDistanceMatrix(
           // { lat: 36.8493937, lng: -76.0106753 }, // Testing from 1456 Reynard Dr, Virginia Beach, VA 23451, USA
           // { lat: -6.2268686, lng: 106.8335146}, // Testing from Jakarta Selatan
-          currentCoordinate,
+          { lat: currentCoordinate.latitude, lng: currentCoordinate.longitude },
           providerTemp.coordinate
         );
 
