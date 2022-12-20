@@ -39,6 +39,11 @@ defineFeature(feature, (test) => {
                                 "responseCode": 2001,
                                 "responseType": " Password is invalid"
                         });
+
+                mock.onPost(`/ecp/patient/logout`).reply(200, {
+                        ResponseCode: 2005,
+                        ResponseType: "success",
+                });
         }
 
         beforeEach(() => {

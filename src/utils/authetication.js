@@ -22,10 +22,14 @@ export const removeAuthCookies = (dispatch = null) => {
 };
 
 export const logoutProps = {
-  OnLogoutClicked: async function (router, dispatch = null) {
+  OnLogoutClicked: async function (
+    router,
+    dispatch = null,
+    newUsername = null
+  ) {
     const api = new Api();
     const postbody = {
-      username: cookies.get("username"),
+      username: newUsername === null ? cookies.get("username") : newUsername,
       refreshToken: cookies.get("refreshToken"),
       patientType: JSON.parse(localStorage.getItem("userData")).userType,
     };
