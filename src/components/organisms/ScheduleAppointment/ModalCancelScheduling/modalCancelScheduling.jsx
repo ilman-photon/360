@@ -126,14 +126,6 @@ export default function ModalCancelScheduling({
         {t("cancelTitle")}
       </DialogTitle>
       <Box sx={{ width: "auto" }} className={styles.boxModalContents}>
-        <Typography
-          tabIndex={0}
-          aria-label={t("cancelTitle")}
-          variant="bodyMedium"
-          className={styles.scheduledText}
-        >
-          {t("cancelTitle")}
-        </Typography>
         <DialogContent className={styles.checkBoxContainer}>
           <form
             onSubmit={handleSubmit(onSubmit)}
