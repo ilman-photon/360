@@ -623,6 +623,16 @@ export function getDirection(providerCordinate) {
   );
 }
 
+export function compareDate(date) {
+  return new Date() > new Date(date);
+}
+
+export function getDateCount(date1, date2) {
+  const date1D = new Date(date1);
+  const date2D = new Date(date2);
+  return date1D.getDay() - date2D.getDay() + 1;
+}
+
 export function getMondayOfCurrentWeek(date) {
   const today = new Date(date);
   const first = today.getDate() - today.getDay() + 1;
@@ -898,28 +908,15 @@ export async function onCallSubmitFilterAPI(
   dispatch,
   router
 ) {
-  const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
-    (element) => element.title === requestData.purposeOfVisit
-  );
   const startDateRequest = getMondayOfCurrentWeek(requestData.date);
   const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
-  const postBody = {
-    appointmentType: {
-      code: selectedAppointmentType?.id || "ALL",
-    },
-    currentDate: startDateRequest,
-    numDays: 6,
-    days: ["ALL"],
-    prefTime: "ALL",
-  };
   const api = new Api();
-
   api
-    .submitFilter(requestData.location, postBody)
+    .submitFilter(requestData.location, requestData, filterSuggestionData)
     .then(async function (response) {
       const parseProviderData = await parseProviderListData(
         response,
-        postBody.currentDate,
+        startDateRequest,
         endDateRequest,
         googleApiKey,
         currentCoordinate

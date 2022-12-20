@@ -1,8 +1,15 @@
 import axios from "axios";
 import moment from "moment";
 import { setGenericErrorMessage } from "../../store";
+import {
+  compareDate,
+  getDateCount,
+  getMondayOfCurrentWeek,
+  getSaturdayOfCurrentWeek,
+} from "../../utils/appointment";
 import { getLocationName } from "../../utils/appointment";
 import constants from "../../utils/constants";
+import { mmddyyDateFormat } from "../../utils/dateFormatter";
 import { Regex } from "../../utils/regex";
 
 let store;
@@ -347,7 +354,26 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  submitFilter(locationName, postBody) {
+  submitFilter(locationName, requestData, filterSuggestionData) {
+    const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
+      (element) =>
+        element.title == requestData.purposeOfVisit ||
+        element.id == requestData.purposeOfVisit
+    );
+    const startDateRequest = getMondayOfCurrentWeek(requestData.date);
+    const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
+    const dateRequest = compareDate(startDateRequest)
+      ? mmddyyDateFormat(new Date())
+      : startDateRequest;
+    const postBody = {
+      appointmentType: {
+        code: selectedAppointmentType?.id || "ALL",
+      },
+      currentDate: dateRequest,
+      numDays: getDateCount(endDateRequest, dateRequest),
+      days: ["ALL"],
+      prefTime: "ALL",
+    };
     const tempLocation = getLocationName(locationName);
     const url = `/ecp/appointments/available-slot?searchText=${tempLocation}`;
     return this.getResponse(url, postBody, "put");
