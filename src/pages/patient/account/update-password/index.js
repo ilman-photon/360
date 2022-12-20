@@ -7,6 +7,7 @@ import UpdatePasswordView from "../../../../components/molecules/UpdatePasswordV
 import UpdateLoginLayout from "../../../../components/templates/updateLoginLayout";
 import { setLoginMessage } from "../../../../store";
 import store from "../../../../store/store";
+import { logoutProps } from "../../../../utils/authetication";
 import { Api } from "../../../api/api";
 
 export default function AccountUpdatePasswordPage() {
@@ -22,7 +23,7 @@ export default function AccountUpdatePasswordPage() {
       .changePassword(postBody)
       .then(() => {
         dispatch(setLoginMessage("Your password was successfully updated."));
-        router.push("/patient/login");
+        logoutProps.OnLogoutClicked(router);
       })
       .catch(() => {
         // This is intentional
