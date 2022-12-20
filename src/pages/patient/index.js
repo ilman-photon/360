@@ -58,8 +58,8 @@ export default function HomePage({ googleApiKey }) {
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [currentCoordinate, setCurrentCoordinate] = React.useState({
-    lat: 0,
-    lng: 0,
+    latitude: 0,
+    longitude: 0,
   });
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
@@ -175,9 +175,15 @@ export default function HomePage({ googleApiKey }) {
   const fetchCurrentLocation = () => {
     if (coords) {
       setCurrentCity("");
-      getCity(googleApiKey, coords, setCurrentCity, setCurrentCoordinate);
+      getCity(googleApiKey, coords, setCurrentCity);
     }
   };
+
+  useEffect(() => {
+    if (coords) {
+      setCurrentCoordinate(coords);
+    }
+  }, [coords]);
 
   useEffect(() => {
     const cookies = new Cookies();
