@@ -208,6 +208,10 @@ export const accountRecoveryStore = createSlice({
       state.securityQuestions = mapped;
       state.status = "success";
     },
+    [fetchPatientAccount.rejected]: (state, action) => {
+      state.error = action;
+      state.securityQuestions = [];
+    },
   },
 });
 
