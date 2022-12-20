@@ -18,6 +18,7 @@ import AuthPage from "../../src/pages/patient/login";
 import { renderWithProviders } from "../src/utils/test-util";
 import { navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
 import Cookies from "universal-cookie";
+import { educationMaterials } from "../../__mocks__/mockResponse";
 
 const MOCK_APPOINTMENT = {
   appointmentList: [
@@ -338,6 +339,9 @@ const mockApi = () => {
       `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
     )
     .reply(200, MOCK_PRESCRIPTION);
+  mock
+    .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+    .reply(200, educationMaterials);
 };
 
 const geolocation = () => {

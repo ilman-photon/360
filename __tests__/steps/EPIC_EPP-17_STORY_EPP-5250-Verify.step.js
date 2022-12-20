@@ -9,6 +9,7 @@ import Cookies from "universal-cookie";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
 import PrescriptionPage from "../../src/pages/patient/prescription";
+import { educationMaterials } from "../../__mocks__/mockResponse";
 
 const MOCK_APPOINTMENT = {
   appointmentList: [
@@ -396,6 +397,9 @@ defineFeature(feature, (test) => {
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+        .reply(200, educationMaterials);
       window.matchMedia = createMatchMedia("1400px");
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
