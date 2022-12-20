@@ -253,40 +253,21 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
-  function compareDate(date) {
-    return new Date() > new Date(date);
-  }
-
   function onCallSubmitFilterAPI(
     requestData,
     activeFilterByData = [],
     isOverlay = false,
     isResetProvider = false
   ) {
-    const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
-      (element) =>
-        element.title == requestData.purposeOfVisit ||
-        element.id == requestData.purposeOfVisit
-    );
     const startDateRequest = getMondayOfCurrentWeek(requestData.date);
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
-    const postBody = {
-      appointmentType: {
-        code: selectedAppointmentType?.id || "ALL",
-      },
-      currentDate: compareDate(startDateRequest)
-        ? mmddyyDateFormat(new Date())
-        : startDateRequest,
-      numDays: 6,
-      days: ["ALL"],
-      prefTime: "ALL",
-    };
+
     if (!isOverlay) {
       setIsLoading(true);
     }
     const api = new Api();
     api
-      .submitFilter(requestData.location, postBody)
+      .submitFilter(requestData.location, requestData, filterSuggestionData)
       .then(async function (response) {
         const parseProviderData = await parseProviderListData(
           response,

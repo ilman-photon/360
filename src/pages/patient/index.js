@@ -102,25 +102,11 @@ export default function HomePage({ googleApiKey }) {
 
   //Call API for submitFilter
   async function onCallSubmitFilterAPI(requestData) {
-    const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
-      (element) => element.title === requestData.purposeOfVisit
-    );
     const startDateRequest = getMondayOfCurrentWeek(requestData.date);
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
-    const postBody = {
-      appointmentType: {
-        code: selectedAppointmentType?.id || "ALL",
-      },
-      currentDate: compareDate(startDateRequest)
-        ? mmddyyDateFormat(new Date())
-        : startDateRequest,
-      numDays: 6,
-      days: ["ALL"],
-      prefTime: "ALL",
-    };
     const api = new Api();
     api
-      .submitFilter(requestData.location, postBody)
+      .submitFilter(requestData.location, requestData, filterSuggestionData)
       .then(async function (response) {
         const parseProviderData = await parseProviderListData(
           response,
