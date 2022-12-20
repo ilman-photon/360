@@ -489,7 +489,7 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user enter some keyword', () => {
-			fireEvent.change(container.getAllByLabelText("Doctor name, practice name")[0], {
+			fireEvent.change(container.getAllByLabelText("Doctor name or practice name")[0], {
 				target: { value: "Robert" },
 			})
 		});
@@ -549,7 +549,7 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user enter some keyword', () => {
-			fireEvent.change(container.getAllByLabelText("Doctor name, practice name")[0], {
+			fireEvent.change(container.getAllByLabelText("Doctor name or practice name")[0], {
 				target: { value: "Robert" },
 			})
 		});
@@ -612,7 +612,7 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user enter some keyword', () => {
-			fireEvent.change(container.getAllByLabelText("Doctor name, practice name")[0], {
+			fireEvent.change(container.getAllByLabelText("Doctor name or practice name")[0], {
 				target: { value: "Robert" },
 			})
 		});
@@ -683,7 +683,7 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user enter some keyword', () => {
-			fireEvent.change(container.getAllByLabelText("Doctor name, practice name")[0], {
+			fireEvent.change(container.getAllByLabelText("Doctor name or practice name")[0], {
 				target: { value: "Robert" },
 			})
 		});
@@ -754,7 +754,7 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user enter some keyword', () => {
-			fireEvent.change(container.getAllByLabelText("Doctor name, practice name")[0], {
+			fireEvent.change(container.getAllByLabelText("Doctor name or practice name")[0], {
 				target: { value: "Robert" },
 			})
 		});
