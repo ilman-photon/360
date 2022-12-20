@@ -5,6 +5,7 @@ import SessionExpiredModal from "../../src/components/organisms/SessionExpiredMo
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-276.feature",
@@ -95,7 +96,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
+      container = renderWithProviders(
         <SessionExpiredModal />
       );
 
@@ -147,7 +148,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
+      container = renderWithProviders(
         <SessionExpiredModal />
       );
 
@@ -202,7 +203,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
+      container = renderWithProviders(
         <SessionExpiredModal />
       );
 

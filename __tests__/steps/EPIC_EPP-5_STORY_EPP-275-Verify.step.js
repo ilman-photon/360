@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import SessionExpiredModal from "../../src/components/organisms/SessionExpiredModal/sessionExpiredModal";
 import Cookies from "universal-cookie";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-275.feature",
@@ -94,7 +95,7 @@ defineFeature(feature, (test) => {
       Cookies.result = { IdleTimeOut: 200, authorized: true, mfa: "123" };
       props.idleTimer = 200;
       props.promptTimeout = 2000;
-      container = render(
+      container = renderWithProviders(
         <SessionExpiredModal />
       );
 
@@ -146,7 +147,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
+      container = renderWithProviders(
         <SessionExpiredModal />
       );
 
@@ -206,7 +207,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(
+      container = renderWithProviders(
         <SessionExpiredModal
         />
       );

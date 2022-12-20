@@ -40,8 +40,8 @@ import { StyledButton } from "../../atoms/Button/button";
 import { stringAvatar } from "../../../utils/avatar";
 
 export default function BaseHeader({
-  OnLogoutClicked = (routerInstance) => {
-    logoutProps.OnLogoutClicked(routerInstance);
+  OnLogoutClicked = (routerInstance, dispatch) => {
+    logoutProps.OnLogoutClicked(routerInstance, dispatch);
   },
   backTitle,
   onBackClicked,
@@ -372,7 +372,7 @@ export default function BaseHeader({
                     }}
                     opened={openedProfileDrawer}
                     onLogoutClicked={() => {
-                      OnLogoutClicked(router);
+                      OnLogoutClicked(router, dispatch);
                     }}
                   />
                 </Box>
@@ -383,7 +383,7 @@ export default function BaseHeader({
                   }}
                   open={anchorElNav}
                   onLogout={() => {
-                    OnLogoutClicked(router);
+                    OnLogoutClicked(router, dispatch);
                   }}
                   isAdmin={isAdmin}
                 ></MobileMenu>
@@ -451,7 +451,7 @@ export default function BaseHeader({
                     )}
                     <MenuItem
                       onClick={(e) => {
-                        OnLogoutClicked(router);
+                        OnLogoutClicked(router, dispatch);
                         handleCloseNavMenu(e);
                       }}
                     >
