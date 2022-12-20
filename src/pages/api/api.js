@@ -543,9 +543,9 @@ export class Api {
     return this.getResponse(url, postBody, "post", false);
   }
 
-  getEducationMaterial() {
+  getEducationMaterial(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const url = `/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`;
-    return this.getResponse(url, {}, "get");
+    return this.getResponse(url, {}, "get", showError);
   }
 }

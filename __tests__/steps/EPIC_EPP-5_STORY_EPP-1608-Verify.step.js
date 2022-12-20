@@ -10,6 +10,7 @@ import { act } from "react-dom/test-utils";
 import Cookies from "universal-cookie";
 import Appointments from "../../src/pages/patient/appointments";
 import AppointmentDetails from "../../src/pages/patient/appointments/detail-appointments/[appointmentId]";
+import { educationMaterials } from "../../__mocks__/mockResponse";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -673,7 +674,9 @@ defineFeature(feature, (test) => {
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
-
+      mock
+        .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+        .reply(200, educationMaterials);
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
