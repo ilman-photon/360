@@ -16,9 +16,16 @@ export const mockGoogleWindow = (mockData = mockDistance) => {
         getDistanceMatrix: jest.fn().mockReturnValue(mockDistance),
       }),
       UnitSystem: { METRIC: 1, IMPERIAL: 0.0 },
+      LatLng: jest.fn().mockImplementation(() => {
+        return {};
+      }),
       LatLngBounds: jest.fn().mockReturnValue({
         extend: jest.fn(),
       }),
+      Marker: jest.fn(),
+      event: {
+        trigger: jest.fn()
+      }
     },
   };
 };
