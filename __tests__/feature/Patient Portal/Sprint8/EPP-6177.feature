@@ -1,11 +1,11 @@
 
 Feature: Patient Portal : Form Customization (Documents/ Forms) - Fill up form and submit
-  User Story: As a user, I should be able to fill up a form and submit it.
 
-    @BDDTEST-EPP-7041
+  @BDDTEST-EPP-7041
   @Form_Customization
   @Patient_Portal
   @Regression
+  @included
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field when open e-form Authorization to Disclose Information about my Care
     Given user launch Patient Portal url		
@@ -26,6 +26,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Fill up form a
   @Form_Customization
   @Patient_Portal
   @Regression
+  @included
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field when open e-form Consent to Treat Minor
     Given user launch Patient Portal url		
@@ -55,6 +56,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Fill up form a
   @Form_Customization
   @Patient_Portal
   @Regression
+  @included
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field  when open e-form Consent Form_Update 04.2022
     Given user launch Patient Portal url		
@@ -75,6 +77,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Fill up form a
   @Form_Customization
   @Patient_Portal
   @Regression
+  @included
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field  when open e-form Consent Form_Update 04.2022_V3
     Given user launch Patient Portal url		

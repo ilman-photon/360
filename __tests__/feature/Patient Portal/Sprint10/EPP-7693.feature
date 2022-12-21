@@ -1,12 +1,12 @@
 
 Feature: Patient Portal : Form Customization (Documents/ Forms) - View list of submitted forms
-  User Story: As a user, I should be able to view the list of submitted forms.
 
   @BDDTEST-EPP-10722
   @Manage_Account
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-5256_STORY_EPP-7693- Verify User should be able to view the list of submitted forms i.e name of each form listed
     Given User is logged into the portal
@@ -23,6 +23,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - View list of s
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-5256_STORY_EPP-7693- Verify User should be able to view only the latest submitted form of those 9 forms that have been filled online
     Given User is logged into the portal
@@ -40,6 +41,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - View list of s
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-5256_STORY_EPP-7693- Verify User should be able to view the last submitted date for each of the submitted form
     Given User is logged into the portal
@@ -58,6 +60,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - View list of s
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-5256_STORY_EPP-7693- Verify User should be able to view the option to download each submitted form
     Given User is logged into the portal

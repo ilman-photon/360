@@ -419,7 +419,7 @@ export class Api {
         maxContentLength: Infinity,
         maxBodyLength: Infinity,
         headers: {
-          "Content-Type": "image/png",
+          "Content-Type": `${file.subType}/${file.type}`,
         },
       });
       if (response.status === 200) return { success: true };
@@ -514,6 +514,16 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  getformContent() {
+    const url = "/ecp/patients/forms/getformContent";
+    return this.getResponse(url, {}, "get");
+  }
+
+  editformContent(postBody) {
+    const url = "/ecp/patients/forms/editformContent";
+    return this.getResponse(url, postBody, "put");
+  }
+
   getPasswordLastUpdate(postBody) {
     const url = `/ecp/patient/getLastUpdatedPasswordDate`;
     return this.getResponse(url, postBody, "post");
@@ -540,6 +550,13 @@ export class Api {
   unlockAccount(query) {
     const url = `/ecp/accountRecovery/unlockAccountByAdmin/${query}`;
     return this.getResponse(url, {}, "get");
+  }
+
+  createPatientDocument(postBody) {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const url = `/ecp/patients/forms/createPatientDocument${patientId}`;
+    return this.getResponse(url, postBody, "post");
   }
 
   getPatientAccountBalance() {

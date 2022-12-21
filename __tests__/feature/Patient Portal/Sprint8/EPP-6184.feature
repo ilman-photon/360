@@ -7,7 +7,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Select and vie
   @Manage_Account
   @Patient_Portal
   @Sprint8
-  Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when Admin user clicks on cancel button
     Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when Admin user clicks on cancel button
 
     Given User launch Patient Portal url		
@@ -32,7 +31,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Select and vie
   @Manage_Account
   @Patient_Portal
   @Sprint8
-  Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when Admin user clicks on cancel button
     Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when Admin user clicks on cancel button
 
     Given User launch Patient Portal url		
@@ -58,7 +56,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Select and vie
   @Patient_Portal
   @Regression
   @Sprint8
-  Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user clicked will cancel the changes made and revert the contents of the form to the previous published version; navigate the admin user to list of customizable forms
     Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user clicked will cancel the changes made and revert the contents of the form to the previous published version; navigate the admin user to list of customizable forms
 
     Given User launch Patient Portal url		
@@ -81,7 +78,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Select and vie
   @Manage_Account
   @Patient_Portal
   @Sprint8
-  Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user should be able to view the option to discard changes
     Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user should be able to view the option to discard changes
 
     Given User launch Patient Portal url		
@@ -103,7 +99,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Select and vie
   @Manage_Account
   @Patient_Portal
   @Sprint8
-  Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user should be able to view the option to publish the form
     Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user should be able to view the option to publish the form
 
     Given User launch Patient Portal url		
@@ -124,7 +119,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Select and vie
   @Manage_Account
   @Patient_Portal
   @Sprint8
-  Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user should be able to view the portions that can be customized within the form which the admin user can update/ change
     Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user should be able to view the portions that can be customized within the form which the admin user can update/ change
 
     Given User launch Patient Portal url		
@@ -143,7 +137,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Select and vie
   @Manage_Account
   @Patient_Portal
   @Sprint8
-  Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin should be able to view the heading of each form customizable which when changed by the admin will also change the display name of the form
     Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin should be able to view the heading of each form customizable which when changed by the admin will also change the display name of the form
 
     Given User launch Patient Portal url		
@@ -161,7 +154,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Select and vie
   @Manage_Account
   @Patient_Portal
   @Sprint8
-  Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user should be able to view all the contents of the form 
     Scenario: EPIC_EPP-5256_STORY_EPP-6184 - Verify Admin user should be able to view all the contents of the form 
 
     Given User launch Patient Portal url		

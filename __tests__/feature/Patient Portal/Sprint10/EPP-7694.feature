@@ -1,6 +1,5 @@
 
 Feature: Patient Portal : Form Customization (Documents/ Forms) - Download the submitted forms
-  User Story: As a user, I should be able to download the submitted form.
 
   @BDDTEST-EPP-10726
   @Manage_Account

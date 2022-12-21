@@ -1,0 +1,103 @@
+.signFormContainer {
+  background-color: #f4f4f4;
+  padding: 12px 20px;
+  display: flex;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+  background: #e8e8e8;
+  box-shadow: 0px 1.65922px 3.31845px rgba(0, 51, 89, 0.1);
+  border-radius: 20px;
+  flex: none;
+  //   order: 1;
+  text-align: center;
+  flex-grow: 0;
+}
+.buttonContainerError {
+  background: #fbf5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+  box-shadow: 0px 1.65922px 3.31845px rgba(0, 51, 89, 0.1);
+  border-radius: 20px;
+  flex: none;
+  //   order: 1;
+  text-align: center;
+  flex-grow: 0;
+}
+.signLabel {
+  width: 94px;
+  height: 30px;
+  position: relative;
+  background: #b00020;
+  transform: rotate(90deg);
+  //   z-index: 3000;
+  text-align: center;
+  margin-top: 33px;
+}
+.signLabel:before {
+  content: "";
+  position: absolute;
+  right: -15px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 15px solid #b00020;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.signLabelTxt {
+  line-height: 30px;
+  font-size: 18px;
+  color: white;
+  font-family: "Libre Franklin", sans-serif;
+  // padding: auto;
+}
+
+.signButton {
+  width: 234px;
+}
+
+.signedButton {
+  background: #168845;
+  color: #ffffff;
+  border: none;
+  width: 234px;
+}
+
+.signedButton:hover {
+  background-color: #168845;
+}
+
+.signInfo {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.disableSign {
+  width: 100%;
+  margin: 0 16px;
+  height: 40px;
+  background: #efefef;
+}
+
+.signErrorMessage {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  color: #b3261e;
+  padding: 8px 0;
+}

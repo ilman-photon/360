@@ -45,3 +45,11 @@ export const logoutProps = {
       });
   },
 };
+
+export function isAdminUser() {
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  if (userData) {
+    return "admin" === userData.userType?.toLowerCase();
+  }
+  return false;
+}
