@@ -537,7 +537,7 @@ export default function AccountRecovery() {
                     >
                       <AccountCircleOutlined sx={{ width: 62, height: 62 }} />
                       <Typography variant="headlineH4">
-                        No results found.
+                        No records found.
                       </Typography>
                     </Stack>
                   )
