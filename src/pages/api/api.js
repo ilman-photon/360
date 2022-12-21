@@ -239,6 +239,11 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
+  skipSecurityQuestion(postbody) {
+    const url = "/ecp/patient/skipSecurityQuestion";
+    return this.forgotFeatureValidation(url, postbody, "post", 2000);
+  }
+
   async getUSListOfStates() {
     const usStatesApiUrl =
       "https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-state&q=&sort=ste_name&facet=ste_name&rows=99";
