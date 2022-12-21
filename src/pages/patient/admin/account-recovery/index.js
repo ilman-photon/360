@@ -460,8 +460,10 @@ export default function AccountRecovery() {
   };
 
   const handleSearchPatient = (data) => {
-    setFirstSearch(true);
-    dispatch(fetchPatientAccount(data));
+    if (data.keyword && data.keyword.trim()) {
+      setFirstSearch(true);
+      dispatch(fetchPatientAccount(data));
+    }
   };
 
   return (
