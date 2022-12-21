@@ -79,11 +79,19 @@ export default function MfaPage() {
 
   function onConfirmClicked(communication, callback) {
     const deviceId = "";
-    const postBody = {
-      username,
-      deviceId,
-      preferredMode: communication,
-    };
+    const isFromRegistration =
+      cookies.get("prevPage", { path: "/patient" }) === "create-account";
+    const postBody = isFromRegistration
+      ? {
+          username,
+          preferredMode: communication,
+          flag: 1,
+        }
+      : {
+          username,
+          deviceId,
+          preferredMode: communication,
+        };
     api
       .sendMfaCode(postBody)
       .then((response) => {
@@ -117,6 +125,7 @@ export default function MfaPage() {
     cookies.remove("isSecurityQuestionStep", { path: "/patient" });
     cookies.remove("mfaPreferredMode", { path: "/patient" });
     !rememberMe && cookies.remove("mfaAccessToken", { path: "/patient" });
+    cookies.remove("prevPage", { path: "/patient" });
     router.push("/patient/");
   }
 

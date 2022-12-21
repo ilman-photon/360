@@ -9,10 +9,12 @@ import globalStyles from "../../../../styles/Global.module.scss";
 import { mmddyyDateFormat } from "../../../../utils/dateFormatter";
 import { loginProps } from "../../login";
 import { useRouter } from "next/router";
+import Cookies from "universal-cookie";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
   const api = new Api();
   const router = useRouter();
+  const cookies = new Cookies();
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
@@ -39,7 +41,7 @@ export default function CreateAccountPage() {
         },
         router,
         () => {
-          //this is intentional
+          cookies.set("prevPage", "create-account", { path: "/patient" });
         },
         dispatch
       );

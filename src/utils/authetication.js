@@ -15,6 +15,7 @@ export const removeAuthCookies = (dispatch = null) => {
   cookies.remove("IdleTimeOut", { path: "/patient" });
   cookies.remove("isSecurityQuestionStep", { path: "/patient" });
   cookies.remove("mfaPreferredMode", { path: "/patient" });
+  cookies.remove("prevPage", { path: "/patient" });
   localStorage.removeItem("userData");
   if (dispatch) {
     dispatch(resetFilterData());
