@@ -10,13 +10,7 @@ import ImageFallback from "../../atoms/Image/image";
 
 const renderSpecialistList = (providerData) => {
   return (
-    <Box
-      sx={{
-        width: {
-          sm: "60%",
-        },
-      }}
-    >
+    <Box>
       <Typography
         variant="subtitle1"
         aria-label={"Specialties and Sub-specialties"}
@@ -25,7 +19,12 @@ const renderSpecialistList = (providerData) => {
       >
         Specialties and Sub-specialties:{" "}
       </Typography>
-      <ul className={styles.specialistList}>
+      <ul
+        className={styles.specialistList}
+        sx={{
+          columnCount: providerData.specialties.length > 1 ? 2 : 1,
+        }}
+      >
         {providerData.specialties &&
           providerData.specialties.map((item, index) => {
             return (
@@ -200,7 +199,7 @@ export default function ProviderProfile({
             ].join(" ")}
             sx={{
               display: "flex",
-              gap: "120px",
+              gap: "110px",
             }}
           >
             <Box
@@ -228,7 +227,7 @@ export default function ProviderProfile({
               </Box>
               {renderRatingAndPhone()}
               {isBio && (
-                <Box marginTop={"10px"}>
+                <Box marginTop={"10px"} width={"216px"}>
                   <StyledButton
                     theme={"patient"}
                     mode={"primary"}

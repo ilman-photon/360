@@ -50,7 +50,7 @@
 .specialistTitle {
   font-weight: 700 !important;
   font-size: 16px !important;
-  width: auto;
+  width: 300px;
   @media (max-width: 600px) {
     margin-bottom: 12px;
     margin-top: 8px;
@@ -58,17 +58,13 @@
 }
 
 .specialistList {
-  column-count: 2;
   margin-block-start: 4px;
   padding-inline-start: 25px;
+  width: fit-content;
 }
 
 .newColumn {
   break-before: column;
-}
-
-.specialistTitle > li {
-  width: 170px;
 }
 
 .profilePhoto {
@@ -178,6 +174,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: max-content;
   @media (max-width: 1024px) {
     margin-top: 12px;
   }
@@ -187,11 +184,20 @@
   margin-top: 5px;
 }
 
+.specialistList > li {
+  @media (max-width: 900px) {
+    width: 50%;
+  }
+}
+
 .specialistList > li > p {
   width: 200px;
   line-height: 24px;
+  @media (max-width: 900px) {
+    width: fit-content;
+  }
   @media (max-width: 600px) {
-    width: unset;
+    width: fit-content;
   }
 }
 
