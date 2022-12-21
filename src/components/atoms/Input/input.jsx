@@ -409,7 +409,7 @@ export const CustomInput = styled(({ ...props }) => {
             variant="filled"
             sx={{
               width: props.widthPhone,
-              ...props.sxContainer || {}
+              ...(props.sxContainer || {}),
             }}
           >
             <InputMask
