@@ -83,8 +83,8 @@ export default function Appointment({ googleApiKey }) {
   const [isReschedule, setIsReschedule] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
   const [currentCoordinate, setCurrentCoordinate] = useState({
-    lat: 0,
-    lng: 0,
+    latitude: 0,
+    longitude: 0,
   });
   const [firstLoad, setFirstLoad] = useState(true);
   const [filterProviderData, setFilterProviderData] = useState([]);
@@ -425,7 +425,7 @@ export default function Appointment({ googleApiKey }) {
   const fetchCurrentLocation = () => {
     if (coords) {
       setCurrentCity("");
-      getCity(googleApiKey, coords, setCurrentCity, setCurrentCoordinate);
+      getCity(googleApiKey, coords, setCurrentCity);
     }
   };
 
@@ -436,6 +436,12 @@ export default function Appointment({ googleApiKey }) {
     dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (coords) {
+      setCurrentCoordinate(coords);
+    }
+  }, [coords]);
 
   useEffect(() => {
     onCalledGetAppointmentTypesAPI();

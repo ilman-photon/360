@@ -7,6 +7,7 @@ import UpdateUsernameView from "../../../../components/molecules/UpdateUsernameV
 import UpdateLoginLayout from "../../../../components/templates/updateLoginLayout";
 import { setLoginMessage } from "../../../../store";
 import store from "../../../../store/store";
+import { logoutProps } from "../../../../utils/authetication";
 import { formatPhoneNumber } from "../../../../utils/phoneFormatter";
 import { Api } from "../../../api/api";
 
@@ -33,7 +34,7 @@ export default function UpdateUsername() {
       .changeUsername(postBody)
       .then(() => {
         dispatch(setLoginMessage("Your username was successfully updated."));
-        router.push("/patient/login");
+        logoutProps.OnLogoutClicked(router, null, username);
       })
       .catch(() => {
         // This is intentional

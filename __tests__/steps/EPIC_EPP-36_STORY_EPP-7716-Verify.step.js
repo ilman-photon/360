@@ -21,10 +21,15 @@ defineFeature(feature, (test) => {
 
     const mockApi = () => {
         mock
-        .onPost(`/ecp/patient/getLastUpdatedPasswordDate`)
-        .reply(200, {
-            "lastUpdatedPasswordDate": moment().subtract(40, 'd').format()
-        }); 
+            .onPost(`/ecp/patient/getLastUpdatedPasswordDate`)
+            .reply(200, {
+                "lastUpdatedPasswordDate": moment().subtract(40, 'd').format()
+            });
+
+        mock.onPost(`/ecp/patient/logout`).reply(200, {
+            ResponseCode: 2005,
+            ResponseType: "success",
+        });
     }
 
     beforeEach(() => {
@@ -117,7 +122,7 @@ defineFeature(feature, (test) => {
     });
 
     test('EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view the information message ” Enter a  valid email ID or phone number as your username”', ({ given, and, when, then }) => {
-        given('User has logged into the patient portal', async() => {
+        given('User has logged into the patient portal', async () => {
             cleanup()
             container = await renderLogin()
         });
@@ -126,7 +131,7 @@ defineFeature(feature, (test) => {
             doLogin(mock, container)
         });
 
-        and('User has navigated to Login & Security screen', async() => {
+        and('User has navigated to Login & Security screen', async () => {
             await renderLoginSecurityPage()
         });
 
@@ -138,7 +143,7 @@ defineFeature(feature, (test) => {
             fireEvent.click(container.getByTestId("update-username-link"))
         });
 
-        then('User should be able to view an option to input new username', async() => {
+        then('User should be able to view an option to input new username', async () => {
             await renderUpdateUsernamePage()
         });
 
@@ -147,7 +152,7 @@ defineFeature(feature, (test) => {
             fireEvent.change(usernameField, { target: { value: "patient2" } });
         });
 
-        and('User should be able to view the information message ” Enter a  valid email ID or phone number as your username”', async() => {
+        and('User should be able to view the information message ” Enter a  valid email ID or phone number as your username”', async () => {
             fireEvent.click(container.getByTestId("update-btn"))
             await waitFor(() => {
                 container.getByText(/Please enter a valid email ID or Phone number/i)
@@ -157,7 +162,7 @@ defineFeature(feature, (test) => {
     });
 
     test('EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view Update CTA', ({ given, and, when, then }) => {
-        given('User has logged into the patient portal', async() => {
+        given('User has logged into the patient portal', async () => {
             cleanup()
             container = await renderLogin()
         });
@@ -166,7 +171,7 @@ defineFeature(feature, (test) => {
             doLogin(mock, container)
         });
 
-        and('User has navigated to Login & Security screen', async() => {
+        and('User has navigated to Login & Security screen', async () => {
             await renderLoginSecurityPage()
         });
 
@@ -178,7 +183,7 @@ defineFeature(feature, (test) => {
             fireEvent.click(container.getByTestId("update-username-link"))
         });
 
-        then('User should be able to view an option to input new username', async() => {
+        then('User should be able to view an option to input new username', async () => {
             await renderUpdateUsernamePage()
         });
 
@@ -187,7 +192,7 @@ defineFeature(feature, (test) => {
             fireEvent.change(usernameField, { target: { value: "patient2" } });
         });
 
-        and('User should be able to view the information message ” Enter a  valid email ID or phone number as your username”', async() => {
+        and('User should be able to view the information message ” Enter a  valid email ID or phone number as your username”', async () => {
             fireEvent.click(container.getByTestId("update-btn"))
             await waitFor(() => {
                 container.getByText(/Please enter a valid email ID or Phone number/i)
@@ -201,7 +206,7 @@ defineFeature(feature, (test) => {
     });
 
     test('EPIC_EPP-36_STORY_EPP-7716- Verify User should be able to view Cancel CTA', ({ given, and, when, then }) => {
-        given('User has logged into the patient portal', async() => {
+        given('User has logged into the patient portal', async () => {
             cleanup()
             container = await renderLogin()
         });
@@ -210,7 +215,7 @@ defineFeature(feature, (test) => {
             doLogin(mock, container)
         });
 
-        and('User has navigated to Login & Security screen', async() => {
+        and('User has navigated to Login & Security screen', async () => {
             await renderLoginSecurityPage()
         });
 
@@ -222,7 +227,7 @@ defineFeature(feature, (test) => {
             fireEvent.click(container.getByTestId("update-username-link"))
         });
 
-        then('User should be able to view an option to input new username', async() => {
+        then('User should be able to view an option to input new username', async () => {
             await renderUpdateUsernamePage()
         });
 
@@ -231,7 +236,7 @@ defineFeature(feature, (test) => {
             fireEvent.change(usernameField, { target: { value: "patient2" } });
         });
 
-        and('User should be able to view the information message ” Enter a  valid email ID or phone number as your username”', async() => {
+        and('User should be able to view the information message ” Enter a  valid email ID or phone number as your username”', async () => {
             fireEvent.click(container.getByTestId("update-btn"))
             await waitFor(() => {
                 container.getByText(/Please enter a valid email ID or Phone number/i)
@@ -245,7 +250,7 @@ defineFeature(feature, (test) => {
 
         and('User should be able to view Cancel CTA', () => {
             expect(container.getByTestId("cancel-btn")).toBeInTheDocument()
-        }); 
+        });
     });
 
 })

@@ -365,7 +365,7 @@ export default function MedicalRecordPage() {
             }
             rows={rows}
             onAssetDownload={handleAssetDownload}
-            mobileTestLab={watchedCategory === "test-lab-result" && !isDesktop}
+            mobileTestLab={watchedCategory === "test-lab-result" && isMobile}
             additionalProps={{
               tableProps: { "aria-label": `${watchedCategory}` },
             }}
