@@ -118,9 +118,6 @@ export default function Appointment({ googleApiKey }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(providerListData)]);
 
-  const pendingAppointment =
-    cookies.get("dashboardState", { path: "/patient" }) === "true";
-
   const googleConfiguration = {
     googleMapsApiKey: googleApiKey,
     libraries: ["places"],
@@ -737,22 +734,6 @@ export default function Appointment({ googleApiKey }) {
     return state.appointment.appointmentSchedule;
   });
 
-  const scheduleConfirmPopup = () => {
-    return (
-      <ModalConfirmation
-        isLoggedIn={isLoggedIn}
-        patientData={appointmentScheduleData.patientInfo}
-        providerData={appointmentScheduleData.providerInfo}
-        isOpen={isOpen}
-        OnSetIsOpen={(idx) => {
-          setIsOpen(idx);
-          cookies.remove("dashboardState", { path: "/patient" });
-        }}
-        isDesktop={isDesktop}
-      />
-    );
-  };
-
   return (
     <>
       {ready && (
@@ -779,7 +760,6 @@ export default function Appointment({ googleApiKey }) {
           )}
           {renderFilterResult()}
           {onRenderDialogView()}
-          {pendingAppointment && scheduleConfirmPopup()}
         </Stack>
       )}
     </>
