@@ -1,0 +1,69 @@
+.subtitleTxt {
+  text-align: center;
+  font-family: "Bw Nista Geometric DEMO", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 32px;
+  color: #003b4a;
+  align-self: center;
+  margin: 8px auto;
+}
+
+.minorText {
+  font-family: "Bw Nista Geometric DEMO", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  color: #003b4a;
+}
+
+.minorNoteTxt {
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.0016em;
+  color: #003b4a;
+  margin: 10px 0;
+}
+
+.textContainer {
+  .textInfo {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+  }
+
+  .textTitle {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 32px;
+    color: #003b4a;
+  }
+
+  .textOption {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+  }
+
+  .textNormal {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: #000000;
+    margin-bottom: 16px;
+  }
+}

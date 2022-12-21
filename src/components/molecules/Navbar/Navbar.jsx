@@ -37,7 +37,7 @@ const pagesNext = [
 const documents = [
   {
     icon: iconintakeFoms,
-    href: "/patient/account/documents?type=intake-forms",
+    href: "/patient/intake-form",
     label: "Intake Forms",
   },
   {

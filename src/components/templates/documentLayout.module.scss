@@ -1,0 +1,36 @@
+.backHeader {
+  background-color: #f4f4f4;
+  height: 72px;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  padding-left: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 9;
+  max-width: 1440px;
+  @media (max-width: 992px) {
+    top: 60px;
+    padding-left: 21px;
+    height: 58px;
+  }
+}
+
+.arrowIcon {
+  width: 16px !important;
+  color: rgba(0, 0, 0, 0.54);
+  margin-right: 7px;
+  height: 16px !important;
+}
+
+.link {
+  font-style: normal;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.0016em;
+  line-height: 24px;
+  text-decoration: none !important;
+  color: #0095a9 !important;
+  cursor: pointer;
+}

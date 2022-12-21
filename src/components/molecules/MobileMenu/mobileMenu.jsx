@@ -128,7 +128,7 @@ export default function MobileMenu({
           submenu: [
             {
               label: "Intake Forms",
-              href: "/patient/account/documents?type=intake-forms",
+              href: "/patient/intake-forms",
               icon: <IntakeFormsIcon sx={{ fill: colors.darkGreen }} />,
             },
             {

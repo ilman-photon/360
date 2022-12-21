@@ -46,11 +46,111 @@ export const fetchMedicalRecordDocuments = createAsyncThunk(
   }
 );
 
+export const DEFAULT_CONSENT_TO_TREATMENT = {
+  patientName: "",
+  patientName2: "",
+  guardian: "",
+  phoneNumber: "",
+  contactEmergency1: "",
+  contactEmergency2: "",
+  emergency1: "",
+  emergency2: "",
+  medicalConcern: "",
+  knownAlergies: "",
+  insurancePlan: "",
+  faterName: "",
+  motherName: "",
+  fatherBusinessPhone: "",
+  motherBusinessPhone: "",
+  fatherHomePhone: "",
+  motherHomePhone: "",
+  fatherAddress: "",
+  motherAddress: "",
+  fatherCity: "",
+  motherCity: "",
+  sign: false,
+  signDate: null,
+};
+
+export const DEFAULT_CONSTENT_TO_USE = {
+  textInfo: "",
+  sign: false,
+  signRelationship: "",
+  signDate: null,
+  textInfo2: "",
+  signCommunication: false,
+  signCommunicationRelationship: "",
+  signCommunicationDate: null,
+  textInfo3: "",
+  textInfo4: "",
+  textInfo5: "",
+  agentName: "",
+  patientName: "",
+  patientDOB: "",
+  signOptional: false,
+  signOptionalRelationship: "",
+  signOptionalDate: null,
+  textInfo6: "",
+};
+
+export const DEFAULT_CONSTENT_TO_TREAT = {
+  patientName: "",
+  dob: null,
+  textInfo: "",
+  sign: false,
+  signDate: null,
+};
+
+export const DEFAULT_MEDICATION_VISION_EXAM = {
+  textInfo: "",
+  sign: false,
+  signDate: null,
+};
+
+export const DEFAULT_INSURANCE_COMMUNICATION = {
+  textInfo: "",
+  sign: false,
+  textInfo2: "",
+  signPrivatePay: false,
+};
+
+export const DEFAULT_CONTACT_LENS = {
+  sign: false,
+  signDate: null,
+  textInfo: "",
+};
+
+export const DEFAULT_AUTHORIZATION_TO_DISCLOSE = {
+  textInfo: "",
+  textInfo2: "",
+  patientName1: "",
+  patientRelationship1: "",
+  patientPhoneNumber1: "",
+  patientName2: "",
+  patientRelationship2: "",
+  patientPhoneNumber2: "",
+  patientName3: "",
+  patientRelationship3: "",
+  patientPhoneNumber3: "",
+  protectionHealth: "",
+  sign: false,
+  signDate: null,
+};
+
 const documentSlice = createSlice({
   name: "document",
   initialState: {
     documentList: [],
     status: null,
+    showPostmessage: false,
+    defaultDataValue: {},
+    defaultDataKey: [],
+    intakeFormData: {
+      title: "",
+      description: "",
+      formDocument: "",
+      isSubmit: false,
+    },
     selectedEducationMaterial: null,
     healthRecordList: [],
   },
@@ -58,6 +158,26 @@ const documentSlice = createSlice({
     resetDocuments: (state) => {
       state.documentList = [];
       state.healthRecordList = [];
+    },
+    resetIntakeFormData: (state) => {
+      state.intakeFormData = {
+        title: "",
+        description: "",
+        formDocument: "",
+        isSubmit: false,
+      };
+    },
+    setShowPostmessage: (state, { payload }) => {
+      state.showPostmessage = payload;
+    },
+    setDefaultDataValue: (state, { payload }) => {
+      state.defaultDataValue = payload;
+    },
+    setDefaultDataKey: (state, { payload }) => {
+      state.defaultDataKey = payload;
+    },
+    setIntakeFormData: (state, { payload }) => {
+      state.intakeFormData = payload;
     },
     setEducationMaterial: (state, { payload }) => {
       state.selectedEducationMaterial = payload;
@@ -88,6 +208,14 @@ const documentSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { resetDocuments, setEducationMaterial } = documentSlice.actions;
+export const {
+  resetDocuments,
+  resetIntakeFormData,
+  setShowPostmessage,
+  setDefaultDataValue,
+  setDefaultDataKey,
+  setIntakeFormData,
+  setEducationMaterial,
+} = documentSlice.actions;
 
 export default documentSlice.reducer;

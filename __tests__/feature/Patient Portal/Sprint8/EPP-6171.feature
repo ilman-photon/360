@@ -1,8 +1,7 @@
 
 Feature: Patient Portal : Form Customization (Documents/ Forms) - View list of forms
-  User Story: As a user, I should be able to view the list of forms that can be filled out online.
 
-   @BDDTEST-EPP-7040
+  @BDDTEST-EPP-7040
   @Form_Customization
   @Patient_Portal
   @Regression

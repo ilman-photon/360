@@ -142,7 +142,7 @@ export const RedditTextField = React.forwardRef((props, ref) => {
       onInput={(e) => {
         e.target.value = e.target.value
           .toString()
-          .slice(0, props.maxLength || 1000);
+          .slice(0, props.maxLength || 100000);
       }}
       InputProps={{
         disableUnderline: true,
@@ -153,7 +153,10 @@ export const RedditTextField = React.forwardRef((props, ref) => {
             </IconButton>
           </InputAdornment>
         ) : null,
-        className: props.inputProps?.readOnly ? "Mui-disabled" : undefined,
+        className:
+          props.inputProps?.readOnly && !props.inputProps?.isTransparent
+            ? "Mui-disabled"
+            : undefined,
         ...props.InputProps,
       }}
       inputProps={{ "aria-label": props["label"], ...props.inputProps }}
@@ -359,7 +362,11 @@ export const CustomInput = styled(({ ...props }) => {
                   sx={{
                     borderRadius: "4px",
                     borderColor: "#B5B5B5",
-                    margin: !props.isFilter ? "8px" : 0,
+                    margin: !props.isFilter && !props.noMargin ? "8px" : 0,
+                    width: {
+                      xs: props.dobWidth,
+                      sm: props.dobWidthSm || props.dobWidth,
+                    },
                     ["& .MuiFilledInput-root"]: {
                       border: props.isFilter
                         ? "0px solid #ffff"
@@ -398,16 +405,58 @@ export const CustomInput = styled(({ ...props }) => {
     case "phone":
       return (
         <>
-          <CustomFormControl variant="filled">
+          <CustomFormControl
+            variant="filled"
+            sx={{
+              width: props.widthPhone,
+              ...props.sxContainer || {}
+            }}
+          >
             <InputMask
               mask="(999) 999-9999"
               maskChar={null}
               maskPlaceholder=""
               {...props}
+              sx={{
+                "&.MuiFormControl-root": {
+                  margin: "0 0 0 10px",
+                },
+              }}
             >
               <StyledRedditField name="phone" type="text" />
             </InputMask>
           </CustomFormControl>
+        </>
+      );
+    case "textarea":
+      return (
+        <>
+          <StyledRedditField
+            variant="filled"
+            sx={{
+              backgroundColor: "white",
+              borderRadius: "4px",
+              borderColor: "#fff",
+
+              ".MuiInputBase-root": {
+                padding: props.noBorder ? "0px" : "",
+              },
+
+              ".MuiInputBase-inputMultiline": {
+                height: "300px !important",
+                overflow: "auto !important",
+                color: props.isEdit
+                  ? "#191919 !important"
+                  : "#003B4A !important",
+              },
+
+              ".MuiOutlinedInput-notchedOutline": {
+                border: props.noBorder ? "none" : "",
+              },
+              ...props.sx,
+            }}
+            {...props}
+          />
         </>
       );
     default:

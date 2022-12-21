@@ -8,7 +8,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Customize form
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Verify user should be able to update the content as required (plain text format)
-    Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Verify user should be able to update the content as required (plain text format)
 
     Given User launch Patient Portal url		
     And Admin user is logged into the portal
@@ -30,7 +29,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Customize form
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Verify Admin user should be able to publish of the content that has been customized
-    Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Verify Admin user should be able to publish of the content that has been customized
 
     Given User launch Patient Portal url		
     And Admin user is logged into the portal
@@ -54,7 +52,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Customize form
   @Patient_Portal
   @Sprint8
   Scenario: PIC_EPP-5256_STORY_EPP-6185 - Verify Admin user should see the following inline error message "This portion of content cannot be blank."
-    Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Verify Admin user should see the following inline error message "This portion of content cannot be blank."
 
     Given User launch Patient Portal url		
     And Admin user is logged into the portal
@@ -78,7 +75,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Customize form
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when Admin should be able to publish of the content that has been customized
-    Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when Admin should be able to publish of the content that has been customized
 
     Given User launch Patient Portal url		
     And Admin user is logged into the portal
@@ -104,7 +100,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Customize form
   @Regression
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when Admin should be able to publish of the content that has been customized
-    Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when Admin should be able to publish of the content that has been customized
 
     Given User launch Patient Portal url		
     And Admin user is logged into the portal
@@ -129,7 +124,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Customize form
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when Admin should see the following inline error message "This portion of content cannot be blank."
-    Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when Admin should see the following inline error message "This portion of content cannot be blank."
 
     Given User launch Patient Portal url		
     And Admin user is logged into the portal
@@ -155,7 +149,6 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Customize form
   @Patient_Portal
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when Admin should see the following inline error message "This portion of content cannot be blank."
-    Scenario: EPIC_EPP-5256_STORY_EPP-6185 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when Admin should see the following inline error message "This portion of content cannot be blank."
 
     Given User launch Patient Portal url		
     And Admin user is logged into the portal

@@ -8,6 +8,13 @@ import EmptyResult from "../FilterResult/emptyResult";
 import GMaps from "../../organisms/Google/Maps/gMaps";
 import { useTranslation } from "next-i18next";
 
+export function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`,
+  };
+}
+
 export const FilterResultContainer = ({
   activeTabs = 0,
   setActiveTabs = () => {
@@ -55,13 +62,6 @@ export const FilterResultContainer = ({
     index: PropTypes.number.isRequired,
     value: PropTypes.number.isRequired,
   };
-
-  function a11yProps(index) {
-    return {
-      id: `full-width-tab-${index}`,
-      "aria-controls": `full-width-tabpanel-${index}`,
-    };
-  }
 
   function renderItemResult() {
     const indents = [];
