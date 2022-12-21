@@ -167,11 +167,13 @@ export default function AccountRecovery() {
       });
       setValue("communication", "email");
     }
-    options.push({
-      label: "Both",
-      value: "both",
-      preferred: rowData.preferredCommunication === "both",
-    });
+    if (rowData.emailId && rowData.phoneNumber) {
+      options.push({
+        label: "Both",
+        value: "both",
+        preferred: rowData.preferredCommunication === "both",
+      });
+    }
 
     return options;
   };
