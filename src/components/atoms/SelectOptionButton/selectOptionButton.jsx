@@ -54,7 +54,7 @@ export default function SelectOptionButton({
   ariaLabel = "",
   helperText = "",
   inputProps = {},
-  renderValue = () => {},
+  renderValue,
   ...props
 }) {
   return (

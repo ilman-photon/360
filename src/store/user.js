@@ -212,8 +212,8 @@ const buildInsurancePostBody = (
       firstName: subscriberData.firstName,
       lastName: subscriberData.lastName,
       dob: subscriberDob, // MM/DD/YYYY,
-      _id: payload.memberID,
     },
+    insuranceId: payload.memberID,
     digitalAssets: {
       master_front: frontCardData?.uid
         ? payload.frontCard
@@ -475,7 +475,7 @@ const buildUserInsuranceData = (payload) => {
         label: insurance.plan.name,
         value: insurance.plan.name,
       },
-      memberID: subscriberData._id,
+      memberID: insurance.insuranceId,
       groupID: insurance.group,
       isSubscriber: insurance.isPatientSubscriber ? "Yes" : "No",
       subscriberData: {

@@ -76,7 +76,7 @@ export default function InsuranceInfoPage() {
     dispatch(
       setPageMessage({
         isShow: true,
-        content: message || "Your changes were saved",
+        content: message,
       })
     );
     setTimeout(() => {
@@ -111,15 +111,7 @@ export default function InsuranceInfoPage() {
     if (payload.success) {
       // after effect to add state of rawuserinsuranceData manually and rebuild
       dispatch(addUserInsuranceData(payload.response));
-      dispatch(
-        setPageMessage({
-          isShow: true,
-          content: "Insurance successfully added",
-        })
-      );
-      setTimeout(() => {
-        dispatch(closePageMessage());
-      }, 5000);
+      showSuccessMessage("Insurance successfully added");
       setOpenNewInsuranceForm(false);
     }
   };
