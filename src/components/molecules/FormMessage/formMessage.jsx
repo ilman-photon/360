@@ -72,7 +72,6 @@ export const FormMessage = (
             <></>
           )}
           <div
-            tabIndex={0}
             style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}
           >
             {props.children}
