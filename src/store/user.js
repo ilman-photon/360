@@ -6,6 +6,7 @@ import {
   RELATIONSHIP_LIST,
   TITLE_LIST,
 } from "../utils/constantData";
+import { formatPhoneNumber } from "../utils/phoneFormatter";
 import { formatSocialSecurity } from "../utils/ssnFormatter";
 
 let url;
@@ -413,7 +414,7 @@ const buildUserData = (payload) => {
       : "",
     mobile:
       payload.contactInformation.phones && payload.contactInformation.phones[0]
-        ? payload.contactInformation.phones[0].number
+        ? formatPhoneNumber(payload.contactInformation.phones[0].number)
         : "",
     address: userAddress.addressLine1 || "",
     city: userAddress.city || "",

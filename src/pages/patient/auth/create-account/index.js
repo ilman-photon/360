@@ -9,6 +9,7 @@ import globalStyles from "../../../../styles/Global.module.scss";
 import { mmddyyDateFormat } from "../../../../utils/dateFormatter";
 import { loginProps } from "../../login";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import Cookies from "universal-cookie";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
@@ -18,8 +19,11 @@ export default function CreateAccountPage() {
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
+  const [isRegisterLoading, setIsRegisterLoading] = useState(false);
+
   const OnRegisterClicked = async function (postbody) {
     dispatch(resetFormMessage());
+    setIsRegisterLoading(true);
     try {
       if (!postbody.email) {
         delete postbody.email;
@@ -59,6 +63,8 @@ export default function CreateAccountPage() {
           })
         );
       }
+    } finally {
+      setIsRegisterLoading(false);
     }
   };
 
@@ -66,6 +72,7 @@ export default function CreateAccountPage() {
     <Box className={globalStyles.containerStyledPage}>
       <Register
         formMessage={formMessage}
+        isRegisterLoading={isRegisterLoading}
         OnRegisterClicked={OnRegisterClicked}
       />
     </Box>
