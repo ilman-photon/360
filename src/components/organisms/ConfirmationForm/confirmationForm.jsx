@@ -76,10 +76,8 @@ const ConfirmationForm = ({
                 tabIndex={"0"}
                 accessibility={{
                   tabIndex: "0",
-                  role: "text",
                   ariaRoleDescription: "",
                 }}
-                textRole="text"
               >
                 {postMessage}
               </FormMessage>

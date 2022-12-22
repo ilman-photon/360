@@ -122,6 +122,9 @@ const ForgotPassword = ({
                 success={false}
                 sx={styles.postMessage}
                 title={isRegistered && t("syncErrorTitle")}
+                accessibility={{
+                  tabIndex: "0",
+                }}
               >
                 {t(errorMessage)}
               </FormMessage>
