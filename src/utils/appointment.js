@@ -674,7 +674,21 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
         (item) => new Date(item.date).getDate() === dateItem.getDate()
       ) || null;
     if (isSameAvailability) {
-      availability.list = isSameAvailability.list;
+      if (isSameAvailability.date === moment().format("YYYY-MM-DD")) {
+        const currentDateList = [];
+        isSameAvailability.list.forEach((el) => {
+          const time = `${isSameAvailability.date}, 
+          ${el.time.slice(0, 5)} ${el.time.slice(-2)}`;
+          const unixTime = moment(time).unix();
+          const timeNow = moment().unix();
+          if (unixTime > timeNow) {
+            currentDateList.push(el);
+          }
+        });
+        availability.list = currentDateList;
+      } else {
+        availability.list = isSameAvailability.list;
+      }
     }
     availabilityList.push(availability);
   }
