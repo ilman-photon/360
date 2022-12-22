@@ -288,7 +288,10 @@ export const CustomInput = styled(({ ...props }) => {
               InputLabelProps={{
                 "aria-hidden": true,
               }}
-              inputProps={{ "aria-label": props["label"], ...props.inputProps }}
+              inputProps={{
+                "aria-label": props["label"],
+                ...props.inputProps,
+              }}
               variant="filled"
               id={props.id}
               type={showPassword}
@@ -307,6 +310,11 @@ export const CustomInput = styled(({ ...props }) => {
               required={props.required}
               inputRef={props.inputRef}
               autoComplete={props.autoComplete}
+              sx={{
+                ".MuiInputBase-root": {
+                  border: "1px solid #BDBDBD",
+                },
+              }}
             />
           </CustomFormControl>
         </>

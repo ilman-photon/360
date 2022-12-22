@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import { Divider, Typography, useMediaQuery } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import Link from "next/link";
 import { useForm, Controller, useFormState } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
@@ -31,7 +31,11 @@ export const isDOB = (value) => {
   return false;
 };
 
-export default function Register({ OnRegisterClicked, formMessage = null }) {
+export default function Register({
+  OnRegisterClicked = () => {},
+  isRegisterLoading,
+  formMessage = null,
+}) {
   const router = useRouter();
 
   const { t, ready } = useTranslation("translation", {
@@ -177,6 +181,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSubmitting]);
+
   useEffect(() => {
     const isMobileInputEmpty = watchedMobile === "(" || !watchedMobile;
     if (watchedEmail && isMobileInputEmpty) {
@@ -210,24 +215,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         inline: "nearest",
       });
   }, [formMessage]);
-  const isOneOfPreferredValid = (name, value) => {
-    switch (name) {
-      case "email":
-        if (watchedPreferredCommunication === "phone") return true;
-        else if (watchedPreferredCommunication === "email" && !value)
-          return false;
-        else if (watchedEmail || watchedMobile) return true;
-        break;
-      case "phone":
-        if (watchedPreferredCommunication === "email") return true;
-        else if (watchedPreferredCommunication === "phone" && !value)
-          return false;
-        else if (watchedEmail || watchedMobile) return true;
-        break;
-      default:
-        return false;
-    }
-  };
+
   return (
     <>
       {ready && (
@@ -452,8 +440,20 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 rules={{
                   validate: {
                     required: (value) => {
-                      if (!isOneOfPreferredValid("email", value))
-                        return "This field is required to proceed.";
+                      if (!value) {
+                        if (watchedPreferredCommunication !== "phone") {
+                          if (watchedPreferredCommunication === "email") {
+                            return "This field is required to proceed.";
+                          } else if (
+                            watchedPreferredCommunication === "both" &&
+                            watchedMobile
+                          ) {
+                            return "This field is required to proceed.";
+                          } else {
+                            return "Either Email or Mobile number is required to proceed";
+                          }
+                        }
+                      }
                     },
                   },
                   pattern: {
@@ -486,7 +486,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       size="small"
                       variant="filled"
                       helperText={error ? error.message : null}
-                      sx={{
+                      sxContainer={{
                         m: 1,
                       }}
                       required
@@ -496,8 +496,20 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 rules={{
                   validate: {
                     required: (value) => {
-                      if (!isOneOfPreferredValid("phone", value))
-                        return "This field is required to proceed.";
+                      if (!value) {
+                        if (watchedPreferredCommunication !== "email") {
+                          if (watchedPreferredCommunication === "phone") {
+                            return "This field is required to proceed.";
+                          } else if (
+                            watchedPreferredCommunication === "both" &&
+                            watchedEmail
+                          ) {
+                            return "This field is required to proceed.";
+                          } else {
+                            return "Either Email or Mobile number is required to proceed";
+                          }
+                        }
+                      }
                     },
                   },
                   pattern: {
@@ -535,6 +547,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       variant="filled"
                       helperText={error ? error.message : null}
                       required
+                      passwordWidth={"-webkit-fill-available"}
                     />
                   );
                 }}
@@ -597,14 +610,15 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 />
               </div>
 
-              <Button
+              <LoadingButton
                 type="submit"
                 variant="contained"
                 sx={styles.containedButton}
+                loading={isRegisterLoading}
                 data-testid={REGISTER_TEST_ID.registerbtn}
               >
                 Register
-              </Button>
+              </LoadingButton>
             </form>
 
             <Typography variant="caption" style={styles.bottomParagraph}>
