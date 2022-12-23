@@ -194,7 +194,7 @@ describe("Home", () => {
         </Provider>
       );
     });
-    await waitFor(() => container.getByText(/Prescribed by/i));
+    await waitFor(() => container.getAllByText(/Prescribed by/i));
     return { ...container, mock };
   };
 
@@ -232,9 +232,9 @@ describe("Home", () => {
   it("renders homepage view all prescription", async () => {
     window.matchMedia = createMatchMedia("480px");
     expectPushRouter(`/patient/prescription`);
-    const { getByTestId } = await renderHome();
-    await waitFor(() => getByTestId("view-prescription-glasses"));
-    fireEvent.click(getByTestId("view-prescription-glasses"));
+    const { getAllByTestId } = await renderHome();
+    await waitFor(() => getAllByTestId("view-prescription-glasses")[0]);
+    fireEvent.click(getAllByTestId("view-prescription-glasses")[0]);
     jest.resetAllMocks();
   });
 

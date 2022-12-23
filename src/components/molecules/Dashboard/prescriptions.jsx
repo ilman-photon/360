@@ -1,16 +1,8 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import { colors, patientTypography } from "../../../styles/theme";
 import {
   Grid,
-  Table,
-  TableContainer,
-  TableRow,
   Typography,
-  TableCell,
-  TableBody,
-  Paper,
-  tableCellClasses,
   Link,
   useMediaQuery,
   Tabs,
@@ -18,19 +10,34 @@ import {
   Box,
   Stack,
   Button,
+  TableRow,
+  TableBody,
+  TableCell,
+  TableContainer,
+  Table,
+  tableCellClasses,
 } from "@mui/material";
 import AccountCard from "../AccountCard/accountCard";
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { ThemeProvider } from "@emotion/react";
-import MenuList from "./menuList";
 import { useEffect } from "react";
 import { parsePrescriptionData } from "../../../utils/appointment";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import PrescriptionMedication from "./prescriptionMedication";
 import { savePDF } from "@progress/kendo-react-pdf";
 import { getLinkAria } from "../../../utils/viewUtil";
+import { useDispatch } from "react-redux";
+import {
+  setModalContent,
+  setOpenModal,
+  setShareModalData,
+  setSuccessCallback,
+} from "../../../store/share";
+import TablePrescriptionContent from "./tablePrescriptionContent";
+import MenuList from "./menuList";
+import { styled } from "@mui/material/styles";
 
 export const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -132,6 +139,9 @@ export default function Prescriptions({
   onMedicationRequestRefill = () => {
     //this is intentional
   },
+  onHandleSuccessShare = () => {
+    //this is intentional
+  },
   requestRefillResponseData = null,
   renderRirstOnly = false,
 }) {
@@ -143,6 +153,7 @@ export default function Prescriptions({
   const iconContacts = "/icon-contacts.png";
   const iconGlasses = "/icon-glasses.png";
   const iconMedication = "/icon-medication.png";
+
   const [value, setValue] = React.useState(0);
   const [prescription, setPrescriptione] = React.useState({
     contacts: [],
@@ -153,6 +164,8 @@ export default function Prescriptions({
     },
   });
   const [filterData, setFilterData] = React.useState([]);
+
+  const dispatch = useDispatch();
 
   const downloadPDF = (type, index = -1) => {
     let containerSelector = null;
@@ -199,6 +212,13 @@ export default function Prescriptions({
     setTimeout(() => {
       WinPrint.close();
     }, 500);
+  };
+
+  const shareDocument = (shareContent, shareData) => {
+    dispatch(setShareModalData(shareData));
+    dispatch(setOpenModal(true));
+    dispatch(setSuccessCallback(onHandleSuccessShare));
+    dispatch(setModalContent(shareContent));
   };
 
   const handleChange = (event, newValue) => {
@@ -463,7 +483,18 @@ export default function Prescriptions({
           return null;
         }
         contentUI.push(
-          renderPrescriptionTable(row, type, idx, data.length === idx + 1)
+          <TablePrescriptionContent
+            row={row}
+            type={type}
+            idx={idx}
+            lastRow={data.length === idx + 1}
+            isMobile={isMobile}
+            isViewAll={isViewAll}
+            renderCTAIcon={renderCTAIcon}
+            downloadPDF={downloadPDF}
+            shareDocument={shareDocument}
+            printHTML={printHTML}
+          />
         );
       });
     } else {

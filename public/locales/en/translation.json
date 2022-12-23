@@ -248,5 +248,14 @@
     "incorrectEmail": "The selected email is not formatted correctly. Please try again.",
     "incorrectPhone": "The selected phone number is not formatted correctly. Please try again.",
     "incorrectPassword": "The selected password does not meet requirements. Please try again."
+  },
+  "shareMyPage": {
+    "shareMyPageTitle": "Enter access code to view shared information",
+    "infoEnterAccessCode": "Please enter the access code that you would have received separately to access the Patient records.",
+    "infoResendAccessCode": "Your requested a new access code, please try accessing with the new code.",
+    "infoActiveAccessCode": "You have requested to share another access code. Please try accessing with the new access code shared post the patient’s approval",
+    "accessCode": "Access code",
+    "submitBtn": "Submit",
+    "resendCodeBtn": "Resend Code" 
   }
 }

@@ -8,8 +8,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  Divider,
-  Stack,
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -18,17 +16,22 @@ import Image from "next/image";
 import { StyledButton } from "../../atoms/Button/button";
 import TuneIcon from "@mui/icons-material/Tune";
 import CloseIcon from "@mui/icons-material/Close";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MenuList from "./menuList";
 import styles from "./styles.module.scss";
 import constants from "../../../utils/constants";
-import { colors } from "../../../styles/theme";
 import { useEffect } from "react";
 import FormMessage from "../FormMessage/formMessage";
 import { renderCTAIcon } from "./prescriptions";
 import { savePDF } from "@progress/kendo-react-pdf";
+import MedicationContent from "./medicationContent";
+import {
+  setModalContent,
+  setOpenModal,
+  setShareModalData,
+  setSuccessCallback,
+} from "../../../store/share";
+import { useDispatch } from "react-redux";
 
 export default function PrescriptionMedication({
   medications = {
@@ -55,7 +58,8 @@ export default function PrescriptionMedication({
   const imageSrcState = "/mobileFilter.png";
   const imageSrcFilled = "/appliedMobileFilter.png";
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const iconMedication = "/icon-medication.png";
+
+  const dispatch = useDispatch();
 
   const downloadPDF = (medicationType, index) => {
     let containerSelector = null;
@@ -111,7 +115,14 @@ export default function PrescriptionMedication({
     }, 500);
   };
 
+  const shareDocument = (shareContent, shareData) => {
+    dispatch(setShareModalData(shareData));
+    dispatch(setOpenModal(true));
+    dispatch(setModalContent(shareContent));
+  };
+
   const onSetFilter = (newFilterData, isCloseAppliedFilter = false) => {
+    setFilterOpen(!filterOpen);
     !isCloseAppliedFilter && setFilterOpen(!filterOpen);
     setActiveFilter([...newFilterData]);
 
@@ -347,209 +358,26 @@ export default function PrescriptionMedication({
     return intentUI;
   }
 
-  function renderMedicationViewAllUI(data, idx, medicationType) {
-    return (
-      <Stack
-        direction={"row"}
-        className={styles.medicationViewAllContainer}
-        key={`${idx}-madication-prescription`}
-        data-testid={`medication-${medicationType}-container-${idx}`}
-      >
-        {!isMobile && (
-          <Box>
-            <Box
-              className={styles.medicationIconContainer}
-              sx={{ justifyContent: "center" }}
-            >
-              <Image alt="" src={iconMedication} width={32.88} height={44.63} />
-            </Box>
-          </Box>
-        )}
-        <Stack display={"flex"} marginLeft={"8px"} width={"100%"}>
-          <Stack
-            direction={"row"}
-            className={styles.medicationViewAllTitleContainer}
-            sx={{ marginBottom: "8px" }}
-          >
-            <Typography
-              className={styles.medicationViewAllTitle}
-              tabIndex={"0"}
-            >
-              {data.prescription}
-            </Typography>
-            {!isMobile ? (
-              renderCTAIcon(
-                () => {
-                  downloadPDF(medicationType, idx);
-                },
-                () => {
-                  printHTML(medicationType, idx);
-                }
-              )
-            ) : (
-              <MenuList
-                onClickDownloadButton={() => {
-                  downloadPDF(medicationType, idx);
-                }}
-                onClickPrintButton={() => {
-                  printHTML(medicationType, idx);
-                }}
-              />
-            )}
-          </Stack>
-          <Stack sx={{ width: "100%" }}>
-            {(data.status === "refill request" ||
-              data.status === "completed") && (
-              <Stack direction={"row"} className={styles.stackContainer}>
-                {renderStatusMedication(data.status, data.statusDetails)}
-                <Stack
-                  direction={"row"}
-                  alignSelf={"center"}
-                  className={styles.gridHeight}
-                >
-                  <Typography
-                    variant="customBodyRegular"
-                    className={styles.gridText}
-                    tabIndex={"0"}
-                  >
-                    Fill request date: &nbsp;
-                  </Typography>
-                  <Typography
-                    variant="bodyMedium"
-                    className={styles.gridText}
-                    tabIndex={"0"}
-                  >
-                    {data.fillRequestDate}
-                  </Typography>
-                </Stack>
-              </Stack>
-            )}
-            <Stack direction={"row"} className={styles.stackContainer}>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.customGridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.customGridText}
-                  tabIndex={"0"}
-                >
-                  Prescribed on: &nbsp;
-                </Typography>
-                <Typography
-                  variant="bodyMedium"
-                  className={styles.customGridText}
-                  tabIndex={"0"}
-                >
-                  {data.date}
-                </Typography>
-              </Stack>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.customGridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.customGridText}
-                  tabIndex={"0"}
-                >
-                  Prescribed by: &nbsp;
-                </Typography>
-                <Typography
-                  variant="bodyMedium"
-                  className={styles.customGridText}
-                  tabIndex={"0"}
-                >
-                  {data.prescribedBy}
-                </Typography>
-              </Stack>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                  tabIndex={"0"}
-                >
-                  Dose: &nbsp;
-                </Typography>
-                <Typography
-                  variant="bodyMedium"
-                  className={styles.gridText}
-                  tabIndex={"0"}
-                >
-                  {data.dose}
-                </Typography>
-              </Stack>
-            </Stack>
-            <Stack direction={"row"} className={styles.stackContainer}>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                  tabIndex={"0"}
-                >
-                  Expires on: &nbsp;
-                </Typography>
-                <Typography
-                  variant="bodyMedium"
-                  className={styles.gridText}
-                  tabIndex={"0"}
-                >
-                  {data.expirationDate}
-                </Typography>
-              </Stack>
-            </Stack>
-          </Stack>
-          <Divider className={styles.dividerStyle} />
-          <Stack direction={"row"} sx={{ marginTop: "24px", flexWrap: "wrap" }}>
-            <Stack direction={"row"} className={styles.remainingTimeContainer}>
-              <AccessTimeIcon sx={{ color: colors.darkGreen }} />
-              <Typography className={styles.remainingTimeText} tabIndex={"0"}>
-                {data.timeRemaining}
-              </Typography>
-            </Stack>
-            {data.status !== "refill request" ? (
-              <StyledButton
-                mode={constants.PRIMARY}
-                gradient={false}
-                onClick={() => onRequestCancelRefill(data, false)}
-                className={styles.requestButton}
-                data-testid={"request-refill-button"}
-              >
-                Request Refill
-              </StyledButton>
-            ) : (
-              <StyledButton
-                mode={constants.SECONDARY}
-                onClick={() => onRequestCancelRefill(data, true)}
-                className={styles.requestButton}
-                data-testid={"cancel-refill-button"}
-              >
-                Cancel Refill Request
-              </StyledButton>
-            )}
-          </Stack>
-        </Stack>
-      </Stack>
-    );
-  }
-
   function renderPrescriptionTabUI(data, medicationType) {
     if (!data) {
       return <></>;
     }
     const contentUI = [];
     data.map((row, idx) => {
-      contentUI.push(renderMedicationViewAllUI(row, idx, medicationType));
+      contentUI.push(
+        <MedicationContent
+          row={row}
+          idx={idx}
+          medicationType={medicationType}
+          isMobile={isMobile}
+          renderCTAIcon={renderCTAIcon}
+          downloadPDF={downloadPDF}
+          printHTML={printHTML}
+          shareDocument={shareDocument}
+          renderStatusMedication={renderStatusMedication}
+          onRequestCancelRefill={onRequestCancelRefill}
+        />
+      );
     });
     return contentUI;
   }

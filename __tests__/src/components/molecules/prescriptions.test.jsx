@@ -7,6 +7,7 @@ import "@testing-library/jest-dom";
 import mediaQuery from "css-mediaquery";
 import Prescriptions, { renderCTAIcon } from "../../../../src/components/molecules/Dashboard/prescriptions";
 import { MOCK_PRESCRIPTION } from "../../../../__mocks__/mockResponse";
+import { renderWithProviders } from "../../utils/test-util";
 
 
 describe("Prescription Medication test", () => {
@@ -38,7 +39,7 @@ describe("Prescription Medication test", () => {
   it("renderCTAIcon Prescription menu contact", () => {
     cleanup()
     window.matchMedia = createMatchMedia("1920px");
-    container = render(
+    container = renderWithProviders(
       <Prescriptions
         prescriptionData={MOCK_PRESCRIPTION.prescriptions}
         isViewAll={true}
@@ -54,7 +55,7 @@ describe("Prescription Medication test", () => {
   it("renderCTAIcon mobile Prescription menu contact is not View All", async () => {
     cleanup()
     window.matchMedia = createMatchMedia("720px");
-    container = render(
+    container = renderWithProviders(
       <Prescriptions
         prescriptionData={MOCK_PRESCRIPTION.prescriptions}
         isViewAll={false}
@@ -72,7 +73,7 @@ describe("Prescription Medication test", () => {
   it("renderCTAIcon Prescription menu glasses", () => {
     cleanup()
     window.matchMedia = createMatchMedia("1920px");
-    container = render(
+    container = renderWithProviders(
       <Prescriptions
         prescriptionData={MOCK_PRESCRIPTION.prescriptions}
         isViewAll={true}
@@ -88,7 +89,7 @@ describe("Prescription Medication test", () => {
   it("renderCTAIcon Prescription menu glasses mobile is not View All", () => {
     cleanup()
     window.matchMedia = createMatchMedia("720px");
-    container = render(
+    container = renderWithProviders(
       <Prescriptions
         prescriptionData={MOCK_PRESCRIPTION.prescriptions}
         isViewAll={false}
@@ -112,7 +113,7 @@ describe("Prescription Medication test", () => {
   it("renderCTAIcon Prescription menu medication", () => {
     cleanup()
     window.matchMedia = createMatchMedia("1920px");
-    container = render(
+    container = renderWithProviders(
       <Prescriptions
         prescriptionData={MOCK_PRESCRIPTION.prescriptions}
         isViewAll={true}
@@ -126,7 +127,7 @@ describe("Prescription Medication test", () => {
   it("renderCTAIcon Prescription menu medication is not view all", () => {
     cleanup()
     window.matchMedia = createMatchMedia("1920px");
-    container = render(
+    container = renderWithProviders(
       <Prescriptions
         prescriptionData={MOCK_PRESCRIPTION.prescriptions}
       />);
@@ -143,7 +144,7 @@ describe("Prescription Medication test", () => {
   it("renderCTAIcon Prescription menu medication with no data", () => {
     cleanup()
     window.matchMedia = createMatchMedia("1920px");
-    container = render(
+    container = renderWithProviders(
       <Prescriptions
         prescriptionData={{
           glasses: [

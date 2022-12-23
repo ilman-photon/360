@@ -5,7 +5,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - User receiv
   @Patient_Portal
   @Share_my_Record/Prescription
   Scenario: EPIC_EPP-42_STORY_EPP-7623- Verify user should received an email/ text message to the user (patient) with option to approve/ reject the external user’s request
-    Scenario: EPIC_EPP-42_STORY_EPP-7623- Verify user should received an email/ text message to the user (patient) with option to approve/ reject the external user’s request
 
     Given user (Patient) has shared the patient record to the external user’s email or phone number
     And External user should receive an email/ text message with the following content 

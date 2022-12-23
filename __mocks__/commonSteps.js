@@ -22,7 +22,10 @@ import HomePage, { getStaticProps } from "../src/pages/patient";
 import Cookies from "universal-cookie";
 import App from "../src/pages/_app";
 import CreateAccountPage from "../src/pages/patient/auth/create-account";
+
 import { renderWithProviders } from "../__tests__/src/utils/test-util";
+import ShareModal from "../src/components/organisms/ShareModal/shareModal";
+import { setOpenModal, setShareModalData } from "../src/store/share";
 import {
   TEMP_DATA_CONTACTS,
   TEMP_DATA_GLASSES,
@@ -37,7 +40,7 @@ import {
   submitFilter,
   upcomingResponse,
   MOCK_MESSAGING,
-  educationMaterials
+  educationMaterials,
 } from "./mockResponse";
 
 // import {MOCK_MESSAGING} from "./mockResponse"
@@ -1140,7 +1143,9 @@ export async function navigateToPatientPortalHome() {
     .onGet(`/ecp/prescriptions/patient/${userData?.patientId}/getContactsData`)
     .reply(200, prescriptionContact);
   mock
-    .onGet(`/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+    .onGet(
+      `/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`
+    )
     .reply(200, educationMaterials);
 
   let container;
@@ -1230,6 +1235,10 @@ export async function renderMessagePage() {
   mock
     .onGet(`${domain}/api/dummy/messaging/getDraftMessages`)
     .reply(200, MOCK_MESSAGING);
+  mock
+    .onGet(`${domain}/api/dummy/messaging/getProviderList`)
+    .reply(200, providerList);
+
   window.matchMedia = createMatchMedia("1920px");
   act(() => {
     container = render(
@@ -1245,29 +1254,54 @@ export async function renderMessagePage() {
 
   await waitFor(() => container.getByText("titleNoSelectedMessage"));
   expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
-  const inboxTab = container.getByTestId("inbox-tab")
+  const inboxTab = container.getByTestId("inbox-tab");
   expect(inboxTab).toBeInTheDocument();
   expect(container.getByTestId("inbox-tab")).toBeInTheDocument();
   expect(container.getByTestId("sent-tab")).toBeInTheDocument();
   expect(container.getByTestId("draft-tab")).toBeInTheDocument();
   expect(container.getByTestId("deleted-tab")).toBeInTheDocument();
-  
-  await waitFor(() =>{
+
+  await waitFor(() => {
     container.getByTestId("message-content-view");
-  }); 
-  
-  await waitFor(() =>{
+  });
+
+  await waitFor(() => {
     container.getByTestId("message-list-container");
-  }); 
+  });
 
   // await waitFor(() => container.getAllByTestId("message-card")[0]);
   await waitFor(() => container.getByText("titleNoSelectedMessage"));
   await waitFor(() => container.getByText("newMessage"));
 
-  const newMessageButton = container.getByRole("button", { name: /newMessage/i })
+  const newMessageButton = container.getByRole("button", {
+    name: /newMessage/i,
+  });
   expect(newMessageButton).toBeInTheDocument();
 
-  return container
+  return container;
+}
+
+export async function renderShareModal() {
+  let container;
+
+  window.matchMedia = createMatchMedia("1920px");
+  act(() => {
+    container = render(
+      <Provider store={store}>
+        <ShareModal />
+      </Provider>
+    );
+  });
+  store.dispatch(setOpenModal(true));
+
+  const securityInfo = container.getByText(
+    /Securely Transmit Your Information/i
+  );
+  expect(securityInfo).toBeInTheDocument();
+  await waitFor(() => container.getByText(/Share my/i));
+  expect(container.getByText(/Share my/i)).toBeInTheDocument();
+
+  return container;
 }
 
 export const defaultValidation = () => {
@@ -1275,16 +1309,15 @@ export const defaultValidation = () => {
 };
 
 export const expectPushRouter = (expectedPath) => {
-    const useRouter = jest.spyOn(require("next/router"), "useRouter");
+  const useRouter = jest.spyOn(require("next/router"), "useRouter");
   useRouter.mockReturnValue({
-      back: jest.fn(),
-      asPath: "/patient",
+    back: jest.fn(),
+    asPath: "/patient",
     push: (path) => {
-        expect(path).toEqual(expectedPath);
+      expect(path).toEqual(expectedPath);
     },
     query: { assetId: "6376481f-e317-4e44-a852-5e0395446140" },
     replace: jest.fn(),
     prefetch: jest.fn(),
   });
-
 };

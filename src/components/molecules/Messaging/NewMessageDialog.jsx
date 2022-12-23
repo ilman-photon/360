@@ -171,7 +171,6 @@ export const NewMessageDialog = ({
                 {t("newMessageTitle")}
               </DialogContentText>
               <CloseIcon
-                data-testId="close-new-message"
                 onClick={handleClosed}
               />
             </Box>

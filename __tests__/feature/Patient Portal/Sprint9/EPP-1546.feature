@@ -5,7 +5,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - View option
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-1546- Verify User should be able to click on the option to share their health record
-    Scenario: EPIC_EPP-42_STORY_EPP-1546- Verify User should be able to click on the option to share their health record
 
     Given User launch Patient Portal url		
     When User is logged in to the application

@@ -1,0 +1,37 @@
+.shareContentContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 1434px;
+  background-color: #fff;
+  margin: 0 auto;
+  position: relative;
+  top: 35px;
+  padding: 25px;
+}
+
+.shareTableContentContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 1434px;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+.prescriptionsBox {
+  border-radius: 4px;
+  box-shadow: 0px 1.65922px 3.31845px rgb(0 51 89 / 10%);
+}
+
+.headerPrescriptionContent {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  border-bottom: 1px solid #dadada;
+}
+
+.prescriptionTitle {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}

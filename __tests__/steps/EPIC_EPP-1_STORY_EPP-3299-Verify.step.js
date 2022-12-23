@@ -10,7 +10,11 @@ import { Provider } from "react-redux";
 import HomePage from "../../src/pages/patient";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
-import { educationMaterials } from "../../__mocks__/mockResponse";
+import {
+  doLogin,
+  renderLogin,
+  educationMaterials,
+} from "../../__mocks__/commonSteps";
 
 const MOCK_APPOINTMENT = {
   appointmentList: [
@@ -49,17 +53,17 @@ const MOCK_APPOINTMENT = {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
         insuranceCarrier: [
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "ECP Vision",
-         },
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "BlueCare Vision",
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
           },
         ],
       },
@@ -99,17 +103,17 @@ const MOCK_APPOINTMENT = {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
         insuranceCarrier: [
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "ECP Vision",
-         },
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "BlueCare Vision",
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
           },
         ],
       },
@@ -181,110 +185,110 @@ const MOCK_PRESCRIPTION = {
 };
 
 const mockSuggestionReal = {
-  "count": 5,
-  "entities": [
+  count: 5,
+  entities: [
     {
-      "code": "Clinical_Diagnosis",
-      "name": "Clinical_Diagnosis",
-      "key": 4,
-      "order": 4,
-      "category": {
-        "code": "Vision",
-        "description": "Vision"
+      code: "Clinical_Diagnosis",
+      name: "Clinical_Diagnosis",
+      key: 4,
+      order: 4,
+      category: {
+        code: "Vision",
+        description: "Vision",
       },
-      "acronym": "CAD",
-      "color": "#6fc77b",
-      "slotLength": 5,
-      "notes": "",
-      "_links": {
-        "self": {
-          "href": "/v1/appointment-types/Clinical_Diagnosis"
-        }
-      }
+      acronym: "CAD",
+      color: "#6fc77b",
+      slotLength: 5,
+      notes: "",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/Clinical_Diagnosis",
+        },
+      },
     },
     {
-      "code": "NO_APPOINTMENT",
-      "name": "NO APPOINTMENT",
-      "key": 1,
-      "order": 1,
-      "category": {
-        "code": "Medical",
-        "description": "Medical"
+      code: "NO_APPOINTMENT",
+      name: "NO APPOINTMENT",
+      key: 1,
+      order: 1,
+      category: {
+        code: "Medical",
+        description: "Medical",
       },
-      "acronym": "NA",
-      "color": "#8F8F8F",
-      "slotLength": 5,
-      "notes": "NO_APPOINTMENT is a default appointment type",
-      "_links": {
-        "self": {
-          "href": "/v1/appointment-types/NO_APPOINTMENT"
-        }
-      }
+      acronym: "NA",
+      color: "#8F8F8F",
+      slotLength: 5,
+      notes: "NO_APPOINTMENT is a default appointment type",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/NO_APPOINTMENT",
+        },
+      },
     },
     {
-      "code": "Comprehensive",
-      "name": "Comprehensive",
-      "key": 2,
-      "order": 2,
-      "category": {
-        "code": "Medical",
-        "description": "Medical"
+      code: "Comprehensive",
+      name: "Comprehensive",
+      key: 2,
+      order: 2,
+      category: {
+        code: "Medical",
+        description: "Medical",
       },
-      "acronym": "CP",
-      "color": "#f2ee74",
-      "slotLength": 5,
-      "notes": "",
-      "_links": {
-        "self": {
-          "href": "/v1/appointment-types/Comprehensive"
-        }
-      }
+      acronym: "CP",
+      color: "#f2ee74",
+      slotLength: 5,
+      notes: "",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/Comprehensive",
+        },
+      },
     },
     {
-      "code": "Glaucome_Appointment",
-      "name": "Glaucoma_Appointment",
-      "key": 3,
-      "order": 3,
-      "category": {
-        "code": "Vision",
-        "description": "Vision"
+      code: "Glaucome_Appointment",
+      name: "Glaucoma_Appointment",
+      key: 3,
+      order: 3,
+      category: {
+        code: "Vision",
+        description: "Vision",
       },
-      "acronym": "GPA",
-      "color": "#528aa8",
-      "slotLength": 5,
-      "notes": "",
-      "_links": {
-        "self": {
-          "href": "/v1/appointment-types/Glaucome_Appointment"
-        }
-      }
+      acronym: "GPA",
+      color: "#528aa8",
+      slotLength: 5,
+      notes: "",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/Glaucome_Appointment",
+        },
+      },
     },
     {
-      "code": "Retina_checkup",
-      "name": "Retina checkup",
-      "key": 5,
-      "order": 5,
-      "category": {
-        "code": "Vision",
-        "description": "Vision"
+      code: "Retina_checkup",
+      name: "Retina checkup",
+      key: 5,
+      order: 5,
+      category: {
+        code: "Vision",
+        description: "Vision",
       },
-      "acronym": "RET",
-      "color": "#db8686",
-      "slotLength": 5,
-      "notes": "",
-      "_links": {
-        "self": {
-          "href": "/v1/appointment-types/Retina_checkup"
-        }
-      }
-    }
+      acronym: "RET",
+      color: "#db8686",
+      slotLength: 5,
+      notes: "",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/Retina_checkup",
+        },
+      },
+    },
   ],
-  "_links": {
-    "self": {
-      "href": "/appointments?pageNo=0&pageSize=100"
-    }
-  }
-}
+  _links: {
+    self: {
+      href: "/appointments?pageNo=0&pageSize=100",
+    },
+  },
+};
 
 const MOCK_SUBMIT = {
   listOfProvider: [
@@ -805,7 +809,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       defaultValidation();
     });
 
@@ -842,7 +848,9 @@ defineFeature(feature, (test) => {
 
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+      mock
+        .onGet(`/ecp/appointments/appointment-types`)
+        .reply(200, mockSuggestionReal);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
@@ -859,21 +867,23 @@ defineFeature(feature, (test) => {
         )
         .reply(400, {});
       mock
-        .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+        .onGet(
+          `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`
+        )
         .reply(200, educationMaterials);
-        window.matchMedia = createMatchMedia("1920px");
-        const mockGeolocation = {
-          getCurrentPosition: jest.fn(),
-          watchPosition: jest.fn(),
-        };
-        global.navigator.geolocation = mockGeolocation;
-        Cookies.result = { authorized: true };
-        act(() => {
-          container = render(
-            <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-          );
-        });
-        await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
+      window.matchMedia = createMatchMedia("1920px");
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+      global.navigator.geolocation = mockGeolocation;
+      Cookies.result = { authorized: true };
+      act(() => {
+        container = render(
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+        );
+      });
+      await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
     });
 
     and("User should see the widget with prescriptions", () => {
@@ -885,9 +895,9 @@ defineFeature(feature, (test) => {
     });
 
     when("User clicks on the widget with prescriptions", () => {
-      const prescriptionsView = container.getByTestId(
+      const prescriptionsView = container.getAllByTestId(
         "view-prescription-glasses"
-      );
+      )[0];
       fireEvent.click(prescriptionsView);
 
       const searchBtn = container.getByTestId("searchbtn");
@@ -916,7 +926,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       defaultValidation();
     });
 
@@ -952,7 +964,9 @@ defineFeature(feature, (test) => {
       };
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+      mock
+        .onGet(`/ecp/appointments/appointment-types`)
+        .reply(200, mockSuggestionReal);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
@@ -964,7 +978,9 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       mock
-        .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+        .onGet(
+          `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`
+        )
         .reply(200, educationMaterials);
       window.matchMedia = createMatchMedia("700px");
       const mockGeolocation = {
@@ -978,16 +994,13 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByTestId("menu-contact"));
-      expect(container.getByTestId("menu-contact")).toBeInTheDocument();
+      await waitFor(() => container.getAllByTestId("menu-contact")[0]);
+      expect(container.getAllByTestId("menu-contact")[0]).toBeInTheDocument();
     });
 
     and("User should see the widget with prescriptions", async () => {
-      const contactMenu = container.getByTestId("menu-contact");
-      act(() => {
-        fireEvent.click(contactMenu);
-      });
-
+      const contactMenu = container.getAllByTestId("menu-contact")[0];
+      fireEvent.click(contactMenu);
       await waitFor(() => container.getAllByText(/Contacts Prescription/i)[0]);
     });
 
@@ -1013,7 +1026,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       defaultValidation();
     });
 
@@ -1050,7 +1065,9 @@ defineFeature(feature, (test) => {
 
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+      mock
+        .onGet(`/ecp/appointments/appointment-types`)
+        .reply(200, mockSuggestionReal);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
@@ -1062,7 +1079,9 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       mock
-        .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+        .onGet(
+          `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`
+        )
         .reply(200, educationMaterials);
       window.matchMedia = createMatchMedia("700px");
       const mockGeolocation = {
@@ -1081,11 +1100,8 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see the widget with prescriptions", async () => {
-      const medicationMenu = container.getByTestId("menu-medication");
-      act(() => {
-        fireEvent.click(medicationMenu);
-      });
-
+      const medicationMenu = container.getAllByTestId("menu-medication")[0];
+      fireEvent.click(medicationMenu);
       await waitFor(() => container.getByText(/Medications Prescriptions/i));
     });
 
@@ -1122,7 +1138,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       defaultValidation();
     });
 
@@ -1159,7 +1177,9 @@ defineFeature(feature, (test) => {
 
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+      mock
+        .onGet(`/ecp/appointments/appointment-types`)
+        .reply(200, mockSuggestionReal);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
@@ -1176,7 +1196,9 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_SUBMIT);
       mock
-        .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+        .onGet(
+          `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`
+        )
         .reply(200, educationMaterials);
       window.matchMedia = createMatchMedia("1920px");
       const mockGeolocation = {
@@ -1195,11 +1217,8 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see the widget with prescriptions", async () => {
-      const medicationMenu = container.getByTestId("menu-medication");
-      act(() => {
+      const medicationMenu = container.getAllByTestId("menu-medication")[0];
         fireEvent.click(medicationMenu);
-      });
-
       await waitFor(() => container.getByText(/Medications Prescriptions/i));
     });
 

@@ -5,6 +5,7 @@ import appointment from "../store/appointment";
 import provider from "../store/provider";
 import document from "../store/document";
 import notification from "./notification";
+import share from "../store/share";
 import accountRecovery from "./accountRecovery";
 
 export const store = configureStore({
@@ -15,6 +16,7 @@ export const store = configureStore({
     provider,
     document,
     notification,
+    share,
     accountRecovery,
   },
   middleware: (getDefaultMiddleware) =>
