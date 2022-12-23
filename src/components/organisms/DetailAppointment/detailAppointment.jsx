@@ -31,7 +31,7 @@ function AppointmentDetailTable(alergies, isExpandAll) {
     setOpenAllergies(isExpandAll);
   }, [isExpandAll]);
 
-  let temp = {};
+  let temp = null;
   let isEmptyData = true;
   if (alergies && alergies.list && alergies.list.length > 0) {
     temp = Object.keys(alergies.list[0]);
@@ -86,7 +86,7 @@ function AppointmentDetailTable(alergies, isExpandAll) {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow key={alergies.type}>
-                {temp.map((item) => (
+                {temp?.map((item) => (
                   <TableCell
                     tabIndex={0}
                     key={alergies.type}
@@ -131,7 +131,7 @@ function AppointmentDetailTable(alergies, isExpandAll) {
 
 export default function DetailAppointment({ data }) {
   const container = React.useRef(null);
-  const { providerInfo, patientInfo, appointmentInfo } = data;
+  const { providerInfo, patientInfo, appointmentInfo, purposeOfVisit } = data;
   const date = appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
   const momentDate = new moment(date);
@@ -156,9 +156,10 @@ export default function DetailAppointment({ data }) {
       }
     );
   };
-  const addressLabel = `address : ${providerInfo.address.addressLine1}.
-                  ${providerInfo.address.city}, ${providerInfo.address.state}, 
-                  ${providerInfo.address.zipcode}`;
+
+  const addressLabel = `address : ${providerInfo.address?.addressLine1}.
+                  ${providerInfo.address?.city}, ${providerInfo.address?.state}, 
+                  ${providerInfo.address?.zipcode}`;
 
   useEffect(() => {
     if (isDownload && isExpandAll) {
@@ -226,20 +227,20 @@ export default function DetailAppointment({ data }) {
           >
             <Typography
               tabIndex={0}
-              aria-label={`Visit Purpose: ${appointmentInfo.appointmentType}`}
+              aria-label={`Visit Purpose: ${purposeOfVisit.title}`}
               variant="h4"
               className={styles.mb36}
             >
-              {`Visit Purpose: ${appointmentInfo.appointmentType}`}
+              {`Visit Purpose: ${purposeOfVisit.title}`}
             </Typography>
             <Grid container spacing={2} sx={{ p: 1 }}>
               <Grid item xs={4}>
                 <Typography
                   tabIndex={0}
-                  aria-label={providerInfo.name}
+                  aria-label={purposeOfVisit.drName}
                   variant="h4"
                 >
-                  {providerInfo.name}
+                  {purposeOfVisit.drName}
                 </Typography>
               </Grid>
               <Grid item xs={8}>
@@ -254,12 +255,12 @@ export default function DetailAppointment({ data }) {
                   </Typography>
                   <Typography
                     tabIndex={0}
-                    aria-label={patientInfo.name}
-                    aria-live={patientInfo.name}
+                    aria-label={purposeOfVisit.patientName}
+                    aria-live={purposeOfVisit.patientName}
                     variant="regularDarkGreen"
                     sx={{ pl: 0.5 }}
                   >
-                    {patientInfo.name}
+                    {purposeOfVisit.patientName}
                   </Typography>
                 </Box>
               </Grid>
@@ -273,11 +274,11 @@ export default function DetailAppointment({ data }) {
                 <div></div>
                 <Typography
                   tabIndex={0}
-                  aria-label={providerInfo.position}
+                  aria-label={purposeOfVisit.location.typePlace}
                   variant="mediumDarkGreen"
                   className={styles.mb36}
                 >
-                  {providerInfo.position}
+                  {purposeOfVisit.location.typePlace}
                 </Typography>
                 <Typography
                   variant="regularDarkGreen"
@@ -286,21 +287,19 @@ export default function DetailAppointment({ data }) {
                   aria-label={addressLabel}
                   sx={{ pt: 1 }}
                 >
-                  {providerInfo.address.addressLine1 +
-                    "\n" +
-                    providerInfo.address.addressLine2 +
-                    "\n" +
-                    providerInfo.address.addressLine2 &&
-                    "\n" +
-                      "\n" +
-                      providerInfo.address.city +
-                      ", " +
-                      providerInfo.address.state +
-                      ", " +
-                      providerInfo.address.zipcode}
+                  {purposeOfVisit.location.address}
+                </Typography>
+                <Typography
+                  variant="regularDarkGreen"
+                  tabIndex={0}
+                  component={"div"}
+                  aria-label={purposeOfVisit.location.country}
+                  sx={{ pt: 1 }}
+                >
+                  {purposeOfVisit.location.country}
                 </Typography>
                 <PhoneNumber
-                  phone={providerInfo.phoneNumber}
+                  phone={providerInfo?.phoneNumber}
                   sx={{
                     display: "flex",
                     alignContent: "center",
@@ -358,11 +357,11 @@ export default function DetailAppointment({ data }) {
             </Typography>
             <Typography
               tabIndex={0}
-              aria-label={appointmentInfo.documentation.name}
+              aria-label={appointmentInfo.documentOfCareDetail.name}
               variant="body1"
               className={styles.mb14}
             >
-              {appointmentInfo.documentation.name}
+              {appointmentInfo.documentOfCareDetail.name}
             </Typography>
           </Box>
           <Box
@@ -582,7 +581,7 @@ export default function DetailAppointment({ data }) {
                 variant="h4"
                 className={styles.mb14}
               >
-                {"Patient-IDs"}
+                {"Patient"}
               </Typography>
               <Typography
                 tabIndex={0}
@@ -590,7 +589,7 @@ export default function DetailAppointment({ data }) {
                 variant="regularDarkGreen"
                 sx={{ pl: 0.5 }}
               >
-                {"JONES_ECC INDIANA"}
+                {patientInfo.name}
               </Typography>
             </Grid>
             <Grid item xs={5}>
@@ -601,35 +600,33 @@ export default function DetailAppointment({ data }) {
                 variant="regularDarkGreen"
                 tabIndex={0}
                 component={"div"}
-                aria-label={appointmentInfo.documentDetails.address.typePlace}
+                aria-label={patientInfo.typePlace}
                 sx={{ pt: 1, fontWeight: "bold" }}
               >
-                {appointmentInfo.documentDetails.address.typePlace}
+                {patientInfo.typePlace}
               </Typography>
 
               <Typography
                 variant="regularDarkGreen"
                 tabIndex={0}
                 component={"div"}
-                aria-label={
-                  appointmentInfo.documentDetails.address.addressLine1
-                }
+                aria-label={patientInfo.address}
                 sx={{ pt: 1 }}
               >
-                {appointmentInfo.documentDetails.address.addressLine1}
+                {patientInfo.address}
               </Typography>
 
               <Typography
                 variant="regularDarkGreen"
                 tabIndex={0}
                 component={"div"}
-                aria-label={appointmentInfo.documentDetails.address.country}
+                aria-label={patientInfo.country}
                 sx={{ pt: 1 }}
               >
-                {appointmentInfo.documentDetails.address.country}
+                {patientInfo.country}
               </Typography>
               <PhoneNumber
-                phone={appointmentInfo.documentDetails.address.mobileNumber}
+                phone={patientInfo.mobileNumber}
                 sx={{
                   display: "flex",
                   alignContent: "center",
@@ -657,11 +654,11 @@ export default function DetailAppointment({ data }) {
                     </Typography>
                     <Typography
                       tabIndex={0}
-                      aria-label={appointmentInfo.patientDetail.dateBirth}
+                      aria-label={patientInfo.dateBirth}
                       variant="regularDarkGreen"
                       sx={{ pl: 0.5 }}
                     >
-                      {appointmentInfo.patientDetail.dateBirth}
+                      {patientInfo.dateBirth}
                     </Typography>
                   </TableCell>
                   <TableCell>
@@ -675,11 +672,11 @@ export default function DetailAppointment({ data }) {
                     </Typography>
                     <Typography
                       tabIndex={0}
-                      aria-label={appointmentInfo.patientDetail.gender}
+                      aria-label={patientInfo.gender}
                       variant="regularDarkGreen"
                       sx={{ pl: 0.5 }}
                     >
-                      {appointmentInfo.patientDetail.gender}
+                      {patientInfo.gender}
                     </Typography>
                   </TableCell>
                   <TableCell>
@@ -698,7 +695,7 @@ export default function DetailAppointment({ data }) {
                       variant="regularDarkGreen"
                       sx={{ pl: 0.5 }}
                     >
-                      {appointmentInfo.patientDetail.race}
+                      {patientInfo.race}
                     </Typography>
                   </TableCell>
                   <TableCell>
@@ -714,9 +711,9 @@ export default function DetailAppointment({ data }) {
                       variant="regularDarkGreen"
                       tabIndex={0}
                       component={"div"}
-                      aria-label={appointmentInfo.patientDetail.ethnicity}
+                      aria-label={patientInfo.ethnicity}
                     >
-                      {appointmentInfo.patientDetail.ethnicity}
+                      {patientInfo.ethnicity}
                     </Typography>
                   </TableCell>
                 </TableRow>
@@ -740,11 +737,11 @@ export default function DetailAppointment({ data }) {
                     </Typography>
                     <Typography
                       tabIndex={0}
-                      aria-label={appointmentInfo.patientDetail.patientId}
+                      aria-label={patientInfo.patientId}
                       variant="regularDarkGreen"
                       sx={{ pl: 0.5 }}
                     >
-                      {appointmentInfo.patientDetail.patientId}
+                      {patientInfo.patientId}
                     </Typography>
                   </TableCell>
                   <TableCell>
@@ -760,12 +757,10 @@ export default function DetailAppointment({ data }) {
                       variant="regularDarkGreen"
                       tabIndex={0}
                       component={"div"}
-                      aria-label={
-                        appointmentInfo.patientDetail.languageCommunication
-                      }
+                      aria-label={patientInfo.languageCommunication}
                       sx={{ pt: 1 }}
                     >
-                      {appointmentInfo.patientDetail.languageCommunication}
+                      {patientInfo.languageCommunication}
                     </Typography>
                   </TableCell>
                 </TableRow>
@@ -914,14 +909,12 @@ export default function DetailAppointment({ data }) {
                         </Typography>
                         <Typography
                           tabIndex={0}
-                          aria-label={patientInfo.name}
-                          aria-live={patientInfo.name}
+                          aria-label={appointmentInfo?.author?.title}
+                          aria-live={appointmentInfo.author.title}
                           variant="regularDarkGreen"
                           sx={{ pl: 0.5 }}
                         >
-                          {
-                            "EyeCare 360 - Code : Optomerrist, Organization : EYECARE CENTERS"
-                          }
+                          {appointmentInfo?.author?.title}
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -946,21 +939,12 @@ export default function DetailAppointment({ data }) {
                       tabIndex={0}
                       component={"div"}
                       variant="subtitle1"
-                      aria-label={"Home Primary"}
-                      sx={{ pt: 1 }}
-                    >
-                      {"Home Primary"}
-                    </Typography>
-                    <Typography
-                      variant="regularDarkGreen"
-                      tabIndex={0}
-                      component={"div"}
                       aria-label={
-                        "15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011"
+                        appointmentInfo?.author?.contactDetails?.typePlace
                       }
                       sx={{ pt: 1 }}
                     >
-                      {"15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011"}
+                      {appointmentInfo?.author?.contactDetails?.typePlace}
                     </Typography>
                     <Typography
                       variant="regularDarkGreen"
@@ -969,21 +953,23 @@ export default function DetailAppointment({ data }) {
                       aria-label={addressLabel}
                       sx={{ pt: 1 }}
                     >
-                      {providerInfo.address.addressLine1 +
-                        "\n" +
-                        providerInfo.address.addressLine2 +
-                        "\n" +
-                        providerInfo.address.addressLine2 &&
-                        "\n" +
-                          "\n" +
-                          providerInfo.address.city +
-                          ", " +
-                          providerInfo.address.state +
-                          ", " +
-                          providerInfo.address.zipcode}
+                      {appointmentInfo?.author?.contactDetails?.address ?? "-"}
+                    </Typography>
+                    <Typography
+                      variant="regularDarkGreen"
+                      tabIndex={0}
+                      component={"div"}
+                      aria-label={
+                        appointmentInfo?.author?.contactDetails?.country
+                      }
+                      sx={{ pt: 1 }}
+                    >
+                      {appointmentInfo?.author?.contactDetails?.country ?? "-"}
                     </Typography>
                     <PhoneNumber
-                      phone={providerInfo.phoneNumber}
+                      phone={
+                        appointmentInfo?.author?.contactDetails?.phoneNumber
+                      }
                       sx={{
                         display: "flex",
                         justifyContent: "flex-start",
@@ -1006,21 +992,16 @@ export default function DetailAppointment({ data }) {
                       tabIndex={0}
                       component={"div"}
                       variant="subtitle1"
-                      aria-label={"Home Primary"}
-                      sx={{ pt: 1 }}
-                    >
-                      {"Home Primary"}
-                    </Typography>
-                    <Typography
-                      variant="regularDarkGreen"
-                      tabIndex={0}
-                      component={"div"}
                       aria-label={
-                        "15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011"
+                        appointmentInfo?.author?.contactDetailsOrganization
+                          ?.typePlace
                       }
                       sx={{ pt: 1 }}
                     >
-                      {"15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011"}
+                      {
+                        appointmentInfo?.author?.contactDetailsOrganization
+                          ?.typePlace
+                      }
                     </Typography>
                     <Typography
                       variant="regularDarkGreen"
@@ -1029,26 +1010,32 @@ export default function DetailAppointment({ data }) {
                       aria-label={addressLabel}
                       sx={{ pt: 1 }}
                     >
-                      {providerInfo.address.addressLine1 +
-                        "\n" +
-                        providerInfo.address.addressLine2 +
-                        "\n" +
-                        providerInfo.address.addressLine2 &&
-                        "\n" +
-                          "\n" +
-                          providerInfo.address.city +
-                          ", " +
-                          providerInfo.address.state +
-                          ", " +
-                          providerInfo.address.zipcode}
+                      {appointmentInfo?.author?.contactDetailsOrganization
+                        ?.address ?? "-"}
+                    </Typography>
+                    <Typography
+                      variant="regularDarkGreen"
+                      tabIndex={0}
+                      component={"div"}
+                      aria-label={
+                        appointmentInfo?.author?.contactDetailsOrganization
+                          ?.country
+                      }
+                      sx={{ pt: 1 }}
+                    >
+                      {appointmentInfo?.author?.contactDetailsOrganization
+                        ?.country ?? "-"}
                     </Typography>
                     <PhoneNumber
-                      phone={providerInfo.phoneNumber}
+                      phone={
+                        appointmentInfo?.author?.contactDetailsOrganization
+                          ?.phoneNumber
+                      }
                       sx={{
-                        alignContent: "center",
                         display: "flex",
                         justifyContent: "flex-start",
                         pt: 1,
+                        alignContent: "center",
                       }}
                     />
                   </TableCell>
