@@ -84,7 +84,6 @@ export default function AppointmentForm({
   });
 
   React.useEffect(() => {
-    console.log(errors);
     if (errors.firstName) {
       firstNameRef.current?.focus();
     } else if (errors.lastName) {

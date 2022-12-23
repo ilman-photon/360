@@ -33,14 +33,9 @@ const SecurityQuestion = ({
 
   const getAvailableOptions = () => {
     // const availableOptionsLeft = questionValsDua;
-    console.log({ securityQuestionList });
-    // console.log({availableOptionsLeft})
     const questions = securityQuestionList.filter((questionOption) => {
       return questionVals.indexOf(questionOption) === -1;
     });
-
-    console.log({ questions });
-
     return questions;
   };
 

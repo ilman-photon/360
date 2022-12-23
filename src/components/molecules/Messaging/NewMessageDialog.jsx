@@ -63,7 +63,6 @@ export const NewMessageDialog = ({
   });
 
   React.useEffect(() => {
-    console.log(errors);
     if (errors.name) {
       nameRef.current?.focus();
     } else if (errors.subject) {

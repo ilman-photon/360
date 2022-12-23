@@ -1,7 +1,4 @@
-import {
-  render,
-  fireEvent,
-} from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
 import DetailAppointment from "../../../../src/components/organisms/DetailAppointment/detailAppointment";
@@ -357,6 +354,15 @@ describe("Detail Appointment Organism", () => {
           { name: "Performer", value: "Lorem Ipsum" },
         ],
       },
+      author: {
+        title: "test",
+      },
+    },
+    purposeOfVisit: {
+      title: "test",
+      location: {
+        typePlace: "test",
+      },
     },
   };
   let container;
@@ -377,21 +383,19 @@ describe("Detail Appointment Organism", () => {
       TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.download
     );
     fireEvent.click(downloadButton);
-  }); 
+  });
 
   it("Handle Click Expand", () => {
     const expandClick = container?.getByTestId(
       TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.expandCollapseAll
     );
     fireEvent.click(expandClick);
-  }); 
+  });
 
   it("Handle Click Accordion Container", () => {
     const expandSectionClick = container?.getAllByTestId(
       TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.expandCollapseSection
     )[0];
     fireEvent.click(expandSectionClick);
-  }); 
-
-
+  });
 });
