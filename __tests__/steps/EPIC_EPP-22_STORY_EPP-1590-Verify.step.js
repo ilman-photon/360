@@ -9,6 +9,7 @@ import { Login } from "../../src/components/organisms/Login/login";
 import store from "../../src/store/store";
 import Cookies from "universal-cookie";
 import { withMarkup } from "../src/utils/test-util";
+import { doLogin, renderLogin } from "../../__mocks__/commonSteps";
 
 const cookies = new Cookies();
 
@@ -91,15 +92,15 @@ defineFeature(feature, (test) => {
     act(() => {
       container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
     });
-    const usernameField = container.getByLabelText(/emailUserLabel/i);
-    const passwordField = container.getByLabelText(/passwordLabel/i);
+    const usernameField = container.getAllByLabelText(/emailUserLabel/i)[0];
+    const passwordField = container.getAllByLabelText(/passwordLabel/i)[0];
     act(() => {
       fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
     });
     expect(usernameField.value).not.toEqual("validUsername");
     expect(passwordField.value).toEqual("validPassword");
-    const login = container.getByRole("button", { name: /Login/i });
+    const login = container.getAllByRole("button", { name: /Login/i })[0];
     fireEvent.click(login);
 
     const expectedResult = {
@@ -217,7 +218,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       userIsLoggedIn();
     });
 
@@ -254,7 +257,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       userIsLoggedIn();
     });
 
@@ -291,7 +296,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       userIsLoggedIn();
     });
 
@@ -328,7 +335,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       userIsLoggedIn();
     });
 
@@ -365,7 +374,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       userIsLoggedIn();
     });
 
@@ -402,7 +413,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       userIsLoggedIn();
     });
 
@@ -440,7 +453,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       userIsLoggedIn();
     });
 
@@ -477,7 +492,9 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("User is logged in to the application", async () => {
+      container = await renderLogin(container);
+      await doLogin(mock, container);
       userIsLoggedIn();
     });
 

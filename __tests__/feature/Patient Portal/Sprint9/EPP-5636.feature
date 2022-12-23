@@ -16,7 +16,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - View option
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-5636- Verify User should see the option to share their prescription (Glasses, Medication and Contact lens)
-    Scenario: EPIC_EPP-42_STORY_EPP-5636- Verify User should see the option to share their prescription (Glasses, Medication and Contact lens)
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -31,7 +30,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - View option
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-5636- Verify User should see the pop-up to share their prescription (Glasses)
-    Scenario: EPIC_EPP-42_STORY_EPP-5636- Verify User should see the pop-up to share their prescription (Glasses)
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -48,7 +46,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - View option
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-5636- Verify User should see the pop-up to share their prescription (Medication)
-    Scenario: EPIC_EPP-42_STORY_EPP-5636- Verify User should see the pop-up to share their prescription (Medication)
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -65,7 +62,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - View option
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-5636- Verify User should see the pop-up to share their prescription (Contact lens)
-    Scenario: EPIC_EPP-42_STORY_EPP-5636- Verify User should see the pop-up to share their prescription (Contact lens)
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -82,7 +78,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - View option
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-5636-Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User clicks on Prescriptions widget in dashboard
-    Scenario: EPIC_EPP-42_STORY_EPP-5636-Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User clicks on Prescriptions widget in dashboard
 
     Given User launch Patient Portal url		
     When User is logged in to the application

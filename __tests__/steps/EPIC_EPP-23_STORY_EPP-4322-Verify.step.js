@@ -23,8 +23,8 @@ const clickNewMessage = (container) => {
 };
 
 const clickCloseNewMessage = async (container) => {
-  await waitFor(() => container.getByTestId("close-new-message"));
-  const closeMessage = container.getByTestId("close-new-message");
+  await waitFor(() => container.getByTestId("CloseIcon"));
+  const closeMessage = container.getByTestId("CloseIcon");
   expect(closeMessage).toBeInTheDocument();
   fireEvent.click(closeMessage);
 };
@@ -85,8 +85,8 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        and('User able to see the option to compose a message', () => {
-            clickNewMessage(container);
+        and('User able to see the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
     });
 
@@ -105,8 +105,8 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        and('User should able to clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        and('User should able to clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
     });
 
@@ -126,8 +126,8 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        when('User clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        when('User clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
 
         then('User should be able to view the field to enter in the subject of the message which should not exceed \'x\' characters', () => {
@@ -150,12 +150,12 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        when('User clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        when('User clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
 
-        and('User should be able to view the field to select the receiver', () => {
-            fillTypeName(container);
+        and('User should be able to view the field to select the receiver', async () => {
+           await fillTypeName(container);
         });
     });
 
@@ -174,16 +174,16 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        when('User clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        when('User clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
 
         and('User should be able to view the field to select the receiver', () => {
             fillTypeName(container);
         });
 
-        and('User should see the select receiver as mondatory field', () => {
-            fillTypeName(container);
+        and('User should see the select receiver as mondatory field', async () => {
+           await fillTypeName(container);
         });
     });
 
@@ -202,8 +202,8 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        when('User clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        when('User clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
 
         and('User should be able to view the field to enter in the body of the message which should not exceed \'x\' characters', () => {
@@ -252,8 +252,8 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        when('User clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        when('User clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
 
         and('User should be able to view the option to send the message', () => {
@@ -276,12 +276,12 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        when('User clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        when('User clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
 
-        and('User should be able to view the option to discard the message', () => {
-           clickCloseNewMessage(container);
+        and('User should be able to view the option to discard the message', async () => {
+           await clickCloseNewMessage(container);
         });
     });
 
@@ -300,12 +300,12 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        when('User clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        when('User clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
 
-        and('User should be able to view the option to discard the message which when clicked will cancel the message', () => {
-          clickCloseNewMessage(container);
+        and('User should be able to view the option to discard the message which when clicked will cancel the message', async () => {
+          await clickCloseNewMessage(container);
         });
     });
 
@@ -321,12 +321,12 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        when('User clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        when('User clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
 
-        and('User should be able to view the option to discard the message which when clicked will cancel the message and redirect the user to list of received messages screen', () => {
-          clickCloseNewMessage(container);
+        and('User should be able to view the option to discard the message which when clicked will cancel the message and redirect the user to list of received messages screen', async () => {
+          await clickCloseNewMessage(container);
         });
     });
 
@@ -342,8 +342,8 @@ defineFeature(feature, (test) => {
             container = await renderMessagePage();
         });
 
-        when('User clicks on the option to compose a message', () => {
-            clickNewMessage(container);
+        when('User clicks on the option to compose a message', async () => {
+            await clickNewMessage(container);
         });
 
         and('User provides the subject of the message', () => {

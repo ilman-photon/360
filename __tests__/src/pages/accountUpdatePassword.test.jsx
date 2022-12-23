@@ -114,7 +114,7 @@ describe("Render change password", () => {
             fireEvent.click(container.getByTestId("update-btn"))
         }, 500);
         await waitFor(() => {
-            container.getByText(/Are you sure to change password?/i)
+            container.getAllByText(/Are you sure to change password?/i)[0]
         })
         fireEvent.click(container.getByRole("button", { name: /Cancel/i }))
     })
@@ -137,7 +137,7 @@ describe("Render change password", () => {
             fireEvent.click(container.getByTestId("update-btn"))
         }, 500);
         await waitFor(() => {
-            container.getByText(/Are you sure to change password?/i)
+            container.getAllByText(/Are you sure to change password?/i)[0]
         })
         fireEvent.click(container.getByTestId("custom-modal-close-btn"))
     })

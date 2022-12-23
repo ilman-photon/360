@@ -220,6 +220,9 @@ export default function TableWithSort({
   onAssetDownload = () => {
     // This is intentional
   },
+  onShareDocument = () => {
+    // This is intentional
+  },
   onActionClicked = () => {
     // This is intentional
   },
@@ -340,9 +343,7 @@ export default function TableWithSort({
         onAssetDownload(ref(row, "digital_assets._id"), true);
         break;
       case "share":
-        if (navigator.share) {
-          await navigator.share(shareData);
-        }
+        onShareDocument(row);
         break;
       default:
         break;

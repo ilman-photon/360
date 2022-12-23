@@ -174,15 +174,7 @@ export default function AppointmentCard({
                   aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
                   tabIndex={0}
                 >
-                  <Typography
-                    variant="bodyLinkRegular"
-                    aria-hidden={true}
-                    onKeyPress={() =>
-                      window.open(
-                        `tel:${appointment.providerInfo?.phoneNumber}`
-                      )
-                    }
-                  >
+                  <Typography variant="bodyLinkRegular" aria-hidden={true}>
                     <a
                       onKeyPress={() =>
                         window.open(

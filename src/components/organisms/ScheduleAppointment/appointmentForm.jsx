@@ -658,7 +658,9 @@ export default function AppointmentForm({
                       return (
                         <StyledInput
                           id="password"
-                          data-testid={SCHEDULE_GUEST_TEST_ID.passwordField}
+                          data-testid={
+                            SCHEDULE_GUEST_TEST_ID.passwordFieldGuest
+                          }
                           label={t("passwordLabel")}
                           inputProps={{
                             "aria-label": `Password - optional -`,

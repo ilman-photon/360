@@ -26,6 +26,30 @@ import { renderCTAIcon, StyledTableCell } from "./prescriptions";
 import moment from "moment";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import CommonCard, { onRenderButtonView } from "./commonCard";
+import {
+  setModalContent,
+  setOpenModal,
+  setShareModalData,
+} from "../../../store/share";
+import { getDynamicShareContent } from "../../organisms/ShareModal/shareModal";
+
+export function shareDocument(selectedData, dispatch) {
+  //Handle for Care plan only
+  const shareContent = getDynamicShareContent({
+    type: "health-record",
+    date: selectedData?._created,
+  });
+  const shareData = {
+    id: selectedData?._id || "",
+    title: "Share my health record",
+    successPostmessage: "Your health record was succesfully shared.",
+    type: "healthRecord",
+  };
+
+  dispatch(setShareModalData(shareData));
+  dispatch(setOpenModal(true));
+  dispatch(setModalContent(shareContent));
+}
 
 export function parseHealthRecordData(documentList, rows) {
   let healthRecordTemp = [];
@@ -106,7 +130,7 @@ export default function HealthRecordCard() {
         handleAssetDownload(healthRecordData.digital_assets?._id, true);
       },
       () => {
-        //Share
+        shareDocument(healthRecordData, dispatch);
       },
       ["download", "print", "share"],
       styles.butttonIconContainer,

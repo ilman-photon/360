@@ -15,7 +15,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - Provided em
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-7606- Verify User should receive an email message with the following content (ECP to provide content)
-    Scenario: EPIC_EPP-42_STORY_EPP-7606- Verify User should receive an email message with the following content (ECP to provide content)
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -35,7 +34,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - Provided em
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-7606- Verify User should receive a text message with the following content (ECP to provide content)
-    Scenario: EPIC_EPP-42_STORY_EPP-7606- Verify User should receive a text message with the following content (ECP to provide content)
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -55,7 +53,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - Provided em
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-7606- Verify User should see the message “<Health Record/ Prescription/ Care plan document> is shared successfully.” when the items has been shared
-    Scenario: EPIC_EPP-42_STORY_EPP-7606- Verify User should see the message “<Health Record/ Prescription/ Care plan document> is shared successfully.” when the items has been shared
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -75,7 +72,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - Provided em
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-7606-Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User enters the required details and clicks on the option to share
-    Scenario: EPIC_EPP-42_STORY_EPP-7606-Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User enters the required details and clicks on the option to share
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -92,7 +88,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - Provided em
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-7606-Negative Test Cases-Verify user should see the error message when the service is unavailable - when User enters the required details and clicks on the option to share
-    Scenario: EPIC_EPP-42_STORY_EPP-7606-Negative Test Cases-Verify user should see the error message when the service is unavailable - when User enters the required details and clicks on the option to share
 
     Given User launch Patient Portal url		
     When User is logged in to the application

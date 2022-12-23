@@ -14,6 +14,9 @@ import styles from "./styles.module.scss";
 const StackList = ({
   dataList = [],
   onAssetDownload = () => {},
+  onShareDocument = () => {
+    // This is intentional
+  },
   sortFilterData = [],
 }) => {
   const [sortBy, setSortBy] = React.useState("");
@@ -126,17 +129,8 @@ const StackList = ({
             () => {
               onAssetDownload(data?.digitalSignature._id, true);
             },
-            async () => {
-              const shareData = {
-                title: data.name,
-                text: data.name,
-                url: data.digitalSignature._id
-                  ? `${window.location.origin}/patient/download/${data?.digitalSignature._id}`
-                  : "/",
-              };
-              if (navigator.share) {
-                await navigator.share(shareData);
-              }
+            () => {
+              onShareDocument(data);
             },
             ["download", "print", "share"],
             styles.butttonIconContainer

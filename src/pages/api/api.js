@@ -520,6 +520,26 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  verifyAccessCode(postBody) {
+    const url = `/ecp/patient/share/share-confirmation/verifyAccessCode`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  validationSharePage(postBody) {
+    const url = `/ecp/patient/share/share-page/validation`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  getShareDocumentDetails(postBody) {
+    const url = `/ecp/patient/share/documentDetails`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  resendCode(postBody) {
+    const url = `/ecp/patient/share/share-confirmation/resendAccessCode`;
+    return this.getResponse(url, postBody, "post");
+  }
+
   getformContent() {
     const url = "/ecp/patients/forms/getformContent";
     return this.getResponse(url, {}, "get");

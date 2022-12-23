@@ -18,7 +18,120 @@ import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import StackList from "../../../components/organisms/StackList/StackList";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { parseHealthRecordData } from "../../../components/molecules/Dashboard/healthRecordCard";
+
+export function defaultHeader() {
+  return {
+    numeric: false,
+    disablePadding: true,
+    sx: {
+      color: colors.darkGreen,
+      fontSize: {
+        xs: 14,
+      },
+      ".MuiTableSortLabel-root": {
+        "&.Mui-active": {
+          color: colors.darkGreen,
+        },
+      },
+    },
+  };
+}
+
+export function defaultCell(isDesktop) {
+  return {
+    cellProps: { align: "left", component: "th", padding: "none" },
+    contentStyle: {
+      padding: isDesktop ? "12px 0" : "8px 0",
+      fontSize: isDesktop ? "14px" : "12px",
+    },
+  };
+}
+
+export function tableConfiguration(
+  isDesktop = true,
+  handleAssetDownload = null
+) {
+  return {
+    header: [
+      { type: "empty", width: 22 },
+      {
+        type: "text",
+        id: "medical_record",
+        label: "Medical Record",
+        width: 600,
+        ...defaultHeader(),
+      },
+      {
+        type: "text",
+        id: "date",
+        label: "Appointment Date",
+        width: 190,
+        ...defaultHeader(),
+      },
+      {
+        type: "textNoSort",
+        id: "provider",
+        label: "Provider",
+        width: 156,
+        ...defaultHeader(),
+      },
+      {
+        type: "textNoSort",
+        id: "appointment-type",
+        label: "Visit Purpose",
+        width: 190,
+        ...defaultHeader(),
+      },
+      { type: "empty", width: 22 },
+    ],
+    cells: [
+      {
+        type: "icon",
+        icon: <PDFFileIcon />,
+      },
+      {
+        type: "text",
+        primary: true,
+        hasAction: true,
+        valueKey: "name",
+        additionalValueKey: "digital_assets._id",
+        cellProps: { padding: "none" },
+        contentClass: isDesktop ? "" : "clipped clip-2",
+        onClick: (id) => {
+          if (handleAssetDownload) {
+            handleAssetDownload(id, false, true, true);
+          }
+        },
+      },
+      {
+        type: "date-time",
+        valueKey: "_created",
+        ...defaultCell(isDesktop),
+        ontentClass: "",
+      },
+      {
+        type: "text",
+        valueKey: "digitalSignature.firstName,digitalSignature.lastName",
+        isMultipleKey: true,
+        ...defaultCell(isDesktop),
+      },
+      {
+        type: "text",
+        valueKey: "examSheetTemplate.appointmentType",
+        ...defaultCell(isDesktop),
+      },
+      {
+        type: "menu-cta",
+        valueKey: "digitalSignature._id",
+        contentStyle: { padding: "16px" },
+      },
+    ],
+  };
+}
+import {
+  parseHealthRecordData,
+  shareDocument,
+} from "../../../components/molecules/Dashboard/healthRecordCard";
 
 export default function HealthRecord() {
   const isDesktop = useMediaQuery("(min-width: 820px)");
@@ -60,105 +173,6 @@ export default function HealthRecord() {
     },
   ];
 
-  const defaultHeader = {
-    numeric: false,
-    disablePadding: true,
-    sx: {
-      color: colors.darkGreen,
-      fontSize: {
-        xs: 14,
-      },
-      ".MuiTableSortLabel-root": {
-        "&.Mui-active": {
-          color: colors.darkGreen,
-        },
-      },
-    },
-  };
-
-  const defaultCell = {
-    cellProps: { align: "left", component: "th", padding: "none" },
-    contentStyle: {
-      padding: isDesktop ? "12px 0" : "8px 0",
-      fontSize: isDesktop ? "unset" : "12px",
-    },
-    contentClass: isDesktop ? "" : "clipped clip-2",
-  };
-
-  const tableConfiguration = {
-    header: [
-      { type: "empty", width: 22 },
-      {
-        type: "text",
-        id: "medical_record",
-        label: "Medical Record",
-        width: 600,
-        ...defaultHeader,
-      },
-      {
-        type: "text",
-        id: "date",
-        label: "Appointment Date",
-        width: 190,
-        ...defaultHeader,
-      },
-      {
-        type: "textNoSort",
-        id: "provider",
-        label: "Provider",
-        width: 156,
-        ...defaultHeader,
-      },
-      {
-        type: "textNoSort",
-        id: "appointment-type",
-        label: "Visit Purpose",
-        width: 190,
-        ...defaultHeader,
-      },
-      { type: "empty", width: 22 },
-    ],
-    cells: [
-      {
-        type: "icon",
-        icon: <PDFFileIcon />,
-      },
-      {
-        type: "text",
-        primary: true,
-        hasAction: true,
-        valueKey: "name",
-        additionalValueKey: "digital_assets._id",
-        cellProps: { padding: "none" },
-        contentClass: isDesktop ? "" : "clipped clip-2",
-        onClick: (id) => {
-          handleAssetDownload(id);
-        },
-      },
-      {
-        type: "date-time",
-        valueKey: "_created",
-        ...defaultCell,
-      },
-      {
-        type: "text",
-        valueKey: "provider.firstName,provider.lastName",
-        isMultipleKey: true,
-        ...defaultCell,
-      },
-      {
-        type: "text",
-        valueKey: "examSheetTemplate.appointmentType",
-        ...defaultCell,
-      },
-      {
-        type: "menu-cta",
-        valueKey: "digital_assets._id",
-        contentStyle: { padding: "16px" },
-      },
-    ],
-  };
-
   const rows = useSelector((state) => {
     return state.document.healthRecordList;
   });
@@ -175,8 +189,8 @@ export default function HealthRecord() {
     return "There are no health records available.";
   };
 
-  const handleAssetDownload = (id, print, newTab = true) => {
-    fetchSource(id, print, newTab);
+  const handleAssetDownload = (id, print, newTab = true, isOpen = false) => {
+    fetchSource(id, print, newTab, isOpen);
   };
 
   useEffect(() => {
@@ -202,7 +216,12 @@ export default function HealthRecord() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const testLabConfig = tableConfiguration;
+  function onShareDocument(selectedData) {
+    shareDocument(selectedData, dispatch);
+  }
+
+  const testLabConfig = tableConfiguration(isDesktop, handleAssetDownload);
+
   function renderDekstopView() {
     return (
       <>
@@ -211,6 +230,7 @@ export default function HealthRecord() {
             config={testLabConfig}
             rows={healthRecordDocument}
             onAssetDownload={handleAssetDownload}
+            onShareDocument={onShareDocument}
             additionalProps={{
               tableProps: { "aria-label": `health-record` },
             }}
@@ -230,6 +250,7 @@ export default function HealthRecord() {
             sortFilterData={sortFilter}
             dataList={healthRecordDocument}
             onAssetDownload={handleAssetDownload}
+            onShareDocument={onShareDocument}
           />
         ) : (
           <Stack
@@ -241,6 +262,7 @@ export default function HealthRecord() {
       </>
     );
   }
+
   return isDesktop ? (
     <div className={styles.documentPageWrapper}>
       <Stack spacing={3} sx={{ mt: 1 }}>
