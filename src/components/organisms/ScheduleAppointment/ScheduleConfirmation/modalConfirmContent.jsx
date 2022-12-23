@@ -183,18 +183,20 @@ export default function ModalConfirmContent({
                 PopperProps={{
                   role: "alert",
                 }}
-                tabIndex={0}
               >
                 <Link
                   data-testid={REGISTER_TEST_ID.loginlink}
-                  aria-label={`${t("isEmergency")}. ${t(
-                    "isEmergencyTooltip"
-                  )}.`}
-                  aria-roledescription=""
-                  role="link"
+                  role="presentation"
+                  aria-label=""
                   tabIndex={"0"}
                 >
-                  <span className={styles.medicLink}>{t("isEmergency")}</span>
+                  <span
+                    className={styles.medicLink}
+                    role="presentation"
+                    aria-label=""
+                  >
+                    {t("isEmergency")}
+                  </span>
                 </Link>
               </Tooltip>
             </div>
@@ -287,6 +289,7 @@ export default function ModalConfirmContent({
                   <Grid container sx={{ placeContent: "center" }}>
                     <Grid>
                       <ProviderProfile
+                        tabIndex={0}
                         variant={"appointment"}
                         showPosition
                         providerData={providerData}
@@ -300,6 +303,8 @@ export default function ModalConfirmContent({
                       >
                         <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
                         <Link
+                          tabIndex={0}
+                          aria-label={"Get Directions"}
                           className={styles.getDirectionLinkText}
                           {...getLinkAria("Get directions")}
                         >
