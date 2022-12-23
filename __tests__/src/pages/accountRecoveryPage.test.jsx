@@ -614,7 +614,7 @@ describe("AccountRecoveryPage", () => {
     act(() => {
       fireEvent.click(searchBarSubmitBtns[0])
     })
-    const noResultMsg = await waitFor(() => container.getByText(/No results found./i))
+    const noResultMsg = await waitFor(() => container.getByText(/No records found./i))
     expect(noResultMsg).toBeInTheDocument()
   })
 

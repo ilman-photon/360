@@ -167,11 +167,13 @@ export default function AccountRecovery() {
       });
       setValue("communication", "email");
     }
-    options.push({
-      label: "Both",
-      value: "both",
-      preferred: rowData.preferredCommunication === "both",
-    });
+    if (rowData.emailId && rowData.phoneNumber) {
+      options.push({
+        label: "Both",
+        value: "both",
+        preferred: rowData.preferredCommunication === "both",
+      });
+    }
 
     return options;
   };
@@ -458,8 +460,10 @@ export default function AccountRecovery() {
   };
 
   const handleSearchPatient = (data) => {
-    setFirstSearch(true);
-    dispatch(fetchPatientAccount(data));
+    if (data.keyword && data.keyword.trim()) {
+      setFirstSearch(true);
+      dispatch(fetchPatientAccount(data));
+    }
   };
 
   return (
@@ -537,7 +541,7 @@ export default function AccountRecovery() {
                     >
                       <AccountCircleOutlined sx={{ width: 62, height: 62 }} />
                       <Typography variant="headlineH4">
-                        No results found.
+                        No records found.
                       </Typography>
                     </Stack>
                   )

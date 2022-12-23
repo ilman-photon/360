@@ -124,6 +124,13 @@ export const loginProps = {
           cookies.set("securityQuestions", securityQuestions, {
             path: "/patient",
           });
+          cookies.set(
+            "isSecurityQuestionsSkipped",
+            response.isSecurityQuestionsSkipped,
+            {
+              path: "/patient",
+            }
+          );
           getUserData(postbody, async (isNotNeedMfa) => {
             if (isNotNeedMfa) {
               cookies.set("authorized", true, { path: "/patient" });

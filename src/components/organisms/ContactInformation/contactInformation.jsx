@@ -72,29 +72,6 @@ export default function ContactInformation({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSubmitting]);
 
-  const isOneOfPreferredValid = (name, value) => {
-    switch (name) {
-      case "email":
-        if (watchedPreferredCommunication == "phone") return true;
-        else if (watchedPreferredCommunication == "email" && !value)
-          return false;
-        else if (watchedEmail || watchedMobile) return true;
-        break;
-      case "phone":
-        if (watchedPreferredCommunication == "email") return true;
-        else if (watchedPreferredCommunication == "phone" && !value)
-          return false;
-        else if (watchedEmail || watchedMobile) return true;
-        break;
-      case "address":
-        if (value.length > 2) return true;
-        break;
-      case "city":
-        if (value.length > 2) return true;
-        break;
-    }
-  };
-
   useEffect(() => {
     if (userData) reset(userData);
   }, [userData, reset]);
@@ -203,15 +180,6 @@ export default function ContactInformation({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedEmail, watchedMobile]);
-
-  useEffect(() => {
-    if (watchedPreferredCommunication == "email") {
-      if (isEditing) {
-        setFocus("email");
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watchedPreferredCommunication, setFocus]);
 
   const showOrReturnEmpty = (data) => {
     return data || "-";
@@ -389,17 +357,25 @@ export default function ContactInformation({
               rules={{
                 validate: {
                   required: (value) => {
-                    if (!isOneOfPreferredValid("phone", value))
-                      return "Email ID or Mobile Number is required";
+                    if (!value) {
+                      if (watchedPreferredCommunication !== "email") {
+                        if (watchedPreferredCommunication === "phone") {
+                          return "This field is required to proceed.";
+                        } else if (
+                          watchedPreferredCommunication === "both" &&
+                          watchedEmail
+                        ) {
+                          return "This field is required to proceed.";
+                        } else {
+                          return "Either Email or Mobile number is required to proceed";
+                        }
+                      }
+                    }
                   },
-                  isValidNumber: (value) => {
-                    if (
-                      value &&
-                      !Regex.isValidPhoneFormat.test(value) &&
-                      !Regex.REGEX_PHONE_NUMBER_ONLY.test(value)
-                    )
-                      return "Incorrect format";
-                  },
+                },
+                pattern: {
+                  value: Regex.isValidPhoneFormat,
+                  message: "Incorrect format",
                 },
               }}
             />
@@ -439,8 +415,20 @@ export default function ContactInformation({
               rules={{
                 validate: {
                   required: (value) => {
-                    if (!isOneOfPreferredValid("email", value))
-                      return "Email ID or Mobile Number is required";
+                    if (!value) {
+                      if (watchedPreferredCommunication !== "phone") {
+                        if (watchedPreferredCommunication === "email") {
+                          return "This field is required to proceed.";
+                        } else if (
+                          watchedPreferredCommunication === "both" &&
+                          watchedMobile
+                        ) {
+                          return "This field is required to proceed.";
+                        } else {
+                          return "Either Email or Mobile number is required to proceed";
+                        }
+                      }
+                    }
                   },
                 },
                 pattern: {

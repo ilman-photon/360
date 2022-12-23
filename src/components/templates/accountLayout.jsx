@@ -3,7 +3,7 @@ import styles from "./accountLayout.module.scss";
 import AccountSidebar from "../molecules/AccountSidebar/accountSidebar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
 import { patientTypography, providerTypography } from "../../styles/theme";
-import { ThemeProvider, useMediaQuery } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import * as React from "react";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import { Provider, connect } from "react-redux";

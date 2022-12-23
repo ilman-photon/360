@@ -62,14 +62,9 @@ export default function HealthRecordCard() {
     return state.document.documentList;
   });
 
-  const handleAssetDownload = (id, print, newTab = true) => {
-    fetchSource(id, print, newTab);
+  const handleAssetDownload = (id, print, newTab = true, isOpenPdf = false) => {
+    fetchSource(id, print, newTab, isOpenPdf);
   };
-
-  useEffect(() => {
-    dispatch(resetDocuments());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     const userStorageData = JSON.parse(localStorage.getItem("userData"));
@@ -175,7 +170,12 @@ export default function HealthRecordCard() {
                   <TableCell tabIndex={0}>{onRenderCTA()}</TableCell>
                   <TableCell tabIndex={0}>
                     {onRenderButtonView(() => {
-                      //this is intentional
+                      handleAssetDownload(
+                        healthRecordData.digital_assets?._id,
+                        false,
+                        true,
+                        true
+                      );
                     }, isDesktop)}
                   </TableCell>
                 </TableRow>
@@ -227,7 +227,12 @@ export default function HealthRecordCard() {
             >
               {onRenderCTA()}
               {onRenderButtonView(() => {
-                //this is intentional
+                handleAssetDownload(
+                  healthRecordData.digital_assets?._id,
+                  false,
+                  true,
+                  true
+                );
               }, isDesktop)}
             </Stack>
           </Stack>

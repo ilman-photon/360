@@ -31,6 +31,11 @@ defineFeature(feature, (test) => {
             "responseCode": 3000,
             "responseType": "success"
         });
+
+        mock.onPost(`/ecp/patient/logout`).reply(200, {
+                ResponseCode: 2005,
+                ResponseType: "success",
+            });
     }
 
     beforeEach(() => {

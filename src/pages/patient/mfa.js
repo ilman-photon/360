@@ -63,9 +63,11 @@ export default function MfaPage() {
 
   React.useEffect(() => {
     const securityQuestions = cookies.get("securityQuestions") === "true";
+    const isSecurityQuestionsSkipped =
+      cookies.get("isSecurityQuestionsSkipped") === "true";
     dispatch(setMfaPageTitle("Multi-Factor Authentication page"));
 
-    if (isStepThree && !securityQuestions) {
+    if (isStepThree && !securityQuestions && !isSecurityQuestionsSkipped) {
       onShowSecurityQuestionForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,11 +81,19 @@ export default function MfaPage() {
 
   function onConfirmClicked(communication, callback) {
     const deviceId = "";
-    const postBody = {
-      username,
-      deviceId,
-      preferredMode: communication,
-    };
+    const isFromRegistration =
+      cookies.get("prevPage", { path: "/patient" }) === "create-account";
+    const postBody = isFromRegistration
+      ? {
+          username,
+          preferredMode: communication,
+          flag: 1,
+        }
+      : {
+          username,
+          deviceId,
+          preferredMode: communication,
+        };
     api
       .sendMfaCode(postBody)
       .then((response) => {
@@ -117,6 +127,7 @@ export default function MfaPage() {
     cookies.remove("isSecurityQuestionStep", { path: "/patient" });
     cookies.remove("mfaPreferredMode", { path: "/patient" });
     !rememberMe && cookies.remove("mfaAccessToken", { path: "/patient" });
+    cookies.remove("prevPage", { path: "/patient" });
     router.push("/patient/");
   }
 
@@ -140,7 +151,9 @@ export default function MfaPage() {
           });
         }
         const securityQuestions = cookies.get("securityQuestions") === "true";
-        if (!securityQuestions) {
+        const isSecurityQuestionsSkipped =
+          cookies.get("isSecurityQuestionsSkipped") === "true";
+        if (!securityQuestions && !isSecurityQuestionsSkipped) {
           onShowSecurityQuestionForm();
         } else {
           redirectToDashboard();
@@ -251,6 +264,21 @@ export default function MfaPage() {
       });
   }
 
+  function onSkipSecurityQuestion() {
+    const postBody = {
+      isSecurityQuestionsSkipped: true,
+      username: username,
+    };
+    api
+      .skipSecurityQuestion(postBody)
+      .then(function () {
+        redirectToDashboard();
+      })
+      .catch(function (err) {
+        //Handle error
+      });
+  }
+
   function mappingSecurityQuestionList(securityQuestionsList = []) {
     const questionList = [];
     securityQuestionsList = securityQuestionsList[0]
@@ -327,7 +355,7 @@ export default function MfaPage() {
             >
               <SecurityQuestion
                 onClickedSubmitButton={onSubmitSecurityQuestionClicked}
-                onClickedSkipButton={redirectToDashboard}
+                onClickedSkipButton={onSkipSecurityQuestion}
                 securityQuestionList={securityQuestionList}
                 testIds={MFA_TEST_ID}
               />

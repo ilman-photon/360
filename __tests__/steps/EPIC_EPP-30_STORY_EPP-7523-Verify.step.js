@@ -590,7 +590,7 @@ defineFeature(feature, (test) => {
     });
 
     then('Admin should be able to view the message ‘No records found’ if the search result is empty', async () => {
-      const noResultMsg = await waitFor(() => container.getByText(/No results found./i))
+      const noResultMsg = await waitFor(() => container.getByText(/No records found./i))
       expect(noResultMsg).toBeInTheDocument()
     });
   });

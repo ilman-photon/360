@@ -68,14 +68,18 @@ describe("UpdateSecurity Components", () => {
     fireEvent.click(button);
   });
 
-  it("select option render", () => {
+  it("select option render", async () => {
     const button = container.getByText("Update");
     fireEvent.click(button);
 
-    setTimeout(() => {
-      const postMessage = container.getByLabelText(
+    setTimeout(async () => {
+      const requiredMsg = await waitFor(() => container.getAllByText(
+        /This field is required/i
+      )[0])
+      expect(requiredMsg).toBeTruthy();
+      const postMessage = await waitFor(() => container.getByLabelText(
         "You must answer all security questions"
-      );
+      ))
       expect(postMessage).toBeTruthy();
 
       const answer5 = container.getByLabelText(/Answer 5/i);

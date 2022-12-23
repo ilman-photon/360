@@ -32,6 +32,9 @@ import {
 } from "@mui/material";
 import { getDirection } from "../../../../utils/appointment";
 import { formatAppointmentDate } from "../../../../utils/dateFormatter";
+import { useRouter } from "next/router";
+import { StyledButton } from "../../../atoms/Button/button";
+import Image from "next/image";
 
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, isPage, ...other } = props;
@@ -75,6 +78,7 @@ export default function ModalConfirmContent({
   isPage = false,
   isModalRegistered = false,
 }) {
+  const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const { REGISTER_TEST_ID } = constants.TEST_ID;
 
@@ -179,18 +183,20 @@ export default function ModalConfirmContent({
                 PopperProps={{
                   role: "alert",
                 }}
-                tabIndex={0}
               >
                 <Link
                   data-testid={REGISTER_TEST_ID.loginlink}
-                  aria-label={`${t("isEmergency")}. ${t(
-                    "isEmergencyTooltip"
-                  )}.`}
-                  aria-roledescription=""
-                  role="link"
+                  role="presentation"
+                  aria-label=""
                   tabIndex={"0"}
                 >
-                  <span className={styles.medicLink}>{t("isEmergency")}</span>
+                  <span
+                    className={styles.medicLink}
+                    role="presentation"
+                    aria-label=""
+                  >
+                    {t("isEmergency")}
+                  </span>
                 </Link>
               </Tooltip>
             </div>
@@ -283,6 +289,7 @@ export default function ModalConfirmContent({
                   <Grid container sx={{ placeContent: "center" }}>
                     <Grid>
                       <ProviderProfile
+                        tabIndex={0}
                         variant={"appointment"}
                         showPosition
                         providerData={providerData}
@@ -296,6 +303,8 @@ export default function ModalConfirmContent({
                       >
                         <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
                         <Link
+                          tabIndex={0}
+                          aria-label={"Get Directions"}
                           className={styles.getDirectionLinkText}
                           {...getLinkAria("Get directions")}
                         >
@@ -338,6 +347,53 @@ export default function ModalConfirmContent({
                 </LabelWithInfo>
               </CardContent>
             </Card>
+
+            <Card variant="outlined" className={styles.cardFormDocument}>
+              <Stack direction={"row"}>
+                <Stack sx={{ marginRight: "16px", alignSelf: "center" }}>
+                  <Image
+                    alt=""
+                    src={"/access_time.png"}
+                    width={24}
+                    height={24}
+                    style={{ cursor: "pointer", paddingLeft: "10px" }}
+                  />
+                </Stack>
+                <Typography
+                  variant="caption"
+                  className={styles.textStyle}
+                  aria-label={"Save time and complete your forms now!"}
+                  tabIndex={0}
+                >
+                  Save time and complete your forms now!
+                </Typography>
+              </Stack>
+              <StyledButton
+                theme="patient"
+                mode="primary"
+                size="small"
+                gradient={false}
+                data-testid="complete-form-btn"
+                tabindex="0"
+                aria-live={"polite"}
+                aria-label={"Complete Forms"}
+                onClick={() => {
+                  router.push(`/patient/intake-form`);
+                }}
+              >
+                <Stack sx={{ marginRight: "8px", alignSelf: "center" }}>
+                  <Image
+                    alt=""
+                    src={"/icon-document.png"}
+                    width={24}
+                    height={24}
+                    style={{ cursor: "pointer", paddingLeft: "10px" }}
+                  />
+                </Stack>
+                {`Complete Forms`}
+              </StyledButton>
+            </Card>
+
             {isLoggedIn || isModalRegistered ? (
               <div className={styles.okButtonRow}>
                 <Button

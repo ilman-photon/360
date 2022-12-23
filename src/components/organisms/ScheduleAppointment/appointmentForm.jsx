@@ -190,23 +190,6 @@ export default function AppointmentForm({
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
-  const isOneOfPreferredValid = (name, value) => {
-    switch (name) {
-      case "email":
-        if (watchedPreferredCommunication == "phone") return true;
-        else if (watchedPreferredCommunication == "email" && !value)
-          return false;
-        else if (watchedEmail || watchedMobile) return true;
-        break;
-      case "phone":
-        if (watchedPreferredCommunication == "email") return true;
-        else if (watchedPreferredCommunication == "phone" && !value)
-          return false;
-        else if (watchedEmail || watchedMobile) return true;
-        break;
-    }
-  };
-
   const is3of4 = (pass) => {
     let passes = 0;
     if (Regex.alphabethRegex.test(pass)) {
@@ -457,8 +440,20 @@ export default function AppointmentForm({
               rules={{
                 validate: {
                   required: (value) => {
-                    if (!isOneOfPreferredValid("email", value))
-                      return t("thisFieldRequired");
+                    if (!value) {
+                      if (watchedPreferredCommunication !== "phone") {
+                        if (watchedPreferredCommunication === "email") {
+                          return "This field is required to proceed.";
+                        } else if (
+                          watchedPreferredCommunication === "both" &&
+                          watchedMobile
+                        ) {
+                          return "This field is required to proceed.";
+                        } else {
+                          return "Either Email or Mobile number is required to proceed";
+                        }
+                      }
+                    }
                   },
                 },
                 pattern: {
@@ -501,8 +496,20 @@ export default function AppointmentForm({
               rules={{
                 validate: {
                   required: (value) => {
-                    if (!isOneOfPreferredValid("phone", value))
-                      return t("thisFieldRequired");
+                    if (!value) {
+                      if (watchedPreferredCommunication !== "email") {
+                        if (watchedPreferredCommunication === "phone") {
+                          return "This field is required to proceed.";
+                        } else if (
+                          watchedPreferredCommunication === "both" &&
+                          watchedEmail
+                        ) {
+                          return "This field is required to proceed.";
+                        } else {
+                          return "Either Email or Mobile number is required to proceed";
+                        }
+                      }
+                    }
                   },
                 },
                 pattern: {

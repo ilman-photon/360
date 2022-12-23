@@ -7,8 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import moment from "moment";
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { renderCTAIcon } from "../../molecules/Dashboard/prescriptions";
 import styles from "./styles.module.scss";
 

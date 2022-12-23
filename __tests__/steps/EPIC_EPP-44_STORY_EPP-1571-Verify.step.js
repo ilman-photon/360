@@ -188,8 +188,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("User should input the mandatory fields", () => {
@@ -517,8 +517,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("User should input the mandatory fields", () => {
@@ -594,8 +594,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("User should input the mandatory fields", () => {
@@ -862,8 +862,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("User should input the mandatory fields", () => {
@@ -938,8 +938,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("User should input the mandatory fields", () => {
@@ -1227,8 +1227,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("User should input the mandatory fields", () => {
@@ -1326,8 +1326,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("User should input the mandatory fields", () => {
@@ -1665,8 +1665,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("User should input the mandatory fields", () => {
@@ -1830,8 +1830,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
@@ -2119,8 +2119,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      await navigateToPatientPortalHome();
+    then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+      navigateToPatientPortalHome();
     });
 
     and("User should input the mandatory fields", () => {

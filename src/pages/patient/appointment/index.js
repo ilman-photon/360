@@ -83,8 +83,8 @@ export default function Appointment({ googleApiKey }) {
   const [isReschedule, setIsReschedule] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
   const [currentCoordinate, setCurrentCoordinate] = useState({
-    lat: 0,
-    lng: 0,
+    latitude: 0,
+    longitude: 0,
   });
   const [firstLoad, setFirstLoad] = useState(true);
   const [filterProviderData, setFilterProviderData] = useState([]);
@@ -117,9 +117,6 @@ export default function Appointment({ googleApiKey }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(providerListData)]);
-
-  const pendingAppointment =
-    cookies.get("dashboardState", { path: "/patient" }) === "true";
 
   const googleConfiguration = {
     googleMapsApiKey: googleApiKey,
@@ -253,40 +250,21 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
-  function compareDate(date) {
-    return new Date() > new Date(date);
-  }
-
   function onCallSubmitFilterAPI(
     requestData,
     activeFilterByData = [],
     isOverlay = false,
     isResetProvider = false
   ) {
-    const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
-      (element) =>
-        element.title == requestData.purposeOfVisit ||
-        element.id == requestData.purposeOfVisit
-    );
     const startDateRequest = getMondayOfCurrentWeek(requestData.date);
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
-    const postBody = {
-      appointmentType: {
-        code: selectedAppointmentType?.id || "ALL",
-      },
-      currentDate: compareDate(startDateRequest)
-        ? mmddyyDateFormat(new Date())
-        : startDateRequest,
-      numDays: 6,
-      days: ["ALL"],
-      prefTime: "ALL",
-    };
+
     if (!isOverlay) {
       setIsLoading(true);
     }
     const api = new Api();
     api
-      .submitFilter(requestData.location, postBody)
+      .submitFilter(requestData.location, requestData, filterSuggestionData)
       .then(async function (response) {
         const parseProviderData = await parseProviderListData(
           response,
@@ -444,7 +422,7 @@ export default function Appointment({ googleApiKey }) {
   const fetchCurrentLocation = () => {
     if (coords) {
       setCurrentCity("");
-      getCity(googleApiKey, coords, setCurrentCity, setCurrentCoordinate);
+      getCity(googleApiKey, coords, setCurrentCity);
     }
   };
 
@@ -455,6 +433,12 @@ export default function Appointment({ googleApiKey }) {
     dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (coords) {
+      setCurrentCoordinate(coords);
+    }
+  }, [coords]);
 
   useEffect(() => {
     onCalledGetAppointmentTypesAPI();
@@ -750,22 +734,6 @@ export default function Appointment({ googleApiKey }) {
     return state.appointment.appointmentSchedule;
   });
 
-  const scheduleConfirmPopup = () => {
-    return (
-      <ModalConfirmation
-        isLoggedIn={isLoggedIn}
-        patientData={appointmentScheduleData.patientInfo}
-        providerData={appointmentScheduleData.providerInfo}
-        isOpen={isOpen}
-        OnSetIsOpen={(idx) => {
-          setIsOpen(idx);
-          cookies.remove("dashboardState", { path: "/patient" });
-        }}
-        isDesktop={isDesktop}
-      />
-    );
-  };
-
   return (
     <>
       {ready && (
@@ -792,7 +760,6 @@ export default function Appointment({ googleApiKey }) {
           )}
           {renderFilterResult()}
           {onRenderDialogView()}
-          {pendingAppointment && scheduleConfirmPopup()}
         </Stack>
       )}
     </>

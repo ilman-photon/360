@@ -16,9 +16,16 @@ export const mockGoogleWindow = (mockData = mockDistance) => {
         getDistanceMatrix: jest.fn().mockReturnValue(mockDistance),
       }),
       UnitSystem: { METRIC: 1, IMPERIAL: 0.0 },
+      LatLng: jest.fn().mockImplementation(() => {
+        return {};
+      }),
       LatLngBounds: jest.fn().mockReturnValue({
         extend: jest.fn(),
       }),
+      Marker: jest.fn(),
+      event: {
+        trigger: jest.fn()
+      }
     },
   };
 };
@@ -124,7 +131,7 @@ const localStorageMock = (function () {
   return {
     getItem: function (key) {
       if (key === "userData") {
-        return JSON.stringify({
+        return store[key] || JSON.stringify({
           communicationMethod: {
             email: "patient1@photoninfotech.net",
             phone: "(977) 623-4567",
@@ -440,6 +447,122 @@ jest.mock("react-google-autocomplete/lib/usePlacesAutocompleteService", () => {
   };
   return usePlaceService;
 });
+
+export const mockStoreAdmin = function(key){
+  if (key === "userData") {
+      return '{"communicationMethod":{"email":"patient1@photoninfotech.net","phone":"(977) 623-4567"},"patientId":"98f9404b-6ea8-4732-b14f-9c1a168d8066","userType":"admin"}'
+  } else if (key === "userProfile") {
+    return JSON.stringify({
+      title: 0,
+      firstName: "dewo",
+      lastName: "Simanjuntak",
+      dob: "12/12/1991",
+      age: "30",
+      sex: 0,
+      address: [],
+      smokingHistory: [],
+      contactPrefrence: true,
+      contactInformation: {
+        phones: [{ type: 3, number: "(977) 623-4567" }],
+        emails: [
+          {
+            type: 1,
+            email: "patient123@gmail.com",
+            _id: "69218e5a-dc72-4883-82c5-ea359b058c74",
+            _version: "8f2d0a2a-c528-441c-a598-61e5d76eef9c",
+            _created: "Oct 13, 2022, 4:31:42 PM",
+            _updated: "Oct 13, 2022, 4:31:42 PM",
+            _createdBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
+          },
+        ],
+        noEmail: false,
+        contactPreferenceDetail: {
+          phone: false,
+          text: false,
+          email: false,
+          _id: "6132788a-1a30-4b7d-b099-0e2812a4a2b2",
+          _version: "7b45daa1-df05-4931-adbe-4018c9ba3bf3",
+          _created: "Oct 13, 2022, 4:31:42 PM",
+          _updated: "Oct 13, 2022, 4:31:42 PM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        _id: "ff408b85-1e4f-4dc8-9af9-64930cd3e904",
+        _version: "9863ac12-b6fd-4b35-8b04-9614c8745c0d",
+        _created: "Oct 13, 2022, 4:31:42 PM",
+        _updated: "Oct 13, 2022, 4:31:42 PM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      patientDetails: {
+        isFlagNew: true,
+        isFlagInCollection: false,
+        isFlagBadCheck: false,
+        isFlagDeceased: false,
+        isFlagChartless: true,
+        _id: "8c2a42bd-b917-4ef4-8a43-d78baae992ca",
+        _version: "c8978b70-2ab5-4e89-90e4-00d03a690213",
+        _created: "Oct 13, 2022, 4:31:42 PM",
+        _updated: "Oct 13, 2022, 4:31:42 PM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      alerts: [],
+      familyMember: [],
+      status: "CREATED",
+      sources: [],
+      isEmergencyContactAvailable: false,
+      _links: {
+        self: { href: "/v1/patients/f352a9fe-53a4-4be8-866f-851ce45331ff" },
+      },
+      _id: "98f9404b-6ea8-4732-b14f-9c1a168d8066",
+      _version: "4a2be31b-96f8-4804-95df-a673c0801713",
+      _created: "Oct 13, 2022, 4:31:42 PM",
+      _updated: "Oct 19, 2022, 4:09:50 PM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: {
+            href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          },
+        },
+      },
+      _updatedBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: {
+            href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          },
+        },
+      },
+    });
+  }
+}
 
 jest.mock("jszip", () => {
   return jest.fn().mockImplementation(() => {

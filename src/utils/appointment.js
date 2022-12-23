@@ -623,6 +623,16 @@ export function getDirection(providerCordinate) {
   );
 }
 
+export function compareDate(date) {
+  return new Date() > new Date(date);
+}
+
+export function getDateCount(date1, date2) {
+  const date1D = new Date(date1);
+  const date2D = new Date(date2);
+  return date1D.getDay() - date2D.getDay() + 1;
+}
+
 export function getMondayOfCurrentWeek(date) {
   const today = new Date(date);
   const first = today.getDate() - today.getDay() + 1;
@@ -664,7 +674,21 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
         (item) => new Date(item.date).getDate() === dateItem.getDate()
       ) || null;
     if (isSameAvailability) {
-      availability.list = isSameAvailability.list;
+      if (isSameAvailability.date === moment().format("YYYY-MM-DD")) {
+        const currentDateList = [];
+        isSameAvailability.list.forEach((el) => {
+          const time = `${isSameAvailability.date}, 
+          ${el.time.slice(0, 5)} ${el.time.slice(-2)}`;
+          const unixTime = moment(time).unix();
+          const timeNow = moment().unix();
+          if (unixTime > timeNow) {
+            currentDateList.push(el);
+          }
+        });
+        availability.list = currentDateList;
+      } else {
+        availability.list = isSameAvailability.list;
+      }
     }
     availabilityList.push(availability);
   }
@@ -676,7 +700,7 @@ function setAvailableToday(dateSchedule) {
   return dateSchedule === newDate;
 }
 
-function getProviderAddres(providerAddress) {
+function getProviderAddress(providerAddress) {
   return {
     addressLine1: providerAddress?.addressLine1 || "",
     addressLine2: "",
@@ -807,7 +831,7 @@ export async function parseProviderListData(
         providerTemp.filters["isAvailableToday"] = setAvailableToday(
           availabilityDate.date
         );
-        providerTemp.address = getProviderAddres(office);
+        providerTemp.address = getProviderAddress(office);
         providerTemp.rating = provider.rating;
         providerTemp.phoneNumber = provider.workPhone;
         providerTemp.image = provider?.profilePhoto?.digitalAsset || null;
@@ -817,7 +841,7 @@ export async function parseProviderListData(
         providerTemp.distance = await getDistanceMatrix(
           // { lat: 36.8493937, lng: -76.0106753 }, // Testing from 1456 Reynard Dr, Virginia Beach, VA 23451, USA
           // { lat: -6.2268686, lng: 106.8335146}, // Testing from Jakarta Selatan
-          currentCoordinate,
+          { lat: currentCoordinate.latitude, lng: currentCoordinate.longitude },
           providerTemp.coordinate
         );
 
@@ -898,31 +922,21 @@ export async function onCallSubmitFilterAPI(
   dispatch,
   router
 ) {
-  const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
-    (element) => element.title === requestData.purposeOfVisit
-  );
   const startDateRequest = getMondayOfCurrentWeek(requestData.date);
   const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
-  const postBody = {
-    appointmentType: {
-      code: selectedAppointmentType?.id || "ALL",
-    },
-    currentDate: startDateRequest,
-    numDays: 6,
-    days: ["ALL"],
-    prefTime: "ALL",
-  };
   const api = new Api();
-
   api
-    .submitFilter(requestData.location, postBody)
+    .submitFilter(requestData.location, requestData, filterSuggestionData)
     .then(async function (response) {
       const parseProviderData = await parseProviderListData(
         response,
-        postBody.currentDate,
+        startDateRequest,
         endDateRequest,
-        googleApiKey,
-        currentCoordinate
+        process.env.NEXT_PUBLIC_EMBED_API,
+        {
+          lat: 0,
+          lng: 0,
+        }
       );
       if (response?.offices?.length > 0) {
         dispatch(setProviderListData(parseProviderData?.listOfProvider));

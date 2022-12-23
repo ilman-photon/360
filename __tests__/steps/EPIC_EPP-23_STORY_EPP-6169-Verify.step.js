@@ -4,6 +4,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { doLogin, navigateToPatientPortalHome, renderLogin, createMatchMedia } from "../../__mocks__/commonSteps";
 import {
+  educationMaterials,
     mockAppointmentTypes,
     mockInsurance,
     submitFilter,
@@ -39,6 +40,9 @@ defineFeature(feature, (test) => {
     mock
       .onPut("/ecp/appointments/available-slot?searchText=Texas")
       .reply(200, submitFilter);
+    mock
+      .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+      .reply(200, educationMaterials);
     window.matchMedia = createMatchMedia("1920px");
     global.navigator.geolocation = mockGeolocation;
   });

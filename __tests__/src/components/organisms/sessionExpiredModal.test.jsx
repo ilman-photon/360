@@ -2,6 +2,7 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import SessionExpiredModal from "../../../../src/components/organisms/SessionExpiredModal/sessionExpiredModal";
 import Cookies from "universal-cookie";
+import { renderWithProviders } from "../../utils/test-util";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -20,7 +21,7 @@ describe("SessionExpiredModal Components", () => {
   let container;
   beforeEach(() => {
     Cookies.result = { IdleTimeOut: 200, authorized: true, mfa: "123" };
-    container = render(<SessionExpiredModal />);
+    container = renderWithProviders(<SessionExpiredModal />);
   });
 
   afterAll(() => {

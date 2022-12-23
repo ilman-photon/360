@@ -40,6 +40,8 @@ import TestLabReportCard from "../../components/molecules/Dashboard/testLabRepor
 import PayMyBillCard from "../../components/molecules/Dashboard/payMyBillCard";
 import EducationMaterialCard from "../../components/molecules/Dashboard/educationMaterialCard";
 import { mmddyyDateFormat } from "../../utils/dateFormatter";
+import ModalConfirmation from "../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
+import { handleCreateAppointment } from "./schedule-appointment";
 
 export async function getStaticProps() {
   return {
@@ -58,9 +60,10 @@ export default function HomePage({ googleApiKey }) {
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
   const [username, setUsername] = React.useState("");
   const [currentCoordinate, setCurrentCoordinate] = React.useState({
-    lat: 0,
-    lng: 0,
+    latitude: 0,
+    longitude: 0,
   });
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
@@ -75,6 +78,7 @@ export default function HomePage({ googleApiKey }) {
   });
   const router = useRouter();
   const dispatch = useDispatch();
+  const cookies = new Cookies();
 
   const isAdmin = () => {
     return JSON.parse(localStorage.getItem("userData"))?.userType === "admin";
@@ -102,25 +106,11 @@ export default function HomePage({ googleApiKey }) {
 
   //Call API for submitFilter
   async function onCallSubmitFilterAPI(requestData) {
-    const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
-      (element) => element.title === requestData.purposeOfVisit
-    );
     const startDateRequest = getMondayOfCurrentWeek(requestData.date);
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
-    const postBody = {
-      appointmentType: {
-        code: selectedAppointmentType?.id || "ALL",
-      },
-      currentDate: compareDate(startDateRequest)
-        ? mmddyyDateFormat(new Date())
-        : startDateRequest,
-      numDays: 6,
-      days: ["ALL"],
-      prefTime: "ALL",
-    };
     const api = new Api();
     api
-      .submitFilter(requestData.location, postBody)
+      .submitFilter(requestData.location, requestData, filterSuggestionData)
       .then(async function (response) {
         const parseProviderData = await parseProviderListData(
           response,
@@ -189,12 +179,17 @@ export default function HomePage({ googleApiKey }) {
   const fetchCurrentLocation = () => {
     if (coords) {
       setCurrentCity("");
-      getCity(googleApiKey, coords, setCurrentCity, setCurrentCoordinate);
+      getCity(googleApiKey, coords, setCurrentCity);
     }
   };
 
   useEffect(() => {
-    const cookies = new Cookies();
+    if (coords) {
+      setCurrentCoordinate(coords);
+    }
+  }, [coords]);
+
+  useEffect(() => {
     if (!cookies.get("authorized")) {
       setIsAuthenticated(false);
     } else {
@@ -330,6 +325,70 @@ export default function HomePage({ googleApiKey }) {
       return [appointmentUI, prescriptionUI];
     }
   }
+
+  const appointmentScheduleData = useSelector((state) => {
+    return state.appointment.appointmentSchedule;
+  });
+
+  const pendingAppointment =
+    cookies.get("dashboardState", { path: "/patient" }) === "true" &&
+    appointmentScheduleData?.appointmentInfo?.appointmentType;
+
+  const showModalConfirmation =
+    cookies.get("showModalConfirmation", { path: "/patient" }) === "true" &&
+    appointmentScheduleData?.appointmentInfo?.appointmentType;
+
+  useEffect(() => {
+    if (pendingAppointment) {
+      const userStorageData =
+        JSON.parse(localStorage.getItem("userProfile")) || {};
+      handleCreateAppointment(
+        false,
+        userStorageData.dob,
+        "",
+        appointmentScheduleData,
+        () => {
+          setIsOpen(true);
+        }
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pendingAppointment]);
+
+  useEffect(() => {
+    if (showModalConfirmation) {
+      setIsOpen(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showModalConfirmation]);
+
+  const scheduleConfirmPopup = () => {
+    const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
+    return (
+      <ModalConfirmation
+        isLoggedIn={true}
+        patientData={{
+          name: userStorageData.name,
+          firstName: userStorageData.firstName,
+          lastName: userStorageData.lastName,
+          dob: userStorageData.dob,
+          phoneNumber: userStorageData.mobile,
+          email: userStorageData.email,
+          preferredCommunication: userStorageData.preferredCommunication,
+        }}
+        providerData={appointmentScheduleData.providerInfo}
+        isOpen={isOpen}
+        OnSetIsOpen={() => {
+          cookies.remove("dashboardState", { path: "/patient" });
+          cookies.remove("showModalConfirmation", { path: "/patient" });
+        }}
+        OnOkClicked={() => {
+          setIsOpen(false);
+        }}
+        isDesktop={isDesktop}
+      />
+    );
+  };
 
   return (
     <>
@@ -470,6 +529,7 @@ export default function HomePage({ googleApiKey }) {
             OnClickCancel={handleClose}
             OnCancelClicked={handleCancelSchedule}
           />
+          {scheduleConfirmPopup()}
         </Stack>
       )}
     </>

@@ -67,7 +67,7 @@ export const StyledButton = ({
           `${sizeSelector}`,
           isModalButton ? styles.modalButton : "",
           gradient ? `${styles.customButtonGradient}` : ``,
-          "sxButton",
+          sxButton,
         ].join(" ")}
         {...props}
       />

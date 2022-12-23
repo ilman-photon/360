@@ -1,11 +1,11 @@
 
 Feature: Patient Portal : Form Customization (Documents/ Forms) - Patient details auto-fill in forms
-  User Story: As a user, I should be able to view my personal details being auto-filled when I open an online form.
  
  @BDDTEST-EPP-7045
   @Form_Customization
   @Patient_Portal
   @Regression
+  @included
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6178 - Verify User should see the patient-related details being pre-populated in the selected form
     Given user launch Patient Portal url		
@@ -20,6 +20,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Patient detail
   @BDDTEST-EPP-7046
   @Form_Customization
   @Patient_Portal
+  @included
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6178 - Verify User should not be able to edit the pre-populated fields
     Given user launch Patient Portal url		
@@ -37,6 +38,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Patient detail
   @BDDTEST-EPP-7047
   @Form_Customization
   @Patient_Portal
+  @included
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6178 - Verify user should see field to be prepopulated on Consent to Treat Patient Fin Responsibility Assignment of Benefits form
     Given user launch Patient Portal url		
@@ -54,6 +56,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Patient detail
   @BDDTEST-EPP-7048
   @Form_Customization
   @Patient_Portal
+  @excluded
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6178 - Verify user should see field to be prepopulated on Medical vs Vision Refractions Prescription Release form
     Given user launch Patient Portal url		
@@ -69,6 +72,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Patient detail
   @BDDTEST-EPP-7049
   @Form_Customization
   @Patient_Portal
+  @excluded
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6178 - Verify user should see field to be prepopulated on Authorization to Disclose Information about my Care form
     Given user launch Patient Portal url		
@@ -84,6 +88,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Patient detail
   @BDDTEST-EPP-7050
   @Form_Customization
   @Patient_Portal
+  @excluded
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6178 - Verify user should see field to be prepopulated on Consent to Treat Minor form
     Given user launch Patient Portal url		
@@ -100,6 +105,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Patient detail
   @BDDTEST-EPP-7051
   @Form_Customization
   @Patient_Portal
+  @excluded
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6178 - Verify user should see field to be prepopulated on Contact Lens Prescription Release form
     Given user launch Patient Portal url		
@@ -115,6 +121,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Patient detail
   @BDDTEST-EPP-7052
   @Form_Customization
   @Patient_Portal
+  @excluded
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6178 - Verify user should see field to be prepopulated on Consent Form_Update 04.2022 form
     Given user launch Patient Portal url		
@@ -134,6 +141,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Patient detail
   @BDDTEST-EPP-7053
   @Form_Customization
   @Patient_Portal
+  @excluded
   @Sprint8
   Scenario: EPIC_EPP-5256_STORY_EPP-6178 - Verify user should see field to be prepopulated on Consent Form_Update 04.2022_V3 form
     Given user launch Patient Portal url		

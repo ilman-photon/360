@@ -33,6 +33,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import {
   DEFAULT_PATIENT_INFO_DATA,
+  DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA,
   editAppointmentScheduleData,
   rescheduleAppointment,
   resetAppointmentSchedule,
@@ -49,6 +50,7 @@ import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
 import { mmddyyDateFormat, hourDateFormat } from "../../../utils/dateFormatter";
 import { addToCalendar } from "../../../utils/addToCalendar";
 import Head from "next/head";
+import { loginProps } from "../login";
 const MobileTopBar = (data) => {
   return (
     <Box className={styles.mobileMenuBar}>
@@ -244,6 +246,84 @@ export async function getServerSideProps({ query }) {
   };
 }
 
+export function handleCreateAppointment(
+  isGuestUser = true,
+  patientDob = "",
+  guestId = "",
+  appointmentScheduleData = DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA,
+  callbackSuccess = () => {
+    //this is intentional
+  },
+  loginPropsData = {},
+  router = null
+) {
+  const cookies = new Cookies();
+  const dateNow = new Date();
+  const insurancePayers =
+    appointmentScheduleData.appointmentInfo.insuranceCarrier.id || "";
+  const userDataStorage = JSON.parse(localStorage.getItem("userData"));
+  const postBody = [
+    {
+      appointmentDate: mmddyyDateFormat(
+        appointmentScheduleData.appointmentInfo.date
+      ),
+      appointmentLength: 1,
+      office: {
+        _id: appointmentScheduleData.providerInfo.office.id,
+      },
+      providerTemplate: {
+        _id: appointmentScheduleData.providerInfo.providerTemplateId,
+      },
+      provider: {
+        _id: appointmentScheduleData.providerInfo.providerId,
+      },
+      appointmentTime: hourDateFormat(
+        appointmentScheduleData.appointmentInfo.date
+      ),
+      appointmentType: {
+        code: appointmentScheduleData.appointmentInfo.appointmentType,
+      },
+      patient: {
+        _id: guestId || userDataStorage?.patientId,
+      },
+      patientDob: patientDob
+        ? mmddyyDateFormat(patientDob)
+        : mmddyyDateFormat(appointmentScheduleData.patientInfo.dob),
+      confirmationDetail: {
+        confirmationDate: mmddyyDateFormat(dateNow),
+        confirmationTime: hourDateFormat(dateNow),
+        confirmationBy: guestId || userDataStorage?.patientId,
+      },
+      insurancePayers: insurancePayers ? [{ _id: insurancePayers || "" }] : [],
+      allowCreate: true,
+    },
+  ];
+  const api = new Api();
+  api
+    .createAppointment(postBody)
+    .then(() => {
+      if (isGuestUser && router) {
+        router.push("/patient/schedule-appointment-confirmation");
+      } else {
+        const isLogin = cookies.get("authorized");
+        if (!isLogin && loginProps) {
+          cookies.set("showModalConfirmation", true, { path: "/patient" });
+          loginProps.OnLoginClicked(
+            loginPropsData.postBody,
+            loginPropsData.router,
+            loginPropsData.callBack,
+            loginPropsData.dispatch
+          );
+        } else {
+          callbackSuccess();
+        }
+      }
+    })
+    .catch((error) => {
+      // Handle error
+    });
+}
+
 export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -349,12 +429,37 @@ export default function ScheduleAppointmentPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
-  function getPatientId(postBody, patientDob, isGuest) {
+  function onSuccessCreateAppointment() {
+    setIsModalRegistered(true);
+    setActiveStep(4);
+    setIsOpen(true);
+  }
+
+  function getPatientId(postBody, patientDob, isGuest, password) {
     api
       .getPatientId(postBody)
       .then((response) => {
         dispatch(fetchUser());
-        handleCreateAppointment(isGuest, patientDob, response.ecpPatientId);
+        const loginProps = {
+          postBody: {
+            username: postBody.username,
+            password: password,
+          },
+          router: router,
+          callBack: () => {
+            cookies.set("prevPage", "create-account", { path: "/patient" });
+          },
+          dispatch: dispatch,
+        };
+        handleCreateAppointment(
+          isGuest,
+          patientDob,
+          response.ecpPatientId,
+          appointmentScheduleData,
+          onSuccessCreateAppointment,
+          loginProps,
+          router
+        );
       })
       .catch((err) => {
         console.error(err, "getPatientId error");
@@ -389,7 +494,8 @@ export default function ScheduleAppointmentPage() {
                 postBody.email || postBody.mobileNumber.replace(/[^\d\+]/g, ""),
             },
             mmddyyDateFormat(data.dob),
-            postBody.password.length == 0
+            postBody.password.length == 0,
+            postBody.password
           );
         });
     } catch (err) {
@@ -408,76 +514,18 @@ export default function ScheduleAppointmentPage() {
     }
   };
 
-  const handleCreateAppointment = (
-    isGuest = true,
-    patientDob = "",
-    guestId = ""
-  ) => {
-    const dateNow = new Date();
-    const insurancePayers =
-      appointmentScheduleData.appointmentInfo.insuranceCarrier.id || "";
-    const userDataStorage = JSON.parse(localStorage.getItem("userData"));
-    const postBody = [
-      {
-        appointmentDate: mmddyyDateFormat(
-          appointmentScheduleData.appointmentInfo.date
-        ),
-        appointmentLength: 1,
-        office: {
-          _id: appointmentScheduleData.providerInfo.office.id,
-        },
-        providerTemplate: {
-          _id: appointmentScheduleData.providerInfo.providerTemplateId,
-        },
-        provider: {
-          _id: appointmentScheduleData.providerInfo.providerId,
-        },
-        appointmentTime: hourDateFormat(
-          appointmentScheduleData.appointmentInfo.date
-        ),
-        appointmentType: {
-          code: appointmentScheduleData.appointmentInfo.appointmentType,
-        },
-        patient: {
-          _id: guestId || userDataStorage?.patientId,
-        },
-        patientDob: patientDob
-          ? mmddyyDateFormat(patientDob)
-          : mmddyyDateFormat(appointmentScheduleData.patientInfo.dob),
-        confirmationDetail: {
-          confirmationDate: mmddyyDateFormat(dateNow),
-          confirmationTime: hourDateFormat(dateNow),
-          confirmationBy: guestId || userDataStorage?.patientId,
-        },
-        insurancePayers: insurancePayers
-          ? [{ _id: insurancePayers || "" }]
-          : [],
-        allowCreate: true,
-      },
-    ];
-
-    api
-      .createAppointment(postBody)
-      .then(() => {
-        if (isGuest) {
-          router.push("/patient/schedule-appointment-confirmation");
-        } else {
-          setIsModalRegistered(true);
-          setActiveStep(4);
-          setIsOpen(true);
-        }
-      })
-      .catch(() => {
-        // setShowPostMessage(true);
-      });
-  };
-
   const handleSetActiveStep = (idx) => {
     if (isLoggedIn) {
       if (isReschedule) {
         setModalConfirmReschedule(true);
       } else {
-        handleCreateAppointment(false, false, false);
+        handleCreateAppointment(
+          false,
+          false,
+          false,
+          appointmentScheduleData,
+          onSuccessCreateAppointment
+        );
       }
     } else {
       setActiveStep(idx);

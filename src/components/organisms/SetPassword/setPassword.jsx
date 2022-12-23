@@ -99,15 +99,6 @@ const SetPasswordComponent = ({
     );
   };
 
-  const validateConfirmPassword = (password, confirmPassword) => {
-    if (password.toLowerCase() !== confirmPassword.toLowerCase()) {
-      setError("confirmPassword", {
-        type: "custom",
-        message: t("passwordNotMatch"),
-      });
-    }
-  };
-
   const watchedPassword = watch("password", "");
   const [watchedEmail] = watch(["username"]); // you can also target specific fields by their names
 
@@ -226,7 +217,7 @@ const SetPasswordComponent = ({
     if (isUpdatePassword) {
       setShowValidation(false);
     }
-    if (data.password.toLowerCase() === data.confirmPassword.toLowerCase()) {
+    if (data.password === data.confirmPassword) {
       if (isValidPassword(watchedPassword, true)) {
         onSetPasswordClicked(data);
       } else {
@@ -242,7 +233,10 @@ const SetPasswordComponent = ({
         });
       }
     } else {
-      validateConfirmPassword(data.password, data.confirmPassword);
+      setError("confirmPassword", {
+        type: "custom",
+        message: t("passwordNotMatch"),
+      });
     }
   };
 

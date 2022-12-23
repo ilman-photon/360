@@ -557,15 +557,6 @@ export default function InsuranceForm({
                           }) => {
                             return (
                               <SelectOptionButton
-                                sx={{
-                                  "& .MuiFilledInput-root": {
-                                    border: "1px solid #bbb",
-                                    backgroundColor: "#fff",
-                                    fontSize: "16px",
-                                    fontWeight: 400,
-                                    color: colors.darkGreen,
-                                  },
-                                }}
                                 label="Relationship"
                                 options={RELATIONSHIP_LIST}
                                 value={value}

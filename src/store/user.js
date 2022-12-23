@@ -6,6 +6,7 @@ import {
   RELATIONSHIP_LIST,
   TITLE_LIST,
 } from "../utils/constantData";
+import { formatPhoneNumber } from "../utils/phoneFormatter";
 import { formatSocialSecurity } from "../utils/ssnFormatter";
 
 let url;
@@ -212,8 +213,8 @@ const buildInsurancePostBody = (
       firstName: subscriberData.firstName,
       lastName: subscriberData.lastName,
       dob: subscriberDob, // MM/DD/YYYY,
-      _id: payload.memberID,
     },
+    insuranceId: payload.memberID,
     digitalAssets: {
       master_front: frontCardData?.uid
         ? payload.frontCard
@@ -413,7 +414,7 @@ const buildUserData = (payload) => {
       : "",
     mobile:
       payload.contactInformation.phones && payload.contactInformation.phones[0]
-        ? payload.contactInformation.phones[0].number
+        ? formatPhoneNumber(payload.contactInformation.phones[0].number)
         : "",
     address: userAddress.addressLine1 || "",
     city: userAddress.city || "",
@@ -475,7 +476,7 @@ const buildUserInsuranceData = (payload) => {
         label: insurance.plan.name,
         value: insurance.plan.name,
       },
-      memberID: subscriberData._id,
+      memberID: insurance.insuranceId,
       groupID: insurance.group,
       isSubscriber: insurance.isPatientSubscriber ? "Yes" : "No",
       subscriberData: {

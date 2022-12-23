@@ -36,7 +36,8 @@ import {
   prescriptionMedication,
   submitFilter,
   upcomingResponse,
-  MOCK_MESSAGING
+  MOCK_MESSAGING,
+  educationMaterials
 } from "./mockResponse";
 
 // import {MOCK_MESSAGING} from "./mockResponse"
@@ -1138,6 +1139,9 @@ export async function navigateToPatientPortalHome() {
   mock
     .onGet(`/ecp/prescriptions/patient/${userData?.patientId}/getContactsData`)
     .reply(200, prescriptionContact);
+  mock
+    .onGet(`/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
+    .reply(200, educationMaterials);
 
   let container;
   const props = await getStaticProps();

@@ -5,6 +5,7 @@ import SessionExpiredModal from "../../src/components/organisms/SessionExpiredMo
 import Cookies from "universal-cookie";
 import { sleep } from "../../__mocks__/util";
 import { useIdleTimer } from "react-idle-timer";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-274.feature",
@@ -100,7 +101,7 @@ defineFeature(feature, (test) => {
       Cookies.result = { IdleTimeOut: 200, authorized: true, mfa: "123" };
       props.idleTimer = 200;
       props.promptTimeout = 2000;
-      container = render(<SessionExpiredModal />);
+      container = renderWithProviders(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -147,7 +148,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be prompted regarding session time out.", async () => {
-      container = render(<SessionExpiredModal />);
+      container = renderWithProviders(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -207,7 +208,7 @@ defineFeature(feature, (test) => {
 
     then("user should be prompted regarding session time out.", async () => {
       Cookies.result = "200";
-      container = render(<SessionExpiredModal />);
+      container = renderWithProviders(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -286,7 +287,7 @@ defineFeature(feature, (test) => {
 
     then("user should be prompted regarding session time out.", async () => {
       Cookies.result = "200";
-      container = render(<SessionExpiredModal />);
+      container = renderWithProviders(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -377,7 +378,7 @@ defineFeature(feature, (test) => {
       props.promptTimeout = 2000;
       props.isPrompted = jest.fn().mockReturnValue(true);
       const { result } = idleTimer();
-      container = render(<SessionExpiredModal />);
+      container = renderWithProviders(<SessionExpiredModal />);
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in 60 seconds./i

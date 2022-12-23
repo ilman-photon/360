@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { logoutProps } from "../../../utils/authetication";
 import { useIdleTimer } from "react-idle-timer";
 import Cookies from "universal-cookie";
+import { useDispatch } from "react-redux";
 
 function SessionExpiredModal() {
   /** --------------------------------- New Code ------------------------------- */
@@ -18,6 +19,7 @@ function SessionExpiredModal() {
   const idleTime = cookies.get("IdleTimeOut") || 1000 * 60 * 20;
   const timeout = parseInt(idleTime);
   const promptTimeout = 60000; //Remaining Time
+  const dispatch = useDispatch();
 
   // Time before idle
   const [remaining, setRemaining] = useState(null);
@@ -75,7 +77,7 @@ function SessionExpiredModal() {
   const router = useRouter();
   const onLoggedOffClicked = async () => {
     setOpen(false);
-    await logoutProps.OnLogoutClicked(router);
+    await logoutProps.OnLogoutClicked(router, dispatch);
     onClickStayLoggedIn();
   };
 

@@ -1,8 +1,15 @@
 import axios from "axios";
 import moment from "moment";
 import { setGenericErrorMessage } from "../../store";
+import {
+  compareDate,
+  getDateCount,
+  getMondayOfCurrentWeek,
+  getSaturdayOfCurrentWeek,
+} from "../../utils/appointment";
 import { getLocationName } from "../../utils/appointment";
 import constants from "../../utils/constants";
+import { mmddyyDateFormat } from "../../utils/dateFormatter";
 import { Regex } from "../../utils/regex";
 
 let store;
@@ -232,6 +239,11 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
+  skipSecurityQuestion(postbody) {
+    const url = "/ecp/patient/skipSecurityQuestion";
+    return this.forgotFeatureValidation(url, postbody, "post", 2000);
+  }
+
   async getUSListOfStates() {
     const usStatesApiUrl =
       "https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-state&q=&sort=ste_name&facet=ste_name&rows=99";
@@ -347,7 +359,26 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  submitFilter(locationName, postBody) {
+  submitFilter(locationName, requestData, filterSuggestionData) {
+    const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
+      (element) =>
+        element.title == requestData.purposeOfVisit ||
+        element.id == requestData.purposeOfVisit
+    );
+    const startDateRequest = getMondayOfCurrentWeek(requestData.date);
+    const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
+    const dateRequest = compareDate(startDateRequest)
+      ? mmddyyDateFormat(new Date())
+      : startDateRequest;
+    const postBody = {
+      appointmentType: {
+        code: selectedAppointmentType?.id || "ALL",
+      },
+      currentDate: dateRequest,
+      numDays: getDateCount(endDateRequest, dateRequest),
+      days: ["ALL"],
+      prefTime: "ALL",
+    };
     const tempLocation = getLocationName(locationName);
     const url = `/ecp/appointments/available-slot?searchText=${tempLocation}`;
     return this.getResponse(url, postBody, "put");
@@ -393,7 +424,7 @@ export class Api {
         maxContentLength: Infinity,
         maxBodyLength: Infinity,
         headers: {
-          "Content-Type": "image/png",
+          "Content-Type": `${file.subType}/${file.type}`,
         },
       });
       if (response.status === 200) return { success: true };
@@ -488,6 +519,16 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  getformContent() {
+    const url = "/ecp/patients/forms/getformContent";
+    return this.getResponse(url, {}, "get");
+  }
+
+  editformContent(postBody) {
+    const url = "/ecp/patients/forms/editformContent";
+    return this.getResponse(url, postBody, "put");
+  }
+
   getPasswordLastUpdate(postBody) {
     const url = `/ecp/patient/getLastUpdatedPasswordDate`;
     return this.getResponse(url, postBody, "post");
@@ -514,6 +555,13 @@ export class Api {
   unlockAccount(query) {
     const url = `/ecp/accountRecovery/unlockAccountByAdmin/${query}`;
     return this.getResponse(url, {}, "get");
+  }
+
+  createPatientDocument(postBody) {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const url = `/ecp/patients/forms/createPatientDocument${patientId}`;
+    return this.getResponse(url, postBody, "post");
   }
 
   getPatientAccountBalance() {
@@ -543,9 +591,15 @@ export class Api {
     return this.getResponse(url, postBody, "post", false);
   }
 
-  getEducationMaterial() {
+  getEducationMaterial(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const url = `/ecp/patient/getPatientDocumentByCategory/${userData?.patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`;
-    return this.getResponse(url, {}, "get");
+    return this.getResponse(url, {}, "get", showError);
+  }
+
+  getTestLabData() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const url = `/ecp/testResult/${userData?.patientId}`;
+    return this.getResponse(url, {}, "get", false);
   }
 }

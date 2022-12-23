@@ -40,8 +40,8 @@ import { StyledButton } from "../../atoms/Button/button";
 import { stringAvatar } from "../../../utils/avatar";
 
 export default function BaseHeader({
-  OnLogoutClicked = (routerInstance) => {
-    logoutProps.OnLogoutClicked(routerInstance);
+  OnLogoutClicked = (routerInstance, dispatch) => {
+    logoutProps.OnLogoutClicked(routerInstance, dispatch);
   },
   backTitle,
   onBackClicked,
@@ -161,7 +161,7 @@ export default function BaseHeader({
         break;
       case "test-result":
       case "test/lab results":
-        path = "/patient/account/medical-records?type=test-lab-result";
+        path = "/patient/account/medical-record?type=test-lab-result";
         break;
       case "message":
         path = `/patient/message?conversationId=${id}`; // no test data yet
@@ -199,7 +199,10 @@ export default function BaseHeader({
 
   const handleNotificationItemClicked = (data) => {
     const id = data.id || data._id;
-    actionNotificationRead(id);
+    if (!data.isRead) {
+      actionNotificationRead(id);
+    }
+
     actionNotificationRedirect(data);
     setNotificationDrawerOpened(false);
   };
@@ -372,7 +375,7 @@ export default function BaseHeader({
                     }}
                     opened={openedProfileDrawer}
                     onLogoutClicked={() => {
-                      OnLogoutClicked(router);
+                      OnLogoutClicked(router, dispatch);
                     }}
                   />
                 </Box>
@@ -383,7 +386,7 @@ export default function BaseHeader({
                   }}
                   open={anchorElNav}
                   onLogout={() => {
-                    OnLogoutClicked(router);
+                    OnLogoutClicked(router, dispatch);
                   }}
                   isAdmin={isAdmin}
                 ></MobileMenu>
@@ -451,7 +454,7 @@ export default function BaseHeader({
                     )}
                     <MenuItem
                       onClick={(e) => {
-                        OnLogoutClicked(router);
+                        OnLogoutClicked(router, dispatch);
                         handleCloseNavMenu(e);
                       }}
                     >

@@ -1,0 +1,100 @@
+.dialogConfirmation {
+  .dialogTitle {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+  }
+  .dialogContent {
+    .dialogTypo {
+      font-style: normal;
+      font-weight: 400;
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.0016em;
+      color: #003b4a;
+    }
+  }
+  .dialogActionContainer {
+    .cancelButton {
+      height: 46px;
+    }
+    .continueButton {
+      margin-left: 16px;
+      height: 46px;
+      background: #b93632;
+    }
+  }
+}
+
+.documentContainer {
+  .documentTitleContainer {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 16px 0px 16px 0;
+    gap: 8px;
+    display: flex;
+    background: #eef5f7;
+    height: auto;
+    @media (max-width: 767px) {
+      height: auto;
+    }
+
+    .titleDocument {
+      padding-left: 16px;
+      font-family: "Bw Nista Geometric DEMO", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 44px;
+      color: "#003B4A";
+      @media (max-width: 767px) {
+        font-size: 20px;
+        line-height: 28px;
+      }
+    }
+
+    .editDocumentBtn {
+      height: 46px;
+      margin-left: auto;
+      margin-right: 31px;
+    }
+
+    .editBtnMenuContainer {
+      margin-left: auto;
+      margin-right: 31px;
+    }
+
+    .editBtnMenu {
+      height: 46px;
+      margin-left: 16px;
+    }
+  }
+
+  .subtitleTxt {
+    text-align: center;
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 44px;
+    color: #003b4a;
+    align-self: center;
+    margin: 16px auto 0 auto;
+  }
+
+  .submitTxt {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #003b4a;
+    display: flex;
+    align-self: center;
+    line-height: 46px;
+  }
+}

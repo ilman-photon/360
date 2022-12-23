@@ -1,7 +1,5 @@
 
 Feature: Patient Portal : Form Customization (Documents/ Forms) - Fill forms after scheduling appointment
-  User Story: As a user, I should be able to see the option to fill out forms after scheduling an appointment in the appointment confirmation screen/ Upcoming appointment screen.
-
 
   @BDDTEST-EPP-7056
   @Form_Customization
