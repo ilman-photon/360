@@ -161,7 +161,7 @@ export default function BaseHeader({
         break;
       case "test-result":
       case "test/lab results":
-        path = "/patient/account/medical-records?type=test-lab-result";
+        path = "/patient/account/medical-record?type=test-lab-result";
         break;
       case "message":
         path = `/patient/message?conversationId=${id}`; // no test data yet
@@ -199,7 +199,10 @@ export default function BaseHeader({
 
   const handleNotificationItemClicked = (data) => {
     const id = data.id || data._id;
-    actionNotificationRead(id);
+    if (!data.isRead) {
+      actionNotificationRead(id);
+    }
+
     actionNotificationRedirect(data);
     setNotificationDrawerOpened(false);
   };
