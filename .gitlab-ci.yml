@@ -9,20 +9,23 @@ variables:
 # image: node:16.10.0
 
 stages:
-  # - lint
   - install
+  - lint
   - test
   # - build
   - sonar
   - imagebuild
   - deploy
 
-# lint:
-#   stage: lint
-#   tags:
-#     - Frontend-runner
-#   script:
-#     - npm run lint
+lint:
+  stage: lint
+  tags:
+    - Frontend-runner
+  except:
+    refs:
+      - develop
+  script:
+    - npm run lint
 
 install:
   stage: install
@@ -89,6 +92,9 @@ imagebuild:
   stage: imagebuild
   tags:
     - Frontend-runner
+  only:
+    refs:
+      - develop
   script:
     - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 056640875000.dkr.ecr.us-east-1.amazonaws.com
     - docker build -t photon-ecp-e360-dev .
