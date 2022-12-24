@@ -440,11 +440,11 @@ export default function AppointmentForm({
                 validate: {
                   required: (value) => {
                     if (!value) {
-                      if (watchedPreferredCommunication !== "phone") {
-                        if (watchedPreferredCommunication === "email") {
+                      if (watchedPreferredCommunication != "phone") {
+                        if (watchedPreferredCommunication == "email") {
                           return "This field is required to proceed.";
                         } else if (
-                          watchedPreferredCommunication === "both" &&
+                          watchedPreferredCommunication == "both" &&
                           watchedMobile
                         ) {
                           return "This field is required to proceed.";
@@ -496,11 +496,11 @@ export default function AppointmentForm({
                 validate: {
                   required: (value) => {
                     if (!value) {
-                      if (watchedPreferredCommunication !== "email") {
-                        if (watchedPreferredCommunication === "phone") {
+                      if (watchedPreferredCommunication != "email") {
+                        if (watchedPreferredCommunication == "phone") {
                           return "This field is required to proceed.";
                         } else if (
-                          watchedPreferredCommunication === "both" &&
+                          watchedPreferredCommunication == "both" &&
                           watchedEmail
                         ) {
                           return "This field is required to proceed.";
