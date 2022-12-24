@@ -29,8 +29,8 @@ export const menus = [
     submenu: [
       {
         icon: iconIntakeForms,
-        href: "/patient/account/documents?type=intake-forms",
-        label: "Intake Forms",
+        href: "/patient/intake-form",
+        label: "Forms Customization",
       },
     ],
   },
