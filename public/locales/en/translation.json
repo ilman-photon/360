@@ -109,7 +109,7 @@
   "UpdatePasswordPage":{
     "title": "Update Password",
     "passwordPlaceHolder":"New password",
-    "confirmPasswordPlaceHolder": "Confirm Password",
+    "confirmPasswordPlaceHolder": "Confirm new password",
     "ctaButtonLabel": "Update",
     "successUpdatePassword": "Password Updated",
     "postMessage": "Success! This password has now been updated.",

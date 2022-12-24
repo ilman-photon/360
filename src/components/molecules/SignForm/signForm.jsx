@@ -31,16 +31,18 @@ export default function SignForm({
     relationship: "relationship",
     date: "date",
   },
+  customSignText = "",
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignedState, setIsSignedState] = useState(false);
   const signText = isSignedState ? (
     <Box sx={{ display: "flex" }}>
       {" "}
-      <CheckCircleIcon
-        sx={{ marginRight: "5px", height: "19.5px" }}
-      /> Signed{" "}
+      <CheckCircleIcon sx={{ marginRight: "5px", height: "19.5px" }} />{" "}
+      {customSignText ? customSignText : "Signed "}
     </Box>
+  ) : customSignText ? (
+    customSignText
   ) : (
     "Sign"
   );
@@ -105,7 +107,7 @@ export default function SignForm({
                       setIsSignedState(!isSignedState);
                     }}
                   >
-                    Signed
+                    {customSignText ? customSignText : "Signed"}
                   </Button>
                 </Box>
               </Dialog>
@@ -123,7 +125,7 @@ export default function SignForm({
                       aria-label="Sign label"
                     >
                       <span className={styles.signLabelTxt} aria-hidden={true}>
-                        Sign
+                        {customSignText ? customSignText : "Sign"}
                       </span>
                     </Box>
                   </Box>

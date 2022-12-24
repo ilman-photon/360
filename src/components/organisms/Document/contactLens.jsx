@@ -65,7 +65,7 @@ export default function ContactLens({
         isSubmitForm={isSubmitForm}
         useFormProps={useFormProps}
         showRelationship={false}
-        showDate={false}
+        showDate={true}
         isReadOnlyDate={true}
         textInfo="Patient Signature:"
         textInfoPosition="top"
