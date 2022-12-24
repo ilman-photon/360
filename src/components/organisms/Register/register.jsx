@@ -394,6 +394,7 @@ export default function Register({
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      disableFuture
                     />
                   );
                 }}
