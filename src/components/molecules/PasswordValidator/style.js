@@ -1,6 +1,6 @@
 export const styles = {
   textStyles: {
-    fontWeight: 500,
+    fontWeight: 400,
     fontSize: "14px",
     lineHeight: "22px",
     color: "#191919",

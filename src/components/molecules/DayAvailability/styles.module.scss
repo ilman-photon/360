@@ -69,24 +69,19 @@
 
 .scheduleTimeContainer {
   display: flex;
-  gap : 18.71px;
+  gap: 18.71px;
   margin-bottom: 12px;
-   position: relative;
+  position: relative;
   .scheduleTimeTitle {
-    font-family: 'Libre Franklin';
+    font-family: "Libre Franklin", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 26px;
     /* identical to box height, or 144% */
-    
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.0016em;
-    
     /* ECP/Primary/DarkGreen */
-    
-    color: #003B4A;
+
+    color: #003b4a;
     display: flex;
     align-items: center;
     letter-spacing: 0.0016em;
@@ -110,7 +105,7 @@
     }
     .iconDisableSchedule {
       width: 24px;
-height: 24px;
+      height: 24px;
       color: $darkGreen;
       cursor: not-allowed;
       opacity: 0.3;
