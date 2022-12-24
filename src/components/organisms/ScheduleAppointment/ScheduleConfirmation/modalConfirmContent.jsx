@@ -247,18 +247,20 @@ export default function ModalConfirmContent({
                   >
                     <Typography
                       sx={{
-                        mb: 1,
-                        display: "contents",
+                        display: "inline-flex",
+                        width: "150px",
                         fontWeight: "600",
                         fontSize: "14px",
                         fontFamily: "Libre Franklin",
+                        alignItems: "flex-end",
+                        justifyContent: "center",
                       }}
                       aria-label={"Add to calendar"}
                     >
                       <CalendarTodayIcon
                         aria-hidden={"false"}
-                        sx={{ color: "#003B4A" }}
-                      />{" "}
+                        sx={{ color: "#003B4A", marginRight: "5px" }}
+                      />
                       Add to calendar
                     </Typography>
                   </Button>
