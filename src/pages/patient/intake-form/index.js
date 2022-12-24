@@ -473,7 +473,8 @@ IntakeFormPage.getLayout = function getLayout(page) {
       <PrescriptionLayout
         currentActivePage={"intake-form"}
         pageTitle={"EyeCare Patient Portal - Intake Form"}
-        title={"Intake Forms"}
+        title={isAdminUser() ? "Forms Customization" : "Intake Forms"}
+        isAdmin={isAdminUser()}
       >
         {page}
       </PrescriptionLayout>

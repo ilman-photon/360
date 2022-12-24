@@ -7,6 +7,7 @@ import Navbar from "../molecules/Navbar/Navbar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
 import { logoutProps } from "../../utils/authetication";
 import { useRouter } from "next/router";
+import AdminNavbar from "../molecules/AdminNavbar/adminNavbar";
 import { Box, Collapse, IconButton, Typography } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
@@ -17,10 +18,8 @@ import { useEffect } from "react";
 export default function PrescriptionLayout({
   children,
   pageTitle,
-  isHeading = true,
-  backTitle = "",
   title = "",
-  customClassName = "",
+  isAdmin = false,
 }) {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -38,7 +37,6 @@ export default function PrescriptionLayout({
   }, [showToastMessage]);
 
   const headingTitle = (isTitle = false) => {
-    console.log(router);
     switch (router.query.type) {
       case "intake-forms":
         return "Intake Forms";
@@ -69,7 +67,7 @@ export default function PrescriptionLayout({
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader {...logoutProps} />
-        <Navbar />
+        {isAdmin ? <AdminNavbar /> : <Navbar />}
         <Collapse
           in={showToastMessage}
           unmountOnExit
