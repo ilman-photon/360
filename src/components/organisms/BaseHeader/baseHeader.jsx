@@ -309,11 +309,7 @@ export default function BaseHeader({
                 )}
 
                 {/* Menu Mobile*/}
-                <Box
-                  tabIndex={0}
-                  aria-label={"Username dropdown"}
-                  sx={styles.boxStyledMobile}
-                >
+                <Box sx={styles.boxStyledMobile}>
                   {!isAdmin && (
                     <IconButton
                       size="large"
@@ -321,6 +317,7 @@ export default function BaseHeader({
                       data-testid={HOME_TEST_ID.header.userAvatar}
                     >
                       <Avatar
+                        aria-label="User account menu"
                         sx={{
                           background: "#003B4A",
                           alignSelf: "center",
@@ -333,7 +330,7 @@ export default function BaseHeader({
                   )}
                   <IconButton
                     size="large"
-                    aria-label="account of current user"
+                    aria-label="menu icon"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
                     data-testid="user-menu-nav-open"
@@ -342,7 +339,7 @@ export default function BaseHeader({
                     }}
                     sx={{ p: 0 }}
                   >
-                    <MenuIcon />
+                    <MenuIcon tabIndex="0" aria-label="menu icon" />
                   </IconButton>
                 </Box>
 

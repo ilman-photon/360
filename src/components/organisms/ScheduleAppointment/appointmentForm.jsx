@@ -716,6 +716,7 @@ export default function AppointmentForm({
                 data-testId="scheduleAppoinment"
                 type="submit"
                 variant="contained"
+                tabIndex={0}
                 sx={{
                   width: { xs: "100%", md: "222px" },
                   background: colors.primaryButton,
