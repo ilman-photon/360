@@ -137,6 +137,13 @@ const SecurityQuestion = ({
                       color: "#003B4A !important",
                       fontWeight: "600",
                     },
+                    "& .MuiFormLabel-asterisk.MuiInputLabel-asterisk": {
+                      visibility: "hidden",
+                      "&::before": {
+                        content: '"*"',
+                        visibility: "visible",
+                      },
+                    },
                   }}
                   inputProps={{
                     "aria-label": `Question ${index} Dropdown Menu - Required`,
