@@ -656,7 +656,7 @@ defineFeature(feature, (test) => {
     });
 
     await waitFor(() => {
-      container.getByText(/Primary Address/i);
+      container.getAllByText(/Primary Address/i)[0];
     });
 
     return container;
