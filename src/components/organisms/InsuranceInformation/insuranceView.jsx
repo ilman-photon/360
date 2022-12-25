@@ -241,8 +241,11 @@ export default function InsuranceView({
                             </Grid>
                           </div>
 
-                          <LabelWithInfo label="Insurance Priority">
-                            {item.priority}
+                          <LabelWithInfo
+                            label="Insurance Priority"
+                            childrenSx={{ textTransform: "capitalize" }}
+                          >
+                            {item.priority?.toLowerCase()}
                           </LabelWithInfo>
 
                           <Stack
