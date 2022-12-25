@@ -170,9 +170,7 @@ export const NewMessageDialog = ({
               >
                 {t("newMessageTitle")}
               </DialogContentText>
-              <CloseIcon
-                onClick={handleClosed}
-              />
+              <CloseIcon onClick={handleClosed} />
             </Box>
           )}
           <Box
