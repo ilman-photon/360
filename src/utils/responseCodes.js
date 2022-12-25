@@ -3,7 +3,7 @@ export const MESSAGES = {
     title: "Success",
   },
   3001: {
-    title: "Existing User",
+    title: "Existing User!",
     content: (
       <>
         <span>
