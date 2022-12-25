@@ -276,7 +276,7 @@ export default function BaseHeader({
                     {/* notification badge */}
                     <IconButton
                       tabIndex={0}
-                      aria-label="Notifications button"
+                      aria-label="Notifications"
                       data-testid="notification-badge-icon"
                       sx={{
                         px: { xs: 2, sm: 3 },
