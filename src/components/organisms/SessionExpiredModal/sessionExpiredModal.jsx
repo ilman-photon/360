@@ -108,6 +108,7 @@ function SessionExpiredModal() {
             width: "auto",
           },
         }}
+        data-testid="session-expired-testid"
       >
         <FormMessage
           success={false}

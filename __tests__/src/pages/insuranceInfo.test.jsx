@@ -293,9 +293,7 @@ describe("InsuranceInformationPage Components", () => {
       container.getAllByTestId(TEST_ID.INSURANCE_TEST_ID.addButton)[0]
     );
     await waitFor(() =>
-      container.getAllByText(
-        /Maximum number of insurances has been reached./i
-      )
+      container.getAllByText(/Maximum number of insurances has been reached./i)
     );
   });
 
@@ -724,7 +722,7 @@ describe("InsuranceInformationPage Components", () => {
       )
       .reply(200, mockUpdateInsurance);
 
-    await addInsuranceInfo();
+    // await addInsuranceInfo();
     mock
       .onGet(
         `/ecp/insurance/beneficiaries/98f9404b-6ea8-4732-b14f-9c1a168d8066/coverages`

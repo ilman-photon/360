@@ -18,7 +18,14 @@ export const PasswordValidator = ({ ...props }) => {
     });
     const passesValidation = err.passesValidation || 3;
     return (
-      <Box key={key}>
+      <Box
+        key={key}
+        sx={{
+          "& ::marker": {
+            fontSize: "10px",
+          },
+        }}
+      >
         <LabelWithIcon
           key={key}
           error={passes < passesValidation}
@@ -31,7 +38,13 @@ export const PasswordValidator = ({ ...props }) => {
 
   const getChildrenView = (children) => {
     return (
-      <ul>
+      <ul
+        style={{
+          marginTop: "5px",
+          marginBottom: 0,
+          marginLeft: "10px",
+        }}
+      >
         {children.map((value, i) => {
           return (
             <li
@@ -44,6 +57,8 @@ export const PasswordValidator = ({ ...props }) => {
                   ...styles.textStyles,
                   ...styles.childrenStyles,
                   color: value.validate ? colors.green : colors.grey75,
+                  display: "inline-table",
+                  verticalAlign: "middle",
                 }}
                 tabIndex="0"
               >

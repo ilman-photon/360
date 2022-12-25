@@ -71,9 +71,7 @@ export const FormMessage = (
           ) : (
             <></>
           )}
-          <div
-            style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}
-          >
+          <div style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}>
             {props.children}
             {props.isBackToLogin ? (
               <Link href="/patient/login">

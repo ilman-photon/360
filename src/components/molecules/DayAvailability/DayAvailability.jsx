@@ -152,7 +152,7 @@ export const DayAvailability = ({
             }}
           >
             <Typography className={styles.scheduleTitle} tabindex={"0"}>
-              {key}
+              {key.match(/undefined/) ? "" : key}
             </Typography>
             <Typography className={styles.noSchedule} tabindex={"0"}>
               No availability
@@ -230,7 +230,14 @@ export const DayAvailability = ({
               data-testid={
                 TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.previousWeekButton
               }
-              sx={{ cursor: "pointer" }}
+              sx={{
+                cursor: "pointer",
+                height: "19.8px",
+                width: "11.67px",
+                left: "16.7px",
+                top: "2.1px",
+                color: "#003B4A",
+              }}
             />
           </Button>
           <Button
@@ -253,7 +260,14 @@ export const DayAvailability = ({
               data-testid={
                 TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.nextWeekButton
               }
-              sx={{ marginLeft: "10px", cursor: "pointer" }}
+              sx={{
+                cursor: "pointer",
+                height: "19.8px",
+                width: "11.67px",
+                left: "16.7px",
+                top: "2.1px",
+                color: "#003B4A",
+              }}
             />
           </Button>
         </Box>

@@ -15,8 +15,67 @@ import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
 import { fetchDocuments, resetDocuments } from "../../../../store/document";
 import { DOCUMENT_STATUS } from "../../../../utils/constants";
 import { useTranslation } from "next-i18next";
+import {
+  setModalContent,
+  setOpenModal,
+  setShareModalData,
+} from "../../../../store/share";
+import { getDynamicShareContent } from "../../../../components/organisms/ShareModal/shareModal";
 import PatientAcccountCard from "../../../../components/molecules/ManagePatientAccount/PatientAcccountCard";
 
+export function tableCarePlan(isDesktop) {
+  return {
+    header: [
+      {
+        type: "text",
+        id: "name",
+        numeric: false,
+        disablePadding: false,
+        label: "Procedure",
+        // width: 250,
+      },
+      {
+        type: "text",
+        id: "date",
+        numeric: false,
+        disablePadding: true,
+        label: "Date",
+        width: isDesktop ? 136 : 120,
+      },
+      { type: "empty", width: 50 },
+    ],
+    cells: [
+      {
+        type: "text",
+        primary: true,
+        valueKey: "name",
+        cellProps: { tabIndex: 0 },
+        contentClass: isDesktop ? "" : "clipped clip-2",
+      },
+      {
+        type: "date-time",
+        valueKey: "_created",
+        cellProps: { align: "left", padding: "none", tabIndex: 0 },
+        contentStyle: {
+          padding: isDesktop ? "12px 0" : "8px 0",
+          fontSize: isDesktop ? "unset" : "12px",
+          fontWeight: "500",
+        },
+        contentClass: isDesktop ? "" : "clipped clip-2",
+      },
+      {
+        type: "menus",
+        valueKey: "digital_assets._id",
+        cellProps: {
+          padding: "none",
+          sx: {
+            textAlign: "center",
+          },
+        },
+      },
+    ],
+  };
+}
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const router = useRouter();
@@ -176,58 +235,6 @@ export default function MedicalRecordPage() {
     ],
   };
 
-  const tableCarePlan = {
-    header: [
-      {
-        type: "text",
-        id: "name",
-        numeric: false,
-        disablePadding: false,
-        label: "Procedure",
-        // width: 250,
-      },
-      {
-        type: "text",
-        id: "date",
-        numeric: false,
-        disablePadding: true,
-        label: "Date",
-        width: isDesktop ? 136 : 120,
-      },
-      { type: "empty", width: 50 },
-    ],
-    cells: [
-      {
-        type: "text",
-        primary: true,
-        valueKey: "name",
-        cellProps: { tabIndex: 0 },
-        contentClass: isDesktop ? "" : "clipped clip-2",
-      },
-      {
-        type: "date-time",
-        valueKey: "_created",
-        cellProps: { align: "left", padding: "none", tabIndex: 0 },
-        contentStyle: {
-          padding: isDesktop ? "12px 0" : "8px 0",
-          fontSize: isDesktop ? "unset" : "12px",
-          fontWeight: "500",
-        },
-        contentClass: isDesktop ? "" : "clipped clip-2",
-      },
-      {
-        type: "menus",
-        valueKey: "digital_assets._id",
-        cellProps: {
-          padding: "none",
-          sx: {
-            textAlign: "center",
-          },
-        },
-      },
-    ],
-  };
-
   const rows = useSelector((state) => {
     return state.document.documentList;
   });
@@ -267,6 +274,25 @@ export default function MedicalRecordPage() {
 
   const handleAssetDownload = (id, print) => {
     fetchSource(id, print);
+  };
+
+  const shareDocument = (selectedData) => {
+    //Handle for Care plan only
+    const shareContent = getDynamicShareContent({
+      type: "care-plan",
+      date: selectedData?._created,
+      name: selectedData?.name,
+    });
+    const shareData = {
+      id: selectedData?._id || "",
+      title: "Share my care plan",
+      successPostmessage: "Your care plan was succesfully shared.",
+      type: `carePlans`,
+    };
+
+    dispatch(setShareModalData(shareData));
+    dispatch(setOpenModal(true));
+    dispatch(setModalContent(shareContent));
   };
 
   useEffect(() => {
@@ -360,11 +386,12 @@ export default function MedicalRecordPage() {
           <TableWithSort
             config={
               watchedCategory === "care-plan-overview"
-                ? tableCarePlan
+                ? tableCarePlan()
                 : tableDesktopTestLab
             }
             rows={rows}
             onAssetDownload={handleAssetDownload}
+            onShareDocument={shareDocument}
             mobileTestLab={watchedCategory === "test-lab-result" && isMobile}
             additionalProps={{
               tableProps: { "aria-label": `${watchedCategory}` },

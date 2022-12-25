@@ -161,7 +161,7 @@ export default function BaseHeader({
         break;
       case "test-result":
       case "test/lab results":
-        path = "/patient/account/medical-records?type=test-lab-result";
+        path = "/patient/account/medical-record?type=test-lab-result";
         break;
       case "message":
         path = `/patient/message?conversationId=${id}`; // no test data yet
@@ -199,7 +199,10 @@ export default function BaseHeader({
 
   const handleNotificationItemClicked = (data) => {
     const id = data.id || data._id;
-    actionNotificationRead(id);
+    if (!data.isRead) {
+      actionNotificationRead(id);
+    }
+
     actionNotificationRedirect(data);
     setNotificationDrawerOpened(false);
   };
@@ -273,7 +276,7 @@ export default function BaseHeader({
                     {/* notification badge */}
                     <IconButton
                       tabIndex={0}
-                      aria-label="Notifications button"
+                      aria-label="Notifications"
                       data-testid="notification-badge-icon"
                       sx={{
                         px: { xs: 2, sm: 3 },
@@ -306,11 +309,7 @@ export default function BaseHeader({
                 )}
 
                 {/* Menu Mobile*/}
-                <Box
-                  tabIndex={0}
-                  aria-label={"Username dropdown"}
-                  sx={styles.boxStyledMobile}
-                >
+                <Box sx={styles.boxStyledMobile}>
                   {!isAdmin && (
                     <IconButton
                       size="large"
@@ -318,6 +317,7 @@ export default function BaseHeader({
                       data-testid={HOME_TEST_ID.header.userAvatar}
                     >
                       <Avatar
+                        aria-label="User account menu"
                         sx={{
                           background: "#003B4A",
                           alignSelf: "center",
@@ -330,7 +330,7 @@ export default function BaseHeader({
                   )}
                   <IconButton
                     size="large"
-                    aria-label="account of current user"
+                    aria-label="menu icon"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
                     data-testid="user-menu-nav-open"
@@ -339,7 +339,7 @@ export default function BaseHeader({
                     }}
                     sx={{ p: 0 }}
                   >
-                    <MenuIcon />
+                    <MenuIcon tabIndex="0" aria-label="menu icon" />
                   </IconButton>
                 </Box>
 

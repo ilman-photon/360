@@ -21,7 +21,7 @@ import { useEffect } from "react";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 
 export default function EducationMaterialCard() {
-  const [educationMaterialData, setEducationMaterialData] = React.useState([]);
+  const [educationMaterialData] = React.useState([]);
   const isDesktop = useMediaQuery("(min-width: 700px)");
 
   const settings = {

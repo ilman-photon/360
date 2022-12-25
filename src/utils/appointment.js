@@ -9,6 +9,28 @@ import {
 } from "./dateFormatter";
 import { getCoords, getDistanceMatrix } from "./getCity";
 
+/**
+ *
+ * @param {object} parent is object normal
+ * example parent : {attributes: {id:'001', name:'test'}}
+ * @param {value} target is target after search in parent
+ * example target "attributes.id"
+ * if data array you can use "attributes.0"
+ */
+export const checkUndefinedObject = (parent, target) => {
+  let value = { ...parent };
+  let newTarget = target.toString();
+  newTarget = newTarget.split(".");
+  for (const nTarget of newTarget) {
+    if (!value[nTarget]) {
+      value = null;
+      break;
+    }
+    value = value[nTarget];
+  }
+  return value;
+};
+
 function isValidDate(d) {
   return d instanceof Date && !isNaN(d);
 }
@@ -553,36 +575,28 @@ export function isPrevArrowDisable(dateList, currentDate = null) {
 export function parseAppointmentDetails(appointmentDetails) {
   const data = JSON.parse(JSON.stringify(appointmentDetails));
 
-  data.appointmentInfo.documentation.list = [
-    {
+  if (checkUndefinedObject(data, "appointmentInfo.documentOfCareDetail")) {
+    const performer = checkUndefinedObject(
+      data,
+      "appointmentInfo.documentOfCareDetail.performers"
+    );
+    const dateTimePerformer = {
       name: "Date/Time",
-      value: "Lorem Ipsum",
-    },
-    {
-      name: "Performer",
-      value: "Lorem Ipsum",
-    },
-    {
-      name: "Performer",
-      value: "Lorem Ipsum",
-    },
-    {
-      name: "Performer",
-      value: "Lorem Ipsum",
-    },
-    {
-      name: "Performer",
-      value: "Lorem Ipsum",
-    },
-    {
-      name: "Performer",
-      value: "Lorem Ipsum",
-    },
-    {
-      name: "Performer",
-      value: "Lorem Ipsum",
-    },
-  ];
+      value: moment(
+        checkUndefinedObject(performer, "DocumentationCareProcisionDate")
+      ).format("YYYY:MM:DD"),
+    };
+    const performerList = performer.map((data) => {
+      return {
+        name: "Performer",
+        value: checkUndefinedObject(data, "performerName"),
+      };
+    });
+    data.appointmentInfo.documentation.list = [
+      dateTimePerformer,
+      ...performerList,
+    ];
+  }
 
   for (let i = 0; i < data.appointmentInfo.contents.length; i++) {
     let headers = [];
@@ -953,6 +967,289 @@ export async function onCallSubmitFilterAPI(
     });
 }
 
+/** Response mapper appointment details from xml to json */
+
+const getContents = (data) => {
+  const contents = [];
+  if (data.ClinicalDocument) {
+    const clinicalDocument = data.ClinicalDocument;
+    if (
+      clinicalDocument.component &&
+      clinicalDocument.component.structuredBody &&
+      clinicalDocument.component.structuredBody.component?.length > 0
+    ) {
+      const components = clinicalDocument.component.structuredBody.component;
+      for (let i = 0; i < components.length; i++) {
+        const { section } = components[i];
+        const thead = section?.text?.table?.thead?.tr.th || [];
+        const tbody = section?.text?.table?.tbody?.tr || [];
+        const component = {
+          type: section.title._text || "",
+          list: [],
+        };
+
+        const titles = [];
+        for (let j = 0; j < thead.length; j++) {
+          titles.push(
+            thead[j]._text?.toLowerCase()?.replace("(", "")?.replace(")", "")
+          );
+        }
+
+        for (let j = 0; j < tbody.length; j++) {
+          const tr = tbody[j];
+          if (tr._attributes) {
+            const trObj = {};
+            for (let k = 0; k < tr.td.length; k++) {
+              trObj[titles[k]] = tr.td[k]._text;
+            }
+            component.list.push(trObj);
+          }
+        }
+
+        contents.push(component);
+      }
+    }
+  }
+
+  return contents;
+};
+
+const getDocumentDetailsObj = (data) => {
+  const documentDetails = {};
+  const clinicalDocument = checkUndefinedObject(data, "ClinicalDocument") ?? {};
+  documentDetails.documentID =
+    checkUndefinedObject(clinicalDocument, "id._attributes.root") ?? "";
+  documentDetails.createdOn =
+    checkUndefinedObject(clinicalDocument, "effectiveTime._attributes.value") ??
+    "";
+
+  if (
+    checkUndefinedObject(
+      clinicalDocument,
+      "custodian.assignedCustodian.representedCustodianOrganization"
+    )
+  ) {
+    const representedCustodianOrganization = checkUndefinedObject(
+      clinicalDocument,
+      "custodian.assignedCustodian.representedCustodianOrganization"
+    );
+
+    documentDetails.custodian =
+      checkUndefinedObject(representedCustodianOrganization, "name._text") ??
+      "";
+    const addr = checkUndefinedObject(representedCustodianOrganization, "addr");
+    const mobileNumber = checkUndefinedObject(
+      representedCustodianOrganization,
+      "telecom._attributes.value"
+    )?.replace("tel:", "");
+
+    documentDetails.address = {
+      typePlace: "",
+      addressLine1: `${checkUndefinedObject(
+        addr,
+        "streetAddressLine._text"
+      )}, ${checkUndefinedObject(addr, "city._text")}, ${checkUndefinedObject(
+        addr,
+        "state._text"
+      )} ${checkUndefinedObject(addr, "postalCode._text")}`,
+      country: checkUndefinedObject(addr, "country._text") ?? "",
+      mobileNumber: mobileNumber ?? "",
+    };
+  }
+  return documentDetails;
+};
+
+const getDocumentOfCareDetail = (data) => {
+  const document = {};
+  const clinicalDocument = checkUndefinedObject(data, "ClinicalDocument") ?? {};
+
+  if (checkUndefinedObject(clinicalDocument, "documentationOf.serviceEvent")) {
+    const serviceEvent = clinicalDocument.documentationOf.serviceEvent;
+    document.DocumentationCareProcisionDate = checkUndefinedObject(
+      serviceEvent,
+      "effectiveTime._attributes.value"
+    );
+    document.performers = [];
+
+    const assignedEntity = checkUndefinedObject(
+      serviceEvent,
+      "performer.assignedEntity"
+    );
+    const assignedPerson = checkUndefinedObject(
+      assignedEntity,
+      "assignedPerson.name"
+    );
+    const addr = checkUndefinedObject(
+      assignedEntity,
+      "representedOrganization.addr"
+    );
+
+    const mobileNumber = checkUndefinedObject(
+      assignedEntity,
+      "telecom._attributes.value"
+    ).replace("tel:", "");
+
+    const performer = {
+      performerName: `${
+        checkUndefinedObject(assignedPerson, "prefix._text") ?? ""
+      } ${checkUndefinedObject(assignedPerson, "given._text") ?? ""} ${
+        checkUndefinedObject(assignedPerson, "family._text") ?? ""
+      }`,
+      contactPerformance: {
+        typePlace: "",
+        addressLine1: `${checkUndefinedObject(
+          addr,
+          "streetAddressLine._text"
+        )}, ${checkUndefinedObject(addr, "city._text")}, ${checkUndefinedObject(
+          addr,
+          "state._text"
+        )} ${checkUndefinedObject(addr, "postalCode._text")}`,
+        country: checkUndefinedObject(addr, "country._text") ?? "",
+        mobileNumber: mobileNumber ?? "",
+      },
+    };
+
+    document.performers.push(performer);
+  }
+
+  return document;
+};
+
+const getAuthor = (data) => {
+  const { author } = data.ClinicalDocument ?? {};
+  const { assignedAuthor } = author ?? {};
+  const { addr, code, telecom } = assignedAuthor;
+
+  const contactDetails = {
+    typePlace: addr.title ?? "-",
+    address: `${checkUndefinedObject(addr, "streetAddressLine._text") ?? ""}, ${
+      checkUndefinedObject(addr, "city._text") ?? ""
+    }, ${checkUndefinedObject(addr, "state._text") ?? ""} ${
+      checkUndefinedObject(addr, "postalCode._text") ?? ""
+    }`,
+    country: `${checkUndefinedObject(addr, "country._text") ?? "-"}`,
+    phoneNumber: `${checkUndefinedObject(telecom, "_attributes.value") ?? "-"}`,
+  };
+  const contactDetailsOrganization = {
+    typePlace: "-",
+    address: "-",
+    country: `-`,
+    phoneNumber: "-",
+  };
+
+  return {
+    title: `code: ${
+      checkUndefinedObject(code, "_attributes.displayName") ?? "-"
+    } Organization:  ${
+      checkUndefinedObject(code, "_attributes.codeSystemName") ?? "-"
+    }`,
+    contactDetails,
+    contactDetailsOrganization,
+  };
+};
+
+const mappingPatientInfo = (document) => {
+  if (!checkUndefinedObject(document, "recordTarget.patientRole.patient"))
+    return {};
+  const { patientRole } = document.recordTarget;
+  const { patient } = patientRole;
+  const name = {
+    firstName: checkUndefinedObject(patient, "name.0.given.0._text") ?? "",
+    lastName: checkUndefinedObject(patient, "name.0.given.1._text") ?? "",
+    familyName: checkUndefinedObject(patient, "name.0.family.0._text") ?? "",
+  };
+
+  const contactDetails = {
+    typePlace: checkUndefinedObject(patient, "title") ?? "-",
+    address:
+      checkUndefinedObject(patient, "guardian.addr.streetAddressLine._text") ??
+      "-",
+    country:
+      checkUndefinedObject(patient, "guardian.addr.country._text") ?? "-",
+    mobileNumber:
+      checkUndefinedObject(patientRole, "telecom.0._attributes.value") ?? "-",
+  };
+
+  return {
+    name: `${name.firstName} ${name.lastName} ${name.familyName}`,
+    ...contactDetails,
+    dateBirth:
+      checkUndefinedObject(patient, "birthTime._attributes.value") ?? "-",
+    gender:
+      checkUndefinedObject(
+        patient,
+        "administrativeGenderCode._attributes.displayName"
+      ) ?? "-",
+    race:
+      checkUndefinedObject(patient, "raceCode._attributes.displayName") ?? "-",
+    ethnicity:
+      checkUndefinedObject(
+        patient,
+        "ethnicGroupCode._attributes.displayName"
+      ) ?? "-",
+    patientId: checkUndefinedObject(patient, "patientId") ?? "-",
+    languageCommunication:
+      checkUndefinedObject(
+        patient,
+        "languageCommunication.languageCode._attributes.code"
+      ) ?? "-",
+  };
+};
+
+const getPurposeOfVisit = (document) => {
+  if (!checkUndefinedObject(document, "recordTarget.patientRole.patient"))
+    return {};
+  const { patientRole } = document.recordTarget;
+  const { patient } = patientRole;
+  const name = {
+    firstName: checkUndefinedObject(patient, "name.0.given.0._text") ?? "",
+    lastName: checkUndefinedObject(patient, "name.0.given.1._text") ?? "",
+    familyName: checkUndefinedObject(patient, "name.0.family.0._text") ?? "",
+  };
+  const locationDetail = {
+    typePlace: "-",
+    address: "-",
+    country: "-",
+    mobileNumber: "-",
+  };
+  return {
+    title: "-",
+    drName: "-",
+    patientName: `${name.firstName} ${name.lastName} ${name.familyName}`,
+    location: { ...locationDetail },
+    insurance: "-",
+  };
+};
+
+export function parseAppointDetailXml(data) {
+  const dataMapper = {
+    appointmentId: 1,
+    providerInfo: {},
+    patientInfo: mappingPatientInfo(data.ClinicalDocument),
+    appointmentInfo: {
+      documentation: {},
+      insuranceCarrier: [],
+      documentDetails: getDocumentDetailsObj(data),
+      patientDetail: {},
+      documentOfCareDetail: getDocumentOfCareDetail(data),
+      contents: getContents(data),
+      author: getAuthor(data),
+    },
+    purposeOfVisit: getPurposeOfVisit(data.ClinicalDocument),
+  };
+
+  if (data.ClinicalDocument) {
+    const clinicalDocument = data.ClinicalDocument;
+    dataMapper.appointmentInfo.appointmentType =
+      clinicalDocument?.title?._text || "";
+    dataMapper.appointmentInfo.date =
+      clinicalDocument?.effectiveTime?._attributes?.value || "";
+  }
+
+  return dataMapper;
+}
+
+/** End Response mapper appointment details from xml to json */
 export function getLocationName(location) {
   if (location.indexOf(",") > -1) {
     const tempLocation = location.split(",");

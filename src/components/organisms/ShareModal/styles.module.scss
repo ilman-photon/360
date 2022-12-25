@@ -1,0 +1,144 @@
+.dialogSubContent {
+  .prescriptionTitle {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #205a63;
+    display: flex;
+  }
+  .prescriptionBold {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #1c1f37;
+    display: flex;
+  }
+  .prescriptionMedium {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #1c1f37;
+    display: flex;
+  }
+  .medicationTitle,
+  .myCareTitle {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: #008294;
+  }
+  .myCareTitle {
+    color: #205a63;
+  }
+}
+
+.dialogShareContainer {
+  width: 712px;
+  padding: 16px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  .dialogTitle {
+    // width: 90%;
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 30px;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+    // margin-bottom: 32px;
+  }
+
+  .dialogDyamicContent {
+    width: 100%;
+    background: #f4f4f4;
+    padding: 16px;
+  }
+
+  .dialogStepInfoContainer {
+    padding: 32px 0;
+    .stepCircle {
+      width: 29px;
+      height: 29px;
+      background: rgba(0, 149, 169, 0.4);
+      border: 1px solid rgba(135, 201, 210, 0.4);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      margin-right: 5px;
+
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    .stepText {
+      font-family: "Libre Franklin", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.0016em;
+      color: #003b4a;
+      width: 80%;
+    }
+  }
+
+  .dialogSecurityTransmitContainer {
+    display: flex;
+    padding: 12px 16px;
+    gap: 12px;
+
+    background: #edf5fe;
+    border-radius: 4px;
+
+    .dialogSecurityTitle {
+      font-family: "Libre Franklin", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.0016em;
+      color: #003b4a;
+    }
+    .dialogSecurityDirection {
+      font-family: "Libre Franklin", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.0016em;
+      color: #003b4a;
+    }
+  }
+
+  .dialogInputContainer {
+    width: 100%;
+  }
+
+  .shareButton {
+    height: 46px;
+    background: #007e8f;
+    padding: 13px 20px;
+    width: 162px;
+    align-self: end;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}

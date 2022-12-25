@@ -142,7 +142,7 @@ export default function PastAppointment({ data }) {
   for (const appointment of data) {
     if (
       new Date(appointment.appointmentInfo.date) < new Date() &&
-      appointments.length < 11
+      appointments.length < 10
     ) {
       appointments.push(appointment);
     }
@@ -169,7 +169,9 @@ export default function PastAppointment({ data }) {
       groupedAppointments
         .map((item, index) => {
           return (
-            <PastAppointmentCard data={item} threshold={index} key={index} />
+            <>
+              <PastAppointmentCard data={item} threshold={index} key={index} />
+            </>
           );
         })
         .filter((temp) => temp)

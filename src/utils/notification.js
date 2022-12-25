@@ -117,7 +117,7 @@ export const getDescription = (data) => {
     case "invoice":
       return (
         <>
-          There’s a new <b>outstanding invoice</b>
+          There is a new <b>outstanding invoice</b>
         </>
       );
     case "appointment-summary":

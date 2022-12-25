@@ -40,9 +40,9 @@ export class Api {
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
         url.indexOf(`/available-slot`) < 0 &&
         err.response?.data?.ResponseCode === undefined) ||
-        err.code === constants.ERROR_CODE.NETWORK_ERR ||
-        [500].indexOf(err.response?.status) !== -1) &&
-      [400].indexOf(err.response?.status) === -1
+        ((err.code === constants.ERROR_CODE.NETWORK_ERR ||
+          [500].indexOf(err.response?.status) !== -1) &&
+          [400].indexOf(err.response?.status) === -1))
     );
   };
 
@@ -294,9 +294,10 @@ export class Api {
     return this.getResponse(url, { params }, "get");
   }
 
-  getAppointmentDetails() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
+  getAppointmentDetails(encounterId) {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = "825de415-7e83-45f4-ada8-79a50b0d84bc"; //userData?.patientId || "";
+    const url = `/ecp/appointments/visitsummary/encounter/${encounterId}/patient/${patientId}`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -519,6 +520,26 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  verifyAccessCode(postBody) {
+    const url = `/ecp/patient/share/share-confirmation/verifyAccessCode`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  validationSharePage(postBody) {
+    const url = `/ecp/patient/share/share-page/validation`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  getShareDocumentDetails(postBody) {
+    const url = `/ecp/patient/share/documentDetails`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  resendCode(postBody) {
+    const url = `/ecp/patient/share/share-confirmation/resendAccessCode`;
+    return this.getResponse(url, postBody, "post");
+  }
+
   getformContent() {
     const url = "/ecp/patients/forms/getformContent";
     return this.getResponse(url, {}, "get");
@@ -589,6 +610,10 @@ export class Api {
   getPasswordInfo(postBody) {
     const url = `/ecp/patient/settings/validatePassword`;
     return this.getResponse(url, postBody, "post", false);
+  }
+
+  getURLResponse(url) {
+    return this.getResponse(url, {}, "get");
   }
 
   getEducationMaterial(showError = true) {

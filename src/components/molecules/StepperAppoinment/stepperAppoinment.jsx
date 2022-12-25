@@ -29,6 +29,7 @@ export default function StepperAppoinment({ ...props }) {
         {steps?.map((label, idx) => (
           <Step
             aria-label={`${label} stage in progress bar`}
+            tabIndex={"0"}
             sx={{
               marginBottom: { xs: "40px", md: "0" },
               fontFamily: "Libre Franklin !important",
@@ -94,7 +95,6 @@ export default function StepperAppoinment({ ...props }) {
                 },
                 fontFamily: "Libre Franklin !important",
               }}
-              tabIndex={"0"}
               aria-label={`Stepper ${idx + 1}. ${label} `}
             >
               {isDesktop ? label : idx === props.activeStep ? label : null}

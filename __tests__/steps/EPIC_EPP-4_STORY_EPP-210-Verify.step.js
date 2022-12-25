@@ -83,7 +83,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user clicks on (.*) button$/, (arg0) => {
-      const login = container.getByRole("button", { name: /Login/i });
+      const login = container.getByText(/Login/i);
       fireEvent.click(login);
     });
 
@@ -96,7 +96,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user clicks on (.*) button$/, (arg0) => {
-      const login = container.getByRole("button", { name: /Login/i });
+      const login = container.getByText(/Login/i);
       fireEvent.click(login);
     });
 
@@ -109,7 +109,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user clicks on (.*) button$/, async () => {
-      const login = container.getByRole("button", { name: /Login/i });
+      const login = container.getByText(/Login/i);
       fireEvent.click(login);
     });
 

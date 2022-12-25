@@ -8,6 +8,7 @@ import {
 import "@testing-library/jest-dom";
 import PrescriptionMedication from "../../../../src/components/molecules/Dashboard/prescriptionMedication";
 import mediaQuery from "css-mediaquery";
+import { renderWithProviders } from "../../utils/test-util";
 
 describe("Prescription Medication test", () => {
   let container;
@@ -105,7 +106,7 @@ describe("Prescription Medication test", () => {
   }
 
   const renderWithData = (data) =>
-    render(
+    renderWithProviders(
       <PrescriptionMedication
         medications={data}
         filterProvider={mockFilterProvider}
@@ -133,7 +134,7 @@ describe("Prescription Medication test", () => {
   });
 
   it("Render Prescription Without data", () => {
-    container = render(<PrescriptionMedication />);
+    container = renderWithProviders(<PrescriptionMedication />);
   });
 
   it("Render Prescription", () => {

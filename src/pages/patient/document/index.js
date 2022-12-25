@@ -670,7 +670,6 @@ DocumentPage.getLayout = function getLayout(page) {
       <DocumentLayout
         currentActivePage={"Insurance Communication"}
         backTitle="Back to Intake Forms"
-        isHideHeader={true}
       >
         {page}
       </DocumentLayout>

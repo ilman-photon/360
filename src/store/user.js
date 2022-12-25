@@ -382,7 +382,7 @@ export const deleteInsurance = createAsyncThunk(
  * @returns
  */
 const buildUserData = (payload) => {
-  const userAddress = payload.address[0] || {};
+  const userAddress = payload.address?.length > 0 ? payload.address[0] : {};
   const patientDetails = payload.patientDetails || {};
 
   let userPreferredCommunication = "";
@@ -409,11 +409,12 @@ const buildUserData = (payload) => {
     dob: payload.dob,
     title: TITLE_LIST[payload.title - 1] || "",
     ssn: formatSocialSecurity(payload.ssn),
-    email: payload.contactInformation.emails[0]
-      ? payload.contactInformation.emails[0].email
-      : "",
+    email:
+      payload.contactInformation?.emails?.length > 0
+        ? payload.contactInformation.emails[0].email
+        : "",
     mobile:
-      payload.contactInformation.phones && payload.contactInformation.phones[0]
+      payload.contactInformation?.phones?.length > 0
         ? formatPhoneNumber(payload.contactInformation.phones[0].number)
         : "",
     address: userAddress.addressLine1 || "",

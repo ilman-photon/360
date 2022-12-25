@@ -964,7 +964,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Patient Information"));
+      await waitFor(() => container.getAllByText("Patient Information"));
     });
 
     and(

@@ -69,36 +69,43 @@
 
 .scheduleTimeContainer {
   display: flex;
+  gap: 18.71px;
   margin-bottom: 12px;
   position: relative;
   .scheduleTimeTitle {
-    margin-top: 6px;
     font-family: "Libre Franklin", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 26px;
+    /* identical to box height, or 144% */
+    /* ECP/Primary/DarkGreen */
+
+    color: #003b4a;
     display: flex;
     align-items: center;
     letter-spacing: 0.0016em;
-    color: $darkGreen;
     width: 135px;
   }
   .iconTimeContainer {
-    margin-left: 18px;
     display: flex;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    top: 16%;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 12px;
+
+    width: 359px;
+    height: 26px;
     .iconSchedule {
-      width: 25px;
+      width: 24px;
+      height: 24px;
       color: $darkGreen;
       cursor: pointer;
       opacity: 1;
     }
     .iconDisableSchedule {
-      width: 25px;
+      width: 24px;
+      height: 24px;
       color: $darkGreen;
       cursor: not-allowed;
       opacity: 0.3;

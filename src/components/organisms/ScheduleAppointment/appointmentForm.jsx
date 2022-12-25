@@ -84,7 +84,6 @@ export default function AppointmentForm({
   });
 
   React.useEffect(() => {
-    console.log(errors);
     if (errors.firstName) {
       firstNameRef.current?.focus();
     } else if (errors.lastName) {
@@ -441,11 +440,11 @@ export default function AppointmentForm({
                 validate: {
                   required: (value) => {
                     if (!value) {
-                      if (watchedPreferredCommunication !== "phone") {
-                        if (watchedPreferredCommunication === "email") {
+                      if (watchedPreferredCommunication != "phone") {
+                        if (watchedPreferredCommunication == "email") {
                           return "This field is required to proceed.";
                         } else if (
-                          watchedPreferredCommunication === "both" &&
+                          watchedPreferredCommunication == "both" &&
                           watchedMobile
                         ) {
                           return "This field is required to proceed.";
@@ -497,11 +496,11 @@ export default function AppointmentForm({
                 validate: {
                   required: (value) => {
                     if (!value) {
-                      if (watchedPreferredCommunication !== "email") {
-                        if (watchedPreferredCommunication === "phone") {
+                      if (watchedPreferredCommunication != "email") {
+                        if (watchedPreferredCommunication == "phone") {
                           return "This field is required to proceed.";
                         } else if (
-                          watchedPreferredCommunication === "both" &&
+                          watchedPreferredCommunication == "both" &&
                           watchedEmail
                         ) {
                           return "This field is required to proceed.";
@@ -659,7 +658,9 @@ export default function AppointmentForm({
                       return (
                         <StyledInput
                           id="password"
-                          data-testid={SCHEDULE_GUEST_TEST_ID.passwordField}
+                          data-testid={
+                            SCHEDULE_GUEST_TEST_ID.passwordFieldGuest
+                          }
                           label={t("passwordLabel")}
                           inputProps={{
                             "aria-label": `Password - optional -`,
@@ -715,6 +716,7 @@ export default function AppointmentForm({
                 data-testId="scheduleAppoinment"
                 type="submit"
                 variant="contained"
+                tabIndex={0}
                 sx={{
                   width: { xs: "100%", md: "222px" },
                   background: colors.primaryButton,

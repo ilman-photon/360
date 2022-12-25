@@ -425,11 +425,6 @@ export const CustomInput = styled(({ ...props }) => {
               maskChar={null}
               maskPlaceholder=""
               {...props}
-              sx={{
-                "&.MuiFormControl-root": {
-                  margin: "0 0 0 10px",
-                },
-              }}
             >
               <StyledRedditField name="phone" type="text" />
             </InputMask>

@@ -15,6 +15,7 @@ import { injectStore } from "./api/api";
 import Image from "next/image";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
+import ShareModal from "../components/organisms/ShareModal/shareModal";
 import { useForceLogout, useRedirectLogin } from "../utils/customHook";
 
 function App({ Component, pageProps }) {
@@ -57,6 +58,7 @@ function App({ Component, pageProps }) {
   return getLayout(
     <Provider store={store}>
       <NoInternetConnectionModal isOnline={isOnline} setOnline={setOnline} />
+      {isLogin ? <ShareModal /> : <></>}
       <Box sx={{ display: "none" }}>
         {/* Load Immage for internet connection */}
         <Image

@@ -24,11 +24,7 @@ const UpdateSecurityQuestion = ({
       "Who is your all-time favorite movie character?": "",
     },
   ],
-  userQuestion = [
-    {
-      "In what city or town did your parents meet?": "Washington",
-    },
-  ],
+  userQuestion = [],
   onUpdateSecurityQuestion = () => {
     // This is intentional
   },
@@ -114,8 +110,8 @@ const UpdateSecurityQuestion = ({
     });
 
     function arraysEqual(a, b) {
-      const a1 = Object.keys(a);
-      const b1 = Object.keys(b);
+      const a1 = a ? Object.keys(a) : [];
+      const b1 = b ? Object.keys(b) : [];
       return (
         a1.length == b1.length &&
         a1.every(function (element, index) {
@@ -135,6 +131,8 @@ const UpdateSecurityQuestion = ({
       })
     );
   };
+
+  const emptyFive = [undefined, undefined, undefined, undefined, undefined];
 
   return (
     <Stack spacing={3} sx={{ px: 3, py: 4 }}>
@@ -161,7 +159,7 @@ const UpdateSecurityQuestion = ({
 
       <form noValidate onSubmit={handleSubmit(onSubmit, showErrorMessage)}>
         <Stack spacing={3}>
-          {[...Array(5)].map((_, i) => {
+          {emptyFive.map((_, i) => {
             return (
               <Stack key={`sq-${i}`} spacing={1}>
                 <Controller

@@ -104,12 +104,8 @@ function getDoseMedication(sig) {
   return `${sig?.Dose} ${sig?.DoseUnit}`;
 }
 
-export function parsePrescriptions(glassesData, contactsData, mediactionData) {
-  const data = {
-    glasses: [],
-    contacts: [],
-    medications: [],
-  };
+export function parseGlasses(glassesData) {
+  let glassesNewData = [];
   for (const glasses of glassesData) {
     const providerName = glasses?.provider
       ? `${glasses?.provider.firstName} ${glasses?.provider.lastName}`
@@ -118,6 +114,7 @@ export function parsePrescriptions(glassesData, contactsData, mediactionData) {
     const startdDate = new Date(date.startDate);
     const expirationDate = new Date(date.expirationDate);
     let tempGlasses = {
+      id: glasses?._id || "",
       prescribedBy: providerName,
       date: isValidDate(startdDate) ? startdDate.toISOString() : "",
       expirationDate: isValidDate(expirationDate)
@@ -125,9 +122,13 @@ export function parsePrescriptions(glassesData, contactsData, mediactionData) {
         : "",
       prescriptionDetails: setPrescriptionDetails(glasses.glrx, "glasses"),
     };
-    data.glasses.push(tempGlasses);
+    glassesNewData.push(tempGlasses);
   }
+  return glassesNewData;
+}
 
+export function parseContacts(contactsData) {
+  let contactNewData = [];
   for (const contacts of contactsData) {
     const providerName = contacts?.provider
       ? `${contacts?.provider.designation} ${contacts?.provider.firstName} ${contacts?.provider.lastName}`
@@ -135,6 +136,7 @@ export function parsePrescriptions(glassesData, contactsData, mediactionData) {
     const date = new Date(contacts?.startDate);
     const expirationDate = new Date(contacts?.expirationDate);
     const tempContacts = {
+      id: contacts?._id || "",
       prescribedBy: providerName,
       date: isValidDate(date) ? date.toISOString() : "",
       expirationDate: isValidDate(expirationDate)
@@ -145,9 +147,13 @@ export function parsePrescriptions(glassesData, contactsData, mediactionData) {
         "contacts"
       ),
     };
-    data.contacts.push(tempContacts);
+    contactNewData.push(tempContacts);
   }
+  return contactNewData;
+}
 
+export function parseMedications(mediactionData) {
+  let medicationNewData = [];
   for (const mediaction of mediactionData) {
     const providerName = mediaction?.Provider
       ? `${mediaction?.Provider?.FirstName} ${mediaction?.Provider?.LastName}`
@@ -172,7 +178,21 @@ export function parsePrescriptions(glassesData, contactsData, mediactionData) {
           ? "active"
           : "past",
     };
-    data.medications.push(tempContacts);
+    medicationNewData.push(tempContacts);
   }
+  return medicationNewData;
+}
+
+export function parsePrescriptions(glassesData, contactsData, mediactionData) {
+  const data = {
+    glasses: [],
+    contacts: [],
+    medications: [],
+  };
+
+  data.glasses = parseGlasses(glassesData);
+  data.contacts = parseContacts(contactsData);
+  data.medications = parseMedications(mediactionData);
+
   return data;
 }

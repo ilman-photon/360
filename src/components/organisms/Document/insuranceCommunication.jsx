@@ -61,18 +61,6 @@ export default function InsuranceCommunication({
             : {}
         }
       />
-      <Typography
-        className={styles.subtitleTxt}
-        tabIndex={0}
-        sx={{
-          "@media (max-width: 767px)": {
-            margin: "8px 0 24px 0 !important",
-            textAlign: "left !important",
-          },
-        }}
-      >
-        Private Pay Communication
-      </Typography>
       <SignForm
         isSigned={defaultDataValue?.sign}
         isEdit={disableInput}
@@ -84,7 +72,26 @@ export default function InsuranceCommunication({
         controlName={{
           sign: controlName.sign,
         }}
+        customSignText={"Intital"}
       />
+      <Typography
+        className={styles.subtitleTxt}
+        tabIndex={0}
+        sx={{
+          textAlign: "left !important",
+          fontStyle: "normal",
+          fontWeight: "400",
+          fontSize: "26px",
+          lineHeight: "32px",
+          margin: "24px auto 0px 0px !important",
+          "@media (max-width: 767px)": {
+            margin: "8px 0 16px 0 !important",
+            textAlign: "left !important",
+          },
+        }}
+      >
+        Private Pay Communication
+      </Typography>
       <Controller
         name={controlName.textInfo2}
         control={useFormProps.control}
@@ -130,6 +137,7 @@ export default function InsuranceCommunication({
         controlName={{
           sign: controlName.signPrivatePay,
         }}
+        customSignText={"Intital"}
       />
     </Stack>
   );

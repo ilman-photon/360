@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import moment from "moment";
 import { Api } from "../pages/api/api";
 
-function parseMedicalRecordData(data) {
+export function parseMedicalRecordData(data) {
   return data.map((v) => ({
     ...v,
     name: `Medical Record - ${new moment(v._created).format("MM/DD/YYYY")} `,

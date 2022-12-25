@@ -6,7 +6,6 @@ Feature: Patient Portal : Share my Record/ Prescription/ Care plan - Download sh
   @Share_my_Record/Prescription
   @Sprint9
   Scenario: EPIC_EPP-42_STORY_EPP-7618- Verify External user should see the health records downloaded as a pdf file in their local system/ device
-    Scenario: EPIC_EPP-42_STORY_EPP-7618- Verify External user should see the health records downloaded as a pdf file in their local system/ device
 
     Given User (Patient) has shared the patient records to the external user’s email or phone number
     And User launch Patient Portal url		

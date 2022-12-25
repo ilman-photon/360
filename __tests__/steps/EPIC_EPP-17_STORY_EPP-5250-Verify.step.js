@@ -412,11 +412,11 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText(/View Prescription/i));
+      await waitFor(() => container.getAllByText(/View Prescription/i));
     });
 
     and("click the View Prescription from the Prescription widget.", () => {
-      const button = container.getByText(/View prescription/i);
+      const button = container.getAllByText(/View prescription/i)[0];
       expect(button).toBeInTheDocument();
       fireEvent.click(button);
     });
