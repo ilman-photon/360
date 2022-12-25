@@ -128,7 +128,7 @@ export const CustomPasswordInput = styled((props) => (
   "& .MuiFormLabel-asterisk.MuiInputLabel-asterisk": {
     visibility: "hidden",
     "&::before": {
-      content: '" *"',
+      content: '"*"',
       visibility: "visible",
     },
   },
@@ -246,7 +246,7 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
   "& .MuiFormLabel-asterisk.MuiInputLabel-asterisk": {
     visibility: "hidden",
     "&::before": {
-      content: '" *"',
+      content: '"*"',
       visibility: "visible",
     },
   },
