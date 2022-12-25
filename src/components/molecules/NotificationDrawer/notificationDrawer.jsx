@@ -148,10 +148,7 @@ const NotificationDrawer = ({
           </Stack>
 
           {filteredNotification.length > 0 ? (
-            <div
-              style={{ flex: 1, overflow: "auto" }}
-              className="hide-scrollbar"
-            >
+            <div style={{ flex: 1, overflow: "auto" }}>
               <Stack spacing="10px">
                 {filteredNotification.map((item, index) => {
                   return (
