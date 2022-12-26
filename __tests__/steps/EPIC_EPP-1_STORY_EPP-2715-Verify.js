@@ -1244,7 +1244,7 @@ defineFeature(feature, (test) => {
 
     and("User should see the widget with upcoming appointments", () => {
       const patientInfo = container.getByText("Patient Information");
-      const doctorName = container.getByText(/Steve Adam/i);
+      const doctorName = container.getAllByText(/Steve Adam/i)[0];
       expect(patientInfo).toBeInTheDocument();
       expect(doctorName).toBeInTheDocument();
     });
@@ -1328,7 +1328,7 @@ defineFeature(feature, (test) => {
 
     and("User should see the widget with upcoming test/ procedure", () => {
       const titleAppointment = container.getByText("Patient Information");
-      const doctorName = container.getByText(/Steve Adam/i);
+      const doctorName = container.getAllByText(/Steve Adam/i)[0];
       expect(titleAppointment).toBeInTheDocument();
       expect(doctorName).toBeInTheDocument();
     });

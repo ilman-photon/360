@@ -54,10 +54,10 @@ const renderCarePlan = async (status = 200) => {
     </Provider>
   );
   await waitFor(() =>
-    container.getByText("There is no care plan overview document")
+    container.getByText("Your care plan is not yet available. Check back later or contact your office if you have questions regarding your status.")
   );
   expect(
-    container.getByText("There is no care plan overview document")
+    container.getByText("Your care plan is not yet available. Check back later or contact your office if you have questions regarding your status.")
   ).toBeInTheDocument();
 };
 

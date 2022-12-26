@@ -597,6 +597,9 @@ export default function HomePage({ googleApiKey }) {
             isOpen={isOpenCancel}
             OnClickCancel={handleClose}
             OnCancelClicked={handleCancelSchedule}
+            choosenAppointment={appointmentData[0]}
+            appointmentData={appointmentData[0]?.appointmentInfo}
+            onRescheduleClicked={onClickReschedule}
           />
           {scheduleConfirmPopup()}
         </Stack>

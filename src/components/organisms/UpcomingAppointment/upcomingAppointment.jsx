@@ -151,7 +151,8 @@ export function NoAppointment({ onScheduleNewClicked }) {
     <Box>
       <Box className={styles.noAppointmentTitle}>
         <Typography variant="body2" className={styles.noAppointmentTitleText}>
-          You have no upcoming appointments
+          We currently do not have any upcoming appointments scheduled for this
+          account.
         </Typography>
       </Box>
       <Box className={styles.noAppointmentButtonContainer}>

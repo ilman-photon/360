@@ -456,7 +456,7 @@ export default function MessagingPage() {
       }
     });
     setShowDeletedDialog(false);
-    setFloatingMsgText("Message successfully deleted");
+    setFloatingMsgText("Delete successful");
     setOpenFloatingMsg(true);
   };
 
@@ -481,7 +481,7 @@ export default function MessagingPage() {
     // Integrasi API service for this to send the message.
     setAddAttachmentsSource([]);
     setShowNewMessageDialog(false);
-    setFloatingMsgText("Your message has been sent");
+    setFloatingMsgText("Thank you. Your message has been sent.");
     setOpenFloatingMsg(true);
   };
 

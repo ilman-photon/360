@@ -55,6 +55,15 @@ export function formatAppointmentDate(date) {
   }
 }
 
+export function formatRescheduleDate(date) {
+  if (!date) {
+    return "-";
+  } else {
+    const momentDate = new moment(date);
+    return momentDate.format("MM/DD/YYYY, hh:mmA");
+  }
+}
+
 function isValidDate(date) {
   return date instanceof Date && !isNaN(date);
 }

@@ -316,7 +316,7 @@ export default function AppointmentCard({
               className={styles.normalText}
               tabIndex={0}
             >
-              Your appointment is{" "}
+              Reminder:  Your next appointment at {appointment?.providerInfo?.name} is{" "}
               <Box className={styles.boldText} display="inline">
                 {estimationTime}
               </Box>{" "}
@@ -332,7 +332,7 @@ export default function AppointmentCard({
           sx={{ marginTop: "32px" }}
           tabIndex={0}
         >
-          <Typography>{`There are no upcoming appointments`}</Typography>
+          <Typography>{`We currently do not have any upcoming appointments scheduled for this account.`}</Typography>
         </Box>
       );
     }

@@ -464,9 +464,9 @@ export default function Prescriptions({
     } else {
       return (
         <Box className={styles.noPrescription} tabIndex={0}>
-          <Typography
-            className={styles.normalText}
-          >{`There are no active medications`}</Typography>
+          <Typography className={styles.normalText}>
+            {`We currently do not have any medications associated with this account.`}
+          </Typography>
         </Box>
       );
     }
@@ -498,12 +498,15 @@ export default function Prescriptions({
         );
       });
     } else {
+      const customType = type == "contacts" ? "contact lenses" : type;
       contentUI.push(
         <Box className={styles.noPrescription}>
-          <Typography
-            tabIndex={0}
-            className={styles.normalText}
-          >{`There are no active ${type} prescriptions`}</Typography>
+          <Typography tabIndex={0} className={styles.normalText}>
+            {/* {`There are no active ${type} prescriptions`} */}
+            {isViewAll
+              ? `There are currently 0 prescriptions for ${customType}. Check back later or contact your office if you have questions regarding your status.`
+              : `We currently do not have any prescriptions associated with this account.`}
+          </Typography>
         </Box>
       );
     }

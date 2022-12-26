@@ -9,12 +9,16 @@ import constants from "../../../../utils/constants";
 import DialogTitle from "@mui/material/DialogTitle";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
-import { Box, Stack, Typography, Button } from "@mui/material";
+import { Box, Stack, Typography, Button, Link } from "@mui/material";
+import { formatRescheduleDate } from "../../../../utils/dateFormatter";
 
 export default function ModalCancelScheduling({
   isOpen,
   OnClickCancel,
   OnCancelClicked,
+  choosenAppointment,
+  appointmentData,
+  onRescheduleClicked,
 }) {
   const { handleSubmit, control, watch, reset } = useForm({
     defaultValues: {},
@@ -116,16 +120,26 @@ export default function ModalCancelScheduling({
       <Head>
         <title>Cancel Appointment popup </title>
       </Head>
-      <DialogTitle
-        id="alert-dialog-title"
-        tabIndex={0}
-        aria-label={t("cancelTitle")}
-        className={styles.scheduledText}
-        data-testid="title-cancel"
-      >
-        {t("cancelTitle")}
-      </DialogTitle>
       <Box sx={{ width: "auto" }} className={styles.boxModalContents}>
+        <Typography
+          tabIndex={0}
+          aria-label={t("cancelTitle")}
+          variant="bodyMedium"
+          className={styles.scheduledText}
+          data-testid="title-cancel"
+        >
+          {t("cancelTitle2")}
+          {formatRescheduleDate(appointmentData?.date)}
+          {"."}
+          <br />
+          {t("cancelTitle3")}{" "}
+          <Link
+            onClick={() => onRescheduleClicked(choosenAppointment)}
+            sx={{ cursor: "pointer", color:"#0095A9" }}
+          >
+            {`${window.location.href}/appointments/${choosenAppointment?.appointmentId}/reschedule`}
+          </Link>
+        </Typography>
         <DialogContent className={styles.checkBoxContainer}>
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -202,7 +216,7 @@ export default function ModalCancelScheduling({
                         rules={{ required: t("thisFieldRequired") }}
                       />
                     ) : (
-                      <Box sx={{ height: "68px" }} />
+                      <Box sx={{ height: "28px" }} />
                     )}
                   </>
                 );

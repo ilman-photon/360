@@ -60,10 +60,10 @@ describe("MedicalRecordPage", () => {
       </Provider>
     );
     await waitFor(() =>
-      container.getByText("There is no care plan overview document")
+      container.getByText(/Your care plan is not yet available./i)
     );
     expect(
-      container.getByText("There is no care plan overview document")
+      container.getByText(/Your care plan is not yet available./i)
     ).toBeInTheDocument();
   });
 

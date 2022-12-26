@@ -450,9 +450,9 @@ export default function PrescriptionMedication({
         className={[styles.noPrescription, styles.margin].join(" ")}
         tabIndex={0}
       >
-        <Typography
-          className={styles.normalText}
-        >{`There are no active medications`}</Typography>
+        <Typography className={styles.normalText}>
+          {`There are currently 0 prescriptions for medication. Check back later or contact your office if you have questions regarding your status.`}
+        </Typography>
       </Box>
     );
   }

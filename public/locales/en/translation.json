@@ -20,7 +20,7 @@
     "alreadyHaveAnAppointment" : "Already have an appointment?",
     "errorAysncUser": "Login",
     "errorLoginLockedTitle": "Account Locked",
-    "errorLoginLockedMessage": "Your account has been locked after too many failed attempts. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
+    "errorLoginLockedMessage": "Your account is temporarily locked due to excessive failed login attempts. A password reset link has been sent to your preferred method of communication (i.e. email, SMS). If you have any questions, please contact your office.",
     "errorFailedLogin": "The selected username/password is invalid, please try again."
   },
   "Input": {
@@ -58,7 +58,7 @@
     "subtitle": "Answer the following questions to reset your password.",
     "errorIncorrectAnswer": "The submitted response does not match security question. Please contact support.",
     "errorAccountLockTitle": "Account Locked",
-    "errorAccountLock": "Your account has been locked after too many failed attempts. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
+    "errorAccountLock": "Your account is temporarily locked due to excessive failed login attempts. A password reset link has been sent to your preferred method of communication (i.e. email, SMS). If you have any questions, please contact your office.",
     "errorEmptyField": "This field is required to proceed.",
     "continueButton": "Continue",
     "backButtonLink": "Back to Log in"
@@ -178,6 +178,8 @@
     "thanksBarReschedule" : "Thank you for scheduling an appointment with us. We will send a confirmation email/text to you shortly.",
     "patientInformation": "Patient Information",
     "cancelTitle": "Are you sure you want to cancel?",
+    "cancelTitle2": "Please confirm that you would like to cancel your appointment on ",
+    "cancelTitle3": "You can also reschedule your appointment by following the link",
     "cancelReason": "Reason for cancelation",
     "cancelOther": "Enter other reason for cancelation",
     "btnCancel": "Cancel appointment",
@@ -187,7 +189,7 @@
     "incorrectPhone": "The selected phone number is not formatted correctly. Please try again."
   },
   "medicalRecord": {
-    "labelAvaible": "Your lab results are available. Please reach out to your provider. "
+    "labelAvaible": "The results of your test are now available. Please reach out to your provider to learn more."
   },
   "appointment": {
     "baseText": "Enter a city, state, or zip code to view results",
@@ -204,17 +206,18 @@
     "allText": "All",
     "unreadText": "Unread",
     "searchText": "Search",
-    "noResultMessage": "No results found using search criteria. Please try again.",
-    "noReceivedMessages": "You have no received messages",
-    "noSentMessages": "You have no sent messages",
+    "noResultMessage": "No results found. Please update your search criteria and try again.",
+    "noReceivedMessages": "No messages currently available.",
+    "noSentMessages": "No sent messages available.",
+    "noResultMessageFilter": "No results found using search criteria. Please try again.",
     "noDraftMessages": "You have no draft messages",
     "noDeletedMessages": "You have no deleted messages",
-    "titleNoSelectedMessage": "Select an item to read",
-    "subTitleNoSelectedMessage": "Nothing is selected",
+    "titleNoSelectedMessage": "Please select a message",
+    "subTitleNoSelectedMessage": "in order to proceed with your request.",
     "downloadAllAttachmentText": "Download All Attachments",
     "addAttachments": "Add Attachments",
     "writeMessages": "Write a message",
-    "deleteMessage": "Are you sure you want to delete message?",
+    "deleteMessage": "Are you sure you want to delete this message? Deleted messages cannot be recovered.",
     "cancelBtn": "Cancel",
     "deleteBtn": "Delete",
     "newMessageTitle": "New Message",
@@ -223,7 +226,7 @@
     "moveToDraft": "Move to drafts",
     "sendText": "Send",
     "floatingMsgSendSuccess": "All your messages have been successfully deleted",
-    "thisFieldRequired": "This field is required",
+    "thisFieldRequired": "Please update all required fields.",
     "discardBtn": "Discard"
   },
   "imageUpload": {
