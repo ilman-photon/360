@@ -295,7 +295,7 @@ export default function Register({
                 rules={{
                   required: t("requiredField"),
                   pattern: {
-                    value: Regex.nameValidation,
+                    value: Regex.nameValidation && Regex.isMin2Max50Length,
                     message: "Incorrect format",
                   },
                 }}
@@ -337,7 +337,7 @@ export default function Register({
                 rules={{
                   required: t("requiredField"),
                   pattern: {
-                    value: Regex.nameValidation,
+                    value: Regex.nameValidation && Regex.isMin2Max50Length,
                     message: "Incorrect format",
                   },
                 }}
