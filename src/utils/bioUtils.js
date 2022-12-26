@@ -37,3 +37,7 @@ export function formattedAddress(address) {
     </>
   );
 }
+
+export function isEmpty(data) {
+  return data.length === 0;
+}

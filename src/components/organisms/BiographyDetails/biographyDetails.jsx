@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from "react";
 import constants from "../../../utils/constants";
 import GMaps from "../Google/Maps/gMaps";
 import { Api } from "../../../pages/api/api";
-import { formattedAddress } from "../../../utils/bioUtils";
+import { formattedAddress, isEmpty } from "../../../utils/bioUtils";
 
 export default function BiographyDetails({ providerData, googleApiKey }) {
   const aboutRef = useRef(null);
@@ -205,10 +205,14 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
   };
 
   const resetMenuStyle = () => {
-    aboutMenuRef.current.className = styles.menuText;
-    locationMenuRef.current.className = styles.menuText;
-    insurancesMenuRef.current.className = styles.menuText;
-    educationMenuRef.current.className = styles.menuText;
+    if (!isEmpty(providerData.about))
+      aboutMenuRef.current.className = styles.menuText;
+    if (locations && !isEmpty(locations))
+      locationMenuRef.current.className = styles.menuText;
+    if (!isEmpty(providerData.networkInsurance))
+      insurancesMenuRef.current.className = styles.menuText;
+    if (!isEmpty(providerData.education))
+      educationMenuRef.current.className = styles.menuText;
   };
 
   const onClickAbout = () => {
@@ -252,177 +256,222 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
 
   const address = providerData.address;
 
-  return (
-    <Box className={styles.detailedBio}>
+  const renderMenu = () => (
+    <>
       <Box className={styles.stickyMenu}>
         <Box className={styles.stickyMenuContainer} aria-hidden>
-          <Link
-            ref={aboutMenuRef}
-            className={styles.menuText}
-            data-testid={BIOGRAPHY_TEST_ID.about}
-            onClick={onClickAbout}
-          >
-            About
-          </Link>
-          <Link
-            ref={locationMenuRef}
-            className={styles.menuText}
-            data-testid={BIOGRAPHY_TEST_ID.location}
-            onClick={onClickLocation}
-          >
-            Locations
-          </Link>
-          <Link
-            ref={insurancesMenuRef}
-            className={styles.menuText}
-            data-testid={BIOGRAPHY_TEST_ID.insurance}
-            onClick={onClickInsurances}
-          >
-            Insurances
-          </Link>
-          <Link
-            ref={educationMenuRef}
-            className={styles.menuText}
-            data-testid={BIOGRAPHY_TEST_ID.education}
-            onClick={onClickEducation}
-          >
-            Education
-          </Link>
+          {!isEmpty(providerData.about) && (
+            <Link
+              ref={aboutMenuRef}
+              className={styles.menuText}
+              data-testid={BIOGRAPHY_TEST_ID.about}
+              onClick={onClickAbout}
+            >
+              About
+            </Link>
+          )}
+          {locations && !isEmpty(locations) && (
+            <Link
+              ref={locationMenuRef}
+              className={styles.menuText}
+              data-testid={BIOGRAPHY_TEST_ID.location}
+              onClick={onClickLocation}
+            >
+              Locations
+            </Link>
+          )}
+          {!isEmpty(providerData.networkInsurance) && (
+            <Link
+              ref={insurancesMenuRef}
+              className={styles.menuText}
+              data-testid={BIOGRAPHY_TEST_ID.insurance}
+              onClick={onClickInsurances}
+            >
+              Insurances
+            </Link>
+          )}
+          {!isEmpty(providerData.education) && (
+            <Link
+              ref={educationMenuRef}
+              className={styles.menuText}
+              data-testid={BIOGRAPHY_TEST_ID.education}
+              onClick={onClickEducation}
+            >
+              Education
+            </Link>
+          )}
         </Box>
       </Box>
       <Box className={styles.menu}>
         <Divider />
         <Box className={styles.menuContainer}>
-          <Link
-            className={styles.menuText}
-            onClick={onClickAbout}
-            aria-label={`About Tab`}
-            role="Link"
-            tabIndex={0}
-          >
-            About
-          </Link>
-          <Link
-            className={styles.menuText}
-            onClick={onClickLocation}
-            aria-label={`Locations Tab`}
-            role="Link"
-            tabIndex={0}
-          >
-            Locations
-          </Link>
-          <Link
-            className={styles.menuText}
-            onClick={onClickInsurances}
-            aria-label={`Insurances Tab`}
-            role="Link"
-            tabIndex={0}
-          >
-            Insurances
-          </Link>
-          <Link
-            className={styles.menuText}
-            onClick={onClickEducation}
-            aria-label={`Education Tab`}
-            role="Link"
-            tabIndex={0}
-          >
-            Education
-          </Link>
+          {!isEmpty(providerData.about) && (
+            <Link
+              className={styles.menuText}
+              onClick={onClickAbout}
+              aria-label={`About Tab`}
+              role="Link"
+              tabIndex={0}
+            >
+              About
+            </Link>
+          )}
+          {locations && !isEmpty(locations) && (
+            <Link
+              className={styles.menuText}
+              onClick={onClickLocation}
+              aria-label={`Locations Tab`}
+              role="Link"
+              tabIndex={0}
+            >
+              Locations
+            </Link>
+          )}
+          {!isEmpty(providerData.networkInsurance) && (
+            <Link
+              className={styles.menuText}
+              onClick={onClickInsurances}
+              aria-label={`Insurances Tab`}
+              role="Link"
+              tabIndex={0}
+            >
+              Insurances
+            </Link>
+          )}
+          {!isEmpty(providerData.education) && (
+            <Link
+              className={styles.menuText}
+              onClick={onClickEducation}
+              aria-label={`Education Tab`}
+              role="Link"
+              tabIndex={0}
+            >
+              Education
+            </Link>
+          )}
         </Box>
         <Divider />
       </Box>
+    </>
+  );
+
+  return (
+    <Box className={styles.detailedBio}>
+      {renderMenu()}
       <Stack spacing={3} className={styles.detailedBioContainer}>
-        <Typography variant="h3" ref={aboutRef} tabIndex={0}>
-          {`About ${providerData.name}`}
-        </Typography>
-        <Typography variant="body2" tabIndex={0}>
-          {providerData.about}
-        </Typography>
+        {!isEmpty(providerData.about) && (
+          <>
+            <Typography variant="h3" ref={aboutRef} tabIndex={0}>
+              {`About ${providerData.name}`}
+            </Typography>
+            <Typography variant="body2" tabIndex={0}>
+              {providerData.about}
+            </Typography>
+          </>
+        )}
         <Typography variant="h3" tabIndex={0}>
           Gender
         </Typography>
         <Typography variant="body2" tabIndex={0}>
           {providerData.gender}
         </Typography>
-        <Typography variant="h3" ref={locationRef} tabIndex={0}>
-          Locations
-        </Typography>
 
-        {locations && locations.length > 0 && (
-          <Box className={styles.mapContainer}>
-            <Box className={styles.map}>
-              <GMaps
-                apiKey={googleApiKey}
-                providerListData={locations}
-                disable={true}
-              />
+        {locations && !isEmpty(locations) && (
+          <>
+            <Typography variant="h3" ref={locationRef} tabIndex={0}>
+              Locations
+            </Typography>
+            <Box className={styles.mapContainer}>
+              <Box className={styles.map}>
+                <GMaps
+                  apiKey={googleApiKey}
+                  providerListData={locations}
+                  disable={true}
+                />
+              </Box>
+              {renderAddress(address)}
             </Box>
-            {renderAddress(address)}
-          </Box>
+          </>
         )}
 
-        <Typography tabIndex={0} aria-label={"Languages heading"} variant="h3">
-          Languages
-        </Typography>
-        {providerData.language.length > 0 && (
-          <Typography variant="body2" tabIndex={0}>
-            {providerData.language.map((item, index) => {
-              const isLastIndex = providerData.language.length - 1 === index;
-              if (!isLastIndex && item !== "") {
-                return `${item}, `;
-              } else {
-                return item;
-              }
-            })}
-          </Typography>
+        {!isEmpty(providerData.language) && (
+          <>
+            <Typography
+              tabIndex={0}
+              aria-label={"Languages heading"}
+              variant="h3"
+            >
+              Languages
+            </Typography>
+            <Typography variant="body2" tabIndex={0}>
+              {providerData.language.map((item, index) => {
+                const isLastIndex = providerData.language.length - 1 === index;
+                if (!isLastIndex && item !== "") {
+                  return `${item}, `;
+                } else {
+                  return item;
+                }
+              })}
+            </Typography>
+          </>
         )}
-        <Typography
-          variant="h3"
-          aria-label={"In-network insurances heading"}
-          ref={insurancesRef}
-          tabIndex={0}
-        >
-          In-network insurances
-        </Typography>
-        {providerData.networkInsurance && renderInsurances()}
 
-        <Typography
-          variant="h3"
-          ref={educationRef}
-          tabIndex={0}
-          aria-label={"Education heading"}
-        >
-          Education
-        </Typography>
-        <Box className={styles.educationContainer}>
-          {providerData.education &&
-            providerData.education.map((education, index) => {
-              return (
-                <Typography variant="body2" key={index} tabIndex={0}>
-                  {education}
-                </Typography>
-              );
-            })}
-        </Box>
+        {!isEmpty(providerData.networkInsurance) && (
+          <>
+            <Typography
+              variant="h3"
+              aria-label={"In-network insurances heading"}
+              ref={insurancesRef}
+              tabIndex={0}
+            >
+              In-network insurances
+            </Typography>
+            {renderInsurances()}
+          </>
+        )}
 
-        <Typography
-          variant="h3"
-          tabIndex={0}
-          aria-label={"Memberships and Afilliations"}
-        >
-          Memberships and Afilliations
-        </Typography>
-        <Box className={styles.educationContainer}>
-          {providerData.membershipsAffiliation &&
-            providerData.membershipsAffiliation.map((membership, index) => {
-              return (
-                <Typography key={index} variant="body2" tabIndex={0}>
-                  {membership}
-                </Typography>
-              );
-            })}
-        </Box>
+        {!isEmpty(providerData.education) && (
+          <>
+            <Typography
+              variant="h3"
+              ref={educationRef}
+              tabIndex={0}
+              aria-label={"Education heading"}
+            >
+              Education
+            </Typography>
+            <Box className={styles.educationContainer}>
+              {providerData.education.map((education, index) => {
+                return (
+                  <Typography variant="body2" key={index} tabIndex={0}>
+                    {education}
+                  </Typography>
+                );
+              })}
+            </Box>
+          </>
+        )}
+
+        {!isEmpty(providerData.membershipsAffiliation) && (
+          <>
+            <Typography
+              variant="h3"
+              tabIndex={0}
+              aria-label={"Memberships and Afilliations"}
+            >
+              Memberships and Afilliations
+            </Typography>
+            <Box className={styles.educationContainer}>
+              {providerData.membershipsAffiliation.map((membership, index) => {
+                return (
+                  <Typography key={index} variant="body2" tabIndex={0}>
+                    {membership}
+                  </Typography>
+                );
+              })}
+            </Box>
+          </>
+        )}
       </Stack>
     </Box>
   );

@@ -11,9 +11,16 @@ import {
   submitFilter,
 } from "../../../__mocks__/mockResponse";
 
+const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
+
 describe("Render My Care Team", () => {
   let container;
   const mock = new MockAdapter(axios);
+  
+  useGeolocated.mockReturnValue({
+    coords: { latitude: 36.8493937, longitude: -76.0106753 },
+    isGeolocationEnabled: true,
+  });
 
   const providerListMock = [
     {

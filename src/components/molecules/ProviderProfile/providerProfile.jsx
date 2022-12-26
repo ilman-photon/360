@@ -25,21 +25,20 @@ const renderSpecialistList = (providerData) => {
           columnCount: providerData.specialties.length > 1 ? 2 : 1,
         }}
       >
-        {providerData.specialties &&
-          providerData.specialties.map((item, index) => {
-            return (
-              <li key={index}>
-                <Typography
-                  variant="body2"
-                  className={index === 3 ? styles.newColumn : ""}
-                  tabIndex={0}
-                  aria-label={item}
-                >
-                  {item}
-                </Typography>
-              </li>
-            );
-          })}
+        {providerData.specialties.map((item, index) => {
+          return (
+            <li key={index}>
+              <Typography
+                variant="body2"
+                className={index === 3 ? styles.newColumn : ""}
+                tabIndex={0}
+                aria-label={item}
+              >
+                {item}
+              </Typography>
+            </li>
+          );
+        })}
       </ul>
     </Box>
   );
@@ -256,7 +255,7 @@ export default function ProviderProfile({
                   },
                 }}
               >
-                {renderSpecialistList(providerData)}
+                {providerData.specialties && renderSpecialistList(providerData)}
               </Box>
             )}
 
@@ -273,7 +272,9 @@ export default function ProviderProfile({
           },
         }}
       >
-        {isBio && renderSpecialistList(providerData)}
+        {isBio &&
+          providerData.specialties &&
+          renderSpecialistList(providerData)}
       </Box>
       {/* ---------------------------------- */}
     </Box>

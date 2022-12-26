@@ -9,7 +9,11 @@ import CareTeamCard from "../CareTeamCard/careTeamCard";
 import InfiniteScroll from "react-infinite-scroller";
 import { useState } from "react";
 
-export default function DoctorList({ providerData, showNumberResult }) {
+export default function DoctorList({
+  providerData,
+  showNumberResult,
+  coordinate,
+}) {
   const itemsPerPage = providerData.length < 6 ? providerData.length : 6;
   const [hasMore, setHasMore] = useState(true);
   const [records, setrecords] = useState(itemsPerPage);
@@ -48,7 +52,7 @@ export default function DoctorList({ providerData, showNumberResult }) {
                 (providerData.length === 1 || isMobile) && "100% !important",
             }}
           >
-            <CareTeamCard provider={providerItem[i]} />
+            <CareTeamCard provider={providerItem[i]} coordinate={coordinate} />
           </Grid>
         );
       } else {

@@ -934,7 +934,8 @@ export async function onCallSubmitFilterAPI(
   requestData,
   filterSuggestionData,
   dispatch,
-  router
+  router,
+  currentcoord
 ) {
   const startDateRequest = getMondayOfCurrentWeek(requestData.date);
   const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
@@ -947,10 +948,7 @@ export async function onCallSubmitFilterAPI(
         startDateRequest,
         endDateRequest,
         process.env.NEXT_PUBLIC_EMBED_API,
-        {
-          lat: 0,
-          lng: 0,
-        }
+        currentcoord
       );
       if (response?.offices?.length > 0) {
         dispatch(setProviderListData(parseProviderData?.listOfProvider));

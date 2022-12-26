@@ -22,6 +22,7 @@ import {
 } from "../../__mocks__/commonSteps";
 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
 
 jest.mock("@react-google-maps/api", () => ({
   useLoadScript: () => ({
@@ -41,6 +42,11 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
   const TEST_ID = constants.TEST_ID.BIOGRAPHY_TEST_ID;
   const TEST_ID_RAW = constants.TEST_ID;
+
+  useGeolocated.mockReturnValue({
+    coords: { latitude: 36.8493937, longitude: -76.0106753 },
+    isGeolocationEnabled: true,
+  });
 
   const providerListMock = [
     {
@@ -810,13 +816,6 @@ defineFeature(feature, (test) => {
         expect(container.getByText(/Gender/i)).toBeInTheDocument();
         expect(container.getByText(/Primary Address/i)).toBeInTheDocument();
         expect(container.getByText(/Languages/i)).toBeInTheDocument();
-        expect(
-          container.getAllByText(/In-network insurances/i)[0]
-        ).toBeInTheDocument();
-        expect(container.getAllByText(/Education/i)[1]).toBeInTheDocument();
-        expect(
-          container.getByText(/Memberships and Afilliations/i)
-        ).toBeInTheDocument();
       }
     );
   });
@@ -906,13 +905,6 @@ defineFeature(feature, (test) => {
         expect(container.getByText(/Gender/i)).toBeInTheDocument();
         expect(container.getByText(/Primary Address/i)).toBeInTheDocument();
         expect(container.getByText(/Languages/i)).toBeInTheDocument();
-        expect(
-          container.getAllByText(/In-network insurances/i)[0]
-        ).toBeInTheDocument();
-        expect(container.getAllByText(/Education/i)[1]).toBeInTheDocument();
-        expect(
-          container.getByText(/Memberships and Afilliations/i)
-        ).toBeInTheDocument();
       }
     );
 

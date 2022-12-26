@@ -517,7 +517,7 @@ defineFeature(feature, (test) => {
                                 fireEvent.click(container.getByTestId("update-btn"))
                         }, 500);
                         await waitFor(() => {
-                                container.getByText(/Are you sure to change password?/i)
+                                container.getAllByText(/Are you sure to change password?/i)
                         })
                 });
 

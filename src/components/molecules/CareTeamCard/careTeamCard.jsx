@@ -14,7 +14,7 @@ import {
   onCallSubmitFilterAPI,
 } from "../../../utils/appointment";
 
-export default function CareTeamCard({ provider }) {
+export default function CareTeamCard({ provider, coordinate }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const insuranceCarrierList = useSelector((state) => state.provider.list);
@@ -57,7 +57,13 @@ export default function CareTeamCard({ provider }) {
       dispatch(setFilterData(filterData));
       dispatch(setIsFilterApplied(true));
 
-      onCallSubmitFilterAPI(filterData, filterSuggestion, dispatch, router);
+      onCallSubmitFilterAPI(
+        filterData,
+        filterSuggestion,
+        dispatch,
+        router,
+        coordinate
+      );
     });
   };
 

@@ -17,6 +17,8 @@ const feature = loadFeature(
   }
 );
 
+const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
+
 jest.mock("@react-google-maps/api", () => ({
   useLoadScript: () => ({
     isLoaded: true,
@@ -30,6 +32,10 @@ defineFeature(feature, (test) => {
   let container;
   const element = document.createElement("div");
   const mock = new MockAdapter(axios);
+  useGeolocated.mockReturnValue({
+    coords: { latitude: 36.8493937, longitude: -76.0106753 },
+    isGeolocationEnabled: true,
+  });
   const TEST_ID = constants.TEST_ID.BIOGRAPHY_TEST_ID;
   const userData = {
     designation: "MD",
@@ -40,6 +46,7 @@ defineFeature(feature, (test) => {
     mi: "N",
     dob: "08/29/2004",
     email: "n@n.com",
+    note: "test",
     sex: {
       key: 11,
       name: "M",
