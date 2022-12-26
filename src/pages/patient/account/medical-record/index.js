@@ -264,11 +264,11 @@ export default function MedicalRecordPage() {
   const noResultText = () => {
     switch (watchedCategory) {
       case "test-lab-result":
-        return "There are no tests or lab results for you now.";
+        return "There are currently 0 test results available. Check back later or contact your office if you have questions regarding your status.";
       case "care-plan-overview":
-        return "There is no care plan overview document";
+        return "Your care plan is not yet available. Check back later or contact your office if you have questions regarding your status.";
       default:
-        return "There are no tests or lab results for you now.";
+        return "There are currently 0 test results available. Check back later or contact your office if you have questions regarding your status.";
     }
   };
 

@@ -176,7 +176,7 @@ export const FilterResultContainer = ({
                     >
                       <EmptyResult
                         isEmpty={true}
-                        message={t("noResultMessage")}
+                        message={t("noResultMessageFilter")}
                       />
                     </Box>
                   )}

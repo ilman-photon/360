@@ -158,11 +158,14 @@ export default function PastAppointment({ data }) {
       <Box className={styles.noAppointments}>
         <Typography
           tabIndex={0}
-          ariaLabel={"You have no past appointments"}
+          ariaLabel={
+            "We currently do not have any past appointments scheduled for this account."
+          }
           className={styles.noPastAppointment}
           variant="body2"
         >
-          You have no past appointments
+          We currently do not have any past appointments scheduled for this
+          account.
         </Typography>
       </Box>
     ) : (

@@ -47,7 +47,11 @@ import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
-import { mmddyyDateFormat, hourDateFormat } from "../../../utils/dateFormatter";
+import {
+  mmddyyDateFormat,
+  hourDateFormat,
+  formatRescheduleDate,
+} from "../../../utils/dateFormatter";
 import { addToCalendar } from "../../../utils/addToCalendar";
 import Head from "next/head";
 import { loginProps } from "../login";
@@ -672,6 +676,7 @@ export default function ScheduleAppointmentPage() {
         sx={{
           ".MuiPaper-root": {
             minWidth: { xs: "90%", sm: "500px" },
+            maxWidth: {sm: "623px !important"}
           },
           ".MuiDialogActions-root": {
             padding: 2,
@@ -684,7 +689,11 @@ export default function ScheduleAppointmentPage() {
             id="alert-dialog-description"
             sx={{ color: colors.darkGreen, fontSize: "22px" }}
           >
-            Are you sure you want to reschedule?
+            Please confirm that you would like to reschedule your appointment on{" "}
+            {formatRescheduleDate(
+              appointmentScheduleData.appointmentInfo.date
+            )}
+            ?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

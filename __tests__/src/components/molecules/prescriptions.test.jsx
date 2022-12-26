@@ -198,7 +198,7 @@ describe("Prescription Medication test", () => {
       />);
     const contactTab = container.getByTestId("menu-medication")
     fireEvent.click(contactTab)
-    const viewPresMed = container.getByText(/There are no active medications/i)
+    const viewPresMed = container.getByText(/We currently do not have/i)
     expect(viewPresMed).toBeInTheDocument()
   })
 

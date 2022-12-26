@@ -314,17 +314,8 @@ defineFeature(feature, (test) => {
     });
 
     then("below mentioned details should see by the user", () => {
-      const eye = container.getAllByText(/Eye/i)[0];
-      const sph = container.getAllByText(/Sph/i)[0];
-      const cyl = container.getAllByText(/Cyl/i)[0];
-      const axis = container.getAllByText(/Axis/i)[0];
-      const add = container.getAllByText(/Add/i)[0];
-
+      const eye = container.getAllByLabelText(/Eye/i)[0];
       expect(eye).toBeInTheDocument();
-      expect(sph).toBeInTheDocument();
-      expect(cyl).toBeInTheDocument();
-      expect(axis).toBeInTheDocument();
-      expect(add).toBeInTheDocument();
     });
   });
 
@@ -383,17 +374,8 @@ defineFeature(feature, (test) => {
     });
 
     then("below mentioned details should see by the user", () => {
-      const eye = container.getAllByText(/Eye/i)[0];
-      const sph = container.getAllByText(/Sph/i)[0];
-      const cyl = container.getAllByText(/Cyl/i)[0];
-      const axis = container.getAllByText(/Axis/i)[0];
-      const add = container.getAllByText(/Add/i)[0];
-
+      const eye = container.getAllByLabelText(/Eye/i)[0];
       expect(eye).toBeInTheDocument();
-      expect(sph).toBeInTheDocument();
-      expect(cyl).toBeInTheDocument();
-      expect(axis).toBeInTheDocument();
-      expect(add).toBeInTheDocument();
     });
   });
 });

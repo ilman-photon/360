@@ -232,6 +232,9 @@ export default function Appointments() {
         isOpen={modalCancel}
         OnClickCancel={handleClose}
         OnCancelClicked={handleCancelSchedule}
+        appointmentData={choosenAppointment?.appointmentInfo}
+        onRescheduleClicked={onRescheduleClicked}
+        choosenAppointment={choosenAppointment}
       />
     </>
   );

@@ -329,13 +329,10 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getAllByText(/Contacts Prescription/i));
     });
 
-    then(
-      "patient should see the verbiage There are no prescriptions.",
-      async () => {
-        // await waitFor(() => container.getByText(/There are no active/i));
-        const button = container.getByText(/There are no active/i);
-        expect(button).toBeInTheDocument();
-      }
-    );
+    then("patient should see the verbiage There are no prescriptions.", async() => {
+      // await waitFor(() => container.getByText(/There are no active/i));
+      const button = container.getByText(/There are currently 0/i);
+      expect(button).toBeInTheDocument();
+    });
   });
 });

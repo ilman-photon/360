@@ -82,14 +82,14 @@ export const getDescription = (data) => {
     case "prescription-refill":
       return (
         <>
-          Your <b>prescription refill</b> is available now
+          Your requested <b>prescription refill</b> is now available
         </>
       );
     case "appointment-first-reminder":
     case "appointment":
       return (
         <>
-          You have an <b>{getAppointmentType(data.text)}</b> appointment{" "}
+          Remember: You have an <b>{getAppointmentType(data.text)}</b> appointment{" "}
           {getAppointmentTime(data.text)}
         </>
       );
@@ -97,7 +97,7 @@ export const getDescription = (data) => {
     case "appointment-one":
       return (
         <>
-          You have an <b>{getAppointmentType(data.text)}</b> appointment{" "}
+          Remember{":"} You have an <b>{getAppointmentType(data.text)}</b> appointment{" "}
           {getAppointmentTime(data.text)}
         </>
       );
@@ -111,13 +111,13 @@ export const getDescription = (data) => {
     case "message":
       return (
         <>
-          You have received a <b>new message</b> from <b>John Roe, O.D.</b>
+          Please note, you have received a <b>new message</b> from <b>John Roe, O.D.</b>
         </>
       );
     case "invoice":
       return (
         <>
-          There is a new <b>outstanding invoice</b>
+          A new <b>outstanding invoice</b> is available for review.
         </>
       );
     case "appointment-summary":
@@ -142,30 +142,30 @@ export const getDescription = (data) => {
     case "prescription-aspirin":
       return (
         <>
-          Your <b>Aspirin prescription</b> is now available.
+          Your <b>Aspirin prescription</b> is now available for pick up.
         </>
       );
     case "contacts":
     case "contact-lens":
       return (
         <>
-          Your <b>Contact Lens</b> are available for pickup.
+          Your <b>Contact Lens</b> are available for pickup at <b>Location, Address. House of Operation</b>.
         </>
       );
     case "glasses":
       return (
         <>
-          Your <b>Glasses</b> are available for pickup.
+          Your <b>Glasses</b> are available for pickup at <b>Location, Address. House of Operation</b>.
         </>
       );
     case "aspirin":
       return (
         <>
-          Hi! It is time to take your medication: <b>Aspirin</b>
+          This is your friendly reminder that is time to take your medication: <b>Aspirin</b>. If you have already taken your prescribed dosage by the provider then please disregard this reminder.  Thank you.
         </>
       );
     default:
-      return <>{data.text}</>;
+      return <>-</>;
   }
 };
 

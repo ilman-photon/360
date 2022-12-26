@@ -58,7 +58,8 @@ export default function PrescriptionPage() {
           const data = JSON.parse(JSON.stringify(prescriptionData));
           data.medications[index].status = "";
           setPrescriptionData(data);
-          response.message = "Your refill request has been canceled";
+          response.message =
+            "You have successfully cancelled your request to refill your prescription. If you have any questions, please contact your office.";
           setRequestRefillResponse(response);
           resetRequestRefillResponse();
         })
@@ -92,7 +93,8 @@ export default function PrescriptionPage() {
             response.deliveryDate
           );
           setPrescriptionData(data);
-          response.message = "Your refill request has been submitted";
+          response.message =
+            "You have successfully submitted a request to refill your prescription. Check back later or contact your office if you have questions regarding your status.";
           setRequestRefillResponse(response);
           resetRequestRefillResponse();
         })
