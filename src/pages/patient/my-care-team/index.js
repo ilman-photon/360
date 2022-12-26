@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useGeolocated } from "react-geolocated";
 import { Provider } from "react-redux";
 import CareTeamCard from "../../../components/molecules/CareTeamCard/careTeamCard";
 import MyCareTeamLayout from "../../../components/templates/myCareTeamLayout";
@@ -10,6 +11,10 @@ import { Api } from "../../api/api";
 export default function MyCareTeamPage() {
   const [isRequested, setIsRequested] = useState(false);
   const [providerData, setProviderData] = useState();
+  const [currentcoord, setCurrentcoord] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
 
   let isRequest = false;
 
@@ -60,6 +65,19 @@ export default function MyCareTeamPage() {
     !isRequest && !isRequested && getProviderList();
   }, [getProviderList, isRequest, isRequested]);
 
+  const { coords } = useGeolocated({
+    positionOptions: {
+      enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+  });
+
+  useEffect(() => {
+    if (coords) {
+      setCurrentcoord(coords);
+    }
+  }, [coords]);
+
   return (
     <>
       {isRequested && (
@@ -92,7 +110,7 @@ export default function MyCareTeamPage() {
             >
               {providerData.map((provider, index) => (
                 <Grid item xs={12} sm={6} key={index}>
-                  <CareTeamCard provider={provider} />
+                  <CareTeamCard provider={provider} coordinate={currentcoord} />
                 </Grid>
               ))}
             </Grid>

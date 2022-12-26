@@ -13,6 +13,7 @@ import {
 } from "../../__mocks__/mockResponse";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { defaultValidation, renderLogin } from "../../__mocks__/commonSteps";
+const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
 
 const feature = loadFeature(
     "./__tests__/feature/Patient Portal/Sprint7/EPP-1708.feature"
@@ -21,6 +22,11 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
     let container;
     const mock = new MockAdapter(axios);
+
+    useGeolocated.mockReturnValue({
+      coords: { latitude: 36.8493937, longitude: -76.0106753 },
+      isGeolocationEnabled: true,
+    });
 
     const providerListMock = [
         {

@@ -1,5 +1,6 @@
 import { Box, CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useGeolocated } from "react-geolocated";
 import { Provider } from "react-redux";
 import DoctorList from "../../../components/molecules/DoctorList/doctorList";
 import EmptyResult from "../../../components/molecules/DoctorList/emptyResult";
@@ -23,6 +24,10 @@ export default function SearchDoctorPage() {
   const [filter, setFilter] = useState();
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [currentcoord, setCurrentcoord] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
 
   let isRequest = false;
 
@@ -190,6 +195,19 @@ export default function SearchDoctorPage() {
     locationList,
   ]);
 
+  const { coords } = useGeolocated({
+    positionOptions: {
+      enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+  });
+
+  useEffect(() => {
+    if (coords) {
+      setCurrentcoord(coords);
+    }
+  }, [coords]);
+
   const removeFilter = async (data) => {
     const id = activeFilter.findIndex((x) => x.name === data.name);
     if (id > -1) {
@@ -210,6 +228,7 @@ export default function SearchDoctorPage() {
           <DoctorList
             providerData={findData}
             showNumberResult={showNumberResult}
+            coordinate={currentcoord}
           />
         ) : (
           <EmptyResult />

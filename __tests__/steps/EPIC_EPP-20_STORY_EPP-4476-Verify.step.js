@@ -23,6 +23,7 @@ import {
 } from "../../__mocks__/commonSteps";
 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
 
 jest.mock("@react-google-maps/api", () => ({
   useLoadScript: () => ({
@@ -42,6 +43,11 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
   const TEST_ID = constants.TEST_ID.BIOGRAPHY_TEST_ID;
   const TEST_ID_RAW = constants.TEST_ID;
+
+  useGeolocated.mockReturnValue({
+    coords: { latitude: 36.8493937, longitude: -76.0106753 },
+    isGeolocationEnabled: true,
+  });
 
   const providerListMock = [
     {
@@ -471,59 +477,76 @@ defineFeature(feature, (test) => {
     dob: "02/07/1971",
     email: "eyecare@gmail.com",
     sex: {
-      key: 7,
+      key: 11,
       name: "M",
       order: 1,
       notes: "",
     },
+    id: "143365",
     available: true,
-    note: "Test",
-    age: "51",
+    age: "18",
     address: {
-      addressLine1: "568 Allens Mill Rd",
-      city: "Yorktown",
+      addressLine1: "12 15th St SW",
+      city: "Roanoke",
       state: "VA",
-      zip: "23692",
+      zip: "24016",
     },
-    homePhone: "4981261115",
-    cellPhone: "2812942993",
-    workPhone: "2812942993",
+    homePhone: "3543456557",
+    workPhone: "7565456457",
+    cellPhone: "7565456457",
     inHouse: false,
+    note: "test",
     providerDetails: {
       isProvider: true,
       isExternalProvider: false,
-      materialRate: "0",
+      directAddress: "a@a.com",
       drFirstCredentialDetails: {
         drFirstCredential: false,
         username: "",
         password: "",
         signature: "",
       },
-      npi: "1134296023",
-      professionalEq: "1234",
-      opticalEq: "12",
-      surgicalEq: "344",
-      contactEq: "12346",
-      provider: "",
-      onlineProvider: true,
+      npi: "4621189180",
+      professionalEq: "8567567568",
+      opticalEq: "7657645646",
+      surgicalEq: "2432435467",
+      contactEq: "8576567567",
+      provider: "4654576587",
+      onlineProvider: false,
       license: [],
       deaIds: [],
-      taxonomyCode: "207ND0101X",
-      classification: "Dermatology",
-      specialization: "MOHS-Micrographic Surgery",
-      rating: 9,
-      language1: "Arabic",
-      language2: "Chinese",
-      language3: "German",
+      taxonomyCode: "1223P0106X",
+      classification: "Dentist",
+      specialization: "Oral and Maxillofacial Pathology",
+      rating: 2,
+      about: "naresh",
+      language1: "English",
+      language2: "telugu",
+      inNetworkInsurance: "yes",
+      education: "MBA",
+      membershipAndAffiliation: "dummy",
       profilePhoto: {
         digitalAsset: {
-          uid: "1ffaf737-57ac-4660-8a32-f0650e2285ae",
+          uid: "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
           fileName: "test",
           assetUrl: "/v1/patient",
           _version: "d72b0b16-99ab-4ae4-aba3-13b81930b77a",
         },
       },
     },
+    networkInsurance: [
+      "insurance1",
+      "insurance2",
+      "insurance3",
+      "insurance4",
+      "insurance5",
+      "insurance6",
+      "insurance7",
+      "insurance8",
+      "insurance9",
+      "insurance10",
+      "insurance111",
+    ],
     offices: [
       {
         name: "Ballwin",
@@ -542,16 +565,6 @@ defineFeature(feature, (test) => {
         _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
       },
     ],
-    status: "UPDATED",
-    managerialAdjustments: false,
-    overrideExpiredPromo: false,
-    sources: [],
-    _links: {
-      self: {
-        href: "/v1/employees/b579b0d1-0c93-4db4-8ca8-294a60e718e4",
-      },
-    },
-    _id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
   };
 
   const imageMock = {

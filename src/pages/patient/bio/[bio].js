@@ -16,6 +16,7 @@ import {
   onCalledGetAppointmentTypesAPI,
   onCallSubmitFilterAPI,
 } from "../../../utils/appointment";
+import { useGeolocated } from "react-geolocated";
 
 export async function getServerSideProps(context) {
   const { bio } = context.query;
@@ -37,6 +38,10 @@ export function sortPrimaryAddress(address) {
 }
 export default function Bio({ embedApi, bio }) {
   const [providerData, setProviderData] = useState();
+  const [currentcoord, setCurrentcoord] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
   const insuranceCarrierList = useSelector((state) => state.provider.list);
 
   const dispatch = useDispatch();
@@ -111,6 +116,19 @@ export default function Bio({ embedApi, bio }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerData, isRequest]);
 
+  const { coords } = useGeolocated({
+    positionOptions: {
+      enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+  });
+
+  useEffect(() => {
+    if (coords) {
+      setCurrentcoord(coords);
+    }
+  }, [coords]);
+
   const navigateToScheduleAppointment = (data) => {
     const address = data.address;
     const addressData = Array.isArray(address) ? address[0] : address;
@@ -141,7 +159,13 @@ export default function Bio({ embedApi, bio }) {
       dispatch(setFilterData(filterData));
       dispatch(setIsFilterApplied(true));
 
-      onCallSubmitFilterAPI(filterData, filterSuggestion, dispatch, router);
+      onCallSubmitFilterAPI(
+        filterData,
+        filterSuggestion,
+        dispatch,
+        router,
+        currentcoord
+      );
     });
   };
 

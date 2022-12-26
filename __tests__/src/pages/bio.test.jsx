@@ -15,6 +15,7 @@ import {
 import { createMatchMedia } from "../../../__mocks__/commonSteps";
 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useGeolocated = jest.spyOn(require("react-geolocated"), "useGeolocated");
 
 jest.mock("@react-google-maps/api", () => ({
   useLoadScript: () => ({
@@ -28,6 +29,10 @@ jest.mock("@react-google-maps/api", () => ({
 describe("Render Bio", () => {
   let container;
   const mock = new MockAdapter(axios);
+  useGeolocated.mockReturnValue({
+    coords: { latitude: 36.8493937, longitude: -76.0106753 },
+    isGeolocationEnabled: true,
+  });
   const TEST_ID = constants.TEST_ID.BIOGRAPHY_TEST_ID;
   const userData = {
     designation: "MD",
@@ -57,6 +62,7 @@ describe("Render Bio", () => {
     workPhone: "7565456457",
     cellPhone: "7565456457",
     inHouse: false,
+    note: "test",
     providerDetails: {
       isProvider: true,
       isExternalProvider: false,
