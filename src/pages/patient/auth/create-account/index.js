@@ -51,6 +51,7 @@ export default function CreateAccountPage() {
       );
     } catch (err) {
       console.error({ err });
+      setIsRegisterLoading(false);
       if (err.ResponseCode) {
         const errorMessage = RESPONSE_MESSAGES[err.ResponseCode || 3002];
 
@@ -63,8 +64,6 @@ export default function CreateAccountPage() {
           })
         );
       }
-    } finally {
-      setIsRegisterLoading(false);
     }
   };
 
