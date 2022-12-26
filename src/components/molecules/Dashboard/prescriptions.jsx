@@ -526,7 +526,13 @@ export default function Prescriptions({
 
   function renderSimpleMedicationUI() {
     return (
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+        }}
+      >
         <Box
           className={[
             styles.flexDisplay,
@@ -545,35 +551,44 @@ export default function Prescriptions({
               : `Medications Prescriptions`}
           </Typography>
         </Box>
-        {renderMedicationUI(prescription.medications.active)}
-        {!isViewAll && (
-          <Box
-            className={[styles.flexDisplay, styles.viewPrescription]}
-            onClick={() => {
-              onViewPrescriptions(2);
-            }}
-            data-testid={"view-prescription-medication"}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
+        <Box
+          sx={{
+            flex: "1",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          {renderMedicationUI(prescription.medications.active)}
+          {!isViewAll && (
+            <Box
+              className={[styles.flexDisplay, styles.viewPrescription]}
+              onClick={() => {
                 onViewPrescriptions(2);
-              }
-            }}
-          >
-            <Link
-              className={styles.viewPrescriptionText}
-              sx={{
-                color: "#008294",
-                fontFamily: "Inter",
-                paddingRight: "7px",
               }}
-              tabIndex={0}
-              {...getLinkAria("View prescriptions option")}
+              data-testid={"view-prescription-medication"}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  onViewPrescriptions(2);
+                }
+              }}
             >
-              View prescriptions
-            </Link>
-            <KeyboardArrowRightIcon />
-          </Box>
-        )}
+              <Link
+                className={styles.viewPrescriptionText}
+                sx={{
+                  color: "#008294",
+                  fontFamily: "Inter",
+                  paddingRight: "7px",
+                }}
+                tabIndex={0}
+                {...getLinkAria("View prescriptions option")}
+              >
+                View prescriptions
+              </Link>
+              <KeyboardArrowRightIcon />
+            </Box>
+          )}
+        </Box>
       </Box>
     );
   }
@@ -582,7 +597,13 @@ export default function Prescriptions({
     switch (value) {
       case 0:
         return (
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+            }}
+          >
             <Box
               className={[
                 styles.flexDisplay,
@@ -606,42 +627,57 @@ export default function Prescriptions({
                   : ``}
               </Typography>
             </Box>
-            <Box ref={containerGlasses}>
-              {renderPrescriptionTabUI(prescription.glasses, "glasses")}
-            </Box>
-            {!isViewAll && (
-              <Box
-                className={[styles.flexDisplay, styles.viewPrescription]}
-                onClick={() => {
-                  onViewPrescriptions(0);
-                }}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    onViewPrescriptions(0);
-                  }
-                }}
-                data-testid={"view-prescription-glasses"}
-              >
-                <Link
-                  className={styles.viewPrescriptionText}
-                  sx={{
-                    color: "#008294",
-                    fontFamily: "Inter",
-                    paddingRight: "7px",
-                  }}
-                  tabIndex={0}
-                  {...getLinkAria("View prescriptions option")}
-                >
-                  View prescriptions
-                </Link>
-                <KeyboardArrowRightIcon />
+            <Box
+              sx={{
+                flex: "1",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box ref={containerGlasses}>
+                {renderPrescriptionTabUI(prescription.glasses, "glasses")}
               </Box>
-            )}
+              {!isViewAll && (
+                <Box
+                  className={[styles.flexDisplay, styles.viewPrescription]}
+                  onClick={() => {
+                    onViewPrescriptions(0);
+                  }}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      onViewPrescriptions(0);
+                    }
+                  }}
+                  data-testid={"view-prescription-glasses"}
+                >
+                  <Link
+                    className={styles.viewPrescriptionText}
+                    sx={{
+                      color: "#008294",
+                      fontFamily: "Inter",
+                      paddingRight: "7px",
+                    }}
+                    tabIndex={0}
+                    {...getLinkAria("View prescriptions option")}
+                  >
+                    View prescriptions
+                  </Link>
+                  <KeyboardArrowRightIcon />
+                </Box>
+              )}
+            </Box>
           </Box>
         );
       case 1:
         return (
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+            }}
+          >
             <Box
               className={[
                 styles.flexDisplay,
@@ -665,38 +701,47 @@ export default function Prescriptions({
                   : ``}
               </Typography>
             </Box>
-            <Box ref={containerContact}>
-              {renderPrescriptionTabUI(prescription.contacts, "contacts")}
-            </Box>
-
-            {!isViewAll && (
-              <Box
-                className={[styles.flexDisplay, styles.viewPrescription]}
-                onClick={() => {
-                  onViewPrescriptions(1);
-                }}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter") {
-                    onViewPrescriptions(1);
-                  }
-                }}
-                data-testid={"view-prescription-contact"}
-              >
-                <Link
-                  className={styles.viewPrescriptionText}
-                  sx={{
-                    color: "#008294",
-                    fontFamily: "Inter",
-                    paddingRight: "7px",
-                  }}
-                  tabIndex={0}
-                  {...getLinkAria("View prescriptions option")}
-                >
-                  View prescriptions
-                </Link>
-                <KeyboardArrowRightIcon />
+            <Box
+              sx={{
+                flex: "1",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box ref={containerContact}>
+                {renderPrescriptionTabUI(prescription.contacts, "contacts")}
               </Box>
-            )}
+
+              {!isViewAll && (
+                <Box
+                  className={[styles.flexDisplay, styles.viewPrescription]}
+                  onClick={() => {
+                    onViewPrescriptions(1);
+                  }}
+                  onKeyPress={(e) => {
+                    if (e.key === "Enter") {
+                      onViewPrescriptions(1);
+                    }
+                  }}
+                  data-testid={"view-prescription-contact"}
+                >
+                  <Link
+                    className={styles.viewPrescriptionText}
+                    sx={{
+                      color: "#008294",
+                      fontFamily: "Inter",
+                      paddingRight: "7px",
+                    }}
+                    tabIndex={0}
+                    {...getLinkAria("View prescriptions option")}
+                  >
+                    View prescriptions
+                  </Link>
+                  <KeyboardArrowRightIcon />
+                </Box>
+              )}
+            </Box>
           </Box>
         );
       default:
@@ -728,7 +773,7 @@ export default function Prescriptions({
         }}
       >
         <Tab
-          label={`Glasses (${prescription?.glasses?.length})`}
+          label={`Glasses`}
           data-testid={"menu-glasses"}
           tabIndex={0}
           icon={
@@ -762,7 +807,7 @@ export default function Prescriptions({
           }}
         />
         <Tab
-          label={`Contacts (${prescription?.contacts?.length})`}
+          label={`Contacts`}
           data-testid={"menu-contact"}
           tabIndex={0}
           icon={
@@ -796,11 +841,7 @@ export default function Prescriptions({
           }}
         />
         <Tab
-          label={`Medications (${
-            prescription?.medications?.active?.length > 0
-              ? prescription?.medications?.active?.length
-              : "0"
-          })`}
+          label={`Medications`}
           data-testid={"menu-medication"}
           tabIndex={0}
           icon={
@@ -840,6 +881,7 @@ export default function Prescriptions({
   return (
     <ThemeProvider theme={patientTypography}>
       <AccountCard
+        className={styles.appointmentContainer}
         isAppoinment={true}
         isDashboard={!isViewAll}
         titleIcon={
@@ -851,6 +893,10 @@ export default function Prescriptions({
           ".MuiCardContent-root": {
             p: 0,
             pb: 3,
+            position: "relative",
+            flex: "1",
+            display: "flex",
+            flexDirection: "column",
           },
         }}
       >
@@ -860,9 +906,7 @@ export default function Prescriptions({
         </Box>
 
         {/* Conten Tab Section */}
-        <Grid>
-          <Box>{contentPrescription()}</Box>
-        </Grid>
+        {contentPrescription()}
       </AccountCard>
     </ThemeProvider>
   );
