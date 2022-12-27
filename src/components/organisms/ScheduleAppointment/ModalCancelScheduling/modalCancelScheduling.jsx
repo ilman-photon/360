@@ -104,6 +104,12 @@ export default function ModalCancelScheduling({
     },
   ];
 
+  let rescheduleLink = `/patient/appointments/${choosenAppointment?.appointmentId}/reschedule`;
+  if (typeof window !== "undefined") {
+    /* we're on the server */
+    rescheduleLink = `${window.location.origin}${rescheduleLink}`;
+  }
+
   return (
     <Dialog
       aria-labelledby="customized-dialog-title"
@@ -135,9 +141,9 @@ export default function ModalCancelScheduling({
           {t("cancelTitle3")}{" "}
           <Link
             onClick={() => onRescheduleClicked(choosenAppointment)}
-            sx={{ cursor: "pointer", color:"#0095A9" }}
+            sx={{ cursor: "pointer", color: "#0095A9" }}
           >
-            {`${window.location.href}/appointments/${choosenAppointment?.appointmentId}/reschedule`}
+            {rescheduleLink}
           </Link>
         </Typography>
         <DialogContent className={styles.checkBoxContainer}>
