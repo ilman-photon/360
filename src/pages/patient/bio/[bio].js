@@ -65,6 +65,10 @@ export default function Bio({ embedApi, bio }) {
     return data.split(", ");
   };
 
+  const splitByAnd = (data) => {
+    return data.split(" & ");
+  };
+
   const mapper = (response) => {
     const designation = response.designation ? `, ${response.designation}` : "";
     const name = `${response.firstName || ""} ${
@@ -76,6 +80,13 @@ export default function Bio({ embedApi, bio }) {
     let address = response.offices;
     const language = getLanguage(response.providerDetails);
     address = sortPrimaryAddress(address);
+    const specialization = getArrayValue(
+      response.providerDetails?.specialization
+    );
+    const classification = splitByAnd(response.providerDetails?.classification);
+    const sub = specialization.concat(classification);
+    let specialties = [...new Set(sub)];
+    specialties = specialties.filter((e) => e);
 
     const data = {
       providerId: response.id || "",
@@ -83,7 +94,7 @@ export default function Bio({ embedApi, bio }) {
       name,
       rating: response.providerDetails?.rating || 0,
       phoneNumber: response.workPhone || "",
-      specialties: getArrayValue(response.providerDetails?.specialization),
+      specialties,
       about: response.note || "",
       gender,
       address,

@@ -31,10 +31,6 @@ Feature: Patient Portal : Search Doctors - Search doctors by sub-specialties
     And user click on one of sub-specialities from the list
     Then user should be able to view list of doctor from the selected sub-specialities 
 
-    Example:
-    |Doctor name, practice name|
-    |Robert|
-
   @BDDTEST-EPP-8263
   @P2
   @Patient_Portal
@@ -66,10 +62,6 @@ Feature: Patient Portal : Search Doctors - Search doctors by sub-specialties
     Then user should be able to view list of doctor from the selected sub-specialities 
     And user able to view filter result from sub-specialities that they selected 
 
-    Example:
-    |Doctor name, practice name|
-    |Robert|
-
   @BDDTEST-EPP-8264
   @P2
   @Patient_Portal
@@ -100,7 +92,3 @@ Feature: Patient Portal : Search Doctors - Search doctors by sub-specialties
     And user click on one of sub-specialities from the list
     Then user should be able to view list of doctor from the selected sub-specialities 
     And user able to view filter button to open overlay
-
-    Example:
-    |Doctor name, practice name|
-    |Robert|

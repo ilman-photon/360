@@ -475,7 +475,7 @@ export class Api {
       }
     }
     const specialty = notEmpty(query.specialty)
-      ? `AND(providerDetails.specialization=co=${query.specialty})`
+      ? `AND((providerDetails.specialization=co=${query.specialty})OR(providerDetails.classification=co=${query.specialty}))`
       : "";
 
     const queryString = isAllEmpty
