@@ -51,6 +51,7 @@ import EducationMaterialCard from "../../components/molecules/Dashboard/educatio
 import { mmddyyDateFormat } from "../../utils/dateFormatter";
 import ModalConfirmation from "../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import { handleCreateAppointment } from "./schedule-appointment";
+import { addToCalendar } from "../../utils/addToCalendar";
 
 export async function getStaticProps() {
   return {
@@ -405,6 +406,7 @@ export default function HomePage({ googleApiKey }) {
           preferredCommunication: userStorageData.preferredCommunication,
         }}
         providerData={appointmentScheduleData.providerInfo}
+        appointmentData={appointmentScheduleData.appointmentInfo}
         isOpen={isOpen}
         OnSetIsOpen={() => {
           cookies.remove("dashboardState", { path: "/patient" });
@@ -414,6 +416,7 @@ export default function HomePage({ googleApiKey }) {
           setIsOpen(false);
         }}
         isDesktop={isDesktop}
+        onAddToCalendarClicked={addToCalendar}
       />
     );
   };
