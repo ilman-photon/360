@@ -325,16 +325,6 @@ export default function TableWithSort({
   const isMenuOpen = Boolean(anchorEl);
   const handleMoreMenu = async (action, row) => {
     setAnchorEl(null);
-    const shareData = {
-      title: row.name,
-      text: row.name,
-      url: row.digital_assets
-        ? `${window.location.origin}/patient/download/${ref(
-            row,
-            "digital_assets._id"
-          )}`
-        : "/",
-    };
     switch (action) {
       case "download":
         onAssetDownload(ref(row, "digital_assets._id"));

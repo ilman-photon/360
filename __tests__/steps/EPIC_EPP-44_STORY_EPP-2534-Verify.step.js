@@ -1,17 +1,15 @@
-import { fireEvent, render, waitFor, cleanup, act } from "@testing-library/react";
+import { fireEvent, waitFor, cleanup, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import {
-  clickSearch,
   createMatchMedia,
-  doLogin,
-  provideFilters,
   renderLogin,
+  renderResultsScreen,
   renderScheduleAppointment,
 } from "../../__mocks__/commonSteps";
-import constants, { TEST_ID } from "../../src/utils/constants";
+import constants from "../../src/utils/constants";
 import {
   mockAppointmentTypes,
   mockInsurance,
@@ -19,6 +17,7 @@ import {
 } from "../../__mocks__/mockResponse";
 import AuthPage from "../../src/pages/patient/login";
 import { renderWithProviders } from "../src/utils/test-util";
+import moment from "moment";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2534.feature"
@@ -28,15 +27,39 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
   let container;
   const element = document.createElement("div");
-  const defaultValidation = () => {
-    expect(true).toBeTruthy();
-  };
   const mock = new MockAdapter(axios);
-  const { FORGOT_TEST_ID, APPOINTMENT_TEST_ID } = TEST_ID;
   afterEach(() => {
     cleanup()
     mock.reset();
   });
+
+  const inputLocation = async () => {
+    const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
+    act(() => {
+      fireEvent.change(locationInput, { target: { value: "Texas" } });
+    });
+  }
+
+  const inputDate = async () => {
+    const dateInput = await waitFor(() => container.getByLabelText("Date"))
+    act(() => {
+      fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
+    });
+  }
+
+  const inputPurpose = async () => {
+    const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
+    act(() => {
+      fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+    });
+  }
+
+  const inputInsurance = async () => {
+    const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
+    act(() => {
+      fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+    });
+  }
 
   beforeEach(() => {
     const mockGeolocation = {
@@ -80,7 +103,8 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      const loginHeader = container.getByLabelText(/Patient Login/i);
+      expect(loginHeader).toBeInTheDocument();
     });
 
     when('user  clicks on Schedule Appointment menu', async () => {
@@ -89,27 +113,33 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      const headerLogo = container.getByTestId(constants.TEST_ID.HOME_TEST_ID.header.logo);
+      expect(headerLogo).toBeInTheDocument();
+      expect(container.getByLabelText("Insurance Carrier")).toBeInTheDocument();
     });
 
     and('user enters the location', () => {
       const locationField = container.getByText("City, state, or zip code");
       expect(locationField).toBeInTheDocument();
+      inputLocation()
     });
 
     and('user selects the date of appointment', () => {
       const dateField = container.getByText(/Date/i);
       expect(dateField).toBeInTheDocument();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
       const pusposeField = container.getByText(/Purpose of Visit/i);
       expect(pusposeField).toBeInTheDocument();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
       const pusposeField = container.getByText(/Insurance Carrier/i);
       expect(pusposeField).toBeInTheDocument();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
@@ -119,7 +149,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user views the results on the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+      renderResultsScreen();
     });
 
     and('user views the selected location, date of appointment, the purpose of visit, and insurance carrier.', () => {
@@ -150,7 +180,8 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      const loginHeader = container.getByLabelText(/Patient Login/i);
+      expect(loginHeader).toBeInTheDocument();
     });
 
     when('user  clicks on Schedule Appointment menu', async () => {
@@ -159,17 +190,21 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      const headerLogo = container.getByTestId(constants.TEST_ID.HOME_TEST_ID.header.logo);
+      expect(headerLogo).toBeInTheDocument();
+      expect(container.getByLabelText("Insurance Carrier")).toBeInTheDocument();
     });
 
     and('user enters the location', () => {
       const locationField = container.getByText("City, state, or zip code");
       expect(locationField).toBeInTheDocument();
+      inputLocation()
     });
 
     and('user selects the date of appointment', () => {
       const dateField = container.getByText(/Date/i);
       expect(dateField).toBeInTheDocument();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
@@ -179,6 +214,7 @@ defineFeature(feature, (test) => {
     and('user enters the insurance name', () => {
       const pusposeField = container.getByText(/Insurance Carrier/i);
       expect(pusposeField).toBeInTheDocument();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
@@ -188,7 +224,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+      renderResultsScreen();
     });
 
     and('user views the selected location.', () => {
@@ -219,7 +255,8 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      const loginHeader = container.getByLabelText(/Patient Login/i);
+      expect(loginHeader).toBeInTheDocument();
     });
 
     when('user  clicks on Schedule Appointment menu', async () => {
@@ -228,17 +265,21 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      const headerLogo = container.getByTestId(constants.TEST_ID.HOME_TEST_ID.header.logo);
+      expect(headerLogo).toBeInTheDocument();
+      expect(container.getByLabelText("Insurance Carrier")).toBeInTheDocument();
     });
 
     and('user enters the location', () => {
       const locationField = container.getByText("City, state, or zip code");
       expect(locationField).toBeInTheDocument();
+      inputLocation()
     });
 
     and('user selects the date of appointment', () => {
       const dateField = container.getByText(/Date/i);
       expect(dateField).toBeInTheDocument();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
@@ -248,6 +289,7 @@ defineFeature(feature, (test) => {
     and('user enters the insurance name', () => {
       const pusposeField = container.getByText(/Insurance Carrier/i);
       expect(pusposeField).toBeInTheDocument();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
@@ -257,11 +299,13 @@ defineFeature(feature, (test) => {
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+      renderResultsScreen();
     });
 
     and('user views the date of appointment.', () => {
-      expect(true).toBeTruthy();
+      const dateInput = container.getByLabelText("Date");
+      const dateNow = moment().format("MMM DD, YYYY")
+      expect(dateInput.value).toEqual(dateNow);
     });
   });
 
@@ -288,7 +332,8 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      const loginHeader = container.getByLabelText(/Patient Login/i);
+      expect(loginHeader).toBeInTheDocument();
     });
 
     when('user  clicks on Schedule Appointment menu', async () => {
@@ -297,26 +342,31 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      const headerLogo = container.getByTestId(constants.TEST_ID.HOME_TEST_ID.header.logo);
+      expect(headerLogo).toBeInTheDocument();
+      expect(container.getByLabelText("Insurance Carrier")).toBeInTheDocument();
     });
 
     and('user enters the location', () => {
       const locationField = container.getByText("City, state, or zip code");
       expect(locationField).toBeInTheDocument();
+      inputLocation()
     });
 
     and('user selects the date of appointment', () => {
       const dateField = container.getByText(/Date/i);
       expect(dateField).toBeInTheDocument();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      const pusposeField = container.getByText(/Insurance Carrier/i);
-      expect(pusposeField).toBeInTheDocument();
+      const insuranceCarrier = container.getByText(/Insurance Carrier/i);
+      expect(insuranceCarrier).toBeInTheDocument();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
@@ -326,11 +376,12 @@ defineFeature(feature, (test) => {
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+      renderResultsScreen();
     });
 
     and('user views the purpose of the visit.', () => {
-      expect(true).toBeTruthy();
+      const purposeInput = container.getByTestId("select-purposes-of-visit");
+      expect(purposeInput).toBeInTheDocument();
     });
   });
 
@@ -357,7 +408,8 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy();
+      const loginHeader = container.getByLabelText(/Patient Login/i);
+      expect(loginHeader).toBeInTheDocument();
     });
 
     when('user  clicks on Schedule Appointment menu', async () => {
@@ -366,17 +418,21 @@ defineFeature(feature, (test) => {
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      const headerLogo = container.getByTestId(constants.TEST_ID.HOME_TEST_ID.header.logo);
+      expect(headerLogo).toBeInTheDocument();
+      expect(container.getByLabelText("Insurance Carrier")).toBeInTheDocument();
     });
 
     and('user enters the location', () => {
       const locationField = container.getByText("City, state, or zip code");
       expect(locationField).toBeInTheDocument();
+      inputLocation()
     });
 
     and('user selects the date of appointment', () => {
       const dateField = container.getByText(/Date/i);
       expect(dateField).toBeInTheDocument();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
@@ -386,6 +442,7 @@ defineFeature(feature, (test) => {
     and('user enters the insurance name', () => {
       const pusposeField = container.getByText(/Insurance Carrier/i);
       expect(pusposeField).toBeInTheDocument();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
@@ -395,11 +452,12 @@ defineFeature(feature, (test) => {
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+      renderResultsScreen();
     });
 
     and('user views the insurance carrier.', () => {
-      expect(true).toBeTruthy();
+      const insuranceInput = container.getAllByLabelText("Insurance Carrier")[0];
+      expect(insuranceInput.value).toEqual("Aetna");
     });
   });
 });

@@ -1,4 +1,10 @@
-import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  cleanup,
+} from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
@@ -11,9 +17,11 @@ import store from "../../src/store/store";
 import { Login } from "../../src/components/organisms/Login/login";
 import { renderWithProviders } from "../src/utils/test-util";
 import { TEST_ID } from "../../src/utils/constants";
-import { renderLogin, renderForgotPassword, clickContinueForgot, navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
+import {
+  renderLogin,
+  navigateToPatientPortalHome,
+} from "../../__mocks__/commonSteps";
 import UpdatePasswordPage from "../../src/pages/patient/update-password";
-
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-269.feature",
@@ -51,17 +59,19 @@ const launchURL = () => {
     });
   });
   container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-}
+};
 
 const navigateToPatientPortalApp = () => {
-  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  mock
+    .onGet(`https://api.ipify.org?format=json`)
+    .reply(200, { ip: "10.10.10.10" });
   act(() => {
     container = renderWithProviders(<AuthPage />, {
       container: document.body.appendChild(element),
       legacyRoot: true,
     });
   });
-}
+};
 
 defineFeature(feature, (test) => {
   let container;
@@ -83,7 +93,7 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
+      cleanup();
       container = await renderLogin();
     });
 
@@ -160,12 +170,14 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      const submitButton = container.getByRole("button", {
+        name: /confrimBtn/i,
+      });
       fireEvent.click(submitButton);
     });
 
     then(/^user shoud see "(.*)" screen$/, async (arg0) => {
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -208,7 +220,7 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
+      cleanup();
       container = await renderLogin();
     });
 
@@ -285,12 +297,14 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      const submitButton = container.getByRole("button", {
+        name: /confrimBtn/i,
+      });
       fireEvent.click(submitButton);
     });
 
     then(/^user shoud see "(.*)" screen$/, async (arg0) => {
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -368,7 +382,7 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
+      cleanup();
       container = await renderLogin();
     });
 
@@ -446,12 +460,14 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      const submitButton = container.getByRole("button", {
+        name: /confrimBtn/i,
+      });
       fireEvent.click(submitButton);
     });
 
     then(/^user shoud see "(.*)" screen$/, async (arg0) => {
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -529,7 +545,7 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
+      cleanup();
       container = await renderLogin();
     });
 
@@ -607,12 +623,14 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      const submitButton = container.getByRole("button", {
+        name: /confrimBtn/i,
+      });
       fireEvent.click(submitButton);
     });
 
     then(/^user shoud see "(.*)" screen$/, async (arg0) => {
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -694,7 +712,7 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
+      cleanup();
       container = await renderLogin();
     });
 
@@ -772,12 +790,14 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      const submitButton = container.getByRole("button", {
+        name: /confrimBtn/i,
+      });
       fireEvent.click(submitButton);
     });
 
     then(/^user shoud see "(.*)" screen$/, async (arg0) => {
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -863,7 +883,7 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
+      cleanup();
       container = await renderLogin();
     });
 
@@ -941,12 +961,14 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      const submitButton = container.getByRole("button", {
+        name: /confrimBtn/i,
+      });
       fireEvent.click(submitButton);
     });
 
     then(/^user shoud see "(.*)" screen$/, async (arg0) => {
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -1021,7 +1043,7 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
+      cleanup();
       container = await renderLogin();
     });
 
@@ -1099,12 +1121,14 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      const submitButton = container.getByRole("button", {
+        name: /confrimBtn/i,
+      });
       fireEvent.click(submitButton);
     });
 
     then(/^user shoud see "(.*)" screen$/, async (arg0) => {
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -1182,7 +1206,7 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
+      cleanup();
       container = await renderLogin();
     });
 
@@ -1260,12 +1284,14 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      const submitButton = container.getByRole("button", {
+        name: /confrimBtn/i,
+      });
       fireEvent.click(submitButton);
     });
 
     then(/^user shoud see "(.*)" screen$/, async (arg0) => {
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {
@@ -1343,7 +1369,7 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user lands onto "(.*)" screen$/, async (arg0) => {
-      cleanup()
+      cleanup();
       container = await renderLogin();
     });
 
@@ -1420,12 +1446,14 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user clicks on "(.*)" button$/, (arg0) => {
-      const submitButton = container.getByRole("button", { name: /confrimBtn/i });
+      const submitButton = container.getByRole("button", {
+        name: /confrimBtn/i,
+      });
       fireEvent.click(submitButton);
     });
 
     then(/^user shoud see "(.*)" screen$/, async (arg0) => {
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user login from device B", () => {

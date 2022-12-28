@@ -10,6 +10,7 @@ import {
   defaultValidation,
   renderAppointmentDetail,
   renderLogin,
+  navigateToPatientPortalHome,
 } from "../../__mocks__/commonSteps";
 import {
   mockAppointmentTypes,
@@ -28,41 +29,41 @@ const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1587.feature"
 );
 
-const navigateToPatientPortalHome = async () => {
-  cleanup()
-  let container;
-  const element = document.createElement("div");
-  const mock = new MockAdapter(axios);
-  Cookies.result = "true";
-  const expectedResult = {
-    ResponseCode: 2005,
-    ResponseType: "success",
-  };
-  const domain = window.location.origin;
-  mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
-    .reply(200, MOCK_SUGESTION);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
-    .reply(200, MOCK_APPOINTMENT);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
-    .reply(200, MOCK_PRESCRIPTION);
+// const navigateToPatientPortalHome = async () => {
+//   cleanup()
+//   let container;
+//   const element = document.createElement("div");
+//   const mock = new MockAdapter(axios);
+//   Cookies.result = "true";
+//   const expectedResult = {
+//     ResponseCode: 2005,
+//     ResponseType: "success",
+//   };
+//   const domain = window.location.origin;
+//   mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+//   mock
+//     .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
+//     .reply(200, MOCK_SUGESTION);
+//   mock
+//     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
+//     .reply(200, MOCK_APPOINTMENT);
+//   mock
+//     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
+//     .reply(200, MOCK_PRESCRIPTION);
 
-  const mockGeolocation = {
-    getCurrentPosition: jest.fn(),
-    watchPosition: jest.fn(),
-  };
-  global.navigator.geolocation = mockGeolocation;
-  Cookies.result = false;
-  act(() => {
-    container = render(
-      <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-    );
-  });
-  await waitFor(() => container.getByLabelText(/Appointments/i));
-};
+//   const mockGeolocation = {
+//     getCurrentPosition: jest.fn(),
+//     watchPosition: jest.fn(),
+//   };
+//   global.navigator.geolocation = mockGeolocation;
+//   Cookies.result = false;
+//   act(() => {
+//     container = render(
+//       <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+//     );
+//   });
+//   await waitFor(() => container.getByLabelText(/Appointments/i));
+// };
 
 defineFeature(feature, (test) => {
   let container;
@@ -109,7 +110,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the Patient Portal home page", async () => {
-      navigateToPatientPortalHome()
+      await navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -153,7 +154,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the Patient Portal home page", async () => {
-      navigateToPatientPortalHome()
+      await navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -178,13 +179,13 @@ defineFeature(feature, (test) => {
         );
       });
       waitFor(() => {
-        container.getByLabelText(/Schedule an eye exam/i);
+        container.getByText(/formTitle/i);
       });
     });
 
     and("Enter a state name and clicks on the search button", () => {
-      expect(container.getByTestId(/locationInput/i)).toBeInTheDocument();
-      const srcBtn = container.getByTestId(/searchbtn/i);
+      expect(container.getAllByTestId(/locationInput/i)[0]).toBeInTheDocument();
+      const srcBtn = container.getAllByTestId(/searchbtn/i)[0];
       fireEvent.click(srcBtn)
     });
 
@@ -218,7 +219,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the Patient Portal home page", async () => {
-      navigateToPatientPortalHome()
+      await navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -262,7 +263,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the Patient Portal home page", async () => {
-      navigateToPatientPortalHome()
+      await navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -306,7 +307,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the Patient Portal home page", async () => {
-      navigateToPatientPortalHome()
+      await navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {
@@ -358,7 +359,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the Patient Portal home page", async () => {
-      navigateToPatientPortalHome()
+      await navigateToPatientPortalHome()
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {

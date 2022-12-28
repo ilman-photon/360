@@ -1,4 +1,10 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  cleanup,
+} from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import AuthPage from "../../src/pages/patient/login";
 import RegisterPage from "../../src/pages/patient/auth/create-account";
@@ -6,8 +12,9 @@ import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import '@testing-library/jest-dom'
+import "@testing-library/jest-dom";
 import { renderWithProviders } from "../src/utils/test-util";
+import { Login } from "../../src/components/organisms/Login/login";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-4914.feature"
@@ -26,20 +33,36 @@ defineFeature(feature, (test) => {
     mock.reset();
   });
 
-  test('EPIC_EPP-4_STORY_EPP-4914- Verify if when the user enters a first-time wrong password in the password field account gets locked or not', ({ given, and, when, then }) => {
-    given('the use launch the XXX URL', () => {
-      defaultValidation()
+  const launchURL = () => {
+    const mockOnLoginClicked = jest.fn((data, route, callback) => {
+      callback({
+        status: "success",
+      });
+    });
+    container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+    expect(container.getByText("formTitle")).toBeInTheDocument();
+    cleanup();
+  };
+
+  test("EPIC_EPP-4_STORY_EPP-4914- Verify if when the user enters a first-time wrong password in the password field account gets locked or not", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("the use launch the XXX URL", () => {
+      launchURL();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
-        "ResponseCode": 2001,
-        "ResponseType": "Invalid Username or Password"
+        ResponseCode: 2001,
+        ResponseType: "Invalid Username or Password",
       };
       mock.onPost(`/ecp/patient/login`).reply(401, expectedResult);
     });
 
-    and('user lands on the Patient Login screen', () => {
+    and("user lands on the Patient Login screen", () => {
       act(() => {
         container = renderWithProviders(<AuthPage />);
       });
@@ -47,95 +70,57 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    when('the user enters a valid username in the username test field', () => {
+    when("the user enters a valid username in the username test field", () => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
-      fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
-      expect(usernameField.value).toEqual("validUsername@mail.com");
-    });
-
-    and('User enters an invalid password in a password in the password field', () => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
-      expect(passwordField.value).not.toEqual("validPassword");
-    });
-
-    and('clicks on the login button', async () => {
-      const login = container.getByRole("button", { name: /Login/i });
-      fireEvent.click(login);
-      // await waitFor(() => {
-      //   container.getByTestId("submission-message")
-      // })
-    });
-
-    then('user sees an error message Invalid Username or Password', () => {
-      // expect(container.getByTestId("submission-message")).toBeInTheDocument()
-      // expect(container.getByText("errorFailedLogin")).toBeInTheDocument()
-    });
-  });
-
-
-  test('EPIC_EPP-4_STORY_EPP-4914- Verify if when the user enters a 4th-time wrong password in the password field and clicks on login button account gets locked or not', ({ given, and, when, then }) => {
-    given('the use launch the XXX URL', () => {
-      defaultValidation()
-    });
-
-    and('user navigates to the Patient Portal application', () => {
-      const expectedResult = {
-        "ResponseCode": 2001,
-        "ResponseType": "Invalid Username or Password"
-      };
-      mock.onPost(`/ecp/patient/login`).reply(401, expectedResult);
-    });
-
-    and('user lands on the Patient Login screen', () => {
-      act(() => {
-        container = renderWithProviders(<AuthPage />);
+      fireEvent.change(usernameField, {
+        target: { value: "validUsername@mail.com" },
       });
-      const title = container.getByText("formTitle");
-      expect("formTitle").toEqual(title.textContent);
-    });
-
-    when('the user enters a valid username in the username test field', () => {
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
       expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
-    and(/^User enters consecutively (\d+)th time an invalid password in the password field$/, (arg0) => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
-      expect(passwordField.value).not.toEqual("validPassword");
-    });
+    and(
+      "User enters an invalid password in a password in the password field",
+      () => {
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        fireEvent.change(passwordField, {
+          target: { value: "invalidPassword" },
+        });
+        expect(passwordField.value).not.toEqual("validPassword");
+      }
+    );
 
-    and('clicks on the login button', async () => {
+    and("clicks on the login button", async () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
       await waitFor(() => {
-        container.getByTestId("submission-message")
-      })
+        container.getByTestId("submission-message");
+      });
     });
 
-    then('user sees an error message Invalid Username or Password', () => {
-      expect(container.getByTestId("submission-message")).toBeInTheDocument()
-      expect(container.getByText("errorFailedLogin")).toBeInTheDocument()
+    then("user sees an error message Invalid Username or Password", () => {
+      expect(container.getByText("errorFailedLogin")).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-4_STORY_EPP-4914- Verify if when the user enters a 5th-time wrong password in the password field and clicks on the login button user sees the message Your account has been locked after too many failed attempts.', ({ given, and, when, then }) => {
-    let container
-    given('the use launch the XXX URL', () => {
-      defaultValidation()
+  test("EPIC_EPP-4_STORY_EPP-4914- Verify if when the user enters a 4th-time wrong password in the password field and clicks on login button account gets locked or not", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("the use launch the XXX URL", () => {
+      launchURL();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
-        "ResponseCode": 2004,
-        "ResponseType": "Locked User"
+        ResponseCode: 2001,
+        ResponseType: "Invalid Username or Password",
       };
       mock.onPost(`/ecp/patient/login`).reply(401, expectedResult);
     });
 
-    and('user lands on the Patient Login screen', () => {
+    and("user lands on the Patient Login screen", () => {
       act(() => {
         container = renderWithProviders(<AuthPage />);
       });
@@ -143,46 +128,59 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    when('the user enters a valid username in the username test field', () => {
+    when("the user enters a valid username in the username test field", () => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
-      fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
+      fireEvent.change(usernameField, {
+        target: { value: "validUsername@mail.com" },
+      });
       expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
-    and(/^User enters consecutively (\d+)th time an invalid password in the password field$/, (arg0) => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
-      expect(passwordField.value).not.toEqual("validPassword");
-    });
+    and(
+      /^User enters consecutively (\d+)th time an invalid password in the password field$/,
+      (arg0) => {
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        fireEvent.change(passwordField, {
+          target: { value: "invalidPassword" },
+        });
+        expect(passwordField.value).not.toEqual("validPassword");
+      }
+    );
 
-    and('clicks on the login button', async () => {
+    and("clicks on the login button", async () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
       await waitFor(() => {
-        container.getByTestId("submission-message")
-      })
+        container.getByTestId("submission-message");
+      });
     });
 
-    then('user sees an error message Your account has been locked after too many failed attempts.', () => {
-      expect(container.getByTestId("submission-message")).toBeInTheDocument()
-      // expect(container.getByText("errorLoginLockedMessage")).toBeInTheDocument()
+    then("user sees an error message Invalid Username or Password", () => {
+      expect(container.getByTestId("submission-message")).toBeInTheDocument();
+      expect(container.getByText("errorFailedLogin")).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-4_STORY_EPP-4914- Verify if the user receives an email link after the account gets locked', ({ given, and, when, then }) => {
-    given('the use launch the XXX URL', () => {
-      defaultValidation()
+  test("EPIC_EPP-4_STORY_EPP-4914- Verify if when the user enters a 5th-time wrong password in the password field and clicks on the login button user sees the message Your account has been locked after too many failed attempts.", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    let container;
+    given("the use launch the XXX URL", () => {
+      launchURL();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
-        "ResponseCode": 2004,
-        "ResponseType": "Locked User"
+        ResponseCode: 2004,
+        ResponseType: "Locked User",
       };
       mock.onPost(`/ecp/patient/login`).reply(401, expectedResult);
     });
 
-    and('user lands on the Patient Login screen', () => {
+    and("user lands on the Patient Login screen", () => {
       act(() => {
         container = renderWithProviders(<AuthPage />);
       });
@@ -190,54 +188,61 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    when('the user enters a valid username in the username test field', () => {
+    when("the user enters a valid username in the username test field", () => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
-      fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
+      fireEvent.change(usernameField, {
+        target: { value: "validUsername@mail.com" },
+      });
       expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
-    and(/^User enters consecutively (\d+)th time an invalid password in the password field$/, (arg0) => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
-      expect(passwordField.value).not.toEqual("validPassword");
-    });
+    and(
+      /^User enters consecutively (\d+)th time an invalid password in the password field$/,
+      (arg0) => {
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        fireEvent.change(passwordField, {
+          target: { value: "invalidPassword" },
+        });
+        expect(passwordField.value).not.toEqual("validPassword");
+      }
+    );
 
-    and('clicks on the login button', async () => {
+    and("clicks on the login button", async () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
       await waitFor(() => {
-        container.getByTestId("submission-message")
-      })
+        container.getByTestId("submission-message");
+      });
     });
 
-    and('user sees an error message Your account has been locked after too many failed attempts.', () => {
-      expect(container.getByTestId("submission-message")).toBeInTheDocument()
-      // expect(container.getByText("errorLoginLockedMessage")).toBeInTheDocument()
-    });
-
-    when('user preferred a mode of communication email', () => {
-      defaultValidation()
-    });
-
-    then('the user receives an email with the password reset link', () => {
-      defaultValidation()
-    });
+    then(
+      "user sees an error message Your account has been locked after too many failed attempts.",
+      () => {
+        expect(container.getByTestId("submission-message")).toBeInTheDocument();
+        // expect(container.getByText("errorLoginLockedMessage")).toBeInTheDocument()
+      }
+    );
   });
 
-  test('EPIC_EPP-4_STORY_EPP-4914- Verify if the user receives a text message and password reset link to registred mobile number after the account gets locked', ({ given, and, when, then }) => {
-    given('the use launch the XXX URL', () => {
-      defaultValidation()
+  test("EPIC_EPP-4_STORY_EPP-4914- Verify if the user receives an email link after the account gets locked", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("the use launch the XXX URL", () => {
+      launchURL();
     });
 
-    and('user navigates to the Patient Portal application', () => {
+    and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
-        "ResponseCode": 2004,
-        "ResponseType": "Locked User"
+        ResponseCode: 2004,
+        ResponseType: "Locked User",
       };
       mock.onPost(`/ecp/patient/login`).reply(401, expectedResult);
     });
 
-    and('user lands on the Patient Login screen', () => {
+    and("user lands on the Patient Login screen", () => {
       act(() => {
         container = renderWithProviders(<AuthPage />);
       });
@@ -245,37 +250,120 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    when('the user enters a valid username in the username test field', () => {
+    when("the user enters a valid username in the username test field", () => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
-      fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
+      fireEvent.change(usernameField, {
+        target: { value: "validUsername@mail.com" },
+      });
       expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
-    and(/^User enters consecutively (\d+)th time an invalid password in the password field$/, (arg0) => {
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      fireEvent.change(passwordField, { target: { value: "invalidPassword" } });
-      expect(passwordField.value).not.toEqual("validPassword");
-    });
+    and(
+      /^User enters consecutively (\d+)th time an invalid password in the password field$/,
+      (arg0) => {
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        fireEvent.change(passwordField, {
+          target: { value: "invalidPassword" },
+        });
+        expect(passwordField.value).not.toEqual("validPassword");
+      }
+    );
 
-    and('clicks on the login button', async () => {
+    and("clicks on the login button", async () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
       await waitFor(() => {
-        container.getByTestId("submission-message")
-      })
+        container.getByTestId("submission-message");
+      });
     });
 
-    and('user sees an error message Your account has been locked after too many failed attempts.', () => {
-      expect(container.getByTestId("submission-message")).toBeInTheDocument()
-      // expect(container.getByText("errorLoginLockedMessage")).toBeInTheDocument()
+    and(
+      "user sees an error message Your account has been locked after too many failed attempts.",
+      () => {
+        expect(container.getByTestId("submission-message")).toBeInTheDocument();
+        // expect(container.getByText("errorLoginLockedMessage")).toBeInTheDocument()
+      }
+    );
+
+    when("user preferred a mode of communication email", async () => {
+      defaultValidation();
     });
 
-    when('user preferred a mode of communication mobile number', () => {
-      defaultValidation()
-    });
-
-    then('the user receives an text message with the password reset link', () => {
-      defaultValidation()
+    then("the user receives an email with the password reset link", () => {
+      defaultValidation();
     });
   });
-})
+
+  test("EPIC_EPP-4_STORY_EPP-4914- Verify if the user receives a text message and password reset link to registred mobile number after the account gets locked", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("the use launch the XXX URL", () => {
+      launchURL();
+    });
+
+    and("user navigates to the Patient Portal application", () => {
+      const expectedResult = {
+        ResponseCode: 2004,
+        ResponseType: "Locked User",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(401, expectedResult);
+    });
+
+    and("user lands on the Patient Login screen", () => {
+      act(() => {
+        container = renderWithProviders(<AuthPage />);
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
+    });
+
+    when("the user enters a valid username in the username test field", () => {
+      const usernameField = container.getByLabelText(/emailUserLabel/i);
+      fireEvent.change(usernameField, {
+        target: { value: "validUsername@mail.com" },
+      });
+      expect(usernameField.value).toEqual("validUsername@mail.com");
+    });
+
+    and(
+      /^User enters consecutively (\d+)th time an invalid password in the password field$/,
+      (arg0) => {
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        fireEvent.change(passwordField, {
+          target: { value: "invalidPassword" },
+        });
+        expect(passwordField.value).not.toEqual("validPassword");
+      }
+    );
+
+    and("clicks on the login button", async () => {
+      const login = container.getByRole("button", { name: /Login/i });
+      fireEvent.click(login);
+      await waitFor(() => {
+        container.getByTestId("submission-message");
+      });
+    });
+
+    and(
+      "user sees an error message Your account has been locked after too many failed attempts.",
+      () => {
+        expect(container.getByTestId("submission-message")).toBeInTheDocument();
+        // expect(container.getByText("errorLoginLockedMessage")).toBeInTheDocument()
+      }
+    );
+
+    when("user preferred a mode of communication mobile number", () => {
+      defaultValidation();
+    });
+
+    then(
+      "the user receives an text message with the password reset link",
+      () => {
+        defaultValidation();
+      }
+    );
+  });
+});

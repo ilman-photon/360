@@ -61,9 +61,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -71,12 +71,12 @@ defineFeature(feature, (test) => {
       container = await renderMessagePage();
     });
 
-    then("the User sees the all received message", () => {
-      seeNotSelected(container);
+    then("the User sees the all received message", async () => {
+      await seeNotSelected(container);
     });
 
-    and("User clicks on the drafts button", () => {
-      clickDraftTab(container);
+    and("User clicks on the drafts button", async () => {
+      await clickDraftTab(container);
     });
 
     then("the user sees the all drafts message page", () => {
@@ -108,9 +108,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -118,20 +118,20 @@ defineFeature(feature, (test) => {
       container = await renderMessagePage();
     });
 
-    then("the User sees the all received message", () => {
-      seeNotSelected(container);
+    then("the User sees the all received message", async () => {
+      await seeNotSelected(container);
     });
 
-    and("User clicks on the drafts button", () => {
-      clickDraftTab(container);
+    and("User clicks on the drafts button", async () => {
+      await clickDraftTab(container);
     });
 
     then("the user sees the all drafts message page", () => {
       defaultValidation();
     });
 
-    and("select a message", () => {
-      clickOneMessage(container);
+    and("select a message", async () => {
+      await clickOneMessage(container);
     });
 
     and(
@@ -159,9 +159,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -169,20 +169,20 @@ defineFeature(feature, (test) => {
       container = await renderMessagePage();
     });
 
-    then("the User sees the all received message", () => {
-      seeNotSelected(container);
+    then("the User sees the all received message", async () => {
+      await seeNotSelected(container);
     });
 
-    and("User clicks on the drafts button", () => {
-      clickDraftTab(container);
+    and("User clicks on the drafts button", async () => {
+      await clickDraftTab(container);
     });
 
     then("the user sees the all drafts message page", () => {
       defaultValidation();
     });
 
-    and("select a message", () => {
-      clickOneMessage(container);
+    and("select a message", async () => {
+      await clickOneMessage(container);
     });
 
     and(
@@ -210,9 +210,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -220,20 +220,20 @@ defineFeature(feature, (test) => {
       container = await renderMessagePage();
     });
 
-    then("the User sees the all received message", () => {
-      seeNotSelected(container);
+    then("the User sees the all received message", async () => {
+      await seeNotSelected(container);
     });
 
-    and("User clicks on the drafts button", () => {
-      clickDraftTab(container);
+    and("User clicks on the drafts button", async () => {
+      await clickDraftTab(container);
     });
 
     then("the user sees the all drafts message page", () => {
       defaultValidation();
     });
 
-    and("select a message", () => {
-      clickOneMessage(container);
+    and("select a message", async () => {
+      await clickOneMessage(container);
     });
 
     and(
@@ -265,9 +265,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -275,20 +275,20 @@ defineFeature(feature, (test) => {
       container = await renderMessagePage();
     });
 
-    then("the User sees the all received message", () => {
-      seeNotSelected(container);
+    then("the User sees the all received message", async () => {
+      await seeNotSelected(container);
     });
 
-    and("User clicks on the drafts button", () => {
-      clickDraftTab(container);
+    and("User clicks on the drafts button", async () => {
+      await clickDraftTab(container);
     });
 
     then("the user sees the all drafts message page", () => {
       defaultValidation();
     });
 
-    and("select a message", () => {
-      clickOneMessage(container);
+    and("select a message", async () => {
+      await clickOneMessage(container);
     });
 
     and("user sees the message subject and body of the message", () => {
@@ -332,9 +332,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -342,20 +342,20 @@ defineFeature(feature, (test) => {
       container = await renderMessagePage();
     });
 
-    then("the User sees the all received message", () => {
-      seeNotSelected(container);
+    then("the User sees the all received message", async () => {
+      await seeNotSelected(container);
     });
 
-    and("User clicks on the drafts button", () => {
-      clickDraftTab(container);
+    and("User clicks on the drafts button", async () => {
+      await clickDraftTab(container);
     });
 
     then("the user sees the all drafts message page", () => {
       defaultValidation();
     });
 
-    and("select a message", () => {
-      clickOneMessage(container);
+    and("select a message", async () => {
+      await clickOneMessage(container);
     });
 
     and("user sees the message subject and body of the message", () => {
@@ -418,9 +418,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -428,20 +428,20 @@ defineFeature(feature, (test) => {
       container = await renderMessagePage();
     });
 
-    then("the User sees the all received message", () => {
-      seeNotSelected(container);
+    then("the User sees the all received message", async () => {
+      await seeNotSelected(container);
     });
 
-    and("User clicks on the drafts button", () => {
-      clickDraftTab(container);
+    and("User clicks on the drafts button", async () => {
+      await clickDraftTab(container);
     });
 
     then("the user sees the all drafts message page", () => {
       defaultValidation();
     });
 
-    and("select a message", () => {
-      clickOneMessage(container);
+    and("select a message", async () => {
+      await clickOneMessage(container);
     });
 
     and("user sees the message subject and body of the message", () => {
@@ -489,9 +489,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -499,12 +499,12 @@ defineFeature(feature, (test) => {
       container = await renderMessagePage();
     });
 
-    then("the User sees the all received message", () => {
-      seeNotSelected(container);
+    then("the User sees the all received message", async () => {
+      await seeNotSelected(container);
     });
 
-    and("User clicks on the drafts button", () => {
-      clickDraftTab(container);
+    and("User clicks on the drafts button", async () => {
+      await clickDraftTab(container);
     });
 
     then("the user sees the all drafts message page", () => {
@@ -529,9 +529,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -539,12 +539,12 @@ defineFeature(feature, (test) => {
       container = await renderMessagePage();
     });
 
-    then("the User sees the all received message", () => {
-      seeNotSelected(container);
+    then("the User sees the all received message", async () => {
+      await seeNotSelected(container);
     });
 
-    and("User clicks on the drafts button", () => {
-      clickDraftTab(container);
+    and("User clicks on the drafts button", async () => {
+      await clickDraftTab(container);
     });
 
     then("the user sees the all drafts message page", () => {

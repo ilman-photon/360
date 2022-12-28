@@ -19,7 +19,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchDocuments,
   fetchMedicalRecordDocuments,
-  resetDocuments,
 } from "../../../store/document";
 import TableEmpty from "../../atoms/TableEmpty/tableEmpty";
 import { renderCTAIcon, StyledTableCell } from "./prescriptions";

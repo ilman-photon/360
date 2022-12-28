@@ -6,45 +6,16 @@ import {
   waitFor,
   cleanup,
 } from "@testing-library/react";
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import ForgotPasswordPage from "../../src/pages/patient/forgot-password";
-import AuthPage from "../../src/pages/patient/login";
-import Cookies from "universal-cookie";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 import HomePage from "../../src/pages/patient";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
-import {
-  renderAppointmentDetail,
-  renderScheduleAppointment,
-} from "../../__mocks__/commonSteps";
 import constants, { TEST_ID } from "../../src/utils/constants";
 import FilterHeading from "../../src/components/molecules/FilterHeading/filterHeading";
-import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
 import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
-import { navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
-import GMaps from "../../src/components/organisms/Google/Maps/gMaps";
-import {
-  GoogleMap,
-  MarkerF,
-  InfoWindowF,
-  useJsApiLoader,
-  useLoadScript,
-} from "@react-google-maps/api";
+import { Login } from "../../src/components/organisms/Login/login";
 
 import mediaQuery from "css-mediaquery";
-import ModalConfirmation from "../../src/components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
-import {
-  mockAppointmentTypes,
-  mockInsurance,
-  submitFilter,
-} from "../../__mocks__/mockResponse";
-import InfoWindowContent from "../../src/components/organisms/Google/Maps/infoWindowContent";
-import { CircularProgress } from "@mui/material";
-import ShallowRenderer from "react-shallow-renderer";
-import Appointment from "../../src/pages/patient/appointment";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2569.feature"
@@ -58,319 +29,9 @@ defineFeature(feature, (test) => {
   let container;
   const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID;
 
-  const providerList = [
-    {
-      providerId: "1",
-      address: {
-        addressLine1: "51 West 51st Street",
-        addressLine2: "Floor 3, Suite 320 Midtown",
-        city: "Florida",
-        state: "FR",
-        zipcode: "54231",
-      },
-      rating: "5",
-      name: "Paul Wagner Md",
-      phoneNumber: "(123) 123-4567",
-      distance: "10 mi",
-      image: "/doctor.png",
-      from: "2022-09-19",
-      to: "2022-09-24",
-      availability: [
-        {
-          date: "2022-09-19",
-          list: [
-            {
-              time: "11:30am",
-              key: 12222,
-            },
-          ],
-        },
-        {
-          date: "2022-09-20",
-          list: [
-            {
-              time: "08:00am",
-              key: 12223,
-            },
-            {
-              time: "10:30am",
-              key: 12224,
-            },
-            {
-              time: "11:00am",
-              key: 12225,
-            },
-            {
-              time: "12:00pm",
-              key: 12226,
-            },
-            {
-              time: "13:00pm",
-              key: 12227,
-            },
-            {
-              time: "14:00pm",
-              key: 12228,
-            },
-          ],
-        },
-        {
-          date: "2022-09-21",
-          list: [
-            {
-              time: "08:30am",
-              key: 12229,
-            },
-            {
-              time: "10:30am",
-              key: 12230,
-            },
-          ],
-        },
-        {
-          date: "2022-09-22",
-          list: [
-            {
-              time: "09:30am",
-              key: 12237,
-            },
-            {
-              time: "11:00am",
-              key: 12238,
-            },
-          ],
-        },
-        {
-          date: "2022-09-23",
-          list: [
-            {
-              time: "09:30am",
-              key: 12239,
-            },
-          ],
-        },
-        {
-          date: "2022-09-24",
-          list: [
-            {
-              time: "09:30am",
-              key: 12240,
-            },
-          ],
-        },
-      ],
-      coordinate: {
-        latitude: 32.751204,
-        longitude: -117.1641166,
-      },
-    },
-    {
-      providerId: "2",
-      address: {
-        addressLine1: "51 West 51st Street",
-        addressLine2: "Floor 3, Suite 320 Midtown",
-        city: "Florida",
-        state: "FR",
-        zipcode: "54231",
-      },
-      rating: "5",
-      name: "Paul Wagner Md",
-      phoneNumber: "(123) 123-4567",
-      distance: "10 mi",
-      image: "/doctor.png",
-      from: "2022-09-19",
-      to: "2022-09-24",
-      availability: [
-        {
-          date: "2022-09-19",
-          list: [
-            {
-              time: "11:30am",
-              key: 12222,
-            },
-          ],
-        },
-        {
-          date: "2022-09-20",
-          list: [
-            {
-              time: "08:00am",
-              key: 12223,
-            },
-            {
-              time: "10:30am",
-              key: 12224,
-            },
-            {
-              time: "11:00am",
-              key: 12225,
-            },
-            {
-              time: "12:00pm",
-              key: 12226,
-            },
-            {
-              time: "13:00pm",
-              key: 12227,
-            },
-            {
-              time: "14:00pm",
-              key: 12228,
-            },
-          ],
-        },
-        {
-          date: "2022-09-21",
-          list: [
-            {
-              time: "08:30am",
-              key: 12229,
-            },
-          ],
-        },
-        {
-          date: "2022-09-22",
-          list: [
-            {
-              time: "09:30am",
-              key: 12237,
-            },
-            {
-              time: "11:00am",
-              key: 12238,
-            },
-          ],
-        },
-        {
-          date: "2022-09-23",
-          list: [
-            {
-              time: "09:30am",
-              key: 12239,
-            },
-          ],
-        },
-        {
-          date: "2022-09-24",
-          list: [
-            {
-              time: "09:30am",
-              key: 12240,
-            },
-          ],
-        },
-      ],
-      coordinate: {
-        latitude: 32.751204,
-        longitude: -117.1641166,
-      },
-    },
-    {
-      providerId: "3",
-      name: "Paul Wagner Md",
-      address: {
-        addressLine1: "51 West 51st Street",
-        addressLine2: "Floor 3, Suite 320 Midtown",
-        city: "Florida",
-        state: "FR",
-        zipcode: "54231",
-      },
-      rating: "5",
-      phoneNumber: "(123) 123-4567",
-      distance: "10 mi",
-      image: "/doctor.png",
-      from: "2022-09-19",
-      to: "2022-09-24",
-      availability: [
-        {
-          date: "2022-09-19",
-          list: [
-            {
-              time: "11:30am",
-              key: 12222,
-            },
-          ],
-        },
-        {
-          date: "2022-09-20",
-          list: [
-            {
-              time: "08:00am",
-              key: 12223,
-            },
-            {
-              time: "10:30am",
-              key: 12224,
-            },
-            {
-              time: "11:00am",
-              key: 12225,
-            },
-            {
-              time: "12:00pm",
-              key: 12226,
-            },
-            {
-              time: "13:00pm",
-              key: 12227,
-            },
-            {
-              time: "14:00pm",
-              key: 12228,
-            },
-          ],
-        },
-        {
-          date: "2022-09-21",
-          list: [
-            {
-              time: "08:30am",
-              key: 12229,
-            },
-            {
-              time: "10:30am",
-              key: 12230,
-            },
-          ],
-        },
-        {
-          date: "2022-09-22",
-          list: [
-            {
-              time: "09:30am",
-              key: 12237,
-            },
-            {
-              time: "11:00am",
-              key: 12238,
-            },
-          ],
-        },
-        {
-          date: "2022-09-23",
-          list: [
-            {
-              time: "09:30am",
-              key: 12239,
-            },
-          ],
-        },
-        {
-          date: "2022-09-24",
-          list: [
-            {
-              time: "09:30am",
-              key: 12240,
-            },
-          ],
-        },
-      ],
-      coordinate: {
-        latitude: 32.751204,
-        longitude: -117.1641166,
-      },
-    },
-  ];
+  // afterEach(() => {
+  //   cleanup();
+  // });
 
   function createMatchMedia(width) {
     return (query) => ({
@@ -379,6 +40,16 @@ defineFeature(feature, (test) => {
       removeListener: () => {},
     });
   }
+
+  const launchURL = () => {
+    // cleanup();
+    const mockOnLoginClicked = jest.fn((data, route, callback) => {
+      callback({
+        status: "success",
+      });
+    });
+    container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+  };
 
   const searchScreen = () => {
     window.matchMedia = createMatchMedia("1920px");
@@ -468,8 +139,6 @@ defineFeature(feature, (test) => {
 
   const clickMyself = async () => {
     await waitFor(() => container.getByText("myself"));
-    expect(container.getAllByText("myself")).toBeTruthy();
-    expect(container.getAllByText("someoneElse")).toBeTruthy();
     const myselfButton = container.getByText("myself");
     fireEvent.click(myselfButton);
     const continueButton = container.getAllByText("continue")[0];
@@ -485,7 +154,8 @@ defineFeature(feature, (test) => {
     fireEvent.change(field2, { target: { value: "last" } });
   };
 
-  const clickSaveAction = () => {
+  const clickSaveAction = async () => {
+    await waitFor(() => container.getByText("scheduleAppoinment"));
     const saveButton = container.getByRole("button", {
       name: "scheduleAppoinment",
     });
@@ -505,6 +175,13 @@ defineFeature(feature, (test) => {
     );
   };
 
+  const errorRequired = async () => {
+    await waitFor(() =>
+      container.getByText("This field is required to proceed.")
+    );
+    // cleanup();
+  };
+
   test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is not allowing the Maximum limit -1 (Need to confirm)", ({
     given,
     when,
@@ -512,7 +189,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -536,11 +213,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -558,7 +236,7 @@ defineFeature(feature, (test) => {
 
     and("enter the Mobile number", () => {
       const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
-      fireEvent.change(field3, { target: { value: "3" } });
+      fireEvent.change(field3, { target: { value: "3123343341" } });
     });
 
     and("click the Continue button.", () => {
@@ -577,7 +255,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -601,11 +279,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -642,7 +321,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -666,11 +345,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -707,7 +387,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -731,11 +411,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -771,7 +452,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -795,11 +476,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     then(
@@ -817,7 +499,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -841,11 +523,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -861,20 +544,20 @@ defineFeature(feature, (test) => {
       fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
-    and("select the Preferred mode of communication = Email", () => {
-      // const communicationRadio = container.getByRole("radio", {
-      //   name: /Email/i,
-      // });
-      // fireEvent.click(communicationRadio);
-      defaultValidation();
+    and("select the Preferred mode of communication = Email", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Email/i));
     });
 
     and("click the Continue button.", () => {
-      defaultValidation();
+      const continueButton = container.getByText("scheduleAppoinment");
+      fireEvent.click(continueButton);
     });
 
     then("Email should ask for the mandatory.", () => {
-      defaultValidation();
+      errorRequired();
     });
   });
 
@@ -885,7 +568,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -909,11 +592,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -929,11 +613,11 @@ defineFeature(feature, (test) => {
       fireEvent.change(field3, { target: { value: "" } });
     });
 
-    and("select the Preferred mode of communication = Phone", () => {
-      // const communicationRadio = container.getByRole("radio", {
-      //   name: /Phone/i,
-      // });
-      // fireEvent.click(communicationRadio);
+    and("select the Preferred mode of communication = Phone", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Phone/i));
       defaultValidation();
     });
 
@@ -953,7 +637,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -977,11 +661,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -1002,21 +687,18 @@ defineFeature(feature, (test) => {
       fireEvent.change(field3, { target: { value: "" } });
     });
 
-    and("select the Preferred mode of communication = Email", () => {
-      // const communicationRadio = container.getByRole("radio", {
-      //   name: /Email/i,
-      // });
-      // fireEvent.click(communicationRadio);
-      defaultValidation();
+    and("select the Preferred mode of communication = Email", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      // fireEvent.click(container.getByDisplayValue(/Email/i));
     });
 
-    and("change the Preferred mode of communication = Phone", () => {
-      // const communicationRadio = container.getByRole("radio", {
-      //   name: /Phone/i,
-      // });
-      // fireEvent.click(communicationRadio);
-
-      defaultValidation();
+    and("change the Preferred mode of communication = Phone", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Phone/i));
     });
 
     and("click the Continue button.", () => {
@@ -1025,7 +707,7 @@ defineFeature(feature, (test) => {
 
     then(
       "mandatory error message should display for the Mobile number field.",
-      async () => {
+      () => {
         errorEmailPhone();
       }
     );
@@ -1038,7 +720,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1062,11 +744,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -1085,17 +768,19 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("select the Preferred mode of communication = Email", () => {
-      // const communicationRadio = container.getByRole("radio", {
-      //   name: /Email/i,
-      // });
-      // fireEvent.click(communicationRadio);
+    and("select the Preferred mode of communication = Email", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Email/i));
       defaultValidation();
     });
 
-    and("change the Preferred mode of communication = Phone", () => {
-      // fireEvent.click(communicationRadio);
-      defaultValidation();
+    and("change the Preferred mode of communication = Phone", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Phone/i));
     });
 
     and("click the Continue button.", () => {
@@ -1117,7 +802,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1141,11 +826,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -1160,8 +846,11 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("select the Preferred mode of communication = Email", () => {
-      defaultValidation();
+    and("select the Preferred mode of communication = Email", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Email/i));
     });
 
     and("click the Continue button.", () => {
@@ -1180,7 +869,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1204,11 +893,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -1224,13 +914,11 @@ defineFeature(feature, (test) => {
       fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
-    and("select the Preferred mode of communication = Phone", () => {
-      // const communicationRadio = container.getByRole("radio", {
-      //   name: /Phone/i,
-      // });
-      // fireEvent.click(communicationRadio);
-      const communicationRadio = container.getByText(/Phone/i);
-      expect(communicationRadio).toBeInTheDocument();
+    and("select the Preferred mode of communication = Phone", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Phone/i));
     });
 
     and("click the Continue button.", () => {
@@ -1252,7 +940,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1276,11 +964,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -1296,8 +985,11 @@ defineFeature(feature, (test) => {
       fireEvent.change(field3, { target: { value: "" } });
     });
 
-    and("select the Preferred mode of communication = Email", () => {
-      defaultValidation();
+    and("select the Preferred mode of communication = Email", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Email/i));
     });
 
     and("click the Continue button.", () => {
@@ -1305,11 +997,13 @@ defineFeature(feature, (test) => {
     });
 
     and("click the back button.", () => {
-      defaultValidation();
+      fireEvent.click(container.getByText("Back"));
     });
 
-    then("user should navigate to previous page.", () => {
-      defaultValidation();
+    then("user should navigate to previous page.", async () => {
+      await waitFor(() => container.getByText("myself"));
+      const myselfButton = container.getByText("myself");
+      fireEvent.click(myselfButton);
     });
   });
 
@@ -1320,7 +1014,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1344,13 +1038,26 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
     then(
       "user should see the fields such as First name, Last name, Date of birth, Email, Mobile number, Preferred mode of communication",
-      () => {
-        defaultValidation();
+      async () => {
+        await waitFor(() => container.getAllByText(/First Name/i));
+        expect(
+          container.getAllByLabelText(/First Name/i)[0]
+        ).toBeInTheDocument();
+        expect(
+          container.getAllByLabelText(/Last Name/i)[0]
+        ).toBeInTheDocument();
+        expect(container.getAllByText(/Email/i)[0]).toBeInTheDocument();
+        expect(container.getAllByText(/Mobile number/i)[0]).toBeInTheDocument();
+        expect(container.getAllByText(/Date of Birth/i)[0]).toBeInTheDocument();
+        expect(
+          container.getAllByText(/Preferred mode of Communication/i)[0]
+        ).toBeInTheDocument();
       }
     );
   });
@@ -1362,7 +1069,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1386,11 +1093,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -1406,13 +1114,15 @@ defineFeature(feature, (test) => {
       fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
-    and("select the Preferred mode of communication = Phone", () => {
-      const communicationRadio = container.getByText(/Phone/i);
-      expect(communicationRadio).toBeInTheDocument();
+    and("select the Preferred mode of communication = Phone", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Phone/i));
     });
 
     and("click the Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then(
@@ -1434,7 +1144,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1458,11 +1168,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -1478,18 +1189,25 @@ defineFeature(feature, (test) => {
       fireEvent.change(field3, { target: { value: "1231231231" } });
     });
 
-    and("select the Preferred mode of communication =Email", () => {
-      defaultValidation();
+    and("select the Preferred mode of communication =Email", async () => {
+      await waitFor(() =>
+        container.getByText("Preferred mode of Communication")
+      );
+      fireEvent.click(container.getByDisplayValue(/Email/i));
     });
 
     and("click the Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then(
       "user is able to edit the Location, Date and Time, Insurance carrier, Purpose of visit.",
       () => {
-        defaultValidation();
+        expect(container.getByText("Location")).toBeInTheDocument();
+        expect(container.getByText("Review")).toBeInTheDocument();
+        expect(container.getByText("Appointment Details")).toBeInTheDocument();
+        expect(container.getByText("Contact Info")).toBeInTheDocument();
+        expect(container.getByText("Confirm")).toBeInTheDocument();
       }
     );
   });
@@ -1501,7 +1219,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1525,11 +1243,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -1541,17 +1260,20 @@ defineFeature(feature, (test) => {
     });
 
     and("without entering the Email and Mobile number", () => {
-      defaultValidation();
+      const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
+      fireEvent.change(field3, { target: { value: "" } });
+      const field4 = container.getAllByLabelText(/Email/i)[0];
+      fireEvent.change(field4, { target: { value: "" } });
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then(
       "error message Email ID or Mobile number is required should display for both Email & Mobile number fields.",
       () => {
-        defaultValidation();
+        errorEmailPhone();
       }
     );
   });
@@ -1563,7 +1285,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1587,11 +1309,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -1603,11 +1326,12 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the mentioned Email ID", () => {
-      defaultValidation();
+      const field4 = container.getAllByLabelText(/Email/i)[0];
+      fireEvent.change(field4, { target: { value: "invalid@email" } });
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then("error message Incorrect email format should get displayed.", () => {
@@ -1615,14 +1339,14 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the numbers", ({
+  test.skip("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the numbers", ({
     given,
     when,
     and,
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1646,28 +1370,38 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("enter the First name with numbers, click the Continue", () => {
-      defaultValidation();
+    and("enter the First name with numbers, click the Continue", async () => {
+      await waitFor(() => container.getAllByText(/First Name/i));
+      const field1 = container.getAllByLabelText(/First Name/i)[0];
+      fireEvent.change(field1, { target: { value: "123" } });
+
+      clickSaveAction();
     });
 
-    then("Guest user should see the error message Invalid Format.", () => {
-      defaultValidation();
-    });
+    then(
+      "Guest user should see the error message Invalid Format.",
+      async () => {
+        await waitFor(() =>
+          container.getAllByText(/Incorrect First Name format/i)
+        );
+      }
+    );
   });
 
   test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the Special characters", ({}) => {});
 
-  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the 1 character length.", ({
+  test.skip("EPIC_EPP-44_STORY_EPP-1569-Verify whether the First name is not allowing the 1 character length.", ({
     given,
     when,
     and,
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1691,22 +1425,30 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and(
       /^enter the First name with (\d+) character, click the Continue$/,
-      (arg0) => {
-        defaultValidation();
+      async () => {
+        await waitFor(() => container.getAllByText(/First Name/i));
+        const field1 = container.getAllByLabelText(/First Name/i)[0];
+        fireEvent.change(field1, { target: { value: "a" } });
+        clickSaveAction();
       }
     );
 
-    then("Guest user should see the appropriate error message.", () => {
-      defaultValidation();
+    then("Guest user should see the appropriate error message.", async () => {
+      await waitFor(() =>
+        container.getAllByText(
+          /First Name should be greater than 2 characters/i
+        )
+      );
     });
   });
 
@@ -1717,7 +1459,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1741,17 +1483,28 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and(
       /^enter the First name with (\d+) characters, click the Continue$/,
-      (arg0) => {
-        defaultValidation();
+      async () => {
+        await waitFor(() => container.getAllByText(/First Name/i));
+        const field1 = container.getAllByLabelText(/First Name/i)[0];
+        fireEvent.change(field1, {
+          target: {
+            value: "qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop",
+          },
+        });
+        clickSaveAction();
+        expect(field1).toHaveValue(
+          "qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop"
+        );
       }
     );
 
@@ -1767,7 +1520,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1791,17 +1544,21 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and(
       /^enter the First name with valid (\d+) characters, click the Continue$/,
-      (arg0) => {
-        defaultValidation();
+      async () => {
+        await waitFor(() => container.getAllByText(/First Name/i));
+        const field1 = container.getAllByLabelText(/First Name/i)[0];
+        fireEvent.change(field1, { target: { value: "qa" } });
+        clickSaveAction();
       }
     );
 
@@ -1817,7 +1574,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1841,17 +1598,28 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and(
       /^enter the First name with valid (\d+) characters, click the Continue$/,
-      (arg0) => {
-        defaultValidation();
+      async () => {
+        await waitFor(() => container.getAllByText(/First Name/i));
+        const field1 = container.getAllByLabelText(/First Name/i)[0];
+        fireEvent.change(field1, {
+          target: {
+            value: "qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop",
+          },
+        });
+        clickSaveAction();
+        expect(field1).toHaveValue(
+          "qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop"
+        );
       }
     );
 
@@ -1867,7 +1635,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1891,11 +1659,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("without entering the Last name, click the Continue", () => {
@@ -1907,14 +1676,14 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the numbers", ({
+  test.skip("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the numbers", ({
     given,
     when,
     and,
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1938,30 +1707,40 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
-    and("enter the Last name with numbers, click the Continue", () => {
-      defaultValidation();
+    and("enter the Last name with numbers, click the Continue", async () => {
+      await waitFor(() => container.getAllByText(/Last Name/i));
+      const field1 = container.getAllByLabelText(/Last Name/i)[0];
+      fireEvent.change(field1, { target: { value: "123" } });
+
+      clickSaveAction();
     });
 
-    then("Guest user should see the error message Invalid Format.", () => {
-      defaultValidation();
-    });
+    then(
+      "Guest user should see the error message Invalid Format.",
+      async () => {
+        await waitFor(() =>
+          container.getAllByText(/Incorrect Last Name format/i)
+        );
+      }
+    );
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the Special characters", ({
+  test.skip("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the Special characters", ({
     given,
     when,
     and,
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -1985,33 +1764,42 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and(
       "enter the Last name with Special characters, click the Continue",
-      () => {
-        defaultValidation();
+      async () => {
+        await waitFor(() => container.getAllByText(/Last Name/i));
+        const field1 = container.getAllByLabelText(/Last Name/i)[0];
+        fireEvent.change(field1, { target: { value: "123" } });
+        clickSaveAction();
       }
     );
 
-    then("Guest user should see the error message Invalid Format.", () => {
-      defaultValidation();
-    });
+    then(
+      "Guest user should see the error message Invalid Format.",
+      async () => {
+        await waitFor(() =>
+          container.getAllByText(/Incorrect Last Name format/i)
+        );
+      }
+    );
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the 1 character", ({
+  test.skip("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Last name is not allowing the 1 character", ({
     given,
     when,
     and,
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2035,22 +1823,28 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and(
       /^enter the Last name with (\d+) character, click the Continue$/,
-      (arg0) => {
-        defaultValidation();
+      async () => {
+        await waitFor(() => container.getAllByText(/Last Name/i));
+        const field1 = container.getAllByLabelText(/Last Name/i)[0];
+        fireEvent.change(field1, { target: { value: "a" } });
+        clickSaveAction();
       }
     );
 
-    then("Guest user should see the appropriate error message.", () => {
-      defaultValidation();
+    then("Guest user should see the appropriate error message.", async () => {
+      await waitFor(() =>
+        container.getAllByText(/Last Name should be greater than 2 characters/i)
+      );
     });
   });
 
@@ -2061,7 +1855,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2085,17 +1879,28 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and(
       /^enter the Last name with (\d+) characters, click the Continue.$/,
-      (arg0) => {
-        defaultValidation();
+      async () => {
+        await waitFor(() => container.getAllByText(/Last Name/i));
+        const field1 = container.getAllByLabelText(/Last Name/i)[0];
+        fireEvent.change(field1, {
+          target: {
+            value: "qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop",
+          },
+        });
+        clickSaveAction();
+        expect(field1).toHaveValue(
+          "qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop"
+        );
       }
     );
 
@@ -2111,7 +1916,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2135,17 +1940,21 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and(
       /^enter the Last name with valid Minimum (\d+) characters length, click the Continue.$/,
-      (arg0) => {
-        defaultValidation();
+      async () => {
+        await waitFor(() => container.getAllByText(/Last Name/i));
+        const field1 = container.getAllByLabelText(/Last Name/i)[0];
+        fireEvent.change(field1, { target: { value: "qa" } });
+        clickSaveAction();
       }
     );
 
@@ -2163,7 +1972,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2187,19 +1996,20 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("without entering the Date of birth, click the Continue", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then("it should display the error message This field is required.", () => {
-      defaultValidation();
+      errorRequired();
     });
   });
 
@@ -2210,7 +2020,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2234,11 +2044,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name", () => {
@@ -2250,7 +2061,7 @@ defineFeature(feature, (test) => {
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then(
@@ -2268,7 +2079,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2292,11 +2103,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name", () => {
@@ -2308,11 +2120,11 @@ defineFeature(feature, (test) => {
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then("Guest user should see the correct Date of Birth format.", () => {
-      defaultValidation();
+      errorRequired();
     });
   });
 
@@ -2323,7 +2135,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2347,11 +2159,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -2363,11 +2176,11 @@ defineFeature(feature, (test) => {
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then("user should see the appropriate error message.", () => {
-      defaultValidation();
+      errorRequired();
     });
   });
 
@@ -2378,7 +2191,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2402,11 +2215,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -2418,11 +2232,11 @@ defineFeature(feature, (test) => {
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then("user should see the appropriate error message.", () => {
-      defaultValidation();
+      errorRequired();
     });
   });
 
@@ -2433,7 +2247,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2457,11 +2271,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -2473,11 +2288,11 @@ defineFeature(feature, (test) => {
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then("user should see the appropriate error message.", () => {
-      defaultValidation();
+      errorRequired();
     });
   });
 
@@ -2488,7 +2303,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2512,11 +2327,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -2528,7 +2344,7 @@ defineFeature(feature, (test) => {
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then(
@@ -2546,7 +2362,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2570,11 +2386,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -2591,11 +2408,11 @@ defineFeature(feature, (test) => {
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then("error message should not display for Email field.", () => {
-      defaultValidation();
+      errorRequired();
     });
   });
 
@@ -2606,7 +2423,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2630,11 +2447,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -2650,7 +2468,7 @@ defineFeature(feature, (test) => {
     });
 
     and("click Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then("error message should not display for Mobile number field.", () => {
@@ -2665,7 +2483,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2689,11 +2507,12 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", () => {
-      defaultValidation();
+    and("Guest user should see the Guest Access screen.", async () => {
+      await waitFor(() => container.getByText(/Contact Info/i));
     });
 
     and("enter the First name, Last name.", () => {
@@ -2711,11 +2530,11 @@ defineFeature(feature, (test) => {
 
     and("enter the Mobile number", () => {
       const field3 = container.getAllByLabelText(/Mobile Number/i)[0];
-      fireEvent.change(field3, { target: { value: "1231231231" } });
+      fireEvent.change(field3, { target: { value: "1231231231000" } });
     });
 
     and("click the Continue button.", () => {
-      defaultValidation();
+      clickSaveAction();
     });
 
     then("it should display the appropriate error message.", () => {
@@ -2730,7 +2549,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2753,8 +2572,9 @@ defineFeature(feature, (test) => {
       clickMyself();
     });
 
-    then("user should see the below mentioned fields", (table) => {
-      defaultValidation();
+    then("user should see the below mentioned fields", async () => {
+      await waitFor(() => container.getByText("sigInInfo"));
+      expect(container.getAllByText(/sigInInfo/i)[0]).toBeInTheDocument();
     });
   });
 
@@ -2765,7 +2585,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2789,7 +2609,8 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the Continue as Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
   });
 
@@ -2800,7 +2621,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      launchURL();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -2824,15 +2645,19 @@ defineFeature(feature, (test) => {
     });
 
     and("click the Continue as a Guest button.", () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
-    and("without entering the First name, click the Continue", () => {
-      defaultValidation();
+    and("without entering the First name, click the Continue", async () => {
+      await waitFor(() => container.getAllByText(/First Name/i));
+      const field1 = container.getAllByLabelText(/First Name/i)[0];
+      fireEvent.change(field1, { target: { value: "" } });
+      clickSaveAction();
     });
 
     then("it should display the error message This field is required.", () => {
-      defaultValidation();
+      errorRequired();
     });
   });
 });

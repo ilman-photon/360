@@ -278,12 +278,10 @@ defineFeature(feature, (test) => {
       fireEvent.click(healthMenu[0]);
     });
 
-    and("user click on Test & Lab Result sub menu", () => {
-      async () => {
-        await waitFor(() => container.getAllByText(/Test & Lab Results/i));
-        const testLabMenu = container.getAllByText(/Test & Lab Results/i);
-        fireEvent.click(testLabMenu[0]);
-      };
+    and("user click on Test & Lab Result sub menu", async () => {
+      await waitFor(() => container.getAllByText(/Test & Lab Results/i));
+      const testLabMenu = container.getAllByText(/Test & Lab Results/i);
+      fireEvent.click(testLabMenu[0]);
     });
 
     then(

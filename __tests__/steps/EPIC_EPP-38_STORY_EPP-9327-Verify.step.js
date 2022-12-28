@@ -10,6 +10,7 @@ import store from "../../src/store/store";
 import { Provider } from "react-redux";
 import { doLogin, renderLogin } from "../../__mocks__/commonSteps";
 import LoginSecurityPage from "../../src/pages/patient/account/login-&-security";
+import moment from "moment";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint10/EPP-9327.feature"
@@ -19,15 +20,34 @@ const mock = new MockAdapter(axios);
 
 defineFeature(feature, (test) => {
   let container;
-  
+
   beforeEach(async () => {
     Object.defineProperty(document, 'cookie', {
       writable: true,
       value: 'authorized=true;accessToken=1234',
     });
+
+    mock.onPost(`/ecp/patient/getLastUpdatedPasswordDate`).reply(200, {
+      lastUpdatedPasswordDate: moment().subtract(2, "m").format(),
+    });
+
+    mock.onPost(`/ecp/patient/settings/changePassword`).reply(200, {
+      responseCode: 3000,
+      responseType: "success",
+    });
+
+    mock.onPost(`/ecp/patient/settings/validatePassword`).reply(400, {
+      responseCode: 2001,
+      responseType: " Password is invalid",
+    });
+
+    mock.onPost(`/ecp/patient/logout`).reply(200, {
+      ResponseCode: 2005,
+      ResponseType: "success",
+    });
   })
 
-  afterEach(() => {});
+  afterEach(() => { });
 
   const defaultValidation = () => {
     expect(true).toBeTruthy();
@@ -48,7 +68,7 @@ defineFeature(feature, (test) => {
   }
 
   const userLandsOnLoginSecurityScreen = () => {
-    container.rerender(
+    container = render(
       <Provider store={store}>
         <LoginSecurityPage />
       </Provider>

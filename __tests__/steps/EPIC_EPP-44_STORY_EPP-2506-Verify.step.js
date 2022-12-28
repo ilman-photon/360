@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import axios from "axios";
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
@@ -10,7 +10,7 @@ const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
 import { mockSubmitFilterReal } from "../../__mocks__/mockResponse";
-import { inputPurpose, provideFilters } from "../../__mocks__/commonSteps";
+import { inputPurpose, provideFilters, renderResultsScreen } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
 	"./__tests__/feature/Patient Portal/Sprint4/EPP-2506.feature"
@@ -137,13 +137,32 @@ defineFeature(feature, (test) => {
 			removeListener: () => { },
 		});
 	}
+
+	const inputDate = async () => {
+		const dateInput = await waitFor(() => container.getByLabelText("Date"));
+		act(() => {
+			fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
+		});
+		expect(dateInput).toBeInTheDocument();
+	};
+
+	const inputInsurance = async () => {
+		const insuranceInput = await waitFor(() =>
+			container.getByLabelText("Insurance Carrier")
+		);
+		act(() => {
+			fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+		});
+		expect(insuranceInput).toBeInTheDocument();
+	};
+
 	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to view the following filters', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -154,7 +173,7 @@ defineFeature(feature, (test) => {
 
 			const domain = window.location.origin;
 			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
-      		mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
 			global.navigator.geolocation = mockGeolocation;
 			window.matchMedia = createMatchMedia('1920px');
 			act(() => {
@@ -172,7 +191,7 @@ defineFeature(feature, (test) => {
 
 		and('User should fill the location', () => {
 			const locationField = container.container.querySelector('#location');
-			fireEvent.change(locationField, {target: { value: "Texas" }})
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 
 		and('User should select the date of appointment', () => {
@@ -224,11 +243,11 @@ defineFeature(feature, (test) => {
 
 	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to apply the Language filter', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -237,10 +256,9 @@ defineFeature(feature, (test) => {
 				watchPosition: jest.fn()
 			};
 
-			const domain = window.location.origin;
 			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
-      		mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
-			
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+
 			global.navigator.geolocation = mockGeolocation;
 			window.matchMedia = createMatchMedia('1920px');
 			act(() => {
@@ -258,19 +276,19 @@ defineFeature(feature, (test) => {
 
 		and('User should fill the location', () => {
 			const locationField = container.container.querySelector('#location');
-			fireEvent.change(locationField, {target: { value: "Texas" }})
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 
-		and('User should select the date of appointment', () => {
-
+		and('User should select the date of appointment', async () => {
+			await inputDate()
 		});
 
 		and('User should select the purpose of the visit', async () => {
 			await inputPurpose(container)
 		});
 
-		and('User should fill the insurance name', () => {
-			
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
 		});
 
 		when('User clicks on the Search button', async () => {
@@ -282,45 +300,38 @@ defineFeature(feature, (test) => {
 			});
 		});
 
-		then('User should see the results on the Schedule Appointments screen', () => {
-
+		then('User should see the results on the Schedule Appointments screen', async () => {
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
 		});
 
-		when('User selects Language filter', async() => {
+		when('User selects Language filter', async () => {
 			const filterBtn = container.getByTestId("filterbtn")
 			fireEvent.click(filterBtn)
 
 			await waitFor(() => {
 				container.getByText(/Filter By/i);
 			});
-			// const expand = container.getByText(/See more/i)
-			// fireEvent.click(expand)
 
-			// const language = container.getByText("Arabic");
-			// fireEvent.click(language)
 		});
 
 		then('User should see Filtered Language', async () => {
-			// const done = container.getByRole('button', {name: "Done"});
-			// fireEvent.click(done)
-			// await waitFor(() => {
-			// 	container.getByText("Arabic");
-			// 	expect(container.getByText("Arabic")).toBeInTheDocument()
-			// });
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to apply the Gender filter', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -330,7 +341,7 @@ defineFeature(feature, (test) => {
 			};
 
 			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
-      		mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
 			global.navigator.geolocation = mockGeolocation;
 			window.matchMedia = createMatchMedia('1920px');
 			act(() => {
@@ -348,19 +359,19 @@ defineFeature(feature, (test) => {
 
 		and('User should fill the location', () => {
 			const locationField = container.container.querySelector('#location');
-			fireEvent.change(locationField, {target: { value: "Texas" }})
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 
-		and('User should select the date of appointment', () => {
-
+		and('User should select the date of appointment', async () => {
+			await inputDate()
 		});
 
 		and('User should select the purpose of the visit', async () => {
 			await inputPurpose(container)
 		});
 
-		and('User should fill the insurance name', () => {
-
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
 		});
 
 		when('User clicks on the Search button', async () => {
@@ -373,11 +384,12 @@ defineFeature(feature, (test) => {
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
-
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
 		});
 
 		when('User selects Gender filter', async () => {
@@ -386,188 +398,24 @@ defineFeature(feature, (test) => {
 
 			await waitFor(() => {
 				container.getByText(/Filter By/i);
-				
-			});
-			
-			// const language = container.getAllByText("Arabic")[0];
-			// fireEvent.click(language)
-			// fireEvent.click(language)
 
-			// const gender = container.getByText("Male");
-			// fireEvent.click(gender)
+			});
+
 		});
 
 		then('User should see Filtered Gender', async () => {
-			// const done = container.getByRole('button', {name: "Done"});
-			// fireEvent.click(done)
-			// await waitFor(() => {
-			// 	container.getByText("Male");
-			// 	expect(container.getByText("Male")).toBeInTheDocument()
-			// });
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to apply the Insurance In/Out of Network filter', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
-		});
-
-		then('User should navigated to the search screen', () => {
-
-		});
-
-		and('User should fill the location', () => {
-
-		});
-
-		and('User should select the date of appointment', () => {
-
-		});
-
-		and('User should select the purpose of the visit', () => {
-
-		});
-
-		and('User should fill the insurance name', () => {
-
-		});
-
-		when('User clicks on the Search button', () => {
-
-		});
-
-		then('User should see the results on the Schedule Appointments screen', () => {
-
-		});
-
-		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
-		});
-
-		when('User selects Insurance In/Out of Network filter', () => {
-
-		});
-
-		then('User should see Filtered Insurance In/Out of Network', () => {
-
-		});
-	});
-
-	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to apply the Available Today (Provider) filter', ({ given, when, then, and }) => {
-		given(/^User launch the "(.*)" url$/, (arg0) => {
-
-		});
-
-		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
-		});
-
-		then('User should navigated to the search screen', () => {
-
-		});
-
-		and('User should fill the location', () => {
-
-		});
-
-		and('User should select the date of appointment', () => {
-
-		});
-
-		and('User should select the purpose of the visit', () => {
-
-		});
-
-		and('User should fill the insurance name', () => {
-
-		});
-
-		when('User clicks on the Search button', () => {
-
-		});
-
-		then('User should see the results on the Schedule Appointments screen', () => {
-
-		});
-
-		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
-		});
-
-		when('User selects Insurance Available Today (Provider) filter', () => {
-
-		});
-
-		then('User should see Filtered Available Today (Provider)', () => {
-
-		});
-	});
-
-	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should see an option to clear those filters when applied', ({ given, when, then, and }) => {
-		given(/^User launch the "(.*)" url$/, (arg0) => {
-
-		});
-
-		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
-		});
-
-		then('User should navigated to the search screen', () => {
-
-		});
-
-		and('User should fill the location', () => {
-
-		});
-
-		and('User should select the date of appointment', () => {
-
-		});
-
-		and('User should select the purpose of the visit', () => {
-
-		});
-
-		and('User should fill the insurance name', () => {
-
-		});
-
-		when('User clicks on the Search button', () => {
-
-		});
-
-		then('User should see the results on the Schedule Appointments screen', () => {
-
-		});
-
-		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
-		});
-
-		when('User selects Insurance Available Today (Provider) filter', () => {
-
-		});
-
-		then('User should see Filtered Available Today (Provider)', () => {
-
-		});
-
-		and('User should see an option to clear the applied filter', () => {
-
-		});
-	});
-
-	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should see the filter was removed when user clicks on Clear option', ({ given, when, then, and }) => {
-		given(/^User launch the "(.*)" url$/, (arg0) => {
-
-		});
-
-		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -577,8 +425,8 @@ defineFeature(feature, (test) => {
 			};
 
 			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
-      		mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
-			
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+
 			global.navigator.geolocation = mockGeolocation;
 			window.matchMedia = createMatchMedia('1920px');
 			act(() => {
@@ -595,17 +443,20 @@ defineFeature(feature, (test) => {
 		});
 
 		and('User should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 
-		and('User should select the date of appointment', () => {
-
+		and('User should select the date of appointment', async () => {
+			await inputDate()
 		});
 
 		and('User should select the purpose of the visit', async () => {
-			await provideFilters(container)
+			await inputPurpose(container)
 		});
 
-		and('User should fill the insurance name', () => {
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
 		});
 
 		when('User clicks on the Search button', async () => {
@@ -614,16 +465,98 @@ defineFeature(feature, (test) => {
 
 			await waitFor(() => {
 				container.getByText(/Filter/i);
-				
 			});
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
-
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
+		});
 
+		when('User selects Insurance In/Out of Network filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+			});
+		});
+
+		then('User should see Filtered Insurance In/Out of Network', () => {
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to apply the Available Today (Provider) filter', ({ given, when, then, and }) => {
+		given(/^User launch the "(.*)" url$/, (arg0) => {
+			defaultValidation()
+		});
+
+		when(/^User clicks on the "(.*)" button$/, (arg0) => {
+			defaultValidation()
+		});
+
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('User should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
+		});
+
+		and('User should select the date of appointment', async () => {
+			await inputDate()
+		});
+
+		and('User should select the purpose of the visit', async () => {
+			await inputPurpose(container)
+		});
+
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
+		});
+
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+			});
+		});
+
+		then('User should see the results on the Schedule Appointments screen', () => {
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
+		});
+
+		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
 		});
 
 		when('User selects Insurance Available Today (Provider) filter', async () => {
@@ -632,260 +565,636 @@ defineFeature(feature, (test) => {
 
 			await waitFor(() => {
 				container.getByText(/Filter By/i);
-				
+
 			});
+
+			const check = container.getByText(/Available Today/i);
+			fireEvent.click(check)
+
+		});
+
+		then('User should see Filtered Available Today (Provider)', async () => {
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText(/Available Today/i);
+			});
+			expect(container.getByText(/Available Today/i)).toBeInTheDocument()
+			fireEvent.click(container.getByTestId("CloseIcon"))
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should see an option to clear those filters when applied', ({ given, when, then, and }) => {
+		given(/^User launch the "(.*)" url$/, (arg0) => {
+			defaultValidation()
+		});
+
+		when(/^User clicks on the "(.*)" button$/, (arg0) => {
+			defaultValidation()
+		});
+
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('User should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
+		});
+
+		and('User should select the date of appointment', async () => {
+			await inputDate()
+		});
+
+		and('User should select the purpose of the visit', async () => {
+			await inputPurpose(container)
+		});
+
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
+		});
+
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+			});
+		});
+
+		then('User should see the results on the Schedule Appointments screen', () => {
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
+		});
+
+		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
+		});
+
+		when('User selects Insurance Available Today (Provider) filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+
+			});
+
+			const check = container.getByText(/Available Today/i);
+			fireEvent.click(check)
+		});
+
+		then('User should see Filtered Available Today (Provider)', async () => {
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText(/Available Today/i);
+			});
+			expect(container.getByText(/Available Today/i)).toBeInTheDocument()
 			
+		});
+
+		and('User should see an option to clear the applied filter', () => {
+			expect(container.getByTestId("CloseIcon")).toBeInTheDocument()
+			fireEvent.click(container.getByTestId("CloseIcon"))
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should see the filter was removed when user clicks on Clear option', ({ given, when, then, and }) => {
+		given(/^User launch the "(.*)" url$/, (arg0) => {
+			defaultValidation()
+		});
+
+		when(/^User clicks on the "(.*)" button$/, (arg0) => {
+			defaultValidation()
+		});
+
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('User should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
+		});	
+
+		and('User should select the date of appointment', async () => {
+			await inputDate()
+		});
+
+		and('User should select the purpose of the visit', async () => {
+			await inputPurpose(container)
+		});
+
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
+		});
+
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+
+			});
+		});
+
+		then('User should see the results on the Schedule Appointments screen', () => {
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
+		});
+
+		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
+		});
+
+		when('User selects Insurance Available Today (Provider) filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+
+			});
+
 			const available = container.getByText("Available Today");
 			fireEvent.click(available)
 		});
 
-		then('User should see Filtered Available Today (Provider)', () => {
-
+		then('User should see Filtered Available Today (Provider)', async () => {
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText(/Available Today/i);
+			});
+			expect(container.getByText(/Available Today/i)).toBeInTheDocument()
 		});
 
-		and('User should see an option to clear the applied filter', () => {
-			const reset = container.getAllByRole('button', {name: "Reset"})[0];
+		and('User should see an option to clear the applied filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+
+			});
+			const reset = container.getAllByRole('button', { name: "Reset" })[0];
 			expect(reset).toBeInTheDocument()
 			fireEvent.click(reset)
 		});
 
-		and('User should see the filter was removed when user clicks on Clear option', () => {
-			// const done = container.getByRole('button', {name: "Done"});
-			// fireEvent.click(done)
+		and('User should see the filter was removed when user clicks on Clear option', async () => {
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText(/Filter/i);
 
-			// expect(container.queryByTestId('CloseIcon')).not.toBeInTheDocument()
+			});
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to view the following filters within 3 seconds', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
-		then('User should navigated to the search screen', () => {
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
 
+			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
 		});
 
 		and('User should fill the location', () => {
-
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 
-		and('User should select the date of appointment', () => {
-
+		and('User should select the date of appointment', async () => {
+			await inputDate()
 		});
 
-		and('User should select the purpose of the visit', () => {
-
+		and('User should select the purpose of the visit', async () => {
+			await inputPurpose(container)
 		});
 
-		and('User should fill the insurance name', () => {
-
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
 		});
 
-		when('User clicks on the Search button', () => {
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+
+			});
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
-
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
 		});
 
-		and('User should be able to view the following filters as below:', (table) => {
+		and('User should be able to view the following filters as below:', async (table) => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+
+			});
+
+			const available = container.getByText("Available Today");
+			fireEvent.click(available)
 		});
 
-		when('User filter based on selected filter', () => {
-
+		when('User filter based on selected filter', async () => {
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText(/Available Today/i);
+			});
+			expect(container.getByText(/Available Today/i)).toBeInTheDocument()
 		});
 
 		then(/^User should see page load within "(.*)"$/, (arg0) => {
-
+			expect(container.getByText(/Available Today/i)).toBeInTheDocument()
+			fireEvent.click(container.getByTestId("CloseIcon"))
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should not see the any errors script when user clicks F12 on the console', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
-		then('User should navigated to the search screen', () => {
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
 
+			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
 		});
 
 		and('User should fill the location', () => {
-
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 
-		and('User should select the date of appointment', () => {
-
+		and('User should select the date of appointment', async () => {
+			await inputDate()
 		});
 
-		and('User should select the purpose of the visit', () => {
-
+		and('User should select the purpose of the visit', async () => {
+			await inputPurpose(container)
 		});
 
-		and('User should fill the insurance name', () => {
-
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
 		});
 
-		when('User clicks on the Search button', () => {
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+
+			});
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
-
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
 		});
 
-		and('User should be able to view the following filters as below:', (table) => {
+		and('User should be able to view the following filters as below:', async (table) => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+
+			});
+
+			const available = container.getByText("Available Today");
+			fireEvent.click(available)
 		});
 
-		when('User filter based on selected filter', () => {
-
+		when('User filter based on selected filter', async () => {
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText(/Available Today/i);
+			});
+			expect(container.getByText(/Available Today/i)).toBeInTheDocument()
 		});
 
 		then(/^User should see page load within "(.*)"$/, (arg0) => {
-
+			expect(container.getByText(/Available Today/i)).toBeInTheDocument()
+			fireEvent.click(container.getByTestId("CloseIcon"))
 		});
 
 		when(/^User clicks on F(\d+) on the console$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should not to see any errors script', () => {
-
+			defaultValidation()
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2506-Negative Test Cases-Verify user should see the error message when the internet service is unavailable', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
-		then('User should navigated to the search screen', () => {
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
 
+			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
 		});
 
 		and('User should fill the location', () => {
-
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 
-		and('User should select the date of appointment', () => {
-
+		and('User should select the date of appointment', async () => {
+			await inputDate()
 		});
 
-		and('User should select the purpose of the visit', () => {
-
+		and('User should select the purpose of the visit', async () => {
+			await inputPurpose(container)
 		});
 
-		and('User should fill the insurance name', () => {
-
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
 		});
 
-		when('User clicks on the Search button', () => {
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+
+			});
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
-
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
 		});
 
-		and('User should be able to view the following filters as below:', (table) => {
+		and('User should be able to view the following filters as below:', async (table) => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+
+			});
+
+			const available = container.getByText("Available Today");
+			fireEvent.click(available)
 		});
 
-		when('User filter based on selected filter', () => {
-
+		when('User filter based on selected filter', async () => {
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText(/Available Today/i);
+			});
+			expect(container.getByText(/Available Today/i)).toBeInTheDocument()
+			fireEvent.click(container.getByTestId("CloseIcon"))
 		});
 
 		then('The Internet service is unavailable', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the appropriate error message', () => {
-
+			defaultValidation()
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2506-Negative Test Cases-Verify user should see the error message when the service is unavailable', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
-		then('User should navigated to the search screen', () => {
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
 
+			mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+			mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(200, mockSubmitFilterReal);
+
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
 		});
 
 		and('User should fill the location', () => {
-
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 
-		and('User should select the date of appointment', () => {
-
+		and('User should select the date of appointment', async () => {
+			await inputDate()
 		});
 
-		and('User should select the purpose of the visit', () => {
-
+		and('User should select the purpose of the visit', async () => {
+			await inputPurpose(container)
 		});
 
-		and('User should fill the insurance name', () => {
-
+		and('User should fill the insurance name', async () => {
+			await inputInsurance()
 		});
 
-		when('User clicks on the Search button', () => {
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+
+			});
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
-
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
+			const locationField = container.container.querySelector("#location")
+			expect(locationField.value).toBe("Texas")
 		});
 
-		and('User should be able to view the following filters as below:', (table) => {
+		and('User should be able to view the following filters as below:', async (table) => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+
+			});
+
+			const available = container.getByText("Available Today");
+			fireEvent.click(available)
 		});
 
-		when('User filter based on selected filter', () => {
-
+		when('User filter based on selected filter', async () => {
+			const done = container.getByRole('button', { name: "Done" });
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText(/Available Today/i);
+			});
+			expect(container.getByText(/Available Today/i)).toBeInTheDocument()
+			fireEvent.click(container.getByTestId("CloseIcon"))
 		});
 
 		then('The service is unavailable', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the appropriate error message', () => {
-
+			defaultValidation()
 		});
 	});
 })

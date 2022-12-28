@@ -10,8 +10,8 @@ variables:
 
 stages:
   - install
-  - lint
   - test
+  - lint
   # - build
   - sonar
   - imagebuild

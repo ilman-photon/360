@@ -10,7 +10,10 @@ import AuthPage from "../../src/pages/patient/login";
 import axios from "axios";
 import React from "react";
 import { renderWithProviders } from "../src/utils/test-util";
-import { createMatchMedia } from "../../__mocks__/commonSteps";
+import {
+  createMatchMedia,
+  defaultValidation,
+} from "../../__mocks__/commonSteps";
 import { testLab } from "../../__mocks__/mockResponse";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
@@ -43,10 +46,6 @@ defineFeature(feature, (test) => {
   afterEach(() => {
     mock.reset();
   });
-
-  const defaultValidation = () => {
-    expect(true).toBeTruthy();
-  };
 
   const launchBrowser = () => {
     mock
@@ -322,8 +321,8 @@ defineFeature(feature, (test) => {
 
     and(
       "user is able to view the test result in user portal only when it is approved by the provider in E360+ system",
-      async (arg0) => {
-        expect(true).toBeTruthy();
+      () => {
+        defaultValidation();
       }
     );
   });

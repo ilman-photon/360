@@ -1,4 +1,10 @@
-import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  cleanup,
+} from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
@@ -10,7 +16,12 @@ import store from "../../src/store/store";
 import { Login } from "../../src/components/organisms/Login/login";
 import { renderWithProviders } from "../src/utils/test-util";
 import { TEST_ID } from "../../src/utils/constants";
-import { renderLogin, renderForgotPassword, clickContinueForgot, navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
+import {
+  renderLogin,
+  renderForgotPassword,
+  clickContinueForgot,
+  navigateToPatientPortalHome,
+} from "../../__mocks__/commonSteps";
 import UpdatePasswordPage from "../../src/pages/patient/update-password";
 import AuthPage from "../../src/pages/patient/login";
 
@@ -49,17 +60,19 @@ const launchURL = () => {
     });
   });
   container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-}
+};
 
 const navigateToPatientPortalApp = () => {
-  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  mock
+    .onGet(`https://api.ipify.org?format=json`)
+    .reply(200, { ip: "10.10.10.10" });
   act(() => {
     container = renderWithProviders(<AuthPage />, {
       container: document.body.appendChild(element),
       legacyRoot: true,
     });
   });
-}
+};
 
 const renderMFA = async () => {
   cleanup();
@@ -86,7 +99,7 @@ const renderMFA = async () => {
   });
   await waitFor(() => container.getByText("backToLoginBtn"));
   expect(container.getByText("backToLoginBtn")).toBeInTheDocument();
-}
+};
 
 defineFeature(feature, (test) => {
   let container;
@@ -139,7 +152,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -147,8 +162,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      navigateToPatientPortalHome();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      await navigateToPatientPortalHome();
     });
   });
 
@@ -197,7 +212,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -209,8 +226,8 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" screen$/, (arg0) => {
-      navigateToPatientPortalHome();
+    and(/^user should see "(.*)" screen$/, async (arg0) => {
+      await navigateToPatientPortalHome();
     });
   });
 
@@ -259,7 +276,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -321,7 +340,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -379,7 +400,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -437,7 +460,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -445,8 +470,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText("confrimBtn")).toBeInTheDocument();
     });
 
-    then(/^user should see "(.*)" screen$/, (arg0) => {
-      navigateToPatientPortalHome();
+    then(/^user should see "(.*)" screen$/, async (arg0) => {
+      await navigateToPatientPortalHome();
     });
   });
 
@@ -495,7 +520,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -507,8 +534,8 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" screen$/, (arg0) => {
-      navigateToPatientPortalHome();
+    and(/^user should see "(.*)" screen$/, async (arg0) => {
+      await navigateToPatientPortalHome();
     });
   });
 
@@ -557,7 +584,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -615,7 +644,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -673,7 +704,9 @@ defineFeature(feature, (test) => {
     and(
       /^user should see the "(.*)" option has been selected that Remember me has not expired$/,
       (arg0) => {
-        expect(container.getByText("rememberMeDescription")).toBeInTheDocument();
+        expect(
+          container.getByText("rememberMeDescription")
+        ).toBeInTheDocument();
       }
     );
 
@@ -685,8 +718,8 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see "(.*)" screen$/, (arg0) => {
-      navigateToPatientPortalHome();
+    and(/^user should see "(.*)" screen$/, async (arg0) => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on the console", () => {

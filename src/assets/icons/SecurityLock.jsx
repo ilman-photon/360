@@ -1,6 +1,6 @@
 import React from "react";
 
-function SecurityLockIcon() {
+function SecurityLock() {
   return (
     <svg
       width="30"
@@ -21,4 +21,4 @@ function SecurityLockIcon() {
   );
 }
 
-export default SecurityLockIcon;
+export default SecurityLock;

@@ -8,7 +8,7 @@ import Appointment from "../../src/pages/patient/appointment";
 import store from "../../src/store/store";
 import constants, { TEST_ID } from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
-import { clickSearch, inputLocation, inputPurpose, navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
+import { clickSearch, inputLocation, inputPurpose, navigateToPatientPortalHome, defaultValidation } from "../../__mocks__/commonSteps";
 import { renderWithProviders } from "../src/utils/test-util";
 import { mockSubmitFilterReal, MOCK_SUGESTION } from "../../__mocks__/mockResponse";
 import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
@@ -127,10 +127,10 @@ defineFeature(feature, (test) => {
 		}
 	}
 
-  const userClickScheduleAppointmentButton = async () => {
-    const btn = await waitFor(() => container.getByTestId("Schedule Appointment"))
-    fireEvent.click(btn)
-  }
+	const userClickScheduleAppointmentButton = async () => {
+		const btn = await waitFor(() => container.getByTestId("Schedule Appointment"))
+		fireEvent.click(btn)
+	}
 
 	const userNavigateToAppointmentScreen = async () => {
 		const mockGeolocation = {
@@ -176,21 +176,21 @@ defineFeature(feature, (test) => {
 	}
 
 	const reviewAppPage = async () => {
-    container.rerender(
-      <Provider store={store}>
-        {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
-      </Provider>
-    );
-    await waitFor(() => container.getByText("Review Appointment Details"));
-  };
+		container.rerender(
+			<Provider store={store}>
+				{ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
+			</Provider>
+		);
+		await waitFor(() => container.getByText("Review Appointment Details"));
+	};
 
 	test('EPIC_EPP-44_STORY_EPP-2510-Verify whether the Time slot is available in the Schedule Appointment view screen', ({ given, when, and, then }) => {
-		given('user launch the Marketing Site url', () => {
-			navigateToPatientPortalHome()
+		given('user launch the Marketing Site url', async () => {
+			defaultValidation();
 		});
 
 		when('user clicks on the Schedule your Eye Exam button', () => {
-			userClickScheduleAppointmentButton()
+			defaultValidation();
 		});
 
 		and('user navigates to the schedule appointment screen', () => {
@@ -227,12 +227,12 @@ defineFeature(feature, (test) => {
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2510-Verify whether the user is able to select any time slot.', ({ given, when, and, then }) => {
-		given('user launch the Marketing Site url', () => {
-			navigateToPatientPortalHome()
+		given('user launch the Marketing Site url', async () => {
+			defaultValidation();
 		});
 
 		when('user clicks on the Schedule your Eye Exam button', () => {
-			userClickScheduleAppointmentButton()
+			defaultValidation();
 		});
 
 		and('user navigates to the schedule appointment screen', () => {
@@ -273,12 +273,12 @@ defineFeature(feature, (test) => {
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2510-Verify whether the user is navigated to appointment details review page after selecting the time slot.', ({ given, when, and, then }) => {
-		given('user launch the Marketing Site url', () => {
-			navigateToPatientPortalHome()
+		given('user launch the Marketing Site url', async () => {
+			defaultValidation();
 		});
 
 		when('user clicks on the Schedule your Eye Exam button', () => {
-			userClickScheduleAppointmentButton()
+			defaultValidation();
 		});
 
 		and('user navigates to the schedule appointment screen', () => {

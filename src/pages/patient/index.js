@@ -208,6 +208,7 @@ export default function HomePage({ googleApiKey }) {
     } else {
       setIsAuthenticated(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {

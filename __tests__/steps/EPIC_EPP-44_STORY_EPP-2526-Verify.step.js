@@ -1,64 +1,191 @@
-import {
-  act,
-  fireEvent,
-  render,
-  waitFor,
-  cleanup,
-} from "@testing-library/react";
-import axios from "axios";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import { Provider } from "react-redux";
-import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
-import AuthPage from "../../src/pages/patient/login";
-import Cookies from "universal-cookie";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
-import HomePage from "../../src/pages/patient";
-import { renderScheduleAppointment } from "../../__mocks__/commonSteps";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import {
+  createMatchMedia,
+  defaultValidation,
+  renderAppointmentDetail,
+} from "../../__mocks__/commonSteps";
+import {
+  mockAppointmentTypes,
+  submitFilter,
+  MOCK_APPOINTMENT,
+  MOCK_PAST,
+  MOCK_SUGESTION,
+} from "../../__mocks__/mockResponse";
+import { Login } from "../../src/components/organisms/Login/login";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
+import Appointments from "../../src/pages/patient/appointments";
 import Appointment from "../../src/pages/patient/appointment";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2526.feature"
 );
 
+
+jest.mock("@react-google-maps/api", () => ({
+  useLoadScript: () => ({
+    isLoaded: true,
+    loadError: null
+  }),
+  GoogleMap: () => <div></div>,
+  Marker: () => <Marker />
+}));
+
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+let appointmentsContainer;
+const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID;
+
+const launchURL = () => {
+  const mockOnLoginClicked = jest.fn((data, route, callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+}
+
+const userSeeScheduleScreen = () => {
+  expect(container.getAllByText("Date and time")).toBeTruthy();
+  expect(container.getAllByText("Insurance")).toBeTruthy();
+  expect(container.getAllByText("No Insurance provided")).toBeTruthy();
+  expect(container.getAllByText("Purpose of visit")).toBeTruthy();
+};
+
+const inputLocation = async () => {
+  const locationInput = await waitFor(() =>
+    container.getByLabelText("City, state, or zip code")
+  );
+  act(() => {
+    fireEvent.change(locationInput, { target: { value: "Texas" } });
+  });
+  expect(locationInput).toBeInTheDocument();
+};
+
+const inputDate = async () => {
+  const dateInput = await waitFor(() => container.getByLabelText("Date"));
+  act(() => {
+    fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
+  });
+  expect(dateInput).toBeInTheDocument();
+};
+
+const inputPurpose = async () => {
+  const purposeInput = await waitFor(() =>
+    container.getByTestId("select-purposes-of-visit")
+  );
+  act(() => {
+    fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+  });
+  expect(purposeInput).toBeInTheDocument();
+};
+
+const inputInsurance = async () => {
+  const insuranceInput = await waitFor(() =>
+    container.getByLabelText("Insurance Carrier")
+  );
+  act(() => {
+    fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+  });
+  expect(insuranceInput).toBeInTheDocument();
+};
+
+const clickSearch = async () => {
+  const searchBtn = await waitFor(() =>
+    container.getByTestId(APPOINTMENT_TEST_ID.searchbtn)
+  );
+  fireEvent.click(searchBtn);
+  expect(searchBtn).toBeInTheDocument();
+};
+
 defineFeature(feature, (test) => {
-  let container;
-  const element = document.createElement("div");
-  const mock = new MockAdapter(axios);
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify user able to view the screen with list of providers for the searched location and available time-slots for the selected date of appointment.', ({ given, and, then }) => {
     given('user launch the Marketing Site url', () => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results on the Schedule Appointments screen', () => {
@@ -72,35 +199,84 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using City with the selected location', ({ given, and, then }) => {
     given('user launch the Marketing Site url', () => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
@@ -118,35 +294,84 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using State with the selected location', ({ given, and, then }) => {
     given('user launch the Marketing Site url', () => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
@@ -168,35 +393,84 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and user view the location using the system to detect their location', ({ given, and, then }) => {
     given('user launch the Marketing Site url', () => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
@@ -218,35 +492,84 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and the user views the filter options', ({ given, and, then }) => {
     given('user launch the Marketing Site url', () => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
@@ -272,35 +595,84 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and the user view options to change the appointment date', ({ given, and, then }) => {
     given('user launch the Marketing Site url', () => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
@@ -330,35 +702,84 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the Purpose of the Visit', ({ given, and, then }) => {
     given('user launch the Marketing Site url', () => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
@@ -391,36 +812,85 @@ defineFeature(feature, (test) => {
   });
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the insurance.', ({ given, and, then, when }) => {
-    given('user launch the Marketing Site URL', () => {
-      expect(true).toBeTruthy();
+    given('user launch the Marketing Site url', () => {
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
@@ -437,36 +907,85 @@ defineFeature(feature, (test) => {
   });
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user views the purpose of visit as blank when the user not entered', ({ given, and, then, when }) => {
-    given('user launch the Marketing Site URL', () => {
-      expect(true).toBeTruthy();
+    given('user launch the Marketing Site url', () => {
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
@@ -484,35 +1003,84 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user views the insurance carrier as blank when the user not entered', ({ given, and, then, when }) => {
     given('user launch the Marketing Site url', () => {
-      expect(true).toBeTruthy();
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
-      expect(true).toBeTruthy();
+      inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-      expect(true).toBeTruthy();
+      inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-      expect(true).toBeTruthy();
+      inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-      expect(true).toBeTruthy();
+      inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+      clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
@@ -529,16 +1097,65 @@ defineFeature(feature, (test) => {
   });
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify the user is able to change the purpose of visit if already provided', ({ given, and, then }) => {
-    given('user launch the Marketing Site URL', () => {
-      expect(true).toBeTruthy();
+    given('user launch the Marketing Site url', () => {
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {
@@ -559,16 +1176,65 @@ defineFeature(feature, (test) => {
   });
 
   test('EPIC_EPP-44_STORY_EPP-2526 - Verify that admin might have to remove the selection made for insurance carrier, location, date and time slot of the provider if the updated purpose of visit does support them and inform the user', ({ given, and, then }) => {
-    given('user launch the Marketing Site URL', () => {
-      expect(true).toBeTruthy();
+    given('user launch the Marketing Site url', () => {
+      launchURL();
     });
 
-    and('user clicks on the Schedule your Eye Exam button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Schedule your Eye Exam button', async () => {
+      cleanup();
+      const mock = new MockAdapter(axios);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, MOCK_PAST);
+      act(() => {
+        appointmentsContainer = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
+      expect(
+        appointmentsContainer.getByText(/Schedule New Appointment/i)
+      ).toBeInTheDocument();
     });
 
     then('user navigates to the search screen', () => {
-      expect(true).toBeTruthy();
+      cleanup();
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+
+      const domain = window.location.origin;
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
 
     and('user enters the location', () => {

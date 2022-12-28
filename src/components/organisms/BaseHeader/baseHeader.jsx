@@ -124,15 +124,15 @@ export default function BaseHeader({
     setAnchorElUser(null);
   };
 
-  const fetchUserNotifications = async (patientId) => {
+  const fetchUserNotifications = (patientId) => {
     setIsNotificationLoading(true);
-    await dispatch(fetchNotifications({ patientId }));
+    dispatch(fetchNotifications({ patientId }));
     setIsNotificationLoading(false);
   };
 
-  const handleMarkAllAsRead = async () => {
+  const handleMarkAllAsRead = () => {
     const notificationIds = notifications.map((item) => item._id);
-    const { payload } = await dispatch(
+    const { payload } = dispatch(
       readNotificationItem({ patientId, notificationIds: notificationIds })
     );
     if (payload.success) {

@@ -1,6 +1,6 @@
 import React from "react";
 
-function FileDownloadIcon({ sx }) {
+function FileDownload({ sx }) {
   return (
     <svg
       width="24"
@@ -28,4 +28,4 @@ function FileDownloadIcon({ sx }) {
   );
 }
 
-export default FileDownloadIcon;
+export default FileDownload;
