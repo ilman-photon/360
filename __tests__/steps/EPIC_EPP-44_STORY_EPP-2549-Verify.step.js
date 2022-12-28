@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom/extend-expect";
 import {
   act,
   fireEvent,
@@ -6,262 +5,377 @@ import {
   waitFor,
   cleanup,
 } from "@testing-library/react";
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
+import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import ForgotPasswordPage from "../../src/pages/patient/forgot-password";
-import AuthPage from "../../src/pages/patient/login";
-import Cookies from "universal-cookie";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
-import HomePage from "../../src/pages/patient";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import {
+  defaultValidation,
+  doLogin,
+  renderLogin,
+  renderAppointments,
+  renderScheduleAppointment,
+  inputLocation,
+  inputPurpose,
+  clickSearch,
+  renderResultsScreen,
+} from "../../__mocks__/commonSteps";
+import constants from "../../src/utils/constants";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
-import {
-  renderAppointmentDetail,
-  renderScheduleAppointment,
-} from "../../__mocks__/commonSteps";
-import constants, { TEST_ID } from "../../src/utils/constants";
-import FilterHeading from "../../src/components/molecules/FilterHeading/filterHeading";
-import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
-import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
-import { navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
-import GMaps from "../../src/components/organisms/Google/Maps/gMaps";
-import {
-  GoogleMap,
-  MarkerF,
-  InfoWindowF,
-  useJsApiLoader,
-  useLoadScript,
-} from "@react-google-maps/api";
-
-import mediaQuery from "css-mediaquery";
-import ModalConfirmation from "../../src/components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
-import {
-  mockAppointmentTypes,
-  mockInsurance,
-  submitFilter,
-} from "../../__mocks__/mockResponse";
-import InfoWindowContent from "../../src/components/organisms/Google/Maps/infoWindowContent";
-import { CircularProgress } from "@mui/material";
-import ShallowRenderer from "react-shallow-renderer";
-import Appointment from "../../src/pages/patient/appointment";
+import ScheduleAppointment from "../../src/pages/patient/schedule-appointment/index";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2549.feature"
 );
 
-const defaultValidation = () => {
-  expect(true).toBeTruthy();
-};
-
 defineFeature(feature, (test) => {
   let container;
-  const element = document.createElement("div");
+  const { SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID;
   const mock = new MockAdapter(axios);
-  const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
-  test('EPIC_EPP-44_STORY_EPP-2549 - Verify the user able to change the \'Insurance carrier\' while reviewing the appointment from patient portal.', ({ given, when, and, then }) => {
-    given('user launch Patient Portal url', () => {
-      defaultValidation()
+
+  afterEach(() => {
+    mock.reset();
+  });
+
+  const appointmentDetailScreen = () => {
+    let container;
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {ScheduleAppointment.getLayout(<ScheduleAppointment />)}
+        </Provider>
+      );
+    });
+    return container;
+  };
+
+  test("EPIC_EPP-44_STORY_EPP-2549 - Verify the user able to change the 'Insurance carrier' while reviewing the appointment from patient portal.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch Patient Portal url", async () => {
+      container = await renderLogin(container);
     });
 
-    when('user is logged in to the application', () => {
-      defaultValidation()
+    when("user is logged in to the application", async () => {
+      await doLogin(mock, container);
     });
 
-    and('user clicks to Appointments menu', () => {
-      defaultValidation()
+    and("user clicks to Appointments menu", () => {
+      defaultValidation();
     });
 
-    then('user navigates to Appointments screen', () => {
-      defaultValidation()
+    then("user navigates to Appointments screen", async () => {
+      container = await renderAppointments(mock);
     });
 
-    and('user lands on \'Appointments\' screen', () => {
-      defaultValidation()
+    and("user lands on 'Appointments' screen", async () => {
+      await waitFor(() => {
+        container.getAllByText(/Appointments/i);
+      });
     });
 
-    and('user views the schedule new appointments link', () => {
-      defaultValidation()
+    and("user views the schedule new appointments link", async () => {
+      await waitFor(() => {
+        container.getByText(/Schedule New Appointment/i);
+      });
+
+      expect(
+        container.getByText(/Schedule New Appointment/i).textContent
+      ).toEqual("Schedule New Appointment");
     });
 
-    and('user clicks on the schedule new appointments', () => {
-      defaultValidation()
+    and("user clicks on the schedule new appointments", () => {
+      fireEvent.click(container.getByText(/Schedule New Appointment/i));
     });
 
-    then('user navigates to the search screen', () => {
-      defaultValidation()
+    then("user navigates to the search screen", async () => {
+      cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and('user enters the location', () => {
-      defaultValidation()
+    and("user enters the location", () => {
+      inputLocation(container);
     });
 
-    and('user selects the date of appointment', () => {
-      defaultValidation()
+    and("user selects the date of appointment", async () => {
+      const dateInput = await waitFor(() => container.getByLabelText("Date"));
+      act(() => {
+        fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
+      });
     });
 
-    and('user chooses the purpose of the visit', () => {
-      defaultValidation()
+    and("user chooses the purpose of the visit", () => {
+      inputPurpose(container);
     });
 
-    and('user enters the insurance name', () => {
-      defaultValidation()
+    and("user enters the insurance name", async () => {
+      const insuranceInput = await waitFor(() =>
+        container.getByLabelText("Insurance Carrier")
+      );
+      act(() => {
+        fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+      });
     });
 
-    and('user clicks on the Search button', () => {
-      defaultValidation()
+    and("user clicks on the Search button", () => {
+      clickSearch(container);
     });
 
-    and('user views the results in the Schedule Appointments screen', () => {
-      defaultValidation()
+    and("user views the results in the Schedule Appointments screen", () => {
+      renderResultsScreen(container);
     });
 
-    and('user selected a time slot', () => {
-      defaultValidation()
+    and("user selected a time slot", async () => {
+      expect(container.getByText("3 In-network providers")).toBeInTheDocument();
+      const hourButton = await waitFor(
+        () => container.getAllByTestId(SEARCH_PROVIDER_TEST_ID.hourButton)[0]
+      );
+      fireEvent.click(hourButton);
     });
 
-    and('user lands on the review of the appointment details', () => {
-      defaultValidation()
+    and("user lands on the review of the appointment details", async () => {
+      cleanup();
+      container = await appointmentDetailScreen();
     });
 
-    and('user views the Appointment details section', () => {
-      defaultValidation()
+    and("user views the Appointment details section", () => {
+      expect(container.getAllByText("Date and time")).toBeTruthy();
+      expect(container.getAllByText("Insurance")).toBeTruthy();
     });
 
-    and('user clicks on the Edit link', () => {
-      defaultValidation()
+    and("user clicks on the Edit link", async () => {
+      const editLink = await waitFor(() => container.getAllByText(/edit/i)[0]);
+      fireEvent.click(editLink);
     });
 
-    and('user views the Purpose of the Visit', () => {
-      defaultValidation()
+    and("user views the Purpose of the Visit", async () => {
+      cleanup();
+      container = await renderScheduleAppointment(mock);
+      inputPurpose();
     });
 
-    and('user enters the insurance name', () => {
-      defaultValidation()
+    and("user enters the insurance name", async () => {
+      const insuranceInput = await waitFor(() =>
+        container.getByLabelText("Insurance Carrier")
+      );
+      act(() => {
+        fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+      });
     });
 
-    and('user clicks on the Search button', () => {
-      defaultValidation()
+    and("user clicks on the Search button", () => {
+      clickSearch();
     });
 
-    and('user views the results in the Schedule Appointments screen', () => {
-      defaultValidation()
+    and("user views the results in the Schedule Appointments screen", () => {
+      renderResultsScreen();
     });
 
-    and('user selected a time slot', () => {
-      defaultValidation()
+    and("user selected a time slot", async () => {
+      expect(container.getByText("3 In-network providers")).toBeInTheDocument();
+      const hourButton = await waitFor(
+        () => container.getAllByTestId(SEARCH_PROVIDER_TEST_ID.hourButton)[0]
+      );
+      fireEvent.click(hourButton);
     });
 
-    and('user lands on the review of the appointment details', () => {
-      defaultValidation()
+    and("user lands on the review of the appointment details", async () => {
+      cleanup();
+      container = await appointmentDetailScreen();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-2549 - Verify the user able to add the \'Insurance carrier\' while reviewing the appointment from patient portal.', ({ given, when, and }) => {
-    given('user launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-2549 - Verify the user able to add the 'Insurance carrier' while reviewing the appointment from patient portal.", ({
+    given,
+    when,
+    and,
+  }) => {
+    given("user launch Patient Portal url", async () => {
+      container = await renderLogin(container);
     });
 
-    when('user is logged in to the application', () => {
-      defaultValidation()
+    when("user is logged in to the application", async () => {
+      await doLogin(mock, container);
     });
 
-    and('user clicks on the schedule new appointments and land on search screen', () => {
-      defaultValidation()
+    and(
+      "user clicks on the schedule new appointments and land on search screen",
+      async () => {
+        container = await renderAppointments(mock);
+        fireEvent.click(container.getByText(/Schedule New Appointment/i));
+      }
+    );
+
+    and(
+      "user not enters insurance name and click on the seach button",
+      async () => {
+        cleanup();
+        container = await renderScheduleAppointment(mock);
+        const insuranceInput = await waitFor(() =>
+          container.getByLabelText("Insurance Carrier")
+        );
+        act(() => {
+          fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+        });
+        clickSearch();
+      }
+    );
+
+    and(
+      "user selects the time slot and review the appoiment details",
+      async () => {
+        const hourButton = await waitFor(
+          () => container.getAllByTestId(SEARCH_PROVIDER_TEST_ID.hourButton)[0]
+        );
+        fireEvent.click(hourButton);
+      }
+    );
+
+    and("user views the Appointment details section", async () => {
+      cleanup();
+      container = await appointmentDetailScreen();
     });
 
-    and('user not enters insurance name and click on the seach button', () => {
-      defaultValidation()
+    and("user clicks on the Edit link", async () => {
+      const editLink = await waitFor(() => container.getAllByText(/edit/i)[0]);
+      fireEvent.click(editLink);
     });
 
-    and('user selects the time slot and review the appoiment details', () => {
-      defaultValidation()
+    and("user views the Purpose of the Visit", async () => {
+      cleanup();
+      container = await renderScheduleAppointment(mock);
+      inputPurpose();
     });
 
-    and('user views the Appointment details section', () => {
-      defaultValidation()
+    and("user enters the insurance name", async () => {
+      const insuranceInput = await waitFor(() =>
+        container.getByLabelText("Insurance Carrier")
+      );
+      act(() => {
+        fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+      });
     });
 
-    and('user clicks on the Edit link', () => {
-      defaultValidation()
+    and("user clicks on the Continue button", () => {
+      clickSearch(container);
     });
 
-    and('user views the Purpose of the Visit', () => {
-      defaultValidation()
+    and("user views the results in the Schedule Appointments screen", () => {
+      renderResultsScreen(container);
     });
 
-    and('user enters the insurance name', () => {
-      defaultValidation()
+    and("user selected a time slot", async () => {
+      expect(container.getByText("3 In-network providers")).toBeInTheDocument();
+      const hourButton = await waitFor(
+        () => container.getAllByTestId(SEARCH_PROVIDER_TEST_ID.hourButton)[0]
+      );
+      fireEvent.click(hourButton);
     });
 
-    and('user clicks on the Continue button', () => {
-      defaultValidation()
-    });
-
-    and('user views the results in the Schedule Appointments screen', () => {
-      defaultValidation()
-    });
-
-    and('user selected a time slot', () => {
-      defaultValidation()
-    });
-
-    and('user lands on the review of the appointment details', () => {
-      defaultValidation()
+    and("user lands on the review of the appointment details", async () => {
+      cleanup();
+      container = await appointmentDetailScreen();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-2549 - Verify the user able to Remove the \'Insurance carrier\' while reviewing the appointment from patient portal.', ({ given, when, and }) => {
-    given('user launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-2549 - Verify the user able to Remove the 'Insurance carrier' while reviewing the appointment from patient portal.", ({
+    given,
+    when,
+    and,
+  }) => {
+    given("user launch Patient Portal url", async () => {
+      container = await renderLogin(container);
     });
 
-    when('user is logged in to the application', () => {
-      defaultValidation()
+    when("user is logged in to the application", async () => {
+      await doLogin(mock, container);
     });
 
-    and('user clicks on the schedule new appointments and land on search screen', () => {
-      defaultValidation()
+    and(
+      "user clicks on the schedule new appointments and land on search screen",
+      async () => {
+        container = await renderAppointments(mock);
+        fireEvent.click(container.getByText(/Schedule New Appointment/i));
+      }
+    );
+
+    and(
+      "user enters insurance name and click on the seach button",
+      async () => {
+        cleanup();
+        container = await renderScheduleAppointment(mock);
+        const insuranceInput = await waitFor(() =>
+          container.getByLabelText("Insurance Carrier")
+        );
+        act(() => {
+          fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+        });
+        clickSearch(container);
+      }
+    );
+
+    and(
+      "user selects the time slot and review the appoiment details",
+      async () => {
+        renderResultsScreen(container);
+        expect(
+          container.getByText("3 In-network providers")
+        ).toBeInTheDocument();
+        const hourButton = await waitFor(
+          () => container.getAllByTestId(SEARCH_PROVIDER_TEST_ID.hourButton)[0]
+        );
+        fireEvent.click(hourButton);
+      }
+    );
+
+    and("user views the Appointment details section", async () => {
+      cleanup();
+      container = await appointmentDetailScreen();
     });
 
-    and('user enters insurance name and click on the seach button', () => {
-      defaultValidation()
+    and("user clicks on the Edit link", async () => {
+      const editLink = await waitFor(() => container.getAllByText(/edit/i)[0]);
+      fireEvent.click(editLink);
     });
 
-    and('user selects the time slot and review the appoiment details', () => {
-      defaultValidation()
+    and("user views the Purpose of the Visit", async () => {
+      cleanup();
+      container = await renderScheduleAppointment(mock);
+      inputPurpose(container);
+      expect(container.getAllByText(/Purpose of Visit/i)).toBeTruthy();
     });
 
-    and('user views the Appointment details section', () => {
-      defaultValidation()
+    and("user remove the insurance name", async () => {
+      const insuranceInput = await waitFor(() =>
+        container.getByLabelText("Insurance Carrier")
+      );
+      act(() => {
+        fireEvent.change(insuranceInput, { target: { value: "" } });
+      });
     });
 
-    and('user clicks on the Edit link', () => {
-      defaultValidation()
+    and("user clicks on the continue button", () => {
+      clickSearch(container);
     });
 
-    and('user views the Purpose of the Visit', () => {
-      defaultValidation()
+    and("user views the results in the Schedule Appointments screen", () => {
+      renderResultsScreen(container);
     });
 
-    and('user remove the insurance name', () => {
-      defaultValidation()
+    and("user selected a time slot", async () => {
+      const hourButton = await waitFor(
+        () => container.getAllByTestId(SEARCH_PROVIDER_TEST_ID.hourButton)[0]
+      );
+      fireEvent.click(hourButton);
     });
 
-    and('user clicks on the continue button', () => {
-      defaultValidation()
-    });
-
-    and('user views the results in the Schedule Appointments screen', () => {
-      defaultValidation()
-    });
-
-    and('user selected a time slot', () => {
-      defaultValidation()
-    });
-
-    and('user lands on the review of the appointment details', () => {
-      defaultValidation()
+    and("user lands on the review of the appointment details", async () => {
+      cleanup();
+      container = await appointmentDetailScreen();
     });
   });
 });

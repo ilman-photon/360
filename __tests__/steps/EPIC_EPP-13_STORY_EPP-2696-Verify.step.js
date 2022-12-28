@@ -63,17 +63,17 @@ const MOCK_APPOINTMENT = {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
         insuranceCarrier: [
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "ECP Vision",
-         },
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "BlueCare Vision",
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
           },
         ],
       },
@@ -113,17 +113,17 @@ const MOCK_APPOINTMENT = {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
         insuranceCarrier: [
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "ECP Vision",
-         },
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "BlueCare Vision",
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
           },
         ],
       },
@@ -342,53 +342,6 @@ const MOCK_SUGESTION = {
   ],
 };
 
-const navigateToPatientPortalHome = async () => {
-  let container;
-  const element = document.createElement("div");
-  const mock = new MockAdapter(axios);
-  Cookies.result = "true";
-  const expectedResult = {
-    ResponseCode: 2005,
-    ResponseType: "success",
-  };
-  const domain = window.location.origin;
-  mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
-    .reply(200, MOCK_SUGESTION);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
-    .reply(200, MOCK_APPOINTMENT);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
-    .reply(200, MOCK_PRESCRIPTION);
-  mock
-    .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`)
-    .reply(200, educationMaterials);
-  const response = await getServerSideProps({
-    req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-    res: jest.fn(),
-  });
-  const mockGeolocation = {
-    getCurrentPosition: jest.fn(),
-    watchPosition: jest.fn(),
-  };
-  global.navigator.geolocation = mockGeolocation;
-  Cookies.result = false;
-  act(() => {
-    container = render(
-      <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-    );
-  });
-  await waitFor(() => container.getByLabelText(/Appointments/i));
-  expect(response).toEqual({
-    redirect: {
-      destination: "/patient/login",
-      permanent: false,
-    },
-  });
-};
-
 const defaultValidation = () => {
   expect(true).toBeTruthy();
 };
@@ -398,23 +351,29 @@ defineFeature(feature, (test) => {
   const element = document.createElement("div");
   const mock = new MockAdapter(axios);
   afterEach(cleanup);
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the patient is able to view my upcoming Test & Procedure', ({ }) => {
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the patient is able to view my upcoming Test & Procedure", ({}) => {});
 
-  });
-
-  test('Verify whether the patient is able to view my upcoming Test & Procedure.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("Verify whether the patient is able to view my upcoming Test & Procedure.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -423,38 +382,46 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('patient should see the Upcoming Test and Procedures.', () => {
-      defaultValidation()
+    then("patient should see the Upcoming Test and Procedures.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the date of procedure is displaying correctly in the Date column.', ({ }) => {
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the date of procedure is displaying correctly in the Date column.", ({}) => {});
 
-  });
-
-  test('Verify whether the date of procedure is displaying correctly in the Date column.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("Verify whether the date of procedure is displaying correctly in the Date column.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -463,38 +430,51 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('schedule any Test or Procedure.', () => {
-      defaultValidation()
+    and("schedule any Test or Procedure.", () => {
+      defaultValidation();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('verify whether the Date of procedure is displaying correctly.', () => {
-      defaultValidation()
-    });
+    then(
+      "verify whether the Date of procedure is displaying correctly.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the Time of procedure is displaying correctly in the Time column.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the Time of procedure is displaying correctly in the Time column.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -503,38 +483,51 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('schedule any Test or Procedure.', () => {
-      defaultValidation()
+    and("schedule any Test or Procedure.", () => {
+      defaultValidation();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('verify whether the Time of procedure is displaying correctly.', () => {
-      defaultValidation()
-    });
+    then(
+      "verify whether the Time of procedure is displaying correctly.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the Patient\'s Name is displaying correctly in the Patient\'s Name column.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the Patient's Name is displaying correctly in the Patient's Name column.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -543,38 +536,48 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('schedule any Test or Procedure.', () => {
-      defaultValidation()
+    and("schedule any Test or Procedure.", () => {
+      defaultValidation();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('verify whether the Patient\'s Name is displaying correctly.', () => {
-      defaultValidation()
+    then("verify whether the Patient's Name is displaying correctly.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the Doctor\'s Name is displaying correctly in the Doctor\'s Name column.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the Doctor's Name is displaying correctly in the Doctor's Name column.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -583,38 +586,48 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('schedule any Test or Procedure.', () => {
-      defaultValidation()
+    and("schedule any Test or Procedure.", () => {
+      defaultValidation();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('verify whether the Doctor\'s Name is displaying correctly.', () => {
-      defaultValidation()
+    then("verify whether the Doctor's Name is displaying correctly.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the Location\'s address is displaying correctly in the Location\'s address column.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the Location's address is displaying correctly in the Location's address column.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -623,38 +636,51 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('schedule any Test or Procedure.', () => {
-      defaultValidation()
+    and("schedule any Test or Procedure.", () => {
+      defaultValidation();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('verify whether the Location\'s address is displaying correctly.', () => {
-      defaultValidation()
-    });
+    then(
+      "verify whether the Location's address is displaying correctly.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the Location\'s Phone number is displaying correctly in the Location\'s address column.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the Location's Phone number is displaying correctly in the Location's address column.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -663,38 +689,51 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('schedule any Test or Procedure.', () => {
-      defaultValidation()
+    and("schedule any Test or Procedure.", () => {
+      defaultValidation();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('verify whether the Location\'s Phone number is displaying correctly.', () => {
-      defaultValidation()
-    });
+    then(
+      "verify whether the Location's Phone number is displaying correctly.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the Direction\'s button is navigating to the Map screen', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the Direction's button is navigating to the Map screen", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -703,46 +742,54 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('schedule any Test or Procedure.', () => {
-      defaultValidation()
+    and("schedule any Test or Procedure.", () => {
+      defaultValidation();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    and('click the Direction button.', () => {
-      defaultValidation()
+    and("click the Direction button.", () => {
+      defaultValidation();
     });
 
-    then('patient should see the map of the location.', () => {
-      defaultValidation()
+    then("patient should see the map of the location.", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the Test or Procedure is displaying correctly in the Test/Procedure column', ({ }) => {
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the Test or Procedure is displaying correctly in the Test/Procedure column", ({}) => {});
 
-  });
-
-  test('Verify whether the Test or Procedure is displaying correctly in the Test/Procedure column.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("Verify whether the Test or Procedure is displaying correctly in the Test/Procedure column.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -751,42 +798,53 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('schedule any Test or Procedure.', () => {
-      defaultValidation()
+    and("schedule any Test or Procedure.", () => {
+      defaultValidation();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('verify whether the Test or Procedure is displaying correctly in the Test', () => {
-      defaultValidation()
-    });
+    then(
+      "verify whether the Test or Procedure is displaying correctly in the Test",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696- Verify whether the message You have no upcoming tests and procedures is displaying when there is no Test or Procedure for the patient.', ({ }) => {
+  test("EPIC_EPP-13_STORY_EPP-2696- Verify whether the message You have no upcoming tests and procedures is displaying when there is no Test or Procedure for the patient.", ({}) => {});
 
-  });
-
-  test('Verify whether the message You have no upcoming tests and procedures is displaying when there is no Test or Procedure for the patient.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("Verify whether the message You have no upcoming tests and procedures is displaying when there is no Test or Procedure for the patient.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -795,38 +853,51 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('don\'t schedule any Test or Procedure.', () => {
-      defaultValidation()
+    and("don't schedule any Test or Procedure.", () => {
+      defaultValidation();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('patient should see the message You have no upcoming tests and procedures.', () => {
-      defaultValidation()
-    });
+    then(
+      "patient should see the message You have no upcoming tests and procedures.",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-13_STORY_EPP-2696 -  Verify whether the patient is able to see the below mentioned details in Upcoming Test & Procedure page.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
+  test("EPIC_EPP-13_STORY_EPP-2696 -  Verify whether the patient is able to see the below mentioned details in Upcoming Test & Procedure page.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        const mockOnLoginClicked = jest.fn((data, route, callback) => {
+          callback({
+            status: "success",
+          });
         });
-      });
-      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      const usernameField = container.getByLabelText(/emailUserLabel/i);
-      const passwordField = container.getByLabelText(/passwordLabel/i);
-      expect(usernameField.id).toEqual("username");
-      expect(passwordField.id).toEqual("password");
-    });
+        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+        const usernameField = container.getByLabelText(/emailUserLabel/i);
+        const passwordField = container.getByLabelText(/passwordLabel/i);
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
       const usernameField = container.getByLabelText(/emailUserLabel/i);
@@ -835,18 +906,23 @@ defineFeature(feature, (test) => {
       expect(passwordField.id).toEqual("password");
     });
 
-    and('clicks  on login button.', () => {
-      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn);
-      fireEvent.click(loginBtn)
+    and("clicks  on login button.", () => {
+      const loginBtn = container.getByTestId(
+        constants.TEST_ID.LOGIN_TEST_ID.loginBtn
+      );
+      fireEvent.click(loginBtn);
       expect(loginBtn).toBeInTheDocument();
     });
 
-    and('navigate to upcoming Test and Procedure page.', () => {
-      defaultValidation()
+    and("navigate to upcoming Test and Procedure page.", () => {
+      defaultValidation();
     });
 
-    then('verify whether the below mentioned details are displaying.', (table) => {
-      defaultValidation()
-    });
+    then(
+      "verify whether the below mentioned details are displaying.",
+      (table) => {
+        defaultValidation();
+      }
+    );
   });
 });

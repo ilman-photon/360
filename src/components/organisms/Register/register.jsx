@@ -43,7 +43,7 @@ export default function Register({
     useSuspense: false,
   });
 
-  const { handleSubmit, control, watch, setValue, resetField } = useForm({
+  const { handleSubmit, control, watch, setValue } = useForm({
     defaultValues: {
       firstName: "",
       lastName: "",

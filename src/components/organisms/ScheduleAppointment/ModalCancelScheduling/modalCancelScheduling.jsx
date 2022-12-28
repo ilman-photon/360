@@ -6,7 +6,6 @@ import RowRadioButtonsGroup from "../../../atoms/RowRadioButtonsGroup/rowRadioBu
 import { StyledInput } from "../../../atoms/Input/input";
 import styles from "./modalScheduling.module.scss";
 import constants from "../../../../utils/constants";
-import DialogTitle from "@mui/material/DialogTitle";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { Box, Stack, Typography, Button, Link } from "@mui/material";

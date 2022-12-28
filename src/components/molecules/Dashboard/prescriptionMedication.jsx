@@ -52,8 +52,6 @@ export default function PrescriptionMedication({
   const [selectedData, setSelectedData] = React.useState({});
   const [filterData, setFilterData] = React.useState([]);
   const [filterMedicationData, setFilterMedicationData] = React.useState([]);
-  const [requestRefillResponse, setRequestRefillResponse] =
-    React.useState(null);
   const isFilterApplied = activeFilter.length > 0;
   const imageSrcState = "/mobileFilter.png";
   const imageSrcFilled = "/appliedMobileFilter.png";
@@ -164,7 +162,6 @@ export default function PrescriptionMedication({
       });
       formMessageComp.current.focus();
     }
-    setRequestRefillResponse(requestRefillResponseData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [requestRefillResponseData]);
 
@@ -172,11 +169,6 @@ export default function PrescriptionMedication({
     if (filterProvider.length && filterProvider.length > 0)
       setFilterData(filterProvider);
   }, [filterProvider]);
-
-  useEffect(() => {
-    setRequestRefillResponse(requestRefillResponseData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [requestRefillResponseData]);
 
   /**
    * Handle medication request refill or cancel request refill
@@ -360,7 +352,7 @@ export default function PrescriptionMedication({
 
   function renderPrescriptionTabUI(data, medicationType) {
     if (!data) {
-      return <></>;
+      return [<></>];
     }
     const contentUI = [];
     data.map((row, idx) => {

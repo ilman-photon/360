@@ -25,41 +25,66 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
-  const { FORGOT_TEST_ID, APPOINTMENT_TEST_ID } = TEST_ID;
+  const { APPOINTMENT_TEST_ID } = TEST_ID;
+
+  beforeEach(() => {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn(),
+    };
+
+    mock
+      .onGet("/ecp/appointments/appointment-types", mockAppointmentTypes)
+      .reply(200, mockAppointmentTypes);
+    mock
+      .onGet("/ecp/appointments/insurance/allpayers", mockInsurance)
+      .reply(200, mockInsurance);
+    mock
+      .onPut("/ecp/appointments/available-slot?searchText=Texas")
+      .reply(200, submitFilter);
+    window.matchMedia = createMatchMedia("1920px");
+    global.navigator.geolocation = mockGeolocation;
+  });
+
   test('EPIC_EPP-44_STORY_EPP-2536-Verify User should be able to change the location by searching locations using City along with an option to detect their location (Locate me)', ({ given, when, and, then }) => {
-    given('user launch Patient Portal url', () => {
-      expect(true).toBeTruthy();
+    given('user launch Patient Portal url', async () => {
+      container = await renderLogin(container);
     });
 
-    when('user is logged in to the application', () => {
-      expect(true).toBeTruthy();
+    when('user is logged in to the application', async () => {
+      await doLogin(mock, container);
     });
 
     and('user clicks on Appointments menu', () => {
       expect(true).toBeTruthy();
     });
 
-    then('User should navigated to the search screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated to the search screen', async () => {
+      container = await renderScheduleAppointment(mock);
     });
 
-    and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      expect(true).toBeTruthy();
+    and('user provided location,date of appointment,purpose of visit,insurance and provider', async () => {
+      await provideFilters(container);
     });
 
-    and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Search button', async () => {
+      await clickSearch(container);
     });
 
-    then('User should navigated the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated the results in the Schedule Appointments screen', async () => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
 
     and('User views the results in the Schedule Appointments screen', () => {
       expect(true).toBeTruthy();
     });
 
-    and('User views the selected location.', () => {
+    and('User views the selected location.', async () => {
       expect(true).toBeTruthy();
     });
 
@@ -75,38 +100,48 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('User should see a location based on the City', () => {
-      expect(true).toBeTruthy();
+    and('User should see a location based on the City', async () => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
   });
 
   test('EPIC_EPP-44_STORY_EPP-2536-Verify User should be able to change the location by searching locations using State along with an option to detect their location (Locate me)', ({ given, when, and, then }) => {
-    given('user launch Patient Portal url', () => {
-      expect(true).toBeTruthy();
+    given('user launch Patient Portal url', async () => {
+      container = await renderLogin(container);
     });
 
-    when('user is logged in to the application', () => {
-      expect(true).toBeTruthy();
+    when('user is logged in to the application', async() => {
+      await doLogin(mock, container);
     });
 
     and('user clicks on Appointments menu', () => {
       expect(true).toBeTruthy();
     });
 
-    then('User should navigated to the search screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated to the search screen', async () => {
+      container = await renderScheduleAppointment(mock);
     });
 
-    and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      expect(true).toBeTruthy();
+    and('user provided location,date of appointment,purpose of visit,insurance and provider', async() => {
+      await provideFilters(container);
     });
 
-    and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Search button', async () => {
+      await clickSearch(container);
     });
 
-    then('User should navigated the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated the results in the Schedule Appointments screen', async () => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
 
     and('User views the results in the Schedule Appointments screen', () => {
@@ -129,42 +164,51 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('User should see a location based on the State', () => {
-      expect(true).toBeTruthy();
+    and('User should see a location based on the State', async () => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
   });
 
   test('EPIC_EPP-44_STORY_EPP-2536-Verify User should be able to change the location by searching locations using Zipcode along with an option to detect their location (Locate me)', ({ given, when, and, then }) => {
-    given('user launch Patient Portal url', () => {
-      expect(true).toBeTruthy();
+    given('user launch Patient Portal url', async () => {
+      container = await renderLogin(container);
     });
 
-    when('user is logged in to the application', () => {
-      expect(true).toBeTruthy();
+    when('user is logged in to the application', async() => {
+      await doLogin(mock, container);
     });
 
     and('user clicks on Appointments menu', () => {
       expect(true).toBeTruthy();
     });
 
-    then('User should navigated to the search screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated to the search screen', async () => {
+      container = await renderScheduleAppointment(mock);
     });
 
-    and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      expect(true).toBeTruthy();
+    and('user provided location,date of appointment,purpose of visit,insurance and provider', async() => {
+      await provideFilters(container);
     });
 
-    and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Search button', async() => {
+      await clickSearch(container);
     });
 
-    then('User should navigated the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated the results in the Schedule Appointments screen', async () => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
     });
 
     and('User views the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
 
     and('User views the selected location.', () => {
@@ -183,42 +227,51 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('User should see a location based on the Zipcode', () => {
-      expect(true).toBeTruthy();
+    and('User should see a location based on the Zipcode', async () => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
   });
 
   test('EPIC_EPP-44_STORY_EPP-2536-Verify User should see the purpose of visit, insurance carrier, date of appointment and time slot of provider is reset if user updated the location', ({ given, when, and, then }) => {
-    given('user launch Patient Portal url', () => {
-      expect(true).toBeTruthy();
+    given('user launch Patient Portal url', async () => {
+      container = await renderLogin(container);
     });
 
-    when('user is logged in to the application', () => {
-      expect(true).toBeTruthy();
+    when('user is logged in to the application', async () => {
+      await doLogin(mock, container);
     });
 
     and('user clicks on Appointments menu', () => {
       expect(true).toBeTruthy();
     });
 
-    then('User should navigated to the search screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated to the search screen', async () => {
+      container = await renderScheduleAppointment(mock);
     });
 
-    and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      expect(true).toBeTruthy();
+    and('user provided location,date of appointment,purpose of visit,insurance and provider', async () => {
+      await provideFilters(container);
     });
 
-    and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Search button', async() => {
+      await clickSearch(container);
     });
 
-    then('User should navigated the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated the results in the Schedule Appointments screen', async() => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
     });
 
     and('User views the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
 
     and('User views the selected location.', () => {
@@ -245,42 +298,51 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then('User should see the purpose of visit, insurance carrier, date of appointment and time slot of provider is reset', () => {
-      expect(true).toBeTruthy();
+    then('User should see the purpose of visit, insurance carrier, date of appointment and time slot of provider is reset', async() => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
   });
 
   test('EPIC_EPP-44_STORY_EPP-2536-Verify User should see the results i.e. providers with available time slots getting updated based on the change in location', ({ given, when, and, then }) => {
-    given('user launch Patient Portal url', () => {
-      expect(true).toBeTruthy();
+    given('user launch Patient Portal url', async () => {
+      container = await renderLogin(container);
     });
 
-    when('user is logged in to the application', () => {
-      expect(true).toBeTruthy();
+    when('user is logged in to the application', async () => {
+      await doLogin(mock, container);
     });
 
-    and('user clicks on Appointments menu', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on Appointments menu', async() => {
+      container = await renderScheduleAppointment(mock);
     });
 
     then('User should navigated to the search screen', () => {
       expect(true).toBeTruthy();
     });
 
-    and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      expect(true).toBeTruthy();
+    and('user provided location,date of appointment,purpose of visit,insurance and provider', async () => {
+      await provideFilters(container);
     });
 
-    and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Search button', async () => {
+      await clickSearch(container);
     });
 
-    then('User should navigated the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated the results in the Schedule Appointments screen', async () => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
     });
 
     and('User views the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
 
     and('User views the selected location.', () => {
@@ -301,55 +363,61 @@ defineFeature(feature, (test) => {
   });
 
   test('EPIC_EPP-44_STORY_EPP-2536-Verify User should see an error message for the location search criteria is invalid as "No results found. Please try again with a different search criteria."', ({ given, when, and, then }) => {
-    given('user launch Patient Portal url', () => {
-      expect(true).toBeTruthy();
+    given('user launch Patient Portal url', async () => {
+      container = await renderLogin(container);
     });
 
-    when('user is logged in to the application', () => {
-      expect(true).toBeTruthy();
+    when('user is logged in to the application', async () => {
+      await doLogin(mock, container);
     });
 
     and('user clicks on Appointments menu', () => {
       expect(true).toBeTruthy();
     });
 
-    then('User should navigated to the search screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated to the search screen', async () => {
+      container = await renderScheduleAppointment(mock);
     });
 
-    and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      expect(true).toBeTruthy();
+    and('user provided location,date of appointment,purpose of visit,insurance and provider', async () => {
+      await provideFilters(container);
     });
 
-    and('user clicks on the Search button', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on the Search button', async () => {
+      await clickSearch(container);
     });
 
-    then('User should navigated the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+    then('User should navigated the results in the Schedule Appointments screen', async() => {
+      await waitFor(() =>
+      container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)
+      );
     });
 
     and('User views the results in the Schedule Appointments screen', () => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getAllByTestId(APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name)[0]
+      ).toBeInTheDocument();
     });
 
-    and('User views the selected location.', () => {
-      expect(true).toBeTruthy();
+    and('User views the selected location.', async () => {
+      await waitFor(() => container.getAllByLabelText("City, state, or zip code")[0]);
+      const locationInput = container.getAllByLabelText("City, state, or zip code")[0];
+      fireEvent.change(locationInput, { target: { value: "asdasdasdasd" } });
     });
 
     and('User views an option to search locations using Zipcode', () => {
       expect(true).toBeTruthy();
     });
 
-    when('User selects location', () => {
+    when('User selects location', async () => {
+      await clickSearch(container);
+    });
+
+    and('User input invalid the State/ City/ Zipcode', async () => {
       expect(true).toBeTruthy();
     });
 
-    and('User input invalid the State/ City/ Zipcode', () => {
-      expect(true).toBeTruthy();
-    });
-
-    then(/^User should be prompted with an error message "(.*)"$/, (arg0) => {
+    then(/^User should be prompted with an error message "(.*)"$/, async(arg0) => {
       expect(true).toBeTruthy();
     });
   });

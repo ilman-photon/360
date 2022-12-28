@@ -1,6 +1,5 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import { Controller } from "react-hook-form";
-import { useEffect, useState } from "react";
 import StyledInput from "../../atoms/Input/input";
 import SignForm from "../../molecules/SignForm/signForm";
 import styles from "./styles.module.scss";

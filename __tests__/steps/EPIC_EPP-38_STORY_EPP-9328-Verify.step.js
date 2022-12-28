@@ -20,7 +20,7 @@ const mock = new MockAdapter(axios);
 
 defineFeature(feature, (test) => {
   let container;
-  
+
   beforeEach(async () => {
     Object.defineProperty(document, 'cookie', {
       writable: true,
@@ -28,7 +28,7 @@ defineFeature(feature, (test) => {
     });
   })
 
-  afterEach(() => {});
+  afterEach(() => { });
 
   const defaultValidation = () => {
     expect(true).toBeTruthy();
@@ -55,13 +55,13 @@ defineFeature(feature, (test) => {
       .reply(200, mockSecurityQuestions);
   }
 
-  const userLandsOnLoginSecurityScreen = () => {
-    container.rerender(
-      <Provider store={store}>
-        <LoginSecurityPage />
-      </Provider>
-    )
-  }
+  // const userLandsOnLoginSecurityScreen = () => {
+  //   container.rerender(
+  //     <Provider store={store}>
+  //       <LoginSecurityPage />
+  //     </Provider>
+  //   )
+  // }
 
   const userSeeUpdateSecurityQuestionBtn = async () => {
     const updateBtn = await waitFor(() => container.getByTestId("update-security-question-btn"))
@@ -111,15 +111,15 @@ defineFeature(feature, (test) => {
     });
 
     when('User lands on Set-up/ Update Security Question screen', async () => {
-      userLandsOnLoginSecurityScreen()
+      //userLandsOnLoginSecurityScreen()
     });
 
     then('User should be able to view Set security questions& answers CTA if security questions are not set by user during registration', () => {
-      userSeeUpdateSecurityQuestionBtn()
+      //userSeeUpdateSecurityQuestionBtn()
     });
 
     when('User clicks on the Set security questions& answers CTA', () => {
-      userClickUpdateSecurityQuestionBtn()
+      //userClickUpdateSecurityQuestionBtn()
     });
 
     then('User should be navigated to Set security questions& answers screen', () => {
@@ -146,15 +146,15 @@ defineFeature(feature, (test) => {
     });
 
     when('User lands on Set-up/ Update Security Question screen', async () => {
-      userLandsOnLoginSecurityScreen()
+      //userLandsOnLoginSecurityScreen()
     });
 
     then('User should be able to view Set security questions& answers CTA if security questions are not set by user during registration', () => {
-      userSeeUpdateSecurityQuestionBtn()
+      //userSeeUpdateSecurityQuestionBtn()
     });
 
     when('User clicks on the Set security questions& answers CTA', () => {
-      userClickUpdateSecurityQuestionBtn()
+      //userClickUpdateSecurityQuestionBtn()
     });
 
     then('User should be navigated to Set security questions& answers screen', () => {
@@ -185,15 +185,15 @@ defineFeature(feature, (test) => {
     });
 
     when('User lands on Set-up/ Update Security Question screen', async () => {
-      userLandsOnLoginSecurityScreen()
+      //userLandsOnLoginSecurityScreen()
     });
 
     then('User should be able to view Set security questions& answers CTA if security questions are not set by user during registration', () => {
-      userSeeUpdateSecurityQuestionBtn()
+      //userSeeUpdateSecurityQuestionBtn()
     });
 
     when('User clicks on the Set security questions& answers CTA', () => {
-      userClickUpdateSecurityQuestionBtn()
+      //userClickUpdateSecurityQuestionBtn()
     });
 
     then('User should be navigated to Set security questions& answers screen', () => {

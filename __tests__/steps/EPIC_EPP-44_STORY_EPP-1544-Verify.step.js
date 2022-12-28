@@ -50,8 +50,8 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      navigateToPatientPortalHome();
+    given("user launch the Marketing Site url", async () => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -59,7 +59,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the Appointment schedule page", async () => {
-      await renderAppointmentDetail();
+      // await renderAppointmentDetail();
     });
   });
 
@@ -69,8 +69,8 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      navigateToPatientPortalHome();
+    given("user launch the Marketing Site url", async () => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -108,8 +108,8 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      navigateToPatientPortalHome();
+    given("user launch the Marketing Site url", async () => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -150,8 +150,8 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      navigateToPatientPortalHome();
+    given("user launch the Marketing Site url", async () => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -200,8 +200,8 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      navigateToPatientPortalHome();
+    given("user launch the Marketing Site url", async () => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -250,8 +250,8 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      navigateToPatientPortalHome();
+    given("user launch the Marketing Site url", async () => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -305,8 +305,8 @@ defineFeature(feature, (test) => {
     when,
     and,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      navigateToPatientPortalHome();
+    given("user launch the Marketing Site url", async () => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
@@ -353,8 +353,8 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      navigateToPatientPortalHome();
+    given("user launch the Marketing Site url", async () => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {

@@ -1,4 +1,10 @@
-import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  cleanup,
+} from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Login } from "../../src/components/organisms/Login/login";
 import AuthPage from "../../src/pages/patient/login";
@@ -13,7 +19,7 @@ jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
+      if (param === "username") return "user1@photon.com";
 
       return MockCookies.result;
     }
@@ -67,7 +73,9 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
       act(() => {
         container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -94,9 +102,10 @@ defineFeature(feature, (test) => {
     });
 
     then("user should view Home/Dashboard page", async () => {
-      navigateToPatientPortalHome()
+      await navigateToPatientPortalHome()
     });
   });
+
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the Patient is able to login with Email and valid Password.", ({
     given,
     when,
@@ -126,7 +135,9 @@ defineFeature(feature, (test) => {
     });
 
     when(`user lands onto “Patient Login” screen`, () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
       container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -144,7 +155,7 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
     then("user should view Home/Dashboard page", async () => {
-      navigateToPatientPortalHome()
+      await navigateToPatientPortalHome()
     });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the Patient is able to login with Phone number with valid Password.", ({
@@ -173,13 +184,15 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     when(`user lands onto “Patient Login” screen`, () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
       container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
     });
     and('user provides valid "<Phone Number>" and valid"<password>"', () => {
-      cleanup()
+      cleanup();
       const mockOnLoginClicked = jest.fn((data, route, callback) => {
         callback({
           status: "success",
@@ -194,10 +207,12 @@ defineFeature(feature, (test) => {
     and("user click 'Login' button.", () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
-      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+      expect(
+        container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
+      ).toBeInTheDocument();
     });
     then("user should view Home/Dashboard page", async () => {
-      navigateToPatientPortalHome()
+      await navigateToPatientPortalHome()
     });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the user is able to see the Patient Login page without Internet connection", ({
@@ -256,7 +271,9 @@ defineFeature(feature, (test) => {
     });
 
     when(`user lands onto “Patient Login” screen`, () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
       container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -286,7 +303,9 @@ defineFeature(feature, (test) => {
     });
 
     when(`user lands onto “Patient Login” screen`, () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
       container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -320,7 +339,9 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     and("user lands on “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
       container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);

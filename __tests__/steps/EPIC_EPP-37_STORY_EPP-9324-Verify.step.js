@@ -180,16 +180,16 @@ defineFeature(feature, (test) => {
           container.getByText(/Are you sure to change password\?/i)
         ).toBeInTheDocument();
         expect(
-          container.getByRole("button", { name: /Update/i })
+          container.getAllByRole("button", { name: /Update/i })[0]
         ).toBeInTheDocument();
         expect(
-          container.getByRole("button", { name: /Cancel/i })
+          container.getAllByRole("button", { name: /Cancel/i })[0]
         ).toBeInTheDocument();
       }
     );
 
     when("user clicks Yes", () => {
-      fireEvent.click(container.getByRole("button", { name: /Update/i }));
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
     });
 
     then(
@@ -283,16 +283,16 @@ defineFeature(feature, (test) => {
           container.getByText(/Are you sure to change password\?/i)
         ).toBeInTheDocument();
         expect(
-          container.getByRole("button", { name: /Update/i })
+          container.getAllByRole("button", { name: /Update/i })[0]
         ).toBeInTheDocument();
         expect(
-          container.getByRole("button", { name: /Cancel/i })
+          container.getAllByRole("button", { name: /Cancel/i })[0]
         ).toBeInTheDocument();
       }
     );
 
     when("user clicks Yes", () => {
-      fireEvent.click(container.getByRole("button", { name: /Update/i }));
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
     });
 
     then(
@@ -378,16 +378,16 @@ defineFeature(feature, (test) => {
           container.getByText(/Are you sure to change password\?/i)
         ).toBeInTheDocument();
         expect(
-          container.getByRole("button", { name: /Update/i })
+          container.getAllByRole("button", { name: /Update/i })[0]
         ).toBeInTheDocument();
         expect(
-          container.getByRole("button", { name: /Cancel/i })
+          container.getAllByRole("button", { name: /Cancel/i })[0]
         ).toBeInTheDocument();
       }
     );
 
     when("user clicks Yes", () => {
-      fireEvent.click(container.getByRole("button", { name: /Update/i }));
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
     });
 
     then(
@@ -510,7 +510,7 @@ defineFeature(feature, (test) => {
     });
 
     then("User should see Password has been updated success message", () => {
-      fireEvent.click(container.getByRole("button", { name: /Update/i }));
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
     });
 
     then("User should navigated to Patien Login screen", () => {

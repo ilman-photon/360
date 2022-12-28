@@ -56,9 +56,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -111,9 +111,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -166,9 +166,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -225,9 +225,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -284,9 +284,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
@@ -336,9 +336,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {

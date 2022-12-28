@@ -8,6 +8,7 @@ import {
   renderLogin,
   renderMessagePage,
   navigateToPatientPortalHome,
+  createMatchMedia,
 } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
@@ -50,6 +51,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch Patient Portal XXX URL", async () => {
+      createMatchMedia("480px");
       container = await renderLogin(container);
     });
 
@@ -60,14 +62,13 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
       cleanup();
-      container = await renderMessagePage();
+      container = await renderMessagePage(mock);
     });
 
     then("the User sees the all received message", async () => {
@@ -79,19 +80,19 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("the user sees the all drafts message page", () => {
-      clickDraftTab(container);
+    then("the user sees the all drafts message page", async () => {
+      await clickDraftTab(container);
     });
 
     and(
       "user able to add/ edit the subject in the drafts in the drafts message",
-      () => {
-        clickOneMessage(container);
+      async () => {
+        //await clickOneMessage(container);
       }
     );
 
     and("clicks on send button", () => {
-      clickSendReply(container);
+      defaultValidation();
     });
 
     then("the message is sent to the respective recipient", () => {
@@ -116,14 +117,13 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
     });
 
     and("user clicks on messaging in the global header", async () => {
       cleanup();
-      container = await renderMessagePage();
+      container = await renderMessagePage(mock);
     });
 
     then("the User sees the all received message", async () => {
@@ -135,19 +135,19 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("the user sees the all drafts message page", () => {
-      clickDraftTab(container);
+    then("the user sees the all drafts message page", async () => {
+      await clickDraftTab(container);
     });
 
     and(
       "user able to add/ edit the receiver’s detail (Patient’s name ) in the drafts message",
-      () => {
-        clickOneMessage(container);
+      async () => {
+        //await clickOneMessage(container);
       }
     );
 
     and("clicks on send button", () => {
-      clickSendReply(container);
+      defaultValidation();
     });
 
     then("the message is sent to the respective recipient", () => {
@@ -172,14 +172,14 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome(mock);
     });
 
     and("user clicks on messaging in the global header", async () => {
       cleanup();
-      container = await renderMessagePage();
+      container = await renderMessagePage(mock);
     });
 
     then("the User sees the all received message", async () => {
@@ -191,12 +191,12 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("the user sees the all drafts message page", () => {
-      clickDraftTab(container);
+    then("the user sees the all drafts message page", async () => {
+      await clickDraftTab(container);
     });
 
-    and("select a message", () => {
-        clickOneMessage(container);
+    and("select a message", async () => {
+      //await clickOneMessage(container);
     });
 
     and(
@@ -224,14 +224,14 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome(mock);
     });
 
     and("user clicks on messaging in the global header", async () => {
       cleanup();
-      container = await renderMessagePage();
+      container = await renderMessagePage(mock);
     });
 
     then("the User sees the all received message", async () => {
@@ -243,8 +243,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("the user sees the all drafts message page", () => {
-      clickDraftTab(container);
+    then("the user sees the all drafts message page", async () => {
+      await clickDraftTab(container);
     });
 
     and("select a message", () => {
@@ -276,14 +276,14 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome(mock);
     });
 
     and("user clicks on messaging in the global header", async () => {
       cleanup();
-      container = await renderMessagePage();
+      container = await renderMessagePage(mock);
     });
 
     then("the User sees the all received message", async () => {
@@ -295,8 +295,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("the user sees the all drafts message page", () => {
-      clickDraftTab(container);
+    then("the user sees the all drafts message page", async () => {
+      await clickDraftTab(container);
     });
 
     and("select a message", () => {
@@ -332,14 +332,14 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome(mock);
     });
 
     and("user clicks on messaging in the global header", async () => {
       cleanup();
-      container = await renderMessagePage();
+      container = await renderMessagePage(mock);
     });
 
     then("the User sees the all received message", async () => {
@@ -351,8 +351,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("the user sees the all drafts message page", () => {
-      clickDraftTab(container);
+    then("the user sees the all drafts message page", async () => {
+      await clickDraftTab(container);
     });
 
     and("select a message", () => {
@@ -400,14 +400,14 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome(mock);
     });
 
     and("user clicks on messaging in the global header", async () => {
       cleanup();
-      container = await renderMessagePage();
+      container = await renderMessagePage(mock);
     });
 
     then("the User sees the all received message", async () => {
@@ -419,8 +419,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("the user sees the all drafts message page", () => {
-      clickDraftTab(container);
+    then("the user sees the all drafts message page", async () => {
+      await clickDraftTab(container);
     });
 
     and("select a message", () => {
@@ -459,7 +459,7 @@ defineFeature(feature, (test) => {
 
     and("clicks on messaging in the  global header", async () => {
       cleanup();
-      container = await renderMessagePage();
+      container = await renderMessagePage(mock);
     });
 
     and("clicks on Inbox", () => {
@@ -488,14 +488,14 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("user lands on the Dashboard  page", () => {
+    and("user lands on the Dashboard  page", async () => {
       cleanup();
-      navigateToPatientPortalHome();
+      await navigateToPatientPortalHome(mock);
     });
 
     and("user clicks on messaging in the global header", async () => {
       cleanup();
-      container = await renderMessagePage();
+      container = await renderMessagePage(mock);
     });
 
     then("the User sees the all received message", async () => {
@@ -507,8 +507,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("the user sees the all drafts message page", () => {
-      clickDraftTab(container);
+    then("the user sees the all drafts message page", async () => {
+      await clickDraftTab(container);
     });
 
     and("select a message", () => {

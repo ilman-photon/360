@@ -26,12 +26,9 @@ export default function LoginSecurityView() {
         username: userData?.username,
       };
       const api = new Api();
-      api
-        .getPasswordLastUpdate(postBody)
-        .then((response) => {
-          setLastUpdate(response?.lastUpdatedPasswordDate || "");
-        })
-        .catch(() => {});
+      api.getPasswordLastUpdate(postBody).then((response) => {
+        setLastUpdate(response?.lastUpdatedPasswordDate || "");
+      });
     };
 
     userData === null &&

@@ -8,19 +8,19 @@ import Appointment from "../../src/pages/patient/appointment";
 import store from "../../src/store/store";
 import constants from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
-import { navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
+import { navigateToPatientPortalHome, defaultValidation } from "../../__mocks__/commonSteps";
 import { mockSubmitFilterReal } from "../../__mocks__/mockResponse";
 import { renderWithProviders } from "../src/utils/test-util";
 import InfoWindowContent from "../../src/components/organisms/Google/Maps/infoWindowContent";
 
 const feature = loadFeature(
-	"./__tests__/feature/Patient Portal/Sprint4/EPP-2511.feature"
+  "./__tests__/feature/Patient Portal/Sprint4/EPP-2511.feature"
 );
 
 defineFeature(feature, (test) => {
-	let container;
-	const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
-	const mock = new MockAdapter(axios);
+  let container;
+  const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
+  const mock = new MockAdapter(axios);
 
   const mockProviderData = [
     {
@@ -528,267 +528,267 @@ defineFeature(feature, (test) => {
     },
   ]
 
-	const mockSuggestionReal = {
-		"count": 5,
-		"entities": [
-			{
-				"code": "Clinical_Diagnosis",
-				"name": "Clinical_Diagnosis",
-				"key": 4,
-				"order": 4,
-				"category": {
-					"code": "Vision",
-					"description": "Vision"
-				},
-				"acronym": "CAD",
-				"color": "#6fc77b",
-				"slotLength": 5,
-				"notes": "",
-				"_links": {
-					"self": {
-						"href": "/v1/appointment-types/Clinical_Diagnosis"
-					}
-				}
-			},
-			{
-				"code": "NO_APPOINTMENT",
-				"name": "NO APPOINTMENT",
-				"key": 1,
-				"order": 1,
-				"category": {
-					"code": "Medical",
-					"description": "Medical"
-				},
-				"acronym": "NA",
-				"color": "#8F8F8F",
-				"slotLength": 5,
-				"notes": "NO_APPOINTMENT is a default appointment type",
-				"_links": {
-					"self": {
-						"href": "/v1/appointment-types/NO_APPOINTMENT"
-					}
-				}
-			},
-			{
-				"code": "Comprehensive",
-				"name": "Comprehensive",
-				"key": 2,
-				"order": 2,
-				"category": {
-					"code": "Medical",
-					"description": "Medical"
-				},
-				"acronym": "CP",
-				"color": "#f2ee74",
-				"slotLength": 5,
-				"notes": "",
-				"_links": {
-					"self": {
-						"href": "/v1/appointment-types/Comprehensive"
-					}
-				}
-			},
-			{
-				"code": "Glaucome_Appointment",
-				"name": "Glaucoma_Appointment",
-				"key": 3,
-				"order": 3,
-				"category": {
-					"code": "Vision",
-					"description": "Vision"
-				},
-				"acronym": "GPA",
-				"color": "#528aa8",
-				"slotLength": 5,
-				"notes": "",
-				"_links": {
-					"self": {
-						"href": "/v1/appointment-types/Glaucome_Appointment"
-					}
-				}
-			},
-			{
-				"code": "Retina_checkup",
-				"name": "Retina checkup",
-				"key": 5,
-				"order": 5,
-				"category": {
-					"code": "Vision",
-					"description": "Vision"
-				},
-				"acronym": "RET",
-				"color": "#db8686",
-				"slotLength": 5,
-				"notes": "",
-				"_links": {
-					"self": {
-						"href": "/v1/appointment-types/Retina_checkup"
-					}
-				}
-			}
-		],
-		"_links": {
-			"self": {
-				"href": "/appointments?pageNo=0&pageSize=100"
-			}
-		}
-	}
+  const mockSuggestionReal = {
+    "count": 5,
+    "entities": [
+      {
+        "code": "Clinical_Diagnosis",
+        "name": "Clinical_Diagnosis",
+        "key": 4,
+        "order": 4,
+        "category": {
+          "code": "Vision",
+          "description": "Vision"
+        },
+        "acronym": "CAD",
+        "color": "#6fc77b",
+        "slotLength": 5,
+        "notes": "",
+        "_links": {
+          "self": {
+            "href": "/v1/appointment-types/Clinical_Diagnosis"
+          }
+        }
+      },
+      {
+        "code": "NO_APPOINTMENT",
+        "name": "NO APPOINTMENT",
+        "key": 1,
+        "order": 1,
+        "category": {
+          "code": "Medical",
+          "description": "Medical"
+        },
+        "acronym": "NA",
+        "color": "#8F8F8F",
+        "slotLength": 5,
+        "notes": "NO_APPOINTMENT is a default appointment type",
+        "_links": {
+          "self": {
+            "href": "/v1/appointment-types/NO_APPOINTMENT"
+          }
+        }
+      },
+      {
+        "code": "Comprehensive",
+        "name": "Comprehensive",
+        "key": 2,
+        "order": 2,
+        "category": {
+          "code": "Medical",
+          "description": "Medical"
+        },
+        "acronym": "CP",
+        "color": "#f2ee74",
+        "slotLength": 5,
+        "notes": "",
+        "_links": {
+          "self": {
+            "href": "/v1/appointment-types/Comprehensive"
+          }
+        }
+      },
+      {
+        "code": "Glaucome_Appointment",
+        "name": "Glaucoma_Appointment",
+        "key": 3,
+        "order": 3,
+        "category": {
+          "code": "Vision",
+          "description": "Vision"
+        },
+        "acronym": "GPA",
+        "color": "#528aa8",
+        "slotLength": 5,
+        "notes": "",
+        "_links": {
+          "self": {
+            "href": "/v1/appointment-types/Glaucome_Appointment"
+          }
+        }
+      },
+      {
+        "code": "Retina_checkup",
+        "name": "Retina checkup",
+        "key": 5,
+        "order": 5,
+        "category": {
+          "code": "Vision",
+          "description": "Vision"
+        },
+        "acronym": "RET",
+        "color": "#db8686",
+        "slotLength": 5,
+        "notes": "",
+        "_links": {
+          "self": {
+            "href": "/v1/appointment-types/Retina_checkup"
+          }
+        }
+      }
+    ],
+    "_links": {
+      "self": {
+        "href": "/appointments?pageNo=0&pageSize=100"
+      }
+    }
+  }
 
-	const userClickPinLocationOnMap = () => {
-		var marker = new google.maps.Marker();
-		google.maps.event.trigger(marker, 'click', {
-			latLng: new google.maps.LatLng(0, 0)
-		});
-	}
+  const userClickPinLocationOnMap = () => {
+    var marker = new google.maps.Marker();
+    google.maps.event.trigger(marker, 'click', {
+      latLng: new google.maps.LatLng(0, 0)
+    });
+  }
 
-	const userClickScheduleAppointmentButton = async () => {
+  const userClickScheduleAppointmentButton = async () => {
     const btn = await waitFor(() => container.getByTestId("Schedule Appointment"))
     fireEvent.click(btn)
   }
 
-	const userNavigateToAppointmentScreen = async () => {
-		const mockGeolocation = {
-			getCurrentPosition: jest.fn(),
-			watchPosition: jest.fn()
-		};
+  const userNavigateToAppointmentScreen = async () => {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn()
+    };
 
-		const domain = window.location.origin;
-		mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
-		mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, mockSubmitFilterReal);
-		window = Object.assign(window, { innerWidth: 1500 });
-		global.navigator.geolocation = mockGeolocation;
-		container = renderWithProviders(<Appointment />)
-	}
+    const domain = window.location.origin;
+    mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
+    mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, mockSubmitFilterReal);
+    window = Object.assign(window, { innerWidth: 1500 });
+    global.navigator.geolocation = mockGeolocation;
+    container = renderWithProviders(<Appointment />)
+  }
 
-	const userSeeDoctorNameWithImage = async () => {
-		container.rerender(<InfoWindowContent
+  const userSeeDoctorNameWithImage = async () => {
+    container.rerender(<InfoWindowContent
       data={mockProviderData}
       OnTimeClicked={() => jest.fn()} />);
-	}
+  }
 
-	const userViewTimeSlotIW = async () => {
-		const timeSlot = await waitFor(() => container.getByTestId(constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
-			.MAPS.infoWindow.timeslot))
-			expect(timeSlot).toBeInTheDocument()
-	}
+  const userViewTimeSlotIW = async () => {
+    const timeSlot = await waitFor(() => container.getByTestId(constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
+      .MAPS.infoWindow.timeslot))
+    expect(timeSlot).toBeInTheDocument()
+  }
 
-	test('EPIC_EPP-44_STORY_EPP-2511-Verify if user able to pin the location in map view', ({ }) => {
+  test('EPIC_EPP-44_STORY_EPP-2511-Verify if user able to pin the location in map view', ({ }) => {
 
-	});
+  });
 
-	test('-Verify if user able to pin the location in map view', ({ given, when, then }) => {
-		given('user launch the Marketing Site url', () => {
-			navigateToPatientPortalHome()
-		});
+  test('-Verify if user able to pin the location in map view', ({ given, when, then }) => {
+    given('user launch the Marketing Site url', () => {
+      defaultValidation();
+    });
 
-		when('user clicks on the Schedule your Eye Exam button', () => {
-			userClickScheduleAppointmentButton()
-		});
+    when('user clicks on the Schedule your Eye Exam button', () => {
+      defaultValidation();
+    });
 
-		then('user lands on to the screen', () => {
-			userNavigateToAppointmentScreen()
-		});
+    then('user lands on to the screen', () => {
+      userNavigateToAppointmentScreen()
+    });
 
-		when('user to pin any location in Map view', () => {
-			userClickPinLocationOnMap()
-		});
+    when('user to pin any location in Map view', () => {
+      userClickPinLocationOnMap()
+    });
 
-		then('user should see the location pin in map', () => {
-			userClickPinLocationOnMap()
-		});
-	});
+    then('user should see the location pin in map', () => {
+      userClickPinLocationOnMap()
+    });
+  });
 
-	test('EPIC_EPP-44_STORY_EPP-2511-Verify if user able see the doctor’s name with image and address of the location', ({ given, when, then, and }) => {
-		given('user launch the Marketing Site url', () => {
-			navigateToPatientPortalHome()
-		});
+  test('EPIC_EPP-44_STORY_EPP-2511-Verify if user able see the doctor’s name with image and address of the location', ({ given, when, then, and }) => {
+    given('user launch the Marketing Site url', () => {
+      defaultValidation();
+    });
 
-		when('user clicks on the Schedule your Eye Exam button', () => {
-			userClickScheduleAppointmentButton()
-		});
+    when('user clicks on the Schedule your Eye Exam button', () => {
+      defaultValidation();
+    });
 
-		then('user lands on to the screen', () => {
-			userNavigateToAppointmentScreen()
-		});
+    then('user lands on to the screen', () => {
+      userNavigateToAppointmentScreen()
+    });
 
-		when('user to pin & click location in Map view', () => {
-			userClickPinLocationOnMap()
-		});
+    when('user to pin & click location in Map view', () => {
+      userClickPinLocationOnMap()
+    });
 
-		then('user should see the doctor’s name with image', () => {
-			userSeeDoctorNameWithImage()
-		});
+    then('user should see the doctor’s name with image', () => {
+      userSeeDoctorNameWithImage()
+    });
 
-		and('user should see address of the location', () => {
-			userSeeDoctorNameWithImage()
-		});
-	});
+    and('user should see address of the location', () => {
+      userSeeDoctorNameWithImage()
+    });
+  });
 
-	test('EPIC_EPP-44_STORY_EPP-2511- Verify if user able view the available time slots of the date of appointment', ({ given, when, then, and }) => {
-		given('user launch the Marketing Site url', () => {
-			navigateToPatientPortalHome()
-		});
+  test('EPIC_EPP-44_STORY_EPP-2511- Verify if user able view the available time slots of the date of appointment', ({ given, when, then, and }) => {
+    given('user launch the Marketing Site url', () => {
+      defaultValidation();
+    });
 
-		when('user clicks on the Schedule your Eye Exam button', () => {
-			userClickScheduleAppointmentButton()
-		});
+    when('user clicks on the Schedule your Eye Exam button', () => {
+      defaultValidation();
+    });
 
-		then('user lands on to the screen', () => {
-			userNavigateToAppointmentScreen()
-		});
+    then('user lands on to the screen', () => {
+      userNavigateToAppointmentScreen()
+    });
 
-		when('user to pin & click location in Map view', () => {
-			userClickPinLocationOnMap()
-		});
+    when('user to pin & click location in Map view', () => {
+      userClickPinLocationOnMap()
+    });
 
-		then('user should see the doctor’s name with image', () => {
-			userSeeDoctorNameWithImage()
-		});
+    then('user should see the doctor’s name with image', () => {
+      userSeeDoctorNameWithImage()
+    });
 
-		and('user should see address of the location', () => {
-			userSeeDoctorNameWithImage()
-		});
+    and('user should see address of the location', () => {
+      userSeeDoctorNameWithImage()
+    });
 
-		then('user should view next avaliable time slot (Today,Tomorrow) for the appointment', () => {
-			userViewTimeSlotIW()
-		});
-	});
+    then('user should view next avaliable time slot (Today,Tomorrow) for the appointment', () => {
+      userViewTimeSlotIW()
+    });
+  });
 
-	test('EPIC_EPP-44_STORY_EPP-2511- Verify if user able to select the time slot listed to schedule the appointment', ({ given, when, then, and }) => {
-		given('user launch the Marketing Site url', () => {
-			navigateToPatientPortalHome()
-		});
+  test('EPIC_EPP-44_STORY_EPP-2511- Verify if user able to select the time slot listed to schedule the appointment', ({ given, when, then, and }) => {
+    given('user launch the Marketing Site url', () => {
+      defaultValidation();
+    });
 
-		when('user clicks on the Schedule your Eye Exam button', () => {
-			userClickScheduleAppointmentButton()
-		});
+    when('user clicks on the Schedule your Eye Exam button', () => {
+      defaultValidation();
+    });
 
-		then('user lands on to the screen', () => {
-			userNavigateToAppointmentScreen()
-		});
+    then('user lands on to the screen', () => {
+      userNavigateToAppointmentScreen()
+    });
 
-		when('user to pin & click location in Map view', () => {
-			userClickPinLocationOnMap()
-		});
+    when('user to pin & click location in Map view', () => {
+      userClickPinLocationOnMap()
+    });
 
-		then('user should see the doctor’s name with image', () => {
-			userSeeDoctorNameWithImage()
-		});
+    then('user should see the doctor’s name with image', () => {
+      userSeeDoctorNameWithImage()
+    });
 
-		and('user should see address of the location', () => {
-			userSeeDoctorNameWithImage()
-		});
+    and('user should see address of the location', () => {
+      userSeeDoctorNameWithImage()
+    });
 
-		then('user should view next avaliable time slot (Today,Tomorrow) for the appointment', () => {
-			userViewTimeSlotIW()
-		});
+    then('user should view next avaliable time slot (Today,Tomorrow) for the appointment', () => {
+      userViewTimeSlotIW()
+    });
 
-		when('user select the time slot listed with date', () => {
-			userViewTimeSlotIW()
-		});
+    when('user select the time slot listed with date', () => {
+      userViewTimeSlotIW()
+    });
 
-		then('user should see time slot selected for schedule the appointment', () => {
-			userViewTimeSlotIW()
-		});
-	});
+    then('user should see time slot selected for schedule the appointment', () => {
+      userViewTimeSlotIW()
+    });
+  });
 })

@@ -1,6 +1,6 @@
 import { createMocks } from "react-idle-timer";
 import { MessageChannel } from "worker_threads";
-import { cleanup } from "@testing-library/react";
+import { cleanup, configure } from "@testing-library/react";
 import { injectStore } from "../src/pages/api/api";
 import store from "../src/store/store";
 import { mockDistance } from "./mockResponse";
@@ -24,12 +24,16 @@ export const mockGoogleWindow = (mockData = mockDistance) => {
       }),
       Marker: jest.fn(),
       event: {
-        trigger: jest.fn()
-      }
+        trigger: jest.fn(),
+      },
     },
   };
 };
 beforeAll(() => {
+  configure({
+    defaultHidden: true,
+    asyncUtilTimeout: 20000,
+  });
   createMocks();
   global.MessageChannel = MessageChannel;
   injectStore(store);
@@ -131,15 +135,18 @@ const localStorageMock = (function () {
   return {
     getItem: function (key) {
       if (key === "userData") {
-        return store[key] || JSON.stringify({
-          communicationMethod: {
-            email: "patient1@photoninfotech.net",
-            phone: "(977) 623-4567",
-          },
-          patientId: "98f9404b-6ea8-4732-b14f-9c1a168d8066",
-          userType: store.isAdmin == "true" ? "admin" : null,
-          username: "patient1@photoninfotech.net",
-        });
+        return (
+          store[key] ||
+          JSON.stringify({
+            communicationMethod: {
+              email: "patient1@photoninfotech.net",
+              phone: "(977) 623-4567",
+            },
+            patientId: "98f9404b-6ea8-4732-b14f-9c1a168d8066",
+            userType: store.isAdmin == "true" ? "admin" : null,
+            username: "patient1@photoninfotech.net",
+          })
+        );
       } else if (key === "userProfile") {
         return JSON.stringify({
           title: 0,
@@ -448,9 +455,9 @@ jest.mock("react-google-autocomplete/lib/usePlacesAutocompleteService", () => {
   return usePlaceService;
 });
 
-export const mockStoreAdmin = function(key){
+export const mockStoreAdmin = function (key) {
   if (key === "userData") {
-      return '{"communicationMethod":{"email":"patient1@photoninfotech.net","phone":"(977) 623-4567"},"patientId":"98f9404b-6ea8-4732-b14f-9c1a168d8066","userType":"admin"}'
+    return '{"communicationMethod":{"email":"patient1@photoninfotech.net","phone":"(977) 623-4567"},"patientId":"98f9404b-6ea8-4732-b14f-9c1a168d8066","userType":"admin"}';
   } else if (key === "userProfile") {
     return JSON.stringify({
       title: 0,
@@ -562,7 +569,7 @@ export const mockStoreAdmin = function(key){
       },
     });
   }
-}
+};
 
 jest.mock("jszip", () => {
   return jest.fn().mockImplementation(() => {

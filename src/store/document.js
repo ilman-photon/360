@@ -3,7 +3,7 @@ import moment from "moment";
 import { Api } from "../pages/api/api";
 
 export function parseMedicalRecordData(data) {
-  return data.map((v) => ({
+  return data?.map((v) => ({
     ...v,
     name: `Medical Record - ${new moment(v._created).format("MM/DD/YYYY")} `,
   }));

@@ -142,10 +142,10 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
     }
   };
 
-  const getAddressAriaLabel = (address) => {
-    return `${address.addressLine1 || ""}, ${address.addressLine2 || ""}, ${
-      address.city || ""
-    }, ${address.state || ""}, ${address.zip || ""}`;
+  const getAddressAriaLabel = (addr) => {
+    return `${addr.addressLine1 || ""}, ${addr.addressLine2 || ""}, ${
+      addr.city || ""
+    }, ${addr.state || ""}, ${addr.zip || ""}`;
   };
 
   const renderAddress = (newAddressArray) => {

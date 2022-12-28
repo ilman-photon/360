@@ -70,17 +70,17 @@ const MOCK_APPOINTMENT = {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
         insuranceCarrier: [
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "ECP Vision",
-         },
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "BlueCare Vision",
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
           },
         ],
       },
@@ -120,17 +120,17 @@ const MOCK_APPOINTMENT = {
         appointmentType: "Eye Exam",
         date: "Thu, 12 Jan 2023 04:30:00 EST",
         insuranceCarrier: [
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "ECP Vision",
-         },
-         {
-           category: "all",
-           divider: false,
-           id: "1",
-           name: "BlueCare Vision",
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "ECP Vision",
+          },
+          {
+            category: "all",
+            divider: false,
+            id: "1",
+            name: "BlueCare Vision",
           },
         ],
       },
@@ -542,8 +542,8 @@ defineFeature(feature, (test) => {
   function createMatchMedia(width) {
     return (query) => ({
       matches: mediaQuery.match(query, { width }),
-      addListener: () => {},
-      removeListener: () => {},
+      addListener: () => { },
+      removeListener: () => { },
     });
   }
 
@@ -580,8 +580,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(loginButton);
     });
 
-    then("user navigates to the Patient Portal home page", () => {
-      navigateToPatientPortalHome();
+    then("user navigates to the Patient Portal home page", async () => {
+      await navigateToPatientPortalHome();
     });
 
     when("a user  clicks on the Schedule Appointment link", () => {

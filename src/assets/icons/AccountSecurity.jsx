@@ -1,6 +1,6 @@
 import React from "react";
 
-function AccountSecurityIcon() {
+function AccountSecurity() {
   return (
     <svg
       width="32"
@@ -17,4 +17,4 @@ function AccountSecurityIcon() {
   );
 }
 
-export default AccountSecurityIcon;
+export default AccountSecurity;

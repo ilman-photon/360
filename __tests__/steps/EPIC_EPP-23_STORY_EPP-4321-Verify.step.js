@@ -6,7 +6,6 @@ import axios from "axios";
 import {
   doLogin,
   renderLogin,
-  navigateToPatientPortalHome,
   renderMessagePage,
 } from "../../__mocks__/commonSteps";
 import Cookies from "universal-cookie";

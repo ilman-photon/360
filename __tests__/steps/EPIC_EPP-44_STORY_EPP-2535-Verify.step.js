@@ -9,6 +9,7 @@ import {
   doLogin,
   provideFilters,
   renderLogin,
+  renderResultsScreen,
   renderScheduleAppointment,
 } from "../../__mocks__/commonSteps";
 import { TEST_ID } from "../../src/utils/constants";
@@ -17,6 +18,8 @@ import {
   mockInsurance,
   submitFilter,
 } from "../../__mocks__/mockResponse";
+import moment from "moment";
+import { act } from "react-dom/test-utils";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2535.feature"
@@ -139,7 +142,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the selected location.", () => {
@@ -151,7 +154,7 @@ defineFeature(feature, (test) => {
     and(
       "user views an option to search locations using City with the selected location",
       () => {
-        defaultValidation();
+        expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
       }
     );
   });
@@ -190,7 +193,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the selected location.", () => {
@@ -202,7 +205,7 @@ defineFeature(feature, (test) => {
     and(
       "user views an option to search locations using State with the selected location",
       () => {
-        defaultValidation();
+        expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
       }
     );
   });
@@ -241,7 +244,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the selected location.", () => {
@@ -253,7 +256,7 @@ defineFeature(feature, (test) => {
     and(
       "user views an option to search locations using  Zipcode with the selected location",
       () => {
-        defaultValidation();
+        expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
       }
     );
   });
@@ -292,7 +295,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the selected location.", () => {
@@ -304,7 +307,7 @@ defineFeature(feature, (test) => {
     and(
       "user views an option to search locations using City or State or Zipcode with the selected location",
       () => {
-        defaultValidation();
+        expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
       }
     );
 
@@ -350,7 +353,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the selected location.", () => {
@@ -362,7 +365,7 @@ defineFeature(feature, (test) => {
     and(
       "user views an option to search locations using City or State or Zipcode with the selected location",
       () => {
-        defaultValidation();
+        expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
       }
     );
 
@@ -374,7 +377,7 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
   });
 
@@ -412,7 +415,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the selected location.", () => {
@@ -424,7 +427,7 @@ defineFeature(feature, (test) => {
     and(
       "user views an option to search locations using City or State or Zipcode with the selected location",
       () => {
-        defaultValidation();
+        expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
       }
     );
 
@@ -436,11 +439,12 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
 
     and("user view options to change the appointment date", () => {
-      defaultValidation();
+      const dateInput = container.getByLabelText("Date");
+      expect(dateInput).toBeInTheDocument()
     });
   });
 
@@ -478,7 +482,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the selected location.", () => {
@@ -490,7 +494,7 @@ defineFeature(feature, (test) => {
     and(
       "user views an option to search locations using City or State or Zipcode with the selected location",
       () => {
-        defaultValidation();
+        expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
       }
     );
 
@@ -502,15 +506,16 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
 
     and("user view options to change the appointment date", () => {
-      defaultValidation();
+      const dateInput = container.getByLabelText("Date");
+      expect(dateInput).toBeInTheDocument()
     });
 
     and("user view options to change the Purpose of the Visit", () => {
-      defaultValidation();
+      expect(container.getByTestId("select-purposes-of-visit")).toBeInTheDocument();
     });
   });
 
@@ -548,7 +553,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the selected location.", () => {
@@ -560,7 +565,7 @@ defineFeature(feature, (test) => {
     and(
       "user views an option to search locations using City or State or Zipcode with the selected location",
       () => {
-        defaultValidation();
+        expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
       }
     );
 
@@ -572,19 +577,20 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
 
     and("user view options to change the appointment date", () => {
-      defaultValidation();
+      const dateInput = container.getByLabelText("Date");
+      expect(dateInput).toBeInTheDocument()
     });
 
     and("user view options to change the Purpose of the Visit", () => {
-      defaultValidation();
+      expect(container.getByTestId("select-purposes-of-visit")).toBeInTheDocument();
     });
 
     and("user view options to change the insurance.", () => {
-      defaultValidation();
+      expect(container.getByLabelText("Insurance Carrier")).toBeInTheDocument();
     });
   });
 
@@ -622,11 +628,12 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the purpose of the visit as blank", () => {
-      defaultValidation();
+      const purposeofVisit = container.getByTestId("select-purposes-of-visit");
+      expect(purposeofVisit.value).toEqual("Clinical_Diagnosis");
     });
 
     when("the user not entered the purpose of the visit", () => {
@@ -668,11 +675,12 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the results in the Schedule Appointments screen", () => {
-      defaultValidation();
+      renderResultsScreen();
     });
 
     and("user views the insurance carrier as blank.", () => {
-      defaultValidation();
+      const insuranceCarrier = container.getByLabelText("Insurance Carrier");
+      expect(insuranceCarrier.value).toEqual("");
     });
 
     when("user has not entered in the insurance carrier", () => {
@@ -740,34 +748,40 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
 
     and(
       "user views the selected date of appointment along with an option to change",
       () => {
-        defaultValidation();
+        const dateInput = container.getByLabelText("Date");
+        const dateNow = moment().format("MMM DD, YYYY")
+        expect(dateInput.value).toEqual(dateNow);
       }
     );
 
     and("user views the Purpose of Visit", () => {
-      defaultValidation();
+      const purposeInput = container.getByTestId("select-purposes-of-visit");
+      expect(purposeInput).toBeInTheDocument();
     });
 
     and("user views the Insurance Carrier", () => {
-      defaultValidation();
+      const insuranceCarrier = container.getByText(/Insurance Carrier/i);
+      expect(insuranceCarrier).toBeInTheDocument();
     });
 
     and("user views the results sorted by least distance", () => {
-      defaultValidation();
+      renderResultsScreen()
     });
 
     and("user views the Doctors Image", () => {
-      defaultValidation();
+      const doctorImg = container.getAllByTestId("appointment_provider_profile_image")[0];
+      expect(doctorImg).toBeInTheDocument();
     });
 
     and("user views the Doctors Name", () => {
-      defaultValidation();
+      const doctorName = container.getAllByTestId("appointment_provider_profile_name")[0];
+      expect(doctorName).toBeInTheDocument();
     });
 
     and("user views the Locations Address", () => {
@@ -789,15 +803,17 @@ defineFeature(feature, (test) => {
     and(
       "user views the Doctors available time slots for the selected date",
       () => {
-        defaultValidation();
+        expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
       }
     );
 
     and("user views the View all availability link", () => {
-      defaultValidation();
+        expect(container.getAllByTestId("loc_viewAll")[0]).toBeInTheDocument();
     });
 
-    and(/^user views the Next availability is (.*)$/, (arg0) => {});
+    and(/^user views the Next availability is (.*)$/, (arg0) => {
+      defaultValidation();
+    });
   });
 
   test("EPIC_EPP-44_STORY_EPP-2535 - Verify user able to view the screen with list of providers for the searched location and available time-slots for the selected date of appointment and the user views the provider's short bio.", ({
@@ -860,38 +876,47 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
 
     and(
       "user views the selected date of appointment along with an option to change",
       () => {
-        defaultValidation();
+        const dateInput = container.getByLabelText("Date");
+        const dateNow = moment().format("MMM DD, YYYY")
+        expect(dateInput.value).toEqual(dateNow);
       }
     );
 
     and("user views the Purpose of Visit", () => {
-      defaultValidation();
+      const purposeInput = container.getByTestId("select-purposes-of-visit");
+      expect(purposeInput).toBeInTheDocument();
     });
 
     and("user views the Insurance Carrier", () => {
-      defaultValidation();
+      const insuranceCarrier = container.getByText(/Insurance Carrier/i);
+      expect(insuranceCarrier).toBeInTheDocument();
     });
 
     and("user views the results sorted by least distance", () => {
-      defaultValidation();
+      renderResultsScreen()
     });
 
     and("user views the Doctors Image", () => {
-      defaultValidation();
+      const doctorImg = container.getAllByTestId("appointment_provider_profile_image")[0];
+      expect(doctorImg).toBeInTheDocument();
     });
 
     and("user views the Doctors Name", () => {
-      defaultValidation();
+      const doctorName = container.getAllByTestId("appointment_provider_profile_name")[0];
+      expect(doctorName).toBeInTheDocument();
     });
 
     and("user clicks on the Doctors Name", () => {
-      defaultValidation();
+      const doctorName = container.getAllByTestId("appointment_provider_profile_name")[0];
+      act(() => {
+        fireEvent.click(doctorName);
+      });
     });
 
     then("user views the short bio", () => {
@@ -959,34 +984,40 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
 
     and(
       "user views the selected date of appointment along with an option to change",
       () => {
-        defaultValidation();
+        const dateInput = container.getByLabelText("Date");
+        const dateNow = moment().format("MMM DD, YYYY")
+        expect(dateInput.value).toEqual(dateNow);
       }
     );
 
     and("user views the Purpose of Visit", () => {
-      defaultValidation();
+      const purposeInput = container.getByTestId("select-purposes-of-visit");
+      expect(purposeInput).toBeInTheDocument();
     });
 
     and("user views the Insurance Carrier", () => {
-      defaultValidation();
+      const insuranceCarrier = container.getByText(/Insurance Carrier/i);
+      expect(insuranceCarrier).toBeInTheDocument();
     });
 
     and("user views the results sorted by least distance", () => {
-      defaultValidation();
+      renderResultsScreen()
     });
 
     and("user views the Doctors Image", () => {
-      defaultValidation();
+      const doctorImg = container.getAllByTestId("appointment_provider_profile_image")[0];
+      expect(doctorImg).toBeInTheDocument();
     });
 
     and("user views the Doctors Name", () => {
-      defaultValidation();
+      const doctorName = container.getAllByTestId("appointment_provider_profile_name")[0];
+      expect(doctorName).toBeInTheDocument();
     });
 
     and("user views the Direction button", () => {
@@ -1062,42 +1093,51 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
 
     and(
       "user views the selected date of appointment along with an option to change",
       () => {
-        defaultValidation();
+        const dateInput = container.getByLabelText("Date");
+        const dateNow = moment().format("MMM DD, YYYY")
+        expect(dateInput.value).toEqual(dateNow);
       }
     );
 
     and("user views the Purpose of Visit", () => {
-      defaultValidation();
+      const purposeInput = container.getByTestId("select-purposes-of-visit");
+      expect(purposeInput).toBeInTheDocument();
     });
 
     and("user views the Insurance Carrier", () => {
-      defaultValidation();
+      const insuranceCarrier = container.getByText(/Insurance Carrier/i);
+      expect(insuranceCarrier).toBeInTheDocument();
     });
 
     and("user views the results sorted by least distance", () => {
-      defaultValidation();
+      renderResultsScreen()
     });
 
     and("user views the Doctors Image", () => {
-      defaultValidation();
+      const doctorImg = container.getAllByTestId("appointment_provider_profile_image")[0];
+      expect(doctorImg).toBeInTheDocument();
     });
 
     and("user views the Doctors Name", () => {
-      defaultValidation();
+      const doctorName = container.getAllByTestId("appointment_provider_profile_name")[0];
+      expect(doctorName).toBeInTheDocument();
     });
 
     and("user views the Doctors available time slots", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
     });
 
     and("user clicks his preferred time slot", () => {
-      defaultValidation();
+      const availableSlot = container.getAllByTestId("loc_hourButton")[0];
+      act(() => {
+        fireEvent.click(availableSlot);
+      });
     });
 
     and("user lands on the appointment review screen", () => {
@@ -1165,38 +1205,44 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
 
     and(
       "user views the selected date of appointment along with an option to change",
       () => {
-        defaultValidation();
+        const dateInput = container.getByLabelText("Date");
+        const dateNow = moment().format("MMM DD, YYYY")
+        expect(dateInput.value).toEqual(dateNow);
       }
     );
 
     and("user views the Purpose of Visit", () => {
-      defaultValidation();
+      const purposeInput = container.getByTestId("select-purposes-of-visit");
+      expect(purposeInput).toBeInTheDocument();
     });
 
     and("user views the Insurance Carrier", () => {
-      defaultValidation();
+      const insuranceCarrier = container.getByText(/Insurance Carrier/i);
+      expect(insuranceCarrier).toBeInTheDocument();
     });
 
     and("user views the results sorted by least distance", () => {
-      defaultValidation();
+      renderResultsScreen()
     });
 
     and("user views the Doctors Image", () => {
-      defaultValidation();
+      const doctorImg = container.getAllByTestId("appointment_provider_profile_image")[0];
+      expect(doctorImg).toBeInTheDocument();
     });
 
     and("user views the Doctors Name", () => {
-      defaultValidation();
+      const doctorName = container.getAllByTestId("appointment_provider_profile_name")[0];
+      expect(doctorName).toBeInTheDocument();
     });
 
     and("user views the Doctors available time slots", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
     });
 
     and(
@@ -1218,11 +1264,14 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the Doctors available time slots", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("loc_hourButton")[0]).toBeInTheDocument();
     });
 
     and("user clicks his preferred time slot", () => {
-      defaultValidation();
+      const availableSlot = container.getAllByTestId("loc_hourButton")[0];
+      act(() => {
+        fireEvent.click(availableSlot);
+      });
     });
 
     and("user lands on the appointment review screen", () => {
@@ -1294,34 +1343,40 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the filter options", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("filterbtn")[0]).toBeInTheDocument();
     });
 
     and(
       "user views the selected date of appointment along with an option to change",
       () => {
-        defaultValidation();
+        const dateInput = container.getByLabelText("Date");
+        const dateNow = moment().format("MMM DD, YYYY")
+        expect(dateInput.value).toEqual(dateNow);
       }
     );
 
     and("user views the Purpose of Visit", () => {
-      defaultValidation();
+      const purposeInput = container.getByTestId("select-purposes-of-visit");
+      expect(purposeInput).toBeInTheDocument();
     });
 
     and("user views the Insurance Carrier", () => {
-      defaultValidation();
+      const insuranceCarrier = container.getByText(/Insurance Carrier/i);
+      expect(insuranceCarrier).toBeInTheDocument();
     });
 
     and("user views the results sorted by least distance", () => {
-      defaultValidation();
+      renderResultsScreen()
     });
 
     and("user views the Doctors Image", () => {
-      defaultValidation();
+      const doctorImg = container.getAllByTestId("appointment_provider_profile_image")[0];
+      expect(doctorImg).toBeInTheDocument();
     });
 
     and("user views the Doctors Name", () => {
-      defaultValidation();
+      const doctorName = container.getAllByTestId("appointment_provider_profile_name")[0];
+      expect(doctorName).toBeInTheDocument();
     });
 
     and("user views the Locations Address", () => {
@@ -1348,7 +1403,7 @@ defineFeature(feature, (test) => {
     );
 
     and("user views the View all availability link", () => {
-      defaultValidation();
+      expect(container.getAllByTestId("loc_viewAll")[0]).toBeInTheDocument();
     });
 
     and(/^user views the Next availability is (.*)$/, (arg0) => {});

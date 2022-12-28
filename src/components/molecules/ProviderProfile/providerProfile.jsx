@@ -1,4 +1,4 @@
-import { Typography, Box, useMediaQuery } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
@@ -61,7 +61,6 @@ export default function ProviderProfile({
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
   const isMap = variant === "map";
-  const isMobile = useMediaQuery("(max-width: 890px)");
 
   const router = useRouter();
 

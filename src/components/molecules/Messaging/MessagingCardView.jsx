@@ -28,8 +28,8 @@ export const MessagingCardView = ({
       const date = convertDate.getDate();
       dateTime = `${month} ${date}`;
     } else {
-      const convertDate = new moment(data);
-      dateTime = convertDate.format("hh:mm A");
+      const newConvertDate = new moment(data);
+      dateTime = newConvertDate.format("hh:mm A");
     }
 
     return dateTime;
