@@ -15,8 +15,10 @@ import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 import SearchDoctorPage from "../../src/pages/patient/search-doctor";
 
+jest.setTimeout(20000);
+
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint8/EPP-4337.feature"
+  "./__tests__/feature/Patient Portal/Sprint8/EPP-7232.feature"
 );
 
 const mockDoctorSearch = {
@@ -319,7 +321,6 @@ const specialtiesMock = ["Glaucoma", "Ophthalmology", "Dry Eye"];
 const mockApi = () => {
   const mock = new MockAdapter(axios);
   const domain = window.location.origin;
-  const userData = JSON.parse(localStorage.getItem("userData"));
   mock.onGet(`/ecp/appointments/appointment-types`).reply(200, {});
   mock
     .onGet(
@@ -356,23 +357,6 @@ const mockApi = () => {
       `/ecp/appointments/getSpecialization?search.query=((entityName=eq=document)AND(attributeName=eq=specialization))`
     )
     .reply(200, { specializations: specialtiesMock });
-  mock
-    .onGet(
-      `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`
-    )
-    .reply(200, {});
-  mock
-    .onGet(`/ecp/patientbillingsystem/getPatientCredits/${userData?.patientId}`)
-    .reply(200, {});
-  mock
-    .onGet(
-      `/ecp/patientbillingsystem/getInvoiceWithPatientDetails?search.query=((patient.uid=eq=${userData?.patientId}))`
-    )
-    .reply(200, {});
-  mock
-    .onGet(`/ecp/patient/phr/patientchart/${userData?.patientId}`)
-    .reply(200, {});
-  mock.onGet(`/ecp/testResult/${userData?.patientId}`).reply(200, {});
 };
 
 function createMatchMedia(width) {
@@ -469,7 +453,7 @@ defineFeature(feature, (test) => {
     expect(true).toBeTruthy();
   };
 
-  test("EPIC_EPP-24_STORY_EPP-4337 - Verify User searches and selects a specialities to filter the doctors", ({
+  test("EPIC_EPP-24_STORY_EPP-7232 - Verify User searches and selects a sub-specialities to filter the doctors", ({
     given,
     and,
     when,
@@ -548,119 +532,114 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user click on one of specialities from the list", async () => {
+    and("user click on one of sub-specialities from the list", async () => {
       fireEvent.click(container.getByTestId("search-btn"));
-      await waitFor(
-        () => {
+      await waitFor(() => {
+        container.getByText(/Robert Fox/i);
+      });
+    });
+
+    then(
+      "user should be able to view list of doctor from the selected sub-specialities",
+      () => {
+        expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+      }
+    );
+  });
+
+  test("EPIC_EPP-24_STORY_EPP-7232 - Verify User able to view filter result from sub-specialities that they selected", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("user launch Patient Portal url", () => {
+      defaultValidation();
+    });
+
+    and("user is logged into the portal", () => {
+      defaultValidation();
+    });
+
+    and("user lands on the dashboard screen", async () => {
+      await renderDashboard();
+    });
+
+    and("user should see Top Navigation Menu such as", (table) => {
+      expectMenu();
+    });
+
+    when("User Click on Appointment menu", () => {
+      clickAppointmentsMenu();
+    });
+
+    then(
+      "Sub menu is displayed such as Find a Doctor, Upcoming & Past Appointment (TBD)",
+      () => {
+        expectAppointmentsMenu();
+      }
+    );
+
+    when("user click on Find a Doctor", () => {
+      clickFindDoctor();
+    });
+
+    then(
+      "user should be able to navigated to search doctors screen",
+      async () => {
+        await renderFindDoctor();
+      }
+    );
+
+    and(/^user click on (.*) field$/, (arg0) => {
+      defaultValidation();
+    });
+
+    and("user enter some keyword", () => {
+      fireEvent.change(container.container.querySelector("#doctor"), {
+        target: { value: "Robert" },
+      });
+    });
+
+    when("user click on search icon", async () => {
+      fireEvent.click(container.getByTestId("search-btn"));
+      await waitFor(() => {
+        container.getByText(/Robert Fox/i);
+      });
+    });
+
+    then("user should see result from keyword they search", () => {});
+
+    and("user should view a card with basic details of a doctor", () => {
+      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+    });
+
+    when(/^user click on dropdown of (.*) field$/, (arg0) => {
+      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+      expect(container.getByText(/Chicago Eye Institute/i)).toBeInTheDocument();
+      expect(container.getAllByText("Email")[1]).toBeInTheDocument();
+      expect(container.getAllByText("Phone")[1]).toBeInTheDocument();
+      expect(container.getAllByText("Specialties")[1]).toBeInTheDocument();
+    });
+
+    and("user click on one of sub-specialities from the list", () => {
+      fireEvent.change(container.container.querySelector("#specialty"), {
+        target: { value: "Glaucoma" },
+      });
+    });
+
+    then(
+      "user should be able to view list of doctor from the selected sub-specialities",
+      async () => {
+        fireEvent.click(container.getByTestId("search-btn"));
+        await waitFor(() => {
           container.getByText(/Robert Fox/i);
-        },
-        { timeout: 30000 }
-      );
-    });
-
-    then(
-      "user should be able to view list of doctor from the selected specialities",
-      () => {
-        expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
-      }
-    );
-  }, 35000);
-
-  test("EPIC_EPP-24_STORY_EPP-4337 - Verify User able to view filter result from specialities that they selected", ({
-    given,
-    and,
-    when,
-    then,
-  }) => {
-    given("user launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    and("user is logged into the portal", () => {
-      defaultValidation();
-    });
-
-    and("user lands on the dashboard screen", async () => {
-      await renderDashboard();
-    });
-
-    and("user should see Top Navigation Menu such as", (table) => {
-      expectMenu();
-    });
-
-    when("User Click on Appointment menu", () => {
-      clickAppointmentsMenu();
-    });
-
-    then(
-      "Sub menu is displayed such as Find a Doctor, Upcoming & Past Appointment (TBD)",
-      () => {
-        expectAppointmentsMenu();
-      }
-    );
-
-    when("user click on Find a Doctor", () => {
-      clickFindDoctor();
-    });
-
-    then(
-      "user should be able to navigated to search doctors screen",
-      async () => {
-        await renderFindDoctor();
-      }
-    );
-
-    and(/^user click on (.*) field$/, (arg0) => {
-      defaultValidation();
-    });
-
-    and("user enter some keyword", () => {
-      fireEvent.change(container.container.querySelector("#doctor"), {
-        target: { value: "Robert" },
-      });
-    });
-
-    when("user click on search icon", async () => {
-      fireEvent.click(container.getByTestId("search-btn"));
-      await waitFor(() => {
-        container.getByText(/Robert Fox/i);
-      });
-    });
-
-    then("user should see result from keyword they search", () => {
-      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
-    });
-
-    and("user should view a card with basic details of a doctor", () => {
-      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
-      expect(container.getByText(/Chicago Eye Institute/i)).toBeInTheDocument();
-      expect(container.getAllByText("Email")[1]).toBeInTheDocument();
-      expect(container.getAllByText("Phone")[1]).toBeInTheDocument();
-      expect(container.getAllByText("Specialties")[1]).toBeInTheDocument();
-    });
-
-    when(/^user click on dropdown of (.*) field$/, (arg0) => {
-      fireEvent.change(container.container.querySelector("#specialty"), {
-        target: { value: "Glaucoma" },
-      });
-    });
-
-    and("user click on one of specialities from the list", async () => {
-      fireEvent.click(container.getByTestId("search-btn"));
-      await waitFor(() => {
-        container.getByText(/Robert Fox/i);
-      });
-    });
-
-    then(
-      "user should be able to view list of doctor from the selected specialities",
-      () => {
-        expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+        });
       }
     );
 
     and(
-      "user able to view filter result from specialities that they selected",
+      "user able to view filter result from sub-specialities that they selected",
       () => {
         expect(
           container.getByText(/Results found with your search criteria/i)
@@ -669,7 +648,7 @@ defineFeature(feature, (test) => {
     );
   });
 
-  test("EPIC_EPP-24_STORY_EPP-4337 - Verify User able to view filter button to open overlay", ({
+  test("EPIC_EPP-24_STORY_EPP-7232 - Verify User able to view filter button to open overlay", ({
     given,
     and,
     when,
@@ -748,7 +727,7 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user click on one of specialities from the list", async () => {
+    and("user click on one of sub-specialities from the list", async () => {
       fireEvent.click(container.getByTestId("search-btn"));
       await waitFor(() => {
         container.getByText(/Robert Fox/i);
@@ -756,14 +735,14 @@ defineFeature(feature, (test) => {
     });
 
     then(
-      "user should be able to view list of doctor from the selected specialities",
+      "user should be able to view list of doctor from the selected sub-specialities",
       () => {
         expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
       }
     );
 
     and("user able to view filter button to open overlay", () => {
-      expect(container.getByText("Filters")).toBeInTheDocument();
+      expect(container.getByText(/Filter/i)).toBeInTheDocument();
     });
   });
 });
