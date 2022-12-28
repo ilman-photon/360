@@ -9,7 +9,7 @@
     "userLabel" : "Email Required",
     "forgotPassword" : "Forgot Password?",
     "emailRequiredLabel" : "Enter a valid Email or Phone Number",
-    "thisFieldRequired" : "This field is required to proceed",
+    "thisFieldRequired" : "This field is required to proceed.",
     "passwordRequiredLabel" : "Enter a valid Password",
     "forgotPasswordButtonLabel" : "Forgot Password ",
     "continueAsPasswordButtonLabel" : "Continue as a guest",
