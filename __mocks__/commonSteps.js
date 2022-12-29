@@ -26,7 +26,7 @@ import CreateAccountPage from "../src/pages/patient/auth/create-account";
 
 import { renderWithProviders } from "../__tests__/src/utils/test-util";
 import ShareModal from "../src/components/organisms/ShareModal/shareModal";
-import { setOpenModal, setShareModalData } from "../src/store/share";
+import { setOpenModal } from "../src/store/share";
 import {
   mockAppointmentTypes,
   mockInsurance,
@@ -35,11 +35,9 @@ import {
   prescriptionMedication,
   submitFilter,
   upcomingResponse,
-  MOCK_MESSAGING,
   educationMaterials,
 } from "./mockResponse";
 
-// import {MOCK_MESSAGING} from "./mockResponse"
 jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
@@ -558,7 +556,7 @@ export async function navigateToPatientPortalHome(
       </Provider>
     );
   });
-  await waitFor(() => container.getAllByText(/Prescribed by/i));
+  await waitFor(() => container.getAllByText(/Prescriptions/i));
   return { ...container, mock };
 }
 
@@ -623,22 +621,146 @@ export const clickSearch = async (container) => {
   fireEvent.click(searchBtn);
 };
 
+const mockMessagingReal = {
+  "count": 1,
+  "entities": [
+      {
+          "unRead": true, // hardcoded unread msg
+          "subject": " reverse new P2p capture receiver",
+          "bodyNote": "patient to patient body",
+          "digitalAssets": [
+              {
+                  "name": "Work From Office Guidelines22.pdf",
+                  "_id": "ddaaba8f-4730-4b60-b87d-1d23905fa6e4"
+              }
+          ],
+          "messageStatus": "SENT",
+          "priority": "HIGH",
+          "deliveryDate": "Wed Nov 02 2022 03:06 AM",
+          "messageReceipients": [
+              {
+                  "isNew": false,
+                  "isDeleted": false,
+                  "isStar": false,
+                  "recipientType": "SENDER",
+                  "senderPatientId": "cdd6587b-b7af-4ef4-848d-214b957b9699"
+              },
+              {
+                  "isNew": true,
+                  "isDeleted": false,
+                  "isStar": false,
+                  "recipientType": "TO",
+                  "senderPatientId": "cdd6587b-b7af-4ef4-848d-214b957b9699"
+              }
+          ],
+          "senderIsPatient": true,
+          "senderIsProvider": false,
+          "senderPatientId": "cdd6587b-b7af-4ef4-848d-214b957b9699",
+          "receiverIsPatient": true,
+          "receiverPatientId": "cdd6587b-b7af-4ef4-848d-214b957b9699",
+          "status": "CREATED",
+          "_id": "3a1bf90e-c0f0-47a6-9ea8-89efc125ff02",
+          "_version": "14a6bfbc-e6c0-47e6-aef2-e8e6dfa4d545",
+          "_created": "Dec 12, 2022, 8:06:36 AM",
+          "_updated": "Dec 12, 2022, 8:06:36 AM",
+          "_createdBy": {
+              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
+              "_links": {
+                  "self": {
+                      "href": "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1"
+                  }
+              }
+          }
+      }
+  ],
+  "_links": {
+      "self": {
+          "href": "/message-task?pageNo=0&pageSize=10"
+      }
+  }
+}
+
+const mockViewMessageById = {
+  "subject": "Provider to Patient",
+  "bodyNote": "Provider to Patient Msg",
+  "digitalAssets": [
+    {
+      "name": "Work From Office Guidelines22.pdf",
+      "_id": "ddaaba8f-4730-4b60-b87d-1d23905fa6e4"
+    }
+  ],
+  "messageStatus": "SENT",
+  "priority": "HIGH",
+  "deliveryDate": "Wed Nov 02 2022 03:19 AM",
+  "messageReceipients": [
+    {
+      "isNew": false,
+      "isDeleted": false,
+      "isStar": false,
+      "recipientUid": "833da4c6-dc6a-4a7b-9413-51431a599f2d",
+      "employee": {
+        "firstName": "SHULTZ M",
+        "lastName": "SABRINA",
+        "_id": "833da4c6-dc6a-4a7b-9413-51431a599f2d",
+        "designation": "Dr"
+      },
+      "recipientType": "SENDER"
+    },
+    {
+      "isNew": true,
+      "isDeleted": false,
+      "isStar": false,
+      "recipientType": "TO",
+      "senderProviderId": "816260b9-9bb6-4552-aaef-ba037378861c"
+    }
+  ],
+  "senderIsPatient": false,
+  "senderIsProvider": false,
+  "sentBy": {
+    "designation": "Dr",
+    "firstName": "SHULTZ M",
+    "lastName": "SABRINA",
+    "_id": "833da4c6-dc6a-4a7b-9413-51431a599f2d"
+  },
+  "sources": [],
+  "senderProviderId": "833da4c6-dc6a-4a7b-9413-51431a599f2d",
+  "receiverIsPatient": false,
+  "status": "CREATED",
+  "_id": "be072f9f-da68-456c-a6bd-9a1f8e8a5d3d",
+  "_version": "0eff64c5-9071-4df6-9e71-ccd35f4dbae4",
+  "_created": "Nov 21, 2022, 8:19:28 AM",
+  "_updated": "Nov 21, 2022, 8:19:28 AM",
+  "_createdBy": {
+    "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
+    "_links": {
+      "self": {
+        "href": "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1"
+      }
+    }
+  }
+}
+
 export async function renderMessagePage(mockInstance) {
   let container;
   const domain = window.location.origin;
   const mock = mockInstance || new MockAdapter(axios);
+  const patientId = "98f9404b-6ea8-4732-b14f-9c1a168d8066";
   mock
-    .onGet(`${domain}/api/dummy/messaging/getAllMessages`)
-    .reply(200, MOCK_MESSAGING);
+    .onGet(`/ecp/messages/getInbox?search.query=((messageReceipients.recipientType=eq=TO)(messageStatus=eq=SENT)(messageReceipients.isDeleted=eq=false))&sessionUserId=${patientId}`)
+    .reply(200, mockMessagingReal);
   mock
-    .onGet(`${domain}/api/dummy/messaging/getSentMessages`)
-    .reply(200, MOCK_MESSAGING);
+    .onGet(`/ecp/messages/getOutbox?search.query=((messageReceipients.recipientType=eq=SENDER)(messageStatus=eq=SENT)(messageReceipients.isDeleted=eq=false))&sessionUserId=${patientId}`)
+    .reply(200, mockMessagingReal);
   mock
-    .onGet(`${domain}/api/dummy/messaging/getDraftMessages`)
-    .reply(200, MOCK_MESSAGING);
+    .onGet(`/ecp/messages/getInbox?search.query=((messageReceipients.recipientType=eq=TO)(messageStatus=eq=DRAFT)(messageReceipients.isDeleted=eq=false))&sessionUserId=${patientId}`)
+    .reply(200, mockMessagingReal);
   mock
     .onGet(`${domain}/api/dummy/messaging/getProviderList`)
     .reply(200, providerList);
+  mock
+    .onGet(`/ecp/messages/viewMessageById/be072f9f-da68-456c-a6bd-9a1f8e8a5d3d?sessionUserId=${patientId}`)
+    .reply(200, mockViewMessageById);
+  mock.onGet('/');
 
   window.matchMedia = createMatchMedia("1920px");
   act(() => {
@@ -653,8 +775,6 @@ export async function renderMessagePage(mockInstance) {
 
   await waitFor(() => container.getByTestId("inbox-tab"));
 
-  await waitFor(() => container.getByText("titleNoSelectedMessage"));
-  expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
   const inboxTab = container.getByTestId("inbox-tab");
   expect(inboxTab).toBeInTheDocument();
   expect(container.getByTestId("inbox-tab")).toBeInTheDocument();
@@ -670,8 +790,6 @@ export async function renderMessagePage(mockInstance) {
     container.getByTestId("message-list-container");
   });
 
-  // await waitFor(() => container.getAllByTestId("message-card")[0]);
-  await waitFor(() => container.getByText("titleNoSelectedMessage"));
   await waitFor(() => container.getByText("newMessage"));
 
   const newMessageButton = container.getByRole("button", {

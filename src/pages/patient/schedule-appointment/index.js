@@ -676,7 +676,7 @@ export default function ScheduleAppointmentPage() {
         sx={{
           ".MuiPaper-root": {
             minWidth: { xs: "90%", sm: "500px" },
-            maxWidth: {sm: "623px !important"}
+            maxWidth: { sm: "623px !important" },
           },
           ".MuiDialogActions-root": {
             padding: 2,
@@ -690,9 +690,7 @@ export default function ScheduleAppointmentPage() {
             sx={{ color: colors.darkGreen, fontSize: "22px" }}
           >
             Please confirm that you would like to reschedule your appointment on{" "}
-            {formatRescheduleDate(
-              appointmentScheduleData.appointmentInfo.date
-            )}
+            {formatRescheduleDate(appointmentScheduleData.appointmentInfo.date)}
             ?
           </DialogContentText>
         </DialogContent>

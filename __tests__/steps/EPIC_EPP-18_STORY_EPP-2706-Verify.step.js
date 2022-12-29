@@ -9,9 +9,9 @@ import axios from "axios";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 import {
-  TEMP_DATA_CONTACTS,
-  TEMP_DATA_GLASSES,
-  TEMP_DATA_MEDICATION,
+  prescriptionContact,
+  prescriptionGlasses,
+  prescriptionMedication,
 } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
@@ -38,10 +38,6 @@ jest.mock("universal-cookie", () => {
   }
   return MockCookies;
 });
-
-const defaultValidation = () => {
-  expect(true).toBeTruthy();
-};
 
 defineFeature(feature, (test) => {
   let container;
@@ -70,17 +66,17 @@ defineFeature(feature, (test) => {
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
         )
-        .reply(200, TEMP_DATA_CONTACTS);
+        .reply(200, prescriptionContact);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
         )
-        .reply(200, TEMP_DATA_GLASSES);
+        .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1920px");
 
       act(() => {
@@ -127,17 +123,17 @@ defineFeature(feature, (test) => {
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
         )
-        .reply(200, TEMP_DATA_CONTACTS);
+        .reply(200, prescriptionContact);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
         )
-        .reply(200, TEMP_DATA_GLASSES);
+        .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1920px");
 
       act(() => {
@@ -165,25 +161,21 @@ defineFeature(feature, (test) => {
     );
 
     and("request for the expired prescription.", async () => {
-      const mockResponse = {
-        message: "Your refill request has been sumbitted",
-      };
-
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
         )
-        .reply(200, TEMP_DATA_CONTACTS);
+        .reply(200, prescriptionContact);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
         )
-        .reply(200, TEMP_DATA_GLASSES);
+        .reply(200, prescriptionGlasses);
 
       mock.onPost(`/ecp/prescriptions/requestRefill`).reply(200, {});
 
@@ -204,26 +196,13 @@ defineFeature(feature, (test) => {
       "Patient should not able to request for the expired prescription.",
       async () => {
         let expiredContainer;
-        const mockResp = {
-          prescriptions: {
-            glasses: [],
-            contacts: [],
-            medications: [
-              {
-                id: "3",
-                prescription: "Aspirint 0.1% Ointmanet",
-                date: "2022-08-02T11:18:47.229Z",
-              },
-            ],
-          },
-        };
         const mockq = new MockAdapter(axios);
         mockq.reset();
         mockq
           .onGet(
             `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
           )
-          .reply(200, TEMP_DATA_MEDICATION);
+          .reply(200, prescriptionMedication);
         mockq
           .onGet(
             `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
@@ -251,7 +230,6 @@ defineFeature(feature, (test) => {
         await waitFor(() => container.getByText(/Active Medications/i));
 
         await waitFor(() => expiredContainer.getByText(/Past Medications/i));
-        // expect(expiredContainer.getAllByText(/Request Refill/i)[0]).not.toBeInTheDocument();
       }
     );
   });

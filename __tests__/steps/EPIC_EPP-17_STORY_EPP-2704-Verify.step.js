@@ -8,7 +8,7 @@ import PrescriptionPage from "../../src/pages/patient/prescription";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
-import { TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
+import { prescriptionMedication } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -80,13 +80,12 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
       .onGet(
         `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
       )
-      .reply(200, TEMP_DATA_MEDICATION);
+      .reply(200, prescriptionMedication);
       mock
       .onGet(
         `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
@@ -110,7 +109,6 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      // await waitFor(() => container.getByText(/Filters/i));
     });
 
     then(

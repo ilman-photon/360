@@ -20,20 +20,20 @@ const clickNewMessage = (container) => {
 };
 
 const fillTypeName = async (container) => {
-  await waitFor(() => container.getByText("typeName*"));
-  const field1 = container.getByLabelText("typeName*");
+  await waitFor(() => container.getByLabelText(/typeName/i));
+  const field1 = container.getByLabelText(/typeName/i);
   fireEvent.change(field1, { target: { value: "name" } });
 };
 
 const fillSubject = async (container) => {
-  await waitFor(() => container.getByText("subject*"));
-  const field2 = container.getByLabelText("subject*");
+  await waitFor(() => container.getByLabelText(/subject/i));
+  const field2 = container.getByLabelText(/subject/i);
   fireEvent.change(field2, { target: { value: "subject" } });
 };
 
 const fillWriteMessage = async (container) => {
-  await waitFor(() => container.getByText("writeMessages*"));
-  const field3 = container.getByLabelText("writeMessages*");
+  await waitFor(() => container.getByLabelText(/writeMessages/i));
+  const field3 = container.getByLabelText(/writeMessages/i);
   fireEvent.change(field3, { target: { value: "name" } });
 };
 

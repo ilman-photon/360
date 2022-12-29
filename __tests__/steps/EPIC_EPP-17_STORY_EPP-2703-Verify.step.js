@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 import PrescriptionPage from "../../src/pages/patient/prescription";
-import { TEMP_DATA_GLASSES, TEMP_DATA_CONTACTS } from "../../__mocks__/mockResponse";
+import { prescriptionContact, prescriptionGlasses } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -66,7 +66,7 @@ defineFeature(feature, (test) => {
       mock
       .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
       )
-      .reply(200, TEMP_DATA_GLASSES);
+      .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(
@@ -116,7 +116,7 @@ defineFeature(feature, (test) => {
       .onGet(
         `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
       )
-      .reply(200, TEMP_DATA_CONTACTS);
+      .reply(200, prescriptionContact);
       mock
       .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
       )
@@ -174,7 +174,7 @@ defineFeature(feature, (test) => {
       mock
       .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
       )
-      .reply(200, TEMP_DATA_GLASSES);
+      .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(
@@ -231,7 +231,7 @@ defineFeature(feature, (test) => {
       .onGet(
         `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
       )
-      .reply(200, TEMP_DATA_CONTACTS);
+      .reply(200, prescriptionContact);
       mock
       .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
       )
@@ -295,7 +295,7 @@ defineFeature(feature, (test) => {
       mock
       .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
       )
-      .reply(200, TEMP_DATA_GLASSES);
+      .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(
@@ -355,7 +355,7 @@ defineFeature(feature, (test) => {
       mock
       .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
       )
-      .reply(200, TEMP_DATA_GLASSES);
+      .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(

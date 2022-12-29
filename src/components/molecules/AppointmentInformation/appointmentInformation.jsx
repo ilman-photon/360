@@ -108,7 +108,8 @@ export default function AppointmentInformation({ data }) {
                 {data.providerInfo.address.addressLine1 +
                   `\n` +
                   data.providerInfo.address.city +
-                  "," + "\n" +
+                  "," +
+                  "\n" +
                   data.providerInfo.address.state +
                   `\n` +
                   data.providerInfo.address.zip}

@@ -17,8 +17,12 @@ import {
   TEMP_DATA_GLASSES,
   TEMP_DATA_CONTACTS,
   TEMP_DATA_MEDICATION,
+  prescriptionMedication,
+  prescriptionContact,
+  prescriptionGlasses,
 } from "../../__mocks__/mockResponse";
 import Cookies from "universal-cookie";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint9/EPP-5636.feature"
@@ -27,31 +31,29 @@ const feature = loadFeature(
 const renderPrescription = async () => {
   let container;
   Cookies.result = "true";
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  const patientId = `${userData?.patientId}`;
   const mock = new MockAdapter(axios);
   mock
-    .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`)
-    .reply(200, TEMP_DATA_MEDICATION);
+    .onGet(`/ecp/prescriptions/patient/${patientId}`)
+    .reply(200, prescriptionMedication);
   mock
     .onGet(
-      `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      `/ecp/prescriptions/patient/${patientId}/getContactsData`
     )
-    .reply(200, TEMP_DATA_CONTACTS);
+    .reply(200, prescriptionContact);
   mock
     .onGet(
-      `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      `/ecp/prescriptions/patient/${patientId}/getGlassesData`
     )
-    .reply(200, TEMP_DATA_GLASSES);
+    .reply(200, prescriptionGlasses);
   window.matchMedia = createMatchMedia("1920px");
 
-  act(() => {
-    container = render(
-      <Provider store={store}>
-        {PrescriptionPage.getLayout(<PrescriptionPage />)}
-      </Provider>
-    );
-  });
-  await waitFor(() => container.getByText(/Filter/i));
-  expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+  container = renderWithProviders(<PrescriptionPage />);
+  await waitFor(() => container.getAllByText(/Active Medications/i));
+  expect(
+    container.getAllByText(/Active Medications/i)[0]
+  ).toBeInTheDocument();
   return container;
 };
 
@@ -91,7 +93,7 @@ defineFeature(feature, (test) => {
     then(
       "User lands on the Prescriptions screen/ User lands on the Prescription widget in dashboard",
       async () => {
-        container = await renderPrescription();
+        container = await renderPrescription(container);
       }
     );
 
@@ -158,7 +160,7 @@ defineFeature(feature, (test) => {
     then(
       "User lands on the Prescriptions screen/ User lands on the Prescription widget in dashboard",
       async () => {
-        container = await renderPrescription();
+        container = await renderPrescription(container);
       }
     );
 
@@ -222,7 +224,7 @@ defineFeature(feature, (test) => {
     then(
       "User lands on the Prescriptions screen/ User lands on the Prescription widget in dashboard",
       async () => {
-        container = await renderPrescription();
+        container = await renderPrescription(container);
       }
     );
 
