@@ -631,6 +631,7 @@ const FilterHeading = ({
                   "aria-label": "Date field",
                   readOnly: true,
                   isTransparent: true,
+                  tabIndex: -1,
                 }}
                 sx={{
                   margin: 0,
@@ -654,6 +655,15 @@ const FilterHeading = ({
                 components={{
                   OpenPickerIcon: function () {
                     return null;
+                  },
+                }}
+                OpenPickerButtonProps={{
+                  style: {
+                    width: "100%",
+                    position: "absolute",
+                    height: "100%",
+                    left: 0,
+                    borderRadius: 0,
                   },
                 }}
                 inputFormat={"MMM dd, yyyy"}
