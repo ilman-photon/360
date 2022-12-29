@@ -67,6 +67,7 @@ export const styles = {
     cursor: "pointer",
     fontWeight: "500",
     paddingLeft: "8px",
+    lineHeight: "1.167",
     fontSize: "16px",
     fontFamily: "Libre Franklin",
   },
@@ -181,5 +182,13 @@ export const styles = {
     flexDirection: "column",
     gap: "2px",
     marginTop: "2px",
+  },
+
+  dobHelperText: {
+    fontFamily: "Libre Franklin",
+    fontWeight: 400,
+    fontSize: "12px",
+    color: "#49454F",
+    marginLeft: "20px",
   },
 };

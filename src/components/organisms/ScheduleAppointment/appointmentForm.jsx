@@ -586,6 +586,9 @@ export default function AppointmentForm({
                   },
                 }}
               />
+              <Typography sx={styles.dobHelperText}>
+                Month, Day, Year
+              </Typography>
             </Box>
 
             <div style={styles.divMargin}>
