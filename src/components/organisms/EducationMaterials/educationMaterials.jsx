@@ -26,6 +26,11 @@ const EducationMaterials = ({
         container
         key={`education-${index}`}
         data-testid={`education-content-${index}`}
+        sx={{
+          height: "auto",
+          minHeight: "195px",
+          width: "100%",
+        }}
       >
         <Grid item xs={12} sm={2.2}>
           <Box
@@ -48,7 +53,7 @@ const EducationMaterials = ({
           xs={12}
           sm={9.3}
           sx={{
-            padding: { xs: "20px 0", sm: "20px" },
+            padding: { xs: "20px 0", sm: "16px 28px" },
           }}
         >
           <Typography
@@ -56,15 +61,19 @@ const EducationMaterials = ({
               fontFamily: `"Bw Nista Geometric DEMO", sans-serif`,
               fontWeight: "400",
               fontSize: "26px",
+              cursor: "pointer",
             }}
             tabIndex={0}
+            onClick={() => {
+              onAssetDownload(eduMatData?.digital_assets?._id, false, true);
+            }}
           >
             {eduMatData.title}
           </Typography>
           <Box
             sx={{
               display: "flex",
-              margin: "20px 0",
+              margin: "16px 0",
               justifyContent: "space-between",
             }}
           >
@@ -78,7 +87,7 @@ const EducationMaterials = ({
               tabIndex={0}
             >
               {isDesktop ? (
-                `${eduMatData.author}, ${eduMatData.date}`
+                `Authors ${eduMatData.author}, ${eduMatData.date}`
               ) : (
                 <>
                   {`${eduMatData.author}`},<br />
@@ -118,47 +127,6 @@ const EducationMaterials = ({
               </IconButton>
             </Box>
           </Box>
-          <Typography
-            sx={{
-              fontFamily: `"Libre Franklin", sans-serif`,
-              fontWeight: "400",
-              fontSize: "16px",
-              color: "#191919",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              lineClamp: "2",
-              WebkitLineClamp: "2",
-              WebkitBoxOrient: "vertical",
-            }}
-            tabIndex={0}
-          >
-            {eduMatData.desc}
-          </Typography>
-          <Button
-            sx={{
-              textTransform: "none",
-              padding: "0",
-            }}
-            onClick={() => {
-              onAssetDownload(eduMatData?.digital_assets?._id, false, true);
-            }}
-            role="link"
-          >
-            <Typography
-              sx={{
-                fontFamily: `"Libre Franklin", sans-serif`,
-                fontWeight: "500",
-                color: "#008294",
-                fontSize: "16px",
-                marginTop: "15px",
-                cursor: "pointer",
-                textDecoration: "underline",
-              }}
-            >
-              Read more...
-            </Typography>
-          </Button>
         </Grid>
       </Grid>
     </>

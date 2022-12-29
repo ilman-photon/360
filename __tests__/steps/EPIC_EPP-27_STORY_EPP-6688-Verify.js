@@ -148,9 +148,7 @@ defineFeature(feature, (test) => {
     then("user views Education Materials menu", async() => {
       await navigateToEducationMaterialsPage();
       const title = container.getAllByLabelText(/Education Materials/i)[0];
-      const readMore = container.getAllByText(/Read more/i)[0];
       expect(title).toBeInTheDocument();
-      expect(readMore).toBeInTheDocument();
     });
   });
 
@@ -184,9 +182,7 @@ defineFeature(feature, (test) => {
     then("user views Education Materials menu", async() => {
       await navigateToEducationMaterialsPage();
       const title = container.getAllByLabelText(/Education Materials/i)[0];
-      const readMore = container.getAllByText(/Read more/i)[0];
       expect(title).toBeInTheDocument();
-      expect(readMore).toBeInTheDocument();
     });
 
     when("user clicks on Education Materials", () => {

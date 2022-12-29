@@ -125,40 +125,49 @@ export default function EducationMaterialCard() {
                       <Typography className={styles.materialDate} tabIndex={0}>
                         {new moment(item.date).format("MMMM DD, YYYY")}
                       </Typography>
-                      <Typography
-                        className={styles.materialDescription}
-                        tabIndex={0}
+                      <Stack
+                        sx={{
+                          display: "flex",
+                          height: "60%",
+                          justifyContent: "space-between",
+                        }}
                       >
-                        {item.descriptionn}
-                      </Typography>
-                      <Stack direction={"row"} className={styles.menuContainer}>
-                        <IconButton
-                          className={styles.menuItem}
-                          aria-label={"download"}
-                          onClick={() => {
-                            handleAssetDownload(item?.digital_assets?._id);
-                          }}
+                        <Typography
+                          className={styles.materialDescription}
+                          tabIndex={0}
+                        ></Typography>
+                        <Stack
+                          direction={"row"}
+                          className={styles.menuContainer}
                         >
-                          <FileDownloadOutlinedIcon
-                            sx={{ color: "#003B4A" }}
-                            aria-hidden="false"
-                          />
-                        </IconButton>
-                        <IconButton
-                          className={styles.menuItem}
-                          aria-label={"print"}
-                          onClick={() => {
-                            handleAssetDownload(
-                              item?.digital_assets?._id,
-                              true
-                            );
-                          }}
-                        >
-                          <LocalPrintshopOutlinedIcon
-                            sx={{ color: "#003B4A" }}
-                            aria-hidden="false"
-                          />
-                        </IconButton>
+                          <IconButton
+                            className={styles.menuItem}
+                            aria-label={"download"}
+                            onClick={() => {
+                              handleAssetDownload(item?.digital_assets?._id);
+                            }}
+                          >
+                            <FileDownloadOutlinedIcon
+                              sx={{ color: "#003B4A" }}
+                              aria-hidden="false"
+                            />
+                          </IconButton>
+                          <IconButton
+                            className={styles.menuItem}
+                            aria-label={"print"}
+                            onClick={() => {
+                              handleAssetDownload(
+                                item?.digital_assets?._id,
+                                true
+                              );
+                            }}
+                          >
+                            <LocalPrintshopOutlinedIcon
+                              sx={{ color: "#003B4A" }}
+                              aria-hidden="false"
+                            />
+                          </IconButton>
+                        </Stack>
                       </Stack>
                     </Grid>
                   </Grid>
