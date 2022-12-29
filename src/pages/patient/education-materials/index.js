@@ -27,7 +27,7 @@ export default function EducationMaterialsPage() {
               title: item.name,
               imgSrc: "/image166.png",
               author: `${item.uploadedBy?.firstName} ${item.uploadedBy?.lastName}`,
-              date: new moment(item._created).format("MMM dd, yyyy"),
+              date: new moment(item._created).format("MMMM d, yyyy"),
               desc: "",
               digital_assets: item.digital_assets,
             });

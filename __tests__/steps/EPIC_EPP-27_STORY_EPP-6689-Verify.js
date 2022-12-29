@@ -84,7 +84,6 @@ defineFeature(feature, (test) => {
   };
 
   const navigateToEducationMaterialsPage = async () => {
-    mock.reset();
     mock.onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`).reply(200, educationMaterials);
 	  act(() => {
       container.rerender(
@@ -137,9 +136,7 @@ defineFeature(feature, (test) => {
     then('user is able to view the list of education materials', async() => {
       await navigateToEducationMaterialsPage();
       const title = container.getAllByLabelText(/Education Materials/i)[0];
-      const readMore = container.getAllByText(/Read more/i)[0];
       expect(title).toBeInTheDocument();
-      expect(readMore).toBeInTheDocument();
     });
 
     then('user must be able to view Image', () => {
@@ -215,9 +212,7 @@ defineFeature(feature, (test) => {
     then('user is able to view the list of education materials', async() => {
       await navigateToEducationMaterialsPage();
       const title = container.getAllByLabelText(/Education Materials/i)[0];
-      const readMore = container.getAllByText(/Read more/i)[0];
       expect(title).toBeInTheDocument();
-      expect(readMore).toBeInTheDocument();
     });
   });
 
@@ -254,9 +249,7 @@ defineFeature(feature, (test) => {
     then('user is able to view the list of education materials', async() => {
       await navigateToEducationMaterialsPage();
       const title = container.getAllByLabelText(/Education Materials/i)[0];
-      const readMore = container.getAllByText(/Read more/i)[0];
       expect(title).toBeInTheDocument();
-      expect(readMore).toBeInTheDocument();
     });
 
     then('user must be able to view Image', () => {
@@ -305,9 +298,7 @@ defineFeature(feature, (test) => {
     then('user is able to view the list of education materials', async() => {
       await navigateToEducationMaterialsPage();
       const title = container.getAllByLabelText(/Education Materials/i)[0];
-      const readMore = container.getAllByText(/Read more/i)[0];
       expect(title).toBeInTheDocument();
-      expect(readMore).toBeInTheDocument();
     });
 
     then('user must be able to view Image', () => {

@@ -134,9 +134,6 @@ defineFeature(feature, (test) => {
     	});
 
     	when('User clicks on Read more CTA', () => {
-        const readMore = container.getAllByText(/Read more/i)[0];
-        expect(readMore).toBeInTheDocument();
-        fireEvent.click(readMore);
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
@@ -172,9 +169,6 @@ defineFeature(feature, (test) => {
     	});
 
     	when('User clicks on Read more CTA', () => {
-        const readMore = container.getAllByText(/Read more/i)[0];
-        expect(readMore).toBeInTheDocument();
-        fireEvent.click(readMore);
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
@@ -223,9 +217,6 @@ defineFeature(feature, (test) => {
     	});
 
     	when('User clicks on Read more CTA', () => {
-        const readMore = container.getAllByText(/Read more/i)[0];
-        expect(readMore).toBeInTheDocument();
-        fireEvent.click(readMore);
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
@@ -274,9 +265,6 @@ defineFeature(feature, (test) => {
     	});
 
     	when('User clicks on Read more CTA', () => {
-        const readMore = container.getAllByText(/Read more/i)[0];
-        expect(readMore).toBeInTheDocument();
-        fireEvent.click(readMore);
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
@@ -325,9 +313,6 @@ defineFeature(feature, (test) => {
     	});
 
     	when('User clicks on Read more CTA', () => {
-        const readMore = container.getAllByText(/Read more/i)[0];
-        expect(readMore).toBeInTheDocument();
-        fireEvent.click(readMore);
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
@@ -380,9 +365,6 @@ defineFeature(feature, (test) => {
     	});
 
     	when('User clicks on Read more CTA', () => {
-        const readMore = container.getAllByText(/Read more/i)[0];
-        expect(readMore).toBeInTheDocument();
-        fireEvent.click(readMore);
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
