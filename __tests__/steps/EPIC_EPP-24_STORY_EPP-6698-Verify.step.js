@@ -142,7 +142,7 @@ defineFeature(feature, (test) => {
           container.getByLabelText("Find a Doctor menu")
         ).toBeInTheDocument();
         expect(
-          container.getByLabelText("Upcoming Appointment menu")
+          container.getByLabelText("Upcoming Appointments menu")
         ).toBeInTheDocument();
       }
     );
@@ -190,7 +190,7 @@ defineFeature(feature, (test) => {
           container.getByLabelText("Find a Doctor menu")
         ).toBeInTheDocument();
         expect(
-          container.getByLabelText("Upcoming Appointment menu")
+          container.getByLabelText("Upcoming Appointments menu")
         ).toBeInTheDocument();
       }
     );

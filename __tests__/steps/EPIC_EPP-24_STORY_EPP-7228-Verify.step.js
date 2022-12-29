@@ -450,7 +450,7 @@ defineFeature(feature, (test) => {
       containerDashboard.getByLabelText("Find a Doctor menu")
     ).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("Upcoming Appointment menu")
+      containerDashboard.getByLabelText("Upcoming Appointments menu")
     ).toBeInTheDocument();
   };
 
