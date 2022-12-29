@@ -140,6 +140,13 @@ defineFeature(feature, (test) => {
         },
         office: {
           name: "Ballwin",
+          locationNumber: "10022",
+          taxId: "12312",
+          addressLine1: "568 Allens Mill Rd",
+          city: "Yorktown",
+          state: "VA",
+          zip: "23692",
+          labAccountNumber: "21312",
           _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
           _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
           _updated: "Sep 17, 2022, 10:14:52 AM",
@@ -419,7 +426,7 @@ defineFeature(feature, (test) => {
         ).toBeInTheDocument();
         expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
         expect(container.getByText(/Retina checkup/i)).toBeInTheDocument();
-        expect(container.getByText(/800 14th St Apt B/i)).toBeInTheDocument();
+        expect(container.getByText(/568 Allens Mill Rd/i)).toBeInTheDocument();
         expect(container.getByText("(321) 989-8898")).toBeInTheDocument();
         expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
       }

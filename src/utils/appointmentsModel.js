@@ -20,8 +20,8 @@ export function appointmentParser(data = {}, appointmentTypes = []) {
     providerInfo: {
       providerId: data.provider?._id,
       name,
-      position: data.provider?.address?.name || "",
-      address: data.provider?.address || "",
+      position: data.office?.name || "",
+      address: data.office || "",
       rating: data.provider?.rating || 0,
       phoneNumber: data.provider?.workPhone || "",
       image: data.provider?.profilePhoto?.digitalAsset || "",

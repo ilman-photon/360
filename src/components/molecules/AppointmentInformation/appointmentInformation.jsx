@@ -107,13 +107,11 @@ export default function AppointmentInformation({ data }) {
               <Typography variant="body2" sx={{ color: "#191919" }}>
                 {data.providerInfo.address.addressLine1 +
                   `\n` +
-                  data.providerInfo.address.addressLine2 +
-                  `\n` +
                   data.providerInfo.address.city +
-                  "\n" +
+                  "," + "\n" +
                   data.providerInfo.address.state +
                   `\n` +
-                  data.providerInfo.address.zipcode}
+                  data.providerInfo.address.zip}
               </Typography>
             )}
           </div>
