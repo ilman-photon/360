@@ -193,6 +193,7 @@ const FilterHeadingFilled = ({
           onChange={onChange}
           inputRef={(el) => (refMobileInput.current[0] = el)}
           variant="filled"
+          tabIndex={0}
           label="Purpose of Visit"
           sx={sxButton}
           onClick={() => {
@@ -212,6 +213,7 @@ const FilterHeadingFilled = ({
           type="default"
           value={value?.name || ""}
           onChange={onChange}
+          tabIndex={0}
           variant="filled"
           label="Insurance Carrier"
           sx={sxButton}
