@@ -155,7 +155,7 @@ function SessionExpiredModal() {
                 fontSize: "14px",
                 boxShadow: "none",
                 transform: "none",
-                borderRadius: "5px",
+                borderRadius: "25px",
               }}
               data-testid="session-stay-btn"
               onClick={onClickStayLoggedIn}
