@@ -79,7 +79,7 @@ const appointments = [
   {
     icon: iconAppointments,
     href: "/patient/appointments",
-    label: "Upcoming Appointment",
+    label: "Upcoming Appointments",
   },
 ];
 

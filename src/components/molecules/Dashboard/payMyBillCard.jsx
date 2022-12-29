@@ -27,6 +27,10 @@ export default function PayMyBillCard() {
   const [payMyBillData, setPayMyBillData] = React.useState({});
   const [patientCredit, setPatientCredit] = React.useState({});
   const isDesktop = useMediaQuery("(min-width: 700px)");
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
 
   const getPatientAccountBalance = async () => {
     const api = new Api();
@@ -131,9 +135,12 @@ export default function PayMyBillCard() {
       <Stack direction={"row"} sx={{ marginBottom: "16px" }}>
         {renderHighlightBox(
           "Account Credit Balance",
-          patientCredit?.totalCreditBalance
+          formatter.format(patientCredit?.totalCreditBalance)
         )}
-        {renderHighlightBox("Patient Due", patientCredit?.totalDueAmount)}
+        {renderHighlightBox(
+          "Patient Due",
+          formatter.format(patientCredit?.totalDueAmount)
+        )}
       </Stack>
     );
   }
@@ -147,10 +154,6 @@ export default function PayMyBillCard() {
       summary.totalTax -
       summary.totalAdjustment -
       summary.totalPayment;
-    const formatter = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
     return formatter.format(totalBalance);
   }
 
