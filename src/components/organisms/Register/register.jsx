@@ -66,16 +66,16 @@ export default function Register({
 
   const is3of4 = (pass) => {
     let passes = 0;
-    if (Regex.alphabethRegex.test(pass)) {
+    if (Regex.upperCaseRegex.test(pass)) {
+      ++passes;
+    }
+    if (Regex.lowerCaseRegex.test(pass)) {
       ++passes;
     }
     if (Regex.specialRegex.test(pass)) {
       ++passes;
     }
-    if (pass.indexOf(watchedEmail || watchedMobile) > -1) {
-      ++passes;
-    }
-    if (!Regex.hasTripleRegex.test(pass)) {
+    if (Regex.numberRegex.test(pass)) {
       ++passes;
     }
     return passes >= 3 ? true : false;
@@ -557,8 +557,6 @@ export default function Register({
                   validate: {
                     isLength: (v) =>
                       Regex.lengthRegex.test(v) || t("incorrectPassword"),
-                    isAtLeastOneNumber: (v) =>
-                      Regex.numberRegex.test(v) || t("incorrectPassword"),
                     is3of4: (v) => is3of4(v) || t("incorrectPassword"),
                   },
                 }}
