@@ -144,14 +144,27 @@ export default function DetailAppointment({ data }) {
 
   const downloadPDF = () => {
     let element = container.current || document.body;
+
+    /**
+     * Create and clone dummy DOM for print
+     */
+    const cloneElement = element.cloneNode(true);
+    cloneElement.getElementsByClassName("buttonDownload")[0].remove();
+    const createDummyDOM = document.createElement("div");
+    createDummyDOM.id = "dummy-dom";
+    createDummyDOM.className = "dummy-dom";
+    createDummyDOM.appendChild(cloneElement);
+    element.appendChild(createDummyDOM);
+    /** -------------------------- */
     savePDF(
-      element,
+      createDummyDOM,
       {
         paperSize: "auto",
         margin: 40,
         fileName: `Appointment Detail Don John`,
       },
       () => {
+        element.getElementsByClassName("dummy-dom")[0].remove();
         setIsDownload(false);
       }
     );
@@ -178,19 +191,25 @@ export default function DetailAppointment({ data }) {
           tabIndex={0}
           aria-label={"Appointment Details heading"}
           variant="h2"
-          className={styles.title}
+          className={styles.titleDetails}
         >
-          Appointment Detail
+          Appointment Details
         </Typography>
         <Box className={styles.dateContainer}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
-              <Typography variant="h4" tabIndex={0} aria-label={fullDate}>
+              <Typography
+                className={styles.textDate}
+                variant="h4"
+                tabIndex={0}
+                aria-label={fullDate}
+              >
                 {fullDate}
               </Typography>
             </Grid>
             <Grid item xs={4}>
               <Box
+                className="buttonDownload"
                 display={"flex"}
                 justifyContent="flex-end"
                 alignItems={"center"}
@@ -202,7 +221,7 @@ export default function DetailAppointment({ data }) {
                   aria-label={"Download Option"}
                   data-testid={TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.download}
                   sx={{
-                    display: isDownload ? "none" : "flex",
+                    display: "flex",
                     alignContent: "center",
                     justifyContent: "center",
                     cursor: "pointer",
@@ -351,7 +370,7 @@ export default function DetailAppointment({ data }) {
               tabIndex={0}
               aria-label={"Documentation of"}
               variant="h3"
-              className={styles.mb14}
+              className={[styles.mb14, styles.textDate]}
             >
               Documentation of
             </Typography>
@@ -388,6 +407,7 @@ export default function DetailAppointment({ data }) {
           sx={{
             p: 2,
             backgroundColor: "white",
+            marginTop: "0px !important",
           }}
         >
           <Box
