@@ -92,12 +92,14 @@ export function getMenuList(title, subtitle) {
     <Box className={styles.selectMenuContainer}>
       <Typography sx={{ lineHeight: "1" }}>
         <Typography
+          tabIndex={0}
           variant="bodySmallRegular"
           sx={{ display: "block", color: colors.darkGreen, lineHeight: "18px" }}
         >
           {title}
         </Typography>
         <Typography
+          tabIndex={0}
           variant="bodySmallMedium"
           sx={{ color: colors.darkGreen, fontWeight: "400" }}
         >
