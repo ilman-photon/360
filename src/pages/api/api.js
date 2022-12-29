@@ -95,6 +95,11 @@ export class Api {
           return api.client.put(url, postbody).then(resolver).catch(rejecter);
         case "patch":
           return api.client.patch(url, postbody).then(resolver).catch(rejecter);
+        case "delete":
+          return api.client
+            .delete(url, postbody)
+            .then(resolver)
+            .catch(rejecter);
         default:
           return api.client.get(url, postbody).then(resolver).catch(rejecter);
       }
@@ -496,30 +501,70 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  getAllMessages() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/messaging/getAllMessages`;
+  getInboxMessages() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `${userData?.patientId}`;
+    const url = `/ecp/messages/getInbox?search.query=((messageReceipients.recipientType=eq=TO)(messageStatus=eq=SENT)(messageReceipients.isDeleted=eq=false))&sessionUserId=${patientId}`; // cdd6587b-b7af-4ef4-848d-214b957b9699
     return this.getResponse(url, {}, "get");
   }
 
   getSentMessages() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/messaging/getSentMessages`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `${userData?.patientId}`;
+    const url = `/ecp/messages/getOutbox?search.query=((messageReceipients.recipientType=eq=SENDER)(messageStatus=eq=SENT)(messageReceipients.isDeleted=eq=false))&sessionUserId=${patientId}`;
     return this.getResponse(url, {}, "get");
   }
 
   getDraftMessages() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/messaging/getDraftMessages`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `${userData?.patientId}`;
+    const url = `/ecp/messages/getInbox?search.query=((messageReceipients.recipientType=eq=TO)(messageStatus=eq=DRAFT)(messageReceipients.isDeleted=eq=false))&sessionUserId=${patientId}`; // cdd6587b-b7af-4ef4-848d-214b957b9699
     return this.getResponse(url, {}, "get");
   }
 
-  getDeleteMessages() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/messaging/getDeleteMessages`;
+  deleteMessages(messageId) {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const url = `/ecp/messages/deleteMessageById/${messageId}?sessionUserId=${patientId}`;
+    return this.getResponse(url, {}, "delete");
+  }
+
+  createPatientToDraft(postbody) {
+    const url = `/ecp/messages/createPatientToProviderDraft`;
+    return this.getResponse(url, postbody, "post");
+  }
+
+  createProviderToDraft(postbody) {
+    const url = `/ecp/shareRecord/createProviderToPatientDraft`;
+    return this.getResponse(url, postbody, "post");
+  }
+
+  viewMessagesById(id) {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `${userData?.patientId}`;
+    const url = `/ecp/messages/viewMessageById/be072f9f-da68-456c-a6bd-9a1f8e8a5d3d?sessionUserId=${patientId}`;
     return this.getResponse(url, {}, "get");
   }
 
+  viewMessagesByProvider(id) {
+    const url = `/ecp/messages/deleteMessageById/769fe833-00b3-440e-8b16-fbd9b23f0802?sessionUserId=833da4c6-dc6a-4a7b-9413-51431a599f2d`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getAllDeletedMessages() {
+    const url = `/ecp/messages/getAllDeletedMessages`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  searchMessageByProvider(providerName) {
+    const url = `/ecp/messages/searchMessagesByProvider?search.query=((patient.firstName=co=${providerName}))`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  createNewMessage(postBody) {
+    const url = `/ecp/messages/createPatientToPatientMsg`;
+    return this.getResponse(url, postBody, "post");
+  }
   verifyAccessCode(postBody) {
     const url = `/ecp/patient/share/share-confirmation/verifyAccessCode`;
     return this.getResponse(url, postBody, "post");

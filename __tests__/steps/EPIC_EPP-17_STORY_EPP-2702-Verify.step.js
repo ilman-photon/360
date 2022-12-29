@@ -10,6 +10,7 @@ import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
 import PrescriptionPage from "../../src/pages/patient/prescription";
 import {
+  prescriptionMedication,
   TEMP_DATA_GLASSES,
   TEMP_DATA_MEDICATION,
 } from "../../__mocks__/mockResponse";
@@ -119,7 +120,7 @@ defineFeature(feature, (test) => {
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
@@ -177,7 +178,7 @@ defineFeature(feature, (test) => {
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
@@ -238,7 +239,7 @@ defineFeature(feature, (test) => {
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`

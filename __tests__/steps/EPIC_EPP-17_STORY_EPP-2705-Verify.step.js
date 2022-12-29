@@ -9,9 +9,9 @@ import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 import {
-  TEMP_DATA_CONTACTS,
-  TEMP_DATA_GLASSES,
-  TEMP_DATA_MEDICATION,
+  prescriptionContact,
+  prescriptionGlasses,
+  prescriptionMedication,
 } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
@@ -53,7 +53,6 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
 
   beforeEach(() => {
-    jest.useFakeTimers("modern");
     jest.setSystemTime(new Date(2022, 3, 1));
   });
 
@@ -84,23 +83,22 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
         )
-        .reply(200, TEMP_DATA_CONTACTS);
+        .reply(200, prescriptionContact);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
         )
-        .reply(200, TEMP_DATA_GLASSES);
+        .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1440px");
 
       const mockGeolocation = {
@@ -167,23 +165,22 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
         )
-        .reply(200, TEMP_DATA_CONTACTS);
+        .reply(200, prescriptionContact);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
         )
-        .reply(200, TEMP_DATA_GLASSES);
+        .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1024px");
 
       const mockGeolocation = {
@@ -211,10 +208,6 @@ defineFeature(feature, (test) => {
       const filterBtn = container.getByText(/Filter/i);
       expect(filterBtn).toBeInTheDocument();
       fireEvent.click(filterBtn);
-      // await waitFor(
-      //   () => container.getAllByText(/Provider ClarksonEyeCare/i)[0]
-      // );
-      // fireEvent.click(container.getByText(/Done/i));
     });
 
     then("patient should able to see the correct filter result.", () => {
@@ -249,23 +242,22 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
         )
-        .reply(200, TEMP_DATA_CONTACTS);
+        .reply(200, prescriptionContact);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
         )
-        .reply(200, TEMP_DATA_GLASSES);
+        .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1920px");
 
       const mockGeolocation = {
@@ -295,14 +287,6 @@ defineFeature(feature, (test) => {
         const filterBtn = container.getByText(/Filter/i);
         expect(filterBtn).toBeInTheDocument();
         fireEvent.click(filterBtn);
-
-        // await waitFor(() => container.getByText(/See more/i));
-        // fireEvent.click(container.getByText(/See more/i));
-        // fireEvent.click(container.getByText(/See Less/i));
-        // fireEvent.click(
-        //   container.getAllByLabelText(/Provider ClarksonEyeCare/i)[0]
-        // );
-        // fireEvent.click(container.getByText(/Done/i));
       }
     );
 
@@ -338,23 +322,22 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
-        .reply(200, TEMP_DATA_MEDICATION);
+        .reply(200, prescriptionMedication);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
         )
-        .reply(200, TEMP_DATA_CONTACTS);
+        .reply(200, prescriptionContact);
       mock
         .onGet(
           `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
         )
-        .reply(200, TEMP_DATA_GLASSES);
+        .reply(200, prescriptionGlasses);
       window.matchMedia = createMatchMedia("1920px");
 
       const mockGeolocation = {
@@ -383,11 +366,6 @@ defineFeature(feature, (test) => {
       const filterBtn = container.getByText(/Filter/i);
       expect(filterBtn).toBeInTheDocument();
       fireEvent.click(filterBtn);
-
-      // await waitFor(() => container.getByText(/See more/i));
-      // fireEvent.click(container.getByLabelText(/Refill Requested/i));
-      // fireEvent.click(container.getAllByText(/Active/i)[0]);
-      // fireEvent.click(container.getByText(/Done/i));
     });
 
     then("Patient should view the Clear option.", () => {

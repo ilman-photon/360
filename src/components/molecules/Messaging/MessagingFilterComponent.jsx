@@ -47,6 +47,9 @@ export const MessagingFilterComponent = ({
                 ".MuiFormGroup-root": {
                   flexDirection: isDesktop ? "row" : "column",
                 },
+                ".Mui-checked": {
+                  color: "#003B4A !important",
+                },
               }}
               onChange={(data) => {
                 OnFilterClicked(watch("filterRead"));

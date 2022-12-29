@@ -159,11 +159,11 @@ function ShareModal() {
   const { handleSubmit, control, setError, setValue } = useForm();
   const dispatch = useDispatch();
 
-  const shareModalData = useSelector((state) => state.share.shareModalData);
-  const openModal = useSelector((state) => state.share.openModal);
-  const modalContent = useSelector((state) => state.share.modalContent);
-  const successCallback = useSelector((state) => state.share.successCallback);
-  const failureCallback = useSelector((state) => state.share.failureCallback);
+  const shareModalData = useSelector((state) => state?.share?.shareModalData);
+  const openModal = useSelector((state) => state?.share?.openModal);
+  const modalContent = useSelector((state) => state?.share?.modalContent);
+  const successCallback = useSelector((state) => state?.share?.successCallback);
+  const failureCallback = useSelector((state) => state?.share?.failureCallback);
   const userData = JSON.parse(localStorage.getItem("userData"));
 
   useEffect(() => {

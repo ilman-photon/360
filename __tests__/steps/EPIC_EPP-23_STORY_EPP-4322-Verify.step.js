@@ -29,19 +29,19 @@ const clickCloseNewMessage = async (container) => {
 };
 
 const fillTypeName = async (container) => {
-  await waitFor(() => container.getByText(/typeName/i));
-  const field1 = container.getByLabelText(/typeName/i);
+  await waitFor(() => container.getByLabelText(/Type a Name */i));
+  const field1 = container.getByLabelText(/Type a Name */i);
   fireEvent.change(field1, { target: { value: "" } });
 };
 
 const fillSubject = async (container) => {
-  await waitFor(() => container.getByText(/subject/i));
+  await waitFor(() => container.getAllByLabelText(/subject/i));
   const field2 = container.getAllByLabelText(/subject/i)[0];
   fireEvent.change(field2, { target: { value: "" } });
 };
 
 const fillWriteMessage = async (container) => {
-  await waitFor(() => container.getByText(/writeMessages/i));
+  await waitFor(() => container.getByLabelText(/writeMessages/i));
   const field3 = container.getByLabelText(/writeMessages/i);
   fireEvent.change(field3, { target: { value: "" } });
 };

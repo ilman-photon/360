@@ -15,6 +15,8 @@ import MessagingFilterComponent from "../../../components/molecules/Messaging/Me
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { useTranslation } from "next-i18next";
 import { getArrayValue } from "../../../utils/bioUtils";
+import { messageParser } from "../../../utils/messaging";
+import moment from "moment";
 
 export default function MessagingPage() {
   const [selectedMessageData, setSelectedMessage] = useState({});
@@ -25,8 +27,8 @@ export default function MessagingPage() {
   const [activeTabs, setActiveTabs] = useState(0);
   const [dataMessages, setDataMessages] = useState([]);
   const [shownMessages, setShownMessages] = useState([]);
-  const [notHasMessages, setNotHasMessages] = useState(false);
-  const [notMessagesText, setNotMessageText] = useState("");
+  const [notHasMessages, setNotHasMessages] = useState(true);
+  const [notMessagesText, setNotMessageText] = useState("inbox");
   const [query, setQuery] = useState("");
   const [filterRead, setFilterRead] = useState("unread");
   const [addAttachmentsSource, setAddAttachmentsSource] = useState([]);
@@ -46,16 +48,10 @@ export default function MessagingPage() {
   const [providerList, setProviderList] = useState([]);
   const [isRequested, setIsRequested] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  const [detailData, setDetailData] = useState({});
+  const [unReadMsg, setUnReadMsg] = useState(0);
 
   let isRequest = false;
-
-  //Remove this when service available
-  const [storageData, setStorageData] = useState({
-    delete: [],
-    reply: [],
-    sent: [],
-    draft: [],
-  });
 
   const { t } = useTranslation("translation", {
     keyPrefix: "messaging",
@@ -97,6 +93,19 @@ export default function MessagingPage() {
       .getProviderList()
       .then((responses) => {
         mapper(responses.results);
+      })
+      .catch(() => {
+        //This is intentional
+      });
+  };
+
+  const moveToDraftPatient = (postBody) => {
+    const api = new Api();
+    api
+      .createPatientToDraft(postBody)
+      .then((responses) => {
+        setAddAttachmentsSource([]);
+        setShowNewMessageDialog(false);
       })
       .catch(() => {
         //This is intentional
@@ -187,36 +196,18 @@ export default function MessagingPage() {
     }
   }, [dataMessages, filterRead]);
 
-  /**
-   * Please delete this after service available
-   */
-  function modifyData(data, key) {
-    let modifyDataResponse = data;
-    switch (key) {
-      case "inbox":
-        const filterInboxData = [];
-        const inboxData = JSON.parse(JSON.stringify(data));
-        for (const item in inboxData) {
-          const id = inboxData[item].id;
-          const hasDataInLocalStorage = storageData?.delete?.find(
-            (strData) => strData?.id === id
-          );
-          !hasDataInLocalStorage && filterInboxData.push(inboxData[item]);
+  const getInboxValue = (data) => {
+    const cloneData = JSON.parse(JSON.stringify(data));
+    let unReadData = 0;
+    cloneData?.filter((item) => {
+      item.messageReceipients.map((message) => {
+        if (message.isNew) {
+          unReadData += 1;
         }
-
-        setIsSelectedMessage({
-          active: false,
-          id: null,
-        });
-        modifyDataResponse = filterInboxData;
-        break;
-      case "deleted":
-        const deletedData = data.concat(storageData?.delete);
-        modifyDataResponse = deletedData;
-        break;
-    }
-    return modifyDataResponse;
-  }
+      });
+    });
+    setUnReadMsg(unReadData);
+  };
 
   /**
    * Get data based on active tab,
@@ -225,23 +216,22 @@ export default function MessagingPage() {
   useEffect(() => {
     switch (activeTabs) {
       case 0:
-        //Call API for getAllMessages
-        function onCalledGetAllMessages() {
+        //Call API for getInboxMessages
+        function onCalledGetInboxMessages() {
           const api = new Api();
           api
-            .getAllMessages()
+            .getInboxMessages()
             .then(function (response) {
-              let newResponse = response;
-              if (Object.keys(storageData).length !== 0) {
-                newResponse = modifyData(newResponse, "inbox");
-              }
+              let newResponse = messageParser(response.entities);
               setHandleShowDataUI(newResponse, "inbox");
+              getInboxValue(newResponse);
             })
             .catch(function () {
               //Handle error getAllAppointment
+              setHandleShowDataUI([], "inbox");
             });
         }
-        onCalledGetAllMessages();
+        onCalledGetInboxMessages();
         break;
       case 1:
         //Call API for getSentMessages
@@ -250,11 +240,13 @@ export default function MessagingPage() {
           api
             .getSentMessages()
             .then(function (response) {
-              setDataMessages(response);
-              setHandleShowDataUI(response, "sent");
+              let newResponse = messageParser(response.entities);
+              setDataMessages(newResponse);
+              setHandleShowDataUI(newResponse, "sent");
             })
             .catch(function () {
               //Handle error getAllAppointment
+              setHandleShowDataUI([], "sent");
             });
         }
         onCalledGetSentMessages();
@@ -271,6 +263,7 @@ export default function MessagingPage() {
             })
             .catch(function () {
               //Handle error getAllAppointment
+              setHandleShowDataUI([], "draft");
             });
         }
         onCalledGetDraftMessages();
@@ -281,26 +274,24 @@ export default function MessagingPage() {
         function onCalledGetDeleteMessages() {
           const api = new Api();
           api
-            .getDeleteMessages()
+            .getAllDeletedMessages()
             .then(function (response) {
-              let newResponse = response;
-              if (Object.keys(storageData).length !== 0) {
-                newResponse = modifyData(response, "deleted");
-              }
+              let newResponse = messageParser(response.entities);
               setHandleShowDataUI(newResponse, "deleted");
             })
             .catch(function () {
               //Handle error getAllAppointment
+              setHandleShowDataUI([], "deleted");
             });
         }
         onCalledGetDeleteMessages();
         break;
       default:
-        onCalledGetAllMessages();
+        onCalledGetInboxMessages();
         break;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTabs, storageData]);
+  }, [activeTabs]);
 
   /**
    * Trigger for upload file into messages
@@ -351,16 +342,59 @@ export default function MessagingPage() {
     }
   };
 
+  const onCallViewSelectedMessageByID = (id) => {
+    const api = new Api();
+    api
+      .viewMessagesById(id)
+      .then(function (response) {
+        setDetailData(response);
+      })
+      .catch(function () {
+        //Handle error getAllAppointment
+      });
+  };
+
+  const onCallDeleteMessage = (id) => {
+    const api = new Api();
+    api
+      .deleteMessages(id)
+      .then(function (response) {
+        setShowDeletedDialog(false);
+        setFloatingMsgText("Message successfully deleted");
+        setOpenFloatingMsg(true);
+      })
+      .catch(function () {
+        //Handle error getAllAppointment
+      });
+  };
+
+  const onCallSendMessage = (postBody) => {
+    const api = new Api();
+    api
+      .createNewMessage(postBody)
+      .then(function (response) {
+        setAddAttachmentsSource([]);
+        setShowNewMessageDialog(false);
+        setFloatingMsgText("Your message has been sent");
+        setOpenFloatingMsg(true);
+      })
+      .catch(function () {});
+  };
+
   /**
    * Handle for selected message
    * @param {object} currentData
    */
   const onSelectedMessage = (currentData) => {
     const cloneDataMessage = JSON.parse(JSON.stringify(dataMessages));
+    onCallViewSelectedMessageByID();
     setSelectedMessage(currentData);
     cloneDataMessage.map((item) => {
       if (item.id === currentData.id) {
-        item.unRead = false;
+        item.messageReceipients.map((message) => {
+          message.isNew = false;
+          setUnReadMsg(unReadMsg - 1);
+        });
       }
     });
     setDataMessages(cloneDataMessage);
@@ -391,22 +425,6 @@ export default function MessagingPage() {
     setQuery("");
     setActiveTabs(index);
     setIsSelectedMessage({ active: false, id: null });
-    switch (index) {
-      case 0:
-        setHandleShowDataUI(dataMessages, "inbox");
-        break;
-      case 1:
-        setHandleShowDataUI(dataMessages, "sent");
-        break;
-      case 2:
-        setHandleShowDataUI(dataMessages, "draft");
-        break;
-      case 3:
-        setHandleShowDataUI(dataMessages, "deleted");
-        break;
-      default:
-        break;
-    }
   };
 
   /**
@@ -447,17 +465,9 @@ export default function MessagingPage() {
    */
   const deletedMessage = () => {
     // Integrasi API service for this to deleted the message base on ID
-    const cloneData = JSON.parse(JSON.stringify(dataMessages));
-    const deletedData = storageData.delete;
-    cloneData.map((item) => {
-      if (item.id === saveId.id) {
-        deletedData.push(item);
-        setStorageData({ delete: deletedData });
-      }
-    });
-    setShowDeletedDialog(false);
-    setFloatingMsgText("Delete successful");
-    setOpenFloatingMsg(true);
+    if (saveId.key == "delete") {
+      onCallDeleteMessage(saveId.id);
+    }
   };
 
   /**
@@ -474,22 +484,71 @@ export default function MessagingPage() {
     setShowNewMessageDialog(false);
   };
 
+  const getDigitalAssetData = () => {
+    let assets = [];
+    if (addAttachmentsSource.length > 0) {
+      addAttachmentsSource.map((item) => {
+        const newData = {
+          _id: item._id,
+          name: item.name,
+        };
+        assets.push(newData);
+      });
+    }
+    return assets;
+  };
+
   /**
    * Send New Message
    */
-  const sendNewMessage = () => {
+  const sendNewMessage = (data) => {
     // Integrasi API service for this to send the message.
-    setAddAttachmentsSource([]);
-    setShowNewMessageDialog(false);
-    setFloatingMsgText("Thank you. Your message has been sent.");
-    setOpenFloatingMsg(true);
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const currentData = new moment().format("L");
+    const assets = getDigitalAssetData();
+    const postBody = {
+      subject: data.subject,
+      bodyNote: data.message,
+      senderIsPatient: true,
+      receiverIsPatient: true,
+      senderPatientId: userData?.patientId,
+      messageReceipients: [
+        {
+          recipientUid: data.name[0].providerId,
+        },
+      ],
+      digitalAssets: assets,
+      messageStatus: "SENT",
+      priority: "HIGH",
+      deliveryDate: currentData,
+    };
+    onCallSendMessage(postBody);
   };
 
   /**
    * Save Message to Draft
    */
-  const saveToDraft = () => {
+  const saveToDraft = (data) => {
     // Integrasi API service for this to save message to draft
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const currentData = new moment().format("L");
+    const assets = getDigitalAssetData();
+    const postBody = {
+      subject: data?.subject,
+      bodyNote: data?.message,
+      senderIsPatient: true,
+      senderPatientId: userData?.patientId,
+      messageReceipients: [
+        {
+          recipientUid: data?.name[0]?.providerId || "",
+        },
+      ],
+      digitalAssets: assets,
+      messageStatus: "DRAFT",
+      priority: "HIGH",
+      deliveryDate: currentData,
+    };
+    moveToDraftPatient(postBody);
   };
 
   const closeDetailMessageMobileView = () => {
@@ -570,6 +629,7 @@ export default function MessagingPage() {
         isNoResult={isNoResultFound}
         onOpenFilter={openFilterView}
         onDownloadAllAttachmentClicked={handleDownloadAllAttachment}
+        inboxValue={unReadMsg}
       />
       <DeletedDialog
         opened={showDeletedDialog}

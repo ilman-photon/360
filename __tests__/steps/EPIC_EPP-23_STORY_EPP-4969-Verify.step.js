@@ -61,17 +61,15 @@ defineFeature(feature, (test) => {
 
     then(
       "User navigates to the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 
     and(
       "User lands on the the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 
@@ -156,17 +154,15 @@ defineFeature(feature, (test) => {
 
     then(
       "User navigates to the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 
     and(
       "User lands on the the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 
@@ -251,17 +247,15 @@ defineFeature(feature, (test) => {
 
     then(
       "User navigates to the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 
     and(
       "User lands on the the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 
@@ -353,17 +347,15 @@ defineFeature(feature, (test) => {
 
     then(
       "User navigates to the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 
     and(
       "User lands on the the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 
@@ -462,17 +454,15 @@ defineFeature(feature, (test) => {
 
     then(
       "User navigates to the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 
     and(
       "User lands on the the screen to send and receive messages",
-      async () => {
-        await waitFor(() => container.getByText("titleNoSelectedMessage"));
-        expect(container.getByText("titleNoSelectedMessage")).toBeVisible();
+      () => {
+        defaultValidation()
       }
     );
 

@@ -16,9 +16,12 @@ export const MessagingCardView = ({
   onSelect,
   isSelectedMsg,
   isDraftMsg,
+  designation,
+  lastName,
 }) => {
   const isDesktop = useMediaQuery("(min-width: 834px)");
-
+  const whiteSpace = designation != "" ? " " : "";
+  const senderName = `${designation}${whiteSpace}${name} ${lastName}`;
   const convertDate = (data) => {
     let dateTime = "";
     const convertDate = new Date(data);
@@ -58,7 +61,7 @@ export const MessagingCardView = ({
           <div className={styles.hiddenUI} />
         )}
       </Box>
-      <Box>
+      <Box className={styles.subjectContainer}>
         <Box className={styles.subjectContent}>
           <Box
             sx={{
@@ -73,7 +76,10 @@ export const MessagingCardView = ({
                 fontSize: isDesktop ? "22px" : "16px",
                 fontWeight: "400",
                 fontStyle: "normal",
-                color: "#003B4A",
+                color:
+                  isSelectedMsg?.active && isSelectedMsg?.id === id
+                    ? "#008294"
+                    : "#003B4A",
                 lineHeight: isDesktop ? "32px" : "21px",
                 marginBottom: "8px",
                 maxWidth: isDesktop ? "none" : "165px",
@@ -122,11 +128,12 @@ export const MessagingCardView = ({
             color: "#003B4A",
             lineHeight: isDesktop ? "24px" : "16px",
             marginBottom: "8px",
+            textTransform: "initial",
             span: {
               backgroundColor: "#BFE4E8",
             },
           }}
-          dangerouslySetInnerHTML={{ __html: name }}
+          dangerouslySetInnerHTML={{ __html: senderName }}
         />
         <Box className={styles.messageListContent}>
           <Typography

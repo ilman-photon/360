@@ -31,6 +31,7 @@ const MessagingContainer = ({
   attachmentsSource,
   openDeletedDialog,
   openNewMessageDialog,
+  inboxValue,
   onSelectedMessage = () => {
     // This is intended
   },
@@ -137,7 +138,11 @@ const MessagingContainer = ({
       <Navbar />
       <AccountTitleHeading
         title={t("messagingText")}
-        sx={{ fontWeight: "400", lineHeight: "44px" }}
+        sx={{
+          fontWeight: "400",
+          lineHeight: "44px",
+          p: { marginLeft: "8px !important" },
+        }}
       />
       <div className={styles.messageContainer}>
         <ThemeProvider
@@ -155,6 +160,7 @@ const MessagingContainer = ({
             <MessagingTabContent
               activeTabs={activeTabs}
               onChangeTabs={onChangeTabEvent}
+              inboxValue={inboxValue}
             />
             {activeTabs === 0 && isDesktop && (
               <MessagingFilterComponent OnFilterClicked={OnFilterClicked} />

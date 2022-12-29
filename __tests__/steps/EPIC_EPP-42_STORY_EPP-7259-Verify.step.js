@@ -25,6 +25,9 @@ import {
   TEMP_DATA_CONTACTS,
   TEMP_DATA_MEDICATION,
   carePlan,
+  prescriptionMedication,
+  prescriptionContact,
+  prescriptionGlasses,
 } from "../../__mocks__/mockResponse";
 import Cookies from "universal-cookie";
 import HealthRecord from "../../src/pages/patient/health-record";
@@ -42,17 +45,17 @@ const renderPrescription = async () => {
   const mock = new MockAdapter(axios);
   mock
     .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`)
-    .reply(200, TEMP_DATA_MEDICATION);
+    .reply(200, prescriptionMedication);
   mock
     .onGet(
       `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
     )
-    .reply(200, TEMP_DATA_CONTACTS);
+    .reply(200, prescriptionContact);
   mock
     .onGet(
       `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
     )
-    .reply(200, TEMP_DATA_GLASSES);
+    .reply(200, prescriptionGlasses);
   window.matchMedia = createMatchMedia("1920px");
 
   act(() => {
@@ -207,7 +210,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on the Dashboard screen", async () => {
-      container = await renderPrescription();
+      container = await renderPrescription(container);
     });
 
     and("user should be able to view Health Chart navigation menu", () => {

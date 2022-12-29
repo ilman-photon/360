@@ -8,7 +8,7 @@ import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { useTranslation } from "next-i18next";
 
 export const MessagingTabContentHeader = ({
-  inboxValue = 3,
+  inboxValue,
   activeTabs,
   onChangeTabs,
 }) => {
@@ -34,6 +34,9 @@ export const MessagingTabContentHeader = ({
           ".MuiButtonBase-root": {
             minWidth: isDesktop ? "90px" : "85px",
           },
+          ".Mui-selected": {
+            fontWeight: "500",
+          },
         }}
         variant="fullWidth"
         value={activeTabs}
@@ -42,7 +45,7 @@ export const MessagingTabContentHeader = ({
         }}
         textColor="inherit"
         TabIndicatorProps={{
-          style: { background: "#0095A9", color: "red" },
+          style: { background: "#0095A9", color: "#007E8F", height: "4px" },
         }}
       >
         <Tab
@@ -64,7 +67,8 @@ export const MessagingTabContentHeader = ({
           sx={{
             textTransform: "capitalize",
             flexDirection: isDesktop ? "row" : "column",
-            fontSize: isDesktop ? "16px" : "14px",
+            fontSize: "14px",
+            fontWeight: "400",
             ".MuiTab-iconWrapper": {
               marginRight: isDesktop ? "8px" : "0px",
               height: isDesktop ? "25px" : "23px",
@@ -92,7 +96,8 @@ export const MessagingTabContentHeader = ({
           sx={{
             textTransform: "capitalize",
             flexDirection: isDesktop ? "row" : "column",
-            fontSize: isDesktop ? "16px" : "14px",
+            fontSize: "14px",
+            fontWeight: "400",
             ".MuiTab-iconWrapper": {
               marginRight: isDesktop ? "8px" : "0px",
               height: isDesktop ? "25px" : "23px",
@@ -120,7 +125,8 @@ export const MessagingTabContentHeader = ({
           sx={{
             textTransform: "capitalize",
             flexDirection: isDesktop ? "row" : "column",
-            fontSize: isDesktop ? "16px" : "14px",
+            fontSize: "14px",
+            fontWeight: "400",
             ".MuiTab-iconWrapper": {
               marginRight: isDesktop ? "8px" : "0px",
               height: isDesktop ? "25px" : "23px",
@@ -148,7 +154,8 @@ export const MessagingTabContentHeader = ({
           sx={{
             textTransform: "capitalize",
             flexDirection: isDesktop ? "row" : "column",
-            fontSize: isDesktop ? "16px" : "14px",
+            fontSize: "14px",
+            fontWeight: "400",
             ".MuiTab-iconWrapper": {
               marginRight: isDesktop ? "8px" : "0px",
               height: isDesktop ? "25px" : "23px",

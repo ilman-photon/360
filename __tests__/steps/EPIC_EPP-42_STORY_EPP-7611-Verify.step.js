@@ -1,8 +1,6 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
-import constants from "../../src/utils/constants";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import {
@@ -16,10 +14,9 @@ import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import PrescriptionPage from "../../src/pages/patient/prescription";
 import {
-  TEMP_DATA_GLASSES,
-  TEMP_DATA_CONTACTS,
-  TEMP_DATA_MEDICATION,
-  carePlan,
+  prescriptionContact,
+  prescriptionMedication,
+  prescriptionGlasses,
 } from "../../__mocks__/mockResponse";
 import Cookies from "universal-cookie";
 
@@ -30,24 +27,30 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
+  afterEach(() => {
+    mock.reset();
+    cleanup();
+  });
 
   const renderPrescription = async () => {
     let container;
     Cookies.result = "true";
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `${userData?.patientId}`;
     const mock = new MockAdapter(axios);
     mock
-      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`)
-      .reply(200, TEMP_DATA_MEDICATION);
+      .onGet(`/ecp/prescriptions/patient/${patientId}`)
+      .reply(200, prescriptionMedication);
     mock
       .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        `/ecp/prescriptions/patient/${patientId}/getContactsData`
       )
-      .reply(200, TEMP_DATA_CONTACTS);
+      .reply(200, prescriptionContact);
     mock
       .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        `/ecp/prescriptions/patient/${patientId}/getGlassesData`
       )
-      .reply(200, TEMP_DATA_GLASSES);
+      .reply(200, prescriptionGlasses);
     window.matchMedia = createMatchMedia("1920px");
 
     act(() => {
@@ -57,7 +60,7 @@ defineFeature(feature, (test) => {
         </Provider>
       );
     });
-    await waitFor(() => container.getByText(/Filter/i));
+    await waitFor(() => container.getAllByText(/Active Medications/i));
     expect(
       container.getAllByText(/Active Medications/i)[0]
     ).toBeInTheDocument();
@@ -109,13 +112,14 @@ defineFeature(feature, (test) => {
     });
 
     when("user click on View prescriptions Link", () => {
-      expect(
-        container.getAllByText(/View prescriptions/i)[0]
-      ).toBeInTheDocument();
+      const button = container.getAllByText(/View prescriptions/i)[0];
+      expect(button).toBeInTheDocument();
+      fireEvent.click(button);
     });
 
     then("user should be navigated to prescriptions screen", async () => {
-      container = await renderPrescription();
+      cleanup();
+      container = await renderPrescription(container);
     });
 
     and("user should be able to view each of prescriptions", () => {
@@ -186,7 +190,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be navigated to prescriptions screen", async () => {
-      container = await renderPrescription();
+      container = await renderPrescription(container);
     });
 
     and("user should be able to view each of prescriptions", () => {
@@ -266,7 +270,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be navigated to prescriptions screen", async () => {
-      container = await renderPrescription();
+      container = await renderPrescription(container);
     });
 
     and("user should be able to view each of prescriptions", () => {
@@ -319,7 +323,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should be navigated to prescriptions screen", async () => {
-      container = await renderPrescription();
+      container = await renderPrescription(container);
     });
 
     and("user should be able to view each of prescriptions", () => {

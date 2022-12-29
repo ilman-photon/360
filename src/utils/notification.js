@@ -89,16 +89,16 @@ export const getDescription = (data) => {
     case "appointment":
       return (
         <>
-          Remember: You have an <b>{getAppointmentType(data.text)}</b> appointment{" "}
-          {getAppointmentTime(data.text)}
+          Remember: You have an <b>{getAppointmentType(data.text)}</b>{" "}
+          appointment {getAppointmentTime(data.text)}
         </>
       );
     case "appointment-second-reminder":
     case "appointment-one":
       return (
         <>
-          Remember{":"} You have an <b>{getAppointmentType(data.text)}</b> appointment{" "}
-          {getAppointmentTime(data.text)}
+          Remember{":"} You have an <b>{getAppointmentType(data.text)}</b>{" "}
+          appointment {getAppointmentTime(data.text)}
         </>
       );
     case "test-result":
@@ -111,7 +111,8 @@ export const getDescription = (data) => {
     case "message":
       return (
         <>
-          Please note, you have received a <b>new message</b> from <b>John Roe, O.D.</b>
+          Please note, you have received a <b>new message</b> from{" "}
+          <b>John Roe, O.D.</b>
         </>
       );
     case "invoice":
@@ -149,19 +150,23 @@ export const getDescription = (data) => {
     case "contact-lens":
       return (
         <>
-          Your <b>Contact Lens</b> are available for pickup at <b>Location, Address. House of Operation</b>.
+          Your <b>Contact Lens</b> are available for pickup at{" "}
+          <b>Location, Address. House of Operation</b>.
         </>
       );
     case "glasses":
       return (
         <>
-          Your <b>Glasses</b> are available for pickup at <b>Location, Address. House of Operation</b>.
+          Your <b>Glasses</b> are available for pickup at{" "}
+          <b>Location, Address. House of Operation</b>.
         </>
       );
     case "aspirin":
       return (
         <>
-          This is your friendly reminder that is time to take your medication: <b>Aspirin</b>. If you have already taken your prescribed dosage by the provider then please disregard this reminder.  Thank you.
+          This is your friendly reminder that is time to take your medication:{" "}
+          <b>Aspirin</b>. If you have already taken your prescribed dosage by
+          the provider then please disregard this reminder. Thank you.
         </>
       );
     default:

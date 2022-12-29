@@ -21,20 +21,17 @@ const clickNewMessage = (container) => {
 };
 
 const fillTypeName = async (container) => {
-  await waitFor(() => container.getByText("typeName*"));
-  const field1 = container.getByLabelText("typeName*");
+  const field1 = await waitFor(() => container.getByLabelText(/Type a Name/i));
   fireEvent.change(field1, { target: { value: "name" } });
 };
 
 const fillSubject = async (container) => {
-  await waitFor(() => container.getByText("subject*"));
-  const field2 = container.getByLabelText("subject*");
+  const field2 = await waitFor(() => container.getByLabelText(/subject/i));
   fireEvent.change(field2, { target: { value: "subject" } });
 };
 
 const fillWriteMessage = async (container) => {
-  await waitFor(() => container.getByText("writeMessages*"));
-  const field3 = container.getByLabelText("writeMessages*");
+  const field3 = await waitFor(() => container.getByLabelText(/writeMessages/i));
   fireEvent.change(field3, { target: { value: "name" } });
 };
 
@@ -166,15 +163,15 @@ defineFeature(feature, (test) => {
       clickNewMessage(container);
     });
 
-    and("enter the Recipient name in the 'To' field.", () => {
+    and("enter the Recipient name in the 'To' field.", async() => {
       fillTypeName(container);
     });
 
-    and("enter the Subject regarding that message.", () => {
+    and("enter the Subject regarding that message.", async() => {
       fillSubject(container);
     });
 
-    and("enter the message that need to be send to the Recipient.", () => {
+    and("enter the message that need to be send to the Recipient.", async() => {
       fillWriteMessage(container);
     });
 
@@ -292,7 +289,6 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Subject regarding that message.", () => {
-        defaultValidation();
       fillSubject(container);
     });
 

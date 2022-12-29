@@ -3,17 +3,37 @@ import styles from "./styles.module.scss";
 import MessagingCardView from "./MessagingCardView";
 
 export const MessagingListContent = ({ data, onSelected, isSelectedMsg }) => {
-  const getLastMessage = (messages) => {
-    return messages?.length > 0 && messages[messages.length - 1];
+  const checkStatusNewMessage = (messages) => {
+    let isUnRead = false;
+    if (messages?.length > 0) {
+      messages.map((item) => {
+        if (item.isNew) {
+          isUnRead = item.isNew;
+        }
+      });
+    }
+    return isUnRead;
   };
 
-  const checkMessagesHasAttachment = (messages) => {
+  const getNewMessage = (messages) => {
+    let newMessage = messages?.length > 0 && messages[0];
+    if (messages?.length > 0) {
+      messages.map((item) => {
+        if (item.isNew) {
+          newMessage = item;
+        }
+      });
+    }
+    return newMessage;
+  };
+
+  const checkMessagesHasAttachment = (digitalAssets) => {
     let lastHasAttachments = false;
-    messages?.map((item, index) => {
+    digitalAssets?.map((item, index) => {
       if (index === 0) {
-        lastHasAttachments = item?.attachments?.length > 0;
+        lastHasAttachments = digitalAssets?.length > 0;
       } else {
-        if (lastHasAttachments === true && item?.attachments?.length > 0) {
+        if (lastHasAttachments === true && digitalAssets?.length > 0) {
           lastHasAttachments = true;
         } else if (
           lastHasAttachments === false &&
@@ -28,30 +48,30 @@ export const MessagingListContent = ({ data, onSelected, isSelectedMsg }) => {
     return lastHasAttachments;
   };
 
-  const checkIsDraftMessages = (messages) => {
+  const checkIsDraftMessages = (status) => {
     let isDraftMsg = false;
-    messages?.map((item) => {
-      isDraftMsg = item?.isDraft !== undefined;
-    });
+    isDraftMsg = status !== "SENT";
     return isDraftMsg;
   };
 
   return (
     <div className={styles.listContainer}>
-      {data.map((item) => {
+      {data?.map((item) => {
         return (
           <MessagingCardView
-            key={item.id}
-            id={item.id}
+            key={item._id}
+            id={item._id}
             subject={item.subject}
-            name={getLastMessage(item.messages)?.name}
-            time={getLastMessage(item.messages)?.modifiedAt}
-            message={getLastMessage(item.messages)?.message}
-            isHasAttach={checkMessagesHasAttachment(item.messages)}
-            isUnread={item.unRead && item.unRead !== undefined}
+            name={getNewMessage(item.messageReceipients)?.name}
+            lastName={getNewMessage(item.messageReceipients)?.lastName}
+            time={item.deliveryDate}
+            message={item.bodyNote}
+            isHasAttach={checkMessagesHasAttachment(item.digitalAssets)}
+            isUnread={checkStatusNewMessage(item.messageReceipients)}
             onSelect={() => onSelected(item)}
             isSelectedMsg={isSelectedMsg}
-            isDraftMsg={checkIsDraftMessages(item.messages)}
+            isDraftMsg={checkIsDraftMessages(item.messageStatus)}
+            designation={getNewMessage(item.messageReceipients)?.designation}
           />
         );
       })}

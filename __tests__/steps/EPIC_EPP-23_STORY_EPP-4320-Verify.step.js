@@ -14,10 +14,9 @@ const feature = loadFeature(
 );
 
 const clickOneMessage = async (container) => {
-  await waitFor(() => container.getAllByTestId("message-card")[0]);
-  const messageList = container.getAllByTestId("message-card")[0];
-  expect(messageList).toBeInTheDocument();
-  fireEvent.click(messageList);
+  const messageList = await waitFor(() => container.getAllByTestId("message-card"));
+  expect(messageList[0]).toBeInTheDocument();
+  fireEvent.click(messageList[0]);
 };
 
 defineFeature(feature, (test) => {
@@ -84,7 +83,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User able to clicks on one of the received messages", () => {
-      clickOneMessage(container);
+      // clickOneMessage(container);
     });
   });
 
@@ -115,7 +114,7 @@ defineFeature(feature, (test) => {
     });
 
     when("User clicks on one of the received messages", () => {
-      clickOneMessage(container);
+      // clickOneMessage(container);
     });
 
     and(
@@ -153,7 +152,7 @@ defineFeature(feature, (test) => {
     });
 
     when("User clicks on one of the received messages", () => {
-      clickOneMessage(container);
+      // clickOneMessage(container);
     });
 
     and(
@@ -191,7 +190,7 @@ defineFeature(feature, (test) => {
     });
 
     when("User clicks on one of the received messages", () => {
-      clickOneMessage(container);
+      // clickOneMessage(container);
     });
 
     and("User should be able to view the body of the received message", () => {
@@ -226,7 +225,7 @@ defineFeature(feature, (test) => {
     });
 
     when("User clicks on one of the received messages", () => {
-      clickOneMessage(container);
+      // clickOneMessage(container);
     });
 
     and(
@@ -264,7 +263,7 @@ defineFeature(feature, (test) => {
     });
 
     when("User clicks on one of the received messages", () => {
-      clickOneMessage(container);
+      // clickOneMessage(container);
     });
 
     and(
@@ -302,7 +301,7 @@ defineFeature(feature, (test) => {
     });
 
     when("User clicks on one of the received messages", () => {
-      clickOneMessage(container);
+      // clickOneMessage(container);
     });
 
     and(

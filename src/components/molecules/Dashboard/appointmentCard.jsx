@@ -323,7 +323,8 @@ export default function AppointmentCard({
               className={styles.normalText}
               tabIndex={0}
             >
-              Reminder:  Your next appointment at {appointment?.providerInfo?.position} is{" "}
+              Reminder: Your next appointment at{" "}
+              {appointment?.providerInfo?.position} is{" "}
               <Box className={styles.boldText} display="inline">
                 {estimationTime}
               </Box>{" "}

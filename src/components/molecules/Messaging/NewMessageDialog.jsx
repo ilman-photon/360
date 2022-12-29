@@ -6,7 +6,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTranslation } from "next-i18next";
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Autocomplete,
+} from "@mui/material";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
@@ -16,11 +22,10 @@ import AttachmentFile from "./AttachmentFile";
 import styles from "./styles.module.scss";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import { useAutocomplete } from "@mui/base/AutocompleteUnstyled";
 import * as Styled from "./ListAutoCompleteStyled";
 
 export const NewMessageDialog = ({
-  providerData,
+  providerData = [],
   opened,
   handleClosed = () => {
     //this is intentional
@@ -37,8 +42,6 @@ export const NewMessageDialog = ({
   isDraft,
   isSelectedMsg,
   valueText,
-  onFocused,
-  isFocused,
   onDiscardMessage = () => {
     //this is intentional
   },
@@ -47,7 +50,7 @@ export const NewMessageDialog = ({
     keyPrefix: "messaging",
   });
 
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control, watch, setValue, getValues } = useForm({
     defaultValues: {
       name: "",
       subject: "",
@@ -78,29 +81,20 @@ export const NewMessageDialog = ({
   const [isEmptyName, setEmptyName] = useState(false);
   const [isEmptyMessage, setEmptyMessage] = useState(false);
   const [isClicked, setClicked] = useState(false);
-
-  const {
-    getRootProps,
-    getInputProps,
-    getListboxProps,
-    getOptionProps,
-    groupedOptions,
-    focused,
-    setAnchorEl,
-  } = useAutocomplete({
-    id: "type-name-autocomplete",
-    options: providerData,
-    getOptionLabel: (option) => option.name,
-  });
+  const [nameProvider, setNameProvider] = useState([]);
+  const [showInfoName, setShowInfoName] = useState(false);
 
   const onClickCheck = () => {
     setClicked(true);
     setEmptyName(watchedName.length === 0);
     setEmptyMessage(watchedMessage.length === 0);
+    setValue("name", "");
+    setValue("subject", "");
+    setValue("message", "");
   };
 
-  const onSubmit = () => {
-    onSendMessage();
+  const onSubmit = (data) => {
+    onSendMessage(data);
   };
 
   function renderMandatoryFieldError(isError) {
@@ -121,6 +115,17 @@ export const NewMessageDialog = ({
       </Typography>
     );
   }
+
+  const setNameProviderValue = (value) => {
+    if (value?.length == 1) {
+      setShowInfoName(true);
+      setNameProvider(value);
+    } else if (value?.length == 0) {
+      setShowInfoName(false);
+      setNameProvider(value);
+    }
+    setValue("name", value);
+  };
 
   function Tag(props) {
     const { label, onDelete, ...other } = props;
@@ -181,15 +186,11 @@ export const NewMessageDialog = ({
               }`,
             }}
             className={styles.typeNameContainer}
-            {...getRootProps()}
           >
             <Box className={styles.searchIcon}>
               <SearchIcon sx={{ width: "24px" }} />
             </Box>
-            <Styled.InputWrapper
-              ref={setAnchorEl}
-              className={focused ? "focused" : ""}
-            >
+            <Styled.InputWrapper>
               {/* <Styled.StyledTag key={index} label={value} {...getTagProps()} /> */}
               <Controller
                 name="name"
@@ -200,33 +201,59 @@ export const NewMessageDialog = ({
                   fieldState: { error },
                 }) => {
                   return (
-                    <StyledInput
-                      {...getInputProps()}
-                      aria-label="Type a Name"
-                      label={t("typeName")}
-                      id="name"
-                      maxLength={254}
-                      variant="filled"
-                      onChange={(event) => {
-                        onChange(event);
-                        if (isClicked) {
-                          setEmptyName(event.target.value.length === 0);
-                        }
+                    <Autocomplete
+                      multiple
+                      id="providerName"
+                      options={providerData}
+                      getOptionLabel={(option) => option?.name}
+                      onChange={(event, value) => {
+                        setNameProviderValue(value, event);
                       }}
-                      className={styles.errorField}
+                      value={nameProvider}
+                      renderInput={(params) => {
+                        return (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            label="Type a Name"
+                            required
+                          />
+                        );
+                      }}
                       sx={{
                         width: "100%",
-                        ".MuiFilledInput-input": {
-                          fontFamily: "Libre Franklin",
-                          color: "#6C6C6C !important",
-                          fontSize: "16px",
-                          lineHeight: "12px",
+                        ".MuiAutocomplete-endAdornment": {
+                          display: "none",
+                        },
+                        ".MuiInput-underline:before, MuiInput-underline:hover, MuiInput-underline:focus, .MuiInput-underline:after":
+                          {
+                            borderBottom: "none",
+                          },
+                        ".MuiInput-input": {
+                          padding: "0px !important",
+                          height: "52px",
+                          background: "transparent",
+                        },
+                        ".MuiAutocomplete-tag": {
+                          padding: "12px 5px",
+                          background: "#EEF5F7",
+                          borderRadius: "4px",
+                          height: "30px",
+                          top: "7px",
+                        },
+                        ".MuiInputLabel-root.Mui-focused": {
+                          color: "#003B4A",
+                          top: "3px",
                         },
                         ".MuiInputLabel-root": {
                           fontSize: "12px",
+                          color: "#003B4A",
                         },
-                        ".MuiFilledInput-root": {
-                          border: "unset",
+                        ".MuiInput-root:hover:not(.Mui-disabled):before": {
+                          borderBottom: "none",
+                        },
+                        ".MuiInput-root": {
+                          marginTop: "0px !important",
                         },
                       }}
                       error={!!error}
@@ -239,16 +266,19 @@ export const NewMessageDialog = ({
               />
             </Styled.InputWrapper>
           </Box>
-          {groupedOptions.length > 0 ? (
-            <Styled.Listbox {...getListboxProps()}>
-              {groupedOptions.map((option, index) => (
-                <li key={index} {...getOptionProps({ option, index })}>
-                  <span>{option.name}</span>
-                </li>
-              ))}
-            </Styled.Listbox>
-          ) : null}
           {renderMandatoryFieldError(isEmptyName)}
+          {showInfoName && (
+            <Typography
+              sx={{
+                fontFamily: "Roboto",
+                fontSize: "12px",
+                fontWeight: 400,
+                lineHeight: "16px",
+              }}
+            >
+              Enter recipient’s name or email (only one recipient)
+            </Typography>
+          )}
           <Controller
             name="subject"
             control={control}
@@ -406,7 +436,7 @@ export const NewMessageDialog = ({
             {!isDraft && !isSelectedMsg?.active ? (
               <>
                 <Button
-                  onClick={() => onSaveToDraft()}
+                  onClick={() => onSaveToDraft(getValues())}
                   data-testId="draft-new-message"
                   sx={{
                     color: "#007E8F",
