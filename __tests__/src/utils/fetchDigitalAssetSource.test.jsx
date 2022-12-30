@@ -11,24 +11,9 @@ import { cleanup, waitFor } from "@testing-library/react";
 describe("fetchDigitalAssetSource Util", () => {
   const mock = new MockAdapter(axios);
 
-  test("fetchDigitalAssetSource funtionality download with id", async () => {
-    const id = "6376481f-e317-4e44-a852-5e0395446140";
-    mock
-      .onGet(`/ecp/digital-asset/v1/asset/${id}`)
-      .reply(200, { presignedUrl: "http://localhost/image.png" });
-    expect(await fetchSource(id)).toEqual({
-      success: true,
-      response: {
-        presignedUrl: "http://localhost/image.png",
-      },
-      success: true,
-    });
-  });
-
-  test("fetchDigitalAssetSource funtionality print with id", async () => {
+  const testDownload = async (isPrint) => {
     cleanup();
     const id = "6376481f-e317-4e44-a852-5e0395446140";
-    const isPrint = true;
     const mock = new MockAdapter(axios);
     mock
       .onGet(`/ecp/digital-asset/v1/asset/${id}`)
@@ -44,6 +29,14 @@ describe("fetchDigitalAssetSource Util", () => {
       },
       success: true,
     });
+  }
+
+  test("fetchDigitalAssetSource funtionality download with id", async () => {
+    await testDownload(false);
+  });
+
+  test("fetchDigitalAssetSource funtionality print with id", async () => {
+    await testDownload(true);
   });
 
   test("downloadMultipleAsset", async () => {

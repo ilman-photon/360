@@ -3,10 +3,15 @@ import DigitalAssetsHandler from "./digitalAssetsHandler";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
-function download(url, newTab = true) {
+async function download(url) {
+  const response = await axios.get(url, { responseType: "blob" });
+  const blob = URL.createObjectURL(response.data);
+  saveAs(blob, `eyecare-document.pdf`);
+}
+
+function downloadOld(url, newTab = true) {
   const a = document.createElement("a");
   a.target = newTab ? "_blank" : "";
-
   a.href = url;
   a.download = url.split("/").pop();
   document.body.appendChild(a);
