@@ -282,18 +282,16 @@ describe("Appointment Util", () => {
   test("validate data", () => {
     const expectInsurance = [
       {
-        id: "1",
         name: "I'm paying out of my pocket",
         category: "",
         divider: false,
       },
       {
-        id: "2",
         name: "skip and choose insurance later",
         category: "",
         divider: false,
       },
-      { id: "3", name: "Other Insurance", category: "", divider: true },
+      { name: "Other Insurance", category: "", divider: true },
       {
         id: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
         name: "EyeMed",

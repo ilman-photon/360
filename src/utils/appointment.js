@@ -39,17 +39,17 @@ export function parseInsuranceCarrier(insuranceCarrierData) {
   if (insuranceCarrierData && insuranceCarrierData.length > 0) {
     const defaultInsurance = [
       {
-        id: "1",
+        // id: "1",
         label: "I'm paying out of my pocket",
         category: "general",
       },
       {
-        id: "2",
+        // id: "2",
         label: "skip and choose insurance later",
         category: "general",
       },
       {
-        id: "3",
+        // id: "3",
         label: "Other Insurance",
         category: "general",
       },

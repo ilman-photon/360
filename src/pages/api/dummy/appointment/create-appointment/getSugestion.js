@@ -26,15 +26,15 @@ export default function getSugestion(req, res) {
       insuranceCarrier: {
         general: [
           {
-            id: "1",
+            // id: "1",
             name: "I'm paying out of my pocket",
           },
           {
-            id: "2",
+            // id: "2",
             name: "skip and choose insurance later",
           },
           {
-            id: "3",
+            // id: "3",
             name: "Other Insurance",
           },
         ],
