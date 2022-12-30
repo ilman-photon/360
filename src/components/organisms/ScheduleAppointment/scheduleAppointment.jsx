@@ -32,7 +32,9 @@ export default function ScheduleAppointment({
     keyPrefix: "scheduleAppoinment",
   });
   const isDesktop = useMediaQuery("(min-width: 769px)");
-
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Stack spacing={2}>
       <Stack spacing={2}>
