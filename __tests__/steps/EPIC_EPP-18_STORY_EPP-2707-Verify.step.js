@@ -551,10 +551,7 @@ defineFeature(feature, (test) => {
         const mockResponse = {
           message: "Your refill request has been sumbitted",
         };
-        mock
-          .onPost(`${domain}/api/dummy/prescription/requestRefill`)
-          .reply(200, mockResponse);
-        await waitFor(() => container.getByText("Active Medications"));
+        mock.onPost(`/ecp/prescriptions/requestRefill`).reply(200, mockResponse);
         const requestRefill = container.getAllByText(/Request Refill/i)[0];
         expect(requestRefill).toBeInTheDocument();
         fireEvent.click(medicationMenu);
@@ -566,10 +563,7 @@ defineFeature(feature, (test) => {
         message: "Your refill request has been sumbitted",
       };
 
-      mock
-        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
-        .reply(200, mockResponse);
-
+      mock.onPost(`/ecp/prescriptions/requestRefill`).reply(200, mockResponse);
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
 

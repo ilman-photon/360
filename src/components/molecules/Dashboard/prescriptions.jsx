@@ -520,6 +520,7 @@ export default function Prescriptions({
         medications={prescription.medications}
         onMedicationRequestRefill={onMedicationRequestRefill}
         requestRefillResponseData={requestRefillResponseData}
+        activeMedication={prescription?.medications?.active?.length}
       />
     );
   }
@@ -892,7 +893,7 @@ export default function Prescriptions({
         sx={{
           ".MuiCardContent-root": {
             p: 0,
-            pb: 3,
+            pb: "0 !important",
             position: "relative",
             flex: "1",
             display: "flex",

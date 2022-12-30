@@ -481,7 +481,7 @@ export default function Appointment({ googleApiKey }) {
           aria-label={open ? "View all availability dialog window open" : ""}
           role={"alertdialog"}
         >
-          <Box sx={{ height: "51px", marginBottom: "40px" }}>
+          <Box sx={{ height: "51px" }}>
             <IconButton
               aria-label="close"
               onClick={handleClose}

@@ -43,6 +43,7 @@ export default function PrescriptionMedication({
   },
   requestRefillResponseData = null,
   filterProvider = [],
+  activeMedication = 0,
 }) {
   const [showModal, setShowModal] = React.useState(false);
   const containerActive = React.useRef(null);
@@ -194,6 +195,11 @@ export default function PrescriptionMedication({
     }
     callback();
   };
+
+  const ActiveMedHeading =
+    activeMedication > 0
+      ? `Active Medications (${activeMedication})`
+      : `Active Medications`;
 
   function renderDialogConfirmation() {
     return (
@@ -515,7 +521,7 @@ export default function PrescriptionMedication({
               : "No of medications"
           } heading`}
         >
-          {isFilterApplied ? "Medications" : "Active Medications"}{" "}
+          {isFilterApplied ? "Medications" : ActiveMedHeading}{" "}
           {filterMedicationData.length > 0
             ? `(${filterMedicationData.length})`
             : ``}
