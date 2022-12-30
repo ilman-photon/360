@@ -701,7 +701,12 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
         });
         availability.list = currentDateList;
       } else {
-        availability.list = isSameAvailability.list;
+        const selectedDate = moment(isSameAvailability.date);
+        const maxDate = moment().add(3, "months");
+
+        if (selectedDate <= maxDate) {
+          availability.list = isSameAvailability.list;
+        }
       }
     }
     availabilityList.push(availability);

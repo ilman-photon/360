@@ -602,6 +602,18 @@ export default function Appointment({ googleApiKey }) {
     );
   }
 
+  function getWidthStyle() {
+    if (!isTablet) {
+      if (providerListData.length == 0) {
+        return "65%";
+      } else {
+        return "auto";
+      }
+    } else {
+      return "unset";
+    }
+  }
+
   function renderFilterResultTabletView() {
     if (isTablet) {
       return !isLoading ? (
@@ -622,7 +634,7 @@ export default function Appointment({ googleApiKey }) {
             maxWidth: "1923px",
           }}
         >
-          <Box sx={{ width: !isTablet ? "auto" : "unset", m: 3 }}>
+          <Box sx={{ width: getWidthStyle(), m: 3 }}>
             {providerListData.length > 0 ? (
               <FilterResult
                 onNextScheduleClicked={onNextScheduleClicked}
