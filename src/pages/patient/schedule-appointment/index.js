@@ -264,7 +264,7 @@ export function handleCreateAppointment(
   const cookies = new Cookies();
   const dateNow = new Date();
   const insurancePayers =
-    appointmentScheduleData.appointmentInfo.insuranceCarrier.id || "";
+    appointmentScheduleData.appointmentInfo.insuranceCarrier?.id || "";
   const userDataStorage = JSON.parse(localStorage.getItem("userData"));
   const postBody = [
     {

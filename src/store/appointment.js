@@ -89,7 +89,7 @@ const buildAppointmentPostBody = (payload) => {
     appointmentRescheduleDetails: {
       reason: "reschedule",
     },
-    appointmentTime: appointmentDate.format("hh:mm"),
+    appointmentTime: appointmentDate.format("HH:mm"),
     appointmentType: {
       code: appointmentInfoData.appointmentType,
     },
