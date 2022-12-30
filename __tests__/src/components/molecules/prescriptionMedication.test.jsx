@@ -151,25 +151,6 @@ describe("Prescription Medication test", () => {
     ).toBeInTheDocument();
   });
 
-  it("Download Pdf file mobile", async () => {
-    window.matchMedia = createMatchMedia("700");
-    container = renderWithData(mockData);
-    const moreOptionButton = container.getAllByTestId(/more-option-test/i);
-    await waitFor(() => fireEvent.click(moreOptionButton[0]));
-    const buttonContainer = container.getByTestId(/menu-list-test/i);
-    expect(buttonContainer).toBeInTheDocument();
-    const buttonDownload = container.getByTestId(/menu-download-test/i);
-    await waitFor(() => fireEvent.click(buttonDownload));
-    const buttonPrint = container.getByTestId(/menu-print-test/i);
-    await waitFor(() => fireEvent.click(buttonPrint));
-  });
-
-  it("Download Pdf file desktop", async () => {
-    const buttonDownload = container.getAllByTestId(/download-icon/i);
-    await waitFor(() => fireEvent.click(buttonDownload[0]));
-    await waitFor(() => fireEvent.click(buttonDownload[1]));
-  });
-
   it("Print Pdf file desktop active", async () => {
     const buttonPrint = container.getAllByTestId(/print-icon/i);
     await waitFor(() => fireEvent.click(buttonPrint[0]));
