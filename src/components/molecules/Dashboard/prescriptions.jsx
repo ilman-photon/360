@@ -116,7 +116,7 @@ export function renderCTAIcon(
       alignSelf={"center"}
       sx={{ marginLeft: "auto" }}
     >
-      {buttonList.map((option, idx) => {
+      {buttonList.map((option) => {
         if (option === "download") {
           return downloadButton;
         } else if (option === "share") {

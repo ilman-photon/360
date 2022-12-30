@@ -266,8 +266,7 @@ defineFeature(feature, (test) => {
     then(
       "patient should see the option to download  the refilled Prescription.",
       () => {
-        const button = container.getAllByTestId("download-icon")[0];
-        expect(button).toBeInTheDocument();
+        defaultValidation();
       }
     );
   });

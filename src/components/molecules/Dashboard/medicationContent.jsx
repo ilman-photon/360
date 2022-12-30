@@ -86,26 +86,25 @@ export const MedicationContent = ({
                 {!isMobile ? (
                   renderCTAIcon(
                     () => {
-                      downloadPDF(medicationType, idx);
+                      //This is intentional
                     },
                     () => {
                       printHTML(medicationType, idx);
                     },
                     () => {
                       shareDocument(shareContent, shareData);
-                    }
+                    },
+                    ["share", "print"]
                   )
                 ) : (
                   <MenuList
-                    onClickDownloadButton={() => {
-                      downloadPDF(medicationType, idx);
-                    }}
                     onClickPrintButton={() => {
                       printHTML(medicationType, idx);
                     }}
                     onClickShareButton={() => {
                       shareDocument(shareContent, shareData);
                     }}
+                    buttonList={["share", "print"]}
                   />
                 )}
               </>

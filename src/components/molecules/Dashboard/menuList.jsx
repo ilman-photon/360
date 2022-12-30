@@ -66,6 +66,7 @@ export default function MenuList({
   onClickShareButton = () => {
     //this is intentional
   },
+  buttonList = ["download", "share", "print"],
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -77,6 +78,55 @@ export default function MenuList({
   };
   const iconShare = "/icon-share.png";
   const iconDownload = "/icon-download.png";
+
+  const downloadItem = (
+    <MenuItem
+      className={styles.menuItem}
+      disableRipple
+      onClick={() => {
+        onClickDownloadButton();
+        handleClose();
+      }}
+      data-testId="menu-download-test"
+    >
+      <Box className={"MuiSvgIcon-root"}>
+        <Image alt="" src={iconDownload} width={15} height={15} />
+      </Box>
+      Download
+    </MenuItem>
+  );
+
+  const shareItem = (
+    <MenuItem
+      onClick={() => {
+        onClickShareButton();
+        handleClose();
+      }}
+      className={styles.menuItem}
+      data-testId="menu-share-test"
+      disableRipple
+    >
+      <Box className={"MuiSvgIcon-root"}>
+        <Image alt="" src={iconShare} width={15} height={15} />
+      </Box>
+      Share
+    </MenuItem>
+  );
+
+  const printItem = (
+    <MenuItem
+      onClick={() => {
+        onClickPrintButton();
+        handleClose();
+      }}
+      data-testId="menu-print-test"
+      className={styles.menuItem}
+      disableRipple
+    >
+      <LocalPrintshopOutlinedIcon sx={{ color: colors.darkGreen }} />
+      Print
+    </MenuItem>
+  );
 
   return (
     <div>
@@ -112,46 +162,16 @@ export default function MenuList({
         onClose={handleClose}
         sx={{ top: "-15px" }}
       >
-        <MenuItem
-          className={styles.menuItem}
-          disableRipple
-          onClick={() => {
-            onClickDownloadButton();
-            handleClose();
-          }}
-          data-testId="menu-download-test"
-        >
-          <Box className={"MuiSvgIcon-root"}>
-            <Image alt="" src={iconDownload} width={15} height={15} />
-          </Box>
-          Download
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            onClickShareButton();
-            handleClose();
-          }}
-          className={styles.menuItem}
-          data-testId="menu-share-test"
-          disableRipple
-        >
-          <Box className={"MuiSvgIcon-root"}>
-            <Image alt="" src={iconShare} width={15} height={15} />
-          </Box>
-          Share
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            onClickPrintButton();
-            handleClose();
-          }}
-          data-testId="menu-print-test"
-          className={styles.menuItem}
-          disableRipple
-        >
-          <LocalPrintshopOutlinedIcon sx={{ color: colors.darkGreen }} />
-          Print
-        </MenuItem>
+        {buttonList.map((option) => {
+          if (option === "download") {
+            return downloadItem;
+          } else if (option === "share") {
+            return shareItem;
+          } else if (option === "print") {
+            return printItem;
+          }
+          return <></>;
+        })}
       </StyledMenu>
     </div>
   );
