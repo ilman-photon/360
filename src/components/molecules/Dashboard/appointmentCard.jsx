@@ -8,14 +8,21 @@ import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import styles from "./styles.module.scss";
-import { Box, Grid, Typography, Link, Stack } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Link,
+  Stack,
+  useMediaQuery,
+} from "@mui/material";
 import { StyledButton } from "../../atoms/Button/button";
 import { parseAppointmentCardData } from "../../../utils/appointment";
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import ImageFallback from "../../atoms/Image/image";
 import { getProviderLocation } from "../AppointmentInformation/appointmentInformation";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import CommonCard from "./commonCard";
 import { colors } from "../../../styles/theme";
 
@@ -38,6 +45,8 @@ export default function AppointmentCard({
     appointmentInfo: {},
   });
   const [appointmentCount, setAppointmentCount] = React.useState(0);
+  const isMobile = useMediaQuery("(max-width: 600px)");
+
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
@@ -181,17 +190,15 @@ export default function AppointmentCard({
                   aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
                   tabIndex={0}
                 >
-                  <Typography variant="bodyLinkRegular" aria-hidden={true}>
-                    <a
-                      onKeyPress={() =>
-                        window.open(
-                          `tel:${appointment.providerInfo?.phoneNumber}`
-                        )
-                      }
-                    >
-                      {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
-                    </a>
-                  </Typography>
+                  <PhoneNumber
+                    phone={appointment.providerInfo?.phoneNumber || "-"}
+                    sx={{
+                      "&.MuiTypography-body2": {
+                        fontSize: "16px",
+                        fontWeight: isMobile ? 500 : 400,
+                      },
+                    }}
+                  />
                 </Box>
                 {renderGetDirection()}
               </Box>
