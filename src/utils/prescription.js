@@ -33,23 +33,23 @@ function onCalledGlassesAPI(medicationData, resolve, reject) {
 }
 
 function onCalledContactsAPI(medicationData, glassesData, resolve, reject) {
+  let contactData = [];
   const api = new Api();
   api
     .getPrescriptionContacts()
     .then(function (response) {
+      contactData = response?.entities || [];
+    })
+    .catch(function () {
+      contactData = [];
+    })
+    .finally(function () {
       let prescriptionDataTemp = parsePrescriptions(
         glassesData,
-        response?.entities || [],
+        contactData,
         medicationData
       );
       resolve(prescriptionDataTemp);
-    })
-    .catch(function () {
-      reject({
-        glasses: [],
-        contacts: [],
-        medications: [],
-      });
     });
 }
 

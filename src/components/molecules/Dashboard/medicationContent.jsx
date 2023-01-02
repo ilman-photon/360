@@ -115,7 +115,7 @@ export const MedicationContent = ({
               <>
                 {(data.status === "refill request" ||
                   data.status === "completed") && (
-                  <Stack direction={"row"} className={styles.stackContainer}>
+                  <Stack direction={"row"} className={styles.stackContainerMed}>
                     {renderStatusMedication(data.status, data.statusDetails)}
                     <Stack
                       direction={"row"}
@@ -141,7 +141,7 @@ export const MedicationContent = ({
                 )}
               </>
             )}
-            <Stack direction={"row"} className={styles.stackContainer}>
+            <Stack direction={"row"} className={styles.stackContainerMed}>
               <Stack
                 direction={"row"}
                 alignSelf={"center"}
@@ -203,7 +203,7 @@ export const MedicationContent = ({
                 </Typography>
               </Stack>
             </Stack>
-            <Stack direction={"row"} className={styles.stackContainer}>
+            <Stack direction={"row"} className={styles.stackContainerMed}>
               <Stack
                 direction={"row"}
                 alignSelf={"center"}

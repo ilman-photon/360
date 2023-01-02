@@ -584,7 +584,7 @@ export default function Prescriptions({
                 tabIndex={0}
                 {...getLinkAria("View prescriptions option")}
               >
-                View prescriptions
+                View Prescriptions
               </Link>
               <KeyboardArrowRightIcon />
             </Box>
@@ -662,7 +662,7 @@ export default function Prescriptions({
                     tabIndex={0}
                     {...getLinkAria("View prescriptions option")}
                   >
-                    View prescriptions
+                    View Prescriptions
                   </Link>
                   <KeyboardArrowRightIcon />
                 </Box>
@@ -737,7 +737,7 @@ export default function Prescriptions({
                     tabIndex={0}
                     {...getLinkAria("View prescriptions option")}
                   >
-                    View prescriptions
+                    View Prescriptions
                   </Link>
                   <KeyboardArrowRightIcon />
                 </Box>
