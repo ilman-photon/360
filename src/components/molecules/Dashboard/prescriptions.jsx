@@ -371,6 +371,7 @@ export default function Prescriptions({
                 sx={{
                   minWidth: "90%",
                   fontSize: "14px",
+                  boxShadow: "inset 0px -1px 0px rgba(0, 0, 0, 0.12)",
                   ".MuiTableCell-body": {
                     fontFamily: "Roboto",
                     fontSize: "14px",
@@ -385,7 +386,11 @@ export default function Prescriptions({
                 }}
                 aria-label="prescription"
               >
-                <TableRow>
+                <TableRow
+                  sx={{
+                    border: "0.5px solid #A9A9A9",
+                  }}
+                >
                   {tableHeader.map((header, idx) => (
                     <StyledTableCell
                       key={`${idxKey}-${idx}-tabel-header`}
@@ -401,7 +406,8 @@ export default function Prescriptions({
                     <TableRow
                       key={`${idxKey}-${idx}-tabel-body`}
                       sx={{
-                        "&:last-child td, &:last-child th": { border: 0 },
+                        // "&:last-child td, &:last-child th": { border: 0 },
+                        border: "0.5px solid #A9A9A9",
                       }}
                     >
                       <TableCell scope="row" tabIndex={0}>
@@ -443,7 +449,12 @@ export default function Prescriptions({
             }}
           >
             <Box className={[styles.flexDisplay, styles.margin]} tabIndex={0}>
-              <Typography variant="medication">{row.prescription}</Typography>
+              <Typography
+                variant="medication"
+                sx={{ textDecoration: "underline" }}
+              >
+                {row.prescription}
+              </Typography>
             </Box>
             <Box
               className={[styles.flexDisplay]}
@@ -563,7 +574,14 @@ export default function Prescriptions({
           {renderMedicationUI(prescription.medications.active)}
           {!isViewAll && (
             <Box
-              className={[styles.flexDisplay, styles.viewPrescription]}
+              className={[
+                styles.flexDisplay,
+                styles.viewPrescription,
+                `${
+                  !prescription?.medications?.active &&
+                  styles.viewPrescriptionNoData
+                }`,
+              ]}
               onClick={() => {
                 onViewPrescriptions(2);
               }}
@@ -621,6 +639,9 @@ export default function Prescriptions({
                   isViewAll && !isMobile ? styles.paddingTop22 : {},
                 ].join(" ")}
                 aria-hidden={true}
+                sx={{
+                  fontSize: "24px !important",
+                }}
               >
                 {"Glasses Prescription"}{" "}
                 {prescription?.glasses?.length > 0
@@ -641,7 +662,14 @@ export default function Prescriptions({
               </Box>
               {!isViewAll && (
                 <Box
-                  className={[styles.flexDisplay, styles.viewPrescription]}
+                  className={[
+                    styles.flexDisplay,
+                    styles.viewPrescription,
+                    `${
+                      prescription?.glasses?.length < 1 &&
+                      styles.viewPrescriptionNoData
+                    }`,
+                  ]}
                   onClick={() => {
                     onViewPrescriptions(0);
                   }}
@@ -716,7 +744,14 @@ export default function Prescriptions({
 
               {!isViewAll && (
                 <Box
-                  className={[styles.flexDisplay, styles.viewPrescription]}
+                  className={[
+                    styles.flexDisplay,
+                    styles.viewPrescription,
+                    `${
+                      prescription?.contacts?.length < 1 &&
+                      styles.viewPrescriptionNoData
+                    }`,
+                  ]}
                   onClick={() => {
                     onViewPrescriptions(1);
                   }}
@@ -891,6 +926,9 @@ export default function Prescriptions({
         title={`Prescriptions`}
         ariaLabel={`Prescriptions Title`}
         sx={{
+          ".accountCard_title__D2VsB": {
+            fontSize: "32px !important",
+          },
           ".MuiCardContent-root": {
             p: 0,
             pb: "0 !important",
