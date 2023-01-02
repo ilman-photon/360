@@ -37,7 +37,7 @@ import { StyledButton } from "../../../../components/atoms/Button/button";
 import styles from "./styles.module.scss";
 import InsuranceForm from "../../../../components/organisms/InsuranceInformation/insuranceForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import constants from "../../../../utils/constants";
 import { fetchAllPayers, fetchPlans } from "../../../../store/provider";
 import Cookies from "universal-cookie";
@@ -268,8 +268,8 @@ export default function InsuranceInfoPage() {
           <Fade in={userInsuranceData.length > 0} unmountOnExit>
             <Stack>
               <AccountCard
-                titleIcon={<AccountCircleOutlined />}
-                title="Insurance Documents"
+                titleIcon={<DescriptionOutlinedIcon />}
+                title="Insurance Document"
                 sx={{
                   border: "2px solid #F3F3F3",
                 }}

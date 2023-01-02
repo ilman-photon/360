@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/aria-unsupported-elements */
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { Box, Stack, Typography } from "@mui/material";
 import Head from "next/head";
 import AccountCard from "../../molecules/AccountCard/accountCard";
@@ -30,7 +30,7 @@ export default function InsuranceInformationNew({
         </title>
       </Head>
       <AccountCard
-        titleIcon={<AccountCircleOutlinedIcon aria-hidden="false" />}
+        titleIcon={<DescriptionOutlinedIcon aria-hidden="false" />}
         title="Insurance Documents "
         textStyle={{ fontWeight: "700" }}
       >
