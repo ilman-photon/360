@@ -65,7 +65,6 @@ const shareSlice = createSlice({
         title: "",
         successPostmessage: "",
       };
-      state.showToastMessage = false;
       state.openModal = false;
       state.modalContent = <></>;
       state.successCallback = () => {};

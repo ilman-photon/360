@@ -12,7 +12,7 @@ import { Box, Collapse, IconButton, Typography } from "@mui/material";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
-import { resetShareData } from "../../store/share";
+import { resetShareData, setShowToastMessage } from "../../store/share";
 import { useEffect } from "react";
 
 export default function PrescriptionLayout({
@@ -30,6 +30,7 @@ export default function PrescriptionLayout({
   useEffect(() => {
     if (showToastMessage) {
       setTimeout(() => {
+        dispatch(setShowToastMessage(false));
         dispatch(resetShareData());
       }, 3000);
     }
