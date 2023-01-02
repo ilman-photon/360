@@ -10,6 +10,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 import { colors } from "../../../../styles/theme";
 import styles from "./modalScheduling.module.scss";
@@ -31,9 +32,13 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { getDirection } from "../../../../utils/appointment";
-import { formatAppointmentDate } from "../../../../utils/dateFormatter";
-import { useRouter } from "next/router";
+import {
+  formatAppointmentDate,
+  formatAppointmentDateWithoutTime,
+  formatAppointmentTime,
+} from "../../../../utils/dateFormatter";
 import { StyledButton } from "../../../atoms/Button/button";
+import { useRouter } from "next/router";
 import Image from "next/image";
 
 const BootstrapDialogTitle = (props) => {
@@ -81,7 +86,9 @@ export default function ModalConfirmContent({
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const { REGISTER_TEST_ID } = constants.TEST_ID;
-
+  const isOPH =
+    appointmentData.appointmentTypeCode &&
+    appointmentData.appointmentTypeCode.includes("OPH");
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
@@ -201,95 +208,298 @@ export default function ModalConfirmContent({
               </Tooltip>
             </div>
 
-            <Card variant="outlined" className={styles.cardDate}>
-              <CardContent
-                sx={{
-                  px: { xs: 3, md: 3 },
-                  py: { xs: 3, md: 3 },
-                  textAlign: "-moz-center",
-                }}
-              >
-                <Typography
-                  className={styles.dateBold}
-                  sx={{ pb: 2 }}
-                  aria-label={appointmentData?.date}
-                  tabIndex={"0"}
-                >
-                  {formatAppointmentDate(appointmentData.date)}
-                </Typography>
-
-                <div style={{ display: "inline-flex" }}>
-                  <Button
-                    className={styles.addCalendarButton}
-                    sx={{
-                      backgroundColor: "#EEF5F7",
-                      mb: 2,
-                    }}
-                    onClick={() => {
-                      onAddToCalendarClicked({
-                        name: "ECP Appointment",
-                        description: `Patient: ${getName()}, Purpose of Visit: ${
-                          appointmentData.appointmentType
-                        }`,
-                        date: appointmentData.date,
-                        location:
-                          providerData.address.addressLine1 +
-                          ` ` +
-                          providerData.address.addressLine2 +
-                          ` ` +
-                          providerData.address.city +
-                          ` ` +
-                          providerData.address.state +
-                          ` ` +
-                          providerData.address.zipcode,
-                      });
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        display: "inline-flex",
-                        width: "150px",
-                        fontWeight: "600",
-                        fontSize: "14px",
-                        fontFamily: "Libre Franklin",
-                        alignItems: "flex-end",
-                        justifyContent: "center",
-                      }}
-                      aria-label={"Add to calendar"}
-                    >
-                      <CalendarTodayIcon
-                        aria-hidden={"false"}
-                        sx={{ color: "#003B4A", marginRight: "5px" }}
-                      />
-                      Add to calendar
-                    </Typography>
-                  </Button>
-                </div>
-
-                <Typography
-                  className={styles.dateBold}
-                  aria-label={"Purpose of Visit"}
-                  tabIndex={"0"}
-                >
-                  Purpose of Visit
-                </Typography>
-                <Typography
-                  aria-label={appointmentData.appointmentType || "Eye exam"}
-                  tabIndex={"0"}
+            {isOPH ? (
+              <Card variant="outlined" className={styles.cardInfoOPH}>
+                <CardContent
                   sx={{
-                    fontFamily: "Libre Franklin",
+                    px: { xs: 3, md: 3 },
+                    py: { xs: 3, md: 3 },
+                    textAlign: "-moz-center",
+                    width: "48%",
                   }}
                 >
-                  {appointmentData.appointmentType || "Eye exam"}
-                </Typography>
-              </CardContent>
-            </Card>
+                  <Typography
+                    sx={{
+                      fontFamily: "Bw Nista Geometric DEMO",
+                      fontSize: "26px",
+                      lineHeight: "32px",
+                      color: "#003B4A",
+                      marginBottom: "14px",
+                    }}
+                  >
+                    Exam Information
+                  </Typography>
+                  <Box className={styles.rowBox}>
+                    <Typography
+                      sx={{
+                        fontFamily: "Libre Franklin",
+                        fontWeight: 700,
+                        fontSize: "16px",
+                        lineHeight: "24px",
+                        color: "#000000",
+                        width: "20%",
+                      }}
+                    >
+                      Date
+                    </Typography>
+                    <Typography
+                      className={styles.dateBold}
+                      aria-label={appointmentData?.date}
+                      sx={{
+                        width: "50%",
+                        pb: 2,
+                      }}
+                    >
+                      {formatAppointmentDateWithoutTime(appointmentData.date)}
+                    </Typography>
+                  </Box>
+                  <Box className={styles.rowBox}>
+                    <Typography
+                      sx={{
+                        fontFamily: "Libre Franklin",
+                        fontWeight: 700,
+                        fontSize: "16px",
+                        lineHeight: "24px",
+                        color: "#000000",
+                        width: "20%",
+                      }}
+                    >
+                      Time
+                    </Typography>
+                    <Typography
+                      className={styles.dateBold}
+                      sx={{ pb: 2, width: "50%" }}
+                      aria-label={appointmentData?.date}
+                    >
+                      {formatAppointmentTime(appointmentData.date)}
+                    </Typography>
+                  </Box>
+                  <Box className={styles.rowBox}>
+                    <Typography sx={{ width: "20%" }}></Typography>
+                    <div style={{ display: "inline-flex", width: "50%" }}>
+                      <Button
+                        className={styles.addCalendarButton}
+                        sx={{
+                          backgroundColor: "#EEF5F7",
+                          mb: 2,
+                        }}
+                        onClick={() => {
+                          onAddToCalendarClicked({
+                            name: "ECP Appointment",
+                            description: `Patient: ${getName()}, Purpose of Visit: ${
+                              appointmentData.appointmentType
+                            }`,
+                            date: appointmentData.date,
+                            location:
+                              providerData.address.addressLine1 +
+                              ` ` +
+                              providerData.address.addressLine2 +
+                              ` ` +
+                              providerData.address.city +
+                              ` ` +
+                              providerData.address.state +
+                              ` ` +
+                              providerData.address.zipcode,
+                          });
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            mb: 1,
+                            display: "contents",
+                            fontWeight: "600",
+                            fontSize: "14px",
+                            fontFamily: "Libre Franklin",
+                          }}
+                          aria-label={"Add to calendar"}
+                        >
+                          <CalendarTodayIcon
+                            aria-hidden={"false"}
+                            sx={{ color: "#003B4A" }}
+                          />{" "}
+                          Add to calendar
+                        </Typography>
+                      </Button>
+                    </div>
+                  </Box>
+                  <Box className={styles.rowBox}>
+                    <Typography
+                      className={styles.dateBold}
+                      aria-label={"Purpose of Visit"}
+                      sx={{ width: "35%" }}
+                    >
+                      Purpose of Visit
+                    </Typography>
+                    <Typography
+                      sx={{ width: "50%" }}
+                      aria-label={appointmentData.appointmentType || "Eye exam"}
+                    >
+                      {appointmentData.appointmentType || "Eye exam"}
+                    </Typography>
+                  </Box>
+                </CardContent>
+                <Box
+                  sx={{
+                    width: "0",
+                    height: "212px",
+                    border: "1px solid #A4A4A4",
+                    transform: "rotate(0deg)",
+                    margin: "24px 0px",
+                  }}
+                />
+                <CardContent
+                  sx={{
+                    padding: "24px 24px 24px 8px",
+                    textAlign: "-moz-center",
+                    width: "48%",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: "Bw Nista Geometric DEMO",
+                      fontSize: "26px",
+                      lineHeight: "32px",
+                      color: "#003B4A",
+                      marginBottom: "14px",
+                    }}
+                  >
+                    Patient Information
+                  </Typography>
+                  <Box className={styles.rowBox}>
+                    <Typography
+                      sx={{
+                        fontFamily: "Libre Franklin",
+                        fontWeight: 700,
+                        fontSize: "16px",
+                        lineHeight: "24px",
+                        color: "#000000",
+                        width: "20%",
+                      }}
+                    >
+                      Name
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontFamily: "Libre Franklin",
+                        fontWeight: 600,
+                        fontSize: "16px",
+                        lineHeight: "24px",
+                        color: "#003B4A",
+                        width: "60%",
+                      }}
+                    >
+                      {getName()}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card variant="outlined" className={styles.cardDate}>
+                <CardContent
+                  sx={{
+                    px: { xs: 3, md: 3 },
+                    py: { xs: 3, md: 3 },
+                    textAlign: "-moz-center",
+                  }}
+                >
+                  <Typography
+                    className={styles.dateBold}
+                    sx={{ pb: 2 }}
+                    aria-label={appointmentData?.date}
+                    tabIndex={"0"}
+                  >
+                    {formatAppointmentDate(appointmentData.date)}
+                  </Typography>
+
+                  <div style={{ display: "inline-flex" }}>
+                    <Button
+                      className={styles.addCalendarButton}
+                      sx={{
+                        backgroundColor: "#EEF5F7",
+                        mb: 2,
+                      }}
+                      onClick={() => {
+                        onAddToCalendarClicked({
+                          name: "ECP Appointment",
+                          description: `Patient: ${getName()}, Purpose of Visit: ${
+                            appointmentData.appointmentType
+                          }`,
+                          date: appointmentData.date,
+                          location:
+                            providerData.address.addressLine1 +
+                            ` ` +
+                            providerData.address.addressLine2 +
+                            ` ` +
+                            providerData.address.city +
+                            ` ` +
+                            providerData.address.state +
+                            ` ` +
+                            providerData.address.zipcode,
+                        });
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          display: "inline-flex",
+                          width: "150px",
+                          fontWeight: "600",
+                          fontSize: "14px",
+                          fontFamily: "Libre Franklin",
+                          alignItems: "flex-end",
+                          justifyContent: "center",
+                        }}
+                        aria-label={"Add to calendar"}
+                      >
+                        <CalendarTodayIcon
+                          aria-hidden={"false"}
+                          sx={{ color: "#003B4A", marginRight: "5px" }}
+                        />
+                        Add to calendar
+                      </Typography>
+                    </Button>
+                  </div>
+
+                  <Typography
+                    className={styles.dateBold}
+                    aria-label={"Purpose of Visit"}
+                    tabIndex={"0"}
+                  >
+                    Purpose of Visit
+                  </Typography>
+                  <Typography
+                    aria-label={appointmentData.appointmentType || "Eye exam"}
+                    tabIndex={"0"}
+                    sx={{
+                      fontFamily: "Libre Franklin",
+                    }}
+                  >
+                    {appointmentData.appointmentType || "Eye exam"}
+                  </Typography>
+                </CardContent>
+              </Card>
+            )}
 
             <Card variant="outlined" className={styles.card}>
               <CardContent sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
                 <Stack spacing={2}>
-                  <Grid container sx={{ placeContent: "center" }}>
+                  <Grid
+                    container
+                    sx={{ placeContent: isOPH ? "flex-start" : "center" }}
+                  >
                     <Grid>
+                      {isOPH && (
+                        <Typography
+                          sx={{
+                            fontFamily: "Bw Nista Geometric DEMO",
+                            fontSize: "26px",
+                            lineHeight: "32px",
+                            color: "#003B4A",
+                            marginBottom: "14px",
+                          }}
+                        >
+                          Physician
+                        </Typography>
+                      )}
                       <ProviderProfile
                         tabIndex={0}
                         variant={"appointment"}
@@ -319,36 +529,40 @@ export default function ModalConfirmContent({
               </CardContent>
             </Card>
 
-            <Card variant="outlined" className={styles.cardPatient}>
-              <CardContent sx={{ px: { xs: 3, md: 3 }, py: { xs: 3, md: 3 } }}>
-                <Typography
-                  className={styles.patientBoxLabel}
-                  sx={{ mb: 2 }}
-                  aria-label={"Patient Information heading"}
-                  aria-roledescription="Heading"
-                  tabIndex={"0"}
-                >
-                  {t("patientInformation")}
-                </Typography>
-
-                <LabelWithInfo
-                  label="Name"
-                  sxRow={{ justifyContent: "unset" }}
-                  sxText={{ color: colors.darkGreen, fontSize: "16px" }}
+            {!isOPH && (
+              <Card variant="outlined" className={styles.cardPatient}>
+                <CardContent
+                  sx={{ px: { xs: 3, md: 3 }, py: { xs: 3, md: 3 } }}
                 >
                   <Typography
-                    variant="bodyMedium"
-                    sx={{
-                      color: colors.darkGreen,
-                      fontFamily: "Libre Franklin",
-                    }}
+                    className={styles.patientBoxLabel}
+                    sx={{ mb: 2 }}
+                    aria-label={"Patient Information heading"}
+                    aria-roledescription="Heading"
                     tabIndex={"0"}
                   >
-                    {getName()}
+                    {t("patientInformation")}
                   </Typography>
-                </LabelWithInfo>
-              </CardContent>
-            </Card>
+
+                  <LabelWithInfo
+                    label="Name"
+                    sxRow={{ justifyContent: "unset" }}
+                    sxText={{ color: colors.darkGreen, fontSize: "16px" }}
+                  >
+                    <Typography
+                      variant="bodyMedium"
+                      sx={{
+                        color: colors.darkGreen,
+                        fontFamily: "Libre Franklin",
+                      }}
+                      tabIndex={"0"}
+                    >
+                      {getName()}
+                    </Typography>
+                  </LabelWithInfo>
+                </CardContent>
+              </Card>
+            )}
 
             <Card variant="outlined" className={styles.cardFormDocument}>
               <Stack direction={"row"}>
@@ -395,6 +609,50 @@ export default function ModalConfirmContent({
                 {`Complete Forms`}
               </StyledButton>
             </Card>
+
+            {isOPH && (
+              <Card variant="outlined" className={styles.cardFormDocument}>
+                <Stack direction={"row"}>
+                  <Typography
+                    variant="caption"
+                    className={styles.textStyle}
+                    aria-label={
+                      "Use our secured third party tool to pay your invoice now!"
+                    }
+                    tabIndex={0}
+                  >
+                    Use our secured third party tool to pay your invoice now!
+                  </Typography>
+                </Stack>
+                <Button
+                  sx={{
+                    backgroundColor: "#FFFFFF",
+                    border: "1px solid #003B4A",
+                    borderRadius: "30px",
+                    textTransform: "inherit",
+                    color: "#007E8F",
+                    fontSize: "16px",
+                    padding: "7px 14px",
+                  }}
+                  data-testid="pay-invoice-btn"
+                  tabindex="0"
+                  aria-live={"polite"}
+                  aria-label={"Pay Invoice"}
+                  onClick={() => {
+                    router.push(`/patient/pay-my-bill`);
+                  }}
+                >
+                  <Stack sx={{ marginRight: "8px", alignSelf: "center" }}>
+                    <AttachMoneyIcon
+                      width={24}
+                      height={24}
+                      sx={{ color: "#003B4A", cursor: "pointer" }}
+                    />
+                  </Stack>
+                  {`Pay Invoice`}
+                </Button>
+              </Card>
+            )}
 
             {isLoggedIn || isModalRegistered ? (
               <div className={styles.okButtonRow}>

@@ -487,7 +487,7 @@ export default function MessagingPage() {
   const getDigitalAssetData = () => {
     let assets = [];
     if (addAttachmentsSource.length > 0) {
-      addAttachmentsSource.map((item) => {
+      addAttachmentsSource.forEach((item) => {
         const newData = {
           _id: item._id,
           name: item.name,

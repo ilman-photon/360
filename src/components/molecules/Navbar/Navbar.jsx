@@ -20,19 +20,20 @@ const iconHealthRecord = "/iconCarePlanRecord.png";
 const iconCarePlan = "/icon-carePlan.png";
 const iconPrescription2 = "/icon-prescription2.png";
 const iconTestLabResults = "/icon-testLabResults.png";
+const iconPayBillInvoices = "/iconPayBillInvoices.png";
+const iconInvoiceHistory = "/iconInvoiceHistory.png";
 const iconDoctor = "/doctorMenu.png";
 const iconAppointments = "/appointmentsMenu.png";
 
 const pages = [{ href: "/patient", label: "Dashboard" }];
 
-const pagesNext = [
-  {
-    href: "/patient/my-care-team",
-    additional: "/patient/bio/",
-    label: "My Care Team",
-  },
-  { href: "/patient/messaging", label: "Messaging" },
-];
+const myCareTeam = {
+  href: "/patient/my-care-team",
+  additional: "/patient/bio/",
+  label: "My Care Team",
+};
+
+const messaging = { href: "/patient/messaging", label: "Messaging" };
 
 const documents = [
   {
@@ -70,6 +71,23 @@ const medical = [
   },
 ];
 
+const payMyBill = [
+  {
+    icon: iconPayBillInvoices,
+    href: `/patient/pay-my-bill?activeTab=${0}`,
+    label: "View & Pay Open Invoices",
+    width: "11px",
+    height: "18px",
+  },
+  {
+    icon: iconInvoiceHistory,
+    href: `/patient/pay-my-bill?activeTab=${1}`,
+    label: "Invoice History",
+    width: "18px",
+    height: "20px",
+  },
+];
+
 const appointments = [
   {
     icon: iconDoctor,
@@ -86,6 +104,7 @@ const appointments = [
 const Navbar = ({ isDashboard = false }) => {
   const [anchorHealth, setAnchorHealth] = React.useState(null);
   const [anchorDocument, setAnchorDocument] = React.useState(null);
+  const [anchorPayMyBill, setAnchorPayMyBill] = React.useState(null);
   const [anchorAppointments, setAnchorAppointments] = React.useState(null);
 
   const router = useRouter();
@@ -106,6 +125,11 @@ const Navbar = ({ isDashboard = false }) => {
   const handleOpenDocument = (event) => {
     setAnchorDocument(event.currentTarget);
   };
+
+  const handleOpenPayMyBill = (event) => {
+    setAnchorPayMyBill(event.currentTarget);
+  };
+
   const handleOpenAppointments = (event) => {
     setAnchorAppointments(event.currentTarget);
   };
@@ -117,7 +141,7 @@ const Navbar = ({ isDashboard = false }) => {
     if (typeof href === "string") router.push(href);
   };
 
-  const MenuItemLabel = (item, itemIdx) => {
+  const MenuItemLabel = (item, itemIdx, width, height) => {
     return (
       <MenuItem
         key={itemIdx}
@@ -294,23 +318,43 @@ const Navbar = ({ isDashboard = false }) => {
                   {medical.map((med, medIdx) => MenuItemLabel(med, medIdx))}
                 </Menu>
               </Box>
-
-              {pagesNext.map((page, pageIdx) => (
+              <Button
+                onClick={() => router.push(myCareTeam.href)}
+                aria-label={`${myCareTeam.label} menu`}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  textTransform: "none",
+                  display: "block",
+                  margin: "0 !important",
+                  borderRadius: "2px 2px 0px 0px",
+                  borderTop: "solid 4px transparent",
+                  paddingBottom: "1px",
+                  borderBottom:
+                    isCurrentPath(myCareTeam.href) ||
+                    isCurrentPath(myCareTeam.additional)
+                      ? "solid 4px #D9D9D9"
+                      : "solid 4px transparent",
+                }}
+              >
+                {myCareTeam.label}
+              </Button>
+              <Box>
                 <Button
-                  key={pageIdx}
-                  onClick={() => router.push(page.href)}
-                  aria-label={`${page.label} menu`}
+                  aria-label={`Pay My Bill menu`}
+                  onClick={handleOpenPayMyBill}
                   sx={{
                     my: 2,
                     color: "white",
                     textTransform: "none",
-                    display: "block",
+                    display: "flex",
                     margin: "0 !important",
                     borderRadius: "2px 2px 0px 0px",
                     borderTop: "solid 4px transparent",
                     paddingBottom: "1px",
                     borderBottom:
-                      isCurrentPath(page.href) || isCurrentPath(page.additional)
+                      isCurrentPath(pages.href) ||
+                      isCurrentPath(pages.additional)
                         ? "solid 4px #D9D9D9"
                         : "solid 4px transparent",
                     fontSize: {
@@ -318,10 +362,52 @@ const Navbar = ({ isDashboard = false }) => {
                       md: "16px",
                     },
                   }}
+                  endIcon={<ExpandMoreIcon />}
                 >
-                  {page.label}
+                  Pay My Bill
                 </Button>
-              ))}
+                <Menu
+                  sx={{ mt: "40px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorPayMyBill}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorPayMyBill)}
+                  onClose={handleCloseMenu}
+                >
+                  {payMyBill.map((bill, billIdx) =>
+                    MenuItemLabel(bill, billIdx, bill.width, bill.height)
+                  )}
+                </Menu>
+              </Box>
+              <Button
+                onClick={() => router.push(messaging.href)}
+                aria-label={`${messaging.label} menu`}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  textTransform: "none",
+                  display: "block",
+                  margin: "0 !important",
+                  borderRadius: "2px 2px 0px 0px",
+                  borderTop: "solid 4px transparent",
+                  paddingBottom: "1px",
+                  borderBottom:
+                    isCurrentPath(messaging.href) ||
+                    isCurrentPath(messaging.additional)
+                      ? "solid 4px #D9D9D9"
+                      : "solid 4px transparent",
+                }}
+              >
+                {messaging.label}
+              </Button>
 
               <Box>
                 <Button

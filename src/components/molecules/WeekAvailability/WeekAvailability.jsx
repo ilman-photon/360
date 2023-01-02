@@ -82,6 +82,8 @@ export const WeekAvailability = ({
           gridArea = `more${key}Schedule`;
           isTypeMore = true;
         }
+        const { appointmentType, appointmentTypeCode } =
+          getAppointmentTypeOnTimeSlot(scheduleData[dayNames[key]], value[i]);
         renderUI.push(
           buttonSchedule(
             value[i],
@@ -89,7 +91,8 @@ export const WeekAvailability = ({
             isTypeMore,
             `${keyWeek}-${i}-${key}-schedule-button`,
             dateWeekList[dayNames[key]],
-            getAppointmentTypeOnTimeSlot(scheduleData[dayNames[key]], value[i])
+            appointmentType,
+            appointmentTypeCode
           )
         );
       }
@@ -103,7 +106,8 @@ export const WeekAvailability = ({
     isTypeMore,
     index,
     date,
-    appointmentType
+    appointmentType,
+    appointmentTypeCode
   ) {
     if (label) {
       const appointmentCode = appointmentType;
@@ -134,7 +138,11 @@ export const WeekAvailability = ({
               if (isLabelMore) {
                 onClickViewAllAvailability();
               } else {
-                OnDayClicked({ dateTime, appointmentCode });
+                OnDayClicked({
+                  dateTime,
+                  appointmentCode,
+                  appointmentTypeCode,
+                });
               }
             }}
           >

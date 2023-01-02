@@ -625,6 +625,8 @@ export default function TableWithSort({
             {getUserStatus(ref(row, cell.valueKey))}
           </div>
         );
+      case "button-icon-text":
+        return <>{cell.children(row)}</>;
       case "text":
       default:
         return (

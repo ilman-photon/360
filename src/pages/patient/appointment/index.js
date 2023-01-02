@@ -382,6 +382,7 @@ export default function Appointment({ googleApiKey }) {
     const appointmentInfoObj = {
       ...appointmentInfo,
       appointmentType: appointment.appointmentCode,
+      appointmentTypeCode: appointment.appointmentTypeCode,
       date: appointment.dateTime,
       providerTemplate: {
         _id: providerData.providerTemplateId,

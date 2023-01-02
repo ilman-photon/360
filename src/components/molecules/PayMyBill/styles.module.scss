@@ -1,0 +1,282 @@
+.notHaveInvoiceView {
+  background-color: #f2f7f7;
+  width: 100%;
+  height: 60px;
+  padding: 16px 10px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.noResultViewContent {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  top: 155px;
+  position: relative;
+}
+
+.noResultViewMobileContent {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  padding: 40px 16px 25px;
+}
+
+.tabsContent {
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.headerCardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+  gap: 6px;
+  background: #eff6f7;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.titleHeaderCard {
+  font-size: 14px;
+  line-height: 18px;
+  color: "#003B4A";
+}
+
+.textHeaderCard {
+  font-family: "Bw Nista Geometric DEMO", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 36px;
+  color: #008294;
+}
+
+.btnIcon {
+  color: #ffffff;
+  width: 20px;
+  height: 16px;
+}
+
+.filterContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 16px;
+  gap: 15px;
+  width: 100%;
+  height: 84px;
+  background: #eff6f7;
+  border-radius: 4px;
+}
+
+.dateRangeContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.verticalLine {
+  border: 1px solid #d4d4d4;
+  width: 52px;
+  height: 0px;
+  transform: rotate(90deg);
+}
+
+.mobileContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.mobileOpenInvoiceContainer {
+  width: 100%;
+  background-color: #fff;
+}
+
+.cardContainer {
+  border-top: 2px solid #f3f3f3;
+  border-left: 2px solid #f3f3f3;
+  border-right: 2px solid #f3f3f3;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 0 16px;
+}
+
+.listInfoContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 19px 0 3px;
+}
+
+.listInfoContent:nth-last-child(2) {
+  padding: 19px 0 22px;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.subHeadingLeftText {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #003b4a;
+  width: 50%;
+}
+
+.subHeadingRightText {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #191919;
+  width: 50%;
+}
+
+.subHeadingBlueText {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0095a9;
+  width: 50%;
+}
+
+.mobileOpenBtnContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 24px 16px 16px;
+  justify-content: space-between;
+  border-bottom: 2px solid #f3f3f3;
+  border-left: 2px solid #f3f3f3;
+  border-right: 2px solid #f3f3f3;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.mobileIconContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 18.5px;
+  align-items: center;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.headerCardContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 0 0 24px;
+}
+
+.headerMobileCardContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 16px;
+}
+
+.headerBtnContainer {
+  padding: 0 0 24px;
+  align-self: center;
+  display: flex;
+}
+
+.headerMobileBtnContainer {
+  padding: 0 16px 24px 16px;
+  align-self: center;
+  display: flex;
+  width: 100%;
+}
+
+.headerMobileContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardLeftMobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px 16px 16px 20px;
+  gap: 6px;
+  background: #eff6f7;
+  border-radius: 4px;
+  width: 55%;
+}
+
+.cardRightMobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px 16px 16px 20px;
+  gap: 6px;
+  background: #eff6f7;
+  border-radius: 4px;
+  width: 45%;
+}
+
+.filterMobileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 16px;
+  gap: 15px;
+  width: 100%;
+  height: fit-content;
+  background: #eff6f7;
+  border-radius: 4px;
+}
+
+.dateRangeMobileContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.moreOptionListContent {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  position: absolute;
+  width: 240px;
+  z-index: 10;
+  border-radius: 8px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  align-items: flex-start;
+  right: 15px;
+  top: 32%;
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    top: 24%;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    top: 325px;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    top: 280px;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    top: 16px;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    top: 16px;
+  }
+}

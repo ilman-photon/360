@@ -16,6 +16,7 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
 import { colors } from "../../../styles/theme";
+
 const ForgotPassword = ({
   onBackToLoginClicked,
   showPostMessage,

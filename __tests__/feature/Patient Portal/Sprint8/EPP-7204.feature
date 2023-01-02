@@ -1,5 +1,43 @@
+@BDDSTORY-EPP-7204
+@EPP_Patient_Sprint_8
+@EPP_Sprint_8
+@P2
+@PPP_Phase_2
+@Patient_Portal
+@Payment
 Feature: Patient Portal : Outstanding Payments - Search invoices based on date range and invoice number
   User Story: As a user, I should be able to search for invoices based on date range and invoice number.
+
+  GIVEN
+  User is logged into the portal
+  And
+  User is logged in as patient
+  And
+  User has past invoices
+
+  WHEN
+  User is on open invoices tab
+
+  THEN
+  User should be able to view the option to search/filter invoices with in a particular date range
+  And
+  User should be able to view the option to search/filter invoices by invoice number
+  And
+  User should be able to enter in a valid date range to initiate the search
+  And
+  System allows date range only in the format of ‘MM/DD/YYYY’ otherwise throws the following error “Incorrect date format”.
+  And
+  User should be able to enter in an invoice number (max 50 char) to initiate the search
+  And
+  User should be able to initiate search to view list of open invoices whose ‘Date of Service’ are within that date range
+  And
+  User should be able to initiate search to view list of open invoices whose Invoice number that matches the searched invoice number
+  And
+  System lists down the invoice ordered by recent ones at the top i.e descending order of ‘Date of Service’
+  And
+  User should be able to view a message “We were not able to find any invoices. Please try with a different date range” when there are no invoices for the provided date range
+  And
+  User should be able to view a message “We were not able to find any invoices. Please try with a different invoice number” when the entered invoice number does not match the user’s list of invoice number
 
   @BDDTEST-EPP-8171
   @OutstandingPayments

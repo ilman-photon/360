@@ -206,8 +206,8 @@ export const NewMessageDialog = ({
                       id="providerName"
                       options={providerData}
                       getOptionLabel={(option) => option?.name}
-                      onChange={(event, value) => {
-                        setNameProviderValue(value, event);
+                      onChange={(_event, value) => {
+                        setNameProviderValue(value);
                       }}
                       value={nameProvider}
                       renderInput={(params) => {
