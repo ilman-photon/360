@@ -5,6 +5,7 @@ import appointment from "../store/appointment";
 import provider from "../store/provider";
 import document from "../store/document";
 import notification from "./notification";
+import payMyBill from "./payMyBill";
 import share from "../store/share";
 import accountRecovery from "./accountRecovery";
 
@@ -16,6 +17,7 @@ export const store = configureStore({
     provider,
     document,
     notification,
+    payMyBill,
     share,
     accountRecovery,
   },

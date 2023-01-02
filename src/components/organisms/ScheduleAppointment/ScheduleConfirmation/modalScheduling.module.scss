@@ -166,3 +166,17 @@
     background-color: #007e8f;
   }
 }
+
+.cardInfoOPH {
+  margin: 28px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.rowBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+}

@@ -15,7 +15,7 @@ import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 import SearchDoctorPage from "../../src/pages/patient/search-doctor";
 
-jest.setTimeout(20000);
+// jest.setTimeout(20000);
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint8/EPP-7232.feature"

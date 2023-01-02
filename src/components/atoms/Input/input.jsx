@@ -275,6 +275,24 @@ export const CustomInput = styled(({ ...props }) => {
     event.preventDefault();
   };
 
+  const DateIcon = () => {
+    return (
+      <Tooltip title={"Add Date of Birth"}>
+        <IconButton
+          aria-label={"Calendar icon"}
+          {...props.customevent}
+          edge="end"
+        >
+          {props.type !== "password" ? (
+            <VisibilityOutlinedIcon />
+          ) : (
+            <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
+          )}
+        </IconButton>
+      </Tooltip>
+    );
+  };
+
   switch (props.type) {
     case "password":
       return (
@@ -325,6 +343,9 @@ export const CustomInput = styled(({ ...props }) => {
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              components={{
+                OpenPickerIcon: DateIcon,
+              }}
               inputFormat="MM/dd/yyyy"
               disableOpenPicker={props.selectorDisabled}
               disableFuture={props.disableFuture}

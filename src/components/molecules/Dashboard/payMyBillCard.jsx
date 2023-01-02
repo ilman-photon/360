@@ -336,7 +336,7 @@ export default function PayMyBillCard() {
         />
       }
       content={renderViewUI()}
-      navRouter={"/patient"}
+      navRouter={`/patient/pay-my-bill?activeTab=${0}`}
       viewAllText={"View Bill Pay"}
     />
   );

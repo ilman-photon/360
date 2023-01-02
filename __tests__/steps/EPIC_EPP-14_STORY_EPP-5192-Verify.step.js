@@ -90,13 +90,6 @@ defineFeature(feature, (test) => {
     expect(categorySelector).toBeInTheDocument();
   };
 
-  const userSeeEmptyDocumentTable = () => {
-    const emptyTable = container.getByText(
-      "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits"
-    );
-    expect(emptyTable).toBeInTheDocument();
-  };
-
   const userSeeTable = () => {
     setTimeout(async () => {
       const tableDocument = await waitFor(() =>

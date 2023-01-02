@@ -67,10 +67,10 @@ export default function AppointmentDetails() {
 
     if (!appointmentId) return;
     getAppointmentDetails(appointmentId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => {
       setIsLoading(false);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   const handleClose = () => {

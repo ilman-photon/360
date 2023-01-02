@@ -431,7 +431,7 @@ describe("Appointment Util", () => {
         },
         "11:30am"
       )
-    ).toEqual("001");
+    ).toEqual({"appointmentType": "001", "appointmentTypeCode": undefined});
   });
 
   test("parseDateWeekList", () => {

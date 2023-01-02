@@ -16,7 +16,6 @@ import AutoAwesomeMosaicOutlinedIcon from "@mui/icons-material/AutoAwesomeMosaic
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
-import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import CarePlanIcon from "../../../assets/icons/CarePlanIcon";
 import PrescriptionIcon from "../../../assets/icons/PrescriptionIcon";
@@ -24,6 +23,7 @@ import TestLabIcon from "../../../assets/icons/TestLabIcon";
 import IntakeFormsIcon from "../../../assets/icons/IntakeFormsIcon";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import PayMyBillIcon from "../../../assets/icons/PayMyBillIcon";
 import { colors } from "../../../styles/theme";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -115,8 +115,19 @@ export default function MobileMenu({
         },
         {
           label: "Pay My Bill",
-          href: "/patient",
-          icon: <PaymentOutlinedIcon sx={{ fill: colors.darkGreen }} />,
+          submenu: [
+            {
+              label: "Open Invoices",
+              href: `/patient/pay-my-bill?activeTab=${0}`,
+              icon: "",
+            },
+            {
+              label: "Invoice History",
+              href: `/patient/pay-my-bill?activeTab=${1}`,
+              icon: "",
+            },
+          ],
+          icon: <PayMyBillIcon sx={{ fill: colors.darkGreen }} />,
         },
         {
           label: "Messaging",

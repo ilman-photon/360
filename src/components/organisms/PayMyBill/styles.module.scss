@@ -1,0 +1,183 @@
+.container {
+  background: #f4f4f4;
+  padding-bottom: 30px;
+  height: auto;
+
+  @media (min-width: 992px) and (max-height: 720px) {
+    height: 100vh;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    height: 100vh;
+  }
+
+  @media only screen and (max-width: 767px) {
+    height: 100vh;
+  }
+}
+
+.payMyBillContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 1434px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 32px 24px 24px;
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    padding: 0;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 0;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    padding: 16px;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    padding: 16px;
+  }
+}
+
+.payMyBillContent {
+  border: 1px solid #bdbdbd;
+  padding: 10px 0 15px;
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    border: unset;
+    padding: 0;
+  }
+
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    border: unset;
+    padding: 0;
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    border: unset;
+    padding: 0;
+  }
+
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+    border: unset;
+    padding: 0;
+  }
+}
+
+.payBillTableContainer {
+  height: 702px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.noMessagesContainer {
+  padding: 32px 16px;
+  width: 100%;
+}
+
+.titleTabs {
+  font-family: "Bw Nista Geometric DEMO", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 36px;
+  color: #191919;
+  padding: 32px 24px 16px;
+}
+
+.payMyBillBodyContent {
+  padding: 0px 24px 32px;
+}
+
+.payMyBillMobileBodyContent {
+  padding: 0;
+}
+
+/* Styles for Summary Detail Page */
+.summaryContainer {
+  background: #f4f4f4;
+  padding-bottom: 30px;
+  height: 100%;
+  width: 100%;
+}
+
+.btnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btnIcon {
+  color: #ffffff;
+  width: 20px;
+  height: 16px;
+}
+
+.btnContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 8px;
+  background: #007e8f;
+  border-radius: 30px;
+  height: 46px;
+  text-transform: inherit;
+}
+
+.btnText {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  width: 100%;
+  margin-top: 24px;
+  background-color: #ffffff;
+}
+
+.listInfoContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 16px 0;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.headingText {
+  font-family: "Bw Nista Geometric DEMO", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 32px;
+  color: #0095a9;
+  width: 50%;
+}
+
+.subHeadingLeftText {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #575757;
+  width: 50%;
+}
+
+.subHeadingRightText {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: #003b4a;
+  width: 50%;
+}

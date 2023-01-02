@@ -52,7 +52,7 @@ const getMessageReceipientsData = (messagesData) => {
 
 export const messageParser = (data = []) => {
   let newData = [];
-  data.map((item) => {
+  data.forEach((item) => {
     const objData = {
       _created: item._created,
       _createdBy: item._createdBy,

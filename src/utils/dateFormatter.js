@@ -55,6 +55,24 @@ export function formatAppointmentDate(date) {
   }
 }
 
+export function formatAppointmentDateWithoutTime(date) {
+  if (!date) {
+    return "-";
+  } else {
+    const momentDate = new moment(date);
+    return momentDate.format("dddd, MMM DD, YYYY");
+  }
+}
+
+export function formatAppointmentTime(date) {
+  if (!date) {
+    return "-";
+  } else {
+    const momentDate = new moment(date);
+    return momentDate.format("h:mm A");
+  }
+}
+
 export function formatRescheduleDate(date) {
   if (!date) {
     return "-";
