@@ -51,6 +51,7 @@ import EducationMaterialCard from "../../components/molecules/Dashboard/educatio
 import { mmddyyDateFormat } from "../../utils/dateFormatter";
 import ModalConfirmation from "../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import { handleCreateAppointment } from "./schedule-appointment";
+import { resetShareData, setShowToastMessage } from "../../store/share";
 import { addToCalendar } from "../../utils/addToCalendar";
 
 export async function getStaticProps() {
@@ -309,8 +310,11 @@ export default function HomePage({ googleApiKey }) {
         isShow: false,
         message: "",
       });
+      dispatch(setShowToastMessage(false));
+      dispatch(resetShareData());
     }, 3000);
   }
+
   function renderFirstColumn() {
     const prescriptionUI = (
       <Grid
@@ -326,6 +330,7 @@ export default function HomePage({ googleApiKey }) {
           prescriptionData={prescriptionData}
           onViewPrescriptions={onViewPrescriptions}
           renderRirstOnly={true}
+          onHandleSuccessShare={onHandleSuccessShare}
         />
       </Grid>
     );
@@ -563,7 +568,7 @@ export default function HomePage({ googleApiKey }) {
                 paddingLeft: { xs: "16px !important", md: "24px !important" },
               }}
             >
-              <HealthRecordCard />
+              <HealthRecordCard onHandleSuccessShare={onHandleSuccessShare} />
             </Grid>
             <Grid
               item

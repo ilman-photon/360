@@ -35,12 +35,12 @@ export function getDynamicShareContent(data) {
         <>
           <Box sx={{ width: "100%" }} className={styles.dialogSubContent}>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={5.5}>
                 <Typography className={styles.prescriptionTitle} tabIndex={0}>
                   {`Prescribed on: ${data.date}`}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6.5}>
                 <Typography className={styles.prescriptionBold} tabIndex={0}>
                   Prescribed by: &nbsp;
                   <Typography className={styles.prescriptionMedium}>
@@ -131,6 +131,9 @@ export function getDynamicShareContent(data) {
         </>
       );
     case "care-plan":
+      const formatDate = data.date
+        ? moment(data.date).format("DD/MM/YYYY")
+        : "";
       return (
         <>
           <Box sx={{ width: "100%" }} className={styles.dialogSubContent}>
@@ -144,7 +147,7 @@ export function getDynamicShareContent(data) {
                 <Typography className={styles.prescriptionBold} tabIndex={0}>
                   Date: &nbsp;
                   <Typography className={styles.prescriptionMedium}>
-                    {data.date}
+                    {formatDate}
                   </Typography>
                 </Typography>
               </Grid>
@@ -217,7 +220,6 @@ function ShareModal() {
         dispatch(setFailureCallback(() => {}));
       }
     }
-    dispatch(resetShareData());
   };
 
   const inputStyle = {
@@ -233,7 +235,7 @@ function ShareModal() {
     },
     ".MuiInputLabel-root": {
       fontSize: "16px",
-      color: "#303030",
+      color: "#303030 !important",
       fontStyle: "normal",
       fontWeight: "400",
     },
@@ -251,6 +253,7 @@ function ShareModal() {
         maxWidth="md"
         aria-label={shareModalData?.title}
         role={"alertdialog"}
+        className={styles.dialogContainer}
       >
         <DialogTitle
           id="share-dialog-title"
@@ -258,7 +261,11 @@ function ShareModal() {
             marginBottom: "16px",
           }}
         >
-          <Box aria-label={`${shareModalData?.title} heading`} tabIndex={0}>
+          <Box
+            aria-label={`${shareModalData?.title} heading`}
+            tabIndex={0}
+            className={styles.dialogShareHeader}
+          >
             <Typography className={styles.dialogTitle}>
               {shareModalData?.title}
             </Typography>
@@ -345,101 +352,101 @@ function ShareModal() {
               </Typography>
             </Stack>
           </Stack>
-        </DialogContent>
-
-        <DialogActions
-          sx={{
-            width: "100%",
-            padding: "0 16px 16px",
-          }}
-        >
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-            style={{
+          <DialogActions
+            sx={{
               width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              gap: "16px",
+              padding: "16px 0 0 0",
             }}
           >
-            <Controller
-              name="email"
-              control={control}
-              defaultValue=""
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <StyledInput
-                    aria-label="Email, Direct Email or Phone"
-                    label="Email, Direct Email or Phone"
-                    id="email"
-                    maxLength={254}
-                    variant="filled"
-                    value={value}
-                    data-testid={"share-email"}
-                    onChange={(event) => {
-                      onChange(event);
-                    }}
-                    sx={{ ...inputStyle }}
-                    error={!!error}
-                    helperText={error ? error.message : null}
-                  />
-                );
-              }}
-            />
-            <Controller
-              name="message"
-              control={control}
-              defaultValue=""
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <StyledInput
-                    aria-label="Message subject"
-                    label="Message subject"
-                    id="message"
-                    maxLength={254}
-                    variant="filled"
-                    value={value}
-                    data-testid={"share-message"}
-                    onChange={(event) => {
-                      onChange(event);
-                    }}
-                    sx={{ ...inputStyle }}
-                    error={!!error}
-                    helperText={error ? error.message : null}
-                  />
-                );
-              }}
-            />
-            <StyledButton
-              theme="patient"
-              mode="primary"
-              size="small"
-              type="submit"
-              gradient={false}
-              data-testid="share-btn"
-              aria-label={"Share"}
-              className={styles.shareButton}
-              sx={{
-                marginTop: "16px",
-                padding: "13px 20px",
-                width: "162px",
-                alignSelf: "end",
-                "@media screen and (max-width: 768px)": {
-                  width: "100%",
-                },
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
               }}
             >
-              Share
-            </StyledButton>
-          </form>
-        </DialogActions>
+              <Controller
+                name="email"
+                control={control}
+                defaultValue=""
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      aria-label="Email, Direct Email or Phone"
+                      label="Email, Direct Email or Phone"
+                      id="email"
+                      maxLength={254}
+                      variant="filled"
+                      value={value}
+                      data-testid={"share-email"}
+                      onChange={(event) => {
+                        onChange(event);
+                      }}
+                      required
+                      sx={{ ...inputStyle }}
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+              />
+              <Controller
+                name="message"
+                control={control}
+                defaultValue=""
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      aria-label="Message subject"
+                      label="Message subject"
+                      id="message"
+                      maxLength={254}
+                      variant="filled"
+                      value={value}
+                      data-testid={"share-message"}
+                      onChange={(event) => {
+                        onChange(event);
+                      }}
+                      sx={{ ...inputStyle }}
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+              />
+              <StyledButton
+                theme="patient"
+                mode="primary"
+                size="small"
+                type="submit"
+                gradient={false}
+                data-testid="share-btn"
+                aria-label={"Share"}
+                className={styles.shareButton}
+                sx={{
+                  marginTop: "16px",
+                  padding: "13px 20px",
+                  width: "162px",
+                  alignSelf: "end",
+                  "@media screen and (max-width: 768px)": {
+                    width: "100%",
+                  },
+                }}
+              >
+                Share
+              </StyledButton>
+            </form>
+          </DialogActions>
+        </DialogContent>
       </Dialog>
     </>
   );

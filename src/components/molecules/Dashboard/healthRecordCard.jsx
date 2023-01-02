@@ -29,10 +29,17 @@ import {
   setModalContent,
   setOpenModal,
   setShareModalData,
+  setSuccessCallback,
 } from "../../../store/share";
 import { getDynamicShareContent } from "../../organisms/ShareModal/shareModal";
 
-export function shareDocument(selectedData, dispatch) {
+export function shareDocument(
+  selectedData,
+  dispatch,
+  onHandleSuccessShare = () => {
+    //This is intentional
+  }
+) {
   //Handle for Care plan only
   const shareContent = getDynamicShareContent({
     type: "health-record",
@@ -48,6 +55,7 @@ export function shareDocument(selectedData, dispatch) {
   dispatch(setShareModalData(shareData));
   dispatch(setOpenModal(true));
   dispatch(setModalContent(shareContent));
+  dispatch(setSuccessCallback(onHandleSuccessShare));
 }
 
 export function parseHealthRecordData(documentList, rows) {
@@ -71,7 +79,11 @@ export function parseHealthRecordData(documentList, rows) {
   return healthRecordTemp;
 }
 
-export default function HealthRecordCard() {
+export default function HealthRecordCard({
+  onHandleSuccessShare = () => {
+    //This is intentional
+  },
+}) {
   const [healthRecordData, setHealthRecordData] = React.useState({});
   const isDesktop = useMediaQuery("(min-width: 700px)");
   const iconPrescription = "/icon-Health-Record.png";
@@ -129,7 +141,7 @@ export default function HealthRecordCard() {
         handleAssetDownload(healthRecordData.digital_assets?._id, true);
       },
       () => {
-        shareDocument(healthRecordData, dispatch);
+        shareDocument(healthRecordData, dispatch, onHandleSuccessShare);
       },
       ["download", "print", "share"],
       styles.butttonIconContainer,

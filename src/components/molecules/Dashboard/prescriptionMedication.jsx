@@ -29,7 +29,6 @@ import {
   setModalContent,
   setOpenModal,
   setShareModalData,
-  setSuccessCallback,
 } from "../../../store/share";
 import { useDispatch } from "react-redux";
 
