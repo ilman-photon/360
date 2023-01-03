@@ -41,14 +41,12 @@ import {
   updateProviderTimeSchedule,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
-import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
 import { TEST_ID } from "../../../utils/constants";
 import { fetchAllPayers } from "../../../store/provider";
 import NearMeOutlinedIcon from "@mui/icons-material/NearMeOutlined";
 import { useTranslation } from "next-i18next";
 import { getCity } from "../../../utils/getCity";
-import { mmddyyDateFormat } from "../../../utils/dateFormatter";
 
 export async function getStaticProps() {
   return {

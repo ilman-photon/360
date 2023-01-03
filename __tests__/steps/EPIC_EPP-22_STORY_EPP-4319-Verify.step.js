@@ -236,13 +236,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -289,13 +288,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -342,13 +340,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -395,13 +392,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -448,13 +444,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -499,13 +494,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -552,13 +546,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -603,13 +596,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -660,13 +652,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -713,13 +704,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -771,13 +761,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -805,7 +794,8 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the appropriate error message", () => {
-      defaultValidation();
+      const text = container.getByText(/No Internet Connection/i);
+      expect(text).toBeInTheDocument();
     });
   });
 
@@ -815,13 +805,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -844,12 +833,13 @@ defineFeature(feature, (test) => {
       notificationDrawerOpened();
     });
 
-    and("the service is unavailable", () => {
-      defaultValidation();
+    and("the service is unavailable", async () => {
+      setInternetOffline();
     });
 
     then("user should see the appropriate error message", () => {
-      defaultValidation();
+      const text = container.getByText(/No Internet Connection/i);
+      expect(text).toBeInTheDocument();
     });
   });
 });

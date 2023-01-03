@@ -12,8 +12,6 @@ import ShareMyPageContent from "../../../../components/organisms/ShareMyPage/sha
 import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
 import { savePDF } from "@progress/kendo-react-pdf";
 import Head from "next/head";
-import { useSelector } from "react-redux";
-import { setUsernameFromQuery } from "../../update-password";
 
 export default function ShareTypePage() {
   const router = useRouter();

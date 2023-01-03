@@ -1,4 +1,3 @@
-import PrescriptionLayout from "../../../../components/templates/prescriptionLayout";
 import { Provider, useSelector } from "react-redux";
 import store from "../../../../store/store";
 import { Box, IconButton, Stack, Typography } from "@mui/material";

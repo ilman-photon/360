@@ -7,7 +7,6 @@ import styles from "./styles.module.scss";
 import FileDownloadIcon from "../../../assets/icons/FileDownload";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import { resetDocuments } from "../../../store/document";
-import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import { colors } from "../../../styles/theme";
 import { useTranslation } from "next-i18next";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";

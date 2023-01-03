@@ -6,7 +6,6 @@ import "@testing-library/jest-dom";
 import Cookies from "universal-cookie";
 import { Login } from "../../src/components/organisms/Login/login";
 import { renderWithProviders } from "../src/utils/test-util";
-import { TEST_ID } from "../../src/utils/constants";
 import { renderLogin, renderForgotPassword, clickContinueForgot, navigateToPatientPortalHome, renderAppointmentDetail } from "../../__mocks__/commonSteps";
 import UpdatePasswordPage from "../../src/pages/patient/update-password";
 import AuthPage from "../../src/pages/patient/login";
@@ -23,6 +22,8 @@ import {
 } from "../../__mocks__/mockResponse";
 import Appointments from "../../src/pages/patient/appointments";
 import InfoWindowContent from "../../src/components/organisms/Google/Maps/infoWindowContent";
+import constants from "../../src/utils/constants";
+import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
 
 const feature = loadFeature(
     "./__tests__/feature/Patient Portal/Sprint4/EPP-1553.feature"
@@ -59,6 +60,31 @@ const clickPin = () => {
         );
     });
 };
+
+const userClickPinLocationOnMap = () => {
+    var marker = new google.maps.Marker();
+    google.maps.event.trigger(marker, 'click', {
+      latLng: new google.maps.LatLng(0, 0)
+    });
+  }
+
+  const userViewTimeSlotIW = async () => {
+    const timeSlot = await waitFor(() => container.getByTestId(constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
+      .MAPS.infoWindow.timeslot))
+    expect(timeSlot).toBeInTheDocument()
+  }
+
+  const reviewAppPage = async () => {
+    container = render(
+      <Provider store={store}>
+        {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
+      </Provider>
+    );
+  };
+
+  const userViewAppointmentDetails = async () => {
+    await waitFor(() => container.getByText("Review Appointment Details"));
+  }
 
 defineFeature(feature, (test) => {
     const defaultValidation = () => {
@@ -107,19 +133,19 @@ defineFeature(feature, (test) => {
         });
 
         when('user click on pin location in Map view', () => {
-            defaultValidation();
+            userClickPinLocationOnMap();
         });
 
         then('user should see time slot for provider', async () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         and('user selected  provider with the time slot available', () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         then('user land to Review Appointnment detail page', () => {
-            defaultValidation();
+            reviewAppPage();
         });
     });
 
@@ -165,19 +191,19 @@ defineFeature(feature, (test) => {
         });
 
         when('user click on pin location in Map view', () => {
-            // clickPin();
+            userClickPinLocationOnMap();
         });
 
         then('user should see time slot for provider', async () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         and('user selected provider with the time slot available', () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         then('user lands onto Review Appointnment detail page', () => {
-            defaultValidation();
+           reviewAppPage();
         });
 
         and('user should see option to change the selected provider to another provider', () => {
@@ -229,23 +255,24 @@ defineFeature(feature, (test) => {
         });
 
         when('user click on pin location in Map view', () => {
-            defaultValidation();
+            userClickPinLocationOnMap();
         });
 
         then('user should see time slot for provider', async () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         and('user selected provider with the time slot available', () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         then('user lands onto Review Appointnment detail page', () => {
-            defaultValidation();
+           reviewAppPage();
         });
 
         and('user should see option to change the selected location to another location', () => {
-            defaultValidation();
+            const editBtn = container.getAllByTestId("schedule_appointment_details_edit_button")[0];
+            fireEvent.click(editBtn);
         });
     });
 
@@ -293,23 +320,24 @@ defineFeature(feature, (test) => {
         });
 
         when('user click on pin location in Map view', () => {
-            defaultValidation();
+            userClickPinLocationOnMap();
         });
 
         then('user should see time slot for provider', async () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         and('user selected provider with the time slot available', () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         then('user lands onto Review Appointnment detail page', () => {
-            defaultValidation();
+           reviewAppPage();
         });
 
         and(/^user should see option to change the selected "(.*)" to another date and time$/, () => {
-            defaultValidation();
+            const editBtn = container.getAllByTestId("schedule_appointment_details_edit_button")[1];
+            fireEvent.click(editBtn);
         });
     });
 
@@ -355,23 +383,24 @@ defineFeature(feature, (test) => {
         });
 
         when('user click on pin location in Map view', () => {
-            defaultValidation();
+            userClickPinLocationOnMap();
         });
 
         then('user should see time slot for provider', async () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         and('user selected provider with the time slot available', () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         then('user lands onto Review Appointnment detail page', () => {
-            defaultValidation();
+           reviewAppPage();
         });
 
         and(/^user should see option to change the selected "(.*)" one to other$/, () => {
-            defaultValidation();
+            const editBtn = container.getAllByTestId("schedule_appointment_details_edit_button")[1];
+            fireEvent.click(editBtn);
         });
     });
 
@@ -417,31 +446,35 @@ defineFeature(feature, (test) => {
         });
 
         when('user click on pin location in Map view', () => {
-            defaultValidation();
+            userClickPinLocationOnMap();
         });
 
         then('user should see time slot for provider', async () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         and('user selected provider with the time slot available', () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         then('user lands onto Review Appointnment detail page', () => {
-            defaultValidation();
+           reviewAppPage();
         });
 
         when('user should see option Date and Time,Insurance , purpose of visit', () => {
-            defaultValidation();
+            expect(container.getAllByLabelText("Date and time")[0]).toBeInTheDocument();
+            expect(container.getAllByLabelText("Insurance")[0]).toBeInTheDocument();
+            expect(container.getAllByLabelText("Purpose of visit")[0]).toBeInTheDocument();
         });
 
         and('user should click on continue button', () => {
-            defaultValidation();
+            const continueBtn = container.getAllByTestId("schedule_appointment_step2_button")[0];
+            fireEvent.click(continueBtn);
         });
 
         then('user should see option to schedule the appointment', () => {
-            defaultValidation();
+            const continueBtn = container.getAllByTestId("schedule_appointment_step2_button")[0];
+            expect(continueBtn).toBeInTheDocument();
         });
     });
 
@@ -487,23 +520,24 @@ defineFeature(feature, (test) => {
         });
 
         when('user click on pin location in Map view', () => {
-            expect(true).toBeTruthy();
+            userClickPinLocationOnMap();
         });
 
         then('user should see time slot for provider', async () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         and('user selected provider with the time slot available', () => {
-            defaultValidation();
+            userViewTimeSlotIW();
         });
 
         then('user lands onto Review Appointnment detail page', () => {
-            expect(true).toBeTruthy();
+            reviewAppPage();
         });
 
         and(/^user should see option to change the selected "(.*)" one to other$/, (arg0) => {
-            expect(true).toBeTruthy();
+            const editBtn = container.getAllByTestId("schedule_appointment_details_edit_button")[1];
+            fireEvent.click(editBtn);
         });
     });
 });

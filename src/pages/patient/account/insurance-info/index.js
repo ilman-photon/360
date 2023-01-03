@@ -9,7 +9,6 @@ import {
   fetchInsurance,
   postInsurance,
   removeUserInsuranceData,
-  setUserInsuranceDataById,
   updateInsurance,
 } from "../../../../store/user";
 import FormMessage from "../../../../components/molecules/FormMessage/formMessage";

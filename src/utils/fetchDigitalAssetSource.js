@@ -58,7 +58,7 @@ export const fetchSource = async (
       } else if (isOpenPdf) {
         openNewTab(response.presignedUrl);
       } else {
-        download(response.presignedUrl, newTab);
+        download(response.presignedUrl);
       }
       return {
         success: true,

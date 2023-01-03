@@ -1,7 +1,6 @@
 import * as React from "react";
 import { colors, patientTypography } from "../../../styles/theme";
 import {
-  Grid,
   Typography,
   Link,
   useMediaQuery,

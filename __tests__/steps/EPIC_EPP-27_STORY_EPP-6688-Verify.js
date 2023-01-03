@@ -114,7 +114,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user should navigates to the dashboard page", async() => {
-      defaultValidation();
+      await navigateToPatientPortalHome();
     });
   });
 
@@ -138,6 +138,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user should navigates to the dashboard page", async() => {
+      await navigateToPatientPortalHome();
       defaultValidation();
     });
 
@@ -171,8 +172,8 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and("user should navigates to the dashboard page", () => {
-      defaultValidation();
+    and("user should navigates to the dashboard page", async() => {
+      await navigateToPatientPortalHome();
     });
 
     when("user clicks on Documents menu", () => {
@@ -186,7 +187,8 @@ defineFeature(feature, (test) => {
     });
 
     when("user clicks on Education Materials", () => {
-      defaultValidation();
+      const title = container.getByText(/What Causes Floaters and Flashes in the Eye?/i);
+      expect(title).toBeInTheDocument();
     });
 
     then("user is able to view the list of education materials", () => {
