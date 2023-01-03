@@ -55,6 +55,8 @@ export default function TestLabReportCard() {
       statusStyle = styles.statusError;
     } else if (status == "natural error") {
       statusStyle = styles.statusNaturalError;
+    } else {
+      statusStyle = styles.statusDefault;
     }
     return (
       <Stack className={[styles.statusStyle, statusStyle].join(" ")}>
@@ -107,7 +109,7 @@ export default function TestLabReportCard() {
                     backgroundColor: "#F4F4F4",
                   },
                 }}
-                aria-label="health record"
+                aria-label="Test Lab"
               >
                 <TableRow>
                   {tableHeader.map((header, idx) => (
@@ -156,7 +158,7 @@ export default function TestLabReportCard() {
                       )}
                     </TableCell>
                     <TableCell tabIndex={0}>
-                      {renderStatusTestLab(orderDetails.orderDetails?.status)}
+                      {renderStatusTestLab(testLabReportData?.status)}
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -251,7 +253,7 @@ export default function TestLabReportCard() {
                   </Typography>
                 </Stack>
                 <Typography className={styles.valueStyle}>
-                  {renderStatusTestLab(orderDetails.orderDetails?.status)}
+                  {renderStatusTestLab(testLabReportData?.status)}
                 </Typography>
               </Stack>
             </Stack>

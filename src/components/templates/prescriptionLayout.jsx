@@ -44,7 +44,7 @@ export default function PrescriptionLayout({
       case "insurance-documents":
         return "Insurance Documents";
       case "health-record":
-        return "Health Record";
+        return "Health Records";
       case "test-lab-result":
         return "Test & Lab Results";
       case "care-plan-overview":

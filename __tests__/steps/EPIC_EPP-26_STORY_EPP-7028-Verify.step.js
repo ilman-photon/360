@@ -67,7 +67,7 @@ defineFeature(feature, (test) => {
   }
 
   const isHealthRecordVisible= async () => {
-    const documentMenu = container.getByText("Health Record");
+    const documentMenu = container.getAllByText("Health Records")[0];
     expect(documentMenu).toBeInTheDocument()
     fireEvent.click(documentMenu)
   }

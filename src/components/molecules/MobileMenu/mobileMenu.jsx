@@ -143,7 +143,7 @@ export default function MobileMenu({
               icon: <IntakeFormsIcon sx={{ fill: colors.darkGreen }} />,
             },
             {
-              label: "Health Record",
+              label: "Health Records",
               href: "/patient/health-record",
               icon: (
                 <Box sx={{ lineHeight: "15px" }}>
