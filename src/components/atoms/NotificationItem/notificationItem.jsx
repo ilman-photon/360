@@ -45,6 +45,7 @@ const NotificationItem = ({
           sx={{ fontWeight: 400 }}
           className={"clipped clip-3"}
           data-testid="notification-description"
+          aria-label={getDescription(data)}
         >
           {getDescription(data)}
         </Typography>
@@ -55,6 +56,7 @@ const NotificationItem = ({
           sx={{ fontWeight: 400 }}
           data-testid="notification-date"
           value={data.createdAt}
+          aria-label={getTime(data)}
         >
           {getTime(data)}
         </Typography>

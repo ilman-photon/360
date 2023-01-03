@@ -75,6 +75,7 @@ const NotificationDrawer = ({
           variant="headlineH3"
           color={colors.darkGreen}
           data-testid="notification-drawer-title"
+          tabIndex={0}
         >
           Notifications and alerts
         </Typography>
@@ -126,12 +127,14 @@ const NotificationDrawer = ({
           >
             <Typography
               variant="headlineH4"
+              tabIndex={0}
               sx={{ color: colors.darkGreen, fontWeight: 700 }}
             >
               {activeTabs === 0 ? "New" : "Read"}
             </Typography>
             {activeTabs === 0 && (
               <Typography
+                tabIndex={0}
                 variant="bodyLinkRegular"
                 sx={{
                   fontSize: "18px",
@@ -164,7 +167,11 @@ const NotificationDrawer = ({
             </div>
           ) : (
             <Box sx={{ backgroundColor: "#f2f7f7", p: 1 }}>
-              <Typography variant="headlineH4" sx={{ fontWeight: 400 }}>
+              <Typography
+                tabIndex={0}
+                variant="headlineH4"
+                sx={{ fontWeight: 400 }}
+              >
                 You have no {activeTabs === 0 ? "new" : "read"} notifications or
                 alerts
               </Typography>
