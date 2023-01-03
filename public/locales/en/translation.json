@@ -72,8 +72,8 @@
   "SetPassword":{
     "errorEmptyField": "This field is required to proceed.",
     "backButtonLink": "Back to Log in",
-    "passwordNotMatch":"Passwords do not match.",
-    "passwordNotMeetRequirements" :"Password does not meet requirements",
+    "passwordNotMatch":"Selected passwords do no match. Please review and try again.",
+    "passwordNotMeetRequirements" :"The selected password does not meet requirements. Please try again.",
     "passwordPlaceHolder": "Password",
     "confirmPasswordPlaceHolder": "Confirm Password",
     "ctaButtonLabel": "Create Account"
