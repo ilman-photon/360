@@ -27,6 +27,7 @@ export default function ScheduleAppointment({
     // This is intentional
   },
   formMessage = null,
+  isSubmitLoading,
 }) {
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
@@ -109,8 +110,9 @@ export default function ScheduleAppointment({
             isForMyself={false}
             OnClickSchedule={OnClickSchedule}
             patientData={patientData}
-            OnSubmit={OnSubmit}
+            OnSubmitClicked={OnSubmit}
             formMessage={formMessage}
+            isSubmitLoading={isSubmitLoading}
           />
         ) : null}
 

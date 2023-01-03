@@ -90,6 +90,7 @@ export const PageContent = ({
   isLoggedIn = false,
   isReschedule = false,
   dispatch,
+  isSubmitLoading,
   appointmentScheduleData = {},
   OnsetActiveStep = () => {
     // This is intentional
@@ -190,6 +191,7 @@ export const PageContent = ({
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
               formMessage={formMessage}
+              isSubmitLoading={isSubmitLoading}
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
@@ -217,7 +219,7 @@ export const PageContent = ({
             <AppointmentForm
               isForMyself={true}
               patientData={appointmentScheduleData.patientInfo}
-              OnSubmit={(v) => {
+              OnSubmitClicked={(v) => {
                 handleFormSubmit(v);
                 OnClickSchedule(v);
               }}
@@ -225,6 +227,7 @@ export const PageContent = ({
                 cookies.set("dashboardState", true, { path: "/patient" });
               }}
               formMessage={formMessage}
+              isSubmitLoading={isSubmitLoading}
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
@@ -336,6 +339,8 @@ export default function ScheduleAppointmentPage() {
   const [isReschedule, setIsReschedule] = React.useState(false);
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
+
+  const [isSubmitLoading, setIsSubmitLoading] = React.useState(false);
 
   useLeavePageConfirm({ message: "Change that you made might not be saved." });
 
@@ -471,6 +476,7 @@ export default function ScheduleAppointmentPage() {
   }
 
   const handleGuestRegister = async function (data) {
+    setIsSubmitLoading(true);
     const postBody = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -515,6 +521,7 @@ export default function ScheduleAppointmentPage() {
           })
         );
       }
+      setIsSubmitLoading(false);
     }
   };
 
@@ -661,6 +668,7 @@ export default function ScheduleAppointmentPage() {
             OnEditClicked={handleEditSchedule}
             guestRegister={handleGuestRegister}
             formMessage={formMessage}
+            isSubmitLoading={isSubmitLoading}
           />
         </div>
       </Grid>
