@@ -90,11 +90,12 @@ export default function IntakeFormPage() {
 
   const [isAdmin, setIsAdmin] = useState(false);
   const [document, setDocument] = useState([]);
+  const [submitedDocument, setSubmitedDocument] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  function handleChange(event, newValue) {
     setActiveTab(newValue);
-  };
+  }
 
   function parseJsonData(data) {
     try {
@@ -122,10 +123,62 @@ export default function IntakeFormPage() {
       });
   }
 
+  function onCallGetSubmitedForm() {
+    const api = new Api();
+    api
+      .getSubmittedFormData()
+      .then(function (response) {
+        if (response && response?.entities.length > 0) {
+          let tempData = [];
+          response?.entities.forEach((element) => {
+            const duplicateIndex = tempData.findIndex(
+              (item) => item.name === element.name
+            );
+            if (duplicateIndex != -1) {
+              const date = new Date(tempData[duplicateIndex]._created);
+              const differentDate = new Date(element._created);
+              if (differentDate.getTime() >= date.getTime()) {
+                tempData[duplicateIndex] = element;
+              }
+            } else {
+              tempData.push(element);
+            }
+          });
+
+          const submitedForm = [];
+          tempData.forEach((element) => {
+            const name = element.name?.split(".pdf") || [""];
+            const detailData = document.find(
+              (item) => item.title.indexOf(name[0]) >= 0
+            );
+            if (detailData) {
+              submitedForm.push({
+                ...detailData,
+                digitalAssetId: element.digital_assets?._id || "",
+                submitDate: new moment(element._created).format("MM/DD/YYYY"),
+              });
+            }
+          });
+          setSubmitedDocument(submitedForm);
+        }
+      })
+      .catch(function () {
+        //Handle error getAllAppointment
+      });
+  }
+
   useEffect(() => {
     onCallGetFormContent();
+    setIsAdmin(isAdminUser());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (document.length > 0) {
+      onCallGetSubmitedForm();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [document, showPostmessage]);
 
   useEffect(() => {
     if (showPostmessage) {
@@ -135,11 +188,6 @@ export default function IntakeFormPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showPostmessage]);
-
-  useEffect(() => {
-    setIsAdmin(isAdminUser());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     if (isAdmin && isMobile) {
@@ -220,7 +268,9 @@ export default function IntakeFormPage() {
         signDate: currentDate,
       };
     } else if (title.indexOf("Notice of Privacy") > -1) {
-      defaultData = {};
+      defaultData = {
+        digitalAssetId: data.digitalAssetId,
+      };
     }
 
     defaultDataKey = Object.keys(defaultData);
@@ -257,7 +307,12 @@ export default function IntakeFormPage() {
             position: "relative",
           }}
         >
-          <Stack direction={"row"}>
+          <Stack
+            direction={"row"}
+            sx={{
+              justifyContent: "space-between",
+            }}
+          >
             {isSubmit ? (
               <CheckCircleIcon
                 sx={{
@@ -279,7 +334,7 @@ export default function IntakeFormPage() {
                 fontSize: "22px",
                 lineHeight: "32px",
                 color: "#003B4A",
-                width: "90%",
+                width: isSubmit ? "55%" : "90%",
               }}
               onClick={() => {
                 if (!isSubmit) {
@@ -291,30 +346,52 @@ export default function IntakeFormPage() {
               {item.title}
             </Typography>
             {!isAdmin && (
-              <Box
-                sx={{
-                  position: "absolute",
-                  width: "30px",
-                  height: "30px",
-                  padding: "5px",
-                  right: "16px",
-                  zIndex: "5",
-                  cursor: "pointer",
-                }}
-                tabIndex={0}
-                aria-label="download button"
-                onClick={() => {
-                  onDownloadDigitalAsset(digitalAssetId);
-                }}
-                data-testid={`download-button-${idx}`}
-              >
-                <Image
-                  alt=""
-                  src={"/icon-download.png"}
-                  width={30}
-                  height={30}
-                />
-              </Box>
+              <Stack direction={"row"}>
+                {item.submitDate && (
+                  <Typography
+                    sx={{
+                      fontFamily: '"Bw Nista Geometric DEMO", sans-serif',
+                      fontStyle: "normal",
+                      fontWeight: "400",
+                      fontSize: "14px",
+                      lineHeight: "22px",
+                      color: "#003B4A",
+                      marginRight: "10px",
+                      alignSelf: "center",
+                    }}
+                    onClick={() => {
+                      if (!isSubmit) {
+                        navigateToDocument({ ...item, isSubmit });
+                      }
+                    }}
+                    tabIndex={0}
+                  >
+                    {`Submitted ${item.submitDate}`}
+                  </Typography>
+                )}
+                <Box
+                  sx={{
+                    width: "30px",
+                    height: "30px",
+                    padding: "5px",
+                    cursor: "pointer",
+                    margin: "auto 0",
+                  }}
+                  tabIndex={0}
+                  aria-label="download button"
+                  onClick={() => {
+                    onDownloadDigitalAsset(item.digitalAssetId);
+                  }}
+                  data-testid={`download-button-${idx}`}
+                >
+                  <Image
+                    alt=""
+                    src={"/icon-download.png"}
+                    width={30}
+                    height={30}
+                  />
+                </Box>
+              </Stack>
             )}
           </Stack>
 
@@ -330,7 +407,9 @@ export default function IntakeFormPage() {
                 color: "#292929",
               }}
               onClick={() => {
-                navigateToDocument(item);
+                if (!isSubmit) {
+                  navigateToDocument(item);
+                }
               }}
               tabIndex={0}
             >
@@ -381,12 +460,12 @@ export default function IntakeFormPage() {
     return renderFormList(document);
   }
 
-  const contentPrescription = () => {
-    switch (activeTab) {
+  const contentPrescription = (index) => {
+    switch (index) {
       case 0:
         return renderFormList(document);
       case 1:
-        return renderFormList([document[0]], true);
+        return renderFormList(submitedDocument, true);
       default:
         return <></>;
     }
@@ -426,12 +505,14 @@ export default function IntakeFormPage() {
               }}
             >
               <Tab
+                value={0}
                 label="All Forms"
                 {...a11yProps(0)}
                 tabIndex={0}
                 data-testid={"all-forms-intake"}
               />
               <Tab
+                value={1}
                 label="Submitted forms"
                 {...a11yProps(1)}
                 tabIndex={0}
@@ -439,7 +520,7 @@ export default function IntakeFormPage() {
               />
             </Tabs>
           </Box>
-          {contentPrescription()}
+          {contentPrescription(activeTab)}
         </Box>
       </>
     );

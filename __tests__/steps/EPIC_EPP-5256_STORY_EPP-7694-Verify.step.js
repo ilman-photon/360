@@ -15,7 +15,7 @@ import {
   createMatchMedia,
   navigateToPatientPortalHome,
 } from "../../__mocks__/commonSteps";
-import { dummyFormDocument } from "../../__mocks__/mockResponse";
+import { dummyFormDocument, submitedForm } from "../../__mocks__/mockResponse";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 const feature = loadFeature(
@@ -34,6 +34,9 @@ defineFeature(feature, (test) => {
     mock
       .onPut(`/ecp/patients/forms/editformContent`)
       .reply(200, {});
+    mock
+      .onGet(`/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=co=FORM CUSTOMIZATION))`)
+      .reply(200, submitedForm);
   });
 
   afterEach(() => {

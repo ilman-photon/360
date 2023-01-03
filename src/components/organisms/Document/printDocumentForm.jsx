@@ -23,20 +23,20 @@ export default function PrintDocumentForm({
             >
               <div style={{ width: "50%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Patient Name: {defaultDataValue.patientName}
+                  Patient Name: {defaultDataValue?.patientName || ""}
                   <br></br>
                 </p>
               </div>
               <div style={{ width: "50%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Date of Birth: {defaultDataValue.dob}
+                  Date of Birth: {defaultDataValue?.dob || ""}
                   <br></br>
                 </p>
               </div>
             </div>
             <br></br>
             <p style={{ whiteSpace: "pre-line", fontSize: "12px" }}>
-              {defaultDataValue.textInfo}
+              {defaultDataValue?.textInfo || ""}
               <br></br>
             </p>
             <div
@@ -50,13 +50,13 @@ export default function PrintDocumentForm({
               <div style={{ width: "50%" }}>
                 <p style={{ ...defaultStyle }}>
                   Patient/Legal Representative Signature:{" "}
-                  {defaultDataValue.patientName}
+                  {defaultDataValue?.patientName || ""}
                   <br></br>
                 </p>
               </div>
               <div style={{ width: "50%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Date: {defaultDataValue.signDate}
+                  Date: {defaultDataValue?.signDate || ""}
                   <br></br>
                 </p>
               </div>
@@ -73,7 +73,7 @@ export default function PrintDocumentForm({
               <br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo}
+              {defaultDataValue?.textInfo || ""}
               <br></br>
             </p>
             <p></p>
@@ -89,7 +89,7 @@ export default function PrintDocumentForm({
               Insurance Communication<br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo}
+              {defaultDataValue?.textInfo || ""}
               <br></br>
             </p>
             <p></p>
@@ -98,7 +98,7 @@ export default function PrintDocumentForm({
               Private Pay Communication<br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo2}
+              {defaultDataValue?.textInfo2 || ""}
               <br></br>
             </p>
             {/* Signed */}
@@ -113,12 +113,12 @@ export default function PrintDocumentForm({
               CONTACT LENS PRESCRIPTION RELEASE<br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo}
+              {defaultDataValue?.textInfo || ""}
               <br></br>
             </p>
             <p></p>
             <p style={{ ...defaultStyle }}>
-              Patient Signature: Date: {defaultDataValue.signDate}
+              Patient Signature: Date: {defaultDataValue?.signDate || ""}
             </p>
           </div>
         </>
@@ -132,41 +132,41 @@ export default function PrintDocumentForm({
               <br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo}
+              {defaultDataValue?.textInfo || ""}
               <br></br>
             </p>
             <p></p>
             <p style={{ ...defaultStyle }}>
-              Name: {defaultDataValue.patient1.name}
+              Name: {defaultDataValue?.patient1?.name || ""}
               <br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              Relationship: {defaultDataValue.patient1.relationship} Phone
-              number: {defaultDataValue.patient1.phoneNumber}
+              Relationship: {defaultDataValue?.patient1?.relationship || ""}{" "}
+              Phone number: {defaultDataValue?.patient1?.phoneNumber || ""}
               <br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              Name: {defaultDataValue.patient2.name}
+              Name: {defaultDataValue?.patient2?.name || ""}
               <br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              Relationship: {defaultDataValue.patient2.relationship} Phone
-              number: {defaultDataValue.patient2.phoneNumber}
+              Relationship: {defaultDataValue?.patient2?.relationship} Phone
+              number: {defaultDataValue?.patient2?.phoneNumber || ""}
               <br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              Name: {defaultDataValue.patient3.name}
+              Name: {defaultDataValue?.patient3?.name || ""}
               <br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              Relationship: {defaultDataValue.patient3.relationship} Phone
-              number: {defaultDataValue.patient3.phoneNumber}
+              Relationship: {defaultDataValue?.patient3?.relationship || ""}{" "}
+              Phone number: {defaultDataValue?.patient3?.phoneNumber || ""}
               <br></br>
             </p>
             <p>
               Is there any protected health information you would like to
               exclude from disclosure to the parties listed above? If yes, fill
-              in here: {defaultDataValue.protectionHealth}
+              in here: {defaultDataValue?.protectionHealth || ""}
               <br></br>
             </p>
             <p>
@@ -191,7 +191,7 @@ export default function PrintDocumentForm({
               Consent to Use and Disclosure<br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo}
+              {defaultDataValue?.textInfo || ""}
               <br></br>
             </p>
             <div
@@ -210,20 +210,20 @@ export default function PrintDocumentForm({
               </div>
               <div style={{ width: "30%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Relationship: {defaultDataValue.signRelationship}
+                  Relationship: {defaultDataValue?.signRelationship || ""}
                   <br></br>
                 </p>
               </div>
               <div style={{ width: "30%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Date: {defaultDataValue.signDate}
+                  Date: {defaultDataValue?.signDate || ""}
                   <br></br>
                 </p>
               </div>
             </div>
             <p></p>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo2}
+              {defaultDataValue?.textInfo2 || ""}
               <br></br>
             </p>
             <div
@@ -242,32 +242,33 @@ export default function PrintDocumentForm({
               </div>
               <div style={{ width: "30%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Relationship: {defaultDataValue.signCommunicationRelationship}
+                  Relationship:{" "}
+                  {defaultDataValue?.signCommunicationRelationship || ""}
                   <br></br>
                 </p>
               </div>
               <div style={{ width: "30%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Date: {defaultDataValue.signCommunicationDate}
+                  Date: {defaultDataValue?.signCommunicationDate || ""}
                   <br></br>
                 </p>
               </div>
             </div>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo3}
+              {defaultDataValue?.textInfo3 || ""}
               <br></br>
             </p>
             <p style={{ ...defaultStyle }}>
               Optional<br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo4} {defaultDataValue.agentName}{" "}
-              {defaultDataValue.textInfo5}
+              {defaultDataValue?.textInfo4 || ""}{" "}
+              {defaultDataValue?.agentName || ""} {defaultDataValue?.textInfo5}
               <br></br>
             </p>
             <p style={{ ...defaultStyle }}>
-              for {defaultDataValue.patientName} date of birth{" "}
-              {defaultDataValue.patientDOB}
+              for {defaultDataValue?.patientName || ""} date of birth{" "}
+              {defaultDataValue?.patientDOB || ""}
               <br></br>
             </p>
             <div
@@ -286,19 +287,20 @@ export default function PrintDocumentForm({
               </div>
               <div style={{ width: "30%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Relationship: {defaultDataValue.signOptionalRelationship}
+                  Relationship:{" "}
+                  {defaultDataValue?.signOptionalRelationship || ""}
                   <br></br>
                 </p>
               </div>
               <div style={{ width: "30%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Date: {defaultDataValue.signOptionalDate}
+                  Date: {defaultDataValue?.signOptionalDate || ""}
                   <br></br>
                 </p>
               </div>
             </div>
             <p style={{ ...defaultStyle }}>
-              {defaultDataValue.textInfo6}
+              {defaultDataValue?.textInfo6 || ""}
               <br></br>
             </p>
           </div>
@@ -310,11 +312,11 @@ export default function PrintDocumentForm({
           <div>
             <p style={{ ...defaultStyle }}>
               The undersigned parent(s) or guardian(s) of{" "}
-              {defaultDataValue.patientName}, a minor, authorizes{" "}
-              {defaultDataValue.guardian} to consent to treatment of minor{" "}
-              {defaultDataValue.patientName2} including, but not limited to,
-              instilling drops, testing, or minor procedures, when I am not
-              available in person, or immediately by a telephone call, to{" "}
+              {defaultDataValue?.patientName || ""}, a minor, authorizes{" "}
+              {defaultDataValue?.guardian || ""} to consent to treatment of
+              minor {defaultDataValue?.patientName2 || ""} including, but not
+              limited to, instilling drops, testing, or minor procedures, when I
+              am not available in person, or immediately by a telephone call, to{" "}
               {defaultDataValue.phoneNumber}
               <br></br>
             </p>
@@ -322,22 +324,22 @@ export default function PrintDocumentForm({
               <li>Persons to contact in an emergency:</li>
               <ol type="a">
                 <li>
-                  {defaultDataValue.emergency1}, Phone:
-                  {defaultDataValue.contactEmergency1}
+                  {defaultDataValue?.emergency1 || ""}, Phone:
+                  {defaultDataValue?.contactEmergency1 || ""}
                 </li>
                 <li>
-                  {defaultDataValue.emergency2}, Phone:
-                  {defaultDataValue.contactEmergency2}
+                  {defaultDataValue?.emergency2 || ""}, Phone:
+                  {defaultDataValue?.contactEmergency2 || ""}
                 </li>
               </ol>
               <li>
                 Medical concerns or any learning disabilities:{" "}
-                {defaultDataValue.medicalConcern}
+                {defaultDataValue?.medicalConcern || ""}
               </li>
-              <li>Known allergies: {defaultDataValue.knownAlergies}</li>
+              <li>Known allergies: {defaultDataValue?.knownAlergies || ""}</li>
               <li>
                 Health Insurance Plan (name and number):{" "}
-                {defaultDataValue.insurancePlan}
+                {defaultDataValue?.insurancePlan || ""}
               </li>
             </ol>
             <p></p>
@@ -352,36 +354,36 @@ export default function PrintDocumentForm({
             >
               <div style={{ width: "50%" }}>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  Father: {defaultDataValue.faterName}
+                  Father: {defaultDataValue?.faterName || ""}
                 </p>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  Business Phone: {defaultDataValue.fatherBusinessPhone}
+                  Business Phone: {defaultDataValue?.fatherBusinessPhone || ""}
                 </p>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  Home Phone: {defaultDataValue.fatherHomePhone}
+                  Home Phone: {defaultDataValue?.fatherHomePhone || ""}
                 </p>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  Address: {defaultDataValue.fatherAddress}
+                  Address: {defaultDataValue?.fatherAddress || ""}
                 </p>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  City/State/Zip: {defaultDataValue.fatherCity}
+                  City/State/Zip: {defaultDataValue?.fatherCity || ""}
                 </p>
               </div>
               <div style={{ width: "50%" }}>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  Mother: {defaultDataValue.motherName}
+                  Mother: {defaultDataValue?.motherName || ""}
                 </p>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  Business Phone: {defaultDataValue.motherBusinessPhone}
+                  Business Phone: {defaultDataValue?.motherBusinessPhone || ""}
                 </p>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  Home Phone: {defaultDataValue.motherHomePhone}
+                  Home Phone: {defaultDataValue?.motherHomePhone || ""}
                 </p>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  Address: {defaultDataValue.motherAddress}
+                  Address: {defaultDataValue?.motherAddress || ""}
                 </p>
                 <p style={{ ...defaultStyle, margin: "6px 0px" }}>
-                  City/State/Zip: {defaultDataValue.motherCity}
+                  City/State/Zip: {defaultDataValue?.motherCity || ""}
                 </p>
               </div>
             </div>
@@ -400,7 +402,7 @@ export default function PrintDocumentForm({
               </div>
               <div style={{ width: "50%" }}>
                 <p style={{ ...defaultStyle }}>
-                  Date: {defaultDataValue.signDate}
+                  Date: {defaultDataValue?.signDate || ""}
                   <br></br>
                 </p>
               </div>

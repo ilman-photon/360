@@ -61,6 +61,7 @@ export default function DocumentPage({ title }) {
   const [isUploadPDf, setIsUploadPDf] = useState(false);
   const [submitValue, setSubmitValue] = useState({});
   const [hideButtonMenu, setHideButtonMenu] = useState(false);
+  const [tempSubmitData, setTempSubmitData] = useState({});
   const defaultDataValue = useSelector(
     (state) => state.document.defaultDataValue
   );
@@ -71,7 +72,6 @@ export default function DocumentPage({ title }) {
   const intakeFormData = useSelector((state) => state.document.intakeFormData);
   const containerRef = React.useRef(null);
   const digitalAsset = new DigitalAssetsHandler();
-  let tempSubmitData = {};
 
   useEffect(() => {
     setIsAdmin(isAdminUser());
@@ -150,14 +150,14 @@ export default function DocumentPage({ title }) {
         return exportPDF(group, {
           paperSize: "A4",
           margin: 40,
-          fileName: title,
+          fileName: title.substring(0, 45),
         });
       })
       .then(async (dataUri) => {
         const pdfstr = await fetch(dataUri);
         const blobFromFetch = await pdfstr.blob();
         const blob = new Blob([blobFromFetch], { type: "application/pdf" });
-        const file = new File([blob], `${title}.pdf`, {
+        const file = new File([blob], `${title.substring(0, 45)}.pdf`, {
           type: "application/pdf",
         });
         uploadPDF(file);
@@ -166,7 +166,7 @@ export default function DocumentPage({ title }) {
 
   function onSubmit(data) {
     if (isAdmin) {
-      tempSubmitData = data;
+      setTempSubmitData(data);
     }
     setIsUploadPDf(true);
     setSubmitValue(data);
@@ -186,10 +186,11 @@ export default function DocumentPage({ title }) {
         dispatch(resetIntakeFormData());
       })
       .catch(function () {
-        setIsUploadPDf(false);
+        //Handle error
       })
       .finally(function () {
-        tempSubmitData = {};
+        setIsUploadPDf(false);
+        setTempSubmitData({});
       });
   }
 
@@ -671,6 +672,7 @@ DocumentPage.getLayout = function getLayout(page) {
       <DocumentLayout
         currentActivePage={"Insurance Communication"}
         backTitle="Back to Intake Forms"
+        isHideHeader={true}
       >
         {page}
       </DocumentLayout>
