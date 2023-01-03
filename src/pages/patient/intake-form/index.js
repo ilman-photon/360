@@ -33,7 +33,6 @@ import moment from "moment";
 import { isAdminUser } from "../../../utils/authetication";
 import { Api } from "../../api/api";
 import Image from "next/image";
-import PropTypes from "prop-types";
 import { a11yProps } from "../../../components/molecules/FilterResultContainer/filterResultContainer";
 import { colors } from "../../../styles/theme";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";

@@ -7,7 +7,6 @@ import FileDownloadIcon from "../../../assets/icons/FileDownload";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import { useEffect } from "react";
 import { resetDocuments } from "../../../store/document";
-import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import { colors } from "../../../styles/theme";
 import { useTranslation } from "next-i18next";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";

@@ -7,9 +7,9 @@ import { Provider } from "react-redux";
 import DashboardPage from "../../src/pages/patient/index";
 import { Login } from "../../src/components/organisms/Login/login";
 import store from "../../src/store/store";
-import mediaQuery from "css-mediaquery";
 import Cookies from "universal-cookie";
 import { doLogin, renderLogin } from "../../__mocks__/commonSteps";
+import App from "../../src/pages/_app";
 
 const cookies = new Cookies();
 
@@ -202,13 +202,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -242,13 +241,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -289,13 +287,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -340,13 +337,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -394,13 +390,12 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("User launch Patient Portal url", () => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", async () => {
+    given("User launch Patient Portal url", async () => {
       container = await renderLogin(container);
       await doLogin(mock, container);
+    });
+
+    when("User is logged in to the application", () => {
       userIsLoggedIn();
     });
 
@@ -419,12 +414,22 @@ defineFeature(feature, (test) => {
       userClicksNotificationBadge();
     });
 
-    and("the service is unavailable", () => {
-      defaultValidation();
+    and("the service is unavailable", async () => {
+      const headerText = /Clarkson Eyecare logo/i;
+      act(() => {
+        container = render(<App Component={DashboardPage} />);
+      });
+      await waitFor(() => container.getAllByLabelText(headerText));
+      let goOffline = new window.Event("offline");
+      act(() => {
+        window.dispatchEvent(goOffline);
+      });
+      await waitFor(() => container.getByText(/No Internet Connection/i));
     });
 
     then("user should see the appropriate error message", () => {
-      defaultValidation();
+      const text = container.getByText(/No Internet Connection/i);
+      expect(text).toBeInTheDocument();
     });
   });
 });

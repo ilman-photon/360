@@ -1,10 +1,8 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import {
-  Grid,
   Table,
   TableContainer,
-  TableHead,
   TableRow,
   Typography,
   TableCell,

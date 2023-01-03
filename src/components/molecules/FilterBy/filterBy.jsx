@@ -193,7 +193,7 @@ const FilterBy = ({
       </>
       <Box className={styles.buttonContainer}>
         <StyledButton
-          date-testId="filter-reset-button"
+          data-testId="filter-reset-button"
           theme={constants.PATIENT}
           mode={constants.SECONDARY}
           size={constants.SMALL}
@@ -208,7 +208,7 @@ const FilterBy = ({
           Reset
         </StyledButton>
         <StyledButton
-          date-testId="filter-done-button"
+          data-testId="filter-done-button"
           theme={constants.PATIENT}
           mode={constants.PRIMARY}
           size={constants.SMALL}

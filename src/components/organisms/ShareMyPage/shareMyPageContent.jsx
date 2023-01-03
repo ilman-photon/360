@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { colors, patientTypography } from "../../../styles/theme";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import BaseHeader from "../../../components/organisms/BaseHeader/baseHeader";

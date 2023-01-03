@@ -48,7 +48,6 @@ import HealthRecordCard from "../../components/molecules/Dashboard/healthRecordC
 import TestLabReportCard from "../../components/molecules/Dashboard/testLabReportCard";
 import PayMyBillCard from "../../components/molecules/Dashboard/payMyBillCard";
 import EducationMaterialCard from "../../components/molecules/Dashboard/educationMaterialCard";
-import { mmddyyDateFormat } from "../../utils/dateFormatter";
 import ModalConfirmation from "../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import { handleCreateAppointment } from "./schedule-appointment";
 import { resetShareData, setShowToastMessage } from "../../store/share";

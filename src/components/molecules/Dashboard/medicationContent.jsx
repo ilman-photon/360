@@ -1,5 +1,4 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
 import { Typography, Box, Stack, Divider } from "@mui/material";
 import styles from "./styles.module.scss";
 import MenuList from "./menuList";

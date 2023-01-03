@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Api } from "../../../../api/api";
-import DigitalAssetsHandler from "../../../../../utils/digitalAssetsHandler";
-import { fetchSource } from "../../../../../utils/fetchDigitalAssetSource";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@mui/material";

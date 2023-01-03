@@ -375,7 +375,8 @@ export default function ContactInformation({
                 },
                 pattern: {
                   value: Regex.isValidPhoneFormat,
-                  message: "The selected field is not formatted correctly. Please try again.",
+                  message:
+                    "The selected field is not formatted correctly. Please try again.",
                 },
               }}
             />
@@ -433,7 +434,8 @@ export default function ContactInformation({
                 },
                 pattern: {
                   value: Regex.emailValidation,
-                  message: "The selected field is not formatted correctly. Please try again.",
+                  message:
+                    "The selected field is not formatted correctly. Please try again.",
                 },
               }}
             />
@@ -470,7 +472,7 @@ export default function ContactInformation({
                             backgroundColor: "#FFF",
                           },
                           ".MuiFormHelperText-root.Mui-error": {
-                            fontSize: "0.75rem"
+                            fontSize: "0.75rem",
                           },
                         }}
                         inputRef={ref}
@@ -667,7 +669,8 @@ export default function ContactInformation({
                     required: "This field is required to proceed.",
                     pattern: {
                       value: Regex.isZip,
-                      message: "The selected field is not formatted correctly. Please try again.",
+                      message:
+                        "The selected field is not formatted correctly. Please try again.",
                     },
                   }}
                 />

@@ -4,7 +4,6 @@ import store from "../../../store/store";
 import { Stack } from "@mui/material";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import TableEmpty from "../../../components/atoms/TableEmpty/tableEmpty";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import EducationMaterials from "../../../components/organisms/EducationMaterials/educationMaterials";

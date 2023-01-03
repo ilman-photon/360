@@ -8,7 +8,6 @@ import {
   Grid,
   Stack,
   Typography,
-  useMediaQuery,
 } from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import AdminLayout from "../../../../components/templates/adminLayout";
