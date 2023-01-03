@@ -38,56 +38,70 @@ describe("Insurance Communication", () => {
   });
 
   test("Navigate to Consent to Treat document", () => {
-    const constentToTreat = container.getByText(/Consent to Treat • Patient Financial Responsibility • Assignment of Benefits/i)
-    fireEvent.click(constentToTreat)
+    const constentToTreat = container.getByText(
+      /Consent to Treat • Patient Financial Responsibility • Assignment of Benefits/i
+    );
+    fireEvent.click(constentToTreat);
   });
 
   test("Navigate to MEDICAL/ VISION EXAMS", () => {
-    const medicationVisionExam = container.getByText(/VISION EXAMS/i)
-    fireEvent.click(medicationVisionExam)
+    const medicationVisionExam = container.getByText(/VISION EXAMS/i);
+    fireEvent.click(medicationVisionExam);
   });
 
   test("Navigate to Insurance Communication", () => {
-    const insuranceCommunication = container.getByText(/Insurance Communication/i)
-    fireEvent.click(insuranceCommunication)
+    const insuranceCommunication = container.getByText(
+      /Insurance Communication/i
+    );
+    fireEvent.click(insuranceCommunication);
   });
-  
+
   test("Navigate to Contact Lens Prescription", () => {
-    const insuranceCommunication = container.getByText(/Contact Lens Prescription/i)
-    fireEvent.click(insuranceCommunication)
+    const insuranceCommunication = container.getByText(
+      /Contact Lens Prescription/i
+    );
+    fireEvent.click(insuranceCommunication);
   });
 
   test("Navigate to Authorization to Disclose", () => {
-    const authorizationDisclose = container.getByText(/Authorization to Disclose/i)
-    fireEvent.click(authorizationDisclose)
+    const authorizationDisclose = container.getByText(
+      /Authorization to Disclose/i
+    );
+    fireEvent.click(authorizationDisclose);
   });
 
   test("Navigate to Consent to Use and Disclosure", () => {
-    const consentToUse = container.getByText(/Consent to Use and Disclosure/i)
-    fireEvent.click(consentToUse)
+    const consentToUse = container.getAllByText(
+      /Consent to Use and Disclosure/i
+    )[0];
+    fireEvent.click(consentToUse);
   });
 
   test("Navigate to Consent to Treatment of a Minor", () => {
-    const consentToTreatment = container.getByText(/Consent to Treatment of a Minor/i)
-    fireEvent.click(consentToTreatment)
+    const consentToTreatment = container.getByText(
+      /Consent to Treatment of a Minor/i
+    );
+    fireEvent.click(consentToTreatment);
   });
 
   test("Navigate to Notice of Privacy Policies document", async () => {
-    const consentToTreatment = container.getByText(/Notice of Privacy/i)
-    fireEvent.click(consentToTreatment)
+    const consentToTreatment = container.getByText(/Notice of Privacy/i);
+    fireEvent.click(consentToTreatment);
   });
 
   test("Navigate to Consent to Treatment of a Minor", () => {
     window.matchMedia = createMatchMedia("600px");
-    localStorage.getItem = jest.fn(mockStoreAdmin)
-    const consentToTreatment = container.getByText(/Consent to Use and Disclosure/i)
-    fireEvent.click(consentToTreatment)
+    localStorage.getItem = jest.fn(mockStoreAdmin);
+    const consentToTreatment = container.getAllByText(
+      /Consent to Use and Disclosure/i
+    )[0];
+    fireEvent.click(consentToTreatment);
   });
 
   test("Navigate to Consent to Treatment of a Minor", () => {
     window.matchMedia = createMatchMedia("600px");
-    localStorage.getItem = jest.fn(mockStoreAdmin)
-    const consentToTreatment = container.getByText(/Notice of Privacy/i)
-    fireEvent.click(consentToTreatment)
+    localStorage.getItem = jest.fn(mockStoreAdmin);
+    const consentToTreatment = container.getByText(/Notice of Privacy/i);
+    fireEvent.click(consentToTreatment);
   });
 });

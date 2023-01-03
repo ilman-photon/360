@@ -37970,6 +37970,47 @@ Privacy Compliance Official`,
     ],
   },
   {
+    title: "Consent to Use and Disclosure V3",
+    description:
+      "Lörem ipsum exopugt planesamma, minis. Anamil. Mikrol suprabel halalturism reamall. Tåment eska som kanade fast tarende ifall klimatflykting. Giktiga jinas.",
+    documentUrl: {
+      digitalAsset: {},
+    },
+    formDocument: [
+      {
+        textValue: `All patients must sign consent to the use and disclosure of protected health information (PHI) for the purpose of treatment, payment and conducting the dayto-day operations of Clarkson Eyecare. Consent for Purposes of Treatment, Payment and Healthcare Operations My PHI means protected health information, including demographics information collected from me and created or received by my physician, another health care provider, a health plan, my employer or a health care clearinghouse. This PHI relates to my past, present or future physical or mental health or condition and identifies me, or there is reasonable basis to believe it identifies me.
+
+I consent to the use or disclosure of my PHI by Clarkson Eyecare for the purpose of diagnosing or providing treatment to me, obtaining payment for my healthcare bills or to conduct health care operations of Clarkson Eyecare. I understand I have the right to request a restriction as to how my PHI is used or disclosed to carry out treatment, payment or healthcare operations of the practice. Clarkson Eyecare is not required to agree to these restrictions that I may request. However, if Clarkson Eyecare agrees to a restriction that I request, the restriction is binding on Clarkson Eyecare and my physician.
+        
+I have the right to revoke this consent, in writing, at any time, except to the extent that my physician or Clarkson Eyecare has taken action in reliance on this consent.
+I request that payment of Authorized Medicare allowable benefits be made to Clarkson Eyecare for any services furnished to me by Clarkson Eyecare. I also authorize claims to be filed electronically. I authorize payment of my insurance benefits to Clarkson Eyecare. I authorize Clarkson Eyecare to release medical information concerning my illness and treatment to my insurance company. I also authorize release of my personal information to any doctor to whom I may be referred.
+        
+I understand that I am responsible for payment for all services and products. I must pay co-pays and deductibles as well as services and materials not covered by my insurance plan. Iunderstand there is a returned check fee applied to every returned check. I agree to pay an additional collection fee for all accounts not paid in the time stated on the final monthly statement. I understand verification of eligibility is not a guarantee of payment as stated by my insurance company. Clarkson Eyecare will file all insurance forms if we are a participating provider for your plan; or, will supply you with an itemized statement which you may submit to your insurance carrier. PAYMENT IN FULL IS REQUIRED AT TIME OF SERVICE.
+        
+I understand I have a right to review Clarkson Eyecare's Notice of Privacy Practices prior to signing this document. Clarkson Eyecare's Notice of Privacy Practice is available upon request at any Clarkson Eyecare office and at www.clarksoneyecare.com. The Notice of Privacy Practices describes the types of use and disclosures of my PHI that will occur in my testament, payment of my bills or in the performance of health care operations of Clarkson Eyecare. The Notice of Privacy Practices also describes my rights and Clarkson Eyecare's duties with respect to my PHI.`,
+      },
+      {
+        textValue: `Electronic Communications (Optional)
+
+        By signing below, I agree and authorize Clarkson Eyecare (and entities or individuals working on Clarkson Eyecare’s behalf) to deliver or cause to be delivered calls, text messages, and/or emails using an automatic telephone dialing system or an artificial or prerecorded voice at the number(s) and/or email address(s) I have provided to schedule an appointment, remind me I am due for an appointment, remind me of an upcoming appointment, contact me that my eyewear or contact lenses are ready, contact me regarding outstanding payments or bills due, contact me about my account, and/or provide me messages containing advertisements or telemarketing. I understand that I may be charged by my phone provider or a third party for such communications and that I can revoke my consent at any time. I understand that I am not required to provide such authorization as a condition of purchasing any property, goods, or services from Clarkson Eyecare.`,
+      },
+      {
+        textValue: `Clarkson Eyecare
+
+Privacy Compliance Official`,
+      },
+      {
+        textValue: `I hereby authorize`,
+      },
+      {
+        textValue: `to act as my agent. My agent has my consent to access medical and/or billingrecords`,
+      },
+      {
+        textValue: `I understand that in the event I may want to remove this person as my agent, I must submit a written request to Clarkson Eyecare.`,
+      },
+    ],
+  },
+  {
     title: "Authorization to Disclose Information to Those Involved in My Care",
     description:
       "Lörem ipsum autokår lagisk tevaktig. Mikroras semitet koka böcker i usperat: i kror. Trevuktiga megall, om nibelt och sevoling. Predenera bevadirat jolavingen mar täloktig. Teten nirade otorat, neret och virel.",

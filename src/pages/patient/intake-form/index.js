@@ -204,9 +204,14 @@ export default function IntakeFormPage() {
         patientName: patientName,
         patientDOB: patientDOB,
         signDate: currentDate,
-        signCommunicationDate: currentDate,
         signOptionalDate: currentDate,
       };
+      if (title.indexOf("V3") == -1) {
+        defaultData = {
+          ...defaultData,
+          signCommunicationDate: currentDate,
+        };
+      }
     } else if (title.indexOf("Consent to Treat") > -1) {
       defaultData = {
         ...DEFAULT_CONSENT_TO_TREATMENT,

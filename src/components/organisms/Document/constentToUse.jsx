@@ -12,6 +12,7 @@ export default function ConsentToUse({
   isEdit = false,
   isSubmitForm = false,
   useFormProps = null,
+  isNewForm = false,
   controlName = {
     textInfo: "textInfo",
     sign: "sign",
@@ -46,7 +47,7 @@ export default function ConsentToUse({
       <>
         <Box aria-label="Optional heading" tabIndex={0}>
           <Typography className={styles.textTitle} aria-hidden={true}>
-            Optional
+            {isNewForm ? "Designation of Agent (Optional)" : "Optional"}
           </Typography>
         </Box>
         <Stack
@@ -395,11 +396,15 @@ export default function ConsentToUse({
         isSubmitForm={isSubmitForm}
         useFormProps={useFormProps}
         isReadOnlyDate={true}
+        showDate={!isNewForm}
+        showRelationship={!isNewForm}
+        textInfoPosition={isNewForm ? "none" : "bottom"}
         controlName={{
           sign: controlName.signCommunication,
           date: controlName.signCommunicationDate,
           relationship: controlName.signCommunicationRelationship,
         }}
+        customSignText={isNewForm ? "Initial" : ""}
       />
       <Controller
         name={controlName.textInfo3}
