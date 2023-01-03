@@ -221,13 +221,11 @@ export default function Appointment({ googleApiKey }) {
       const { filters } = filterData;
       /** Check Availability */
       const findDataFilter = filterApplied.find((ft) => {
-        if (
+        return (
           filters.gender === ft.name ||
           (ft.name === "Available Today" && filters.isAvailableToday) ||
-          ft.language?.indexOf(filter.name) > -1
-        )
-          return true;
-        return false;
+          filters.language?.indexOf(ft.name) > -1
+        );
       });
       return findDataFilter;
     });
