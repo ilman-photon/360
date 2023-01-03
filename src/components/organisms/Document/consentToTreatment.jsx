@@ -43,7 +43,8 @@ export default function ConsentToTreatment({
     maxWidthDesktop = "300px",
     marginRight = "0",
     marginVertical = "10px",
-    readOnly = false
+    readOnly = false,
+    customError = {}
   ) => {
     return (
       <Controller
@@ -77,10 +78,13 @@ export default function ConsentToTreatment({
                   {
                     border: "1px solid #BDBDBD",
                   },
+                ".MuiFilledInput-root.Mui-error": {
+                  borderColor: "#B93632 !important",
+                },
                 ".MuiFormHelperText-root.Mui-error": {
-                  backgroundColor: "#F4F4F4",
                   margin: 0,
                   padding: "0 14px",
+                  ...customError,
                 },
               }}
               InputProps={{
@@ -104,7 +108,8 @@ export default function ConsentToTreatment({
     label,
     controlname,
     testId,
-    widthDesktop = "300px"
+    widthDesktop = "300px",
+    customError = {}
   ) => {
     return (
       <Controller
@@ -137,6 +142,7 @@ export default function ConsentToTreatment({
               sx={{
                 "&.MuiFormControl-root": {
                   margin: "0",
+                  ...customError,
                 },
               }}
             />
@@ -171,7 +177,7 @@ export default function ConsentToTreatment({
         <Grid
           item
           xs={12}
-          md={6.8}
+          md={6.2}
           sx={{
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
@@ -188,7 +194,8 @@ export default function ConsentToTreatment({
             "300px",
             "0",
             "10px",
-            true
+            true,
+            { backgroundColor: "#F4F4F4" }
           )}
         </Grid>
         <Grid
@@ -209,7 +216,11 @@ export default function ConsentToTreatment({
             "babysitter, guardian, etc.",
             controlName.guardian,
             "guardian-field",
-            "320px"
+            "320px",
+            "0",
+            "10px",
+            false,
+            { backgroundColor: "#F4F4F4" }
           )}
         </Grid>
         <Grid
@@ -233,7 +244,8 @@ export default function ConsentToTreatment({
             "325px",
             "10px",
             "10px",
-            true
+            true,
+            { backgroundColor: "#F4F4F4" }
           )}
           <Typography
             className={styles.minorText}
@@ -274,7 +286,9 @@ export default function ConsentToTreatment({
           {renderPhoneInput(
             "patient's telephone number",
             controlName.phoneNumber,
-            "patient-number-field"
+            "patient-number-field",
+            "300px",
+            { backgroundColor: "#F4F4F4" }
           )}
         </Grid>
       </Grid>
