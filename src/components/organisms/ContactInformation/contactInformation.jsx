@@ -375,7 +375,7 @@ export default function ContactInformation({
                 },
                 pattern: {
                   value: Regex.isValidPhoneFormat,
-                  message: "Incorrect format",
+                  message: "The selected field is not formatted correctly. Please try again.",
                 },
               }}
             />
@@ -433,7 +433,7 @@ export default function ContactInformation({
                 },
                 pattern: {
                   value: Regex.emailValidation,
-                  message: "Incorrect format",
+                  message: "The selected field is not formatted correctly. Please try again.",
                 },
               }}
             />
@@ -469,6 +469,9 @@ export default function ContactInformation({
                           ".MuiFilledInput-root": {
                             backgroundColor: "#FFF",
                           },
+                          ".MuiFormHelperText-root.Mui-error": {
+                            fontSize: "0.75rem"
+                          },
                         }}
                         inputRef={ref}
                         value={value}
@@ -488,13 +491,13 @@ export default function ContactInformation({
                 );
               }}
               rules={{
-                required: "This field is required",
+                required: "This field is required to proceed.",
                 validate: {
                   incorrectFormat: (value) => {
                     if (value) {
                       return (
                         Regex.atLeastOneAlphabet.test(value) ||
-                        "Incorrect Format"
+                        "The selected field is not formatted correctly. Please try again."
                       );
                     } else return true;
                   },
@@ -536,13 +539,13 @@ export default function ContactInformation({
                 );
               }}
               rules={{
-                required: "This field is required",
+                required: "This field is required to proceed.",
                 validate: {
                   incorrectFormat: (value) => {
                     if (value) {
                       return (
                         Regex.atLeastOneAlphabet.test(value) ||
-                        "Incorrect Format"
+                        "The selected field is not formatted correctly. Please try again."
                       );
                     } else return true;
                   },
@@ -607,7 +610,7 @@ export default function ContactInformation({
                     );
                   }}
                   rules={{
-                    required: "This field is required",
+                    required: "This field is required to proceed.",
                   }}
                 />
               </Grid>
@@ -661,10 +664,10 @@ export default function ContactInformation({
                     );
                   }}
                   rules={{
-                    required: "This field is required",
+                    required: "This field is required to proceed.",
                     pattern: {
                       value: Regex.isZip,
-                      message: "Incorrect format",
+                      message: "The selected field is not formatted correctly. Please try again.",
                     },
                   }}
                 />
@@ -694,7 +697,7 @@ export default function ContactInformation({
                   </>
                 );
               }}
-              rules={{ required: "This field is required" }}
+              rules={{ required: "This field is required to proceed." }}
             />
           </Stack>
           <Stack
