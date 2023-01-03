@@ -40,6 +40,8 @@ export function useRedirectLogin() {
     "/patient/forgot-password",
     "/patient/bio",
     "/patient/mfa",
+    "/patient/share-confirmation",
+    "/patient/shared-page",
   ];
   const isPageWithoutAuthorize = pageWithoutAuthorize.includes(router.pathname);
 

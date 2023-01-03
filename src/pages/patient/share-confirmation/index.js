@@ -9,7 +9,14 @@ import { useSelector } from "react-redux";
 import Head from "next/head";
 import { setUsernameFromQuery } from "../update-password";
 
-export default function ShareConfirmationPage() {
+export async function getServerSideProps({ query }) {
+  return {
+    props: { query },
+  };
+}
+
+export default function ShareConfirmationPage({ query }) {
+  const [isloaded, setLoaded] = useState(false);
   const [showValidation, setShowValidation] = useState(false);
   const [validationMessage, setValidationMessage] = useState({
     title: "",
@@ -22,6 +29,7 @@ export default function ShareConfirmationPage() {
   const router = useRouter();
   const shareData = useSelector((state) => state.share.shareModalData);
   const [routerData, setRouterData] = useState({});
+  const queryParam = query || {};
   /**
    * Delete this code after api service implementation
    */
@@ -81,27 +89,37 @@ export default function ShareConfirmationPage() {
   };
 
   useEffect(() => {
-    let queryParams = router.query;
-    queryParams.username = setUsernameFromQuery(router);
-    queryParams.patientUsername = setUsernameFromQuery(router);
-    const queryPatientEmail = queryParams.patientUsername;
-    const queryEmail = queryParams.username;
-    const queryToken = Number(queryParams.token);
-    const queryDocumentId = queryParams.documentId;
-    const queryDocumentType = queryParams.documentType;
+    if (isloaded) {
+      setLoaded(false);
+      queryParam.username = setUsernameFromQuery(router);
+      queryParam.patientUsername = setUsernameFromQuery(router);
+      const queryPatientEmail = queryParam.patientUsername;
+      const queryEmail = queryParam.username;
+      const queryToken = Number(queryParam.token);
+      const queryDocumentId = queryParam.documentId;
+      const queryDocumentType = queryParam.documentType;
 
-    const postBody = {
-      patientUserName: queryPatientEmail,
-      email: queryEmail,
-      token: queryToken,
-      documentId: queryDocumentId,
-      documentType: queryDocumentType,
+      const postBody = {
+        patientUserName: queryPatientEmail,
+        email: queryEmail,
+        token: queryToken,
+        documentId: queryDocumentId,
+        documentType: queryDocumentType,
+      };
+
+      setRouterData(postBody);
+      onCallValidation(postBody);
+    }
+    return () => {
+      //this is intentional
     };
 
-    setRouterData(postBody);
-    onCallValidation(postBody);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router]);
+  }, [isloaded]);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   const getValidationMessage = (isIncorrect) => {
     if (isIncorrect) {
