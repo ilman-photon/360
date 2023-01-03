@@ -219,6 +219,8 @@ export default function ModalConfirmContent({
                   }}
                 >
                   <Typography
+                    tabIndex={0}
+                    aria-label={"Exam Information title"}
                     sx={{
                       fontFamily: "Bw Nista Geometric DEMO",
                       fontSize: "26px",
@@ -231,6 +233,8 @@ export default function ModalConfirmContent({
                   </Typography>
                   <Box className={styles.rowBox}>
                     <Typography
+                      tabIndex={0}
+                      aria-label={"Date"}
                       sx={{
                         fontFamily: "Libre Franklin",
                         fontWeight: 700,
@@ -243,6 +247,7 @@ export default function ModalConfirmContent({
                       Date
                     </Typography>
                     <Typography
+                      tabIndex={0}
                       className={styles.dateBold}
                       aria-label={appointmentData?.date}
                       sx={{
@@ -255,6 +260,8 @@ export default function ModalConfirmContent({
                   </Box>
                   <Box className={styles.rowBox}>
                     <Typography
+                      tabIndex={0}
+                      aria-label="time"
                       sx={{
                         fontFamily: "Libre Franklin",
                         fontWeight: 700,
@@ -267,6 +274,7 @@ export default function ModalConfirmContent({
                       Time
                     </Typography>
                     <Typography
+                      tabIndex={0}
                       className={styles.dateBold}
                       sx={{ pb: 2, width: "50%" }}
                       aria-label={appointmentData?.date}
@@ -304,6 +312,7 @@ export default function ModalConfirmContent({
                         }}
                       >
                         <Typography
+                          tabIndex={0}
                           sx={{
                             mb: 1,
                             display: "contents",
@@ -312,6 +321,25 @@ export default function ModalConfirmContent({
                             fontFamily: "Libre Franklin",
                           }}
                           aria-label={"Add to calendar"}
+                          onClick={() => {
+                            onAddToCalendarClicked({
+                              name: "ECP Appointment",
+                              description: `Patient: ${getName()}, Purpose of Visit: ${
+                                appointmentData.appointmentType
+                              }`,
+                              date: appointmentData.date,
+                              location:
+                                providerData.address.addressLine1 +
+                                ` ` +
+                                providerData.address.addressLine2 +
+                                ` ` +
+                                providerData.address.city +
+                                ` ` +
+                                providerData.address.state +
+                                ` ` +
+                                providerData.address.zipcode,
+                            });
+                          }}
                         >
                           <CalendarTodayIcon
                             aria-hidden={"false"}
@@ -324,6 +352,7 @@ export default function ModalConfirmContent({
                   </Box>
                   <Box className={styles.rowBox}>
                     <Typography
+                      tabIndex={0}
                       className={styles.dateBold}
                       aria-label={"Purpose of Visit"}
                       sx={{ width: "35%" }}
@@ -331,6 +360,7 @@ export default function ModalConfirmContent({
                       Purpose of Visit
                     </Typography>
                     <Typography
+                      tabIndex={0}
                       sx={{ width: "50%" }}
                       aria-label={appointmentData.appointmentType || "Eye exam"}
                     >
@@ -355,6 +385,8 @@ export default function ModalConfirmContent({
                   }}
                 >
                   <Typography
+                    tabIndex={0}
+                    aria-label={"Patient Information title"}
                     sx={{
                       fontFamily: "Bw Nista Geometric DEMO",
                       fontSize: "26px",
@@ -367,6 +399,8 @@ export default function ModalConfirmContent({
                   </Typography>
                   <Box className={styles.rowBox}>
                     <Typography
+                      tabIndex={0}
+                      aria-label={"Name"}
                       sx={{
                         fontFamily: "Libre Franklin",
                         fontWeight: 700,
@@ -379,6 +413,8 @@ export default function ModalConfirmContent({
                       Name
                     </Typography>
                     <Typography
+                      tabIndex={0}
+                      aria-label={getName()}
                       sx={{
                         fontFamily: "Libre Franklin",
                         fontWeight: 600,
@@ -403,10 +439,10 @@ export default function ModalConfirmContent({
                   }}
                 >
                   <Typography
+                    tabIndex={0}
                     className={styles.dateBold}
                     sx={{ pb: 2 }}
                     aria-label={appointmentData?.date}
-                    tabIndex={"0"}
                   >
                     {formatAppointmentDate(appointmentData.date)}
                   </Typography>
@@ -449,6 +485,7 @@ export default function ModalConfirmContent({
                           justifyContent: "center",
                         }}
                         aria-label={"Add to calendar"}
+                        tabIndex={0}
                       >
                         <CalendarTodayIcon
                           aria-hidden={"false"}
@@ -489,6 +526,8 @@ export default function ModalConfirmContent({
                     <Grid>
                       {isOPH && (
                         <Typography
+                          tabIndex={0}
+                          aria-label={"Physician Title"}
                           sx={{
                             fontFamily: "Bw Nista Geometric DEMO",
                             fontSize: "26px",
@@ -657,6 +696,8 @@ export default function ModalConfirmContent({
             {isLoggedIn || isModalRegistered ? (
               <div className={styles.okButtonRow}>
                 <Button
+                  tabIndex={0}
+                  aria-label="OK"
                   type="submit"
                   variant="contained"
                   onClick={handleClose}
