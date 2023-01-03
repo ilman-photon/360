@@ -53,7 +53,7 @@ export function tableCarePlan(isDesktop) {
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
       {
-        type: "date-time",
+        type: "date",
         valueKey: "_created",
         cellProps: { align: "left", padding: "none", tabIndex: 0 },
         contentStyle: {
@@ -70,6 +70,9 @@ export function tableCarePlan(isDesktop) {
           padding: "none",
           sx: {
             textAlign: "center",
+          },
+          sxButton: {
+            background: "transparent",
           },
         },
       },

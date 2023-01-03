@@ -489,6 +489,7 @@ export default function TableWithSort({
                 color: "#003B4A",
                 background: "#EEF5F7",
                 borderRadius: "50%",
+                ...(cell.cellProps?.sxButton || {}),
               }}
               aria-label="more option"
               onClick={(event) => handleMenuClick(event, row, rowIdx)}
