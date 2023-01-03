@@ -42,7 +42,7 @@ const documents = [
     label: "Intake Forms",
   },
   {
-    label: "Health Record",
+    label: "Health Records",
     href: "/patient/health-record",
     icon: iconHealthRecord,
   },
