@@ -1,5 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 
@@ -7,6 +8,11 @@ export default function NoticeOfPrivacy({
   defaultDataValue = {},
   disableInput = false,
 }) {
+  function onDownloadDigitalAsset(id) {
+    //TO DO: will call service to download the digital asset
+    fetchSource(id);
+  }
+
   return (
     <Stack className={styles.textContainer}>
       <Typography
@@ -54,6 +60,9 @@ export default function NoticeOfPrivacy({
             tabindex="0"
             aria-live={"polite"}
             aria-label={"Download"}
+            onClick={() => {
+              onDownloadDigitalAsset(defaultDataValue.digitalAssetId);
+            }}
           >
             {`Download`}
             <Box sx={{ marginLeft: "9px", lineHeight: "15px" }}>

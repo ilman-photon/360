@@ -38965,3 +38965,5 @@ export const providerList = [
     },
   },
 ];
+
+export const submitedForm = {"count":1,"entities":[{"name":"Insurance Communication.pdf","documentType":"application/pdf","category":"FORM CUSTOMIZATION","patientId":"22d899b7-6a3f-4fef-9b77-3ec264b0fcad","status":"CREATED","digital_assets":{"_id":"4083027f-6a65-4219-a46c-29521600616a"},"_id":"9f150e0b-89b4-4566-bcd2-1f28eb9063fc","_version":"00ad3f64-c760-42a9-806d-d3554d5aa116","_created":"Jan 3, 2023, 9:45:11 AM","_updated":"Jan 3, 2023, 9:45:11 AM","_createdBy":{"_id":"a677f406-56b3-4f25-b7a5-37d9266675ba","_links":{"self":{"href":"/v1/employees/a677f406-56b3-4f25-b7a5-37d9266675ba"}}},"_links":{"self":{"href":"/v1/patients/9f150e0b-89b4-4566-bcd2-1f28eb9063fc"}}}],"_links":{"self":{"href":"/patient-management?pageNo=0&pageSize=10"}}}
