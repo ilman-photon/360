@@ -62,17 +62,17 @@ export const ProfilePhotoUploader = ({
         !Regex.isImageFile.test(slicedFileTypeFromFilePath);
       let error = {};
 
-      if (file.size > maxSize) {
+      if (isNotImage) {
+        error = {
+          success: false,
+          title: null,
+          content: "This file type is invalid. Please submit a different file.",
+        };
+      } else if (file.size > maxSize) {
         error = {
           success: false,
           title: null,
           content: `File size limit is ${max} MB`,
-        };
-      } else if (isNotImage) {
-        error = {
-          success: false,
-          title: null,
-          content: "Invalid file type",
         };
       } else {
         setLoading(true);
@@ -180,7 +180,7 @@ export const ProfilePhotoUploader = ({
                   ref={inputImage}
                   type="file"
                   data-testid={"loc_uploadProfileImage"}
-                  accept="image/png, image/gif, image/jpeg"
+                  // accept="image/png, image/gif, image/jpeg"
                   hidden
                   onChange={handleInputChange}
                 />

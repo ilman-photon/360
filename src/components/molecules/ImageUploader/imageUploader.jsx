@@ -130,14 +130,7 @@ export const ImageUploader = ({
       );
       let errorMessage = {};
 
-      if (file.size > maxSize) {
-        errorMessage = {
-          success: false,
-          title: null,
-          content: `File size limit is ${max} MB`,
-        };
-        event.target.value = null;
-      } else if (
+      if (
         !Regex.isImageFile.test(fileType) &&
         !Regex.isImageFile.test(slicedFileTypeFromFilePath)
       ) {
@@ -145,6 +138,13 @@ export const ImageUploader = ({
           success: false,
           title: null,
           content: t("invalidFileType"),
+        };
+        event.target.value = null;
+      } else if (file.size > maxSize) {
+        errorMessage = {
+          success: false,
+          title: null,
+          content: `File size limit is ${max} MB`,
         };
         event.target.value = null;
       } else {
@@ -185,7 +185,7 @@ export const ImageUploader = ({
                 ref={inputImage}
                 type="file"
                 data-testid={"loc_uploadImage"}
-                accept="image/png, image/gif, image/jpeg"
+                // accept="image/png, image/gif, image/jpeg"
                 hidden
                 onChange={handleInputChange}
               />
