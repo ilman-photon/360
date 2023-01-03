@@ -21,6 +21,7 @@ import { useRouter } from "next/router";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 import { colors } from "../../../styles/theme";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 const DisclaimerText = (data) => {
   return (
@@ -61,9 +62,10 @@ export default function AppointmentForm({
     // This is intentional
   },
   patientData = {},
-  OnSubmit = () => {
+  OnSubmitClicked = () => {
     // This is intended
   },
+  isSubmitLoading,
   OnClickSignIn = () => {
     // This is intended
   },
@@ -107,7 +109,7 @@ export default function AppointmentForm({
 
   const onSubmit = (data) => {
     OnClickSchedule(data);
-    OnSubmit(data);
+    OnSubmitClicked(data);
   };
 
   const onLogin = () => {
@@ -711,7 +713,7 @@ export default function AppointmentForm({
             ) : null}
 
             <div style={styles.divRight}>
-              <Button
+              <LoadingButton
                 data-testId="scheduleAppoinment"
                 type="submit"
                 variant="contained"
@@ -727,9 +729,10 @@ export default function AppointmentForm({
                 style={styles.continueButton}
                 role={"button"}
                 aria-label={t("scheduleAppoinment")}
+                loading={isSubmitLoading}
               >
                 {t("scheduleAppoinment")}
-              </Button>
+              </LoadingButton>
             </div>
           </form>
         </Stack>
