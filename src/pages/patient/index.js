@@ -392,6 +392,7 @@ export default function HomePage({ googleApiKey }) {
   useEffect(() => {
     if (showModalConfirmation) {
       setIsOpen(true);
+      cookies.remove("showModalConfirmation", { path: "/patient" });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showModalConfirmation]);
