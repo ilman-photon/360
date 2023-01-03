@@ -283,6 +283,7 @@ export default function DocumentPage({ title }) {
           disableInput={isAdmin}
           isEdit={isEdit}
           isSubmitForm={intakeFormData.isSubmit}
+          isNewForm={title?.indexOf("V3") > -1}
         />
       );
     } else if (title?.indexOf("Consent to Treat") > -1) {

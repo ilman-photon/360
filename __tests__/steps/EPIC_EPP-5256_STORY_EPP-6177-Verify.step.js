@@ -27,13 +27,11 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
 
-  beforeEach( () => {
+  beforeEach(() => {
     mock
       .onGet(`/ecp/patients/forms/getformContent`)
       .reply(200, dummyFormDocument);
-    mock
-      .onPut(`/ecp/patients/forms/editformContent`)
-      .reply(200, {});
+    mock.onPut(`/ecp/patients/forms/editformContent`).reply(200, {});
   });
 
   const launchBrowser = () => {
@@ -49,7 +47,7 @@ defineFeature(feature, (test) => {
     const title = container.getByText("formTitle");
     expect("formTitle").toEqual(title.textContent);
   };
-  
+
   const navigateToIntakeFormPage = async () => {
     act(() => {
       container.rerender(
@@ -71,7 +69,7 @@ defineFeature(feature, (test) => {
     act(() => {
       container.rerender(
         <Provider store={store}>
-        {DocumentPage.getLayout(<DocumentPage {...serverProps.props} />)}
+          {DocumentPage.getLayout(<DocumentPage {...serverProps.props} />)}
         </Provider>
       );
     });
@@ -79,7 +77,7 @@ defineFeature(feature, (test) => {
     const backtoIntakeFormLink = container.getByText("Back to Intake Forms");
     expect(backtoIntakeFormLink).toBeInTheDocument();
   };
-  
+
   const clickLogin = () => {
     const login = container.getByRole("button", { name: /Login/i });
     fireEvent.click(login);
@@ -88,49 +86,74 @@ defineFeature(feature, (test) => {
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
-  
-  test('EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field when open e-form Authorization to Disclose Information about my Care', ({ given, and, when, then }) => {
-    given('user launch Patient Portal url', () => {
-      launchBrowser()
+
+  test("EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field when open e-form Authorization to Disclose Information about my Care", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("user launch Patient Portal url", () => {
+      launchBrowser();
     });
 
-    and('user is logged in to the application', () => {
-      clickLogin()
+    and("user is logged in to the application", () => {
+      clickLogin();
     });
 
-    and('user lands on the dashboard', () => {
-      defaultValidation()
+    and("user lands on the dashboard", () => {
+      defaultValidation();
     });
 
-    and('user views the ‘Intake Forms\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
-      defaultValidation()
+    and(
+      "user views the ‘Intake Forms' sub-menu under the ‘Documents’ menu present as part of the global header",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    when("user click on the ‘Intake Forms’ option", () => {
+      defaultValidation();
     });
 
-    when('user click on the ‘Intake Forms’ option', () => {
-      defaultValidation()
+    then(
+      "user lands on the screen to view the list of forms that can be filled online",
+      async () => {
+        await navigateToIntakeFormPage();
+      }
+    );
+
+    when("user click on one of form", () => {
+      const consentToTreatment = container.getByText(
+        /Consent to Treatment of a Minor/i
+      );
+      fireEvent.click(consentToTreatment);
     });
 
-    then('user lands on the screen to view the list of forms that can be filled online', async () => {
-      await navigateToIntakeFormPage()
+    then("user should see field that open to edit", async () => {
+      await navigateToDocumentPage(
+        "Consent to Treatment of a Minor When Parent/Guardiansare Temporarily Unavailable"
+      );
+      const text = container.getAllByText(
+        /Consent to Treatment of a Minor When/i
+      )[0];
+      expect(text).toBeInTheDocument();
     });
 
-    when('user click on one of form', () => {
-      const consentToTreatment = container.getByText(/Consent to Treatment of a Minor/i)
-      fireEvent.click(consentToTreatment)
-    });
+    and("user fill on that field below", (table) => {
+      const name = container
+        .getByTestId("emergency-name-field")
+        .querySelector("input");
+      const name2 = container
+        .getAllByTestId("emergency-name2-field")[0]
+        .querySelector("input");
 
-    then('user should see field that open to edit', async () => {
-      await navigateToDocumentPage("Consent to Treatment of a Minor When Parent/Guardiansare Temporarily Unavailable")
-      const text = container.getAllByText(/Consent to Treatment of a Minor When/i)[0]
-      expect(text).toBeInTheDocument()
-    });
-
-    and('user fill on that field below', (table) => {
-      const name = container.getByTestId("emergency-name-field").querySelector('input');
-      const name2 = container.getAllByTestId("emergency-name2-field")[0].querySelector('input');
-
-      const phone = container.getByTestId("emergency1-number-field").querySelector('input');
-      const phone2 = container.getAllByTestId("emergency2-number-field")[0].querySelector('input');
+      const phone = container
+        .getByTestId("emergency1-number-field")
+        .querySelector("input");
+      const phone2 = container
+        .getAllByTestId("emergency2-number-field")[0]
+        .querySelector("input");
 
       fireEvent.change(name, { target: { value: "Test1" } });
       expect(name.value).toEqual("Test1");
@@ -146,136 +169,187 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field when open e-form Consent to Treat Minor', ({ given, and, when, then }) => {
-    given('user launch Patient Portal url', () => {
-      launchBrowser()
+  test("EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field when open e-form Consent to Treat Minor", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("user launch Patient Portal url", () => {
+      launchBrowser();
     });
 
-    and('user is logged in to the application', () => {
-      clickLogin()
+    and("user is logged in to the application", () => {
+      clickLogin();
     });
 
-    and('user lands on the dashboard', () => {
-      defaultValidation()
+    and("user lands on the dashboard", () => {
+      defaultValidation();
     });
 
-    and('user views the ‘Intake Forms\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
-      defaultValidation()
+    and(
+      "user views the ‘Intake Forms' sub-menu under the ‘Documents’ menu present as part of the global header",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    when("user click on the ‘Intake Forms’ option", () => {
+      defaultValidation();
     });
 
-    when('user click on the ‘Intake Forms’ option', () => {
-      defaultValidation()
+    then(
+      "user lands on the screen to view the list of forms that can be filled online",
+      async () => {
+        await navigateToIntakeFormPage();
+      }
+    );
+
+    when("user click on one of form", () => {
+      const consentToTreatment = container.getByText(
+        /Consent to Treatment of a Minor/i
+      );
+      fireEvent.click(consentToTreatment);
     });
 
-    then('user lands on the screen to view the list of forms that can be filled online', async () => {
-      await navigateToIntakeFormPage()
+    then("user should see field that open to edit", async () => {
+      await navigateToDocumentPage(
+        "Consent to Treatment of a Minor When Parent/Guardiansare Temporarily Unavailable"
+      );
+      const text = container.getAllByText(
+        /Consent to Treatment of a Minor When/i
+      )[0];
+      expect(text).toBeInTheDocument();
     });
 
-    when('user click on one of form', () => {
-      const consentToTreatment = container.getByText(/Consent to Treatment of a Minor/i)
-      fireEvent.click(consentToTreatment)
-    });
-
-    then('user should see field that open to edit', async () => {
-      await navigateToDocumentPage("Consent to Treatment of a Minor When Parent/Guardiansare Temporarily Unavailable")
-      const text = container.getAllByText(/Consent to Treatment of a Minor When/i)[0]
-      expect(text).toBeInTheDocument()
-    });
-
-    and('user fill on that field below', (table) => {
-      const text = container.getByTestId("guardian-field").querySelector('input');
+    and("user fill on that field below", (table) => {
+      const text = container
+        .getByTestId("guardian-field")
+        .querySelector("input");
 
       fireEvent.change(text, { target: { value: "Test Input" } });
       expect(text.value).toEqual("Test Input");
     });
   });
 
-  test('EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field  when open e-form Consent Form_Update 04.2022', ({ given, and, when, then }) => {
-    given('user launch Patient Portal url', () => {
-      launchBrowser()
+  test("EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field  when open e-form Consent Form_Update 04.2022", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("user launch Patient Portal url", () => {
+      launchBrowser();
     });
 
-    and('user is logged in to the application', () => {
-      clickLogin()
+    and("user is logged in to the application", () => {
+      clickLogin();
     });
 
-    and('user lands on the dashboard', () => {
-      defaultValidation()
+    and("user lands on the dashboard", () => {
+      defaultValidation();
     });
 
-    and('user views the ‘Intake Forms\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
-      defaultValidation()
+    and(
+      "user views the ‘Intake Forms' sub-menu under the ‘Documents’ menu present as part of the global header",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    when("user click on the ‘Intake Forms’ option", () => {
+      defaultValidation();
     });
 
-    when('user click on the ‘Intake Forms’ option', () => {
-      defaultValidation()
+    then(
+      "user lands on the screen to view the list of forms that can be filled online",
+      async () => {
+        await navigateToIntakeFormPage();
+      }
+    );
+
+    when("user click on one of form", () => {
+      const consentToUse = container.getAllByText(
+        /Consent to Use and Disclosure/i
+      )[0];
+      fireEvent.click(consentToUse);
     });
 
-    then('user lands on the screen to view the list of forms that can be filled online', async () => {
-      await navigateToIntakeFormPage()
+    then("user should see field that open to edit", async () => {
+      await navigateToDocumentPage("Consent to Use and Disclosure");
+      const text = container.getByText(/Consent to Use and/i);
+      expect(text).toBeInTheDocument();
     });
 
-    when('user click on one of form', () => {
-      const consentToUse = container.getByText(/Consent to Use and Disclosure/i)
-      fireEvent.click(consentToUse)
-    });
-
-    then('user should see field that open to edit', async() => {
-      await navigateToDocumentPage("Consent to Use and Disclosure")
-      const text = container.getByText(/Consent to Use and/i)
-      expect(text).toBeInTheDocument()
-    });
-
-    and('user fill on that field below', (table) => {
-      const text = container.getByTestId("agent-name-field").querySelector('input');
+    and("user fill on that field below", (table) => {
+      const text = container
+        .getByTestId("agent-name-field")
+        .querySelector("input");
 
       fireEvent.change(text, { target: { value: "Test Input" } });
       expect(text.value).toEqual("Test Input");
 
-      const saveBtn = container.getByTestId("document-save-btn")
-      fireEvent.click(saveBtn)
+      const saveBtn = container.getByTestId("document-save-btn");
+      fireEvent.click(saveBtn);
     });
   });
 
-  test('EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field  when open e-form Consent Form_Update 04.2022_V3', ({ given, and, when, then }) => {
-    given('user launch Patient Portal url', () => {
-      launchBrowser()
+  test("EPIC_EPP-5256_STORY_EPP-6177 - Verify User should be able to edit some field  when open e-form Consent Form_Update 04.2022_V3", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("user launch Patient Portal url", () => {
+      launchBrowser();
     });
 
-    and('user is logged in to the application', () => {
-      clickLogin()
+    and("user is logged in to the application", () => {
+      clickLogin();
     });
 
-    and('user lands on the dashboard', () => {
-      defaultValidation()
+    and("user lands on the dashboard", () => {
+      defaultValidation();
     });
 
-    and('user views the ‘Intake Forms\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
-      defaultValidation()
+    and(
+      "user views the ‘Intake Forms' sub-menu under the ‘Documents’ menu present as part of the global header",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    when("user click on the ‘Intake Forms’ option", () => {
+      defaultValidation();
     });
 
-    when('user click on the ‘Intake Forms’ option', () => {
-      defaultValidation()
+    then(
+      "user lands on the screen to view the list of forms that can be filled online",
+      async () => {
+        await navigateToIntakeFormPage();
+      }
+    );
+
+    when("user click on one of form", () => {
+      const consentToUse = container.getAllByText(
+        /Consent to Use and Disclosure/i
+      )[0];
+      fireEvent.click(consentToUse);
     });
 
-    then('user lands on the screen to view the list of forms that can be filled online', async () => {
-      await navigateToIntakeFormPage()
+    then("user should see field that open to edit", async () => {
+      await navigateToDocumentPage("Consent to Use and Disclosure");
+      const text = container.getByText(/Consent to Use and/i);
+      expect(text).toBeInTheDocument();
     });
 
-    when('user click on one of form', () => {
-      const consentToUse = container.getByText(/Consent to Use and Disclosure/i)
-      fireEvent.click(consentToUse)
-    });
-
-    then('user should see field that open to edit', async () => {
-      await navigateToDocumentPage("Consent to Use and Disclosure")
-      const text = container.getByText(/Consent to Use and/i)
-      expect(text).toBeInTheDocument()
-    });
-
-    and('user fill on that field below', (table) => {
-      const text = container.getByTestId("signCommunicationRelationship-input").querySelector('input');
-      const text2 = container.getByTestId("signOptionalRelationship-input").querySelector('input');
+    and("user fill on that field below", (table) => {
+      const text = container
+        .getByTestId("signCommunicationRelationship-input")
+        .querySelector("input");
+      const text2 = container
+        .getByTestId("signOptionalRelationship-input")
+        .querySelector("input");
 
       fireEvent.change(text, { target: { value: "Test Input" } });
       expect(text.value).toEqual("Test Input");
@@ -283,8 +357,8 @@ defineFeature(feature, (test) => {
       fireEvent.change(text2, { target: { value: "Test Input" } });
       expect(text2.value).toEqual("Test Input");
 
-      const saveBtn = container.getByTestId("document-save-btn")
-      fireEvent.click(saveBtn)
+      const saveBtn = container.getByTestId("document-save-btn");
+      fireEvent.click(saveBtn);
     });
   });
 });

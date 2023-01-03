@@ -293,8 +293,6 @@ export default function SignForm({
                       readOnly: isReadOnlyDate,
                       isTransparent: true,
                     }}
-                    //   InputProps={{ "data-testid": REGISTER_TEST_ID.dateofbirth }}
-                    //   data-testid={REGISTER_TEST_ID.dateofbirth}
                     label="Date"
                     variant="filled"
                     value={value}
