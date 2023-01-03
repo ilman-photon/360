@@ -31,6 +31,7 @@ import moment from "moment";
 import { MoreHoriz } from "@mui/icons-material";
 import { renderCTAIcon } from "../Dashboard/prescriptions";
 import MenuAccountRecoveryMore from "../MenuAccountRecoveryMore/menuAccountRecoveryMore";
+import Image from "next/image";
 
 function descendingComparator(a, b, orderBy) {
   const refA = ref(a, orderBy);
@@ -287,24 +288,44 @@ export default function TableWithSort({
   // menu MoreVertIcon
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [moreMenuIdx, setMoreMenuIdx] = React.useState(null);
+  const iconShare = "/icon-share.png";
+  const iconDownload = "/download_icon.png";
   const MyOptions = [
     {
       id: "download",
-      icon: <FileDownloadOutlinedIcon />,
+      icon: (
+        <IconButton
+          sx={{ width: 24, height: 24, p: 0 }}
+          data-testid="download-menu"
+        >
+          <Image alt="" src={iconDownload} width={16} height={20} />
+        </IconButton>
+      ),
       label: "Download",
       dataTestId: "download-menu",
       ariaLabel: "download option",
     },
     {
       id: "share",
-      icon: <ReplyIcon />,
+      icon: (
+        <IconButton
+          sx={{ width: 24, height: 24, p: 0 }}
+          data-testid="share-menu"
+        >
+          <Image alt="" src={iconShare} width={18} height={18} />
+        </IconButton>
+      ),
       label: "Share",
       dataTestId: "share-menu",
       ariaLabel: "share option",
     },
     {
       id: "print",
-      icon: <PrintOutlinedIcon />,
+      icon: (
+        <PrintOutlinedIcon
+          sx={{ color: "#003B4A", width: "23px", height: "23px" }}
+        />
+      ),
       label: "Print",
       dataTestId: "print-menu",
       ariaLabel: "print option",
