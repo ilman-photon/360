@@ -317,7 +317,7 @@ describe("Appointment form", () => {
     jest.useFakeTimers("modern");
     jest.setSystemTime(new Date("2024-12-01T00:00:01.000Z"));
     const mocDateMonthElse = new Date("2025-01-01T00:00:01.000Z");
-    expect(isDOB(mocDateMonthElse)).toBeTruthy();
+    expect(isDOB(mocDateMonthElse)).toBeFalsy();
   });
 
   it("Signin click ", async () => {

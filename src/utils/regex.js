@@ -13,8 +13,7 @@ export class Regex {
   static isValidPhoneFormat = /^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$/i;
   static noSpecialRegex = /^[a-z0-9]+$/gi;
   static nameValidation = /^(?=.*[a-zA-Z])([a-zA-Z0-9,_\-.\s]+)$/;
-  static emailValidation =
-    /^(([^ @<>()\[\]\\,;:!#$%^&*={}"'?]+(\.[^\s"]+)*)|(".+\\"))@((([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,4}))$/;
+  static emailValidation = /^[A-Za-z0-9._%±]+@[A-Za-z0-9-]+[.][A-Za-z]{2,}$/;
   static REGEX_PHONE_NUMBER = /^\d{10,}$/;
   static REGEX_PHONE_NUMBER_ONLY = /^\d{10,10}$/;
   static noWhitespaceRegex = /[^\s-]/;

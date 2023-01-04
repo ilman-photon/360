@@ -46,14 +46,13 @@ const DisclaimerText = (data) => {
 
 export const isDOB = (value) => {
   let date = new Date().getFullYear();
-
   if (value.getYear() < 0) {
     return false;
   }
   if (value.getFullYear() <= date) {
     return true;
   }
-  return value.getMonth() <= 12;
+  return false;
 };
 
 export default function AppointmentForm({
