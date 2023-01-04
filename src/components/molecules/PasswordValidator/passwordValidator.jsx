@@ -56,6 +56,12 @@ export const PasswordValidator = ({ ...props }) => {
                 sx={{
                   ...styles.textStyles,
                   ...styles.childrenStyles,
+                  letterSpacing: "0.0016em",
+                  fontFamily: "Libre Franklin",
+                  fontStyle: "normal",
+                  fontWeight: "400",
+                  fontSize: "14px",
+                  lineHeight: "18px",
                   color: value.validate ? colors.green : colors.grey75,
                   display: "inline-table",
                   verticalAlign: "middle",
