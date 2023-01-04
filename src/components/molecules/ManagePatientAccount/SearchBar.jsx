@@ -26,6 +26,7 @@ export default function SearchBar({
       <Stack spacing={2}>
         {title && (
           <Typography
+            tabIndex={0}
             variant={"headlineH3"}
             sx={{
               color: colors.darkGreen,

@@ -389,6 +389,7 @@ export default function PatientAcccountCard({
       {showResultNum && (
         <Typography
           variant="headlineH4"
+          tabIndex={0}
           sx={{ fontSize: "16px", p: 2, background: "white", mb: 0.1 }}
         >
           {`${rows.length} Results found using your search criteria`}
