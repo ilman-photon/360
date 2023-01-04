@@ -33,6 +33,8 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
         >
           <Typography
             className={styles.titleHeaderCard}
+            tabIndex={0}
+            aria-label={"Account Credit Balance title"}
             sx={{
               fontWeight: "600",
               color: "#003B4A",
@@ -43,6 +45,7 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
             {t("accountCreditBalance")}
           </Typography>
           <Typography
+            tabIndex={0}
             className={styles.textHeaderCard}
             sx={{
               fontFamilyamily: "Bw Nista Geometric DEMO",
@@ -62,6 +65,8 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
           }
         >
           <Typography
+            tabIndex={0}
+            aria-label={"Patient Due title"}
             className={styles.titleHeaderCard}
             sx={{
               fontWeight: "600",
@@ -73,6 +78,7 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
             {t("patientDue")}
           </Typography>
           <Typography
+            tabIndex={0}
             className={styles.textHeaderCard}
             sx={{
               fontFamilyamily: "Bw Nista Geometric DEMO",
@@ -95,6 +101,8 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
         }
       >
         <Button
+          tabIndex={0}
+          aria-label={"Make a Payment button"}
           className={styles.btnContent}
           sx={{
             display: "flex",

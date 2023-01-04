@@ -85,6 +85,8 @@ export const FilterOptionPayMyBill = ({
         }}
       >
         <Typography
+          tabIndex={0}
+          aria-label={t("searchBy")}
           sx={{
             fontWeight: "600",
             fontSize: "14px",
@@ -95,6 +97,7 @@ export const FilterOptionPayMyBill = ({
           {t("searchBy")}
         </Typography>
         <Select
+          aria-label="Select an Option dropdown"
           value={optionSelected}
           onChange={(event) => {
             handleChangeOption(event.target.value);
@@ -136,6 +139,7 @@ export const FilterOptionPayMyBill = ({
                 return (
                   <StyledInput
                     type="dob"
+                    aria-label={"From Date field"}
                     label={t("fromDate")}
                     id="fromDate"
                     disableFuture
@@ -154,6 +158,8 @@ export const FilterOptionPayMyBill = ({
               }}
             />
             <Typography
+              tabIndex={0}
+              aria-label={"To"}
               sx={{
                 fontWeight: "600",
                 fontSize: "14px",
@@ -171,6 +177,7 @@ export const FilterOptionPayMyBill = ({
               render={({ field: { onChange, value } }) => {
                 return (
                   <StyledInput
+                    aria-label={"To Date field"}
                     type="dob"
                     disableFuture
                     label={t("toDate")}
@@ -201,6 +208,7 @@ export const FilterOptionPayMyBill = ({
             render={({ field: { onChange, value } }) => {
               return (
                 <StyledInput
+                  aria-label={"Invoice Number field"}
                   label={t("invoiceNumber")}
                   id="invoiceNumber"
                   maxLength={50}
