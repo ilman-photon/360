@@ -7,6 +7,7 @@ export const styles = {
     margin: "0",
     marginTop: "15px",
     letterSpacing: "0.0016em",
+    /* identical to box height, or 129% */
   },
   childrenStyles: {
     marginTop: "5px",
