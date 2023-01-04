@@ -76,6 +76,8 @@ export const MessagingFilterComponent = ({
             }}
           >
             <Button
+              tabIndex={0}
+              aria-label={"Close Button"}
               sx={{
                 color: "#080707",
                 padding: "0px",
@@ -98,6 +100,8 @@ export const MessagingFilterComponent = ({
             }}
           >
             <Button
+              tabIndex={0}
+              aria-label={"Done Button"}
               sx={{
                 borderRadius: "30px",
                 backgroundColor: "#007E8F",

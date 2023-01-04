@@ -81,6 +81,7 @@ export const MessagingCardDetailView = ({
           </Typography>
           <Box sx={{ textAlign: "end", justifyContent: "flex-end" }}>
             <Typography
+              tabIndex={0}
               sx={{
                 fontSize: "16px",
                 fontWeight: "600",
@@ -92,6 +93,7 @@ export const MessagingCardDetailView = ({
               {convertDate(data.modifiedAt)}
             </Typography>
             <Typography
+              tabIndex={0}
               sx={{
                 fontSize: "16px",
                 fontWeight: "400",
@@ -107,6 +109,7 @@ export const MessagingCardDetailView = ({
         {isDesktop && (
           <Box className={styles.cardDetailMessage}>
             <Typography
+              tabIndex={0}
               sx={{
                 fontSize: "16px",
                 fontWeight: "400",
@@ -153,6 +156,7 @@ export const MessagingCardDetailView = ({
                           }}
                         />
                         <Typography
+                          tabIndex={0}
                           sx={{
                             fontSize: "12px",
                             fontWeight: "500",
@@ -180,6 +184,7 @@ export const MessagingCardDetailView = ({
                   >
                     <FileDownloadOutlinedIcon />
                     <Typography
+                      tabIndex={0}
                       sx={{
                         fontSize: "12px",
                         fontWeight: "500",
@@ -246,6 +251,7 @@ export const MessagingCardDetailView = ({
                         }}
                       />
                       <Typography
+                        tabIndex={0}
                         sx={{
                           fontSize: "12px",
                           fontWeight: "500",
@@ -270,6 +276,7 @@ export const MessagingCardDetailView = ({
                 >
                   <FileDownloadOutlinedIcon />
                   <Typography
+                    tabIndex={0}
                     sx={{
                       fontSize: "12px",
                       fontWeight: "500",

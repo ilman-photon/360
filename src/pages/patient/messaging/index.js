@@ -6,6 +6,7 @@ import {
   downloadMultipleAsset,
   fetchSource,
 } from "../../../utils/fetchDigitalAssetSource";
+import Head from "next/head";
 import DeletedDialog from "../../../components/molecules/Messaging/DeletedDialog";
 import NewMessageDialog from "../../../components/molecules/Messaging/NewMessageDialog";
 import FloatingMessage from "../../../components/molecules/FloatingMessage/floatingMessage";
@@ -609,6 +610,9 @@ export default function MessagingPage() {
 
   return (
     <>
+      <Head>
+        <title>Messaging page</title>
+      </Head>
       <Messaging
         inboxData={shownMessages}
         selectedMessage={selectedMessageData}
