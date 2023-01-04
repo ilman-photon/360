@@ -105,7 +105,13 @@ export default function CommonCard({
           >
             {viewAllText}
           </Link>
-          <KeyboardArrowRightIcon />
+          <KeyboardArrowRightIcon
+            sx={{
+              width: "24px",
+              height: "24px",
+              left: "490px",
+            }}
+          />
         </Box>
       </AccountCard>
     </ThemeProvider>
