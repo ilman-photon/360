@@ -66,7 +66,13 @@ export default function AppointmentDetails({
             }
             sxRow={{ justifyContent: "unset" }}
             sxText={{
+              height: "26px",
+              "font-style": "normal",
+              "font-weight": "600",
+              "font-size": "18px",
+              "line-height": "26px",
               paddingLeft: "4px",
+              "letter-spacing": "0.0016em",
               color: colors.darkGreen,
               fontWeight: "600",
               fontSize: "16px",
@@ -75,10 +81,14 @@ export default function AppointmentDetails({
             <Typography
               variant="bodyMedium"
               sx={{
-                color: colors.darkGreen,
+                color: "#003B4A",
                 fontFamily: "Libre Franklin",
                 fontSize: "16px",
                 fontWeight: "400",
+                "font-style": "normal",
+                "font-weight": "400",
+                "font-size": "16px",
+                "line-height": "24px",
               }}
               tabIndex={"0"}
               data-testid={
@@ -105,6 +115,13 @@ export default function AppointmentDetails({
             sxRow={{ justifyContent: "unset" }}
             sxText={{
               paddingLeft: "4px",
+              width: "85px",
+              height: "26px",
+              "font-style": "normal",
+              "font-weight": "600",
+              "font-size": "18px",
+              "line-height": "26px",
+              "letter-spacing": "0.0016em",
               color: colors.darkGreen,
               fontWeight: "600",
               fontSize: "16px",
@@ -113,10 +130,12 @@ export default function AppointmentDetails({
             <Typography
               variant="bodyMedium"
               sx={{
-                color: colors.darkGreen,
+                color: "#003B4A",
                 fontFamily: "Libre Franklin",
-                fontSize: "16px",
-                fontWeight: "400",
+                "font-style": "normal",
+                "font-weight": "400",
+                "font-size": "16px",
+                "line-height": "24px",
               }}
               tabIndex={"0"}
             >
@@ -144,6 +163,12 @@ export default function AppointmentDetails({
             sxRow={{ justifyContent: "unset" }}
             sxText={{
               paddingLeft: "4px",
+              height: "26px",
+              "font-style": "normal",
+              "font-weight": "600",
+              "font-size": "18px",
+              "line-height": "26px",
+              "letter-spacing": "0.0016em",
               color: colors.darkGreen,
               fontWeight: "600",
               fontSize: "16px",
@@ -154,8 +179,10 @@ export default function AppointmentDetails({
               sx={{
                 color: colors.darkGreen,
                 fontFamily: "Libre Franklin",
-                fontSize: "16px",
-                fontWeight: "400",
+                "font-style": "normal",
+                "font-weight": "400",
+                "font-size": "16px",
+                "line-height": "24px",
               }}
               tabIndex={"0"}
               aria-label={

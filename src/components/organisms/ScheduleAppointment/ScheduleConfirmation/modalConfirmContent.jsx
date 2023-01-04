@@ -557,9 +557,9 @@ export default function ModalConfirmContent({
                           tabIndex={0}
                           aria-label={"Get Directions"}
                           className={styles.getDirectionLinkText}
-                          {...getLinkAria("Get directions")}
+                          {...getLinkAria("Get Directions")}
                         >
-                          Get directions
+                          Get Directions
                         </Link>
                       </Box>
                     </Grid>
