@@ -25,7 +25,8 @@
 
 .customButtonFilter {
   min-width: 52px;
-  height: 52px;
+  height: 56px;
+  width: 64px;
   border-radius: 0 50px 50px 0 !important;
 }
 

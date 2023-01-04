@@ -842,8 +842,14 @@ const FilterHeading = ({
                 sx={{
                   height: "100% !important",
                   background: "#BFE4E8",
-                  border: "0px",
+                  "border-radius": "0px 47px 47px 0px",
                   cursor: "pointer",
+                  display: "flex",
+                  "flex-direction": "row",
+                  "justify-content": "center",
+                  "align-items": "center",
+                  padding: "12px 16px",
+                  gap: "80px",
                 }}
               >
                 <SearchIcon
@@ -1095,7 +1101,7 @@ const FilterHeading = ({
                 marginTop: "16px",
                 height: "52px",
                 width: "100%",
-                background: colors.primaryButton,
+                background: "colors.primaryButton",
                 border: "0px",
                 borderRadius: "50px",
                 transition: null,
