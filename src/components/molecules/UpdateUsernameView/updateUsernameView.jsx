@@ -116,7 +116,7 @@ export default function UpdateUsernameView({
                     incorrectFormat: (value) => {
                       if (
                         !(
-                          Regex.REGEX_PHONE_NUMBER.test(value) ||
+                          Regex.REGEX_PHONE_NUMBER_ONLY.test(value) ||
                           Regex.emailValidation.test(value)
                         )
                       ) {
