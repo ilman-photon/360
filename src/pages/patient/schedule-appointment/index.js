@@ -563,6 +563,7 @@ export default function ScheduleAppointmentPage() {
       rescheduleAppointment({
         appointmentId: appointmentScheduleData.appointmentInfo.id,
         payload: appointmentScheduleData,
+        providerId: appointmentScheduleData.providerInfo.id,
       })
     );
 
