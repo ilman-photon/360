@@ -15,6 +15,8 @@ export const MessagingNoResult = () => {
         <MailOutlineIcon sx={{ width: "52px", height: "42px" }} />
       </Box>
       <Typography
+        tabIndex={0}
+        aria-label={t("noResultMessage")}
         sx={{
           marginTop: "10px",
           fontWeight: "500",

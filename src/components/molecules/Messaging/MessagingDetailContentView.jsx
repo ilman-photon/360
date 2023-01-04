@@ -48,6 +48,7 @@ export const MessagingDetailContentView = ({
       {data?.messages?.length > 0 && !data.messages[0].isDraft && (
         <Box className={styles.detailContentHeaderView}>
           <Typography
+            tabIndex={0}
             sx={{
               fontFamily: "Bw Nista Geometric DEMO",
               fontSize: "22px",
@@ -59,10 +60,12 @@ export const MessagingDetailContentView = ({
           >
             {data.subject}
           </Typography>
-          <DeleteOutlinedIcon
-            data-testId="delete-message-icon"
-            onClick={() => openDeletedDialog(data.id)}
-          />
+          <span tabIndex={0} aria-label={"Delete Button"}>
+            <DeleteOutlinedIcon
+              data-testId="delete-message-icon"
+              onClick={() => openDeletedDialog()}
+            />
+          </span>
         </Box>
       )}
       <Box
@@ -89,6 +92,8 @@ export const MessagingDetailContentView = ({
               }
             })}
             <Box
+              tabIndex={0}
+              aria-label={`${t("writeMessages")} Field`}
               className={styles.messagesTextAreaContent}
               sx={{
                 ".MuiFormControl-root": {
@@ -130,6 +135,8 @@ export const MessagingDetailContentView = ({
               }}
             >
               <Button
+                tabIndex={0}
+                aria-label={"Add Attachments button"}
                 onClick={() => {
                   addAttachments.current.click();
                 }}
@@ -149,6 +156,8 @@ export const MessagingDetailContentView = ({
                   }}
                 />
                 <Typography
+                  tabIndex={0}
+                  aria-label={"Add Attachments button"}
                   sx={{
                     fontSize: "16px",
                     fontWeight: "600",
@@ -160,7 +169,11 @@ export const MessagingDetailContentView = ({
                   {t("addAttachments")}
                 </Typography>
               </Button>
-              <Button sx={{ color: "#424747" }}>
+              <Button
+                tabIndex={0}
+                aria-label={"Send Button"}
+                sx={{ color: "#424747" }}
+              >
                 <SendOutlinedIcon />
               </Button>
             </Box>

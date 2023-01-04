@@ -100,6 +100,7 @@ export const NewMessageDialog = ({
   function renderMandatoryFieldError(isError) {
     return (
       <Typography
+        tabIndex={0}
         className={styles.errorText}
         variant={"bodyMedium"}
         sx={{
@@ -162,6 +163,7 @@ export const NewMessageDialog = ({
               }}
             >
               <DialogContentText
+                tabIndex={0}
                 id="alert-dialog-description"
                 sx={{
                   fontFamily: "Bw Nista Geometric DEMO",
@@ -214,6 +216,7 @@ export const NewMessageDialog = ({
                         return (
                           <TextField
                             {...params}
+                            tabIndex={0}
                             variant="standard"
                             label="Type a Name"
                             required
@@ -269,6 +272,7 @@ export const NewMessageDialog = ({
           {renderMandatoryFieldError(isEmptyName)}
           {showInfoName && (
             <Typography
+              tabIndex={0}
               sx={{
                 fontFamily: "Roboto",
                 fontSize: "12px",
@@ -286,6 +290,7 @@ export const NewMessageDialog = ({
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
+                  tabIndex={0}
                   aria-label="Subject"
                   label={t("subject")}
                   id="subject"
@@ -339,6 +344,7 @@ export const NewMessageDialog = ({
               }) => {
                 return (
                   <StyledInput
+                    tabIndex={0}
                     aria-label="Write a message"
                     label={t("writeMessages")}
                     id="message"
@@ -407,6 +413,7 @@ export const NewMessageDialog = ({
             }}
           >
             <AttachmentOutlinedIcon
+              aria-label={t("addAttachments")}
               sx={{
                 color: "#0000008A",
                 width: "22px",
@@ -414,6 +421,7 @@ export const NewMessageDialog = ({
               }}
             />
             <Typography
+              tabIndex={0}
               sx={{
                 fontSize: "16px",
                 fontWeight: "600",
@@ -438,6 +446,7 @@ export const NewMessageDialog = ({
                 <Button
                   onClick={() => onSaveToDraft(getValues())}
                   data-testId="draft-new-message"
+                  aria-label={t("moveToDraft")}
                   sx={{
                     color: "#007E8F",
                     textTransform: "capitalize",
@@ -451,6 +460,7 @@ export const NewMessageDialog = ({
                 <Button
                   type="submit"
                   onClick={onClickCheck}
+                  aria-label={t("sendText")}
                   data-testId="send-new-message"
                   sx={{
                     border: "1px solid #007E8F",
@@ -494,6 +504,7 @@ export const NewMessageDialog = ({
                     }}
                   />
                   <Typography
+                    tabIndex={0}
                     sx={{
                       fontSize: "16px",
                       fontWeight: "600",

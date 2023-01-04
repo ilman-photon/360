@@ -71,6 +71,7 @@ export const MessagingCardView = ({
             }}
           >
             <Typography
+              tabIndex={0}
               sx={{
                 fontFamily: "Bw Nista Geometric DEMO",
                 fontSize: isDesktop ? "22px" : "16px",
@@ -93,6 +94,7 @@ export const MessagingCardView = ({
             />
             {isDraftMsg && (
               <Typography
+                tabIndex={0}
                 sx={{
                   fontFamily: "Bw Nista Geometric DEMO",
                   fontSize: "14px",

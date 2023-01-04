@@ -33,6 +33,8 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
         }}
       >
         <DialogContentText
+          tabIndex={0}
+          aria-label={t("deleteMessage")}
           id="alert-dialog-description"
           sx={{
             fontFamily: "Bw Nista Geometric DEMO",
@@ -45,7 +47,10 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
         >
           {t("deleteMessage")}
         </DialogContentText>
-        <CloseIcon onClick={handleClosed} />
+
+        <span tabIndex={0} aria-label={"Close button"}>
+          <CloseIcon onClick={handleClosed} />
+        </span>
       </DialogContent>
       <DialogActions
         sx={{
@@ -54,6 +59,8 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
       >
         <Button
           data-testId="messaging-button-cancel-test"
+          tabIndex={0}
+          aria-label={"Cancel button"}
           onClick={handleClosed}
           sx={{
             border: "1px solid #205A63",
@@ -69,6 +76,8 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
           {t("cancelBtn")}
         </Button>
         <Button
+          tabIndex={0}
+          aria-label={"Delete button"}
           data-testId="messaging-button-delete-test"
           onClick={onDeleted}
           sx={{

@@ -59,6 +59,7 @@ export const MessageDetailsMobileView = ({
       >
         <ArrowBackIosIcon />
         <Typography
+          tabIndex={0}
           sx={{
             fontFamily: "Bw Nista Geometric DEMO",
             fontSize: "16px",
@@ -75,6 +76,7 @@ export const MessageDetailsMobileView = ({
         {data?.messages?.length > 1 && (
           <Box className={styles.detailContentHeaderMobileView}>
             <Typography
+              tabIndex={0}
               sx={{
                 fontFamily: "Bw Nista Geometric DEMO",
                 fontSize: "16px",
@@ -171,6 +173,7 @@ export const MessageDetailsMobileView = ({
                     }}
                   />
                   <Typography
+                    tabIndex={0}
                     sx={{
                       fontSize: "16px",
                       fontWeight: "600",
