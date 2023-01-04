@@ -187,7 +187,6 @@ export default function LockedAccount() {
 
   const renderResult = () => (
     <>
-      {renderMessage()}
       {showResult && (
         <Typography
           variant="headlineH4"
@@ -299,6 +298,7 @@ export default function LockedAccount() {
           },
         }}
       >
+        {renderMessage()}
         {searchStatus === "success" ? (
           renderSelection()
         ) : (
