@@ -176,6 +176,7 @@ export const OpenInvoiceTableBody = ({
         children: (props) => {
           return (
             <Button
+              aria-label={" View PDF button"}
               onClick={() => onGoToViewDetail(props)}
               data-testid="invoice-view-detail"
               sx={{
@@ -214,6 +215,7 @@ export const OpenInvoiceTableBody = ({
         contentStyle: { padding: "16px" },
         icon: (
           <IconButton
+            aria-label="Download button"
             sx={{ width: 24, height: 24, p: 0 }}
             data-testid="download-open-invoice"
           >
@@ -227,6 +229,7 @@ export const OpenInvoiceTableBody = ({
         contentStyle: { padding: "16px" },
         icon: (
           <IconButton
+            aria-label="Print button"
             sx={{ width: 24, height: 24, p: 0 }}
             data-testid="print-open-invoice"
           >

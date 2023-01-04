@@ -131,7 +131,11 @@ const PayMyBillContainer = ({
               activeTabs={activeTabs?.index}
               isDesktop={isDesktop}
             />
-            <Typography className={styles.titleTabs}>
+            <Typography
+              tabIndex={0}
+              aria-label={activeTabs?.title + " Title"}
+              className={styles.titleTabs}
+            >
               {activeTabs?.title}
             </Typography>
             <Box

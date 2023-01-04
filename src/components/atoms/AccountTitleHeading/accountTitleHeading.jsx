@@ -10,7 +10,9 @@ const AccountTitleHeading = ({ title, sx = {}, sxContainer = {} }) => {
         position: "relative",
         ...sxContainer,
       }}
-      aria-label={`${title} heading`}
+      aria-label={
+        title == "Pay My Bill" ? "Intake Forms heading" : `${title} heading`
+      }
       tabIndex={"0"}
     >
       {/* <div style={{maxWidth: "1536px"}}> */}

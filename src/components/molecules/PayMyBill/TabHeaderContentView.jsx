@@ -44,6 +44,7 @@ export const TabPayBillHeaderContentView = ({
       >
         <Tab
           value={0}
+          aria-label={"Open Invoices tab"}
           label={`${t("openInvoices")}`}
           tabIndex={"0"}
           icon={
@@ -72,6 +73,7 @@ export const TabPayBillHeaderContentView = ({
         />
         <Tab
           value={1}
+          aria-label={"Invoice History tab"}
           label={`${t("invoiceHistory")}`}
           tabIndex={"0"}
           icon={
