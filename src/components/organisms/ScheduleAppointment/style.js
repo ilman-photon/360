@@ -47,11 +47,11 @@ export const styles = {
   },
   signInInfoLabel: {
     fontFamily: "Libre Franklin",
-    fontWeight: "500",
+    fontWeight: "400",
     fontSize: "18px",
     color: "#000000",
-    lineHeight: "1.167",
-    letterSpacing: "-0.01562em",
+    fontStyle: "normal",
+    letterSpacing: "0.0016em",
   },
   optionalInfoLabel: {
     fontFamily: "Libre Franklin",
@@ -65,7 +65,7 @@ export const styles = {
   link: {
     color: "#008294",
     cursor: "pointer",
-    fontWeight: "500",
+    fontWeight: "400",
     paddingLeft: "8px",
     lineHeight: "1.167",
     fontSize: "16px",
