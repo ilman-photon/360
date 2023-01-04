@@ -106,7 +106,7 @@ const buildAppointmentPostBody = (payload) => {
       _id: appointmentInfoData.providerTemplate?._id || null,
     },
     provider: {
-      _id: providerInfoData._id,
+      _id: providerInfoData._id || providerInfoData.providerId,
     },
     patient: {
       _id: patientInfoData._id,

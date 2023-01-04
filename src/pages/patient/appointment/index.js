@@ -384,11 +384,11 @@ export default function Appointment({ googleApiKey }) {
         _id: providerData.providerTemplateId,
       },
       office: providerData.office,
+      provider: {
+        _id: providerData.providerId,
+      },
     };
-    const providerInfoObj = {
-      ...providerInfo,
-      ...providerData,
-    };
+    const providerInfoObj = providerData;
 
     dispatch(
       editAppointmentScheduleData({
