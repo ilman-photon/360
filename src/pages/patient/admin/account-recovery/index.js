@@ -518,6 +518,7 @@ export default function AccountRecovery() {
                     <>
                       <Typography
                         variant="headlineH4"
+                        tabIndex={0}
                         sx={{ display: { xs: "none", sm: "block" } }}
                       >
                         {rows.length} Results found using your search criteria

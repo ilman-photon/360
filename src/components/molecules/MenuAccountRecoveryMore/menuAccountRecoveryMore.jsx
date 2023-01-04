@@ -116,12 +116,13 @@ export default function MenuAccountRecoveryMore({
           data-testid={`menu-more-${menu.id}`}
           onClick={() => onMoreClicked(menu.id, activeMenuData)}
           aria-label={`${menu.ariaLabel}`}
-          aria-live="polite"
+          aria-live="assertive"
         >
           {menu.icon}
           <Typography
             textAlign="center"
             tabIndex={0}
+            aria-live="assertive"
             sx={{
               margin: "0 8px",
               fontFamily: "Libre Franklin",
