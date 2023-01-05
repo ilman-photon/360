@@ -341,6 +341,25 @@ const mockApi = () => {
     .onGet(`/ecp/digital-asset/v1/asset/c4ba4230-24b9-4b6b-af14-6907317c83e5`)
     .reply(200, imageMock);
   mock
+    .onGet(`/ecp/appointments/getDoctorDetails?pageSize=1&search.query=`)
+    .reply(200, {
+      "count": 300
+    });
+  mock
+    .onGet(
+      `/ecp/appointments/getDoctorDetails?pageSize=1&search.query=((firstName=co=Robert)OR(lastName=co=Robert))`
+    )
+    .reply(200, {
+      "count": 300
+    });
+  mock
+    .onGet(
+      `/ecp/appointments/getDoctorDetails?pageSize=1&search.query=((firstName=co=Robert)OR(lastName=co=Robert)AND(offices.city=co=Chicago))`
+    )
+    .reply(200, {
+      "count": 300
+    });
+  mock
     .onGet(`/ecp/appointments/getDoctorDetails?pageSize=300&search.query=`)
     .reply(200, mockDoctorSearch);
   mock
@@ -381,8 +400,8 @@ const mockApi = () => {
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => {},
-    removeListener: () => {},
+    addListener: () => { },
+    removeListener: () => { },
   });
 }
 
