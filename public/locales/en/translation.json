@@ -34,6 +34,7 @@
     "errorInValidUserameOrPhone": "Enter a valid Email or Phone Number",
     "errorEmptyField": "This field is required to proceed.",
     "errorInvalidEmailPhone": "The selected email/phone number is invalid, please try again.",
+    "errorInvalidEmailPhoneForgot": "The selected username is not found. Please enter in a valid email or phone number.",
     "errorNotFoundEmailPhone": "The selected username is not found. Please enter in a valid email or phone number.",
     "resetPasswordText": "Continue",
     "usernamePlaceHolder": "Email or Phone Number",
