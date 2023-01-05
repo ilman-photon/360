@@ -12,6 +12,7 @@ import {
   TextField,
   Typography,
   Autocomplete,
+  IconButton,
 } from "@mui/material";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -177,7 +178,9 @@ export const NewMessageDialog = ({
               >
                 {t("newMessageTitle")}
               </DialogContentText>
-              <CloseIcon onClick={handleClosed} />
+              <IconButton onClick={handleClosed}>
+                <CloseIcon />
+              </IconButton>
             </Box>
           )}
           <Box

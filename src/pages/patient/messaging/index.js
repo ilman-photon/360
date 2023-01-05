@@ -49,7 +49,6 @@ export default function MessagingPage() {
   const [providerList, setProviderList] = useState([]);
   const [isRequested, setIsRequested] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
-  const [detailData, setDetailData] = useState({});
   const [unReadMsg, setUnReadMsg] = useState(0);
 
   let isRequest = false;
@@ -87,16 +86,23 @@ export default function MessagingPage() {
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getProviderList = () => {
+  const getProviderList = (
+    query = {
+      name: "",
+      location: "",
+      specialty: "",
+    },
+    showNumber = false
+  ) => {
     const api = new Api();
     isRequest = true;
     api
-      .getProviderList()
+      .searchProvider(query)
       .then((responses) => {
-        mapper(responses.results);
+        mapper(responses.entities, showNumber);
       })
       .catch(() => {
-        //This is intentional
+        setIsRequested(true);
       });
   };
 
@@ -345,14 +351,7 @@ export default function MessagingPage() {
 
   const onCallViewSelectedMessageByID = (id) => {
     const api = new Api();
-    api
-      .viewMessagesById(id)
-      .then(function (response) {
-        setDetailData(response);
-      })
-      .catch(function () {
-        //Handle error getAllAppointment
-      });
+    api.viewMessagesById(id);
   };
 
   const onCallDeleteMessage = (id) => {
