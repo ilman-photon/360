@@ -38,7 +38,11 @@ import InsuranceForm from "../../../../components/organisms/InsuranceInformation
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import constants from "../../../../utils/constants";
-import { fetchAllPayers, fetchPlans } from "../../../../store/provider";
+import {
+  fetchAllPayers,
+  fetchPlans,
+  resetPlans,
+} from "../../../../store/provider";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 
@@ -212,6 +216,8 @@ export default function InsuranceInfoPage() {
   const handleFetchPlans = (payerId) => {
     if (payerId) {
       dispatch(fetchPlans({ token: cookies.get("accessToken"), payerId }));
+    } else {
+      dispatch(resetPlans());
     }
   };
 
@@ -268,7 +274,7 @@ export default function InsuranceInfoPage() {
             <Stack>
               <AccountCard
                 titleIcon={<DescriptionOutlinedIcon />}
-                title="Insurance Document"
+                title="Insurance Documents"
                 sx={{
                   border: "2px solid #F3F3F3",
                 }}

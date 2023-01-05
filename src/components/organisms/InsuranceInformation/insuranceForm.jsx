@@ -147,6 +147,9 @@ export default function InsuranceForm({
       if (watchedProvider.id !== formData?.provider?.id) {
         setValue("plan", null);
       }
+    } else {
+      OnProviderChanged(null);
+      setValue("plan", null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedProvider]);

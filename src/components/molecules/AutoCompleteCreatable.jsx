@@ -82,6 +82,7 @@ export const AutoCompleteCreatable = ({
             props.onChange(newValue);
           }
         }}
+        freeSolo
         inputRef={props.inputRef}
         isOptionEqualToValue={(option, value) => {
           if (value.label) {

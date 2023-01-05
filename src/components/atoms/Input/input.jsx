@@ -277,19 +277,12 @@ export const CustomInput = styled(({ ...props }) => {
 
   const DateIcon = () => {
     return (
-      <Tooltip title={"Add Date of Birth"}>
-        <IconButton
-          aria-label={"Calendar icon"}
-          {...props.customevent}
-          edge="end"
-        >
-          {props.type !== "password" ? (
-            <VisibilityOutlinedIcon />
-          ) : (
-            <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-          )}
-        </IconButton>
-      </Tooltip>
+      <IconButton
+        aria-label={"Calendar icon"}
+        {...props.customevent}
+        edge="end"
+        sx={{ display: "none" }}
+      ></IconButton>
     );
   };
 
@@ -446,11 +439,6 @@ export const CustomInput = styled(({ ...props }) => {
               maskChar={null}
               maskPlaceholder=""
               {...props}
-              sx={{
-                "&.MuiFormControl-root": {
-                  margin: "0 0 0 10px",
-                },
-              }}
             >
               <StyledRedditField name="phone" type="text" />
             </InputMask>
