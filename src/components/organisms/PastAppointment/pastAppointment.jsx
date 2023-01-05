@@ -91,11 +91,17 @@ export function PastAppointmentCard({ data, threshold }) {
               <Box className={styles.dateContainer}>
                 <Typography
                   tabIndex={0}
-                  ariaLabel={upcomingAppointmentDate(item.appointmentInfo.date)}
+                  ariaLabel={upcomingAppointmentDate(
+                    item.appointmentInfo.date,
+                    item.appointmentInfo.timeZone
+                  )}
                   variant="subtitle1"
                   className={styles.date}
                 >
-                  {upcomingAppointmentDate(item.appointmentInfo.date)}
+                  {upcomingAppointmentDate(
+                    item.appointmentInfo.date,
+                    item.appointmentInfo.timeZone
+                  )}
                 </Typography>
                 <Box className={styles.subTitleWrapper}>
                   <Typography

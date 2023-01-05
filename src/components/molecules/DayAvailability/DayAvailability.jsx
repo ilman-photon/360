@@ -27,7 +27,8 @@ export const buttonSchedule = (
   date = "",
   isScheduleAvailability = false,
   appointmentType = "",
-  appointmentTypeCode = ""
+  appointmentTypeCode = "",
+  timeZone = ""
 ) => {
   const appointmentCode = appointmentType;
   const parseDate = new moment(date).format("YYYY-MM-DD");
@@ -58,7 +59,12 @@ export const buttonSchedule = (
         }
         onClick={() => {
           if (!isScheduleAvailability || !isNextAvailabilityLabel) {
-            OnDayClicked({ dateTime, appointmentCode, appointmentTypeCode });
+            OnDayClicked({
+              dateTime,
+              appointmentCode,
+              appointmentTypeCode,
+              timeZone,
+            });
           }
         }}
       >
@@ -181,7 +187,7 @@ export const DayAvailability = ({
         }}
       >
         {value.map((option, idx) => {
-          const { appointmentType, appointmentTypeCode } =
+          const { appointmentType, appointmentTypeCode, timeZone } =
             getAppointmentTypeOnTimeSlot(scheduleData[index], option);
           return buttonSchedule(
             option,
@@ -190,7 +196,8 @@ export const DayAvailability = ({
             dateWeekList[index],
             false,
             appointmentType,
-            appointmentTypeCode
+            appointmentTypeCode,
+            timeZone
           );
         })}
       </Box>

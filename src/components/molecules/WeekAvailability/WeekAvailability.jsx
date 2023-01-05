@@ -82,7 +82,7 @@ export const WeekAvailability = ({
           gridArea = `more${key}Schedule`;
           isTypeMore = true;
         }
-        const { appointmentType, appointmentTypeCode } =
+        const { appointmentType, appointmentTypeCode, timeZone } =
           getAppointmentTypeOnTimeSlot(scheduleData[dayNames[key]], value[i]);
         renderUI.push(
           buttonSchedule(
@@ -92,7 +92,8 @@ export const WeekAvailability = ({
             `${keyWeek}-${i}-${key}-schedule-button`,
             dateWeekList[dayNames[key]],
             appointmentType,
-            appointmentTypeCode
+            appointmentTypeCode,
+            timeZone
           )
         );
       }
@@ -107,7 +108,8 @@ export const WeekAvailability = ({
     index,
     date,
     appointmentType,
-    appointmentTypeCode
+    appointmentTypeCode,
+    timeZone
   ) {
     if (label) {
       const appointmentCode = appointmentType;
@@ -142,6 +144,7 @@ export const WeekAvailability = ({
                   dateTime,
                   appointmentCode,
                   appointmentTypeCode,
+                  timeZone,
                 });
               }
             }}

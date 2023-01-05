@@ -53,11 +53,17 @@ export function UpcomingAppointmentCard({
         <Box className={styles.dateContainer}>
           <Typography
             tabIndex={0}
-            ariaLabel={upcomingAppointmentDate(data.appointmentInfo.date)}
+            ariaLabel={upcomingAppointmentDate(
+              data.appointmentInfo.date,
+              data.appointmentInfo.timeZone
+            )}
             className={styles.date}
             variant="subtitle1"
           >
-            {upcomingAppointmentDate(data.appointmentInfo.date)}
+            {upcomingAppointmentDate(
+              data.appointmentInfo.date,
+              data.appointmentInfo.timeZone
+            )}
           </Typography>
           <Box className={styles.subTitleWrapper}>
             <Typography

@@ -276,7 +276,7 @@ export class Api {
     const patientId = `/${userData?.patientId}`;
     const params = {
       currentDate: new moment().format("MM/DD/YYYY"),
-      time: new moment().format("hh:mm"),
+      time: new moment().format("HH:mm"),
     };
     const url = `/ecp/appointments${
       userData?.patientId ? patientId : ""
@@ -292,7 +292,7 @@ export class Api {
     }/history`;
     const params = {
       currentDate: new moment().format("MM/DD/YYYY"),
-      time: new moment().format("hh:mm"),
+      time: new moment().format("HH:mm"),
       pageSize: 999,
       pageNo: 0,
     };

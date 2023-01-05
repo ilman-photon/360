@@ -44,14 +44,17 @@ export function formatDate(payload, withTimezone) {
   });
 }
 
-export function formatAppointmentDate(date) {
+export function formatAppointmentDate(date, tzone) {
   if (!date) {
     return "-";
   } else {
-    const timezone = moment.tz.guess();
-    const momentDate = new moment(date);
-    const dateTimezone = momentDate.tz(timezone);
-    return dateTimezone.format("dddd, MMM DD, YYYY, [AT] h:mm A z");
+    const momentDate = new moment(date).format(
+      "dddd, MMM DD, YYYY, [AT] h:mm A"
+    );
+    const timezone = tzone
+      ? new moment.tz(tzone).format("z")
+      : new moment.tz(moment.tz.guess()).format("z");
+    return `${momentDate} ${timezone}`;
   }
 }
 
@@ -109,15 +112,16 @@ export function yyyymmddDateFormat(date) {
   return momentDate.format("YYYY-MM-DD");
 }
 
-export function fullDateFormat(data) {
+export function fullDateFormat(data, tzone) {
   if (!data) {
     return "-";
   } else {
-    const date = new Date(data);
-    const momentDate = new moment(date);
-    const timezone = moment.tz.guess();
-    const dateTimezone = momentDate.tz(timezone);
-    return dateTimezone.format("h:mm a z, ddd, MMM D, YYYY");
+    const momentTime = new moment(data).format("h:mm a");
+    const momentDate = new moment(data).format("ddd, MMM D, YYYY");
+    const timezone = tzone
+      ? new moment.tz(tzone).format("z")
+      : new moment.tz(moment.tz.guess()).format("z");
+    return `${momentTime} ${timezone}, ${momentDate}`;
   }
 }
 
@@ -159,14 +163,15 @@ export function convertTime24to12(time) {
   return time.join(""); // return adjusted time or original string
 }
 
-export const upcomingAppointmentDate = (data) => {
+export const upcomingAppointmentDate = (data, tzone) => {
   if (!data) {
     return "-";
   } else {
-    const date = new Date(data);
-    const momentDate = new moment(date);
-    const timezone = moment.tz.guess();
-    const americaTimezone = momentDate.tz(timezone);
-    return americaTimezone.format("dddd, MMM DD - h:mmA z");
+    const momentDate = new moment(data).format("dddd, MMM DD - h:mmA");
+    const timezone = tzone
+      ? new moment.tz(tzone).format("z")
+      : new moment.tz(moment.tz.guess()).format("z");
+
+    return `${momentDate} ${timezone}`;
   }
 };
