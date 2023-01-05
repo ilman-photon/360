@@ -444,7 +444,10 @@ export default function ModalConfirmContent({
                     sx={{ pb: 2 }}
                     aria-label={appointmentData?.date}
                   >
-                    {formatAppointmentDate(appointmentData.date)}
+                    {formatAppointmentDate(
+                      appointmentData.date,
+                      appointmentData.timeZone
+                    )}
                   </Typography>
 
                   <div style={{ display: "inline-flex" }}>

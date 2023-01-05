@@ -95,7 +95,10 @@ export default function AppointmentDetails({
                 TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date
               }
             >
-              {formatAppointmentDate(appointmentData.date)}
+              {formatAppointmentDate(
+                appointmentData.date,
+                appointmentData.timeZone
+              )}
             </Typography>
           </LabelWithInfo>
 

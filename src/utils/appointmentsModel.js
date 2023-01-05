@@ -38,6 +38,7 @@ export function appointmentParser(data = {}, appointmentTypes = []) {
       appointmentType: data.appointmentType?.name,
       appointmentTypeCategory: appointmentTypeCategory,
       date: `${data.appointmentDate} ${data.appointmentTime}`,
+      timeZone: data.timeZone,
       insuranceCarrier: data.insurancePayers || [],
       state: data.state,
     },

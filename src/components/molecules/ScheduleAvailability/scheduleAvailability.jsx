@@ -54,7 +54,7 @@ export const ScheduleAvailability = ({
         }}
       >
         {schedule.map((option, idx) => {
-          const { appointmentType, appointmentTypeCode } =
+          const { appointmentType, appointmentTypeCode, timeZone } =
             getAppointmentTypeOnTimeSlot(
               scheduleData[currentDateIndex],
               option
@@ -66,7 +66,8 @@ export const ScheduleAvailability = ({
             stringCurrentDate,
             true,
             appointmentType,
-            appointmentTypeCode
+            appointmentTypeCode,
+            timeZone
           );
         })}
       </Box>

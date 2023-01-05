@@ -25,6 +25,7 @@ import { getProviderLocation } from "../AppointmentInformation/appointmentInform
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import CommonCard from "./commonCard";
 import { colors } from "../../../styles/theme";
+import moment from "moment-timezone";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -115,8 +116,14 @@ export default function AppointmentCard({
 
   function renderAppointmentUI() {
     if (appointment && appointment.appointmentId) {
-      const today = new Date();
-      const visitDate = new Date(appointment.appointmentInfo.date);
+      const today = new moment().tz(appointment.appointmentInfo.timeZone);
+      const visitDateIsoFormat = new Date(
+        appointment.appointmentInfo.date
+      ).toISOString();
+      const visitDate = new moment.tz(
+        visitDateIsoFormat,
+        appointment.appointmentInfo.timeZone
+      );
       let hideHour = 0;
       if (
         appointment.appointmentInfo.appointmentTypeCategory === "OPT" ||
@@ -128,13 +135,14 @@ export default function AppointmentCard({
         hideHour = 24;
       }
 
-      const isHideButtons = visitDate < addHours(hideHour);
-      const daysAway = visitDate.getTime() - today.getTime();
-      const TotalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
-      let estimationTime = `${TotalDays} days`;
+      const duration = moment.duration(visitDate.diff(today));
+      const days = duration.asDays();
+      const hours = duration.asHours();
+
+      const isHideButtons = Math.floor(hours) < hideHour;
+      let estimationTime = `${Math.round(days)} days`;
       if (isHideButtons) {
-        const totalHours = Math.ceil(daysAway / (1000 * 3600));
-        estimationTime = `${totalHours} Hours`;
+        estimationTime = `${Math.floor(hours)} Hours`;
       }
       return (
         <Box
@@ -162,7 +170,10 @@ export default function AppointmentCard({
                   sx={{ color: colors.darkBlue }}
                   tabIndex={0}
                 >
-                  {fullDateFormat(appointment.appointmentInfo.date)}
+                  {fullDateFormat(
+                    appointment.appointmentInfo.date,
+                    appointment.appointmentInfo.timeZone || ""
+                  )}
                 </Typography>
               </Box>
               <Box className={styles.flexDisplay} pt={3}>
