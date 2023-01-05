@@ -328,7 +328,7 @@ export default function IntakeFormPage() {
             )}
             <Typography
               sx={{
-                fontFamily: '"Bw Nista Geometric DEMO", sans-serif',
+                fontFamily: "Museo Sans, sans-serif",
                 fontStyle: "normal",
                 fontWeight: "400",
                 fontSize: "22px",
@@ -350,7 +350,7 @@ export default function IntakeFormPage() {
                 {item.submitDate && (
                   <Typography
                     sx={{
-                      fontFamily: '"Bw Nista Geometric DEMO", sans-serif',
+                      fontFamily: "Arial, sans-serif",
                       fontStyle: "normal",
                       fontWeight: "400",
                       fontSize: "14px",
@@ -398,7 +398,7 @@ export default function IntakeFormPage() {
           {item?.description && (
             <Typography
               sx={{
-                fontFamily: '"Libre Franklin", sans-serif',
+                fontFamily: '"Museo Sans", sans-serif',
                 fontStyle: "normal",
                 fontWeight: "400",
                 fontSize: "16px",
@@ -486,7 +486,7 @@ export default function IntakeFormPage() {
                 ".MuiButtonBase-root": {
                   textTransform: "capitalize",
                   color: "#424747",
-                  fontFamily: "'Libre Franklin', sans-serif",
+                  fontFamily: "'Museo Sans', sans-serif",
                   fontStyle: "normal",
                   fontWeight: "400",
                   fontSize: "14px",

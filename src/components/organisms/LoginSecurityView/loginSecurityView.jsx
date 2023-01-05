@@ -11,7 +11,7 @@ export default function LoginSecurityView() {
   const [userData, setUserData] = useState(null);
   const [lastUpdate, setLastUpdate] = useState("");
   const styleLink = {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontWeight: 500,
     fontSize: "16px",
     lineHeight: "20px",

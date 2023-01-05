@@ -13,7 +13,7 @@ export const ValidationContent = ({ validationMessage }) => {
     <Box className={styles.validationContainer} role="alert">
       <Typography
         sx={{
-          fontFamily: "Bw Nista Geometric DEMO",
+          fontFamily: "Museo Sans",
           fontWeight: "400",
           fontSize: "32px",
           lineHeight: "44px",

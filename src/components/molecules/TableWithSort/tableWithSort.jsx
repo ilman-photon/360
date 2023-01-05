@@ -550,7 +550,7 @@ export default function TableWithSort({
                     textAlign="center"
                     sx={{
                       margin: "0 8px",
-                      fontFamily: "Libre Franklin",
+                      fontFamily: "Museo Sans",
                       fontWeight: "500",
                       fontSize: "14px",
                     }}

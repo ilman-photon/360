@@ -167,7 +167,7 @@ export const NewMessageDialog = ({
                 tabIndex={0}
                 id="alert-dialog-description"
                 sx={{
-                  fontFamily: "Bw Nista Geometric DEMO",
+                  fontFamily: "Museo Sans",
                   fontSize: "22px",
                   fontWeight: "500",
                   fontStyle: "normal",
@@ -305,7 +305,7 @@ export const NewMessageDialog = ({
                   }}
                   sx={{
                     ".MuiFilledInput-input": {
-                      fontFamily: "Libre Franklin",
+                      fontFamily: "Museo Sans",
                       color: "#6C6C6C !important",
                       fontSize: "16px",
                       lineHeight: "12px",
@@ -364,7 +364,7 @@ export const NewMessageDialog = ({
                     sx={{
                       width: "100%",
                       ".MuiFilledInput-input": {
-                        fontFamily: "Libre Franklin",
+                        fontFamily: "Museo Sans",
                         color: "#6C6C6C !important",
                         fontSize: "16px",
                         lineHeight: "12px",

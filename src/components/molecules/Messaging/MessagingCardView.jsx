@@ -73,7 +73,7 @@ export const MessagingCardView = ({
             <Typography
               tabIndex={0}
               sx={{
-                fontFamily: "Bw Nista Geometric DEMO",
+                fontFamily: "Museo Sans",
                 fontSize: isDesktop ? "22px" : "16px",
                 fontWeight: "400",
                 fontStyle: "normal",
@@ -96,7 +96,7 @@ export const MessagingCardView = ({
               <Typography
                 tabIndex={0}
                 sx={{
-                  fontFamily: "Bw Nista Geometric DEMO",
+                  fontFamily: "Museo Sans",
                   fontSize: "14px",
                   fontWeight: "400",
                   fontStyle: "normal",
@@ -110,7 +110,7 @@ export const MessagingCardView = ({
           </Box>
           <Typography
             sx={{
-              fontFamily: "Bw Nista Geometric DEMO",
+              fontFamily: "Museo Sans",
               fontSize: isDesktop ? "18px" : "16px",
               fontWeight: "400",
               fontStyle: "normal",

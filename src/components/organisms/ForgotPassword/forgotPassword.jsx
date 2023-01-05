@@ -77,7 +77,9 @@ const ForgotPassword = ({
     } else {
       setError("username", {
         type: "custom",
-        message: isAppointment ? t("errorInvalidEmailPhone") : t("errorInvalidEmailPhoneForgot"),
+        message: isAppointment
+          ? t("errorInvalidEmailPhone")
+          : t("errorInvalidEmailPhoneForgot"),
       });
     }
   };
@@ -171,7 +173,7 @@ const ForgotPassword = ({
                       }}
                       sx={{
                         ".MuiFilledInput-input": {
-                          fontFamily: "Libre Franklin",
+                          fontFamily: "Museo Sans",
                           color: "#6C6C6C !important",
                           fontSize: "16px",
                           lineHeight: "12px",

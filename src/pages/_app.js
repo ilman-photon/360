@@ -4,6 +4,7 @@ import store from "../store/store";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../styles/globals.scss";
+import "../../styles/fonts.scss";
 import React, { useState, useEffect } from "react";
 
 import { appWithTranslation } from "next-i18next";

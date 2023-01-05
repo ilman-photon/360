@@ -186,7 +186,7 @@ export default function ModalCancelScheduling({
                         flexDirection: "column",
                         padding: "0px",
                         margin: "0px",
-                        fontFamily: "Libre Franklin",
+                        fontFamily: "Museo Sans",
                         alignItems: "flex-start",
                       }}
                       sx={{

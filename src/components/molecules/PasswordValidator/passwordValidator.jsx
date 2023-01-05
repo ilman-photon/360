@@ -57,7 +57,7 @@ export const PasswordValidator = ({ ...props }) => {
                   ...styles.textStyles,
                   ...styles.childrenStyles,
                   letterSpacing: "0.0016em",
-                  fontFamily: "Libre Franklin",
+                  fontFamily: "Museo Sans",
                   fontStyle: "normal",
                   fontWeight: "400",
                   fontSize: "14px",

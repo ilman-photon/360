@@ -117,7 +117,7 @@ export const FilterResultContainer = ({
                   md: "none",
                 },
                 textTransform: "capitalize",
-                fontFamily: "Libre Franklin, sans-serif",
+                fontFamily: "Museo Sans, sans-serif",
                 fontStyle: "normal",
                 fontWeight: "500",
                 fontSize: "14px",

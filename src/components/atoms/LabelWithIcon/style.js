@@ -10,7 +10,7 @@ export const styles = {
   successTextColor: {
     marginLeft: 10,
     color: colors.green,
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontStyle: "normal",
     fontWeight: 500,
     fontSize: "14px",
@@ -19,7 +19,7 @@ export const styles = {
   errorTextStyle: {
     marginLeft: 10,
     color: colors.grey75,
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontStyle: "normal",
     fontWeight: 400,
     fontSize: "14px",
@@ -28,7 +28,7 @@ export const styles = {
   primaryTextStyle: {
     marginLeft: 10,
     color: "#316A70",
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontStyle: "normal",
     fontWeight: 400,
     fontSize: "14px",

@@ -265,7 +265,7 @@ export default function BaseHeader({
                           sm: "flex !important",
                         },
                         height: "40px !important",
-                        fontFamily: "'Libre Franklin', sans-serif",
+                        fontFamily: "'Museo Sans', sans-serif",
                         fontWeight: "400 !important",
                         fontSize: "14px",
                         boxShadow: "none !important",
