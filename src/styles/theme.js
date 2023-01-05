@@ -63,18 +63,18 @@ export const colors = {
 
 export const patientTypography = createTheme({
   typography: {
-    fontFamily: "Libre Franklin, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
     fontWeight: "normal",
     fontSize: 16,
     h1: {
-      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       color: "#003B4A",
       fontWeight: 500,
       fontSize: 46,
       lineHeight: "60px",
     },
     h2: {
-      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       color: "#003B4A",
       fontWeight: 500,
       fontSize: 34,
@@ -85,14 +85,14 @@ export const patientTypography = createTheme({
       },
     },
     h3: {
-      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       color: "#003B4A",
       fontWeight: "bold",
       fontSize: 22,
       lineHeight: "32px",
     },
     h4: {
-      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       color: "#003B4A",
       fontWeight: "bold",
       fontSize: 18,
@@ -106,19 +106,19 @@ export const patientTypography = createTheme({
       lineHeight: "24px",
     },
     bodyLarge: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: "bold",
       fontSize: 18,
       lineHeight: "26px",
     },
     bodyMedium: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 400,
       fontSize: 16,
       lineHeight: "24px",
     },
     bodyRegular: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: "bold",
       fontSize: 16,
       lineHeight: "24px",
@@ -129,7 +129,7 @@ export const patientTypography = createTheme({
       },
     },
     bodyRegularSemiBold: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontStyle: "normal",
       fontWeight: 600,
       fontSize: "16px",
@@ -137,13 +137,13 @@ export const patientTypography = createTheme({
       letterSpacing: "0.0016em",
     },
     bodySmallRegular: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: "bold",
       fontSize: 14,
       lineHeight: "22px",
     },
     bodySmallMedium: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 500,
       fontSize: 14,
     },
@@ -153,17 +153,17 @@ export const patientTypography = createTheme({
       fontSize: 14,
     },
     bodySmallLightMedium: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 400,
       fontSize: 14,
     },
     bodyTinyRegular: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: "normal",
       fontSize: 12,
     },
     bodyTinyMedium: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 500,
       fontSize: 12,
     },
@@ -176,7 +176,7 @@ export const patientTypography = createTheme({
       textDecoration: "underline",
     },
     titleCard: {
-      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 400,
       fontSize: 24,
       lineHeight: "32px",
@@ -186,13 +186,13 @@ export const patientTypography = createTheme({
       },
     },
     customBodyRegular: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: "bold",
       fontSize: 16,
       lineHeight: "24px",
     },
     medication: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 700,
       fontSize: 18,
       lineHeight: "26px",
@@ -200,7 +200,7 @@ export const patientTypography = createTheme({
       textDecoration: "underline, sans-serif",
     },
     bodyLinkRegular: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 500,
       fontSize: 16,
       lineHeight: "20px",
@@ -211,60 +211,60 @@ export const patientTypography = createTheme({
       color: "#292929",
     },
     bodySmallItalic: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 400,
       fontSize: 12,
       fontStyle: "italic",
     },
     lightError: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 400,
       fontSize: 12,
       color: "#B00020",
     },
     regularDarkGreen: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       color: "#003B4A",
       fontWeight: "400",
       fontSize: 16,
       lineHeight: "20px",
     },
     mediumDarkGreen: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       color: "#003B4A",
       fontWeight: "500",
       fontSize: 16,
       lineHeight: "20px",
     },
     grayscaleBlack: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       color: "#292929",
       fontWeight: "500",
       fontSize: 22,
       lineHeight: "30px",
     },
     mediumBlueNavy: {
-      fontFamily: "Libre Franklin, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       color: colors.foundationBlue,
       fontWeight: "500",
       fontSize: 16,
     },
     headlineH2: {
-      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontStyle: "normal",
       fontWeight: 400,
       fontSize: "32px",
       lineHeight: "44px",
     },
     headlineH3: {
-      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontStyle: "normal",
       fontWeight: 400,
       fontSize: "26px",
       lineHeight: "32px",
     },
     headlineH4: {
-      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontStyle: "normal",
       fontWeight: 500,
       fontSize: "18px",
@@ -272,7 +272,7 @@ export const patientTypography = createTheme({
       color: "#003B4A",
     },
     titleScheduleMobile: {
-      fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 500,
       fontSize: "26px",
     },
@@ -337,7 +337,7 @@ export const providerTypography = createTheme({
 
 export const primaryTheme = createTheme({
   typography: {
-    fontFamily: "Libre Franklin, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
   },
   button: {
     background: colors.teal, // "linear-gradient(89.86deg, #0095A9 -3.29%, #00C6E0 102.48%)",
@@ -347,7 +347,7 @@ export const primaryTheme = createTheme({
 
 export const secondaryTheme = createTheme({
   typography: {
-    fontFamily: "Libre Franklin, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
   },
   button: {
     background: "white",
@@ -358,7 +358,7 @@ export const secondaryTheme = createTheme({
 
 export const patientButtonPrimary = createTheme({
   typography: {
-    fontFamily: "Libre Franklin, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
   },
   button: {
     background: colors.primaryButton,
@@ -367,7 +367,7 @@ export const patientButtonPrimary = createTheme({
 });
 export const patientButtonSecondary = createTheme({
   typography: {
-    fontFamily: "Libre Franklin, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
   },
   button: {
     background: "white",
@@ -377,7 +377,7 @@ export const patientButtonSecondary = createTheme({
 });
 export const patientButtonError = createTheme({
   typography: {
-    fontFamily: "Libre Franklin, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
   },
   button: {
     background: colors.error,

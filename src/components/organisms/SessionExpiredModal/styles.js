@@ -17,7 +17,7 @@ export const styles = {
   },
 
   postMessageGenericError: {
-    fontFamily: "Libre Franklin, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
     fontStyle: "normal",
     fontWeight: "400",
     fontSize: "14px",

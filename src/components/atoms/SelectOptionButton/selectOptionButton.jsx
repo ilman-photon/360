@@ -72,7 +72,7 @@ export default function SelectOptionButton({
           "&.MuiInputLabel-shrink": {
             color: colors.darkGreen,
             fontWeight: 600,
-            fontFamily: "Libre Franklin",
+            fontFamily: "Museo Sans",
             fontSize: "1rem",
           },
           "&.Mui-error": {

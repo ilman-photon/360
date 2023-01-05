@@ -82,7 +82,7 @@ export default function AppointmentDetails({
               variant="bodyMedium"
               sx={{
                 color: "#003B4A",
-                fontFamily: "Libre Franklin",
+                fontFamily: "Museo Sans",
                 fontSize: "16px",
                 fontWeight: "400",
                 "font-style": "normal",
@@ -131,7 +131,7 @@ export default function AppointmentDetails({
               variant="bodyMedium"
               sx={{
                 color: "#003B4A",
-                fontFamily: "Libre Franklin",
+                fontFamily: "Museo Sans",
                 "font-style": "normal",
                 "font-weight": "400",
                 "font-size": "16px",
@@ -178,7 +178,7 @@ export default function AppointmentDetails({
               variant="bodyMedium"
               sx={{
                 color: colors.darkGreen,
-                fontFamily: "Libre Franklin",
+                fontFamily: "Museo Sans",
                 "font-style": "normal",
                 "font-weight": "400",
                 "font-size": "16px",

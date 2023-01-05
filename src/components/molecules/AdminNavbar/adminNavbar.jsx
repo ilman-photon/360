@@ -66,7 +66,7 @@ const AdminNavbar = () => {
           textAlign="center"
           sx={{
             margin: "0 10px",
-            fontFamily: "Libre Franklin",
+            fontFamily: "Museo Sans",
             fontWeight: "400",
             fontSize: {
               sm: "14px",

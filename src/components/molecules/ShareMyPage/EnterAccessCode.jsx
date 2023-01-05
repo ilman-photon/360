@@ -32,7 +32,7 @@ const AlertComponent = ({ severity, title, description }) => {
       variant="filled"
       severity={severity}
       sx={{
-        fontFamily: "Libre Franklin",
+        fontFamily: "Museo Sans",
         fontStyle: "normal",
         fontWeight: 400,
         lineHeight: "24px",
@@ -83,7 +83,7 @@ export const EnterAccessCode = ({
     <Box className={styles.accessCodeContainer}>
       <Typography
         sx={{
-          fontFamily: "Bw Nista Geometric DEMO",
+          fontFamily: "Museo Sans",
           fontWeight: "400",
           fontSize: "32px",
           lineHeight: "44px",
@@ -104,7 +104,7 @@ export const EnterAccessCode = ({
 
       <Typography
         sx={{
-          fontFamily: "Libre Franklin",
+          fontFamily: "Museo Sans",
           fontWeight: "400",
           fontSize: "16px",
           lineHeight: "24px",

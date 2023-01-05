@@ -178,11 +178,7 @@ export default function PersonalInformation({
             )
           }
         >
-          <Fade
-            in={!isEditing}
-            unmountOnExit
-            sx={{ fontFamily: "Libre Franklin" }}
-          >
+          <Fade in={!isEditing} unmountOnExit sx={{ fontFamily: "Museo Sans" }}>
             <Stack spacing={3} divider={<Divider />}>
               <LabelWithInfo
                 label="Photo"

@@ -583,7 +583,7 @@ export default function InsuranceForm({
                 variant="headlineH4"
                 component="div"
                 sx={{
-                  fontFamily: "Libre Franklin",
+                  fontFamily: "Museo Sans",
                   fontWeight: 700,
                   color: colors.grayscaleBlack,
                   fontSize: { xs: "22px", md: "18px" },

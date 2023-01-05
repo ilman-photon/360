@@ -23,7 +23,7 @@ export const styles = {
     my: 2,
     display: "block",
     textTransform: "none",
-    fontFamily: "Bw Nista Geometric DEMO",
+    fontFamily: "Museo Sans",
     fontStyle: "normal",
     fontWeight: "500",
     fontSize: "18px",

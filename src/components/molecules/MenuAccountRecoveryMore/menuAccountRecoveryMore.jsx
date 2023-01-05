@@ -125,7 +125,7 @@ export default function MenuAccountRecoveryMore({
             aria-live="assertive"
             sx={{
               margin: "0 8px",
-              fontFamily: "Libre Franklin",
+              fontFamily: "Museo Sans",
               fontWeight: "500",
               fontSize: "14px",
             }}

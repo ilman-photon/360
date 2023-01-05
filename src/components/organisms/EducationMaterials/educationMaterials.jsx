@@ -57,7 +57,7 @@ const EducationMaterials = ({
         >
           <Typography
             sx={{
-              fontFamily: `"Bw Nista Geometric DEMO", sans-serif`,
+              fontFamily: `"Museo Sans, sans-serif`,
               fontWeight: "400",
               fontSize: "26px",
               cursor: "pointer",
@@ -78,7 +78,7 @@ const EducationMaterials = ({
           >
             <Typography
               sx={{
-                fontFamily: `"Libre Franklin", sans-serif`,
+                fontFamily: `"Museo Sans", sans-serif`,
                 fontWeight: "400",
                 fontSize: "16px",
                 color: "#575757",

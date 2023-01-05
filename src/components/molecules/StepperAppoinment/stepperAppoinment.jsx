@@ -32,7 +32,7 @@ export default function StepperAppoinment({ ...props }) {
             tabIndex={"0"}
             sx={{
               marginBottom: { xs: "40px", md: "0" },
-              fontFamily: "Libre Franklin !important",
+              fontFamily: "Museo Sans !important",
               "& .MuiStepLabel-root .Mui-completed": {
                 color: "#D5F1D4", // circle color (COMPLETED)
                 stroke: "#00B88C",
@@ -43,17 +43,17 @@ export default function StepperAppoinment({ ...props }) {
                 {
                   color: "black", // Just text label (COMPLETED)
                   background: "transparent",
-                  fontFamily: "Libre Franklin",
+                  fontFamily: "Museo Sans",
                 },
               "& .MuiStepLabel-root .MuiStepLabel-iconContainer .Mui-active": {
                 color: "#99d5dd", // circle color (ACTIVE)
                 border: "#CFEAED 1px solid",
                 borderRadius: "50%",
-                fontFamily: "Libre Franklin",
+                fontFamily: "Museo Sans",
               },
               "& .MuiStepLabel-root .Mui-active text": {
                 fill: "black", // active label text
-                // fontFamily: "Libre Franklin",
+                // fontFamily: "Museo Sans",
                 fontWeight: "700",
                 fontSize: "14px",
               },
@@ -64,7 +64,7 @@ export default function StepperAppoinment({ ...props }) {
                   position: "absolute",
                   left: "-50%",
                   right: "-50%",
-                  fontFamily: "Libre Franklin !important",
+                  fontFamily: "Museo Sans !important",
                 },
               "& .Mui-disabled .MuiStepIcon-root": {
                 color: "transparent", // Hollow icon (INCOMPLETE)
@@ -86,14 +86,14 @@ export default function StepperAppoinment({ ...props }) {
                     marginTop: 1,
                     color: "#000000",
                     fontSize: "15px",
-                    fontFamily: "Libre Franklin",
+                    fontFamily: "Museo Sans",
                     fontWeight: "400",
                   },
                 ".css-farnub.MuiStepLabel-alternativeLabel": {
-                  fontFamily: "Libre Franklin",
+                  fontFamily: "Museo Sans",
                   fontSize: "15px",
                 },
-                fontFamily: "Libre Franklin !important",
+                fontFamily: "Museo Sans !important",
               }}
               aria-label={`Stepper ${idx + 1}. ${label} `}
             >

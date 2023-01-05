@@ -48,7 +48,7 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
             tabIndex={0}
             className={styles.textHeaderCard}
             sx={{
-              fontFamily: "Bw Nista Geometric DEMO",
+              fontFamily: "Museo Sans",
               fontStyle: "normal",
               fontWeight: "400",
               fontSize: "26px",
@@ -81,7 +81,7 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
             tabIndex={0}
             className={styles.textHeaderCard}
             sx={{
-              fontFamily: "Bw Nista Geometric DEMO",
+              fontFamily: "Museo Sans",
               fontStyle: "normal",
               fontWeight: "400",
               fontSize: "26px",

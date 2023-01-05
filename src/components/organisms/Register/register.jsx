@@ -231,7 +231,7 @@ export default function Register({
             />
             <Typography
               sx={{
-                fontFamily: "Libre Franklin",
+                fontFamily: "Museo Sans",
                 fontWeight: "400",
                 fontSize: "12px",
                 color: "#6C6C6C",

@@ -94,7 +94,7 @@ const SummaryBillDetail = ({
           <Box sx={{ width: "100%" }}>
             <Typography
               sx={{
-                fontFamily: "Bw Nista Geometric DEMO",
+                fontFamily: "Museo Sans",
                 fontStyle: "normal",
                 fontWeight: 400,
                 fontSize: isDesktop ? "32px" : "24px",
@@ -132,7 +132,7 @@ const SummaryBillDetail = ({
                 </Typography>
                 <Typography
                   sx={{
-                    fontFamily: "Bw Nista Geometric DEMO",
+                    fontFamily: "Museo Sans",
                     fontStyle: "normal",
                     fontWeight: 500,
                     fontSize: isDesktop ? "26px" : "20px",
@@ -204,9 +204,7 @@ const SummaryBillDetail = ({
                         <Typography
                           sx={{
                             fontFamily:
-                              key == "balanceDue"
-                                ? "Bw Nista Geometric DEMO"
-                                : "Libre Franklin",
+                              key == "balanceDue" ? "Museo Sans" : "Museo Sans",
                             fontStyle: "normal",
                             fontWeight: key == "balanceDue" ? 500 : 600,
                             fontSize: key == "balanceDue" ? "26px" : "16px",
@@ -221,9 +219,7 @@ const SummaryBillDetail = ({
                         <Typography
                           sx={{
                             fontFamily:
-                              key == "balanceDue"
-                                ? "Bw Nista Geometric DEMO"
-                                : "Inter",
+                              key == "balanceDue" ? "Museo Sans" : "Inter",
                             fontStyle: "normal",
                             fontWeight: key == "balanceDue" ? 500 : 700,
                             fontSize: key == "balanceDue" ? "26px" : "18px",

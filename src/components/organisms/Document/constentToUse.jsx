@@ -426,7 +426,7 @@ export default function ConsentToUse({
                   color: isEditable
                     ? "#191919 !important"
                     : "#003B4A !important",
-                  fontFamily: `"Bw Nista Geometric DEMO", sans-serif`,
+                  fontFamily: `"Museo Sans, sans-serif`,
                   fontSize: "18px",
                 },
               }}

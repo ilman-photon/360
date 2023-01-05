@@ -2,11 +2,11 @@ import { colors } from "../../../styles/theme";
 
 export const styles = {
   examFor: {
-    fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
     fontWeight: 500,
   },
   primaryText: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     color: "#0095A9",
     fontSize: "18px",
     fontWeight: "600",
@@ -27,7 +27,7 @@ export const styles = {
     fontWeight: "600",
   },
   continueButton: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontSize: "16px",
     height: "40px",
     alignSelf: "self-end",
@@ -46,7 +46,7 @@ export const styles = {
     fontSize: "34px",
   },
   signInInfoLabel: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontWeight: "400",
     fontSize: "18px",
     color: "#000000",
@@ -54,7 +54,7 @@ export const styles = {
     letterSpacing: "0.0016em",
   },
   optionalInfoLabel: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontWeight: "600",
     fontSize: "16px",
     color: "#000000",
@@ -69,17 +69,17 @@ export const styles = {
     paddingLeft: "8px",
     lineHeight: "1.167",
     fontSize: "16px",
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
   },
   linkText: {
     color: "#008294",
   },
   sigInInfoLabel: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontWeight: "600",
   },
   passwordLabel: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontSize: "16px",
     color: "#000000",
     fontWeight: "400",
@@ -107,12 +107,12 @@ export const styles = {
     color: "#008294",
     textDecorationLine: "underline",
     textTransform: "capitalize",
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontWeight: 500,
     fontSize: "16px",
   },
   scheduledText: {
-    fontFamily: "Bw Nista Geometric DEMO, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
     color: colors.darkGreen,
     fontWeight: "700",
     display: "flex",
@@ -156,7 +156,7 @@ export const styles = {
   },
 
   registeredUsernameWrapper: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     margin: "16px 8px 0",
     padding: 16,
     borderRadius: 4,
@@ -166,13 +166,13 @@ export const styles = {
   },
 
   nameProviderText: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontSize: "16px",
     fontStyle: "normal",
     textTransform: "capitalize",
   },
   nomal400Text: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontSize: "16px",
     fontStyle: "normal",
     fontWeight: "400px",
@@ -185,7 +185,7 @@ export const styles = {
   },
 
   dobHelperText: {
-    fontFamily: "Libre Franklin",
+    fontFamily: "Museo Sans",
     fontWeight: 400,
     fontSize: "12px",
     color: "#49454F",

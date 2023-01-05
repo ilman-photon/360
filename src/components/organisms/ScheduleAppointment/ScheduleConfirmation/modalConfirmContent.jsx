@@ -168,7 +168,7 @@ export default function ModalConfirmContent({
                   flexDirection: { xs: "column", md: "row" },
                   textAlign: { xs: "center", md: "left" },
                   padding: { xs: "8px", md: "12px 100px" },
-                  fontFamily: "Libre Franklin",
+                  fontFamily: "Museo Sans",
                 }}
                 aria-label={
                   isReschedule ? t("thanksBarReschedule") : t("thanksBar")
@@ -222,7 +222,7 @@ export default function ModalConfirmContent({
                     tabIndex={0}
                     aria-label={"Exam Information title"}
                     sx={{
-                      fontFamily: "Bw Nista Geometric DEMO",
+                      fontFamily: "Museo Sans",
                       fontSize: "26px",
                       lineHeight: "32px",
                       color: "#003B4A",
@@ -236,7 +236,7 @@ export default function ModalConfirmContent({
                       tabIndex={0}
                       aria-label={"Date"}
                       sx={{
-                        fontFamily: "Libre Franklin",
+                        fontFamily: "Museo Sans",
                         fontWeight: 700,
                         fontSize: "16px",
                         lineHeight: "24px",
@@ -263,7 +263,7 @@ export default function ModalConfirmContent({
                       tabIndex={0}
                       aria-label="time"
                       sx={{
-                        fontFamily: "Libre Franklin",
+                        fontFamily: "Museo Sans",
                         fontWeight: 700,
                         fontSize: "16px",
                         lineHeight: "24px",
@@ -318,7 +318,7 @@ export default function ModalConfirmContent({
                             display: "contents",
                             fontWeight: "600",
                             fontSize: "14px",
-                            fontFamily: "Libre Franklin",
+                            fontFamily: "Museo Sans",
                           }}
                           aria-label={"Add to calendar"}
                           onClick={() => {
@@ -388,7 +388,7 @@ export default function ModalConfirmContent({
                     tabIndex={0}
                     aria-label={"Patient Information title"}
                     sx={{
-                      fontFamily: "Bw Nista Geometric DEMO",
+                      fontFamily: "Museo Sans",
                       fontSize: "26px",
                       lineHeight: "32px",
                       color: "#003B4A",
@@ -402,7 +402,7 @@ export default function ModalConfirmContent({
                       tabIndex={0}
                       aria-label={"Name"}
                       sx={{
-                        fontFamily: "Libre Franklin",
+                        fontFamily: "Museo Sans",
                         fontWeight: 700,
                         fontSize: "16px",
                         lineHeight: "24px",
@@ -416,7 +416,7 @@ export default function ModalConfirmContent({
                       tabIndex={0}
                       aria-label={getName()}
                       sx={{
-                        fontFamily: "Libre Franklin",
+                        fontFamily: "Museo Sans",
                         fontWeight: 600,
                         fontSize: "16px",
                         lineHeight: "24px",
@@ -480,7 +480,7 @@ export default function ModalConfirmContent({
                           width: "150px",
                           fontWeight: "600",
                           fontSize: "14px",
-                          fontFamily: "Libre Franklin",
+                          fontFamily: "Museo Sans",
                           alignItems: "flex-end",
                           justifyContent: "center",
                         }}
@@ -507,7 +507,7 @@ export default function ModalConfirmContent({
                     aria-label={appointmentData.appointmentType || "Eye exam"}
                     tabIndex={"0"}
                     sx={{
-                      fontFamily: "Libre Franklin",
+                      fontFamily: "Museo Sans",
                     }}
                   >
                     {appointmentData.appointmentType || "Eye exam"}
@@ -529,7 +529,7 @@ export default function ModalConfirmContent({
                           tabIndex={0}
                           aria-label={"Physician Title"}
                           sx={{
-                            fontFamily: "Bw Nista Geometric DEMO",
+                            fontFamily: "Museo Sans",
                             fontSize: "26px",
                             lineHeight: "32px",
                             color: "#003B4A",
@@ -592,7 +592,7 @@ export default function ModalConfirmContent({
                       variant="bodyMedium"
                       sx={{
                         color: colors.darkGreen,
-                        fontFamily: "Libre Franklin",
+                        fontFamily: "Museo Sans",
                       }}
                       tabIndex={"0"}
                     >
@@ -716,7 +716,7 @@ export default function ModalConfirmContent({
                   variant="caption"
                   sx={{
                     fontSize: "16px",
-                    fontFamily: "Libre Franklin",
+                    fontFamily: "Museo Sans",
                     float: isMobile ? "left" : "unset",
                   }}
                   aria-label={"Already have an account? Sign in"}

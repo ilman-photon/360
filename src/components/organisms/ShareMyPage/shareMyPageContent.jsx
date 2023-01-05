@@ -215,7 +215,7 @@ export default function ShareMyPageContent({
                     />
                     <Typography
                       sx={{
-                        fontFamily: "Bw Nista Geometric DEMO",
+                        fontFamily: "Museo Sans",
                         fontSize: "32px",
                         fontWeight: "400",
                         lineHeight: "44px",
@@ -248,7 +248,7 @@ export default function ShareMyPageContent({
               </Box>
               <Typography
                 sx={{
-                  fontFamily: "Bw Nista Geometric DEMO",
+                  fontFamily: "Museo Sans",
                   fontSize: "26px",
                   fontWeight: "500",
                   lineHeight: "32px",

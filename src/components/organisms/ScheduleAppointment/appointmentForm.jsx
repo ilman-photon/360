@@ -36,7 +36,7 @@ const DisclaimerText = (data) => {
         display: "inline-flex",
         alignItems: "center",
         color: "#424747",
-        fontFamily: "Libre Franklin",
+        fontFamily: "Museo Sans",
       }}
     >
       {data.label}
@@ -212,12 +212,12 @@ export default function AppointmentForm({
       return isDesktop
         ? {
             fontSize: "32px",
-            fontFamily: "Bw Nista Geometric DEMO",
+            fontFamily: "Museo Sans",
             fontWeight: "500",
           }
         : {
             fontSize: "26px",
-            fontFamily: "Bw Nista Geometric DEMO",
+            fontFamily: "Museo Sans",
           };
     } else {
       return {
@@ -613,7 +613,7 @@ export default function AppointmentForm({
                           justifyContent: "space-between",
                           color: "#242526",
                           fontWeight: "600",
-                          fontFamily: "Libre Franklin",
+                          fontFamily: "Museo Sans",
                         }}
                         sx={{
                           width: { xs: "100%", md: "56%" },

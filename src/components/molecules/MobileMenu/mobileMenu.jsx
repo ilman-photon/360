@@ -45,7 +45,7 @@ export default function MobileMenu({
 }) {
   const router = useRouter();
   const typographyStyle = {
-    fontFamily: "Libre Franklin, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
     fontStyle: "normal",
     fontWeight: "400",
     fontSize: "18px",

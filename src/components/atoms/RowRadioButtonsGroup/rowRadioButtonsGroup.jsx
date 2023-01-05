@@ -120,7 +120,7 @@ export default function RowRadioButtonsGroup({
                 ".MuiTypography-root": {
                   fontSize: 16,
                   color: "#242526",
-                  fontFamily: `"Libre Franklin", sans-serif`,
+                  fontFamily: `"Museo Sans", sans-serif`,
                 },
               }}
             />
