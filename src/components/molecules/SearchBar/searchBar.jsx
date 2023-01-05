@@ -19,6 +19,7 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import styles from "./styles.module.scss";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import { useState } from "react";
+import { Regex } from "../../../utils/regex";
 
 export const AutoCompleteField = ({
   id,
@@ -108,6 +109,20 @@ export default function SearchBar({
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [specialty, setSpecialty] = useState("");
+
+  const validateInput = (e) => {
+    const spaceValidation =
+      name.length > 0 && !Regex.noWhitespaceRegex.test(e.key);
+    const charValidation =
+      !Regex.alphabethOnly.test(e.key) &&
+      !Regex.numberRegex.test(e.key) &&
+      !spaceValidation;
+    const keyboardValidation = e.key != "Backspace" && e.key != "Tab";
+
+    if (charValidation && keyboardValidation) {
+      e.preventDefault();
+    }
+  };
 
   const mobileForm = () => (
     <>
@@ -251,6 +266,9 @@ export default function SearchBar({
               data-testid="doctor-name"
               type="text"
               value={name}
+              onKeyDown={(e) => {
+                validateInput(e);
+              }}
               onChange={(event) => {
                 setName(event.target.value);
               }}
@@ -366,6 +384,9 @@ export default function SearchBar({
           data-testid="doctor-name"
           type="text"
           value={name}
+          onKeyDown={(e) => {
+            validateInput(e);
+          }}
           onChange={(event) => {
             setName(event.target.value);
           }}

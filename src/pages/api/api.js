@@ -463,11 +463,13 @@ export class Api {
       !notEmpty(query.specialty);
 
     const name = query.name.split(" ");
-    const firstName = notEmpty(name[0]) ? `(firstName=co=${name[0]})` : "";
+    const firstName = notEmpty(name[0])
+      ? `(firstName=co=${name[0].trim()})`
+      : "";
     const lastNameRaw =
       name.length > 1
-        ? `AND(lastName=co=${name[name.length - 1]})`
-        : `OR(lastName=co=${name[0]})`;
+        ? `AND(lastName=co=${name[name.length - 1].trim()})`
+        : `OR(lastName=co=${name[0].trim()})`;
     const lastName = notEmpty(query.name) ? lastNameRaw : "";
     const location = query.location;
     let city = "";
