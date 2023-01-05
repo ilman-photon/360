@@ -422,7 +422,7 @@ export default function TableWithSort({
         <div
           role="button"
           className={styles.actionText}
-          aria-label={`download`}
+          aria-label={ref(row, cell.valueKey)}
           onClick={() => {
             const assetId = ref(row, cell.additionalValueKey);
             cell.onClick(assetId);
@@ -655,6 +655,7 @@ export default function TableWithSort({
           <div
             style={cell.contentStyle}
             className={[styles.tableCell, cell.contentClass].join(" ")}
+            tabIndex={0}
           >
             {getTextValue(row, cell)}
           </div>
