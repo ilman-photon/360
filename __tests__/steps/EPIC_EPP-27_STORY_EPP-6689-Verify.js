@@ -117,20 +117,21 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and('user should navigates to the dashboard page', () => {
-      defaultValidation();
+    and('user should navigates to the dashboard page', async() => {
+      container = await navigateToPatientPortalHome();
     });
 
     when('user clicks on Documents menu', () => {
       defaultValidation();
     });
 
-    then('user views Education Materials menu', async() => {
+    then('user views Education Materials menu', () => {
       defaultValidation();
     });
 
     when('user clicks on Education Materials', () => {
-      defaultValidation();
+      const educationMaterialBtn = container.getByText("View Education Materials");
+      fireEvent.click(educationMaterialBtn);
     });
 
     then('user is able to view the list of education materials', async() => {
@@ -166,8 +167,8 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and('user should navigates to the dashboard page', () => {
-      defaultValidation();
+    and('user should navigates to the dashboard page', async() => {
+      container = await navigateToPatientPortalHome();
     });
 
     when('user clicks on Documents menu', () => {
@@ -193,8 +194,8 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and('user should navigates to the dashboard page', () => {
-      defaultValidation();
+    and('user should navigates to the dashboard page', async() => {
+      container = await navigateToPatientPortalHome();
     });
 
     when('user clicks on Documents menu', () => {
@@ -206,7 +207,8 @@ defineFeature(feature, (test) => {
     });
 
     when('user clicks on Education Materials', () => {
-      defaultValidation();
+      const educationMaterialBtn = container.getByText("View Education Materials");
+      fireEvent.click(educationMaterialBtn);
     });
 
     then('user is able to view the list of education materials', async() => {
@@ -230,8 +232,8 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and('user should navigates to the dashboard page', () => {
-      defaultValidation();
+    and('user should navigates to the dashboard page', async() => {
+      container = await navigateToPatientPortalHome();
     });
 
     when('user clicks on Documents menu', () => {
@@ -243,7 +245,8 @@ defineFeature(feature, (test) => {
     });
 
     when('user clicks on Education Materials', () => {
-      defaultValidation();
+      const educationMaterialBtn = container.getByText("View Education Materials");
+      fireEvent.click(educationMaterialBtn);
     });
 
     then('user is able to view the list of education materials', async() => {
@@ -261,7 +264,7 @@ defineFeature(feature, (test) => {
     });
 
     then('user must be able to view a short Description', () => {
-      // expect(container.getByText(/Age-related macular degeneration is an eye condition/i)).toBeInTheDocument();
+      defaultValidation();
     });
   });
 
@@ -279,8 +282,8 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and('user should navigates to the dashboard page', () => {
-      defaultValidation();
+    and('user should navigates to the dashboard page', async() => {
+      container = await navigateToPatientPortalHome();
     });
 
     when('user clicks on Documents menu', () => {
@@ -292,7 +295,8 @@ defineFeature(feature, (test) => {
     });
 
     when('user clicks on Education Materials', () => {
-      defaultValidation();
+      const educationMaterialBtn = container.getByText("View Education Materials");
+      fireEvent.click(educationMaterialBtn);
     });
 
     then('user is able to view the list of education materials', async() => {
@@ -310,7 +314,7 @@ defineFeature(feature, (test) => {
     });
 
     then('user must be able to view a short Description', () => {
-      // expect(container.getByText(/Age-related macular degeneration is an eye condition/i)).toBeInTheDocument();
+      defaultValidation();
     });
 
     then('user must be to view Download option', () => {
@@ -356,8 +360,8 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and('user should navigates to the dashboard page', () => {
-      defaultValidation();
+    and('user should navigates to the dashboard page', async() => {
+      container = await navigateToPatientPortalHome();
     });
 
     when('user clicks on Documents menu', () => {
