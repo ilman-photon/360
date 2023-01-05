@@ -4,19 +4,31 @@ import { resetFilterData } from "../store/appointment";
 
 const cookies = new Cookies();
 
+const removedCookies = [
+  "authorized",
+  "username",
+  "mfa",
+  "securityQuestions",
+  "accessToken",
+  "refreshToken",
+  "isStay",
+  "IdleTimeOut",
+  "isSecurityQuestionStep",
+  "mfaPreferredMode",
+  "prevPage",
+];
+
+const removedLocalStorage = ["userData", "userProfile"];
+
 export const removeAuthCookies = (dispatch = null) => {
-  cookies.remove("authorized", { path: "/patient" });
-  cookies.remove("username", { path: "/patient" });
-  cookies.remove("mfa", { path: "/patient" });
-  cookies.remove("securityQuestions", { path: "/patient" });
-  cookies.remove("accessToken", { path: "/patient" });
-  cookies.remove("refreshToken", { path: "/patient" });
-  cookies.remove("isStay", { path: "/patient" });
-  cookies.remove("IdleTimeOut", { path: "/patient" });
-  cookies.remove("isSecurityQuestionStep", { path: "/patient" });
-  cookies.remove("mfaPreferredMode", { path: "/patient" });
-  cookies.remove("prevPage", { path: "/patient" });
-  localStorage.removeItem("userData");
+  removedCookies.forEach((key) => {
+    cookies.remove(key, { path: "/patient" });
+  });
+
+  removedLocalStorage.forEach((key) => {
+    localStorage.removeItem(key);
+  });
+
   if (dispatch) {
     dispatch(resetFilterData());
   }
