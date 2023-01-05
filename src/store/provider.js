@@ -52,7 +52,11 @@ const INITIAL_STATE = {
 export const providerStore = createSlice({
   name: "index",
   initialState: INITIAL_STATE,
-  reducers: {},
+  reducers: {
+    resetPlans: (state) => {
+      state.planList = [];
+    },
+  },
   extraReducers: {
     [fetchAllPayers.pending]: (state) => {
       state.status = "loading";
@@ -76,5 +80,8 @@ export const providerStore = createSlice({
     },
   },
 });
+
+// Action creators are generated for each case reducer function
+export const { resetPlans } = providerStore.actions;
 
 export default providerStore.reducer;
