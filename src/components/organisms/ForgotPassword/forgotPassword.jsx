@@ -77,7 +77,7 @@ const ForgotPassword = ({
     } else {
       setError("username", {
         type: "custom",
-        message: t("errorInvalidEmailPhone"),
+        message: isAppointment ? t("errorInvalidEmailPhone") : t("errorInvalidEmailPhoneForgot"),
       });
     }
   };
