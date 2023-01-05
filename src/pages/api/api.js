@@ -4,10 +4,10 @@ import { setGenericErrorMessage } from "../../store";
 import {
   compareDate,
   getDateCount,
+  getLocationName,
   getMondayOfCurrentWeek,
   getSaturdayOfCurrentWeek,
 } from "../../utils/appointment";
-import { getLocationName } from "../../utils/appointment";
 import constants from "../../utils/constants";
 import { mmddyyDateFormat } from "../../utils/dateFormatter";
 import { Regex } from "../../utils/regex";
@@ -301,7 +301,7 @@ export class Api {
 
   getAppointmentDetails(encounterId) {
     const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = "825de415-7e83-45f4-ada8-79a50b0d84bc"; //userData?.patientId || "";
+    const patientId = userData?.patientId || "";
     const url = `/ecp/appointments/visitsummary/encounter/${encounterId}/patient/${patientId}`;
     return this.getResponse(url, {}, "get");
   }

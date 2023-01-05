@@ -9,10 +9,7 @@ import EducationMaterials from "../../src/pages/patient/education-materials/inde
 import EducationMaterialsDetails from "../../src/pages/patient/education-materials/detail/index";
 import store from "../../src/store/store";
 import { renderWithProviders } from "../src/utils/test-util";
-import {
-  createMatchMedia,
-  navigateToPatientPortalHome,
-} from "../../__mocks__/commonSteps";
+import { createMatchMedia } from "../../__mocks__/commonSteps";
 import { educationMaterials } from "../../__mocks__/mockResponse";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
@@ -112,19 +109,18 @@ defineFeature(feature, (test) => {
         window.matchMedia = createMatchMedia("1290px");
         launchBrowser();
         enterValidUsername();
-        clickLogin();
     	});
 
     	and('User lands on the dashboard screen', async() => {
-            defaultValidation();
+            clickLogin();
     	});
 
     	and('User views the ‘Education Materials\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
-        defaultValidation();
-    	});
+            defaultValidation();
+        });
 
     	when('User clicks on the ‘Education Materials\'  option', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	then('User lands on the screen to view the patient education materials', async() => {
@@ -134,6 +130,7 @@ defineFeature(feature, (test) => {
     	});
 
     	when('User clicks on Read more CTA', () => {
+            defaultValidation();
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
@@ -147,11 +144,10 @@ defineFeature(feature, (test) => {
         window.matchMedia = createMatchMedia("1440px");
         launchBrowser();
         enterValidUsername();
-        clickLogin();
     	});
 
     	and('User lands on the dashboard screen', async() => {
-            defaultValidation();
+            clickLogin();
     	});
 
     	and('User views the ‘Education Materials\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
@@ -169,224 +165,225 @@ defineFeature(feature, (test) => {
     	});
 
     	when('User clicks on Read more CTA', () => {
+            defaultValidation();
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
-        await navigateToDetailsPage();
-        expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
+            await navigateToDetailsPage();
+            expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
     	});
 
     	and('User should be able to view Download CTA', () => {
-        expect(container.getByTestId("downloadDetail")).toBeInTheDocument();
+            expect(container.getByTestId("downloadDetail")).toBeInTheDocument();
     	});
 
     	when('User clicks on view Download CTA', () => {
-        const downloadBtn = container.getByTestId("downloadDetail");
-        fireEvent.click(downloadBtn);
+            const downloadBtn = container.getByTestId("downloadDetail");
+            fireEvent.click(downloadBtn);
     	});
 
     	then('User should be able to see that the education material document & Print is downloaded', () => {
-        defaultValidation();
+            defaultValidation();
     	});
     });
 
     test('EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to view Print CTA which when clicked will print the education material document', ({ given, and, when, then }) => {
     	given('User is logged into the portal', () => {
-        window.matchMedia = createMatchMedia("400px");
-        launchBrowser();
-        enterValidUsername();
-        clickLogin();
+            window.matchMedia = createMatchMedia("400px");
+            launchBrowser();
+            enterValidUsername();
     	});
 
     	and('User lands on the dashboard screen', async() => {
-            defaultValidation();
+            clickLogin();
     	});
 
     	and('User views the ‘Education Materials\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	when('User clicks on the ‘Education Materials\'  option', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	then('User lands on the screen to view the patient education materials', async() => {
-        await navigateToEducationMaterialsPage();
-        const title = container.getAllByLabelText(/Education Materials/i)[0];
-        expect(title).toBeInTheDocument();
+            await navigateToEducationMaterialsPage();
+            const title = container.getAllByLabelText(/Education Materials/i)[0];
+            expect(title).toBeInTheDocument();
     	});
 
     	when('User clicks on Read more CTA', () => {
+            defaultValidation();
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
-        await navigateToDetailsPage();
-        expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
+            await navigateToDetailsPage();
+            expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
     	});
 
     	and('User should be able to view Print CTA', () => {
-        expect(container.getByTestId("printDetail")).toBeInTheDocument();
+            expect(container.getByTestId("printDetail")).toBeInTheDocument();
     	});
 
     	when('User clicks on view Print CTA', () => {
-        const printBtn = container.getByTestId("printDetail");
-        fireEvent.click(printBtn);
+            const printBtn = container.getByTestId("printDetail");
+            fireEvent.click(printBtn);
     	});
 
     	then('User should be able to print that the education material document with print page', () => {
-        defaultValidation();
+            defaultValidation();
     	});
     });
 
     test('EPIC_EPP-24_STORY_EPP-8548- Verify User should be able to view Back to education material CTA which when clicked will take the user back to Education materials screen', ({ given, and, when, then }) => {
     	given('User is logged into the portal', () => {
-        window.matchMedia = createMatchMedia("1024px");
-        launchBrowser();
-        enterValidUsername();
-        clickLogin();
+            window.matchMedia = createMatchMedia("1024px");
+            launchBrowser();
+            enterValidUsername();
     	});
 
     	and('User lands on the dashboard screen', async() => {
-            defaultValidation();
+            clickLogin();
     	});
 
     	and('User views the ‘Education Materials\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	when('User clicks on the ‘Education Materials\'  option', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	then('User lands on the screen to view the patient education materials', async() => {
-        await navigateToEducationMaterialsPage();
-        const title = container.getAllByLabelText(/Education Materials/i)[0];
-        expect(title).toBeInTheDocument();
+            await navigateToEducationMaterialsPage();
+            const title = container.getAllByLabelText(/Education Materials/i)[0];
+            expect(title).toBeInTheDocument();
     	});
 
     	when('User clicks on Read more CTA', () => {
+            defaultValidation();
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
-        await navigateToDetailsPage();
-        expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
+            await navigateToDetailsPage();
+            expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
     	});
 
     	and('User should be able to view Back to education material CTA', async() => {
-        const backBtn = container.getByText(/Back to Education Materials/i);
-        expect(backBtn).toBeInTheDocument();
+            const backBtn = container.getByText(/Back to Education Materials/i);
+            expect(backBtn).toBeInTheDocument();
     	});
 
     	when('User clicks on Back to education material CTA', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	then('User should be navigated to Education materials screen', async() => {
-        await navigateToEducationMaterialsPage();
+            await navigateToEducationMaterialsPage();
     	});
     });
 
     test('EPIC_EPP-24_STORY_EPP-8548 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable - when User clicks on Read more CTA', ({ given, and, when, then }) => {
     	given('User is logged into the portal', () => {
-        window.matchMedia = createMatchMedia("1290px");
-        launchBrowser();
-        enterValidUsername();
-        clickLogin();
+            window.matchMedia = createMatchMedia("1290px");
+            launchBrowser();
+            enterValidUsername();
     	});
 
     	and('User lands on the dashboard screen', async() => {
-            defaultValidation();
+            clickLogin();
     	});
 
     	and('User views the ‘Education Materials\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	when('User clicks on the ‘Education Materials\'  option', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	then('User lands on the screen to view the patient education materials', async() => {
-        await navigateToEducationMaterialsPage();
-        const title = container.getAllByLabelText(/Education Materials/i)[0];
-        expect(title).toBeInTheDocument();
+            await navigateToEducationMaterialsPage();
+            const title = container.getAllByLabelText(/Education Materials/i)[0];
+            expect(title).toBeInTheDocument();
     	});
 
     	when('User clicks on Read more CTA', () => {
+            defaultValidation();
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
-        await navigateToDetailsPage();
-        expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
+            await navigateToDetailsPage();
+            expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
     	});
 
     	and('User should be able to view Print CTA', () => {
-        expect(container.getByTestId("printDetail")).toBeInTheDocument();
+            expect(container.getByTestId("printDetail")).toBeInTheDocument();
     	});
 
     	when('User clicks on view Print CTA', () => {
-        const printBtn = container.getByTestId("printDetail");
-        fireEvent.click(printBtn);
+            const printBtn = container.getByTestId("printDetail");
+            fireEvent.click(printBtn);
     	});
 
     	and('the internet service is unavailable', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	then('user should see the appropriate error message', () => {
-        defaultValidation();
+            defaultValidation();
     	});
     });
 
     test('EPIC_EPP-24_STORY_EPP-8548 - Negative Test Cases-Verify user should see the error message when the service is unavailable - when User clicks on Read more CTA', ({ given, and, when, then }) => {
     	given('User is logged into the portal', () => {
-        window.matchMedia = createMatchMedia("1290px");
-        launchBrowser();
-        enterValidUsername();
-        clickLogin();
+            window.matchMedia = createMatchMedia("1290px");
+            launchBrowser();
+            enterValidUsername();
     	});
 
     	and('User lands on the dashboard screen', async() => {
-            defaultValidation();
+            clickLogin();
     	});
 
     	and('User views the ‘Education Materials\' sub-menu under the ‘Documents’ menu present as part of the global header', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	when('User clicks on the ‘Education Materials\'  option', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	then('User lands on the screen to view the patient education materials', async() => {
-        await navigateToEducationMaterialsPage();
-        const title = container.getAllByLabelText(/Education Materials/i)[0];
-        expect(title).toBeInTheDocument();
+            await navigateToEducationMaterialsPage();
+            const title = container.getAllByLabelText(/Education Materials/i)[0];
+            expect(title).toBeInTheDocument();
     	});
 
     	when('User clicks on Read more CTA', () => {
+            defaultValidation();
     	});
 
     	then('User should be able to view the entire content of education material', async() => {
-        await navigateToDetailsPage();
-        expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
+            await navigateToDetailsPage();
+            expect(container.getByText(/Back to Education Materials/i)).toBeInTheDocument();
     	});
 
     	and('User should be able to view Print CTA', () => {
-        expect(container.getByTestId("printDetail")).toBeInTheDocument();
+            expect(container.getByTestId("printDetail")).toBeInTheDocument();
     	});
 
     	when('User clicks on view Print CTA', () => {
-        const printBtn = container.getByTestId("printDetail");
-        fireEvent.click(printBtn);
+            const printBtn = container.getByTestId("printDetail");
+            fireEvent.click(printBtn);
     	});
 
     	and('the service is unavailable', () => {
-        defaultValidation();
+            defaultValidation();
     	});
 
     	then('user should see the appropriate error message', () => {
-        defaultValidation();
+            defaultValidation();
     	});
     });
 

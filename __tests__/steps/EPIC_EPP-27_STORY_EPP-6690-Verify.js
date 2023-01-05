@@ -113,8 +113,8 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and("user should navigates to the dashboard page", () => {
-      defaultValidation();
+    and("user should navigates to the dashboard page", async() => {
+      await navigateToPatientPortalHome();
     });
   });
 
@@ -244,11 +244,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user must be able to view a short Description", () => {
-      // expect(
-      //   container.getByText(
-      //     /Age-related macular degeneration is an eye condition/i
-      //   )
-      // ).toBeInTheDocument();
+      defaultValidation();
     });
   });
 
@@ -304,11 +300,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user must be able to view a short Description", () => {
-      // expect(
-      //   container.getByText(
-      //     /Age-related macular degeneration is an eye condition/i
-      //   )
-      // ).toBeInTheDocument();
+      defaultValidation();
     });
 
     then("user must be to view Download option", () => {
@@ -381,11 +373,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user must be able to view a short Description", () => {
-      // expect(
-      //   container.getByText(
-      //     /Age-related macular degeneration is an eye condition/i
-      //   )
-      // ).toBeInTheDocument();
+      defaultValidation();
     });
 
     then("user must be to view Download option", () => {

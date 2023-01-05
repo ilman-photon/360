@@ -23,10 +23,18 @@ export const TablePrescriptionContent = ({
   isMobile,
   isViewAll = false,
   isSharePage = false,
-  renderCTAIcon = () => {},
-  downloadPDF = () => {},
-  printHTML = () => {},
-  shareDocument = () => {},
+  renderCTAIcon = () => {
+    //this is intentional
+  },
+  downloadPDF = () => {
+    //this is intentional
+  },
+  printHTML = () => {
+    //this is intentional
+  },
+  shareDocument = () => {
+    //this is intentional
+  },
 }) => {
   const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
@@ -49,10 +57,15 @@ export const TablePrescriptionContent = ({
     return {};
   }
 
-  function renderPrescriptionTable(data, type, idxKey, lastRow = false) {
+  function renderPrescriptionTable(
+    data,
+    tableType,
+    idxKey,
+    tableLastRow = false
+  ) {
     if (data && data.prescriptionDetails) {
       let tableHeader = ["Eye", "Sphere", "Cylinder", "Axis", "Add"];
-      if (type === "contacts") {
+      if (tableType === "contacts") {
         tableHeader = ["Eye", "Sphere", "BC", "Cylinder", "AXIS"];
       }
       const shareContent = getDynamicShareContent({
@@ -63,19 +76,19 @@ export const TablePrescriptionContent = ({
       });
       const shareData = {
         id: data?.id || "",
-        title: `Share my ${type} prescription`,
-        successPostmessage: `Your ${type} prescription was succesfully shared.`,
-        type,
+        title: `Share my ${tableType} prescription`,
+        successPostmessage: `Your ${tableType} prescription was succesfully shared.`,
+        type: tableType,
       };
       return (
         <Box
-          key={type + idxKey}
+          key={tableType + idxKey}
           className={
             isViewAll && !isMobile
               ? styles.prescriptionContent
               : styles.prescriptionContentMobile
           }
-          data-testid={`${type}-container-${idxKey}`}
+          data-testid={`${tableType}-container-${idxKey}`}
         >
           <Box
             className={[
@@ -109,10 +122,10 @@ export const TablePrescriptionContent = ({
                 {isViewAll && !isMobile ? (
                   renderCTAIcon(
                     () => {
-                      downloadPDF(type, idxKey);
+                      downloadPDF(tableType, idxKey);
                     },
                     () => {
-                      printHTML(type, idxKey);
+                      printHTML(tableType, idxKey);
                     },
                     () => {
                       shareDocument(shareContent, shareData);
@@ -122,10 +135,10 @@ export const TablePrescriptionContent = ({
                   <Box sx={{ position: "absolute", right: 0 }}>
                     <MenuList
                       onClickDownloadButton={() => {
-                        downloadPDF(type, idxKey);
+                        downloadPDF(tableType, idxKey);
                       }}
                       onClickPrintButton={() => {
-                        printHTML(type, idxKey);
+                        printHTML(tableType, idxKey);
                       }}
                       onClickShareButton={() => {
                         shareDocument(shareContent, shareData);
@@ -178,7 +191,7 @@ export const TablePrescriptionContent = ({
 
           <Box
             sx={{
-              borderBottom: lastRow ? 0 : 1,
+              borderBottom: tableLastRow ? 0 : 1,
               borderColor: "divider",
               padding: isViewAll ? "14px 16px 32px 16px" : "20px 16px",
               "@media print": {
@@ -206,9 +219,9 @@ export const TablePrescriptionContent = ({
               >
                 {/* <TableHead> */}
                 <TableRow>
-                  {tableHeader.map((header, idx) => (
+                  {tableHeader.map((header, headerIdx) => (
                     <StyledTableCell
-                      key={`${idxKey}-${idx}-tabel-header`}
+                      key={`${idxKey}-${headerIdx}-tabel-header`}
                       tabIndex={0}
                       className="MuiTableCell-customHead"
                       sx={{ backgroundColor: "#F4F4F4" }}
@@ -219,9 +232,9 @@ export const TablePrescriptionContent = ({
                 </TableRow>
                 {/* </TableHead> */}
                 <TableBody>
-                  {data?.prescriptionDetails?.map((row, idx) => (
+                  {data?.prescriptionDetails?.map((row, rowIdx) => (
                     <TableRow
-                      key={`${idxKey}-${idx}-tabel-body`}
+                      key={`${idxKey}-${rowIdx}-tabel-body`}
                       sx={{
                         "&:last-child td, &:last-child th": { border: 0 },
                       }}
@@ -231,13 +244,13 @@ export const TablePrescriptionContent = ({
                       </TableCell>
                       <TableCell tabIndex={0}>{row.sph}</TableCell>
                       <TableCell tabIndex={0}>
-                        {type === "contacts" ? row.bc : row.cyl}
+                        {tableType === "contacts" ? row.bc : row.cyl}
                       </TableCell>
                       <TableCell tabIndex={0}>
-                        {type === "contacts" ? row.cyl : row.axis}
+                        {tableType === "contacts" ? row.cyl : row.axis}
                       </TableCell>
                       <TableCell tabIndex={0}>
-                        {type === "contacts" ? row.axis : row.add}
+                        {tableType === "contacts" ? row.axis : row.add}
                       </TableCell>
                     </TableRow>
                   ))}

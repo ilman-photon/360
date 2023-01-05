@@ -66,35 +66,6 @@
 .centeredElementNew {
   width: 100%;
   margin: auto 0;
-  max-width: 1400px;
-  .titleElement {
-    font-family: "Inter", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 32px;
-    /* identical to box height, or 123% */
-    /* Grayscale/ White */
-    color: #ffffff;
-  }
-  .subtitleElement {
-    margin-top: 10px;
-    font-family: "Museo Sans", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 26px;
-    /* identical to box height, or 144% */
-    letter-spacing: 0.0016em;
-    /* Grayscale/ White */
-    color: #ffffff;
-    margin-bottom: 10px;
-  }
-}
-
-.centeredElementNew {
-  width: 100%;
-  margin: auto 0;
   max-width: 1536px;
   .titleElement {
     font-family: "Inter", sans-serif;
