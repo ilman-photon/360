@@ -489,8 +489,19 @@ export class Api {
       ? ""
       : `(${firstName}${lastName}${zip}${city}${specialty})`;
 
-    const url = `/ecp/appointments/getDoctorDetails?pageSize=300&search.query=${queryString}`;
-    return this.getResponse(url, {}, "get");
+    const countUrl = `/ecp/appointments/getDoctorDetails?pageSize=1&search.query=${queryString}`;
+
+    return this.getResponse(countUrl, {}, "get")
+      .then((response) => {
+        const count = response.count;
+        const url = `/ecp/appointments/getDoctorDetails?pageSize=${
+          count === 0 ? 1 : count
+        }&search.query=${queryString}`;
+        return this.getResponse(url, {}, "get");
+      })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
   }
 
   getDoctorLocations() {

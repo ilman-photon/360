@@ -10,7 +10,7 @@ export default function MyCareTeamLayout({ children, title }) {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{title === "Find a Doctor" ? "Doctor Search" : title}</title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader {...logoutProps} showNavbar={true} />
