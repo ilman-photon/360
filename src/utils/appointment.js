@@ -3,6 +3,7 @@ import { Api } from "../pages/api/api";
 import { setFilterBy, setProviderListData } from "../store/appointment";
 import constants from "./constants";
 import {
+  checkPastDate,
   convertTime24to12,
   mmddyyDateFormat,
   yyyymmddDateFormat,
@@ -121,16 +122,30 @@ export function getAppointmentTypeOnTimeSlot(scheduleData, timeSlot) {
   let appointmentType = "";
   let appointmentTypeCode = "";
   let timeZone = "";
+  let isDisable = "";
   for (let index = 0; index < scheduleData?.list?.length; index++) {
-    if (scheduleData.list[index]?.time === timeSlot) {
+    if (timeSlot.indexOf("more") > -1) {
+      isDisable = true;
+      const time = `${scheduleData.date}, 
+      ${scheduleData?.list[index]?.time.slice(0, 5)} ${scheduleData?.list[
+        index
+      ]?.time.slice(-2)}`;
+      const unixTime = moment(time).unix();
+      const timeNow = moment().unix();
+      if (unixTime > timeNow) {
+        isDisable = false;
+        break;
+      }
+    } else if (scheduleData.list[index]?.time === timeSlot) {
       appointmentType = scheduleData.list[index].appointmentCode;
       appointmentTypeCode = scheduleData.list[index].appointmentTypeCode;
       timeZone = scheduleData.list[index].timeZone;
+      isDisable = scheduleData.list[index].isDisable;
       break;
     }
   }
 
-  return { appointmentType, appointmentTypeCode, timeZone };
+  return { appointmentType, appointmentTypeCode, timeZone, isDisable };
 }
 
 export function parseDateWeekList(availabilities) {
@@ -695,22 +710,26 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
       ) || null;
     if (isSameAvailability) {
       if (isSameAvailability.date === moment().format("YYYY-MM-DD")) {
-        const currentDateList = [];
         isSameAvailability.list.forEach((el) => {
           const time = `${isSameAvailability.date}, 
           ${el.time.slice(0, 5)} ${el.time.slice(-2)}`;
           const unixTime = moment(time).unix();
           const timeNow = moment().unix();
-          if (unixTime > timeNow) {
-            currentDateList.push(el);
+          if (unixTime < timeNow) {
+            el.isDisable = true;
+          } else {
+            el.isDisable = false;
           }
         });
-        availability.list = currentDateList;
+        availability.list = isSameAvailability.list;
       } else {
         const selectedDate = moment(isSameAvailability.date);
         const maxDate = moment().add(3, "months");
 
         if (selectedDate <= maxDate) {
+          isSameAvailability.list.forEach((el) => {
+            el.isDisable = checkPastDate(dateItem);
+          });
           availability.list = isSameAvailability.list;
         }
       }
