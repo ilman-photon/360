@@ -80,9 +80,7 @@ export const onShareUsername = createAsyncThunk(
     const api = new Api();
     const url = `/ecp/accountRecovery/shareUserNameByAdmin`;
     const postBody = {
-      patient: {
-        id: patientId,
-      },
+      id: patientId,
       preferredComunication: selectedCommunication,
     };
 
