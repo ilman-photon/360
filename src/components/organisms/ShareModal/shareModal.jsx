@@ -137,12 +137,12 @@ export function getDynamicShareContent(data) {
         <>
           <Box sx={{ width: "100%" }} className={styles.dialogSubContent}>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={6.5}>
                 <Typography className={styles.myCareTitle} tabIndex={0}>
                   {data.name}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12} md={5.5}>
                 <Typography className={styles.prescriptionBold} tabIndex={0}>
                   Date: &nbsp;
                   <Typography className={styles.prescriptionMedium}>
