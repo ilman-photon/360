@@ -110,7 +110,7 @@ export const onViewSecurityQuestions = createAsyncThunk(
     const url = `/ecp/accountRecovery/viewSecurityQuestions/${patientId}`; // d3724cd1-ebae-4f1a-82a5-544ff33b0313
 
     try {
-      const response = await api.getResponse(url, null, "get");
+      const response = await api.getResponse(url, null, "get", false);
 
       return {
         success: true,
