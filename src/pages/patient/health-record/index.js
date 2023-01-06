@@ -186,7 +186,7 @@ export default function HealthRecord() {
   }, [documentList, rows]);
 
   const noResultText = () => {
-    return "There are no health records available.";
+    return "We do not have any health records associated with your account.";
   };
 
   const handleAssetDownload = (id, print, newTab = true, isOpen = false) => {

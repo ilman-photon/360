@@ -64,7 +64,9 @@ export default function EducationMaterialsPage() {
             );
           })
         ) : (
-          <TableEmpty text={`There are no educational material documents.`} />
+          <TableEmpty
+            text={`We do not have any educational material associated with your account.`}
+          />
         )}
       </Stack>
     </div>
