@@ -7,7 +7,6 @@ Feature: Patient Portal : Appointments - View Upcoming Appointments
   @Patient_Portal
   @Regression
     @Sprint5 
-  Scenario: EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following details under each upcoming appointment
     Scenario: "EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following details under each upcoming appointment"
     
     Given user launch the  Patient Portal url		
@@ -31,7 +30,6 @@ Feature: Patient Portal : Appointments - View Upcoming Appointments
   @Patient_Portal
   @Regression
   @Sprint5
-  Scenario: EPIC_EPP-3_STORY_EPP-1606-Verify User should navigated to maps screen  when clicks on "Directions" button
     Scenario: "EPIC_EPP-3_STORY_EPP-1606-Verify User should navigated to maps screen  when clicks on "Directions" button"
     
     Given user launch the  Patient Portal url		
@@ -57,7 +55,6 @@ Feature: Patient Portal : Appointments - View Upcoming Appointments
   @Patient_Portal
   @Regression
   @Sprint5
-  Scenario: EPIC_EPP-3_STORY_EPP-1606-Verify User should see Upcoming Appointments with an option to reschedule and cancel each of them
     Scenario: "EPIC_EPP-3_STORY_EPP-1606-Verify User should see Upcoming Appointments with an option to reschedule and cancel each of them"
     
     Given user launch the  Patient Portal url		
@@ -83,7 +80,6 @@ Feature: Patient Portal : Appointments - View Upcoming Appointments
   @Patient_Portal
   @Regression
   @Sprint5
-  Scenario: EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments)
     Scenario: "EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments)"
     
     Given user launch the  Patient Portal url		
@@ -113,7 +109,6 @@ Feature: Patient Portal : Appointments - View Upcoming Appointments
   @P1
   @Patient_Portal
   @Sprint5
-  Scenario: EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments) within 3 seconds
     Scenario: "EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments) within 3 seconds"
     
     Given user launch the  Patient Portal url		
@@ -144,7 +139,6 @@ Feature: Patient Portal : Appointments - View Upcoming Appointments
   @P1
   @Patient_Portal
   @Sprint5
-  Scenario: EPIC_EPP-3_STORY_EPP-1606-Verify User should not see the any errors script when user clicks F12 on the console
     Scenario: "EPIC_EPP-3_STORY_EPP-1606-Verify User should not see the any errors script when user clicks F12 on the console"
     
     Given user launch the  Patient Portal url		
@@ -177,7 +171,6 @@ Feature: Patient Portal : Appointments - View Upcoming Appointments
   @P1
   @Patient_Portal
   @Sprint5
-  Scenario: EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify user should see the error message when the internet service is unavailable
     Scenario: "EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify user should see the error message when the internet service is unavailable"
     
     Given user launch the  Patient Portal url		
@@ -208,7 +201,6 @@ Feature: Patient Portal : Appointments - View Upcoming Appointments
   @P1
   @Patient_Portal
   @Sprint5
-  Scenario: EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify  when the service is unavailable
     Scenario: "EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify  when the service is unavailable"
     
     Given user launch the  Patient Portal url		

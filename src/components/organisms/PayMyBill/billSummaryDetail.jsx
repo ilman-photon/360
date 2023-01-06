@@ -203,8 +203,7 @@ const SummaryBillDetail = ({
                       <Box key={key} className={styles.listInfoContent}>
                         <Typography
                           sx={{
-                            fontFamily:
-                              key == "balanceDue" ? "Museo Sans" : "Museo Sans",
+                            fontFamily: "Museo Sans",
                             fontStyle: "normal",
                             fontWeight: key == "balanceDue" ? 500 : 600,
                             fontSize: key == "balanceDue" ? "26px" : "16px",
