@@ -5,6 +5,7 @@ import { StyledTextArea } from "../../atoms/TextArea/textArea";
 import SignForm from "../../molecules/SignForm/signForm";
 import StyledInput from "../../atoms/Input/input";
 import styles from "./styles.module.scss";
+import { Regex } from "../../../utils/regex";
 
 export default function AuthorizationToDisclose({
   defaultDataValue = {},
@@ -65,6 +66,15 @@ export default function AuthorizationToDisclose({
               return (
                 <StyledInput
                   value={value}
+                  onKeyDown={(e) => {
+                    if (
+                      !Regex.nameValidation.test(e.key) &&
+                      e.key != "Backspace" &&
+                      e.key != "Tab"
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
                   onChange={onChange}
                   maxLength={50}
                   disabled={disableInput || isSubmitForm}
@@ -148,6 +158,15 @@ export default function AuthorizationToDisclose({
               return (
                 <StyledInput
                   value={value}
+                  onKeyDown={(e) => {
+                    if (
+                      !Regex.numberOnly.test(e.key) &&
+                      e.key != "Backspace" &&
+                      e.key != "Tab"
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
                   onChange={onChange}
                   maxLength={50}
                   disabled={disableInput || isSubmitForm}

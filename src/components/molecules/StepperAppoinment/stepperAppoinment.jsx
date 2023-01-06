@@ -9,6 +9,14 @@ export default function StepperAppoinment({ ...props }) {
   const steps = props.steps;
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
+  const stepperRefs = React.useRef([]);
+
+  React.useEffect(() => {
+    if (stepperRefs.current[props.activeStep]) {
+      stepperRefs.current[props.activeStep].focus();
+    }
+  }, [props.activeStep]);
+
   return (
     <Box
       sx={{
@@ -23,12 +31,14 @@ export default function StepperAppoinment({ ...props }) {
       <Stepper
         activeStep={props.activeStep}
         alternativeLabel
+        aria-live="assertive"
         sx={{ width: "800px" }}
         aria-label={props.ariaLabelText || `Progress Bar`}
       >
         {steps?.map((label, idx) => (
           <Step
             aria-label={`${label} stage in progress bar`}
+            ref={(el) => (stepperRefs.current[idx] = el)}
             tabIndex={"0"}
             sx={{
               marginBottom: { xs: "40px", md: "0" },
