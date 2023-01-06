@@ -115,10 +115,20 @@ export const FilterOptionPayMyBill = ({
           }}
         >
           <MenuItem value="">
-            <em>{t("selectOption")}</em>
+            <Typography sx={{ color: "#303030", fontSize: "16px" }}>
+              {t("selectOption")}
+            </Typography>
           </MenuItem>
-          <MenuItem value={"date"}>Date Range</MenuItem>
-          <MenuItem value={"invoiceNumber"}>Invoice Number</MenuItem>
+          <MenuItem value={"date"}>
+            <Typography sx={{ color: "#303030", fontSize: "16px" }}>
+              Date Range
+            </Typography>
+          </MenuItem>
+          <MenuItem value={"invoiceNumber"}>
+            <Typography sx={{ color: "#303030", fontSize: "16px" }}>
+              Invoice Number
+            </Typography>
+          </MenuItem>
         </Select>
       </Box>
       {showUiOption?.option === "date" && showUiOption?.show && (
@@ -225,7 +235,7 @@ export const FilterOptionPayMyBill = ({
                       lineHeight: "12px",
                     },
                     ".MuiInputLabel-root": {
-                      fontSize: "12px",
+                      fontSize: "16px",
                     },
                   }}
                   onKeyDown={(e) => {

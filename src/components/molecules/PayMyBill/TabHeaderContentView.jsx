@@ -27,7 +27,7 @@ export const TabPayBillHeaderContentView = ({
         sx={{
           height: "55px",
           justifyContent: "space-between",
-          color: "#424747",
+          color: "#003B4A",
           ".MuiButtonBase-root": {
             minWidth: isDesktop ? "90px" : "85px",
           },
