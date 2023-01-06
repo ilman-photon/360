@@ -26,6 +26,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
+  DialogTitle,
 } from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
@@ -591,6 +592,7 @@ export default function ScheduleAppointmentPage() {
       />
     );
   };
+
   return (
     <section>
       <Head>
@@ -678,10 +680,12 @@ export default function ScheduleAppointmentPage() {
 
       {/* confirmation dialog */}
       <Dialog
-        role={"polite"}
+        aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        role={"alertdialog"}
         onClose={handleCancelReschedule}
         open={modalConfirmReschedule}
+        aria-label={open ? "Are you sure you want to reschedule?" : ""}
         sx={{
           ".MuiPaper-root": {
             minWidth: { xs: "90%", sm: "500px" },
@@ -692,6 +696,13 @@ export default function ScheduleAppointmentPage() {
           },
         }}
       >
+        {!isDesktop && (
+          <DialogTitle
+            aria-label="Are you sure you want to reschedule?"
+            sx={{ padding: 0 }}
+            aria-hidden={true}
+          />
+        )}
         <DialogContent>
           <DialogContentText
             role={"polite"}
