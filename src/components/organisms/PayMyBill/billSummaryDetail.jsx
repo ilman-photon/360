@@ -52,7 +52,7 @@ const SummaryBillDetail = ({
           width: "100%",
           heigth: "72px",
           alignItems: "flex-start",
-          padding: isDesktop ? "24px 257px" : "24px",
+          padding: "24px",
           backgroundColor: "#F4F4F4",
           textDecoration: "none",
           ":hover": {
@@ -224,7 +224,7 @@ const SummaryBillDetail = ({
                             fontWeight: key == "balanceDue" ? 500 : 700,
                             fontSize: key == "balanceDue" ? "26px" : "18px",
                             lineHeight: key == "balanceDue" ? "32px" : "28px",
-                            color: key == "balanceDue" ? "#0095a9" : "003b4a",
+                            color: key == "balanceDue" ? "#0095a9" : "#003B4A",
                             width: "50%",
                             textAlign: isDesktop ? "left" : "right",
                           }}

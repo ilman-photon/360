@@ -581,12 +581,6 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  getPatientAccountBalance() {
-    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
-    const url = `/ecp/patientbillingsystem/getPatientCredits/86b15338-ff12-4b52-9925-e3ac3e43375a`;
-    return this.getResponse(url, {}, "get");
-  }
-
   viewMessagesByProvider(id) {
     const url = `/ecp/messages/deleteMessageById/769fe833-00b3-440e-8b16-fbd9b23f0802?sessionUserId=833da4c6-dc6a-4a7b-9413-51431a599f2d`;
     return this.getResponse(url, {}, "get");
