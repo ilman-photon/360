@@ -372,16 +372,12 @@ export class Api {
         element.id == requestData.purposeOfVisit
     );
     const startDateRequest = getMondayOfCurrentWeek(requestData.date);
-    const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
-    const dateRequest = compareDate(startDateRequest)
-      ? mmddyyDateFormat(new Date())
-      : startDateRequest;
     const postBody = {
       appointmentType: {
         code: selectedAppointmentType?.id || "ALL",
       },
-      currentDate: dateRequest,
-      numDays: getDateCount(endDateRequest, dateRequest),
+      currentDate: startDateRequest,
+      numDays: 6,
       days: ["ALL"],
       prefTime: "ALL",
     };

@@ -28,6 +28,12 @@
       width: 90px;
     }
   }
+
+  .scheduleDisableBtn {
+    background: #b1b1b1;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
 }
 .linkWrapper {
   .linkAvailabelity {

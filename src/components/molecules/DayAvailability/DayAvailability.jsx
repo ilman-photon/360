@@ -28,7 +28,8 @@ export const buttonSchedule = (
   isScheduleAvailability = false,
   appointmentType = "",
   appointmentTypeCode = "",
-  timeZone = ""
+  timeZone = "",
+  isDisable = false
 ) => {
   const appointmentCode = appointmentType;
   const parseDate = new moment(date).format("YYYY-MM-DD");
@@ -42,6 +43,10 @@ export const buttonSchedule = (
           )}`
         )
       : "";
+  const isDisableStyle = isDisable ? styles.scheduleDisableBtn : {};
+  const scheduleButtonStyle = !isScheduleAvailability
+    ? styles.scheduleBtn
+    : styles.scheduleAvailBtn;
   return (
     <Box
       key={idx}
@@ -54,9 +59,7 @@ export const buttonSchedule = (
         mode={constants.PRIMARY}
         size={constants.SMALL}
         gradient={false}
-        className={
-          !isScheduleAvailability ? styles.scheduleBtn : styles.scheduleAvailBtn
-        }
+        className={[scheduleButtonStyle, isDisableStyle].join(" ")}
         onClick={() => {
           if (!isScheduleAvailability || !isNextAvailabilityLabel) {
             OnDayClicked({
@@ -187,7 +190,7 @@ export const DayAvailability = ({
         }}
       >
         {value.map((option, idx) => {
-          const { appointmentType, appointmentTypeCode, timeZone } =
+          const { appointmentType, appointmentTypeCode, timeZone, isDisable } =
             getAppointmentTypeOnTimeSlot(scheduleData[index], option);
           return buttonSchedule(
             option,
@@ -197,7 +200,8 @@ export const DayAvailability = ({
             false,
             appointmentType,
             appointmentTypeCode,
-            timeZone
+            timeZone,
+            isDisable
           );
         })}
       </Box>

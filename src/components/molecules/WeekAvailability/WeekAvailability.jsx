@@ -82,7 +82,7 @@ export const WeekAvailability = ({
           gridArea = `more${key}Schedule`;
           isTypeMore = true;
         }
-        const { appointmentType, appointmentTypeCode, timeZone } =
+        const { appointmentType, appointmentTypeCode, timeZone, isDisable } =
           getAppointmentTypeOnTimeSlot(scheduleData[dayNames[key]], value[i]);
         renderUI.push(
           buttonSchedule(
@@ -93,7 +93,8 @@ export const WeekAvailability = ({
             dateWeekList[dayNames[key]],
             appointmentType,
             appointmentTypeCode,
-            timeZone
+            timeZone,
+            isDisable
           )
         );
       }
@@ -109,7 +110,8 @@ export const WeekAvailability = ({
     date,
     appointmentType,
     appointmentTypeCode,
-    timeZone
+    timeZone,
+    isDisable = false
   ) {
     if (label) {
       const appointmentCode = appointmentType;
@@ -122,6 +124,7 @@ export const WeekAvailability = ({
             )}`
           )
         : "";
+      const isDisableStyle = isDisable ? styles.scheduleDisableBtn : {};
       return (
         <Box
           key={index}
@@ -134,7 +137,7 @@ export const WeekAvailability = ({
             type="submit"
             size={constants.SMALL}
             gradient={false}
-            className={styles.scheduleBtn}
+            className={[styles.scheduleBtn, isDisableStyle].join(" ")}
             data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.hourButton}
             onClick={() => {
               if (isLabelMore) {
