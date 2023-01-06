@@ -275,7 +275,7 @@
     "patientPaid": "Patient Paid",
     "description": "Description",
     "providerName": "Provider Name",
-    "notOpenInvoices": "You do not have any open invoices.",
+    "notOpenInvoices": "Currently, you do not have any outstanding invoices available.",
     "notInvoicesHistory": "You have no previous invoices.",
     "noResultInvoiceNumber": "We were not able to find any invoices. Please try with a different invoice number.",
     "noResultDateRange": "We were not able to find any invoices. Please try with a different date range.",

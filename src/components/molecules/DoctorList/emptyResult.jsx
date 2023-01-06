@@ -35,7 +35,7 @@ export default function EmptyResult() {
           color: "#191919",
         }}
       >
-        No results found. Please try again with a different search criteria.
+        We were not able to find a provider with the information provided.
       </Typography>
     </Box>
   );

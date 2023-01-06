@@ -32,7 +32,7 @@ describe("Render Health Record", () => {
         });
       } else {
         await waitFor(() => {
-          container.getByText(/no health records/i);
+          container.getByText(/We do not have any health records/i);
         });
       }
   };
@@ -50,7 +50,7 @@ describe("Render Health Record", () => {
   test("Click schedule button", async () => {
     window.matchMedia = createMatchMedia("1500px");
     await renderList({}, 400);
-    expect(container.getAllByText(/no health records/i).length > 0).toBeTruthy();
+    expect(container.getAllByText(/We do not have any health records/i).length > 0).toBeTruthy();
   });
 
   test("is My Care Team page rendered", async () => {
@@ -62,7 +62,7 @@ describe("Render Health Record", () => {
   test("Click schedule button", async () => {
     window.matchMedia = createMatchMedia("500px");
     await renderList({}, 400);
-    expect(container.getAllByText(/no health records/i).length > 0).toBeTruthy();
+    expect(container.getAllByText(/We do not have any health records/i).length > 0).toBeTruthy();
   });
 
   test("Click schedule button", async () => {

@@ -56,7 +56,7 @@ defineFeature(feature, (test) => {
       });
     } else {
       await waitFor(() => {
-        container.getAllByText(/no health records/i);
+        container.getAllByText(/We do not have any health records/i);
       });
     }
   };
@@ -227,7 +227,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the appropriate error message", () => {
-      const name = container.getByLabelText(/no health records/i);
+      const name = container.getByLabelText(/We do not have any health records/i);
       expect(name).toBeInTheDocument();
     });
   });
@@ -275,7 +275,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the appropriate error message", () => {
-      const name = container.getByLabelText(/no health records/i);
+      const name = container.getByLabelText(/We do not have any health records/i);
       expect(name).toBeInTheDocument();
     });
   });
