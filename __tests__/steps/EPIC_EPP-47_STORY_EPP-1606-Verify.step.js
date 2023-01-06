@@ -242,23 +242,27 @@ defineFeature(feature, (test) => {
     jest.useRealTimers();
   });
 
-  test("EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following details under each upcoming appointment", ({}) => {});
-
   test('"EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following details under each upcoming appointment"', ({
     given,
     and,
     when,
     then,
   }) => {
-    given("user launch the  Patient Portal url", () => {});
+    given("user launch the  Patient Portal url", () => {
+      defaultValidation()
+    });
 
     and("User is logged in to the application", () => {
       Cookies.result = { authorized: true };
     });
 
-    when("User clicks to “Appointments” menu", () => {});
+    when("User clicks to “Appointments” menu", () => {
+      defaultValidation()
+    });
 
-    then("User navigates to “Appointments” screen", () => {});
+    then("User navigates to “Appointments” screen", () => {
+      defaultValidation()
+    });
 
     and("User lands on “Appointments” screen", async () => {
       useRouter.mockReturnValue({
@@ -303,23 +307,27 @@ defineFeature(feature, (test) => {
     );
   });
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should navigated to maps screen  when clicks on "Directions" button', ({}) => {});
-
   test('"EPIC_EPP-3_STORY_EPP-1606-Verify User should navigated to maps screen  when clicks on "Directions" button"', ({
     given,
     when,
     and,
     then,
   }) => {
-    given("user launch the  Patient Portal url", () => {});
+    given("user launch the  Patient Portal url", () => {
+      defaultValidation()
+    });
 
     when("User is logged in to the application", () => {
       Cookies.result = { authorized: true };
     });
 
-    and("User clicks to “Appointments” menu", () => {});
+    and("User clicks to “Appointments” menu", () => {
+      defaultValidation()
+    });
 
-    then("User navigates to “Appointments” screen", () => {});
+    then("User navigates to “Appointments” screen", () => {
+      defaultValidation()
+    });
 
     and("User lands on “Appointments” screen", async () => {
       useRouter.mockReturnValue({
@@ -368,10 +376,10 @@ defineFeature(feature, (test) => {
       fireEvent.click(getDirection);
     });
 
-    then("User should navigated to maps screen", () => {});
+    then("User should navigated to maps screen", () => {
+      defaultValidation()
+    });
   });
-
-  test("EPIC_EPP-3_STORY_EPP-1606-Verify User should see Upcoming Appointments with an option to reschedule and cancel each of them", ({}) => {});
 
   test('"EPIC_EPP-3_STORY_EPP-1606-Verify User should see Upcoming Appointments with an option to reschedule and cancel each of them"', ({
     given,
@@ -379,15 +387,21 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the  Patient Portal url", () => {});
+    given("user launch the  Patient Portal url", () => {
+      defaultValidation()
+    });
 
     when("User is logged in to the application", () => {
       Cookies.result = { authorized: true };
     });
 
-    and("User clicks to “Appointments” menu", () => {});
+    and("User clicks to “Appointments” menu", () => {
+      defaultValidation()
+    });
 
-    then("User navigates to “Appointments” screen", () => {});
+    then("User navigates to “Appointments” screen", () => {
+      defaultValidation()
+    });
 
     and("User lands on “Appointments” screen", async () => {
       useRouter.mockReturnValue({
@@ -431,7 +445,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("User should see an option to schedule new appointments", () => {});
+    and("User should see an option to schedule new appointments", () => {
+      expect(container.getByText("Schedule New Appointment")).toBeInTheDocument()
+    });
 
     and(
       "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
@@ -442,23 +458,27 @@ defineFeature(feature, (test) => {
     );
   });
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments)', ({}) => {});
-
   test('"EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments)"', ({
     given,
     when,
     and,
     then,
   }) => {
-    given("user launch the  Patient Portal url", () => {});
+    given("user launch the  Patient Portal url", () => {
+      defaultValidation()
+    });
 
     when("User is logged in to the application", () => {
       Cookies.result = { authorized: true };
     });
 
-    and("User clicks to “Appointments” menu", () => {});
+    and("User clicks to “Appointments” menu", () => {
+      defaultValidation()
+    });
 
-    then("User navigates to “Appointments” screen", () => {});
+    then("User navigates to “Appointments” screen", () => {
+      defaultValidation()
+    });
 
     and("User lands on “Appointments” screen", async () => {
       useRouter.mockReturnValue({
@@ -502,7 +522,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("User should see an option to schedule new appointments", () => {});
+    and("User should see an option to schedule new appointments", () => {
+      expect(container.getByText("Schedule New Appointment")).toBeInTheDocument()
+    });
 
     and(
       "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
@@ -543,11 +565,11 @@ defineFeature(feature, (test) => {
 
     then(
       /^User should see the following message "(.*)" \(if there are no upcoming appointments\)"$/,
-      (arg0) => {}
+      (arg0) => {
+        defaultValidation()
+      }
     );
   });
-
-  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments) within 3 seconds', ({}) => {});
 
   test('"EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments) within 3 seconds"', ({
     given,
@@ -555,15 +577,21 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the  Patient Portal url", () => {});
+    given("user launch the  Patient Portal url", () => {
+      defaultValidation()
+    });
 
     when("User is logged in to the application", () => {
       Cookies.result = { authorized: true };
     });
 
-    and("User clicks to “Appointments” menu", () => {});
+    and("User clicks to “Appointments” menu", () => {
+      defaultValidation()
+    });
 
-    then("User navigates to “Appointments” screen", () => {});
+    then("User navigates to “Appointments” screen", () => {
+      defaultValidation()
+    });
 
     and("User lands on “Appointments” screen", async () => {
       useRouter.mockReturnValue({
@@ -627,26 +655,42 @@ defineFeature(feature, (test) => {
       const cancel = container.getByText(/Cancel/i);
       fireEvent.click(cancel);
       await waitFor(() => {
-        // container.getByText(/cancelTitle/i);
-        (arg0) => {};
+        container.getByTestId("loc_btnCancel")
       });
     });
 
-    then(/^User should see "(.*)" as confirmation message$/, (arg0) => {});
+    then(/^User should see "(.*)" as confirmation message$/, (arg0) => {
+      expect(container.getByTestId("loc_btnCancel")).toBeInTheDocument()
+      expect(container.getByTestId("loc_btnKeep")).toBeInTheDocument()
+    });
 
-    and(/^User should see "(.*)" option$/, (arg0) => {});
+    and(/^User should see "(.*)" option$/, (arg0) => {
+      expect(container.getByTestId("loc_btnCancel")).toBeInTheDocument()
+      expect(container.getByTestId("loc_btnKeep")).toBeInTheDocument()
+    });
 
-    when(/^User selects on "(.*)" option$/, (arg0) => {});
+    when(/^User selects on "(.*)" option$/, (arg0) => {
+      mock
+      .onPut(
+        `/ecp/appointments/cancel/${upcoming.entities[0]._id}/stateTransition`
+      )
+      .reply(200, {
+        entities: []
+      });
+      fireEvent.click(container.getByTestId("loc_btnCancel"))
+    });
 
-    and(/^User should see the page loads within "(.*)"$/, (arg0) => {});
+    and(/^User should see the page loads within "(.*)"$/, (arg0) => {
+      defaultValidation()
+    });
 
     then(
       /^User should see the following message "(.*)" \(if there are no upcoming appointments\)"$/,
-      (arg0) => {}
+      (arg0) => {
+        defaultValidation()
+      }
     );
   });
-
-  test("EPIC_EPP-3_STORY_EPP-1606-Verify User should not see the any errors script when user clicks F12 on the console", ({}) => {});
 
   test('"EPIC_EPP-3_STORY_EPP-1606-Verify User should not see the any errors script when user clicks F12 on the console"', ({
     given,
@@ -654,51 +698,129 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the  Patient Portal url", () => {});
+    given("user launch the  Patient Portal url", () => {
+      defaultValidation()
+    });
 
     when("User is logged in to the application", () => {
       Cookies.result = { authorized: true };
     });
 
-    and("User clicks to “Appointments” menu", () => {});
+    and("User clicks to “Appointments” menu", () => {
+      defaultValidation()
+    });
 
-    then("User navigates to “Appointments” screen", () => {});
+    then("User navigates to “Appointments” screen", () => {
+      defaultValidation()
+    });
 
-    and("User lands on “Appointments” screen", () => {});
+    and("User lands on “Appointments” screen", async () => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+        push: jest.fn(),
+      });
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
+        .reply(200, history);
+
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => {
+        container.getByText(/Upcoming Appointments/i);
+      });
+
+      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual(
+        "Upcoming Appointments"
+      );
+    });
 
     and(
       "User should be able to view the following details under each upcoming appointment as belows:",
-      (table) => {}
+      (table) => {
+        expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
+        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
+        expect(container.getByText(/Location/i)).toBeInTheDocument();
+        expect(container.getByText(/Insurance/i)).toBeInTheDocument();
+        expect(container.getByText(/Get directions/i)).toBeInTheDocument();
+        expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+        expect(container.getByText(/Reschedule/i)).toBeInTheDocument();
+      }
     );
 
-    and("User should see an option to schedule new appointments", () => {});
+    and("User should see an option to schedule new appointments", () => {
+      expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+      expect(container.getByText(/Reschedule/i)).toBeInTheDocument();
+      expect(container.getByText("Schedule New Appointment")).toBeInTheDocument()
+    });
 
     and(
       "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {}
+      () => {
+        expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+        expect(container.getByText(/Reschedule/i)).toBeInTheDocument();
+        const reschedule = container.getByText(/Reschedule/i);
+        fireEvent.click(reschedule);
+      }
     );
 
-    when("User clicks on the option to cancel an appointment", () => {});
+    when("User clicks on the option to cancel an appointment", async () => {
+      const cancel = container.getByText(/Cancel/i);
+      fireEvent.click(cancel);
+      await waitFor(() => {
+        container.getByTestId("loc_btnCancel")
+      });
+    });
 
-    then(/^User should see "(.*)" as confirmation message$/, (arg0) => {});
+    then(/^User should see "(.*)" as confirmation message$/, (arg0) => {
+      expect(container.getByTestId("loc_btnCancel")).toBeInTheDocument()
+      expect(container.getByTestId("loc_btnKeep")).toBeInTheDocument()
+    });
 
-    and(/^User should see "(.*)" option$/, (arg0) => {});
+    and(/^User should see "(.*)" option$/, (arg0) => {
+      expect(container.getByTestId("loc_btnCancel")).toBeInTheDocument()
+      expect(container.getByTestId("loc_btnKeep")).toBeInTheDocument()
+    });
 
-    when(/^User selects on "(.*)" option$/, (arg0) => {});
+    when(/^User selects on "(.*)" option$/, (arg0) => {
+      mock
+      .onPut(
+        `/ecp/appointments/cancel/${upcoming.entities[0]._id}/stateTransition`
+      )
+      .reply(200, {
+        entities: []
+      });
+      fireEvent.click(container.getByTestId("loc_btnCancel"))
+    });
 
-    and(/^User should see the page loads within "(.*)"$/, (arg0) => {});
+    and(/^User should see the page loads within "(.*)"$/, (arg0) => {
+      defaultValidation()
+    });
 
     then(
       /^User should see the following message "(.*)" \(if there are no upcoming appointments\)"$/,
-      (arg0) => {}
+      (arg0) => {
+        defaultValidation()
+      }
     );
 
-    when(/^user clicks on F(\d+) on the console$/, (arg0) => {});
+    when(/^user clicks on F(\d+) on the console$/, (arg0) => {
+      defaultValidation()
+    });
 
-    then("user should not to see any errors script", () => {});
+    then("user should not to see any errors script", () => {
+      defaultValidation()
+    });
   });
-
-  test("EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify user should see the error message when the internet service is unavailable", ({}) => {});
 
   test('"EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify user should see the error message when the internet service is unavailable"', ({
     given,
@@ -706,44 +828,114 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the  Patient Portal url", () => {});
+    given("user launch the  Patient Portal url", () => {
+      defaultValidation()
+    });
 
     when("User is logged in to the application", () => {
       Cookies.result = { authorized: true };
     });
 
-    and("User clicks to “Appointments” menu", () => {});
+    and("User clicks to “Appointments” menu", () => {
+      defaultValidation()
+    });
 
-    then("User navigates to “Appointments” screen", () => {});
+    then("User navigates to “Appointments” screen", () => {
+      defaultValidation()
+    });
 
-    and("User lands on “Appointments” screen", () => {});
+    and("User lands on “Appointments” screen", async () => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+        push: jest.fn(),
+      });
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
+        .reply(200, history);
+
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => {
+        container.getByText(/Upcoming Appointments/i);
+      });
+
+      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual(
+        "Upcoming Appointments"
+      );
+    });
 
     and(
       "User should be able to view the following details under each upcoming appointment as belows:",
-      (table) => {}
+      (table) => {
+        expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
+        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
+        expect(container.getByText(/Location/i)).toBeInTheDocument();
+        expect(container.getByText(/Insurance/i)).toBeInTheDocument();
+        expect(container.getByText(/Get directions/i)).toBeInTheDocument();
+        expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+        expect(container.getByText(/Reschedule/i)).toBeInTheDocument();
+      }
     );
 
-    and("User should see an option to schedule new appointments", () => {});
+    and("User should see an option to schedule new appointments", () => {
+      expect(container.getByText("Schedule New Appointment")).toBeInTheDocument()
+    });
 
     and(
       "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {}
+      () => {
+        expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+        expect(container.getByText(/Reschedule/i)).toBeInTheDocument();
+        const reschedule = container.getByText(/Reschedule/i);
+        fireEvent.click(reschedule);
+      }
     );
 
-    when("User clicks on the option to cancel an appointment", () => {});
+    when("User clicks on the option to cancel an appointment", async () => {
+      const cancel = container.getByText(/Cancel/i);
+      fireEvent.click(cancel);
+      await waitFor(() => {
+        container.getByTestId("loc_btnCancel")
+      });
+    });
 
-    then(/^User should see "(.*)" as confirmation message$/, (arg0) => {});
+    then(/^User should see "(.*)" as confirmation message$/, (arg0) => {
+      expect(container.getByTestId("loc_btnCancel")).toBeInTheDocument()
+      expect(container.getByTestId("loc_btnKeep")).toBeInTheDocument()
+    });
 
-    and(/^User should see "(.*)" option$/, (arg0) => {});
+    and(/^User should see "(.*)" option$/, (arg0) => {
+      expect(container.getByTestId("loc_btnCancel")).toBeInTheDocument()
+      expect(container.getByTestId("loc_btnKeep")).toBeInTheDocument()
+    });
 
-    when(/^User selects on "(.*)" option$/, (arg0) => {});
+    when(/^User selects on "(.*)" option$/, (arg0) => {
+      mock
+      .onPut(
+        `/ecp/appointments/cancel/${upcoming.entities[0]._id}/stateTransition`
+      )
+      .reply(200, {
+        entities: []
+      });
+      fireEvent.click(container.getByTestId("loc_btnCancel"))
+    });
 
-    and("the Internet service is unavailable", () => {});
+    and("the Internet service is unavailable", () => { defaultValidation()});
 
-    then("user should see the appropriate error message", () => {});
+    then("user should see the appropriate error message", () => {
+      defaultValidation()
+    });
   });
-
-  test("EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify  when the service is unavailable", ({}) => {});
 
   test('"EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify  when the service is unavailable"', ({
     given,
@@ -751,15 +943,21 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the  Patient Portal url", () => {});
+    given("user launch the  Patient Portal url", () => {
+      defaultValidation()
+    });
 
     when("User is logged in to the application", () => {
       Cookies.result = { authorized: true };
     });
 
-    and("User clicks to “Appointments” menu", () => {});
+    and("User clicks to “Appointments” menu", () => {
+      defaultValidation()
+    });
 
-    then("User navigates to “Appointments” screen", () => {});
+    then("User navigates to “Appointments” screen", () => {
+      defaultValidation()
+    });
 
     and("User lands on “Appointments” screen", async () => {
       useRouter.mockReturnValue({
@@ -782,37 +980,84 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      // await waitFor(() => {
-      //   container.getByText("Something Went Wrong");
-      // })
 
-      // expect(container.getByText("Something Went Wrong")).toBeInTheDocument()
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
+        .reply(200, history);
+
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => {
+        container.getAllByText("Upcoming Appointments")[1];
+      });
     });
 
     and(
       "User should be able to view the following details under each upcoming appointment as belows:",
-      (table) => {}
+      (table) => {
+        expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
+        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
+        expect(container.getByText(/Location/i)).toBeInTheDocument();
+        expect(container.getByText(/Insurance/i)).toBeInTheDocument();
+        expect(container.getByText(/Get directions/i)).toBeInTheDocument();
+        expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+        expect(container.getByText(/Reschedule/i)).toBeInTheDocument();
+      }
     );
 
-    and("User should see an option to schedule new appointments", () => {});
+    and("User should see an option to schedule new appointments", () => {
+      expect(container.getAllByText("Schedule New Appointment")[1]).toBeInTheDocument()
+    });
 
     and(
       "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {}
+      () => {
+        expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+        expect(container.getByText(/Reschedule/i)).toBeInTheDocument();
+        const reschedule = container.getByText(/Reschedule/i);
+        fireEvent.click(reschedule);
+      }
     );
 
-    when("User clicks on the option to cancel an appointment", () => {});
+    when("User clicks on the option to cancel an appointment", async () => {
+      const cancel = container.getByText(/Cancel/i);
+      fireEvent.click(cancel);
+      await waitFor(() => {
+        container.getByTestId("loc_btnCancel")
+      });
+    });
 
-    then(/^User should see "(.*)" as confirmation message$/, (arg0) => {});
+    then(/^User should see "(.*)" as confirmation message$/, (arg0) => {
+      expect(container.getByTestId("loc_btnCancel")).toBeInTheDocument()
+      expect(container.getByTestId("loc_btnKeep")).toBeInTheDocument()
+    });
 
-    and(/^User should see "(.*)" option$/, (arg0) => {});
+    and(/^User should see "(.*)" option$/, (arg0) => {
+      expect(container.getByTestId("loc_btnCancel")).toBeInTheDocument()
+      expect(container.getByTestId("loc_btnKeep")).toBeInTheDocument()
+    });
 
-    when(/^User selects on "(.*)" option$/, (arg0) => {});
+    when(/^User selects on "(.*)" option$/, (arg0) => {
+      expect(container.getByTestId("loc_btnCancel")).toBeInTheDocument()
+      expect(container.getByTestId("loc_btnKeep")).toBeInTheDocument()
+    });
 
-    and("the service is unavailable", () => {});
+    and("the service is unavailable", () => {
+      defaultValidation()
+    });
 
     then("user should see the appropriate error message", () => {
-      // expect(container.getByText("Something Went Wrong")).toBeInTheDocument()
+      defaultValidation()
     });
   });
 });

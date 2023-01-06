@@ -1455,7 +1455,7 @@ defineFeature(feature, (test) => {
         });
 
         then('User should be navigated to doctor’s bio screen', () => {
-
+          defaultValidation()
         });
     });
 

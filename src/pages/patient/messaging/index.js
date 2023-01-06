@@ -91,15 +91,14 @@ export default function MessagingPage() {
       name: "",
       location: "",
       specialty: "",
-    },
-    showNumber = false
+    }
   ) => {
     const api = new Api();
     isRequest = true;
     api
       .searchProvider(query)
       .then((responses) => {
-        mapper(responses.entities, showNumber);
+        mapper(responses.entities);
       })
       .catch(() => {
         setIsRequested(true);
