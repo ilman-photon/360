@@ -166,7 +166,9 @@ const EnhancedTableHead = (props) => {
                   //   ...headCell.sx,
                   // }}
                 >
-                  <b tabIndex={0}>{headCell.label}</b>
+                  <b tabIndex={0} style={{ fontWeight: 600 }}>
+                    {headCell.label}
+                  </b>
                 </TableCell>
               );
             case "text":
@@ -197,7 +199,7 @@ const EnhancedTableHead = (props) => {
                     data-testid={"table-header-sort"}
                     onClick={createSortHandler(headCell.id)}
                   >
-                    <b>{headCell.label}</b>
+                    <b style={{ fontWeight: 600 }}>{headCell.label}</b>
                     {orderBy === headCell.id ? (
                       <Box component="span" sx={visuallyHidden}>
                         {isDesc ? "sorted descending" : "sorted ascending"}
@@ -683,12 +685,16 @@ export default function TableWithSort({
             "&.MuiTable-root th, &.MuiTable-root td": {
               borderTop: "2px solid #F3F3F3",
               borderBottom: "2px solid #F3F3F3",
+              fontSize: "14px",
             },
             ".MuiTableRow-root td:first-of-type": {
               borderLeft: "2px solid #F3F3F3",
             },
             ".MuiTableRow-root td:last-of-type": {
               borderRight: "2px solid #F3F3F3",
+            },
+            ".MuiTableBody-root .MuiTableCell-root": {
+              color: "#191919",
             },
           }}
           {...additionalProps?.tableProps}
