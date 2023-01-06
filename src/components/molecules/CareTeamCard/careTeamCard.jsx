@@ -69,22 +69,6 @@ export default function CareTeamCard({ provider, coordinate }) {
 
   return (
     <Box className={styles.careTeamContainer}>
-      <Box>
-        <IconButton
-          aria-label="more option"
-          id="more-button"
-          sx={{
-            position: "absolute",
-            right: 0,
-            padding: {
-              xs: "12.5px",
-              sm: "22px",
-            },
-          }}
-        >
-          <MoreVertIcon />
-        </IconButton>
-      </Box>
       <Box className={styles.bioContainer}>
         <Box className={styles.careTeamImage}>
           <ImageFallback
