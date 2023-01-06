@@ -18,6 +18,9 @@ import {
   ArrowUpward,
   KeyboardArrowDown,
 } from "@mui/icons-material";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import ReplyIcon from "@mui/icons-material/Reply";
+import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import { colors } from "../../../styles/theme";
 import {
   getComparator,
@@ -48,6 +51,30 @@ export default function PatientAcccountCard({
   const itemsPerPage = rows.length < 10 ? rows.length : 10;
   const [hasMore, setHasMore] = React.useState(true);
   const [records, setrecords] = React.useState(itemsPerPage);
+
+  const carePlanMenus = [
+    {
+      id: "download",
+      icon: <FileDownloadOutlinedIcon />,
+      label: "Download",
+      dataTestId: "download-button",
+      ariaLabel: "download button",
+    },
+    {
+      id: "print",
+      icon: <PrintOutlinedIcon />,
+      label: "Print",
+      dataTestId: "print-button",
+      ariaLabel: "print button",
+    },
+    {
+      id: "share",
+      icon: <ReplyIcon />,
+      label: "Share",
+      dataTestId: "share-button",
+      ariaLabel: "share button",
+    },
+  ];
 
   const loadMore = () => {
     if (records === rows.length) {
@@ -135,6 +162,14 @@ export default function PatientAcccountCard({
     onActionClicked(action, row);
   };
 
+  const handleCarePlanMenu = async (action, row) => {
+    if (action === "share") {
+      onActionClicked(action, row);
+    } else {
+      onActionClicked(action, ref(row, "digital_assets._id"));
+    }
+  };
+
   const showItems = (patientItem) => {
     const data = [];
     for (let i = 0; i < records; i++) {
@@ -171,6 +206,7 @@ export default function PatientAcccountCard({
                           lineHeight: "18px",
                           color: "#003B4A",
                           flex: 1,
+                          ...cell.headSx,
                         }}
                       >
                         {
@@ -212,6 +248,7 @@ export default function PatientAcccountCard({
                           lineHeight: "18px",
                           color: "#003B4A",
                           flex: 1,
+                          ...cell.headSx,
                         }}
                       >
                         {
@@ -324,6 +361,35 @@ export default function PatientAcccountCard({
                         activeMenuData={activeMenuData}
                         onMoreClicked={handleAccountRecoveryMoreMenu}
                       />
+                    </Box>
+                  );
+                case "care-plan-menu":
+                  return (
+                    <Box
+                      key={`row-${i}-cell-${idx}`}
+                      sx={{
+                        borderTop: "0.5px solid #dadada",
+                        pt: 2,
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        gap: 3,
+                      }}
+                    >
+                      {carePlanMenus.map((more, moreIdx) => (
+                        <IconButton
+                          key={moreIdx}
+                          onClick={() => handleCarePlanMenu(more.id, item)}
+                          aria-label={`${more.ariaLabel}`}
+                          data-testid={more.dataTestId}
+                          sx={{
+                            width: 24,
+                            height: 24,
+                            color: "#003B4A",
+                          }}
+                        >
+                          {more.icon}
+                        </IconButton>
+                      ))}
                     </Box>
                   );
               }

@@ -79,6 +79,7 @@ export function tableCarePlan(isDesktop) {
     ],
   };
 }
+
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const router = useRouter();
@@ -238,6 +239,60 @@ export default function MedicalRecordPage() {
     ],
   };
 
+  const tableMobileCarePlan = {
+    header: [
+      {
+        type: "text",
+        id: "name",
+        numeric: false,
+        label: "Procedure",
+      },
+      {
+        type: "text",
+        id: "_created",
+        numeric: false,
+        label: "Date",
+      },
+      { type: "empty" },
+    ],
+    cells: [
+      {
+        type: "text",
+        valueKey: "name",
+        sx: {
+          fontWeight: "400",
+          textAlign: "start",
+        },
+        headSx: {
+          flex: "unset",
+          width: 90,
+        },
+      },
+      {
+        type: "date",
+        valueKey: "_created",
+        sx: {
+          fontWeight: "400",
+          textAlign: "start",
+        },
+        headSx: {
+          flex: "unset",
+          width: 88,
+        },
+      },
+      {
+        type: "care-plan-menu",
+        valueKey: "digital_assets._id",
+        cellProps: {
+          padding: "none",
+          sx: {
+            textAlign: "center",
+          },
+        },
+      },
+    ],
+  };
+
   const rows = useSelector((state) => {
     return state.document.documentList;
   });
@@ -362,22 +417,44 @@ export default function MedicalRecordPage() {
   };
 
   const renderResults = () => {
-    if (isMobile && watchedCategory !== "care-plan-overview") {
+    if (isMobile) {
       return (
         <PatientAcccountCard
-          config={tableMobileTestLab}
+          config={
+            watchedCategory !== "care-plan-overview"
+              ? tableMobileTestLab
+              : tableMobileCarePlan
+          }
           rows={rows}
           showResultNum={false}
           additionalContent={notifDocument}
+          onActionClicked={(action, value) => {
+            console.log(value);
+            switch (action) {
+              case "download":
+                handleAssetDownload(value);
+                break;
+              case "print":
+                handleAssetDownload(value, true);
+                break;
+              case "share":
+                shareDocument(value);
+                break;
+              default:
+                break;
+            }
+          }}
           cardSx={{
             borderColor: "#ECECEC",
             borderStyle: "solid",
             mb: 1,
+            ml: watchedCategory === "care-plan-overview" && -2,
+            mr: watchedCategory === "care-plan-overview" && -2,
           }}
           sortSx={{
             width: "100vw",
             ml: -2,
-            mt: -2,
+            mt: watchedCategory !== "care-plan-overview" ? -2 : 2,
             background: "#EFF6F7",
           }}
         />
