@@ -52,6 +52,7 @@ import ModalConfirmation from "../../components/organisms/ScheduleAppointment/Sc
 import { handleCreateAppointment } from "./schedule-appointment";
 import { resetShareData, setShowToastMessage } from "../../store/share";
 import { addToCalendar } from "../../utils/addToCalendar";
+import { useLogin } from "../../utils/customHook";
 
 export async function getStaticProps() {
   return {
@@ -78,6 +79,8 @@ export default function HomePage({ googleApiKey }) {
     message: "",
   });
   const [isOpen, setIsOpen] = React.useState(false);
+
+  useLogin(false);
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
