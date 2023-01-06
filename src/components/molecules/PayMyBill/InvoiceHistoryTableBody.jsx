@@ -169,6 +169,7 @@ export const InvoiceHistoryTableBody = ({
         type: "download-asset",
         valueKey: "id",
         contentStyle: { padding: "16px 5px" },
+        customTooltipText: "Print",
         icon: (
           <IconButton
             sx={{ width: 24, height: 24, p: 0 }}

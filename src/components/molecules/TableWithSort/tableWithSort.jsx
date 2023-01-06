@@ -455,7 +455,7 @@ export default function TableWithSort({
                   },
                 }}
               >
-                Download
+                {cell.customTooltipText ? cell.customTooltipText : "Download"}
               </Typography>
             }
             placement="top"
