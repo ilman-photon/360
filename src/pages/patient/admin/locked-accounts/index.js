@@ -57,6 +57,9 @@ export default function LockedAccount() {
         id: "name",
         numeric: false,
         label: "Patient Name",
+        sx: {
+          fontWeight: 600,
+        },
       },
       {
         type: "text",
@@ -94,22 +97,42 @@ export default function LockedAccount() {
       {
         type: "text",
         valueKey: "name",
+        contentStyle: {
+          fontWeight: 500,
+          fontSize: 14,
+        },
       },
       {
         type: "text",
         valueKey: "patientId",
+        contentStyle: {
+          fontWeight: 500,
+          fontSize: 14,
+        },
       },
       {
         type: "text",
         valueKey: "email",
+        contentStyle: {
+          fontWeight: 500,
+          fontSize: 14,
+        },
       },
       {
         type: "text",
         valueKey: "phone",
+        contentStyle: {
+          fontWeight: 500,
+          fontSize: 14,
+        },
       },
       {
         type: "text",
         valueKey: "lockedDate",
+        contentStyle: {
+          fontWeight: 500,
+          fontSize: 14,
+        },
       },
       {
         type: "user-status",
