@@ -207,6 +207,7 @@ export default function AppointmentCard({
                       "&.MuiTypography-body2": {
                         fontSize: "16px",
                         fontWeight: isMobile ? 500 : 400,
+                        color: !isMobile && "#003B4A !important",
                       },
                     }}
                   />
