@@ -107,7 +107,7 @@ export default function MedicalRecordPage() {
         id: "data.testingOrder.orderDetails.testType.name",
         numeric: false,
         disablePadding: false,
-        label: "Test Name",
+        label: "Procedure",
       },
       {
         type: "text",
