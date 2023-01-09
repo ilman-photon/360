@@ -351,6 +351,23 @@ export function renderInsuranceCarrier(
   );
 }
 
+export function renderMandatoryFieldError(isError, isDesktop = true) {
+  return (
+    <Typography
+      className={styles.errorText}
+      variant={"bodyMedium"}
+      sx={{
+        visibility: isError ? "visible" : "hidden",
+        fontSize: isDesktop ? "16px" : "14px",
+        color: "#F98F85 !important",
+      }}
+      tabIndex={0}
+    >
+      This field is required
+    </Typography>
+  );
+}
+
 const FilterHeading = ({
   isDesktop = true,
   isTablet = false,
@@ -442,23 +459,6 @@ const FilterHeading = ({
       backgroundColor: "#fff",
     },
   };
-
-  function renderMandatoryFieldError(isError) {
-    return (
-      <Typography
-        className={styles.errorText}
-        variant={"bodyMedium"}
-        sx={{
-          visibility: isError ? "visible" : "hidden",
-          fontSize: isDesktop ? "16px" : "14px",
-          color: "#F98F85 !important",
-        }}
-        tabIndex={0}
-      >
-        This field is required
-      </Typography>
-    );
-  }
 
   function onHideMandatoryFieldError() {
     if (isEmptyLocation) {
@@ -579,7 +579,7 @@ const FilterHeading = ({
                 )}
               />
               <Box sx={{ position: "absolute", bottom: "-30px" }}>
-                {renderMandatoryFieldError(isEmptyLocation)}
+                {renderMandatoryFieldError(isEmptyLocation, isDesktop)}
               </Box>
             </Box>
           );
@@ -767,7 +767,7 @@ const FilterHeading = ({
                 />
               </Box>
               <Box sx={{ position: "absolute", bottom: "-30px" }}>
-                {renderMandatoryFieldError(isEmptyAppointmentType)}
+                {renderMandatoryFieldError(isEmptyAppointmentType, isDesktop)}
               </Box>
             </Box>
           );
@@ -907,7 +907,7 @@ const FilterHeading = ({
             );
           }}
         />
-        {isError && renderMandatoryFieldError(isError)}
+        {isError && renderMandatoryFieldError(isError, isDesktop)}
         {isOptional ? (
           <Typography
             variant={"bodyTinyMedium"}

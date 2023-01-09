@@ -13,6 +13,7 @@ import {
   insuraceIcon,
   locationIconUI,
   purposeIcon,
+  renderMandatoryFieldError,
 } from "./filterHeading";
 import { convertToDate } from "../../../utils/dateFormatter";
 
@@ -61,6 +62,7 @@ const FilterHeadingFilled = ({
 
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const [isEmptyLocation, setEmptyLocation] = useState(false);
+  const [isEmptyAppointmentType, setEmptyAppointmentType] = useState(false);
   const [step, setStep] = useState("filterMenu");
 
   React.useEffect(() => {
@@ -69,9 +71,18 @@ const FilterHeadingFilled = ({
   }, [currentCity]);
 
   const onSubmit = (data) => {
-    if (!data.location) {
+    let isError = false;
+    if (!data.purposeOfVisit?.trim()) {
+      isError = true;
+      setEmptyAppointmentType(true);
+    }
+
+    if (!data.location?.trim()) {
+      isError = true;
       setEmptyLocation(true);
-    } else {
+    }
+
+    if (!isError) {
       onCloseDialog();
       onSearchProvider(data);
     }
@@ -105,9 +116,7 @@ const FilterHeadingFilled = ({
     return child;
   }
 
-  function renderTextField(icon, textField, controllerName) {
-    const isErrorMandatoryField =
-      controllerName === "location" && isEmptyLocation;
+  function renderTextField(icon, textField, controllerName, isErrorField) {
     return (
       <Box>
         <Controller
@@ -123,29 +132,34 @@ const FilterHeadingFilled = ({
                   marginTop: "15px",
                   width: "auto",
                   background: "#fff",
-                  border: isErrorMandatoryField
-                    ? `2px solid ${colors.errorField}`
+                  border: isErrorField
+                    ? `2px solid ${colors.error}`
                     : `1px solid #BDBDBD`,
                 }}
               >
                 {icon}
-                {textField(onChange, value)}
+                {textField(onChange, value, _error)}
               </Box>
             );
           }}
         />
+        {isErrorField && renderMandatoryFieldError(isErrorField, false)}
       </Box>
     );
   }
 
   function onHideMandatoryFieldError() {
+    if (isEmptyAppointmentType) {
+      setEmptyAppointmentType(false);
+    }
+
     if (isEmptyLocation) {
       setEmptyLocation(false);
     }
   }
 
   function onRenderLocationField() {
-    const locationInput = function (onChange, value) {
+    const locationInput = function (onChange, value, error) {
       return (
         <StyledInput
           required
@@ -155,6 +169,7 @@ const FilterHeadingFilled = ({
           variant="filled"
           label="City, state, or zip code"
           sx={sxButton}
+          error={error}
           onClick={() => {
             onHideMandatoryFieldError();
             setStep("location");
@@ -162,7 +177,12 @@ const FilterHeadingFilled = ({
         />
       );
     };
-    return renderTextField(locationIconUI(), locationInput, "location");
+    return renderTextField(
+      locationIconUI(),
+      locationInput,
+      "location",
+      isEmptyLocation
+    );
   }
 
   function onRenderDateField() {
@@ -185,9 +205,11 @@ const FilterHeadingFilled = ({
   }
 
   function onRenderPurposeField() {
-    const purposeInput = function (onChange, value) {
+    const purposeInput = function (onChange, value, error) {
       return (
         <StyledInput
+          required
+          error={error}
           type="default"
           value={value}
           onChange={onChange}
@@ -197,12 +219,18 @@ const FilterHeadingFilled = ({
           label="Purpose of Visit"
           sx={sxButton}
           onClick={() => {
+            onHideMandatoryFieldError();
             setStep("purposeInput");
           }}
         />
       );
     };
-    return renderTextField(purposeIcon, purposeInput, "purposeOfVisit");
+    return renderTextField(
+      purposeIcon,
+      purposeInput,
+      "purposeOfVisit",
+      isEmptyAppointmentType
+    );
   }
 
   function onRenderInsuranceField() {
@@ -229,13 +257,13 @@ const FilterHeadingFilled = ({
   function renderFilterMeu() {
     return (
       <Box className={styles.searchButtonWarpper}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
           {onRenderLocationField()}
           {onRenderDateField()}
+          {onRenderPurposeField()}
           <Typography className={styles.searchOptionalLabel}>
             Optional
           </Typography>
-          {onRenderPurposeField()}
           {onRenderInsuranceField()}
           <StyledButton
             type="submit"
