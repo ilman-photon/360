@@ -46,7 +46,13 @@ export const MessagingSearchHeaderComponent = ({
             />
           </Box>
         </Grid>
-        <Grid item xs={0.5} md={2} lg={1}>
+        <Grid
+          item
+          xs={0.5}
+          md={2}
+          lg={1}
+          sx={{ display: "flex", alignItems: "center" }}
+        >
           {isDesktop ? (
             <Box className={styles.buttonContent}>
               <Button
