@@ -22,6 +22,7 @@ import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
 import CommonCard, { onRenderButtonView } from "./commonCard";
 import { Api } from "../../../pages/api/api";
+import { mappingListData } from "../../../store/payMyBill";
 
 export default function PayMyBillCard() {
   const [payMyBillData, setPayMyBillData] = React.useState({});
@@ -50,7 +51,12 @@ export default function PayMyBillCard() {
       .getInvoiceWithPatientDetails()
       .then((responses) => {
         if (responses && responses.entities?.length > 0) {
-          setPayMyBillData(responses.entities[0]);
+          const openInvoice = mappingListData(responses, true);
+          if (openInvoice && openInvoice.length > 0) {
+            setPayMyBillData(openInvoice[0]);
+          } else {
+            setPayMyBillData({});
+          }
         } else {
           setPayMyBillData({});
         }

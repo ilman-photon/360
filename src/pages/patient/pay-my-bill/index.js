@@ -131,7 +131,7 @@ export default function PayMyBillPage() {
   function onCalledBillingInvoice() {
     const api = new Api();
     api
-      .getPayBillList()
+      .getInvoiceWithPatientDetails()
       .then(function (response) {
         dispatch(setBillingOpenList({ response, isOpen: true }));
         dispatch(setBillingHistoryList({ response, isOpen: false }));
@@ -165,11 +165,10 @@ export default function PayMyBillPage() {
     api
       .searchInvoiceByInvoiceNumber(id)
       .then(function (response) {
-        data.push(response);
         if (activeTabs?.index == 0) {
-          dispatch(setSearchDataList({ response: data, isOpen: true }));
+          dispatch(setSearchDataList({ response, isOpen: true }));
         } else {
-          dispatch(setSearchDataList({ response: data, isOpen: false }));
+          dispatch(setSearchDataList({ response, isOpen: false }));
         }
       })
       .catch(function () {
@@ -255,14 +254,7 @@ export default function PayMyBillPage() {
   };
 
   const onFilterByInvoiceNumber = (id) => {
-    const data = activeTabs.index == 0 ? openListData : historyListData;
-    let idData = "";
-    data.map((item) => {
-      if (item.invoiceNumber == id) {
-        idData = item.id;
-      }
-    });
-    onCalledSearchByInvoiceNumber(idData);
+    onCalledSearchByInvoiceNumber(id);
   };
 
   const onGoToViewDetail = (data) => {

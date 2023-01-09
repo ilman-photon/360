@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 export const NotHaveInvoiceView = ({ message = "" }) => {
   return (
     <Box className={styles.notHaveInvoiceView}>
-      <Typography sx={{color: "#003B4A"}}>{message}</Typography>
+      <Typography sx={{ color: "#003B4A" }}>{message}</Typography>
     </Box>
   );
 };
