@@ -555,24 +555,26 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  getPayBillList() {
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const url = `/ecp/patientbillingsystem/getInvoiceWithPatientDetails?search.query=((patient.uid=eq=86b15338-ff12-4b52-9925-e3ac3e43375a))`;
-    return this.getResponse(url, {}, "get");
-  }
-
   getSummaryBill(id) {
     const url = `/ecp/patientbillingsystem/getInvoiceWithInvoiceNumber/${id}?embed=payments,adjustments`;
     return this.getResponse(url, {}, "get");
   }
 
   searchInvoiceByDate(postBody) {
-    const url = `/ecp/patientbillingsystem/getInvoiceWithSearchQuery?search.query=(serviceDate=gte=${postBody.fromDate})AND(serviceDate=lte=${postBody.toDate})`;
+    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+    const firstName = userProfile?.firstName || "";
+    const lastName = userProfile?.lastName || "";
+    const dob = userProfile?.dob || "";
+    const url = `/ecp/patientbillingsystem/getInvoiceWithSearchQuery?search.query=((patient.firstName=eq=${firstName})AND(patient.lastName=eq=${lastName})AND(patient.dob=eq=${dob})AND(serviceDate=gte=${postBody.fromDate})AND(serviceDate=lte=${postBody.toDate}))`;
     return this.getResponse(url, {}, "get");
   }
 
   searchInvoiceByInvoiceNumber(id) {
-    const url = `/ecp/patientbillingsystem/getInvoiceWithInvoiceNumber/${id}?embed=payments,adjustments`;
+    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+    const firstName = userProfile?.firstName || "";
+    const lastName = userProfile?.lastName || "";
+    const dob = userProfile?.dob || "";
+    const url = `/ecp/patientbillingsystem/getInvoiceWithSearchQuery?search.query=((patient.firstName=eq=${firstName})AND(patient.lastName=eq=${lastName})AND(patient.dob=eq=${dob})AND(invoiceNumber=eq=${id}))`;
     return this.getResponse(url, {}, "get");
   }
 
