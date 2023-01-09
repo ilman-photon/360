@@ -168,13 +168,13 @@ export default function IntakeFormPage() {
   }
 
   useEffect(() => {
-    onCallGetFormContent();
     setIsAdmin(isAdminUser());
+    onCallGetFormContent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (document.length > 0) {
+    if (document.length > 0 && !isAdmin) {
       onCallGetSubmitedForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -286,9 +286,6 @@ export default function IntakeFormPage() {
   }
 
   function renderFormBox(idx, item, isSubmit) {
-    const digitalAssetId = isSubmit
-      ? item.digital_assets?._id
-      : item.digitalAssetId;
     if (isAdmin && item.title.indexOf("Treat Minor") > -1) {
       return <></>;
     }
@@ -441,13 +438,26 @@ export default function IntakeFormPage() {
         data-testid={
           isSubmit ? "submit-form-container" : "intake-form-container"
         }
+        className={styles.containerItem}
       >
-        <Grid item xs={12} lg={5} data-testid={`left-form-customization`}>
+        <Grid
+          item
+          xs={12}
+          lg={5}
+          data-testid={`left-form-customization`}
+          className={styles.containerLeft}
+        >
           {firstHalf.map((item, idx) => {
             return renderFormBox(`left-${idx}`, item, isSubmit);
           })}
         </Grid>
-        <Grid item xs={12} lg={5} data-testid={`right-form-customization`}>
+        <Grid
+          item
+          xs={12}
+          lg={5}
+          data-testid={`right-form-customization`}
+          className={styles.containerLeft}
+        >
           {secondHalf.map((item, idx) => {
             return renderFormBox(`right-${idx}`, item, isSubmit);
           })}

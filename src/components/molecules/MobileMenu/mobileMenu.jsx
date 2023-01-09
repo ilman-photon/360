@@ -139,7 +139,7 @@ export default function MobileMenu({
           submenu: [
             {
               label: "Intake Forms",
-              href: "/patient/intake-forms",
+              href: "/patient/intake-form",
               icon: <IntakeFormsIcon sx={{ fill: colors.darkGreen }} />,
             },
             {
@@ -166,7 +166,7 @@ export default function MobileMenu({
           icon: <DescriptionOutlinedIcon sx={{ fill: colors.darkGreen }} />,
         },
       ]
-    : menus;
+    : menus(true);
 
   const renderMenuList = () => (
     <Box
