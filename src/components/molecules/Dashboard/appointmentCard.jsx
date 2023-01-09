@@ -140,7 +140,8 @@ export default function AppointmentCard({
       const hours = duration.asHours();
 
       const isHideButtons = Math.floor(hours) < hideHour;
-      let estimationTime = `${Math.round(days)} days`;
+      const dayOrDays = Math.round(days) == 1 ? "day" : "days";
+      let estimationTime = `${Math.round(days)} ${dayOrDays}`;
       if (isHideButtons) {
         estimationTime = `${Math.floor(hours)} Hours`;
       }
