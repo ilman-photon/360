@@ -83,7 +83,9 @@ export default function Bio({ embedApi, bio }) {
     const specialization = getArrayValue(
       response.providerDetails?.specialization
     );
-    const classification = splitByAnd(response.providerDetails?.classification);
+    const classification = splitByAnd(
+      response.providerDetails?.classification || ""
+    );
     const sub = specialization.concat(classification);
     let specialties = [...new Set(sub)];
     specialties = specialties.filter((e) => e);

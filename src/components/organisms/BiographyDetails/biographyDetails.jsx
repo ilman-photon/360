@@ -186,7 +186,9 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
                 {newAddress && formattedAddress(newAddress)}
               </Typography>
               <Box className={styles.getDirectionLinkContainer}>
-                <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
+                <DirectionsOutlinedIcon
+                  sx={{ color: "#013B4A" }}
+                ></DirectionsOutlinedIcon>
                 <Link
                   className={styles.getDirectionLink}
                   href={`https://www.google.com/maps/search/?api=1&query=${addressQuery}`}
@@ -194,7 +196,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
                   rel="noopener"
                   tabIndex={0}
                 >
-                  Get Directions
+                  Get directions
                 </Link>
               </Box>
             </Box>
