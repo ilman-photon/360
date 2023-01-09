@@ -7,6 +7,7 @@ import {
   TITLE_LIST,
 } from "../utils/constantData";
 import { formatPhoneNumber } from "../utils/phoneFormatter";
+import removeSpace from "../utils/removeSpace";
 import { formatSocialSecurity } from "../utils/ssnFormatter";
 
 let url;
@@ -153,14 +154,14 @@ const buildDigitalAssetObject = (payload, type) => {
     case "profile":
       return {
         uid: id,
-        fileName: fileName,
+        fileName: removeSpace(fileName),
         assetUrl: "/v1/patient",
         _version: payload._version,
       };
     case "insurance":
       return {
         uid: id,
-        fileName: fileName,
+        fileName: removeSpace(fileName),
         metaInfo: {},
         _version: payload._version,
       };

@@ -674,6 +674,7 @@ export default function InsuranceForm({
                       position: "absolute",
                       width: "calc(100% - 16px)",
                       top: "-25px",
+                      zIndex: "2",
                     }}
                   >
                     <Collapse in={!!formCardBackState.content}>
