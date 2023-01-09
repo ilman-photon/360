@@ -131,8 +131,8 @@ export const ImageUploader = ({
       let errorMessage = {};
 
       if (
-        !Regex.isImageFile.test(fileType) &&
-        !Regex.isImageFile.test(slicedFileTypeFromFilePath)
+        !Regex.imageJpgPng.test(fileType) &&
+        !Regex.imageJpgPng.test(slicedFileTypeFromFilePath)
       ) {
         errorMessage = {
           success: false,
