@@ -12,3 +12,19 @@
   right: 11px;
   top: 18%;
 }
+
+.containerItem {
+  @media (max-width: 600px) {
+    width: auto;
+  }
+  .containerLeft {
+    @media (max-width: 600px) {
+      padding: 0;
+    }
+  }
+  .containerRight {
+    @media (max-width: 600px) {
+      padding: 0;
+    }
+  }
+}

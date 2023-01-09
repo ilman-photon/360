@@ -15,26 +15,33 @@ import React from "react";
 
 const iconIntakeForms = "/iconintakeFoms.png";
 
-export const menus = [
-  {
-    href: "/patient/admin/locked-accounts",
-    label: "Locked Accounts",
-  },
-  {
-    href: "/patient/admin/account-recovery",
-    label: "Account Recovery",
-  },
-  {
-    label: "Documents",
-    submenu: [
-      {
-        icon: iconIntakeForms,
-        href: "/patient/intake-form",
-        label: "Forms Customization",
-      },
-    ],
-  },
-];
+export const menus = (isMobile = false) => {
+  const menu = [
+    {
+      href: "/patient/admin/locked-accounts",
+      label: "Locked Accounts",
+    },
+    {
+      href: "/patient/admin/account-recovery",
+      label: "Account Recovery",
+    },
+  ];
+
+  if (!isMobile) {
+    menu.push({
+      label: "Documents",
+      submenu: [
+        {
+          icon: iconIntakeForms,
+          href: "/patient/intake-form",
+          label: "Forms Customization",
+        },
+      ],
+    });
+  }
+
+  return menu;
+};
 
 const AdminNavbar = () => {
   const [anchorChildren, setAnchorChildren] = React.useState(null);
@@ -104,7 +111,7 @@ const AdminNavbar = () => {
               },
             }}
           >
-            {menus.map((menu, menuIdx) =>
+            {menus().map((menu, menuIdx) =>
               menu.submenu ? (
                 <div key={menuIdx}>
                   <Button
