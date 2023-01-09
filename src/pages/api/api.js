@@ -567,7 +567,7 @@ export class Api {
   }
 
   searchInvoiceByDate(postBody) {
-    const url = `/ecp/patientbillingsystem/getInvoiceWithSearchQuery?search.query=(serviceDate=gte=${postBody.fromDate}})AND(serviceDate=lte=${postBody.toDate}))`;
+    const url = `/ecp/patientbillingsystem/getInvoiceWithSearchQuery?search.query=(serviceDate=gte=${postBody.fromDate})AND(serviceDate=lte=${postBody.toDate})`;
     return this.getResponse(url, {}, "get");
   }
 
