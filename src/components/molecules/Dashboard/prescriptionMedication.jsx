@@ -410,6 +410,9 @@ export default function PrescriptionMedication({
                 onClick={() => {
                   setFilterOpen(!filterOpen);
                 }}
+                tabIndex={"0"}
+                aria-label="filter option"
+                role="button"
               />
             </Box>
           ) : (
