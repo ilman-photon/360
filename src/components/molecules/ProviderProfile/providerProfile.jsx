@@ -237,6 +237,12 @@ export default function ProviderProfile({
                       navigateToScheduleAppointment(providerData);
                     }}
                     data-testid="schedule-btn"
+                    sx={{
+                      p: "11px 20px",
+                      fontWeight: 400,
+                      boxShadow: "none !important",
+                      borderRadius: "30px",
+                    }}
                   >
                     Schedule Appointment
                   </StyledButton>
