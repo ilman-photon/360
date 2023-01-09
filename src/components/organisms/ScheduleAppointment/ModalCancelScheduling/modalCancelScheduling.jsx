@@ -10,6 +10,7 @@ import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { Box, Stack, Typography, Button, Link } from "@mui/material";
 import { formatRescheduleDate } from "../../../../utils/dateFormatter";
+import { Regex } from "../../../../utils/regex";
 
 export default function ModalCancelScheduling({
   isOpen,
@@ -45,6 +46,7 @@ export default function ModalCancelScheduling({
   }, [isOpen, reset]);
 
   const watchedRadio = watch("cancelSchedule");
+  const watchedOther = watch("cancelOther");
 
   const onSubmit = (data) => {
     OnCancelClicked(data);
@@ -223,6 +225,20 @@ export default function ModalCancelScheduling({
                               error={!!error}
                               helperText={error ? error.message : null}
                               sx={{ pb: 2, width: { xs: "100%", md: "70%" } }}
+                              onKeyDown={(e) => {
+                                const spaceValidation =
+                                  watchedOther.length > 0 &&
+                                  !Regex.noWhitespaceRegex.test(e.key);
+                                const charValidation =
+                                  !Regex.alphabethOnly.test(e.key) &&
+                                  !Regex.numberRegex.test(e.key) &&
+                                  !spaceValidation;
+                                const keyboardValidation =
+                                  e.key != "Backspace" && e.key != "Tab";
+                                if (charValidation && keyboardValidation) {
+                                  e.preventDefault();
+                                }
+                              }}
                               required
                               inputRef={cancelRef}
                             />
