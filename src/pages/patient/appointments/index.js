@@ -7,7 +7,7 @@ import PastAppointment from "../../../components/organisms/PastAppointment/pastA
 import styles from "./styles.module.scss";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import { Api } from "../../api/api";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CustomModal from "../../../components/molecules/CustomModal/customModal";
@@ -92,6 +92,22 @@ export default function Appointments() {
     onCalledGetAppointmentTypesAPI();
   }, []);
 
+  const appointmentRef = useRef(null);
+
+  useEffect(() => {
+    if (appointmentRef?.current) {
+      const id = router?.query?.focus;
+      const target = appointmentRef?.current?.querySelector(
+        `#appointment-${id}`
+      );
+      target?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    }
+  }, [isRequestedUpcoming]);
+
   useEffect(() => {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
@@ -153,7 +169,11 @@ export default function Appointments() {
   return (
     <>
       {isAuthenticated && (
-        <Box ariaLabel={"Appointments page"} className={styles.container}>
+        <Box
+          ariaLabel={"Appointments page"}
+          className={styles.container}
+          ref={appointmentRef}
+        >
           <AccountTitleHeading
             title={"Appointments"}
             sx={

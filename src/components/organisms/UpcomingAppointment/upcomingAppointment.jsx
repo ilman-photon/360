@@ -40,7 +40,10 @@ export function UpcomingAppointmentCard({
 
   const isHideButtons = visitDate < addHours(hideHour);
   return (
-    <Box className={styles.upcomingAppointmentsContainer}>
+    <Box
+      className={styles.upcomingAppointmentsContainer}
+      id={`appointment-${data.appointmentId}`}
+    >
       <Box className={styles.upcomingAppointmentDetail}>
         <Typography
           tabIndex={0}

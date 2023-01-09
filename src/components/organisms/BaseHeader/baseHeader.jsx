@@ -157,7 +157,7 @@ export default function BaseHeader({
       case "appointment":
       case "appointment-second-reminder":
       case "appointment-one":
-        path = `/patient/appointments/detail-appointments/${id}`;
+        path = `/patient/appointments?focus=${id}`;
         break;
       case "test-result":
       case "test/lab results":
