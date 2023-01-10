@@ -36,6 +36,7 @@ const getDescription = (item) => {
 };
 
 const getSummaryObjectData = (item) => ({
+  id: item?._id,
   invoiceNumber: item?._invoiceNumber,
   dos: item?.serviceDate,
   balanceDue: 75,

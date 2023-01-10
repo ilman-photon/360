@@ -7,6 +7,7 @@ import { useMediaQuery } from "@mui/material";
 import SummaryBillDetail from "../../../../../components/organisms/PayMyBill/billSummaryDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { setSummaryData } from "../../../../../store/payMyBill";
+import { getInvoiceReceipts } from "../..";
 
 export default function SummaryBillPage() {
   const router = useRouter();
@@ -58,12 +59,17 @@ export default function SummaryBillPage() {
     router.back();
   };
 
+  const handleAssetDownload = (id, print) => {
+    getInvoiceReceipts(id, print);
+  };
+
   return (
     <>
       <SummaryBillDetail
         data={detailSummary}
         isDesktop={isDesktop}
         goBack={goBackPage}
+        handleAssetDownload={handleAssetDownload}
       />
     </>
   );
