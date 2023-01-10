@@ -76,15 +76,11 @@ const payMyBill = [
     icon: iconPayBillInvoices,
     href: `/patient/pay-my-bill?activeTab=${0}`,
     label: "View & Pay Open Invoices",
-    width: "11px",
-    height: "18px",
   },
   {
     icon: iconInvoiceHistory,
     href: `/patient/pay-my-bill?activeTab=${1}`,
     label: "Invoice History",
-    width: "18px",
-    height: "20px",
   },
 ];
 
@@ -138,10 +134,11 @@ const Navbar = ({ isDashboard = false }) => {
     setAnchorHealth(null);
     setAnchorDocument(null);
     setAnchorAppointments(null);
+    setAnchorPayMyBill(null);
     if (typeof href === "string") router.push(href);
   };
 
-  const MenuItemLabel = (item, itemIdx, width, height) => {
+  function MenuItemLabel(item, itemIdx) {
     return (
       <MenuItem
         key={itemIdx}
@@ -168,7 +165,7 @@ const Navbar = ({ isDashboard = false }) => {
         </Typography>
       </MenuItem>
     );
-  };
+  }
 
   return (
     <ThemeProvider theme={patientTypography}>
@@ -383,7 +380,7 @@ const Navbar = ({ isDashboard = false }) => {
                   onClose={handleCloseMenu}
                 >
                   {payMyBill.map((bill, billIdx) =>
-                    MenuItemLabel(bill, billIdx, bill.width, bill.height)
+                    MenuItemLabel(bill, billIdx)
                   )}
                 </Menu>
               </Box>
