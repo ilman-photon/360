@@ -396,6 +396,7 @@ export default function SearchBar({
             flex: 1,
             "& .MuiFilledInput-root": {
               border: "none",
+              height: "56px",
             },
           }}
         />
@@ -414,6 +415,9 @@ export default function SearchBar({
           width: {
             sm: "25%",
             md: "224px",
+          },
+          "& .MuiFilledInput-root": {
+            height: "56px !important",
           },
         }}
         label="City or Zip"
@@ -440,6 +444,9 @@ export default function SearchBar({
           width: {
             sm: "25%",
             md: "262px",
+          },
+          "& .MuiFilledInput-root": {
+            height: "56px",
           },
         }}
         label="Specialty"
@@ -538,7 +545,7 @@ export default function SearchBar({
   );
 
   return (
-    <Box padding={!isMobile ? "24px" : "8px"} className={styles.searchDoctor}>
+    <Box padding={!isMobile ? "24px 21px" : "8px"} className={styles.searchDoctor}>
       <Typography
         tabIndex={0}
         variant="h2"
