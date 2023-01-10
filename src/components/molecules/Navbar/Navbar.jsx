@@ -381,12 +381,12 @@ const Navbar = ({ isDashboard = false }) => {
                   anchorEl={anchorPayMyBill}
                   anchorOrigin={{
                     vertical: "top",
-                    horizontal: "right",
+                    horizontal: "left",
                   }}
                   keepMounted
                   transformOrigin={{
                     vertical: "top",
-                    horizontal: "right",
+                    horizontal: "left",
                   }}
                   open={Boolean(anchorPayMyBill)}
                   onClose={handleCloseMenu}

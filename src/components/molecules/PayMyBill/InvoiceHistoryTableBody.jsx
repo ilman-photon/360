@@ -120,7 +120,7 @@ export const InvoiceHistoryTableBody = ({
         children: (props) => {
           return (
             <Button
-              onClick={() => onGoToViewDetail(props)}
+              onClick={() => handleAssetDownload(props.id, false, true)}
               data-testid="invoice-view-pdf"
               sx={{
                 display: "flex",
