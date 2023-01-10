@@ -170,7 +170,7 @@ export default function SearchBar({
                   }
             }
           >
-            Doctor name or practice name
+            Doctor Name or practice name
           </Typography>
           {name !== "" && (
             <Typography
@@ -261,7 +261,7 @@ export default function SearchBar({
               InputLabelProps={{ "aria-hidden": true }}
               aria-label={"Doctor name, practice name"}
               id="doctor"
-              label="Doctor name or practice name"
+              label="Doctor Name or practice name"
               variant="filled"
               data-testid="doctor-name"
               type="text"
@@ -314,7 +314,9 @@ export default function SearchBar({
               isMobile
               value={location}
               onChange={(_event, newValue) => {
-                setLocation(newValue);
+                if (Regex.alphaNumericRegex.test(newValue) || newValue === "") {
+                  setLocation(newValue);
+                }
               }}
             />
 
@@ -379,7 +381,7 @@ export default function SearchBar({
           InputLabelProps={{ "aria-hidden": true }}
           aria-label={"Doctor name, practice name"}
           id="doctor"
-          label="Doctor name, practice name"
+          label="Doctor Name or practice name"
           variant="filled"
           data-testid="doctor-name"
           type="text"
@@ -414,12 +416,14 @@ export default function SearchBar({
             md: "224px",
           },
         }}
-        label="City, Zip"
+        label="City or Zip"
         testId="location-field"
         textfieldId="location-field"
         value={location}
         onChange={(_event, newValue) => {
-          setLocation(newValue);
+          if (Regex.alphaNumericRegex.test(newValue) || newValue === "") {
+            setLocation(newValue);
+          }
         }}
       />
       <Divider

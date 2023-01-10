@@ -84,7 +84,7 @@ export default function DoctorList({
             },
           }}
         >
-          {`${providerData.length} Results found with your search criteria`}
+          {`${providerData.length} Results found using your search criteria`}
         </Typography>
       )}
       <Grid

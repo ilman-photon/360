@@ -67,9 +67,9 @@ export const styles = {
     cursor: "pointer",
     fontWeight: "400",
     paddingLeft: "8px",
-    lineHeight: "1.167",
     fontSize: "16px",
     fontFamily: "Museo Sans",
+    marginTop: "1px",
   },
   linkText: {
     color: "#008294",
