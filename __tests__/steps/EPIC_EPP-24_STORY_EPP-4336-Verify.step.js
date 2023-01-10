@@ -340,21 +340,21 @@ const mockApi = () => {
   mock
     .onGet(`/ecp/appointments/getDoctorDetails?pageSize=1&search.query=`)
     .reply(200, {
-      "count": 300
+      count: 300,
     });
   mock
     .onGet(
       `/ecp/appointments/getDoctorDetails?pageSize=1&search.query=((firstName=co=Robert)OR(lastName=co=Robert))`
     )
     .reply(200, {
-      "count": 300
+      count: 300,
     });
   mock
     .onGet(
       `/ecp/appointments/getDoctorDetails?pageSize=1&search.query=((firstName=co=Robert)OR(lastName=co=Robert)AND(offices.city=co=Chicago))`
     )
     .reply(200, {
-      "count": 300
+      count: 300,
     });
   mock
     .onGet(`/ecp/appointments/getDoctorDetails?pageSize=300&search.query=`)
@@ -397,8 +397,8 @@ const mockApi = () => {
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => { },
-    removeListener: () => { },
+    addListener: () => {},
+    removeListener: () => {},
   });
 }
 
@@ -687,7 +687,7 @@ defineFeature(feature, (test) => {
       "user able to view filter result from ECP Practise location that they selected",
       () => {
         expect(
-          container.getByText(/Results found with your search criteria/i)
+          container.getByText(/Results found using your search criteria/i)
         ).toBeInTheDocument();
       }
     );

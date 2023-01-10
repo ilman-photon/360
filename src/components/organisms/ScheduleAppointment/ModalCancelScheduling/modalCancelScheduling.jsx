@@ -31,7 +31,6 @@ export default function ModalCancelScheduling({
   });
 
   React.useEffect(() => {
-    console.log(errors);
     if (errors.cancelOther) {
       cancelRef.current?.focus();
     }

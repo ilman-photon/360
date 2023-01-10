@@ -141,7 +141,7 @@ export default function MyCareTeamPage() {
                   },
                 }}
               >
-                There are no doctor/optometrist details available for you
+                There are no doctor/ optometrist details available for you.
               </Typography>
             </Box>
           )}
