@@ -9,7 +9,11 @@ import Cookies from "universal-cookie";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
 
-import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
+import {
+  TEMP_DATA_CONTACTS,
+  TEMP_DATA_GLASSES,
+  TEMP_DATA_MEDICATION,
+} from "../../__mocks__/mockResponse";
 
 const upcoming = {
   count: 3,
@@ -88,156 +92,156 @@ const upcoming = {
               },
             },
           ],
-          "contactPreferenceDetail": {
-            "phone": false,
-            "text": false,
-            "email": false,
-            "_id": "5fb27959-066a-4207-8652-62a8299e1e04",
-            "_version": "c5522e0f-1fc9-44aa-8f79-f938da39c07c",
-            "_created": "Oct 13, 2022, 9:27:28 AM",
-            "_updated": "Oct 13, 2022, 9:27:28 AM",
-            "_createdBy": {
-              "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-              "_links": {
-                "self": {
-                  "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-                }
-              }
-            }
+          contactPreferenceDetail: {
+            phone: false,
+            text: false,
+            email: false,
+            _id: "5fb27959-066a-4207-8652-62a8299e1e04",
+            _version: "c5522e0f-1fc9-44aa-8f79-f938da39c07c",
+            _created: "Oct 13, 2022, 9:27:28 AM",
+            _updated: "Oct 13, 2022, 9:27:28 AM",
+            _createdBy: {
+              _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              _links: {
+                self: {
+                  href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+                },
+              },
+            },
           },
-          "_id": "e3df5d73-dc0c-490b-8a38-b760327baf89",
-          "_version": "797e46b7-86c2-4300-9cdd-203d8bb13857",
-          "_created": "Oct 13, 2022, 8:57:44 AM",
-          "_updated": "Oct 13, 2022, 9:27:28 AM",
-          "_createdBy": {
-            "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-            "_links": {
-              "self": {
-                "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-              }
-            }
+          _id: "e3df5d73-dc0c-490b-8a38-b760327baf89",
+          _version: "797e46b7-86c2-4300-9cdd-203d8bb13857",
+          _created: "Oct 13, 2022, 8:57:44 AM",
+          _updated: "Oct 13, 2022, 9:27:28 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
           },
-          "_updatedBy": {
-            "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-            "_links": {
-              "self": {
-                "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-              }
-            }
-          }
+          _updatedBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
         },
-        "_id": "8f449386-7402-49ee-8d8c-4ec40863a103",
-        "_version": "d9f9e311-bd6b-4142-9d34-3eb3be500036",
-        "_created": "Oct 13, 2022, 8:57:44 AM",
-        "_updated": "Oct 13, 2022, 9:27:29 AM",
-        "_createdBy": {
-          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-          "_links": {
-            "self": {
-              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-            }
-          }
+        _id: "8f449386-7402-49ee-8d8c-4ec40863a103",
+        _version: "d9f9e311-bd6b-4142-9d34-3eb3be500036",
+        _created: "Oct 13, 2022, 8:57:44 AM",
+        _updated: "Oct 13, 2022, 9:27:29 AM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
         },
-        "_updatedBy": {
-          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-          "_links": {
-            "self": {
-              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-            }
-          }
-        }
-      },
-      "provider": {
-        "firstName": "Steve",
-        "lastName": "Adam",
-        "designation": "Dr",
-        "inHouse": false,
-        "_id": "19f1c186-37a8-46ef-a731-0a1f022be782",
-        "_version": "a1c4536d-6e5e-4779-81b0-080fe4e23a23",
-        "_updated": "Apr 8, 2022, 8:35:42 AM"
-      },
-      "office": {
-        "name": "Ballwin",
-        "_id": "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
-        "_version": "0c381712-420e-4705-bb6d-f0226ceb5b12",
-        "_updated": "Sep 17, 2022, 10:14:52 AM",
-        "_updatedBy": {
-          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-          "_links": {
-            "self": {
-              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-            }
-          }
-        }
-      },
-      "appointmentDate": "10/19/2023",
-      "appointmentTime": "11:00",
-      "appointmentEndTime": "11:01",
-      "appointmentLength": 1,
-      "isConfirmed": false,
-      "appointmentHistory": [],
-      "state": {
-        "subState": {
-          "subState": "CREATED",
-          "_id": "17ca5ce7-b413-4365-a900-5e5432ab19d5",
-          "_version": "d4ed901b-d6d4-4189-8baa-8fae00d52d52",
-          "_created": "Oct 13, 2022, 9:27:50 AM",
-          "_updated": "Oct 13, 2022, 9:27:50 AM",
-          "_createdBy": {
-            "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-            "_links": {
-              "self": {
-                "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-              }
-            }
-          }
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
         },
-        "state": "UNCONFIRMED",
-        "_id": "5410aca4-c010-4f39-9cb5-e4ecfce821b0",
-        "_version": "d9f9be4a-2e6e-44ef-a33f-2781d1c4c894",
-        "_created": "Oct 13, 2022, 9:27:50 AM",
-        "_updated": "Oct 13, 2022, 9:27:50 AM",
-        "_createdBy": {
-          "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-          "_links": {
-            "self": {
-              "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-            }
-          }
-        }
       },
-      "notes": [],
-      "allowCreate": false,
-      "paymentMethod": {
-        "noInsuranceInformation": {},
-        "insuranceInfoUsedForBilling": {
-          "financialClassBasedInformation": {}
-        }
+      provider: {
+        firstName: "Steve",
+        lastName: "Adam",
+        designation: "Dr",
+        inHouse: false,
+        _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+        _version: "a1c4536d-6e5e-4779-81b0-080fe4e23a23",
+        _updated: "Apr 8, 2022, 8:35:42 AM",
       },
-      "appointmentNo": 1000001210,
-      "newPatient": false,
-      "insurancePayers": [],
-      "override": false,
-      "quickAppointmentflag": false,
-      "isPrimaryMember": true,
-      "status": "CREATED",
-      "_links": {
-        "self": {
-          "href": "/v1/appointments/b2aa3268-8d65-418c-99fd-c187ac6a9634"
-        }
+      office: {
+        name: "Ballwin",
+        _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        _version: "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        _updated: "Sep 17, 2022, 10:14:52 AM",
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
       },
-      "_id": "b2aa3268-8d65-418c-99fd-c187ac6a9634",
-      "_version": "910e080f-ab81-41df-b6f2-b285272cb07b",
-      "_created": "Oct 13, 2022, 9:27:50 AM",
-      "_updated": "Oct 13, 2022, 9:27:50 AM",
-      "_createdBy": {
-        "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
-        "_links": {
-          "self": {
-            "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
-          }
-        }
-      }
+      appointmentDate: "10/19/2023",
+      appointmentTime: "11:00",
+      appointmentEndTime: "11:01",
+      appointmentLength: 1,
+      isConfirmed: false,
+      appointmentHistory: [],
+      state: {
+        subState: {
+          subState: "CREATED",
+          _id: "17ca5ce7-b413-4365-a900-5e5432ab19d5",
+          _version: "d4ed901b-d6d4-4189-8baa-8fae00d52d52",
+          _created: "Oct 13, 2022, 9:27:50 AM",
+          _updated: "Oct 13, 2022, 9:27:50 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        state: "UNCONFIRMED",
+        _id: "5410aca4-c010-4f39-9cb5-e4ecfce821b0",
+        _version: "d9f9be4a-2e6e-44ef-a33f-2781d1c4c894",
+        _created: "Oct 13, 2022, 9:27:50 AM",
+        _updated: "Oct 13, 2022, 9:27:50 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      notes: [],
+      allowCreate: false,
+      paymentMethod: {
+        noInsuranceInformation: {},
+        insuranceInfoUsedForBilling: {
+          financialClassBasedInformation: {},
+        },
+      },
+      appointmentNo: 1000001210,
+      newPatient: false,
+      insurancePayers: [],
+      override: false,
+      quickAppointmentflag: false,
+      isPrimaryMember: true,
+      status: "CREATED",
+      _links: {
+        self: {
+          href: "/v1/appointments/b2aa3268-8d65-418c-99fd-c187ac6a9634",
+        },
+      },
+      _id: "b2aa3268-8d65-418c-99fd-c187ac6a9634",
+      _version: "910e080f-ab81-41df-b6f2-b285272cb07b",
+      _created: "Oct 13, 2022, 9:27:50 AM",
+      _updated: "Oct 13, 2022, 9:27:50 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: {
+            href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          },
+        },
+      },
     },
     {
       appointmentType: {
@@ -880,8 +884,8 @@ jest.mock("universal-cookie", () => {
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => { },
-    removeListener: () => { },
+    addListener: () => {},
+    removeListener: () => {},
   });
 }
 
@@ -895,7 +899,7 @@ defineFeature(feature, (test) => {
     expect(true).toBeTruthy();
   };
 
-  test("EPIC_EPP-3_STORY_EPP-1605-Verify User should not be able to see the option to cancel an optometry appointment 4 hours before the time of appointment", ({ }) => {
+  test("EPIC_EPP-3_STORY_EPP-1605-Verify User should not be able to see the option to cancel an optometry appointment 4 hours before the time of appointment", ({}) => {
     defaultValidation();
   });
 
@@ -949,7 +953,8 @@ defineFeature(feature, (test) => {
         )
         .reply(200, TEMP_DATA_CONTACTS);
       mock
-        .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
         )
         .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("700px");
@@ -964,18 +969,18 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getAllByText("Patient Information"));
+      await waitFor(() => container.getAllByText("Patient"));
     });
 
     and(
       /^User should not be able to see the option to cancel an optometry appointment (\d+) hours before the time of appointment$/,
       async (arg0) => {
-        defaultValidation()
+        defaultValidation();
       }
     );
   });
 
-  test("EPIC_EPP-3_STORY_EPP-1605-Verify User should not be able to see the option to cancel an optometry appointment 4 /24 hours before the time of appointment when user clicks F12 on the console", ({ }) => {
+  test("EPIC_EPP-3_STORY_EPP-1605-Verify User should not be able to see the option to cancel an optometry appointment 4 /24 hours before the time of appointment when user clicks F12 on the console", ({}) => {
     defaultValidation();
   });
 });
