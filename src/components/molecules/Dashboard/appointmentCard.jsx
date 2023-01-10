@@ -262,7 +262,7 @@ export default function AppointmentCard({
                 <Box pr={1}>
                   <PortraitOutlinedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
-                <Typography variant="bodyLarge">Patient Information</Typography>
+                <Typography variant="bodyLarge">Patient</Typography>
               </Box>
               <Box pl={4.5} tabIndex={0}>
                 <Typography variant="bodyMedium">
