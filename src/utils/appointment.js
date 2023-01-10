@@ -126,8 +126,9 @@ export function getAppointmentTypeOnTimeSlot(scheduleData, timeSlot) {
   for (let index = 0; index < scheduleData?.list?.length; index++) {
     if (timeSlot.indexOf("more") > -1) {
       isDisable = true;
-      const time = `${scheduleData.date}, 
-      ${scheduleData?.list[index]?.time.slice(0, 5)} ${scheduleData?.list[
+      const time = `${moment(scheduleData.date).format(
+        "MM/DD/YYYY"
+      )} ${scheduleData?.list[index]?.time.slice(0, 5)} ${scheduleData?.list[
         index
       ]?.time.slice(-2)}`;
       const unixTime = moment(time).unix();
@@ -711,8 +712,9 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
     if (isSameAvailability) {
       if (isSameAvailability.date === moment().format("YYYY-MM-DD")) {
         isSameAvailability.list.forEach((el) => {
-          const time = `${isSameAvailability.date}, 
-          ${el.time.slice(0, 5)} ${el.time.slice(-2)}`;
+          const time = `${moment(isSameAvailability.date).format(
+            "MM/DD/YYYY"
+          )} ${el.time.slice(0, 5)} ${el.time.slice(-2)}`;
           const unixTime = moment(time).unix();
           const timeNow = moment().unix();
           if (unixTime < timeNow) {
