@@ -359,7 +359,7 @@ export function renderMandatoryFieldError(isError, isDesktop = true) {
       sx={{
         visibility: isError ? "visible" : "hidden",
         fontSize: isDesktop ? "16px" : "14px",
-        color: "#F98F85 !important",
+        color: isDesktop ?  "#FFE2DF !important" : "#F98F85 !important",
       }}
       tabIndex={0}
     >
