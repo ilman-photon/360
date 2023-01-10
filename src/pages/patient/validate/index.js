@@ -21,6 +21,7 @@ export default function ValidatePage({ query }) {
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "ValidatePage",
   });
+  const router = useRouter();
   const [isloaded, setLoaded] = useState(false);
   const [showExpiredForm, setShowExpiredForm] = useState(false);
   const [confirmationFormData, setConfirmationFormData] = useState({
@@ -33,12 +34,11 @@ export default function ValidatePage({ query }) {
     buttonLabel: constants.EMPTY_STRING,
     buttonIcon: null,
     butttonMode: constants.SECONDARY,
-    onCTAButtonClicked: function ({ router }) {
+    onCTAButtonClicked: function () {
       router.push(`/patient/login`);
     },
   });
   const queryParam = query || {};
-  const router = useRouter();
   queryParam.username = setUsernameFromQuery(router);
 
   const expiredOneTimeLinkDescription = function () {
@@ -155,7 +155,7 @@ export default function ValidatePage({ query }) {
     const api = new Api();
     api
       .tokenValidation(postbody, "reset")
-      .then(function (response) {
+      .then(function () {
         //Navigate to Update
         router.push(`update-password?username=${queryParam.username}`);
       })

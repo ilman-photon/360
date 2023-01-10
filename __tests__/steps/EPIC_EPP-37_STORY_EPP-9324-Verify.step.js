@@ -29,6 +29,11 @@ const mock = new MockAdapter(axios);
 defineFeature(feature, (test) => {
   let container;
 
+  const userClickUpdateBtn = async () => {
+    const btn = await waitFor(() => container.getByTestId("update-btn"))
+    fireEvent.click(btn)
+  }
+
   const mockApi = () => {
     mock.onPost(`/ecp/patient/getLastUpdatedPasswordDate`).reply(200, {
       lastUpdatedPasswordDate: moment().subtract(2, "m").format(),
@@ -60,7 +65,7 @@ defineFeature(feature, (test) => {
   const renderLoginSecurityPage = async (wait = /patient1@photoninfotech/i) => {
     mockApi();
     act(() => {
-      container = render(
+      container.rerender(
         <Provider store={store}>
           {LoginSecurityPage.getLayout(<LoginSecurityPage />)}
         </Provider>
@@ -80,6 +85,21 @@ defineFeature(feature, (test) => {
     });
     await waitFor(() => container.getAllByText(wait));
   };
+
+  const userSeeConfirmationMsg = async () => {
+    const msg = await waitFor(() => container.getByText(/Are you sure to change password\?/i))
+    const updateBtn = await waitFor(() => container.getAllByRole("button", { name: /Update/i }))
+    const cancelBtn = await waitFor(() => container.getAllByRole("button", { name: /Cancel/i }))
+    expect(
+      msg
+    ).toBeInTheDocument();
+    expect(
+      updateBtn[0]
+    ).toBeInTheDocument();
+    expect(
+      cancelBtn[0]
+    ).toBeInTheDocument();
+  }
 
   test("EPIC_EPP-37_STORY_EPP-9324- Verify User should be navigated to change password page", ({
     given,
@@ -129,8 +149,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(container.getByTestId("update-password-link"));
     });
 
-    then("user should see Update Password Page", async () => {
-      await renderUpdatePasswordPage();
+    then("user should see Update Password Page", () => {
+     renderUpdatePasswordPage();
     });
 
     and("User should see New Password and Confirm New Password fields", () => {
@@ -165,26 +185,13 @@ defineFeature(feature, (test) => {
     });
 
     when("User should click on Update button", async () => {
-      setTimeout(() => {
-        fireEvent.click(container.getByTestId("update-btn"));
-      }, 500);
-      await waitFor(() => {
-        container.getByText(/Are you sure to change password\?/i);
-      });
+      userClickUpdateBtn()
     });
 
     then(
       "User should be able to view the confirmation message Are you sure to change password along with Yes and No options",
       () => {
-        expect(
-          container.getByText(/Are you sure to change password\?/i)
-        ).toBeInTheDocument();
-        expect(
-          container.getAllByRole("button", { name: /Update/i })[0]
-        ).toBeInTheDocument();
-        expect(
-          container.getAllByRole("button", { name: /Cancel/i })[0]
-        ).toBeInTheDocument();
+        userSeeConfirmationMsg()
       }
     );
 
@@ -220,8 +227,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(container.getByTestId("update-password-link"));
     });
 
-    then("user should see Update Password Page", async () => {
-      await renderUpdatePasswordPage();
+    then("user should see Update Password Page", () => {
+     renderUpdatePasswordPage();
     });
 
     and("User should see New Password and Confirm New Password fields", () => {
@@ -268,26 +275,13 @@ defineFeature(feature, (test) => {
     });
 
     when("User should click on Update button", async () => {
-      setTimeout(() => {
-        fireEvent.click(container.getByTestId("update-btn"));
-      }, 500);
-      await waitFor(() => {
-        container.getByText(/Are you sure to change password\?/i);
-      });
+      userClickUpdateBtn()
     });
 
     then(
       "User should be able to view the confirmation message Are you sure to change password along with Yes and No options",
       () => {
-        expect(
-          container.getByText(/Are you sure to change password\?/i)
-        ).toBeInTheDocument();
-        expect(
-          container.getAllByRole("button", { name: /Update/i })[0]
-        ).toBeInTheDocument();
-        expect(
-          container.getAllByRole("button", { name: /Cancel/i })[0]
-        ).toBeInTheDocument();
+        userSeeConfirmationMsg()
       }
     );
 
@@ -327,8 +321,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(container.getByTestId("update-password-link"));
     });
 
-    then("user should see Update Password Page", async () => {
-      await renderUpdatePasswordPage();
+    then("user should see Update Password Page", () => {
+     renderUpdatePasswordPage();
     });
 
     and("User should see New Password and Confirm New Password fields", () => {
@@ -363,26 +357,13 @@ defineFeature(feature, (test) => {
     });
 
     when("User should click on Update button", async () => {
-      setTimeout(() => {
-        fireEvent.click(container.getByTestId("update-btn"));
-      }, 500);
-      await waitFor(() => {
-        container.getByText(/Are you sure to change password\?/i);
-      });
+      userClickUpdateBtn()
     });
 
     then(
       "User should be able to view the confirmation message Are you sure to change password along with Yes and No options",
       () => {
-        expect(
-          container.getByText(/Are you sure to change password\?/i)
-        ).toBeInTheDocument();
-        expect(
-          container.getAllByRole("button", { name: /Update/i })[0]
-        ).toBeInTheDocument();
-        expect(
-          container.getAllByRole("button", { name: /Cancel/i })[0]
-        ).toBeInTheDocument();
+        userSeeConfirmationMsg()
       }
     );
 
@@ -446,8 +427,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(container.getByTestId("update-password-link"));
     });
 
-    then("user should see Update Password Page", async () => {
-      await renderUpdatePasswordPage();
+    then("user should see Update Password Page", () => {
+     renderUpdatePasswordPage();
     });
 
     and("User should see New Password and Confirm New Password fields", () => {
@@ -500,13 +481,8 @@ defineFeature(feature, (test) => {
       expect(container.getByTestId("update-btn")).toBeInTheDocument();
     });
 
-    when("User should click on Update button", async () => {
-      setTimeout(() => {
-        fireEvent.click(container.getByTestId("update-btn"));
-      }, 500);
-      await waitFor(() => {
-        container.getByText(/Are you sure to change password\?/i);
-      });
+    when("User should click on Update button", () => {
+      userClickUpdateBtn()
     });
 
     then("User should see Password has been updated success message", () => {
@@ -562,8 +538,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(container.getByTestId("update-password-link"));
     });
 
-    then("user should see Update Password Page", async () => {
-      await renderUpdatePasswordPage();
+    then("user should see Update Password Page", () => {
+      renderUpdatePasswordPage();
     });
 
     and("User should see New Password and Confirm New Password fields", () => {
@@ -621,8 +597,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(container.getByTestId("update-password-link"));
     });
 
-    then("user should see Update Password Page", async () => {
-      await renderUpdatePasswordPage();
+    then("user should see Update Password Page", () => {
+      renderUpdatePasswordPage();
     });
 
     and("User should see New Password and Confirm New Password fields", () => {
@@ -656,18 +632,17 @@ defineFeature(feature, (test) => {
       expect(container.getByTestId("update-btn")).toBeInTheDocument();
     });
 
-    when("User should click on Update button", async () => {
-      fireEvent.click(container.getByTestId("update-btn"));
-      await waitFor(() => {
-        container.getAllByText(/Password does not meet requirements/i);
-      });
+    when("User should click on Update button", () => {
+      userClickUpdateBtn()
     });
 
     then(
       "User should see error message Password does not meet requirements below Confirm Password",
-      () => {
+      async () => {
+        userClickUpdateBtn()
+        const pwText = await waitFor(() => container.getAllByText(/Password does not meet requirements/i))
         expect(
-          container.getAllByText(/Password does not meet requirements/i)[0]
+          pwText[0]
         ).toBeInTheDocument();
       }
     );
@@ -737,18 +712,17 @@ defineFeature(feature, (test) => {
       expect(container.getByTestId("update-btn")).toBeInTheDocument();
     });
 
-    when("User should click on Update button", async () => {
-      fireEvent.click(container.getByTestId("update-btn"));
-      await waitFor(() => {
-        container.getAllByText(/Password does not meet requirements/i);
-      });
+    when("User should click on Update button", () => {
+      userClickUpdateBtn()
     });
 
     then(
       "User should see error message Password do not match below Confirm Password",
-      () => {
+      async () => {
+        userClickUpdateBtn()
+        const pwText = await waitFor(() => container.getAllByText(/Password does not meet requirements/i))
         expect(
-          container.getAllByText(/Password does not meet requirements/i)[0]
+          pwText[0]
         ).toBeInTheDocument();
       }
     );

@@ -227,7 +227,6 @@ export default function ProviderProfile({
               {isBio && (
                 <Box marginTop={"10px"} width={"216px"}>
                   <StyledButton
-                    theme={"patient"}
                     mode={"primary"}
                     size={"small"}
                     tabIndex={0}

@@ -386,7 +386,6 @@ const FilterHeading = ({
   insuranceCarrierData = [],
   title = "",
   subtitle = "",
-  isFixed = true,
   currentCity = "",
   isDashboard = false,
   googleApiKey = " ",
@@ -1092,7 +1091,6 @@ const FilterHeading = ({
             <StyledButton
               className={styles.searchButton}
               type="submit"
-              theme="patient"
               mode="primary"
               size="small"
               gradient={false}

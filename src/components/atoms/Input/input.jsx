@@ -170,7 +170,7 @@ export const RedditTextField = React.forwardRef((props, ref) => {
 });
 RedditTextField.displayName = "RedditTextField";
 
-const renderWeekPickerDay = (date, selectedDates, pickersDayProps) => {
+const renderWeekPickerDay = (_date, _selectedDates, pickersDayProps) => {
   return (
     <PickersDay
       {...pickersDayProps}
@@ -252,6 +252,253 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
   },
 }));
 
+const preventPasteHandler = (event) => {
+  event.preventDefault();
+};
+
+const renderPasswordInput = ({
+  values,
+  handleClickShowPassword,
+  showPassword,
+  handleMouseDownPassword,
+  ...props
+}) => {
+  return (
+    <>
+      <CustomFormControl
+        sx={{ m: 1, width: props.passwordWidth || "100%" }}
+        variant="filled"
+      >
+        <CustomPasswordInput
+          error={!Boolean(values.value) && props.error}
+          InputLabelProps={{
+            "aria-hidden": true,
+          }}
+          inputProps={{
+            "aria-label": props["label"],
+            ...props.inputProps,
+          }}
+          variant="filled"
+          id={props.id}
+          type={showPassword}
+          customevent={{
+            onClick: handleClickShowPassword,
+            onMouseDown: handleMouseDownPassword,
+          }}
+          onChange={props.onChange}
+          placeholder={props.placeholder}
+          label={props.label}
+          adorment={props.adorment}
+          helperText={props.helperText}
+          style={props.style}
+          onPaste={handleMouseDownPassword}
+          value={props.value}
+          required={props.required}
+          inputRef={props.inputRef}
+          autoComplete={props.autoComplete}
+          sx={{
+            ".MuiInputBase-root": {
+              border: "1px solid #BDBDBD",
+            },
+          }}
+        />
+      </CustomFormControl>
+    </>
+  );
+};
+
+const renderPhoneInput = (props) => {
+  return (
+    <>
+      <CustomFormControl
+        variant="filled"
+        sx={{
+          width: props.widthPhone,
+          ...(props.sxContainer || {}),
+        }}
+      >
+        <InputMask
+          mask="(999) 999-9999"
+          maskChar={null}
+          maskPlaceholder=""
+          {...props}
+          sx={{
+            "&.MuiFormControl-root": {
+              margin: "0 0 0 10px",
+            },
+          }}
+        >
+          <StyledRedditField name="phone" type="text" />
+        </InputMask>
+      </CustomFormControl>
+    </>
+  );
+};
+
+const renderTextAreaInput = (props) => {
+  return (
+    <>
+      <StyledRedditField
+        variant="filled"
+        sx={{
+          backgroundColor: "white",
+          borderRadius: "4px",
+          borderColor: "#fff",
+
+          ".MuiInputBase-root": {
+            padding: props.noBorder ? "0px" : "",
+          },
+
+          ".MuiInputBase-inputMultiline": {
+            height: "300px !important",
+            overflow: "auto !important",
+            color: props.isEdit ? "#191919 !important" : "#003B4A !important",
+          },
+
+          ".MuiOutlinedInput-notchedOutline": {
+            border: props.noBorder ? "none" : "",
+          },
+          ...props.sx,
+        }}
+        {...props}
+      />
+    </>
+  );
+};
+
+const renderDOBTextField = (props, params) => {
+  return (
+    <StyledRedditField
+      variant="filled"
+      sx={{
+        borderRadius: "4px",
+        borderColor: "#B5B5B5",
+        margin: !props.isFilter && !props.noMargin ? "8px" : 0,
+        width: {
+          xs: props.dobWidth,
+          sm: props.dobWidthSm || props.dobWidth,
+        },
+        ["& .MuiFilledInput-root"]: {
+          border: props.isFilter ? "0px solid #ffff" : "1px solid #BDBDBD",
+          ["& .MuiInputBase-input"]: {
+            cursor: props.isFilter ? "pointer" : "inherit",
+          },
+        },
+        ".Mui-disabled": {
+          backgroundColor: "#efefef",
+        },
+      }}
+      {...params}
+      onClick={props.onClick}
+      error={props.error}
+      helperText={props.helperText}
+      onPaste={preventPasteHandler}
+      required={props.required}
+      inputProps={{
+        ...params.inputProps,
+        placeholder: "MM/DD/YYYY",
+        readOnly: props.inputProps?.readOnly,
+        className:
+          props.inputProps?.readOnly && !props.inputProps.isTransparent
+            ? "Mui-disabled"
+            : undefined,
+      }}
+    />
+  );
+};
+
+const RenderDOBInput = (props) => {
+  const dobInputRef = React.useRef(null);
+  return (
+    <>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DatePicker
+          InputAdornmentProps={{ style: { display: "none" } }}
+          inputFormat="MM/dd/yyyy"
+          disableOpenPicker={props.selectorDisabled}
+          disableFuture={props.disableFuture}
+          disablePast={props.disablePast}
+          ariaLabel={props.required ? `${props.label} required` : props.label}
+          ariaLive={props.label}
+          label={props.label}
+          onChange={props.onChange}
+          value={props.value}
+          renderDay={renderWeekPickerDay}
+          onClose={() => {
+            setTimeout(() => {
+              dobInputRef?.current?.blur();
+            }, 1);
+            props?.onClose && props?.onClose();
+          }}
+          inputRef={dobInputRef}
+          PaperProps={{
+            sx: {
+              "& .MuiPickersDay-root": {
+                "&.Mui-selected": {
+                  backgroundColor: colors.primaryButton,
+                  "&:hover": {
+                    backgroundColor: colors.primaryButton,
+                  },
+                },
+              },
+            },
+          }}
+          getOpenDialogAriaText={(date, utils) => {
+            if (date instanceof Date && !isNaN(date))
+              return `Choose date, selected date is ${utils.format(
+                utils.date(date),
+                "fullDate"
+              )}`;
+            else return "Double tap to Choose date";
+          }}
+          renderInput={(params) => (
+            <StyledRedditField
+              variant="filled"
+              sx={{
+                borderRadius: "4px",
+                borderColor: "#B5B5B5",
+                margin: !props.isFilter && !props.noMargin ? "8px" : 0,
+                width: {
+                  xs: props.dobWidth,
+                  sm: props.dobWidthSm || props.dobWidth,
+                },
+                ["& .MuiFilledInput-root"]: {
+                  border: props.isFilter
+                    ? "0px solid #ffff"
+                    : "1px solid #BDBDBD",
+                  ["& .MuiInputBase-input"]: {
+                    cursor: props.isFilter ? "pointer" : "inherit",
+                  },
+                },
+                ".Mui-disabled": {
+                  backgroundColor: "#efefef",
+                },
+              }}
+              {...params}
+              onClick={props.onClick}
+              error={props.error}
+              helperText={props.helperText}
+              onPaste={preventPasteHandler}
+              required={props.required}
+              inputProps={{
+                ...params.inputProps,
+                placeholder: "MM/DD/YYYY",
+                readOnly: props.inputProps?.readOnly,
+
+                className:
+                  props.inputProps?.readOnly && !props.inputProps.isTransparent
+                    ? "Mui-disabled"
+                    : undefined,
+              }}
+            />
+          )}
+          {...props}
+        />
+      </LocalizationProvider>
+    </>
+  );
+};
+
 export const CustomInput = styled(({ ...props }) => {
   const [values, setValues] = React.useState({
     value: "",
@@ -271,211 +518,21 @@ export const CustomInput = styled(({ ...props }) => {
     event.preventDefault();
   };
 
-  const preventPasteHandler = (event) => {
-    event.preventDefault();
-  };
-
-  const DateIcon = () => {
-    return (
-      <IconButton
-        aria-label={"Calendar icon"}
-        {...props.customevent}
-        edge="end"
-        sx={{ display: "none" }}
-      ></IconButton>
-    );
-  };
-
   switch (props.type) {
     case "password":
-      return (
-        <>
-          <CustomFormControl
-            sx={{ m: 1, width: props.passwordWidth || "100%" }}
-            variant="filled"
-          >
-            <CustomPasswordInput
-              error={!Boolean(values.value) && props.error}
-              InputLabelProps={{
-                "aria-hidden": true,
-              }}
-              inputProps={{
-                "aria-label": props["label"],
-                ...props.inputProps,
-              }}
-              variant="filled"
-              id={props.id}
-              type={showPassword}
-              customevent={{
-                onClick: handleClickShowPassword,
-                onMouseDown: handleMouseDownPassword,
-              }}
-              onChange={props.onChange}
-              placeholder={props.placeholder}
-              label={props.label}
-              adorment={props.adorment}
-              helperText={props.helperText}
-              style={props.style}
-              onPaste={handleMouseDownPassword}
-              value={props.value}
-              required={props.required}
-              inputRef={props.inputRef}
-              autoComplete={props.autoComplete}
-              sx={{
-                ".MuiInputBase-root": {
-                  border: "1px solid #BDBDBD",
-                },
-              }}
-            />
-          </CustomFormControl>
-        </>
-      );
+      return renderPasswordInput({
+        ...props,
+        values,
+        handleClickShowPassword,
+        showPassword,
+        handleMouseDownPassword,
+      });
     case "dob":
-      const dobInputRef = React.useRef(null);
-      return (
-        <>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              components={{
-                OpenPickerIcon: DateIcon,
-              }}
-              inputFormat="MM/dd/yyyy"
-              disableOpenPicker={props.selectorDisabled}
-              disableFuture={props.disableFuture}
-              disablePast={props.disablePast}
-              ariaLabel={
-                props.required ? `${props.label} required` : props.label
-              }
-              ariaLive={props.label}
-              label={props.label}
-              onChange={props.onChange}
-              value={props.value}
-              renderDay={renderWeekPickerDay}
-              onClose={() => {
-                setTimeout(() => {
-                  dobInputRef?.current?.blur();
-                }, 1);
-                props?.onClose && props?.onClose();
-              }}
-              inputRef={dobInputRef}
-              PaperProps={{
-                sx: {
-                  "& .MuiPickersDay-root": {
-                    "&.Mui-selected": {
-                      backgroundColor: colors.primaryButton,
-                      "&:hover": {
-                        backgroundColor: colors.primaryButton,
-                      },
-                    },
-                  },
-                },
-              }}
-              getOpenDialogAriaText={(date, utils) => {
-                if (date instanceof Date && !isNaN(date))
-                  return `Choose date, selected date is ${utils.format(
-                    utils.date(date),
-                    "fullDate"
-                  )}`;
-                else return "Double tap to Choose date";
-              }}
-              renderInput={(params) => (
-                <StyledRedditField
-                  variant="filled"
-                  sx={{
-                    borderRadius: "4px",
-                    borderColor: "#B5B5B5",
-                    margin: !props.isFilter && !props.noMargin ? "8px" : 0,
-                    width: {
-                      xs: props.dobWidth,
-                      sm: props.dobWidthSm || props.dobWidth,
-                    },
-                    ["& .MuiFilledInput-root"]: {
-                      border: props.isFilter
-                        ? "0px solid #ffff"
-                        : "1px solid #BDBDBD",
-                      ["& .MuiInputBase-input"]: {
-                        cursor: props.isFilter ? "pointer" : "inherit",
-                      },
-                    },
-                    ".Mui-disabled": {
-                      backgroundColor: "#efefef",
-                    },
-                  }}
-                  {...params}
-                  onClick={props.onClick}
-                  error={props.error}
-                  helperText={props.helperText}
-                  onPaste={preventPasteHandler}
-                  required={props.required}
-                  inputProps={{
-                    ...params.inputProps,
-                    placeholder: "MM/DD/YYYY",
-                    readOnly: props.inputProps?.readOnly,
-                    className:
-                      props.inputProps?.readOnly &&
-                      !props.inputProps.isTransparent
-                        ? "Mui-disabled"
-                        : undefined,
-                  }}
-                />
-              )}
-              {...props}
-            />
-          </LocalizationProvider>
-        </>
-      );
+      return RenderDOBInput(props);
     case "phone":
-      return (
-        <>
-          <CustomFormControl
-            variant="filled"
-            sx={{
-              width: props.widthPhone,
-              ...(props.sxContainer || {}),
-            }}
-          >
-            <InputMask
-              mask="(999) 999-9999"
-              maskChar={null}
-              maskPlaceholder=""
-              {...props}
-            >
-              <StyledRedditField name="phone" type="text" />
-            </InputMask>
-          </CustomFormControl>
-        </>
-      );
+      return renderPhoneInput(props);
     case "textarea":
-      return (
-        <>
-          <StyledRedditField
-            variant="filled"
-            sx={{
-              backgroundColor: "white",
-              borderRadius: "4px",
-              borderColor: "#fff",
-
-              ".MuiInputBase-root": {
-                padding: props.noBorder ? "0px" : "",
-              },
-
-              ".MuiInputBase-inputMultiline": {
-                height: "300px !important",
-                overflow: "auto !important",
-                color: props.isEdit
-                  ? "#191919 !important"
-                  : "#003B4A !important",
-              },
-
-              ".MuiOutlinedInput-notchedOutline": {
-                border: props.noBorder ? "none" : "",
-              },
-              ...props.sx,
-            }}
-            {...props}
-          />
-        </>
-      );
+      return renderTextAreaInput(props);
     default:
       return (
         <>

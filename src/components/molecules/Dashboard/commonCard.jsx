@@ -16,7 +16,6 @@ export function onRenderButtonView(
 ) {
   return (
     <StyledButton
-      theme="patient"
       mode="secondary"
       size="small"
       gradient={false}
@@ -97,7 +96,7 @@ export default function CommonCard({
             onClick={() => {
               handleViewClicked();
             }}
-            onKeyPress={(e) => {
+            onKeyPress={() => {
               handleViewClicked();
             }}
             {...getLinkAria(`${viewAllText} option`)}

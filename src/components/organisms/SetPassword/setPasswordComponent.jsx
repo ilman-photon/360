@@ -103,6 +103,10 @@ const SetPasswordComponent = ({
   const [watchedEmail] = watch(["username"]); // you can also target specific fields by their names
 
   const passwordValidator = (watched) => {
+    const isContainUsername = (text) => {
+      return text?.indexOf(!isUpdatePassword ? watchedEmail : username) > -1;
+    };
+
     const passwordValidatorDefault = [
       {
         label: "Length: 8-20 characters",
@@ -134,11 +138,7 @@ const SetPasswordComponent = ({
       },
       {
         label: "Password should not contain your username",
-        validate:
-          watched?.length < 1
-            ? true
-            : watched?.indexOf(!isUpdatePassword ? watchedEmail : username) >
-              -1,
+        validate: watched?.length < 1 ? true : isContainUsername(watched),
         mandatory: true,
       },
     ];
@@ -174,10 +174,27 @@ const SetPasswordComponent = ({
     return passes >= 3 ? true : false;
   };
 
+  const getErrorForkedValidation = (err) => {
+    const arr = [];
+    if (err.children && err.children.length > 0) {
+      let childrenValidation = 0;
+      err.children.forEach((child) => {
+        if (child.validate) {
+          ++childrenValidation;
+        }
+      });
+
+      if (childrenValidation < (err.passesValidation || 3)) {
+        arr.push(true);
+      }
+    }
+    return arr;
+  };
+
   const isValidPassword = (watched, isSubmit = false) => {
     const errors1 = [];
     const errors2 = [];
-    const errorForkedValidation = [];
+    let errorForkedValidation = [];
 
     passwordValidator(watched).forEach((err) => {
       if (err.mandatory && err.validate) {
@@ -196,19 +213,24 @@ const SetPasswordComponent = ({
         errors2.push(err);
       }
 
-      //Validation children validatior
-      if (err.children && err.children.length > 0) {
-        let childrenValidation = 0;
-        err.children.forEach((child) => {
-          if (child.validate) {
-            ++childrenValidation;
-          }
-        });
+      // if (err.validate) {
+      //   if (err.mandatory) {
+      //     if (
+      //       err.label !== "New password must not match current password" ||
+      //       errors1.length > 0 ||
+      //       isSubmit
+      //     ) {
+      //       errors1.push(err);
+      //       setCurrentPassword(false);
+      //       setIsCheckPassword(false);
+      //     }
+      //   }
+      // } else {
+      //   errors2.push(err);
+      // }
 
-        if (childrenValidation < (err.passesValidation || 3)) {
-          errorForkedValidation.push(true);
-        }
-      }
+      //Validation children validatior
+      errorForkedValidation = getErrorForkedValidation(err);
     });
     return validateErrorPassword(errors1, errors2, errorForkedValidation);
   };
@@ -252,7 +274,7 @@ const SetPasswordComponent = ({
       isContainUserName: (v) =>
         v.indexOf(watchedEmail) <= -1 ||
         "Password should not contain your username",
-      isNotPreviousPassword: (v) => {
+      isNotPreviousPassword: () => {
         if (!isUpdatePassword) return true;
         return currentPassword;
       },
@@ -506,7 +528,6 @@ const SetPasswordComponent = ({
               )}
               <StyledButton
                 type="submit"
-                theme="patient"
                 mode="primary"
                 size="small"
                 gradient={false}

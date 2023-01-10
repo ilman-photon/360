@@ -21,9 +21,6 @@ export const MessageDetailsMobileView = ({
   onCloseDetailMsg,
   isSelectedMsg,
   isDesktop,
-  onDiscardMessage = () => {
-    //this is intentional
-  },
 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "messaging",

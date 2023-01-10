@@ -40,8 +40,8 @@ import { StyledButton } from "../../atoms/Button/button";
 import { stringAvatar } from "../../../utils/avatar";
 
 export default function BaseHeader({
-  OnLogoutClicked = (routerInstance, dispatch) => {
-    logoutProps.OnLogoutClicked(routerInstance, dispatch);
+  OnLogoutClicked = (routerInstance, dispatchContext) => {
+    logoutProps.OnLogoutClicked(routerInstance, dispatchContext);
   },
   backTitle,
   onBackClicked,
@@ -124,21 +124,22 @@ export default function BaseHeader({
     setAnchorElUser(null);
   };
 
-  const fetchUserNotifications = (patientId) => {
+  const fetchUserNotifications = (id) => {
     setIsNotificationLoading(true);
-    dispatch(fetchNotifications({ patientId }));
+    dispatch(fetchNotifications({ patientId: id }));
     setIsNotificationLoading(false);
   };
 
   const handleMarkAllAsRead = () => {
     const notificationIds = notifications.map((item) => item._id);
-    const { payload } = dispatch(
+    dispatch(
       readNotificationItem({ patientId, notificationIds: notificationIds })
-    );
-    if (payload.success) {
-      // after effect to edit state of rawuserinsuranceData manually and rebuild
-      dispatch(markAllAsRead());
-    }
+    ).then(({ payload }) => {
+      if (payload.success) {
+        // after effect to edit state of rawuserinsuranceData manually and rebuild
+        dispatch(markAllAsRead());
+      }
+    });
   };
 
   const getPathToPrescriptionPage = (tab) => {
@@ -187,14 +188,15 @@ export default function BaseHeader({
     router.push(path);
   };
 
-  const actionNotificationRead = async (notificationId) => {
-    const { payload } = await dispatch(
+  const actionNotificationRead = (notificationId) => {
+    dispatch(
       readNotificationItem({ patientId, notificationIds: [notificationId] })
-    );
-    if (payload.success) {
-      // after effect to edit state of rawuserinsuranceData manually and rebuild
-      dispatch(markAsReadById(notificationId));
-    }
+    ).then(({ payload }) => {
+      if (payload.success) {
+        // after effect to edit state of rawuserinsuranceData manually and rebuild
+        dispatch(markAsReadById(notificationId));
+      }
+    });
   };
 
   const handleNotificationItemClicked = (data) => {
@@ -205,6 +207,26 @@ export default function BaseHeader({
 
     actionNotificationRedirect(data);
     setNotificationDrawerOpened(false);
+  };
+
+  const renderNotificationIcon = () => {
+    if (notifications && notifications.some((v) => !v.isRead)) {
+      return (
+        <Badge
+          color="error"
+          badgeContent={notifications.length > 0 ? " " : null}
+          overlap="circular"
+          sx={{
+            ".MuiBadge-badge": {
+              minWidth: 13.33,
+              height: 13.33,
+            },
+          }}
+        >
+          <NotificationsIcon sx={{ fill: colors.darkGreen }} />
+        </Badge>
+      );
+    } else return <NotificationsIcon sx={{ fill: colors.darkGreen }} />;
   };
 
   return (
@@ -287,23 +309,7 @@ export default function BaseHeader({
                         setNotificationDrawerOpened(true);
                       }}
                     >
-                      {notifications && notifications.some((v) => !v.isRead) ? (
-                        <Badge
-                          color="error"
-                          badgeContent={notifications.length > 0 ? " " : null}
-                          overlap="circular"
-                          sx={{
-                            ".MuiBadge-badge": {
-                              minWidth: 13.33,
-                              height: 13.33,
-                            },
-                          }}
-                        >
-                          <NotificationsIcon sx={{ fill: colors.darkGreen }} />
-                        </Badge>
-                      ) : (
-                        <NotificationsIcon sx={{ fill: colors.darkGreen }} />
-                      )}
+                      {renderNotificationIcon()}
                     </IconButton>
                   </>
                 )}

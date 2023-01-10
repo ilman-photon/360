@@ -1284,18 +1284,6 @@ defineFeature(feature, (test) => {
     }
 
     const renderList = async (providerList, isMockImage = true, status = 200) => {
-        //TODO: Remove
-        const domain = window.location.origin;
-        const url = `${domain}/api/dummy/appointment/biography/getProviderList?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`;
-
-        mock
-            .onGet(
-                url
-            )
-            .reply(status, {
-                entities: providerList
-            });
-
         mock
             .onGet(
                 `/ecp/appointments/patientDetails?search.query=((patient.firstName=eq=dewo)AND(patient.lastName=eq=Simanjuntak))`

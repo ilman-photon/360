@@ -19,7 +19,6 @@ export default function ItemResult({
   },
   keyItem = "",
   isDesktop = true,
-  isTablet = false,
   providerData = {},
   currentDateIndex = 0,
   currentDate = "",

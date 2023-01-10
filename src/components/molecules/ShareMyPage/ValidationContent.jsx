@@ -5,7 +5,7 @@ import FormMessage from "../FormMessage/formMessage";
 import { useTranslation } from "next-i18next";
 
 export const ValidationContent = ({ validationMessage }) => {
-  const { t } = useTranslation("translation", {
+  useTranslation("translation", {
     keyPrefix: "shareMyPage",
   });
 

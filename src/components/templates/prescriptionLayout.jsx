@@ -104,7 +104,7 @@ export default function PrescriptionLayout({
                 position: "absolute",
                 right: "28px",
               }}
-              onClick={() => {}}
+              onClick={() => showToastMessage(false)}
               aria-label="Close option"
             >
               <CloseIcon sx={{ color: "white" }} />

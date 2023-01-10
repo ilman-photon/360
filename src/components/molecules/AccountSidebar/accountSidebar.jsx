@@ -10,7 +10,7 @@ import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDown
 import AccountSecurityIcon from "../../../assets/icons/AccountSecurity";
 import { colors } from "../../../styles/theme";
 
-export const AccountSidebar = ({ ...props }, ref) => {
+export const AccountSidebar = () => {
   const [activeSidebarChild, setActiveSidebarChild] = useState(null);
 
   const router = useRouter();

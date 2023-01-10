@@ -31,20 +31,19 @@ export default function SignForm({
     relationship: "relationship",
     date: "date",
   },
-  customSignText = "",
+  customSignText = "Signed",
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignedState, setIsSignedState] = useState(false);
+  const signTextInfo = customSignText ? customSignText : "Signed ";
   const signText = isSignedState ? (
     <Box sx={{ display: "flex" }}>
       {" "}
       <CheckCircleIcon sx={{ marginRight: "5px", height: "19.5px" }} />{" "}
-      {customSignText ? customSignText : "Signed "}
+      {signTextInfo}
     </Box>
-  ) : customSignText ? (
-    customSignText
   ) : (
-    "Sign"
+    customSignText || "Sign"
   );
 
   useEffect(() => {
@@ -64,7 +63,7 @@ export default function SignForm({
         control={useFormProps.control}
         aria-hidden={true}
         tabIndex={-1}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        render={({ field: { onChange }, fieldState: { error } }) => {
           const isError = error && error.message;
           return (
             <>
@@ -107,7 +106,7 @@ export default function SignForm({
                       setIsSignedState(!isSignedState);
                     }}
                   >
-                    {customSignText ? customSignText : "Signed"}
+                    {signTextInfo}
                   </Button>
                 </Box>
               </Dialog>
@@ -125,7 +124,7 @@ export default function SignForm({
                       aria-label="Sign label"
                     >
                       <span className={styles.signLabelTxt} aria-hidden={true}>
-                        {customSignText ? customSignText : "Sign"}
+                        {signTextInfo}
                       </span>
                     </Box>
                   </Box>
@@ -161,7 +160,6 @@ export default function SignForm({
                         disabled={isSubmitForm}
                         size={constants.SMALL}
                         mode={constants.PRIMARY}
-                        theme={constants.PATIENT}
                         sxButton={signButtonStyle}
                         onClick={() => setIsOpen(true)}
                       >

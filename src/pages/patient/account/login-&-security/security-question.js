@@ -23,10 +23,10 @@ const AccountSecurityQuestionPage = () => {
     return state.accountRecovery.securityQuestionsRaw;
   });
 
-  const fetchUserSecurityQuestion = async () => {
+  const fetchUserSecurityQuestion = () => {
     const userStorageData = JSON.parse(localStorage.getItem("userData"));
     if (userStorageData) {
-      await dispatch(
+      dispatch(
         onViewSecurityQuestions({ patientId: userStorageData.patientId })
       );
     }

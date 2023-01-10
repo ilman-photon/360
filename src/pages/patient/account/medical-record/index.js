@@ -429,7 +429,6 @@ export default function MedicalRecordPage() {
           showResultNum={false}
           additionalContent={notifDocument}
           onActionClicked={(action, value) => {
-            console.log(value);
             switch (action) {
               case "download":
                 handleAssetDownload(value);
@@ -487,7 +486,7 @@ export default function MedicalRecordPage() {
       <Controller
         name="category"
         control={control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        render={({ field: { value } }) => {
           return (
             <StyledSelect
               options={categories}
@@ -519,7 +518,7 @@ export default function MedicalRecordPage() {
   );
 }
 
-MedicalRecordPage.getLayout = function getLayout(page, store, router) {
+MedicalRecordPage.getLayout = function getLayout(page, store) {
   return (
     <Provider store={store}>
       <PrescriptionLayout>{page}</PrescriptionLayout>

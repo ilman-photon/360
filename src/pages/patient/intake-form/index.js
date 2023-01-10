@@ -93,7 +93,7 @@ export default function IntakeFormPage() {
   const [submitedDocument, setSubmitedDocument] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
 
-  function handleChange(event, newValue) {
+  function handleChange(_event, newValue) {
     setActiveTab(newValue);
   }
 
@@ -123,6 +123,24 @@ export default function IntakeFormPage() {
       });
   }
 
+  function mappingSubmitedFormData(tempData) {
+    const submitedForm = [];
+    tempData.forEach((element) => {
+      const name = element.name?.split(".pdf") || [""];
+      const detailData = document.find(
+        (item) => item.title.indexOf(name[0]) >= 0
+      );
+      if (detailData) {
+        submitedForm.push({
+          ...detailData,
+          digitalAssetId: element.digital_assets?._id || "",
+          submitDate: new moment(element._created).format("MM/DD/YYYY"),
+        });
+      }
+    });
+    return submitedForm;
+  }
+
   function onCallGetSubmitedForm() {
     const api = new Api();
     api
@@ -144,22 +162,7 @@ export default function IntakeFormPage() {
               tempData.push(element);
             }
           });
-
-          const submitedForm = [];
-          tempData.forEach((element) => {
-            const name = element.name?.split(".pdf") || [""];
-            const detailData = document.find(
-              (item) => item.title.indexOf(name[0]) >= 0
-            );
-            if (detailData) {
-              submitedForm.push({
-                ...detailData,
-                digitalAssetId: element.digital_assets?._id || "",
-                submitDate: new moment(element._created).format("MM/DD/YYYY"),
-              });
-            }
-          });
-          setSubmitedDocument(submitedForm);
+          setSubmitedDocument(mappingSubmitedFormData(tempData));
         }
       })
       .catch(function () {
@@ -196,6 +199,10 @@ export default function IntakeFormPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin]);
 
+  function validateValue(condition, expect) {
+    return condition ? expect : "";
+  }
+
   function navigateToDocument(data) {
     let defaultData = {};
     let defaultDataKey = [];
@@ -211,7 +218,10 @@ export default function IntakeFormPage() {
     if (title.indexOf("Assignment of Benefits") > -1) {
       defaultData = {
         ...DEFAULT_CONSTENT_TO_TREAT,
-        textInfo: validateFormDocument ? formDocument[0]?.textValue : "",
+        textInfo: validateValue(
+          validateFormDocument,
+          formDocument[0]?.textValue
+        ),
         dob: patientDOB,
         patientName: patientName,
         signDate: currentDate,
@@ -219,36 +229,69 @@ export default function IntakeFormPage() {
     } else if (title.indexOf("Medical vs Vision") > -1) {
       defaultData = {
         ...DEFAULT_MEDICATION_VISION_EXAM,
-        textInfo: validateFormDocument ? formDocument[0]?.textValue : "",
+        textInfo: validateValue(
+          validateFormDocument,
+          formDocument[0]?.textValue
+        ),
         signDate: currentDate,
       };
     } else if (title.indexOf("Insurance Communication") > -1) {
       defaultData = {
         ...DEFAULT_INSURANCE_COMMUNICATION,
-        textInfo: validateFormDocument ? formDocument[0]?.textValue : "",
-        textInfo2: validateFormDocument ? formDocument[1]?.textValue : "",
+        textInfo: validateValue(
+          validateFormDocument,
+          formDocument[0]?.textValue
+        ),
+        textInfo2: validateValue(
+          validateFormDocument,
+          formDocument[1]?.textValue
+        ),
       };
     } else if (title.indexOf("Contact Lens Prescription") > -1) {
       defaultData = {
         ...DEFAULT_CONTACT_LENS,
-        textInfo: validateFormDocument ? formDocument[0]?.textValue : "",
+        textInfo: validateValue(
+          validateFormDocument,
+          formDocument[0]?.textValue
+        ),
         signDate: currentDate,
       };
     } else if (title.indexOf("Authorization to Disclose") > -1) {
       defaultData = {
         ...DEFAULT_AUTHORIZATION_TO_DISCLOSE,
-        textInfo: validateFormDocument ? formDocument[0]?.textValue : "",
+        textInfo: validateValue(
+          validateFormDocument,
+          formDocument[0]?.textValue
+        ),
         signDate: currentDate,
       };
     } else if (title.indexOf("Consent to Use") > -1) {
       defaultData = {
         ...DEFAULT_CONSTENT_TO_USE,
-        textInfo: validateFormDocument ? formDocument[0]?.textValue : "",
-        textInfo2: validateFormDocument ? formDocument[1]?.textValue : "",
-        textInfo3: validateFormDocument ? formDocument[2]?.textValue : "",
-        textInfo4: validateFormDocument ? formDocument[3]?.textValue : "",
-        textInfo5: validateFormDocument ? formDocument[4]?.textValue : "",
-        textInfo6: validateFormDocument ? formDocument[5]?.textValue : "",
+        textInfo: validateValue(
+          validateFormDocument,
+          formDocument[0]?.textValue
+        ),
+        textInfo2: validateValue(
+          validateFormDocument,
+          formDocument[1]?.textValue
+        ),
+        textInfo3: validateValue(
+          validateFormDocument,
+          formDocument[2]?.textValue
+        ),
+        textInfo4: validateValue(
+          validateFormDocument,
+          formDocument[3]?.textValue
+        ),
+        textInfo5: validateValue(
+          validateFormDocument,
+          formDocument[4]?.textValue
+        ),
+        textInfo6: validateValue(
+          validateFormDocument,
+          formDocument[5]?.textValue
+        ),
         patientName: patientName,
         patientDOB: patientDOB,
         signDate: currentDate,
@@ -284,6 +327,12 @@ export default function IntakeFormPage() {
     //TO DO: will call service to download the digital asset
     fetchSource(id);
   }
+
+  const handleNavigateToDocument = ({ item, isSubmit }) => {
+    if (!isSubmit) {
+      navigateToDocument({ ...item, isSubmit });
+    }
+  };
 
   function renderFormBox(idx, item, isSubmit) {
     if (isAdmin && item.title.indexOf("Treat Minor") > -1) {
@@ -333,11 +382,7 @@ export default function IntakeFormPage() {
                 color: "#003B4A",
                 width: isSubmit ? "55%" : "90%",
               }}
-              onClick={() => {
-                if (!isSubmit) {
-                  navigateToDocument({ ...item, isSubmit });
-                }
-              }}
+              onClick={() => handleNavigateToDocument({ item, isSubmit })}
               tabIndex={0}
             >
               {item.title}
@@ -356,11 +401,7 @@ export default function IntakeFormPage() {
                       marginRight: "10px",
                       alignSelf: "center",
                     }}
-                    onClick={() => {
-                      if (!isSubmit) {
-                        navigateToDocument({ ...item, isSubmit });
-                      }
-                    }}
+                    onClick={() => handleNavigateToDocument({ item, isSubmit })}
                     tabIndex={0}
                   >
                     {`Submitted ${item.submitDate}`}
@@ -403,11 +444,7 @@ export default function IntakeFormPage() {
                 letterSpacing: "0.0016em",
                 color: "#292929",
               }}
-              onClick={() => {
-                if (!isSubmit) {
-                  navigateToDocument(item);
-                }
-              }}
+              onClick={() => handleNavigateToDocument({ item, isSubmit })}
               tabIndex={0}
             >
               {item.description}

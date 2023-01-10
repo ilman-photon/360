@@ -51,6 +51,36 @@ const NotificationDrawer = ({
     }
   }, [notifications, activeTabs]);
 
+  function renderFilteredNotification() {
+    return (
+      <div style={{ flex: 1, overflow: "auto" }}>
+        <Stack spacing="10px">
+          {filteredNotification.map((item, index) => {
+            return (
+              <NotificationItem
+                key={index}
+                isRead={item.isRead}
+                data={item}
+                onClick={() => onItemClicked(item)}
+              />
+            );
+          })}
+        </Stack>
+      </div>
+    );
+  }
+
+  function renderEmptyNotification() {
+    return (
+      <Box sx={{ backgroundColor: "#f2f7f7", p: 1 }}>
+        <Typography tabIndex={0} variant="headlineH4" sx={{ fontWeight: 400 }}>
+          You have no {activeTabs === 0 ? "new" : "read"} notifications or
+          alerts
+        </Typography>
+      </Box>
+    );
+  }
+
   return (
     <Drawer
       sx={{
@@ -107,7 +137,7 @@ const NotificationDrawer = ({
         sx={{ mt: 0, mb: 2, border: "solid 1px", borderColor: colors.dark1 }}
       />
 
-      {loading ? (
+      {loading &&
         [...Array(4)].map((_, i) => (
           <Skeleton
             data-testid="skeleton-loading"
@@ -117,8 +147,9 @@ const NotificationDrawer = ({
             height={100}
             sx={{ mb: "10px" }}
           />
-        ))
-      ) : (
+        ))}
+
+      {!loading && (
         <>
           <Stack
             flexDirection={"row"}
@@ -150,33 +181,9 @@ const NotificationDrawer = ({
             )}
           </Stack>
 
-          {filteredNotification.length > 0 ? (
-            <div style={{ flex: 1, overflow: "auto" }}>
-              <Stack spacing="10px">
-                {filteredNotification.map((item, index) => {
-                  return (
-                    <NotificationItem
-                      key={index}
-                      isRead={item.isRead}
-                      data={item}
-                      onClick={() => onItemClicked(item)}
-                    />
-                  );
-                })}
-              </Stack>
-            </div>
-          ) : (
-            <Box sx={{ backgroundColor: "#f2f7f7", p: 1 }}>
-              <Typography
-                tabIndex={0}
-                variant="headlineH4"
-                sx={{ fontWeight: 400 }}
-              >
-                You have no {activeTabs === 0 ? "new" : "read"} notifications or
-                alerts
-              </Typography>
-            </Box>
-          )}
+          {filteredNotification.length > 0 && renderFilteredNotification()}
+
+          {filteredNotification.length === 0 && renderEmptyNotification()}
         </>
       )}
     </Drawer>

@@ -154,7 +154,6 @@ const PasswordSecurityQuestion = ({
               })}
               <StyledButton
                 type={constants.SUBMIT}
-                theme={constants.PATIENT}
                 mode={constants.PRIMARY}
                 size={constants.SMALL}
                 gradient={false}

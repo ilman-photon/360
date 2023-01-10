@@ -4,7 +4,7 @@ import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import { ThemeProvider } from "@mui/material/styles";
 import { patientTypography } from "../../styles/theme";
 import Navbar from "../molecules/Navbar/Navbar";
-import { Box, Link, useMediaQuery } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { logoutProps } from "../../utils/authetication";
 import { useRouter } from "next/router";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -13,11 +13,8 @@ export default function DocumentLayout({
   children,
   pageTitle = "EyeCare Patient Portal - Prescription",
   backTitle = "",
-  title = "",
   isHideHeader = false,
 }) {
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-
   const router = useRouter();
 
   function renderSubNavigation(onClick) {

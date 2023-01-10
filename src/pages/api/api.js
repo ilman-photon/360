@@ -2,14 +2,10 @@ import axios from "axios";
 import moment from "moment";
 import { setGenericErrorMessage } from "../../store";
 import {
-  compareDate,
-  getDateCount,
   getLocationName,
   getMondayOfCurrentWeek,
-  getSaturdayOfCurrentWeek,
 } from "../../utils/appointment";
 import constants from "../../utils/constants";
-import { mmddyyDateFormat } from "../../utils/dateFormatter";
 import { Regex } from "../../utils/regex";
 
 let store;
@@ -52,6 +48,30 @@ export class Api {
     );
   };
 
+  rejecterHandler = function (url, err, showError) {
+    const api = new Api();
+    if (api.errorGenericValidation(err, url) && showError) {
+      store.dispatch(
+        setGenericErrorMessage("Please try again after sometime.")
+      );
+      return {
+        description: "Something went wrong. Please try again after sometime.",
+        ResponseCode: err.response.status || err.code,
+      };
+    } else if (err && err.response && err.response.data) {
+      const errors = err.response.data._errors;
+      if (errors && showError && url.indexOf(`/available-slot`) < 0) {
+        store.dispatch(setGenericErrorMessage(errors[0].description));
+      }
+      return err.response.data;
+    } else if (err.code === "ECONNABORTED" && showError) {
+      store.dispatch(setGenericErrorMessage(err.message));
+      return err;
+    } else {
+      return err;
+    }
+  };
+
   getResponse(url, postbody, method, showError = true) {
     const api = new Api();
     return new Promise((resolve, reject) => {
@@ -62,46 +82,43 @@ export class Api {
           reject(response);
         }
       };
-      const rejecter = function (err) {
-        if (api.errorGenericValidation(err, url) && showError) {
-          store.dispatch(
-            setGenericErrorMessage("Please try again after sometime.")
-          );
-          reject({
-            description:
-              "Something went wrong. Please try again after sometime.",
-            ResponseCode: err.response.status || err.code,
-          });
-        } else if (err && err.response && err.response.data) {
-          const errors = err.response.data._errors;
-          if (errors && showError && url.indexOf(`/available-slot`) < 0) {
-            store.dispatch(setGenericErrorMessage(errors[0].description));
-          }
-          reject(err.response.data);
-        } else if (err.code === "ECONNABORTED" && showError) {
-          store.dispatch(setGenericErrorMessage(err.message));
-          reject(err);
-        } else {
-          reject(err);
-        }
-      };
 
       switch (method) {
         case "get":
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client
+            .get(url, postbody)
+            .then(resolver)
+            .catch((err) => {
+              reject(this.rejecterHandler(url, err, showError));
+            });
         case "post":
-          return api.client.post(url, postbody).then(resolver).catch(rejecter);
+          return api.client
+            .post(url, postbody)
+            .then(resolver)
+            .catch((err) => {
+              reject(this.rejecterHandler(url, err, showError));
+            });
         case "put":
-          return api.client.put(url, postbody).then(resolver).catch(rejecter);
+          return api.client
+            .put(url, postbody)
+            .then(resolver)
+            .catch((err) => {
+              reject(this.rejecterHandler(url, err, showError));
+            });
         case "patch":
-          return api.client.patch(url, postbody).then(resolver).catch(rejecter);
+          return api.client
+            .patch(url, postbody)
+            .then(resolver)
+            .catch((err) => {
+              reject(this.rejecterHandler(url, err, showError));
+            });
         case "delete":
           return api.client
             .delete(url, postbody)
             .then(resolver)
-            .catch(rejecter);
-        default:
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+            .catch((err) => {
+              reject(this.rejecterHandler(url, err, showError));
+            });
       }
     });
   }
@@ -301,7 +318,7 @@ export class Api {
 
   getAppointmentDetails(encounterId) {
     const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = userData?.patientId || "";
+    const patientId = userData?.patientId || ""; // "825de415-7e83-45f4-ada8-79a50b0d84bc"
     const url = `/ecp/appointments/visitsummary/encounter/${encounterId}/patient/${patientId}`;
     return this.getResponse(url, {}, "get");
   }
@@ -335,6 +352,7 @@ export class Api {
       }
     } catch (error) {
       console.error({ error });
+      // return error
     }
   }
 
@@ -383,7 +401,7 @@ export class Api {
     };
     const tempLocation = getLocationName(locationName);
     const url = `/ecp/appointments/available-slot?searchText=${tempLocation}`;
-    return this.getResponse(url, postBody, "put");
+    return this.getResponse(url, postBody, "put", false);
   }
 
   getSuggestionLocation(locationName) {
@@ -548,7 +566,7 @@ export class Api {
     return this.getResponse(url, postbody, "post");
   }
 
-  viewMessagesById(id) {
+  viewMessagesById() {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `${userData?.patientId}`;
     const url = `/ecp/messages/viewMessageById/be072f9f-da68-456c-a6bd-9a1f8e8a5d3d?sessionUserId=${patientId}`;
@@ -580,11 +598,6 @@ export class Api {
 
   getInvoiceReceipts(id) {
     const url = `/ecp/patientbillingsystem/getInvoiceReceipts/${id}`;
-    return this.getResponse(url, {}, "get");
-  }
-
-  viewMessagesByProvider(id) {
-    const url = `/ecp/messages/deleteMessageById/769fe833-00b3-440e-8b16-fbd9b23f0802?sessionUserId=833da4c6-dc6a-4a7b-9413-51431a599f2d`;
     return this.getResponse(url, {}, "get");
   }
 

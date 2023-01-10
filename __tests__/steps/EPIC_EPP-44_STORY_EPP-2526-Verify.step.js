@@ -22,6 +22,7 @@ import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import Appointments from "../../src/pages/patient/appointments";
 import Appointment from "../../src/pages/patient/appointment";
+import { Marker } from "@react-google-maps/api";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2526.feature"

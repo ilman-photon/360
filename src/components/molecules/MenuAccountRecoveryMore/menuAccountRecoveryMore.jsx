@@ -6,7 +6,6 @@ import ShareIcon from "../../../assets/icons/ShareIcon";
 
 export default function MenuAccountRecoveryMore({
   anchorEl,
-  userStatus,
   onClose,
   open,
   keepMounted,

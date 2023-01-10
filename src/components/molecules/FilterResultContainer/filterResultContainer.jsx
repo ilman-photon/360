@@ -27,12 +27,6 @@ export const FilterResultContainer = ({
     // This is intentional
   },
   isDesktop = false,
-  filterData = {
-    location: "",
-    date: "",
-    purposeOfVisit: "",
-    insuranceCarrier: "",
-  },
   providerList = [],
   googleApiKey = "",
   currentDateIndex = 0,
@@ -83,6 +77,30 @@ export const FilterResultContainer = ({
       );
     }
     return indents;
+  }
+
+  function renderListResult() {
+    return (
+      <Grid item xs={12} md={6}>
+        <>
+          {/* Handle the empty result after integrate services */}
+          {providerList.length > 0 ? (
+            <Box className={styles.filterTabsList}>{renderItemResult()}</Box>
+          ) : (
+            <Box
+              sx={{
+                padding: "16px",
+              }}
+            >
+              <EmptyResult
+                isEmpty={true}
+                message={t("noResultMessageFilter")}
+              />
+            </Box>
+          )}
+        </>
+      </Grid>
+    );
   }
 
   return (
@@ -161,27 +179,7 @@ export const FilterResultContainer = ({
 
           <Grid container spacing={0} sx={{ flex: 1, overflow: "auto" }}>
             {activeTabs === 0 ? (
-              <Grid item xs={12} md={6}>
-                <>
-                  {/* Handle the empty result after integrate services */}
-                  {providerList.length > 0 ? (
-                    <Box className={styles.filterTabsList}>
-                      {renderItemResult()}
-                    </Box>
-                  ) : (
-                    <Box
-                      sx={{
-                        padding: "16px",
-                      }}
-                    >
-                      <EmptyResult
-                        isEmpty={true}
-                        message={t("noResultMessageFilter")}
-                      />
-                    </Box>
-                  )}
-                </>
-              </Grid>
+              renderListResult()
             ) : (
               <Grid item xs={12} md={6} paddingTop={"16px"}>
                 <GMaps

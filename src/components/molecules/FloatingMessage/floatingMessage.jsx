@@ -16,8 +16,8 @@ export default function FloatingMessage({
 }) {
   const [open, setOpen] = useState(false);
 
-  const handleClick = (onOpen) => {
-    setOpen(onOpen);
+  const handleClick = (payload) => {
+    setOpen(payload);
   };
 
   useEffect(() => {

@@ -6,11 +6,46 @@ import {
   RELATIONSHIP_LIST,
   TITLE_LIST,
 } from "../utils/constantData";
-import { formatPhoneNumber } from "../utils/phoneFormatter";
 import removeSpace from "../utils/removeSpace";
 import { formatSocialSecurity } from "../utils/ssnFormatter";
 
 let url;
+
+const buildPatientDetailsData = (postBody, payload) => {
+  let getPatientStateIssuedIdFront = (data) => {
+    if (data.issuedCardFront?.uid) {
+      return { digitalAsset: data.issuedCardFront };
+    } else if (data.issuedCardFront) {
+      return {
+        digitalAsset: buildDigitalAssetObject(data.issuedCardFront, "profile"),
+      };
+    } else return null;
+  };
+  let getPatientStateIssuedIdBack = (data) => {
+    if (data.issuedCardBack?.uid) {
+      return { digitalAsset: data.issuedCardBack };
+    } else if (data.issuedCardBack) {
+      return {
+        digitalAsset: buildDigitalAssetObject(data.issuedCardBack, "profile"),
+      };
+    } else return null;
+  };
+  let patientStateIssuedIdFront = getPatientStateIssuedIdFront(payload);
+  let patientStateIssuedIdBack = getPatientStateIssuedIdBack(payload);
+  return {
+    ...postBody.patientDetails,
+    profilePhoto: payload.profilePhoto
+      ? {
+          digitalAsset: buildDigitalAssetObject(
+            payload.profilePhoto,
+            "profile"
+          ),
+        }
+      : postBody.profilePhoto,
+    stateIssuedId: patientStateIssuedIdFront,
+    stateIssuedIdBack: patientStateIssuedIdBack,
+  };
+};
 
 /**
  * This is parser for request API body user data
@@ -68,38 +103,6 @@ const buildProfilePostBody = (postBody, payload) => {
       payload.preferredCommunication === "phone",
   };
 
-  let patientDetailsData = {
-    ...postBody.patientDetails,
-    profilePhoto: payload.profilePhoto
-      ? {
-          digitalAsset: buildDigitalAssetObject(
-            payload.profilePhoto,
-            "profile"
-          ),
-        }
-      : postBody.profilePhoto,
-    stateIssuedId: payload.issuedCardFront?.uid
-      ? { digitalAsset: payload.issuedCardFront }
-      : payload.issuedCardFront
-      ? {
-          digitalAsset: buildDigitalAssetObject(
-            payload.issuedCardFront,
-            "profile"
-          ),
-        }
-      : null,
-    stateIssuedIdBack: payload.issuedCardBack?.uid
-      ? { digitalAsset: payload.issuedCardBack }
-      : payload.issuedCardBack
-      ? {
-          digitalAsset: buildDigitalAssetObject(
-            payload.issuedCardBack,
-            "profile"
-          ),
-        }
-      : null,
-  };
-
   const getGenderCode = (gender) => {
     return GENDER_LIST.findIndex((v) => v === gender) + 1;
   };
@@ -123,7 +126,7 @@ const buildProfilePostBody = (postBody, payload) => {
     address: addressData,
     sex: getGenderCode(payload.gender),
     title: getTitleCode(payload.title),
-    patientDetails: patientDetailsData,
+    patientDetails: buildPatientDetailsData(postBody, payload),
   };
 
   // removing phone field if emptied
@@ -174,11 +177,7 @@ const buildDigitalAssetObject = (payload, type) => {
  * @param {*} payload
  * @returns
  */
-const buildInsurancePostBody = (
-  postBody = {},
-  payload = {},
-  isEdit = false
-) => {
+const buildInsurancePostBody = (postBody = {}, payload = {}) => {
   const subscriberData = payload.subscriberData;
   const subscriberDob = subscriberData.dob
     ? new moment(subscriberData.dob).format("MM/DD/YYYY")
@@ -189,7 +188,7 @@ const buildInsurancePostBody = (
   const frontCardData = payload.frontCard;
   const backCardData = payload.backCard;
 
-  const returnedData = {
+  return {
     _version: postBody._version,
     insuranceType: "VISION",
     group: payload.groupID,
@@ -225,8 +224,25 @@ const buildInsurancePostBody = (
         : buildDigitalAssetObject(payload.backCard, "insurance"),
     },
   };
+};
 
-  return returnedData;
+const buildContactBody = (postBody, payload) => {
+  const isEmailChanged = !postBody.contactInformation.emails.find(
+    (v) => v.email === payload.email
+  );
+  const isPhoneChanged = !postBody.contactInformation.phones.find(
+    (v) => v.number === payload.mobile
+  );
+  const returnedBody = {
+    id: postBody._id,
+    preferredCommunication: payload.preferredCommunication,
+  };
+
+  if (isEmailChanged) returnedBody.email = payload.email;
+  if (isPhoneChanged) returnedBody.phone = payload.mobile;
+
+  if (!isEmailChanged && !isPhoneChanged) return null;
+  return returnedBody;
 };
 
 export const fetchUser = createAsyncThunk(
@@ -236,6 +252,15 @@ export const fetchUser = createAsyncThunk(
     return api.getResponse(`/ecp/patient/getPatient/${patientId}`, null, "get");
   }
 );
+
+const updatePhotonUserDB = async ({ api, contactBody }) => {
+  return api.getResponse(
+    `/ecp/patient/editPatientsContactInfo`,
+    contactBody,
+    "post",
+    false
+  );
+};
 
 export const updateUser = createAsyncThunk(
   "user/updateUser",
@@ -248,13 +273,21 @@ export const updateUser = createAsyncThunk(
         null,
         "get"
       );
-      // then apply changes from our side with response body from "res" and do a PUT request
+
+      // need an update to user's Photon Database
+      const contactBody = buildContactBody(res, payload);
+      if (contactBody) {
+        updatePhotonUserDB({ api, contactBody });
+      }
+
+      // apply changes from our side with response body from "res" and do a PUT request to ECP endpoint
       const postBody = buildProfilePostBody(res, payload);
       const response = await api.getResponse(
         `/ecp/patient/editPatient/${patientId}`,
         postBody,
         "put"
       );
+
       return {
         success: true,
         response,
@@ -289,8 +322,7 @@ export const updateInsurance = createAsyncThunk(
     try {
       const postBody = buildInsurancePostBody(
         state.user.rawUserInsuranceData[foundIndex],
-        payload,
-        true
+        payload
       );
       const response = await api.getResponse(
         `/ecp/insurance/beneficiaries/${patientId}/coverages/${coverageId}`,
@@ -377,6 +409,19 @@ export const deleteInsurance = createAsyncThunk(
   }
 );
 
+const getUserPreferredCommunication = (payload) => {
+  if (payload.contactInformation?.contactPreferenceDetail) {
+    if (payload.contactInformation.contactPreferenceDetail.phone) {
+      if (payload.contactInformation.contactPreferenceDetail.email) {
+        return "both";
+      } else {
+        return "phone";
+      }
+    } else return "email";
+  }
+  return "";
+};
+
 /**
  * This is parser for user data to be populated in browser view
  * @param {*} payload
@@ -386,45 +431,28 @@ const buildUserData = (payload) => {
   const userAddress = payload.address?.length > 0 ? payload.address[0] : {};
   const patientDetails = payload.patientDetails || {};
 
-  let userPreferredCommunication = "";
-  if (payload.contactInformation) {
-    if (payload.contactInformation.contactPreferenceDetail) {
-      if (payload.contactInformation.contactPreferenceDetail.phone) {
-        if (payload.contactInformation.contactPreferenceDetail.email) {
-          userPreferredCommunication = "both";
-        } else {
-          userPreferredCommunication = "phone";
-        }
-      } else userPreferredCommunication = "email";
-    }
-  }
+  let userPreferredCommunication = getUserPreferredCommunication(payload);
 
   return {
     firstName: payload.firstName,
     lastName: payload.lastName,
     name: `${payload.firstName} ${payload.lastName}`,
-    preferredName: payload.nickName || "",
-    profilePhoto: patientDetails.profilePhoto?.digitalAsset || null,
-    issuedCardFront: patientDetails.stateIssuedId?.digitalAsset || null,
-    issuedCardBack: patientDetails.stateIssuedIdBack?.digitalAsset || null,
+    preferredName: payload.nickName,
+    profilePhoto: patientDetails.profilePhoto?.digitalAsset,
+    issuedCardFront: patientDetails.stateIssuedId?.digitalAsset,
+    issuedCardBack: patientDetails.stateIssuedIdBack?.digitalAsset,
     dob: payload.dob,
-    title: TITLE_LIST[payload.title - 1] || "",
+    title: TITLE_LIST[payload.title - 1],
     ssn: formatSocialSecurity(payload.ssn),
-    email:
-      payload.contactInformation?.emails?.length > 0
-        ? payload.contactInformation.emails[0].email
-        : "",
-    mobile:
-      payload.contactInformation?.phones?.length > 0
-        ? formatPhoneNumber(payload.contactInformation.phones[0].number)
-        : "",
-    address: userAddress.addressLine1 || "",
-    city: userAddress.city || "",
-    state: userAddress.state || "",
-    zip: userAddress.zip || "",
+    email: payload.contactInformation?.emails[0]?.email,
+    mobile: payload.contactInformation?.phones[0]?.number,
+    address: userAddress.addressLine1,
+    city: userAddress.city,
+    state: userAddress.state,
+    zip: userAddress.zip,
     preferredCommunication: userPreferredCommunication,
     age: payload.age,
-    gender: GENDER_LIST[payload.sex - 1] || "",
+    gender: GENDER_LIST[payload.sex - 1],
   };
 };
 
@@ -569,14 +597,14 @@ const userSlice = createSlice({
     setUserData: (state, { payload }) => {
       state.userData = buildUserData(payload);
     },
-    resetUserInsuranceData: (state, { payload }) => {
+    resetUserInsuranceData: (state) => {
       state.userInsuranceData = [];
     },
     setUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData = payload;
     },
     setUserInsuranceDataById: (state, { payload }) => {
-      const statePayload = state.rawUserInsuranceData.map((item, idx) => {
+      const statePayload = state.rawUserInsuranceData.map((item) => {
         if (payload._id === item._id) {
           item = payload;
         }

@@ -34,7 +34,7 @@ export default function EducationMaterialsPage() {
           setEducationMaterialsData(listData);
         }
       })
-      .catch(function (error) {
+      .catch(function () {
         //Handle error
       });
   }

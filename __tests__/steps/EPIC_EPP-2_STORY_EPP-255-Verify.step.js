@@ -1,6 +1,6 @@
 import { fireEvent, render, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPassword";
+import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPasswordComponent";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import Cookies from "universal-cookie";

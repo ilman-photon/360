@@ -6,7 +6,7 @@ import constants from "../../../utils/constants";
 import { Api } from "../../api/api";
 import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
 import { Box } from "@mui/material";
-import SetPasswordComponent from "../../../components/organisms/SetPassword/setPassword";
+import SetPasswordComponent from "../../../components/organisms/SetPassword/setPasswordComponent";
 import globalStyles from "../../../styles/Global.module.scss";
 
 export const setUsernameFromQuery = function (route) {

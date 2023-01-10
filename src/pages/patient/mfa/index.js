@@ -1,20 +1,20 @@
 import * as React from "react";
 import { useRouter } from "next/router";
-import MfaLayout from "../../components/templates/mfaLayout";
-import SetMultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/setMultiFactorAuthentication";
-import MultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
-import constants from "../../utils/constants";
-import SecurityQuestion from "../../components/organisms/SecurityQuestion/securityQuestion";
+import MfaLayout from "../../../components/templates/mfaLayout";
+import SetMultiFactorAuthentication from "../../../components/organisms/MultiFactorAuthentication/setMultiFactorAuthentication";
+import MultiFactorAuthentication from "../../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
+import constants from "../../../utils/constants";
+import SecurityQuestion from "../../../components/organisms/SecurityQuestion/securityQuestion";
 import { Box, Typography } from "@mui/material";
 import Cookies from "universal-cookie";
-import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
-import FormMessage from "../../components/molecules/FormMessage/formMessage";
-import { Api } from "../api/api";
+import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
+import FormMessage from "../../../components/molecules/FormMessage/formMessage";
+import { Api } from "../../api/api";
 import { useTranslation } from "next-i18next";
 import { Provider, useDispatch } from "react-redux";
-import store from "../../store/store";
-import { removeAuthCookies } from "../../utils/authetication";
-import { setMfaPageTitle } from "../../store";
+import store from "../../../store/store";
+import { removeAuthCookies } from "../../../utils/authetication";
+import { setMfaPageTitle } from "../../../store";
 
 export default function MfaPage() {
   const api = new Api();
@@ -42,13 +42,13 @@ export default function MfaPage() {
   const isStepTwo = cookies.get("isStay", { path: "/patient" }) == "stay";
 
   React.useEffect(() => {
-    const cookies = new Cookies();
     if (!cookies.get("mfa")) {
       router.push("/patient/login");
       setIsAuthenticated(false);
     } else {
       setIsAuthenticated(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setIsAuthenticated, router]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -139,7 +139,7 @@ export default function MfaPage() {
     };
     api
       .submitMfaCode(postBody)
-      .then((response) => {
+      .then(() => {
         if (rememberMe) {
           const token = JSON.parse(
             localStorage.getItem("userData")
@@ -274,7 +274,7 @@ export default function MfaPage() {
       .then(function () {
         redirectToDashboard();
       })
-      .catch(function (err) {
+      .catch(function () {
         //Handle error
       });
   }

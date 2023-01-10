@@ -461,6 +461,18 @@ const resultsScreen = async () => {
   ).toBeInTheDocument();
 };
 
+const userLandsOnReviewAppointmentPage = async () => {
+  container.rerender(
+    <Provider store={store}>
+      {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
+    </Provider>
+  );
+
+  const reviewText = await waitFor(() => container.getByText(/Review Appointment Details/i))
+
+  expect(reviewText).toBeInTheDocument();
+}
+
 defineFeature(feature, (test) => {
   test("EPIC_EPP-44_STORY_EPP-2530 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.", ({
     given,
@@ -1216,12 +1228,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user lands on the screen to review the appointment details", () => {
-      container.rerender(
-        <Provider store={store}>
-          {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
-        </Provider>
-      );
-      expect(container.getByText(/Review/i)).toBeInTheDocument();
+      userLandsOnReviewAppointmentPage()
     });
   });
 
@@ -1321,12 +1328,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user lands on the screen to review the appointment details", () => {
-      container.rerender(
-        <Provider store={store}>
-          {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
-        </Provider>
-      );
-      expect(container.getByText(/Review/i)).toBeInTheDocument();
+      userLandsOnReviewAppointmentPage()
     });
 
     and("user selects the option to change the provider", () => {
@@ -1427,12 +1429,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user lands on the screen to review the appointment details", () => {
-      container.rerender(
-        <Provider store={store}>
-          {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
-        </Provider>
-      );
-      expect(container.getByText(/Review/i)).toBeInTheDocument();
+      userLandsOnReviewAppointmentPage()
     });
 
     and("user selects the option to change the insurance career", () => {
@@ -1540,12 +1537,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user lands on the screen to review the appointment details", () => {
-      container.rerender(
-        <Provider store={store}>
-          {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
-        </Provider>
-      );
-      expect(container.getByText(/Review/i)).toBeInTheDocument();
+      userLandsOnReviewAppointmentPage()
     });
 
     and("user selects the option to change the insurance career", () => {
@@ -1657,12 +1649,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user lands on the screen to review the appointment details", () => {
-      container.rerender(
-        <Provider store={store}>
-          {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
-        </Provider>
-      );
-      expect(container.getByText(/Review/i)).toBeInTheDocument();
+      userLandsOnReviewAppointmentPage()
     });
 
     and("user selects the option to change the insurance career", () => {

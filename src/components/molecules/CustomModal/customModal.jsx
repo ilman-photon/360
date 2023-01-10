@@ -70,7 +70,6 @@ export default function CustomModal({
         >
           {onClickSecondaryButton && (
             <StyledButton
-              theme={constants.PATIENT}
               mode={constants.SECONDARY}
               type="button"
               size={constants.SMALL}
@@ -81,7 +80,6 @@ export default function CustomModal({
             </StyledButton>
           )}
           <StyledButton
-            theme={constants.PATIENT}
             mode={constants.PRIMARY}
             type="button"
             size={constants.SMALL}

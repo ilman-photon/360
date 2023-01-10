@@ -85,24 +85,26 @@ export default function ProfileInformationPage({
     }, 5000);
   };
 
-  const onSavePersonalData = async (postBody) => {
-    const { payload } = await dispatch(
-      updateUser({ patientId, payload: postBody })
+  const onSavePersonalData = (postBody) => {
+    dispatch(updateUser({ patientId, payload: postBody })).then(
+      ({ payload }) => {
+        if (payload.success) {
+          showSuccessMessage("Your changes were saved");
+          setPersonalEditing(false);
+        }
+      }
     );
-    if (payload.success) {
-      showSuccessMessage("Your changes were saved");
-      setPersonalEditing(false);
-    }
   };
 
   const onSaveContactData = async (postBody) => {
-    const { payload } = await dispatch(
-      updateUser({ patientId, payload: postBody })
+    dispatch(updateUser({ patientId, payload: postBody })).then(
+      ({ payload }) => {
+        if (payload.success) {
+          showSuccessMessage("Your changes were saved");
+          setContactEditing(false);
+        }
+      }
     );
-    if (payload.success) {
-      showSuccessMessage("Your changes were saved");
-      setContactEditing(false);
-    }
   };
 
   const fetchUSListOfStates = async () => {

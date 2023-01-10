@@ -274,7 +274,7 @@ export default function HealthRecord() {
   );
 }
 
-HealthRecord.getLayout = function getLayout(page, store, router) {
+HealthRecord.getLayout = function getLayout(page, store) {
   return (
     <Provider store={store}>
       <PrescriptionLayout

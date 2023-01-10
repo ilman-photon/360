@@ -83,7 +83,7 @@ export default function EducationMaterialCard() {
             className={"slickContainer"}
           >
             <Slider {...settings} style={{ height: "100%" }}>
-              {educationMaterialData.map((item, idx) => (
+              {educationMaterialData.map((item) => (
                 <>
                   <Grid
                     container

@@ -327,7 +327,7 @@ export function handleCreateAppointment(
         }
       }
     })
-    .catch((error) => {
+    .catch((_error) => {
       // Handle error
     });
 }
@@ -450,7 +450,7 @@ export default function ScheduleAppointmentPage() {
       .getPatientId(postBody)
       .then((response) => {
         dispatch(fetchUser());
-        const loginProps = {
+        const loginPropsData = {
           postBody: {
             username: postBody.username,
             password: password,
@@ -467,7 +467,7 @@ export default function ScheduleAppointmentPage() {
           response.ecpPatientId,
           appointmentScheduleData,
           onSuccessCreateAppointment,
-          loginProps,
+          loginPropsData,
           router
         );
       })
@@ -559,21 +559,21 @@ export default function ScheduleAppointmentPage() {
     setModalConfirmReschedule(false);
   };
 
-  const OnConfirmRescheduleAppointment = async () => {
-    const { payload } = await dispatch(
+  const OnConfirmRescheduleAppointment = () => {
+    dispatch(
       rescheduleAppointment({
         appointmentId: appointmentScheduleData.appointmentInfo.id,
         payload: appointmentScheduleData,
         providerId: appointmentScheduleData.providerInfo.id,
       })
-    );
+    ).then(({ payload }) => {
+      if (payload.success) {
+        setActiveStep(4);
+        setIsOpen(true);
+      }
 
-    if (payload.success) {
-      setActiveStep(4);
-      setIsOpen(true);
-    }
-
-    setModalConfirmReschedule(false);
+      setModalConfirmReschedule(false);
+    });
   };
 
   const ModalConfirmSchedule = () => {

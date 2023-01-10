@@ -7,7 +7,7 @@ import {
 } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import UpdatePasswordPage from "../../src/pages/patient/update-password";
-import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPassword";
+import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPasswordComponent";
 import { Provider } from "react-redux";
 import "@testing-library/jest-dom";
 import store from "../../src/store/store";

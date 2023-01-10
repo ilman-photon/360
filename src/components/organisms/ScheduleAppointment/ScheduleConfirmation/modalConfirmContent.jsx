@@ -114,6 +114,35 @@ export default function ModalConfirmContent({
     } else return "-";
   };
 
+  const handleAddToCalendarCTA = () => {
+    onAddToCalendarClicked({
+      name: "ECP Appointment",
+      description: `Patient: ${getName()}, Purpose of Visit: ${
+        appointmentData.appointmentType
+      }`,
+      date: appointmentData.date,
+      location:
+        providerData.address.addressLine1 +
+        ` ` +
+        providerData.address.addressLine2 +
+        ` ` +
+        providerData.address.city +
+        ` ` +
+        providerData.address.state +
+        ` ` +
+        providerData.address.zipcode,
+    });
+  };
+
+  const dialogTitle = isReschedule
+    ? "Reschedule Appointment Successful"
+    : "You’re Scheduled!";
+
+  const thankYouText = isReschedule ? t("thanksBarReschedule") : t("thanksBar");
+
+  const appointmentTypeOrDefault =
+    appointmentData.appointmentType || "Eye exam";
+
   return (
     <>
       {ready && (
@@ -129,19 +158,11 @@ export default function ModalConfirmContent({
             isPage={isPage}
             tabIndex={0}
             aria-hidden={false}
-            aria-label={
-              isReschedule
-                ? "Reschedule Appointment Successful"
-                : "You’re Scheduled!"
-            }
+            aria-label={dialogTitle}
           >
             <Typography variant="bodyMedium" className={styles.scheduledText}>
               <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />
-              <div>
-                {isReschedule
-                  ? "Reschedule Appointment Successful"
-                  : "You’re Scheduled!"}
-              </div>
+              <div>{dialogTitle}</div>
             </Typography>
           </BootstrapDialogTitle>
           <DialogContent
@@ -157,9 +178,7 @@ export default function ModalConfirmContent({
               className={styles.registeredUsernameWrapper}
               sx={{ m: { xs: 0, md: 2 } }}
               aria-hidden={false}
-              aria-label={
-                isReschedule ? t("thanksBarReschedule") : t("thanksBar")
-              }
+              aria-label={thankYouText}
               tabIndex={0}
             >
               <Box
@@ -170,16 +189,14 @@ export default function ModalConfirmContent({
                   padding: { xs: "8px", md: "12px 100px" },
                   fontFamily: "Museo Sans",
                 }}
-                aria-label={
-                  isReschedule ? t("thanksBarReschedule") : t("thanksBar")
-                }
+                aria-label={thankYouText}
                 tabIndex={0}
                 aria-hidden={false}
               >
                 <MailOutlineIcon
                   sx={{ mr: 1, height: "35px", width: "28px" }}
                 />{" "}
-                {isReschedule ? t("thanksBarReschedule") : t("thanksBar")}
+                {thankYouText}
               </Box>
             </div>
 
@@ -291,25 +308,7 @@ export default function ModalConfirmContent({
                           backgroundColor: "#EEF5F7",
                           mb: 2,
                         }}
-                        onClick={() => {
-                          onAddToCalendarClicked({
-                            name: "ECP Appointment",
-                            description: `Patient: ${getName()}, Purpose of Visit: ${
-                              appointmentData.appointmentType
-                            }`,
-                            date: appointmentData.date,
-                            location:
-                              providerData.address.addressLine1 +
-                              ` ` +
-                              providerData.address.addressLine2 +
-                              ` ` +
-                              providerData.address.city +
-                              ` ` +
-                              providerData.address.state +
-                              ` ` +
-                              providerData.address.zipcode,
-                          });
-                        }}
+                        onClick={handleAddToCalendarCTA}
                       >
                         <Typography
                           tabIndex={0}
@@ -321,25 +320,7 @@ export default function ModalConfirmContent({
                             fontFamily: "Museo Sans",
                           }}
                           aria-label={"Add to calendar"}
-                          onClick={() => {
-                            onAddToCalendarClicked({
-                              name: "ECP Appointment",
-                              description: `Patient: ${getName()}, Purpose of Visit: ${
-                                appointmentData.appointmentType
-                              }`,
-                              date: appointmentData.date,
-                              location:
-                                providerData.address.addressLine1 +
-                                ` ` +
-                                providerData.address.addressLine2 +
-                                ` ` +
-                                providerData.address.city +
-                                ` ` +
-                                providerData.address.state +
-                                ` ` +
-                                providerData.address.zipcode,
-                            });
-                          }}
+                          onClick={handleAddToCalendarCTA}
                         >
                           <CalendarTodayIcon
                             aria-hidden={"false"}
@@ -362,9 +343,9 @@ export default function ModalConfirmContent({
                     <Typography
                       tabIndex={0}
                       sx={{ width: "50%" }}
-                      aria-label={appointmentData.appointmentType || "Eye exam"}
+                      aria-label={appointmentTypeOrDefault}
                     >
-                      {appointmentData.appointmentType || "Eye exam"}
+                      {appointmentTypeOrDefault}
                     </Typography>
                   </Box>
                 </CardContent>
@@ -457,25 +438,7 @@ export default function ModalConfirmContent({
                         backgroundColor: "#EEF5F7",
                         mb: 2,
                       }}
-                      onClick={() => {
-                        onAddToCalendarClicked({
-                          name: "ECP Appointment",
-                          description: `Patient: ${getName()}, Purpose of Visit: ${
-                            appointmentData.appointmentType
-                          }`,
-                          date: appointmentData.date,
-                          location:
-                            providerData.address.addressLine1 +
-                            ` ` +
-                            providerData.address.addressLine2 +
-                            ` ` +
-                            providerData.address.city +
-                            ` ` +
-                            providerData.address.state +
-                            ` ` +
-                            providerData.address.zipcode,
-                        });
-                      }}
+                      onClick={handleAddToCalendarCTA}
                     >
                       <Typography
                         sx={{
@@ -507,13 +470,13 @@ export default function ModalConfirmContent({
                     Purpose of Visit
                   </Typography>
                   <Typography
-                    aria-label={appointmentData.appointmentType || "Eye exam"}
+                    aria-label={appointmentTypeOrDefault}
                     tabIndex={"0"}
                     sx={{
                       fontFamily: "Museo Sans",
                     }}
                   >
-                    {appointmentData.appointmentType || "Eye exam"}
+                    {appointmentTypeOrDefault}
                   </Typography>
                 </CardContent>
               </Card>
@@ -627,7 +590,6 @@ export default function ModalConfirmContent({
                 </Typography>
               </Stack>
               <StyledButton
-                theme="patient"
                 mode="primary"
                 size="small"
                 gradient={false}

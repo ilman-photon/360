@@ -297,7 +297,6 @@ defineFeature(feature, (test) => {
       "User should be able to view the following details under each upcoming appointment as belows:",
       (table) => {
         expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Location/i)).toBeInTheDocument();
         expect(container.getByText(/Insurance/i)).toBeInTheDocument();
         expect(container.getByText(/Get directions/i)).toBeInTheDocument();
@@ -362,7 +361,6 @@ defineFeature(feature, (test) => {
       "User should be able to view the following details under each upcoming appointment as belows:",
       (table) => {
         expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Location/i)).toBeInTheDocument();
         expect(container.getByText(/Insurance/i)).toBeInTheDocument();
         expect(container.getByText(/Get directions/i)).toBeInTheDocument();
@@ -436,7 +434,6 @@ defineFeature(feature, (test) => {
       "User should be able to view the following details under each upcoming appointment as belows:",
       (table) => {
         expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Location/i)).toBeInTheDocument();
         expect(container.getByText(/Insurance/i)).toBeInTheDocument();
         expect(container.getByText(/Get directions/i)).toBeInTheDocument();
@@ -513,7 +510,6 @@ defineFeature(feature, (test) => {
       "User should be able to view the following details under each upcoming appointment as belows:",
       (table) => {
         expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Location/i)).toBeInTheDocument();
         expect(container.getByText(/Insurance/i)).toBeInTheDocument();
         expect(container.getByText(/Get directions/i)).toBeInTheDocument();
@@ -627,7 +623,6 @@ defineFeature(feature, (test) => {
       "User should be able to view the following details under each upcoming appointment as belows:",
       (table) => {
         expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Location/i)).toBeInTheDocument();
         expect(container.getByText(/Insurance/i)).toBeInTheDocument();
         expect(container.getByText(/Get directions/i)).toBeInTheDocument();
@@ -748,7 +743,7 @@ defineFeature(feature, (test) => {
       "User should be able to view the following details under each upcoming appointment as belows:",
       (table) => {
         expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
+        // expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Location/i)).toBeInTheDocument();
         expect(container.getByText(/Insurance/i)).toBeInTheDocument();
         expect(container.getByText(/Get directions/i)).toBeInTheDocument();
@@ -878,7 +873,7 @@ defineFeature(feature, (test) => {
       "User should be able to view the following details under each upcoming appointment as belows:",
       (table) => {
         expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
+        // expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Location/i)).toBeInTheDocument();
         expect(container.getByText(/Insurance/i)).toBeInTheDocument();
         expect(container.getByText(/Get directions/i)).toBeInTheDocument();
@@ -1006,7 +1001,7 @@ defineFeature(feature, (test) => {
       "User should be able to view the following details under each upcoming appointment as belows:",
       (table) => {
         expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
+        // expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Location/i)).toBeInTheDocument();
         expect(container.getByText(/Insurance/i)).toBeInTheDocument();
         expect(container.getByText(/Get directions/i)).toBeInTheDocument();

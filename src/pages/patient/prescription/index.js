@@ -18,7 +18,6 @@ export default function PrescriptionPage() {
 
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
-    // const api = new Api();
     onCallGetPrescriptionData()
       .then(function (response) {
         setPrescriptionData(response);

@@ -22,20 +22,19 @@ export default function RescheduleAppointments() {
     return state.appointment.appointmentSchedule;
   });
 
-  const fetchProviderData = async (id) => {
-    const providerResponse = await dispatch(
-      fetchProviderById({ providerId: id })
-    );
-    if (providerResponse.payload) {
-      dispatch(
-        editAppointmentScheduleData({
-          key: "providerInfo",
-          value: providerResponse.payload,
-        })
-      );
-    } else {
-      router.replace("/patient/appointments");
-    }
+  const fetchProviderData = (id) => {
+    dispatch(fetchProviderById({ providerId: id })).then(({ payload }) => {
+      if (payload) {
+        dispatch(
+          editAppointmentScheduleData({
+            key: "providerInfo",
+            value: payload,
+          })
+        );
+      } else {
+        router.replace("/patient/appointments");
+      }
+    });
   };
 
   React.useEffect(() => {

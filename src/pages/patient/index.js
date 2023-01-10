@@ -1,11 +1,4 @@
-import {
-  Collapse,
-  Grid,
-  IconButton,
-  Stack,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
 import { useGeolocated } from "react-geolocated";
@@ -42,8 +35,6 @@ import { colors } from "../../styles/theme";
 import { appointmentParser } from "../../utils/appointmentsModel";
 import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import CloseIcon from "@mui/icons-material/Close";
 import HealthRecordCard from "../../components/molecules/Dashboard/healthRecordCard";
 import TestLabReportCard from "../../components/molecules/Dashboard/testLabReportCard";
 import PayMyBillCard from "../../components/molecules/Dashboard/payMyBillCard";
@@ -73,10 +64,6 @@ export default function HomePage({ googleApiKey }) {
   const [currentCoordinate, setCurrentCoordinate] = React.useState({
     latitude: 0,
     longitude: 0,
-  });
-  const [postMessage, setPostMessage] = React.useState({
-    isShow: false,
-    message: "",
   });
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -115,10 +102,6 @@ export default function HomePage({ googleApiKey }) {
       .catch(function () {
         //Handle error getsuggestion
       });
-  }
-
-  function compareDate(date) {
-    return new Date() > new Date(date);
   }
 
   //Call API for submitFilter
@@ -189,7 +172,7 @@ export default function HomePage({ googleApiKey }) {
       });
   }
 
-  function onViewPrescriptions(index) {
+  function onViewPrescriptions() {
     router.push(`/patient/prescription`);
   }
 
@@ -290,11 +273,7 @@ export default function HomePage({ googleApiKey }) {
     router.push("/patient/appointments");
   };
 
-  const onClickReschedule = ({
-    appointmentInfo,
-    providerInfo = { address: {} },
-    appointmentId,
-  }) => {
+  const onClickReschedule = ({ appointmentId }) => {
     if (appointmentId) {
       router.push(`/patient/appointments/${appointmentId}/reschedule`);
     }
@@ -436,48 +415,6 @@ export default function HomePage({ googleApiKey }) {
           {showNavBar && <Navbar isDashboard={true} />}
           {isDesktop ? (
             <>
-              <Collapse
-                in={postMessage?.isShow}
-                unmountOnExit
-                aria-live="polite"
-                role="alert"
-              >
-                <Box
-                  sx={{
-                    background: colors.foundationGreen,
-                    p: "28px 16px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    position: "relative",
-                  }}
-                >
-                  <CheckCircleOutlineIcon
-                    sx={{
-                      width: 22,
-                      height: 22,
-                      color: "white",
-                      mr: "12px",
-                    }}
-                  />
-                  <Typography
-                    variant="libreH4"
-                    sx={{ fontWeight: 500, color: "white" }}
-                  >
-                    {postMessage?.message}
-                  </Typography>
-                  <IconButton
-                    sx={{
-                      position: "absolute",
-                      right: "28px",
-                    }}
-                    onClick={() => {}}
-                    aria-label="Close option"
-                  >
-                    <CloseIcon sx={{ color: "white" }} />
-                  </IconButton>
-                </Box>
-              </Collapse>
               <FilterHeading
                 isDesktop={isDesktop}
                 isTablet={false}

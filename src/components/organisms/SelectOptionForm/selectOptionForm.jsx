@@ -40,7 +40,6 @@ const SelectOptionForm = ({
             <HeadingTitle variant={constants.H2} title={t("title")} />
             <StyledButton
               autoFocus
-              theme={constants.PATIENT}
               mode={constants.PRIMARY}
               size={constants.SMALL}
               gradient={false}
@@ -70,7 +69,6 @@ const SelectOptionForm = ({
               </Divider>
             </Box>
             <StyledButton
-              theme={constants.PATIENT}
               mode={constants.SECONDARY}
               size={constants.SMALL}
               gradient={false}

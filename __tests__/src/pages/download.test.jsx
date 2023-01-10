@@ -1,4 +1,4 @@
-import { render, waitFor } from "@testing-library/react";
+import { cleanup, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
@@ -23,10 +23,12 @@ describe("Download Page", () => {
     prefetch: jest.fn(),
     pathname: "/patient/download",
   };
-  afterAll(() => {});
+  afterAll(() => {
+    cleanup()
+  });
   beforeEach(() => {});
 
-  test("renders download page no file", async () => {
+  test("renders download page no file", () => {
     const mockResponse = { presignedUrl: "http://localhost/image.png" };
     const mock = new MockAdapter(axios);
     mock
@@ -34,22 +36,19 @@ describe("Download Page", () => {
       .reply(200, mockResponse);
     useRouter.mockReturnValue({ ...mockRouter, query: {} });
     container = render(<Provider store={store}>{<DownloadPage />}</Provider>);
-    await waitFor(() => {
-      container.getByText("File is not available or URL is wrong.");
-    });
     expect(
       container.getByText("File is not available or URL is wrong.")
     ).toBeInTheDocument();
   });
 
-  test("renders download page with response", async () => {
+  test("renders download page with response", () => {
     const mockResponse = { presignedUrl: "http://localhost/image.png" };
     const mock = new MockAdapter(axios);
     mock
       .onGet(`/ecp/digital-asset/v1/asset/${mockImageSource.uid}`)
       .reply(200, mockResponse);
     useRouter.mockReturnValue(mockRouter);
-    render(<Provider store={store}>{<DownloadPage />}</Provider>);
+    container = render(<Provider store={store}>{<DownloadPage />}</Provider>);
     global.window.location = {
       ancestorOrigins: null,
       hash: null,
@@ -76,12 +75,9 @@ describe("Download Page", () => {
       .onGet(`/ecp/digital-asset/v1/asset/${mockImageSource.uid}`)
       .reply(404, mockResponse);
     useRouter.mockReturnValue(mockRouter);
-    render(<Provider store={store}>{<DownloadPage />}</Provider>);
-    await waitFor(() => {
-      container.getByText("File is not available or URL is wrong.");
-    });
-    expect(
-      container.getByText("File is not available or URL is wrong.")
-    ).toBeInTheDocument();
+    container = render(<Provider store={store}>{<DownloadPage />}</Provider>);
+    const failedText = await waitFor(() => container.getByTestId("file-not-available-text"))
+    expect(container).toMatchSnapshot()
+    expect(failedText).toBeInTheDocument();
   });
 });

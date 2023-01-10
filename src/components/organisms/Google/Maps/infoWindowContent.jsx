@@ -134,7 +134,6 @@ const InfoWindowContent = ({
                         return (
                           <StyledButton
                             key={timeIdx}
-                            theme={constants.PATIENT}
                             mode={constants.PRIMARY}
                             size={constants.SMALL}
                             gradient={false}

@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Api } from "../../../../api/api";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@mui/material";
 import SummaryBillDetail from "../../../../../components/organisms/PayMyBill/billSummaryDetail";
@@ -16,10 +15,6 @@ export default function SummaryBillPage() {
   const [accountCredit, setAccountCredit] = useState({});
   const dispatch = useDispatch();
   const summaryData = useSelector((state) => state.payMyBill.summaryData);
-
-  const { t } = useTranslation("translation", {
-    keyPrefix: "payMyBill",
-  });
 
   useEffect(() => {
     setDetailSummary(summaryData);

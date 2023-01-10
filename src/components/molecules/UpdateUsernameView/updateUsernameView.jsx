@@ -139,7 +139,6 @@ export default function UpdateUsernameView({
               }}
             >
               <StyledButton
-                theme={constants.PATIENT}
                 mode={constants.SECONDARY}
                 type="button"
                 tabIndex={0}
@@ -154,7 +153,6 @@ export default function UpdateUsernameView({
                 Cancel
               </StyledButton>
               <StyledButton
-                theme={constants.PATIENT}
                 mode={constants.PRIMARY}
                 type="submit"
                 tabIndex={0}

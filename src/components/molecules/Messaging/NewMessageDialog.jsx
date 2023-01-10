@@ -201,10 +201,7 @@ export const NewMessageDialog = ({
                 name="name"
                 control={control}
                 defaultValue=""
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => {
+                render={({ fieldState: { error } }) => {
                   return (
                     <Autocomplete
                       multiple
@@ -295,7 +292,7 @@ export const NewMessageDialog = ({
                 <StyledInput
                   tabIndex={0}
                   aria-label="Subject"
-                  label={t("subject")}
+                  label={"Subject"}
                   id="subject"
                   maxLength={254}
                   variant="filled"

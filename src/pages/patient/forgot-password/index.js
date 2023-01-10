@@ -71,7 +71,10 @@ const mappingSecurityData = function (securityQuestionsData) {
     };
     securityQuestionList.push(securityQuestion);
   }
-  const shuffled = securityQuestionList.sort(() => 0.5 - Math.random());
+  const sortedSecurityQuestionList = (list) => {
+    return list.sort(() => 0.5 - Math.random());
+  };
+  const shuffled = sortedSecurityQuestionList(securityQuestionList);
   return shuffled.slice(0, 3);
 };
 
@@ -182,18 +185,7 @@ export default function ForgotPasswordPage(props) {
         : api
             .validateUserName(postbody)
             .then(() => {
-              setPatientData({
-                ...patientData,
-                username: username,
-                securityQuestionsSet:
-                  response.SecurityQuestions &&
-                  response.SecurityQuestions.length > 0,
-                securityQuestions: mappingSecurityData(
-                  response.SecurityQuestions[0]
-                ),
-                preferredComunication: response.PreferredComunication,
-              });
-              onContinueButtonClicked(showForm);
+              handleSetPatientDataState({ response, username, showForm });
             })
             .catch(() => {
               setShowPostMessage(true);
@@ -222,6 +214,18 @@ export default function ForgotPasswordPage(props) {
       });
   };
 
+  function handleSetPatientDataState({ response, username, showForm }) {
+    setPatientData({
+      ...patientData,
+      username: username,
+      securityQuestionsSet:
+        response.SecurityQuestions && response.SecurityQuestions.length > 0,
+      securityQuestions: mappingSecurityData(response.SecurityQuestions[0]),
+      preferredComunication: response.PreferredComunication,
+    });
+    onContinueButtonClicked(showForm);
+  }
+
   //Call API for userame validation
   const onCalledValidateUsernameAPI = function ({ username }, showForm) {
     const postbody = {
@@ -231,15 +235,7 @@ export default function ForgotPasswordPage(props) {
     api
       .validateUserName(postbody)
       .then(function (response) {
-        setPatientData({
-          ...patientData,
-          username: username,
-          securityQuestionsSet:
-            response.SecurityQuestions && response.SecurityQuestions.length > 0,
-          securityQuestions: mappingSecurityData(response.SecurityQuestions[0]),
-          preferredComunication: response.PreferredComunication,
-        });
-        onContinueButtonClicked(showForm);
+        handleSetPatientDataState({ response, username, showForm });
       })
       .catch(function () {
         setShowPostMessage(true);
@@ -489,15 +485,21 @@ export default function ForgotPasswordPage(props) {
 
   let pageTitleAcc = confirmationFormProps.pageTitle;
 
+  const pageTitleAccTextAppointment = isAppointment
+    ? "Sync appointment Page"
+    : "Forgot Password Page";
+
   if (showForgotPassword) {
-    pageTitleAcc = isAppointment
-      ? "Sync appointment Page"
-      : "Forgot Password Page";
+    pageTitleAcc = pageTitleAccTextAppointment;
   } else if (showSelectOption) {
     pageTitleAcc = "Select an Option Page";
   } else if (showPasswordSecurityQuestion) {
     pageTitleAcc = "Password recovery security questions page";
   }
+
+  const forgotPasswordTitle = isAppointment
+    ? "Sync appointment Page"
+    : "Forgot Password Page";
 
   return (
     <Box className={globalStyles.containerStyledPage}>
@@ -509,9 +511,7 @@ export default function ForgotPasswordPage(props) {
           setShowPostMessage={setShowPostMessage}
           onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
           onCalledValidateAppointment={onCalledValidateAppointment}
-          title={
-            isAppointment ? "Sync appointment Page" : "Forgot Password Page"
-          }
+          title={forgotPasswordTitle}
           isAppointment={isAppointment}
           isRegistered={isRegistered}
         />

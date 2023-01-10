@@ -110,6 +110,42 @@ export default function ModalCancelScheduling({
     rescheduleLink = `${window.location.origin}${rescheduleLink}`;
   }
 
+  const cancelOtherKeyDownHandler = (e) => {
+    const spaceValidation =
+      watchedOther.length > 0 && !Regex.noWhitespaceRegex.test(e.key);
+    const charValidation =
+      !Regex.alphabethOnly.test(e.key) &&
+      !Regex.numberRegex.test(e.key) &&
+      !spaceValidation;
+    const keyboardValidation = e.key != "Backspace" && e.key != "Tab";
+    if (charValidation && keyboardValidation) {
+      e.preventDefault();
+    }
+  };
+
+  const renderCancelOtherUI = ({ field, fieldState: { error } }) => {
+    const onOtherChange = field.onChange;
+    const otherValue = field.value;
+    return (
+      <StyledInput
+        id="other"
+        data-testid={CANCEL_SCHEDULE_TEST_ID.other}
+        label={t("cancelOther")}
+        type="text"
+        size={constants.SMALL}
+        variant={constants.FILLED}
+        value={otherValue}
+        onChange={onOtherChange}
+        error={!!error}
+        helperText={error ? error.message : null}
+        sx={{ pb: 2, width: { xs: "100%", md: "70%" } }}
+        onKeyDown={cancelOtherKeyDownHandler}
+        required
+        inputRef={cancelRef}
+      />
+    );
+  };
+
   return (
     <Dialog
       aria-labelledby="customized-dialog-title"
@@ -208,41 +244,7 @@ export default function ModalCancelScheduling({
                         name="cancelOther"
                         control={control}
                         defaultValue=""
-                        render={({ field, fieldState: { error } }) => {
-                          const onOtherChange = field.onChange;
-                          const otherValue = field.value;
-                          return (
-                            <StyledInput
-                              id="other"
-                              data-testid={CANCEL_SCHEDULE_TEST_ID.other}
-                              label={t("cancelOther")}
-                              type="text"
-                              size={constants.SMALL}
-                              variant={constants.FILLED}
-                              value={otherValue}
-                              onChange={onOtherChange}
-                              error={!!error}
-                              helperText={error ? error.message : null}
-                              sx={{ pb: 2, width: { xs: "100%", md: "70%" } }}
-                              onKeyDown={(e) => {
-                                const spaceValidation =
-                                  watchedOther.length > 0 &&
-                                  !Regex.noWhitespaceRegex.test(e.key);
-                                const charValidation =
-                                  !Regex.alphabethOnly.test(e.key) &&
-                                  !Regex.numberRegex.test(e.key) &&
-                                  !spaceValidation;
-                                const keyboardValidation =
-                                  e.key != "Backspace" && e.key != "Tab";
-                                if (charValidation && keyboardValidation) {
-                                  e.preventDefault();
-                                }
-                              }}
-                              required
-                              inputRef={cancelRef}
-                            />
-                          );
-                        }}
+                        render={renderCancelOtherUI}
                         rules={{ required: t("thisFieldRequired") }}
                       />
                     ) : (

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../../store";
 import { Api } from "../../api/api";
 import { Box } from "@mui/material";
-import SetPasswordComponent from "../../../components/organisms/SetPassword/setPassword";
+import SetPasswordComponent from "../../../components/organisms/SetPassword/setPasswordComponent";
 import globalStyles from "../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
 import constants from "../../../utils/constants";
@@ -45,7 +45,7 @@ export default function SetPasswordPage({ token }) {
     buttonLabel: constants.EMPTY_STRING,
     buttonIcon: null,
     butttonMode: constants.SECONDARY,
-    onCTAButtonClicked: function ({ router }) {
+    onCTAButtonClicked: function () {
       router.push(`/patient/login`);
     },
   });
@@ -134,7 +134,6 @@ export default function SetPasswordPage({ token }) {
     }
     api
       .getRegistrationSetPassword(postbody)
-
       .then(function () {
         setShowPostMessage(true);
         setTimeout(() => {
@@ -155,7 +154,6 @@ export default function SetPasswordPage({ token }) {
       .catch(function (err) {
         if (err.ResponseCode) {
           const errorMessage = MESSAGES[err.ResponseCode || 3500];
-
           dispatch(
             setFormMessage({
               success: false,

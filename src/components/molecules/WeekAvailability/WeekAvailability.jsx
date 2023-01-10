@@ -132,7 +132,6 @@ export const WeekAvailability = ({
           className={styles.buttonWrapper}
         >
           <StyledButton
-            theme={constants.PATIENT}
             mode={constants.PRIMARY}
             type="submit"
             size={constants.SMALL}

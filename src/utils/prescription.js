@@ -1,6 +1,7 @@
 import { Api } from "../pages/api/api";
+import { showOrReturnEmpty } from "./viewUtil";
 
-function onCalledMedicationAPI(resolve, reject, showError = true) {
+function onCalledMedicationAPI(resolve, showError = true) {
   let medicationData = [];
   const api = new Api();
   api
@@ -12,11 +13,11 @@ function onCalledMedicationAPI(resolve, reject, showError = true) {
       medicationData = [];
     })
     .finally(function () {
-      onCalledGlassesAPI(medicationData, resolve, reject);
+      onCalledGlassesAPI(medicationData, resolve);
     });
 }
 
-function onCalledGlassesAPI(medicationData, resolve, reject) {
+function onCalledGlassesAPI(medicationData, resolve) {
   let glassesData = [];
   const api = new Api();
   api
@@ -28,11 +29,11 @@ function onCalledGlassesAPI(medicationData, resolve, reject) {
       glassesData = [];
     })
     .finally(function () {
-      onCalledContactsAPI(medicationData, glassesData, resolve, reject);
+      onCalledContactsAPI(medicationData, glassesData, resolve);
     });
 }
 
-function onCalledContactsAPI(medicationData, glassesData, resolve, reject) {
+function onCalledContactsAPI(medicationData, glassesData, resolve, _reject) {
   let contactData = [];
   const api = new Api();
   api
@@ -54,8 +55,8 @@ function onCalledContactsAPI(medicationData, glassesData, resolve, reject) {
 }
 
 export function onCallGetPrescriptionData(showError = true) {
-  return new Promise((resolve, reject) => {
-    onCalledMedicationAPI(resolve, reject, showError);
+  return new Promise((resolve) => {
+    onCalledMedicationAPI(resolve, showError);
   });
 }
 
@@ -66,18 +67,18 @@ function setPrescriptionDetails(tableData, type) {
       if (type === "glasses") {
         prescriptionDetails.push({
           eye: property.toUpperCase(),
-          sph: tableData[property]?.sphere || "",
-          cyl: tableData[property]?.cylinder || "",
-          axis: tableData[property]?.axis || "",
-          add: tableData[property]?.add || "",
+          sph: showOrReturnEmpty(tableData[property]?.sphere, true),
+          cyl: showOrReturnEmpty(tableData[property]?.cylinder, true),
+          axis: showOrReturnEmpty(tableData[property]?.axis, true),
+          add: showOrReturnEmpty(tableData[property]?.add, true),
         });
       } else {
         prescriptionDetails.push({
-          eye: property.toUpperCase() || "",
-          sph: tableData[property]?.sphere || "",
-          bc: tableData[property]?.bc || "",
-          cyl: tableData[property]?.cylinder || "",
-          axis: tableData[property]?.axis || "",
+          eye: showOrReturnEmpty(property.toUpperCase(), true),
+          sph: showOrReturnEmpty(tableData[property]?.sphere, true),
+          bc: showOrReturnEmpty(tableData[property]?.bc),
+          cyl: showOrReturnEmpty(tableData[property]?.cylinder),
+          axis: showOrReturnEmpty(tableData[property]?.axis),
         });
       }
     }

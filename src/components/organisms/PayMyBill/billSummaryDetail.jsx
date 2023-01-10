@@ -13,7 +13,6 @@ import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
 import MoreOptionBtn from "../../molecules/PayMyBill/MoreOption";
 
 const SummaryBillDetail = ({
-  theme = "patient",
   data,
   isDesktop,
   goBack = () => {
@@ -27,7 +26,6 @@ const SummaryBillDetail = ({
     keyPrefix: "payMyBill",
   });
 
-  console.log(data);
   const getDateOfService = (date) => {
     const dateData = new Date(date);
     const day = dateData.toLocaleDateString("en-us", { weekday: "long" });

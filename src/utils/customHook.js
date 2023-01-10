@@ -42,6 +42,7 @@ export function useRedirectLogin() {
     "/patient/mfa",
     "/patient/share-confirmation",
     "/patient/shared-page",
+    "/patient/download/[assetId]",
   ];
   const isPageWithoutAuthorize = pageWithoutAuthorize.includes(router.pathname);
 

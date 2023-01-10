@@ -12,12 +12,12 @@ import {
 export const CustomButton = styled(Button)(
   ({ theme }) => `
 
-  background: ${theme.button.background};
-  border-color:${theme.button.borderColor};
-  color: ${theme.button.color};
+  background: ${theme?.button?.background};
+  border-color:${theme?.button?.borderColor};
+  color: ${theme?.button?.color};
   padding: 16px;
 
-  font-style: normal;
+  font-style: normal; 
   font-weight: 600;
   line-height: 20px;
   text-transform: none;
@@ -28,8 +28,8 @@ export const CustomButton = styled(Button)(
   }
 
   :hover {
-    background:${theme.button.background};
-    border-color:${theme.button.borderColor};
+    background:${theme?.button?.background};
+    border-color:${theme?.button?.borderColor};
   }
 `
 );
@@ -41,7 +41,6 @@ const getButtonTheme = ({ isPrimary, isError }) => {
 };
 
 export const StyledButton = ({
-  theme = "patient",
   mode = "primary" || "secondary",
   size = "large",
   isModalButton,

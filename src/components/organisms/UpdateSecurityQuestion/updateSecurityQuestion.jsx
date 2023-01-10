@@ -101,7 +101,7 @@ const UpdateSecurityQuestion = ({
   const onSubmit = (data) => {
     dispatch(resetFormMessage());
     const payload = {};
-    Object.keys(data).forEach((v, i) => {
+    Object.keys(data).forEach((_v, i) => {
       const question = data[`question-${i + 1}`];
       const answer = data[`answer-${i + 1}`];
       if (question) {
@@ -166,7 +166,7 @@ const UpdateSecurityQuestion = ({
                   name={`question-${i + 1}`}
                   control={control}
                   render={({
-                    field: { onChange, value, ref },
+                    field: { onChange, value },
                     fieldState: { error },
                   }) => {
                     return (

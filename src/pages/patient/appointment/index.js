@@ -41,7 +41,6 @@ import {
   updateProviderTimeSchedule,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
-import Cookies from "universal-cookie";
 import { TEST_ID } from "../../../utils/constants";
 import { fetchAllPayers } from "../../../store/provider";
 import NearMeOutlinedIcon from "@mui/icons-material/NearMeOutlined";
@@ -76,8 +75,6 @@ export default function Appointment({ googleApiKey }) {
     startDate: "",
     endDate: "",
   });
-  const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isReschedule, setIsReschedule] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
   const [currentCoordinate, setCurrentCoordinate] = useState({
@@ -91,7 +88,6 @@ export default function Appointment({ googleApiKey }) {
 
   const router = useRouter();
   const dispatch = useDispatch();
-  const cookies = new Cookies();
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
@@ -140,7 +136,7 @@ export default function Appointment({ googleApiKey }) {
         avoidHighways: false,
         avoidTolls: false,
       },
-      (response, status) => {
+      (_response, status) => {
         if (status != "OK") {
           alert("Error was: " + status);
         }
@@ -217,17 +213,16 @@ export default function Appointment({ googleApiKey }) {
     /**
      * Filter Data Based on Filter selected
      */
-    filterResult = filterResult.filter((filterData) => {
-      const { filters } = filterData;
+    filterResult = filterResult.filter((payload) => {
+      const { filters } = payload;
       /** Check Availability */
-      const findDataFilter = filterApplied.find((ft) => {
+      return filterApplied.find((ft) => {
         return (
           filters.gender === ft.name ||
           (ft.name === "Available Today" && filters.isAvailableToday) ||
           filters.language?.indexOf(ft.name) > -1
         );
       });
-      return findDataFilter;
     });
 
     if (filterApplied.length == 0) {
@@ -246,14 +241,97 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
+  function callbackSubmitFilterIsOverlay({
+    parseProviderData,
+    startDateRequest,
+    endDateRequest,
+    rangeDateFilter,
+  }) {
+    const providerOverview = getProvideOverlay(
+      providerDataOverview,
+      parseProviderData?.listOfProvider,
+      startDateRequest,
+      endDateRequest
+    );
+
+    setRangeDateOverview(rangeDateFilter);
+    setProviderDataOverview(providerOverview);
+  }
+
+  function callbackSubmitFilterIsResetProvider({
+    parseProviderData,
+    startDateRequest,
+    endDateRequest,
+    rangeDateFilter,
+  }) {
+    const providerTemp = updateProviderTimeSchedule(
+      providerListData,
+      parseProviderData?.listOfProvider,
+      startDateRequest,
+      endDateRequest
+    );
+    dispatch(setProviderListData(providerTemp));
+    setRangeDate(rangeDateFilter);
+  }
+
+  function callbackSubmitFilterElse({
+    response,
+    parseProviderData,
+    rangeDateFilter,
+  }) {
+    if (response?.offices?.length > 0) {
+      dispatch(setProviderListData(parseProviderData?.listOfProvider));
+      setRangeDate(rangeDateFilter);
+    } else {
+      dispatch(setProviderListData([]));
+      setRangeDate(rangeDateFilter);
+    }
+    dispatch(setFilterBy(parseProviderData.filterbyData));
+  }
+
+  function catchSubmitFilterIsOverlay({
+    startDateRequest,
+    endDateRequest,
+    rangeDateFilter,
+  }) {
+    const providerOverview = getProvideOverlay(
+      providerDataOverview,
+      [],
+      startDateRequest,
+      endDateRequest
+    );
+    setRangeDateOverview(rangeDateFilter);
+    setProviderDataOverview(providerOverview);
+  }
+
+  function catchSubmitFilterIsNotResetNotOverlay({
+    startDateRequest,
+    endDateRequest,
+    rangeDateFilter,
+  }) {
+    const providerTemp = updateProviderTimeSchedule(
+      providerListData,
+      [],
+      startDateRequest,
+      endDateRequest
+    );
+    dispatch(setProviderListData(providerTemp));
+    setRangeDate(rangeDateFilter);
+  }
+
   function onCallSubmitFilterAPI(
     requestData,
-    activeFilterByData = [],
+    _activeFilterByData = [],
     isOverlay = false,
     isResetProvider = false
   ) {
     const startDateRequest = getMondayOfCurrentWeek(requestData.date);
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
+
+    const rangeDateFilter = {
+      startDate: startDateRequest,
+      endDate: endDateRequest,
+    };
 
     if (!isOverlay) {
       setIsLoading(true);
@@ -269,66 +347,43 @@ export default function Appointment({ googleApiKey }) {
           googleApiKey,
           currentCoordinate
         );
-        const rangeDate = {
-          startDate: startDateRequest,
-          endDate: endDateRequest,
-        };
 
         if (isOverlay) {
-          const providerOverview = getProvideOverlay(
-            providerDataOverview,
-            parseProviderData.listOfProvider,
+          callbackSubmitFilterIsOverlay({
+            parseProviderData,
             startDateRequest,
-            endDateRequest
-          );
-
-          setRangeDateOverview(rangeDate);
-          setProviderDataOverview(providerOverview);
+            endDateRequest,
+            rangeDateFilter,
+          });
         } else if (!isResetProvider && providerListData.length > 0) {
-          const providerTemp = updateProviderTimeSchedule(
-            providerListData,
-            parseProviderData?.listOfProvider,
+          callbackSubmitFilterIsResetProvider({
+            parseProviderData,
             startDateRequest,
-            endDateRequest
-          );
-          dispatch(setProviderListData(providerTemp));
-          setRangeDate(rangeDate);
+            endDateRequest,
+            rangeDateFilter,
+          });
         } else {
-          if (response?.offices?.length > 0) {
-            dispatch(setProviderListData(parseProviderData?.listOfProvider));
-            setRangeDate(rangeDate);
-          } else {
-            dispatch(setProviderListData([]));
-            setRangeDate(rangeDate);
-          }
-          dispatch(setFilterBy(parseProviderData.filterbyData));
+          callbackSubmitFilterElse({
+            response,
+            parseProviderData,
+            rangeDateFilter,
+          });
         }
       })
       .catch(function () {
         if (!isResetProvider) {
-          const rangeDate = {
-            startDate: startDateRequest,
-            endDate: endDateRequest,
-          };
-
           if (isOverlay) {
-            const providerOverview = getProvideOverlay(
-              providerDataOverview,
-              [],
+            catchSubmitFilterIsOverlay({
               startDateRequest,
-              endDateRequest
-            );
-            setRangeDateOverview(rangeDate);
-            setProviderDataOverview(providerOverview);
+              endDateRequest,
+              rangeDateFilter,
+            });
           } else {
-            const providerTemp = updateProviderTimeSchedule(
-              providerListData,
-              [],
+            catchSubmitFilterIsNotResetNotOverlay({
               startDateRequest,
-              endDateRequest
-            );
-            dispatch(setProviderListData(providerTemp));
-            setRangeDate(rangeDate);
+              endDateRequest,
+              rangeDateFilter,
+            });
           }
         } else if (!isOverlay) {
           dispatch(setProviderListData([]));
@@ -369,9 +424,6 @@ export default function Appointment({ googleApiKey }) {
 
   const appointmentInfo = useSelector(
     (state) => state.appointment.appointmentSchedule.appointmentInfo
-  );
-  const providerInfo = useSelector(
-    (state) => state.appointment.appointmentSchedule.providerInfo
   );
 
   const handleDayClicked = (appointment, providerData) => {
@@ -425,9 +477,6 @@ export default function Appointment({ googleApiKey }) {
   };
 
   React.useEffect(() => {
-    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
-    setIsLoggedIn(isLogin);
-
     dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -547,10 +596,7 @@ export default function Appointment({ googleApiKey }) {
                 onPrevScheduleClicked={onPrevScheduleClicked}
                 rangeDate={rangeDate}
                 filter={filterBy}
-                onActivFilter={(filter) => {
-                  dispatch(setActiveFilterBy([...filter]));
-                  onFilterByApplied(filter, providerListData);
-                }}
+                onActivFilter={handleActiveFilter}
                 appliedFilter={activeFilterBy}
                 onGetDirection={getDirection}
                 currentDateIndex={currentDateIndex}
@@ -612,6 +658,23 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
+  function renderMapsOrLoading() {
+    return isLoaded ? (
+      <GMaps
+        apiKey={googleApiKey}
+        providerListData={providerListData}
+        OnTimeClicked={handleDayClicked}
+      />
+    ) : (
+      <CircularProgress />
+    );
+  }
+
+  const handleActiveFilter = (filter) => {
+    dispatch(setActiveFilterBy([...filter]));
+    onFilterByApplied(filter, providerListData);
+  };
+
   function renderFilterResultTabletView() {
     if (isTablet) {
       return !isLoading ? (
@@ -644,10 +707,7 @@ export default function Appointment({ googleApiKey }) {
                 providerList={providerListData}
                 rangeDate={rangeDate}
                 filter={filterBy}
-                onActivFilter={(filter) => {
-                  dispatch(setActiveFilterBy([...filter]));
-                  onFilterByApplied(filter, providerListData);
-                }}
+                onActivFilter={handleActiveFilter}
                 appliedFilter={activeFilterBy}
                 currentDateIndex={currentDateIndex}
                 setCurrentDateIndex={setCurrentDateIndex}
@@ -662,15 +722,7 @@ export default function Appointment({ googleApiKey }) {
             )}
           </Box>
           <Box sx={{ background: "#F4F4F4", flex: 1 }}>
-            {isLoaded ? (
-              <GMaps
-                apiKey={googleApiKey}
-                providerListData={providerListData}
-                OnTimeClicked={handleDayClicked}
-              />
-            ) : (
-              <CircularProgress />
-            )}
+            {renderMapsOrLoading()}
           </Box>
         </Stack>
       ) : (
@@ -713,10 +765,7 @@ export default function Appointment({ googleApiKey }) {
         onNextScheduleClicked={onNextScheduleClicked}
         onPrevScheduleClicked={onPrevScheduleClicked}
         filter={filterBy}
-        onActivFilter={(filter) => {
-          dispatch(setActiveFilterBy([...filter]));
-          onFilterByApplied(filter, providerListData);
-        }}
+        onActivFilter={handleActiveFilter}
         appliedFilter={activeFilterBy}
         isLoading={isLoading}
         currentCity={currentCity}
@@ -739,10 +788,6 @@ export default function Appointment({ googleApiKey }) {
       return renderFilterResultMobileView();
     }
   }
-
-  const appointmentScheduleData = useSelector((state) => {
-    return state.appointment.appointmentSchedule;
-  });
 
   return (
     <>

@@ -56,12 +56,12 @@ export default function Appointments() {
     api
       .getUpcomingAppointment()
       .then((response) => {
-        const upcomingAppointment = [];
+        const upcomingAppointmentArray = [];
         response.entities.map((data) => {
           const mappedData = appointmentParser(data, appointmentTypes);
-          upcomingAppointment.push(mappedData);
+          upcomingAppointmentArray.push(mappedData);
         });
-        setUpcomingAppointment(upcomingAppointment);
+        setUpcomingAppointment(upcomingAppointmentArray);
         setIsRequestedUpcoming(true);
       })
       .catch(function () {
@@ -73,12 +73,12 @@ export default function Appointments() {
       .getPastAppointment()
       .then((response) => {
         if (response.count !== 0) {
-          const pastAppointment = [];
+          const pastAppointmentArray = [];
           response.entities.map((data) => {
             const mappedData = appointmentParser(data, appointmentTypes);
-            pastAppointment.push(mappedData);
+            pastAppointmentArray.push(mappedData);
           });
-          setPastAppointment(pastAppointment);
+          setPastAppointment(pastAppointmentArray);
         }
         setIsRequestedPast(true);
       })

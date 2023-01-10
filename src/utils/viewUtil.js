@@ -5,3 +5,7 @@ export function getLinkAria(title) {
     tabIndex: 0,
   };
 }
+
+export function showOrReturnEmpty(data, noDash) {
+  return data || (noDash ? "" : "-");
+}

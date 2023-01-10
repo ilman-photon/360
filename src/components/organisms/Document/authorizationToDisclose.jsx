@@ -42,6 +42,107 @@ export default function AuthorizationToDisclose({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEdit]);
 
+  function firstSection(key) {
+    return (
+      <Grid item xs={12} md={8}>
+        <Controller
+          name={controlName[`${key}`].name}
+          control={useFormProps.control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => {
+            return (
+              <StyledInput
+                value={value}
+                onKeyDown={(e) => {
+                  if (
+                    !Regex.nameValidation.test(e.key) &&
+                    e.key != "Backspace" &&
+                    e.key != "Tab"
+                  ) {
+                    e.preventDefault();
+                  }
+                }}
+                onChange={onChange}
+                maxLength={50}
+                disabled={disableInput || isSubmitForm}
+                error={!!error}
+                helperText={error ? error.message : null}
+                type="default"
+                variant="filled"
+                label="Name"
+                required
+                inputProps={{
+                  "aria-label": "Name field",
+                }}
+                data-testid={"patient-name-field"}
+                sx={{
+                  width: "100%",
+                  ".MuiFormHelperText-root.Mui-error": {
+                    backgroundColor: "#F4F4F4",
+                    margin: 0,
+                    padding: "0 14px",
+                  },
+                }}
+              />
+            );
+          }}
+          rules={
+            !disableInput
+              ? {
+                  required: "Please update all required fields.",
+                }
+              : {}
+          }
+        />
+      </Grid>
+    );
+  }
+
+  function secondSection(key) {
+    return (
+      <Grid item xs={12} md={8}>
+        <Controller
+          name={controlName[`${key}`].relationship}
+          control={useFormProps.control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => {
+            return (
+              <StyledInput
+                value={value}
+                onChange={onChange}
+                maxLength={50}
+                disabled={disableInput || isSubmitForm}
+                error={!!error}
+                helperText={error ? error.message : null}
+                type="default"
+                variant="filled"
+                label="Relationship"
+                required
+                inputProps={{
+                  "aria-label": "Relationship field",
+                }}
+                data-testid={"patient-relationship-field"}
+                sx={{
+                  width: "100%",
+                  ".MuiFormHelperText-root.Mui-error": {
+                    backgroundColor: "#F4F4F4",
+                    margin: 0,
+                    padding: "0 14px",
+                  },
+                }}
+              />
+            );
+          }}
+          rules={
+            !disableInput
+              ? {
+                  required: "Please update all required fields.",
+                }
+              : {}
+          }
+        />
+      </Grid>
+    );
+  }
+
   function renderPatientDataUI(index, key) {
     return (
       <Grid
@@ -58,98 +159,9 @@ export default function AuthorizationToDisclose({
           },
         }}
       >
-        <Grid item xs={12} md={8}>
-          <Controller
-            name={controlName[`${key}`].name}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  value={value}
-                  onKeyDown={(e) => {
-                    if (
-                      !Regex.nameValidation.test(e.key) &&
-                      e.key != "Backspace" &&
-                      e.key != "Tab"
-                    ) {
-                      e.preventDefault();
-                    }
-                  }}
-                  onChange={onChange}
-                  maxLength={50}
-                  disabled={disableInput || isSubmitForm}
-                  error={!!error}
-                  helperText={error ? error.message : null}
-                  type="default"
-                  variant="filled"
-                  label="Name"
-                  required
-                  inputProps={{
-                    "aria-label": "Name field",
-                  }}
-                  data-testid={"patient-name-field"}
-                  sx={{
-                    width: "100%",
-                    ".MuiFormHelperText-root.Mui-error": {
-                      backgroundColor: "#F4F4F4",
-                      margin: 0,
-                      padding: "0 14px",
-                    },
-                  }}
-                />
-              );
-            }}
-            rules={
-              !disableInput
-                ? {
-                    required: "Please update all required fields.",
-                  }
-                : {}
-            }
-          />
-        </Grid>
+        {firstSection(key)}
         <Grid item xs={12} md={4}></Grid>
-        <Grid item xs={12} md={8}>
-          <Controller
-            name={controlName[`${key}`].relationship}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  value={value}
-                  onChange={onChange}
-                  maxLength={50}
-                  disabled={disableInput || isSubmitForm}
-                  error={!!error}
-                  helperText={error ? error.message : null}
-                  type="default"
-                  variant="filled"
-                  label="Relationship"
-                  required
-                  inputProps={{
-                    "aria-label": "Relationship field",
-                  }}
-                  data-testid={"patient-relationship-field"}
-                  sx={{
-                    width: "100%",
-                    ".MuiFormHelperText-root.Mui-error": {
-                      backgroundColor: "#F4F4F4",
-                      margin: 0,
-                      padding: "0 14px",
-                    },
-                  }}
-                />
-              );
-            }}
-            rules={
-              !disableInput
-                ? {
-                    required: "Please update all required fields.",
-                  }
-                : {}
-            }
-          />
-        </Grid>
+        {secondSection(key)}
         <Grid item xs={12} md={4}>
           <Controller
             name={controlName[`${key}`].phoneNumber}
@@ -206,9 +218,7 @@ export default function AuthorizationToDisclose({
 
   function renderPatientFormUI() {
     const intent = [];
-    for (const [index, [key, value]] of Object.entries(
-      Object.entries(controlName)
-    )) {
+    for (const [index, [key]] of Object.entries(Object.entries(controlName))) {
       if (key.indexOf("patient") > -1) {
         intent.push(renderPatientDataUI(index, key));
       }

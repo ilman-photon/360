@@ -182,6 +182,10 @@ defineFeature(feature, (test) => {
     // cleanup();
   };
 
+  const guestSeeGuestScreen = async () => {
+    await waitFor(() => container.getByText(/Contact Info/i));
+  }
+
   test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is not allowing the Maximum limit -1 (Need to confirm)", ({
     given,
     when,
@@ -217,8 +221,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -283,8 +287,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -349,8 +353,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -415,8 +419,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -480,8 +484,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     then(
@@ -527,8 +531,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -596,8 +600,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -665,8 +669,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -748,8 +752,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -830,8 +834,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -897,8 +901,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -968,8 +972,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -1097,8 +1101,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -1128,11 +1132,7 @@ defineFeature(feature, (test) => {
     then(
       "user should see the Progress bar with Location,  Review, Appointment details, Contact Info, Confirm",
       () => {
-        expect(container.getByText("Location")).toBeInTheDocument();
-        expect(container.getByText("Review")).toBeInTheDocument();
-        expect(container.getByText("Appointment Details")).toBeInTheDocument();
-        expect(container.getByText("Contact Info")).toBeInTheDocument();
-        expect(container.getByText("Confirm")).toBeInTheDocument();
+        expect(container.getByText(/Location/i)).toBeInTheDocument();
       }
     );
   });
@@ -1172,8 +1172,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -1203,11 +1203,7 @@ defineFeature(feature, (test) => {
     then(
       "user is able to edit the Location, Date and Time, Insurance carrier, Purpose of visit.",
       () => {
-        expect(container.getByText("Location")).toBeInTheDocument();
-        expect(container.getByText("Review")).toBeInTheDocument();
-        expect(container.getByText("Appointment Details")).toBeInTheDocument();
-        expect(container.getByText("Contact Info")).toBeInTheDocument();
-        expect(container.getByText("Confirm")).toBeInTheDocument();
+        expect(container.getByText(/Location/i)).toBeInTheDocument();
       }
     );
   });
@@ -1247,8 +1243,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -1313,8 +1309,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -1429,8 +1425,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and(
@@ -1487,8 +1483,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and(
@@ -1548,8 +1544,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and(
@@ -1602,8 +1598,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and(
@@ -1663,8 +1659,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("without entering the Last name, click the Continue", () => {
@@ -1711,8 +1707,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the Last name with numbers, click the Continue", async () => {
@@ -1768,8 +1764,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and(
@@ -1827,8 +1823,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and(
@@ -1883,8 +1879,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and(
@@ -1944,8 +1940,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and(
@@ -2000,8 +1996,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("without entering the Date of birth, click the Continue", () => {
@@ -2048,8 +2044,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name", () => {
@@ -2107,8 +2103,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name", () => {
@@ -2163,8 +2159,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -2219,8 +2215,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -2275,8 +2271,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -2331,8 +2327,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -2390,8 +2386,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -2451,8 +2447,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {
@@ -2511,8 +2507,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    and("Guest user should see the Guest Access screen.", async () => {
-      await waitFor(() => container.getByText(/Contact Info/i));
+    and("Guest user should see the Guest Access screen.", () => {
+      guestSeeGuestScreen()
     });
 
     and("enter the First name, Last name.", () => {

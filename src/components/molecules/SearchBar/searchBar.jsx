@@ -350,7 +350,6 @@ export default function SearchBar({
                   specialty,
                 });
               }}
-              theme="patient"
               size="small"
               gradient={false}
               data-testid={"search-btn"}
@@ -460,7 +459,6 @@ export default function SearchBar({
       <StyledButton
         aria-label={"Search"}
         type="button"
-        theme="patient"
         mode="filter"
         size="small"
         gradient={false}

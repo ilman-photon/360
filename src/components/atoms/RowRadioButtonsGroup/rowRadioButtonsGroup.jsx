@@ -24,9 +24,6 @@ export default function RowRadioButtonsGroup({
   tooltipContent,
   textSx = {},
   isCancelSchedule = false,
-  isInsuranceForm = false,
-  isRegistrationForm = false,
-  customTooltipWidth,
   customRadioLabel,
   ...props
 }) {

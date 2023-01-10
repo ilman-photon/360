@@ -111,7 +111,6 @@ const ConfirmationForm = ({
               {!isSendLink && (
                 <StyledButton
                   type={constants.SUBMIT}
-                  theme={constants.PATIENT}
                   mode={butttonMode}
                   size={constants.SMALL}
                   gradient={false}

@@ -78,6 +78,14 @@ export const ImageUploader = ({
       ? Buffer.from(str).toString("base64")
       : window.btoa(str);
 
+  const renderUploadIcon = () => {
+    return isDesktop ? (
+      <FileUploadOutlinedIcon sx={{ width: 16, height: 16 }} />
+    ) : (
+      <CameraAltOutlinedIcon sx={{ width: 16, height: 16 }} />
+    );
+  };
+
   const renderBasedOnImgSource = () => {
     return !!imageSource ? (
       <Image
@@ -105,11 +113,7 @@ export const ImageUploader = ({
         variant="outlined"
       >
         <Stack direction="row" alignItems="center" spacing={1}>
-          {isDesktop ? (
-            <FileUploadOutlinedIcon sx={{ width: 16, height: 16 }} />
-          ) : (
-            <CameraAltOutlinedIcon sx={{ width: 16, height: 16 }} />
-          )}
+          {renderUploadIcon()}
           <Typography variant={labelVariant} sx={{ fontWeight: 500 }}>
             {label}
           </Typography>
