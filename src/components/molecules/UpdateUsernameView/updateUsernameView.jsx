@@ -66,7 +66,7 @@ export default function UpdateUsernameView({
             <Typography
               tabIndex={0}
               aria-label={"Update Username"}
-              variant="titleCard"
+              variant="headlineH2"
             >
               Update Username
             </Typography>

@@ -9,6 +9,7 @@ import StyledInput from "../../atoms/Input/input";
 import PasswordValidator from "../PasswordValidator/passwordValidator";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { colors } from "../../../styles/theme";
 export default function UpdatePasswordView({
   onUpdate = () => {
     // This is intentional
@@ -211,8 +212,12 @@ export default function UpdatePasswordView({
       </Head>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack spacing={3}>
-          <Typography tabIndex={0} variant="titleCard">
-            Update Password
+          <Typography
+            tabIndex={0}
+            variant="headlineH2"
+            color={colors.darkGreen}
+          >
+            Update password
           </Typography>
           <Box
             sx={{
@@ -288,9 +293,9 @@ export default function UpdatePasswordView({
                     inputRef={confirmPasswordRef}
                     id="confirm-password"
                     type="password"
-                    label={"Confirm Password"}
+                    label={"Confirm New Password"}
                     inputProps={{
-                      "aria-label": `Confirm Password - required`,
+                      "aria-label": `Confirm New Password - required`,
                     }}
                     variant={constants.FILLED}
                     data-testid={"confirm-password-field"}
@@ -355,7 +360,12 @@ export default function UpdatePasswordView({
                 router.push("/patient/account/login-&-security");
               }}
             >
-              Cancel
+              <Typography
+                variant="controlButtonText"
+                color={colors.primaryButton}
+              >
+                Cancel
+              </Typography>
             </StyledButton>
             <StyledButton
               theme={constants.PATIENT}
@@ -367,7 +377,9 @@ export default function UpdatePasswordView({
               data-testid={"update-btn"}
               gradient={false}
             >
-              Update Password
+              <Typography variant="controlButtonText" color={"unset"}>
+                Update Password
+              </Typography>
             </StyledButton>
           </Box>
         </Stack>

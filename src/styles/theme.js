@@ -281,6 +281,13 @@ export const patientTypography = createTheme({
       fontSize: 18,
       lineHeight: "44px",
     },
+    controlButtonText: {
+      fontWeight: 600,
+      fontFamily: "Museo Sans, sans-serif",
+      fontSize: 14,
+      lineHeight: "18px",
+      letterSpacing: "0.0016em",
+    },
   },
 });
 

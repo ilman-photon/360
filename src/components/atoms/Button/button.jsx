@@ -19,7 +19,6 @@ export const CustomButton = styled(Button)(
 
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
   line-height: 20px;
   text-transform: none;
   border-radius: 46px;
