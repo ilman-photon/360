@@ -26,6 +26,7 @@ import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import CommonCard from "./commonCard";
 import { colors } from "../../../styles/theme";
 import moment from "moment-timezone";
+import { showOrReturnEmpty } from "../../../utils/viewUtil";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -109,9 +110,20 @@ export default function AppointmentCard({
       )
     );
   }
-  function addHours(numOfHours, date = new Date()) {
-    date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
-    return date;
+
+  function getHideHour(payload) {
+    const appointmentInfo = payload.appointmentInfo;
+    if (
+      appointmentInfo?.appointmentTypeCategory === "OPT" ||
+      appointmentInfo?.appointmentTypeCategory === "OPT/OPH"
+    ) {
+      return 4;
+    }
+    if (appointmentInfo?.appointmentTypeCategory === "OPH") {
+      return 24;
+    }
+
+    return 0;
   }
 
   function renderAppointmentUI() {
@@ -124,16 +136,7 @@ export default function AppointmentCard({
         visitDateIsoFormat,
         appointment.appointmentInfo.timeZone
       );
-      let hideHour = 0;
-      if (
-        appointment.appointmentInfo.appointmentTypeCategory === "OPT" ||
-        appointment.appointmentInfo.appointmentTypeCategory === "OPT/OPH"
-      ) {
-        hideHour = 4;
-      }
-      if (appointment.appointmentInfo.appointmentTypeCategory === "OPH") {
-        hideHour = 24;
-      }
+      let hideHour = getHideHour(appointment);
 
       const duration = moment.duration(visitDate.diff(today));
       const days = duration.asDays();
@@ -173,7 +176,7 @@ export default function AppointmentCard({
                 >
                   {fullDateFormat(
                     appointment.appointmentInfo.date,
-                    appointment.appointmentInfo.timeZone || ""
+                    appointment.appointmentInfo.timeZone
                   )}
                 </Typography>
               </Box>
@@ -203,7 +206,9 @@ export default function AppointmentCard({
                   tabIndex={0}
                 >
                   <PhoneNumber
-                    phone={appointment.providerInfo?.phoneNumber || "-"}
+                    phone={showOrReturnEmpty(
+                      appointment.providerInfo?.phoneNumber
+                    )}
                     sx={{
                       "&.MuiTypography-body2": {
                         fontSize: "16px",

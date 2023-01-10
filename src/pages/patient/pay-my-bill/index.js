@@ -114,12 +114,11 @@ export default function PayMyBillPage() {
   };
 
   const getDateOfService = (date) => {
-    const dateData = new moment(date).format("MM/DD/YYYY");
-    return dateData;
+    return new moment(date).format("MM/DD/YYYY");
   };
 
   const mappingData = (data) => {
-    let newData = data?.map((item) => {
+    return data?.map((item) => {
       const itemCopy = { ...item };
       Object.keys(item).forEach(function (key) {
         if (key == "creditBalance" || key == "patientDue") {
@@ -133,8 +132,6 @@ export default function PayMyBillPage() {
       });
       return itemCopy;
     });
-
-    return newData;
   };
 
   useEffect(() => {

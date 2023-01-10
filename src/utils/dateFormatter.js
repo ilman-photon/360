@@ -116,7 +116,7 @@ export function checkPastDate(date) {
   return new Date(date).getDate() < new Date().getDate();
 }
 
-export function fullDateFormat(data, tzone) {
+export function fullDateFormat(data, tzone = "") {
   if (!data) {
     return "-";
   } else {

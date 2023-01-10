@@ -7,7 +7,6 @@ import styles from "./styles.module.scss";
 export default function ConsentToTreatment({
   defaultDataValue = {},
   disableInput = false,
-  isEdit = false,
   isSubmitForm = false,
   useFormProps = null,
   controlName = {

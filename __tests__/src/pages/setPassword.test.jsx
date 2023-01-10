@@ -99,7 +99,10 @@ describe("Set Password", () => {
   test("click reset password failed", async () => {
     mock
       .onPost("/ecp/patient/registrationsetpassword")
-      .reply(400, { ResponseCode: 3500 });
+      .reply(400, {
+        ResponseCode: 3500,
+        ResponseType: "failure"
+      });
     await renderSetPassword("smith1@photon.com");
     await waitFor(() => container.getAllByText(/Set Password/i)[0]);
     const password = container.container.querySelector("#password");

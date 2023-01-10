@@ -24,11 +24,11 @@ export const MessagingCardView = ({
   const senderName = `${designation}${whiteSpace}${name} ${lastName}`;
   const convertDate = (data) => {
     let dateTime = "";
-    const convertDate = new Date(data);
+    const convertedDate = new Date(data);
     const currentDate = new Date();
-    if (convertDate < currentDate) {
-      const month = convertDate.toLocaleString("default", { month: "short" });
-      const date = convertDate.getDate();
+    if (convertedDate < currentDate) {
+      const month = convertedDate.toLocaleString("default", { month: "short" });
+      const date = convertedDate.getDate();
       dateTime = `${month} ${date}`;
     } else {
       const newConvertDate = new moment(data);

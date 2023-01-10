@@ -1,9 +1,8 @@
-import { Box, IconButton, Link, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterData, setIsFilterApplied } from "../../../store/appointment";
 import { useRouter } from "next/router";
@@ -192,7 +191,6 @@ export default function CareTeamCard({ provider, coordinate }) {
         <StyledButton
           tabIndex={0}
           aria-label={"Schedule Appointment"}
-          theme={"patient"}
           mode={"primary"}
           size={"small"}
           gradient={false}

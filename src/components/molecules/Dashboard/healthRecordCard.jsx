@@ -149,6 +149,15 @@ export default function HealthRecordCard({
     );
   }
 
+  const buttonViewCallback = () => {
+    handleAssetDownload(
+      healthRecordData.digital_assets?._id,
+      false,
+      true,
+      true
+    );
+  };
+
   function renderDekstopView() {
     const tableHeader = ["Health Record", "Last update", "", ""];
     return (
@@ -204,14 +213,7 @@ export default function HealthRecordCard({
                   </TableCell>
                   <TableCell tabIndex={0}>{onRenderCTA()}</TableCell>
                   <TableCell tabIndex={0}>
-                    {onRenderButtonView(() => {
-                      handleAssetDownload(
-                        healthRecordData.digital_assets?._id,
-                        false,
-                        true,
-                        true
-                      );
-                    }, isDesktop)}
+                    {onRenderButtonView(buttonViewCallback, isDesktop)}
                   </TableCell>
                 </TableRow>
               </TableBody>
@@ -261,14 +263,7 @@ export default function HealthRecordCard({
               }}
             >
               {onRenderCTA()}
-              {onRenderButtonView(() => {
-                handleAssetDownload(
-                  healthRecordData.digital_assets?._id,
-                  false,
-                  true,
-                  true
-                );
-              }, isDesktop)}
+              {onRenderButtonView(buttonViewCallback, isDesktop)}
             </Stack>
           </Stack>
         ) : (

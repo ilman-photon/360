@@ -25,7 +25,6 @@ export const InvoiceHistoryTableBody = ({
   const { t } = useTranslation("translation", {
     keyPrefix: "payMyBill",
   });
-  console.log(data);
 
   const tableConfiguration = {
     header: [

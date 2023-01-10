@@ -28,6 +28,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Regex } from "../../../utils/regex";
 import { useTranslation } from "next-i18next";
+import { showOrReturnEmpty } from "../../../utils/viewUtil";
 
 export default function PersonalInformation({
   userData = {},
@@ -135,6 +136,24 @@ export default function PersonalInformation({
   const onSubmit = (data) => {
     OnSaveClicked(data);
   };
+
+  const renderUserProfilePhotoUI = (data = {}) => {
+    return data.profilePhoto ? (
+      <ImageFallback
+        source={data.profilePhoto}
+        width={122}
+        height={122}
+        style={{ borderRadius: "50%" }}
+        alt="image"
+        aria-label="Image"
+      />
+    ) : (
+      <Avatar
+        {...stringAvatar(data.name)}
+        sx={{ width: 93, height: 93, border: "solid 1px black" }}
+      ></Avatar>
+    );
+  };
   return (
     <>
       {ready && (
@@ -184,21 +203,7 @@ export default function PersonalInformation({
                 label="Photo"
                 alignItems={isDesktop ? "unset" : "center"}
               >
-                {userData.profilePhoto ? (
-                  <ImageFallback
-                    source={userData.profilePhoto}
-                    width={122}
-                    height={122}
-                    style={{ borderRadius: "50%" }}
-                    alt="image"
-                    aria-label="Image"
-                  />
-                ) : (
-                  <Avatar
-                    {...stringAvatar(userData.name)}
-                    sx={{ width: 93, height: 93, border: "solid 1px black" }}
-                  ></Avatar>
-                )}
+                {renderUserProfilePhotoUI(userData)}
               </LabelWithInfo>
               <LabelWithInfo
                 label="Name"
@@ -207,19 +212,21 @@ export default function PersonalInformation({
                 value={userData.name || ""}
                 required
               >
-                <div aria-hidden={true}>{userData.name || "-"}</div>
+                <div aria-hidden={true}>{showOrReturnEmpty(userData.name)}</div>
               </LabelWithInfo>
 
               <LabelWithInfo
                 label="Preferred Name"
                 ariaLabel={"Preferred Name"}
               >
-                <div tabIndex={0}>{userData.preferredName || "-"}</div>
+                <div tabIndex={0}>
+                  {showOrReturnEmpty(userData.preferredName)}
+                </div>
               </LabelWithInfo>
 
               <LabelWithInfo label="Title" ariaLabel={"Title"}>
                 <div aria-label={userData.title} tabIndex={0}>
-                  {userData.title || "-"}
+                  {showOrReturnEmpty(userData.title)}
                 </div>
               </LabelWithInfo>
 
@@ -228,9 +235,8 @@ export default function PersonalInformation({
                 ariaLabel={"Date of Birth"}
                 tooltipContent={tooltipContentDefault}
                 value={
-                  userData.dob
-                    ? new Date(userData.dob).toLocaleDateString()
-                    : ""
+                  userData.dob &&
+                  showOrReturnEmpty(new Date(userData.dob).toLocaleDateString())
                 }
                 required
               >
@@ -245,14 +251,14 @@ export default function PersonalInformation({
                 label="Age"
                 ariaLabel={"Age"}
                 tooltipContent={tooltipContentDefault}
-                value={userData.age || ""}
+                value={showOrReturnEmpty(userData.age)}
               >
-                <div aria-hidden={true}>{userData.age || "-"}</div>
+                <div aria-hidden={true}>{showOrReturnEmpty(userData.age)}</div>
               </LabelWithInfo>
 
               <LabelWithInfo label="Gender" ariaLabel={"Gender"}>
                 <div tabIndex={0} aria-label={userData.gender}>
-                  {userData.gender || "-"}
+                  {showOrReturnEmpty(userData.gender)}
                 </div>
               </LabelWithInfo>
 
@@ -632,11 +638,7 @@ export default function PersonalInformation({
                           <>
                             <ImageUploader
                               helperText={
-                                isDesktop
-                                  ? true
-                                  : userData.issuedCardFront
-                                  ? false
-                                  : true
+                                isDesktop || !userData.issuedCardFront
                               }
                               OnUpload={onChange}
                               OnInputError={onFormIssuedFrontError}
@@ -680,13 +682,7 @@ export default function PersonalInformation({
                         return (
                           <>
                             <ImageUploader
-                              helperText={
-                                isDesktop
-                                  ? true
-                                  : userData.issuedCardBack
-                                  ? false
-                                  : true
-                              }
+                              helperText={isDesktop || !userData.issuedCardBack}
                               OnUpload={onChange}
                               OnInputError={onFormIssuedBackError}
                               source={value}

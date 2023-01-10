@@ -195,7 +195,6 @@ const ForgotPassword = ({
 
               <StyledButton
                 type="submit"
-                theme="patient"
                 mode="primary"
                 size="small"
                 aria-label={

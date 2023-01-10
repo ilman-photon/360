@@ -18,9 +18,6 @@ export const MedicationContent = ({
   renderCTAIcon = () => {
     // intentional
   },
-  downloadPDF = () => {
-    // intentional
-  },
   printHTML = () => {
     // intentional
   },
@@ -36,7 +33,7 @@ export const MedicationContent = ({
 }) => {
   const iconMedication = "/icon-medication.png";
 
-  function renderMedicationViewAllUI(data, idx, medicationType) {
+  function renderMedicationViewAllUI(data, index, medType) {
     const shareContent = getDynamicShareContent({
       type: "medication-prescription",
       date: data?.date,
@@ -55,8 +52,8 @@ export const MedicationContent = ({
       <Stack
         direction={"row"}
         className={styles.medicationViewAllContainer}
-        key={`${idx}-madication-prescription`}
-        data-testid={`medication-${medicationType}-container-${idx}`}
+        key={`${index}-madication-prescription`}
+        data-testid={`medication-${medType}-container-${index}`}
       >
         {!isMobile && (
           <Box>
@@ -88,7 +85,7 @@ export const MedicationContent = ({
                       //This is intentional
                     },
                     () => {
-                      printHTML(medicationType, idx);
+                      printHTML(medType, index);
                     },
                     () => {
                       shareDocument(shareContent, shareData);
@@ -98,7 +95,7 @@ export const MedicationContent = ({
                 ) : (
                   <MenuList
                     onClickPrintButton={() => {
-                      printHTML(medicationType, idx);
+                      printHTML(medType, index);
                     }}
                     onClickShareButton={() => {
                       shareDocument(shareContent, shareData);

@@ -2,7 +2,7 @@ import { screen, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../../../src/store/store";
-import MyCareTeamLayout from "../../../../src/components/templates/myCareTeam";
+import MyCareTeamLayout from "../../../../src/components/templates/myCareTeamLayout";
 
 describe("My Care Team Layout Component", () => {
   let container;
@@ -15,6 +15,6 @@ describe("My Care Team Layout Component", () => {
   });
 
   it("Render Component", () => {
-    expect(container.getByText(/My Care Team/i)).toBeInTheDocument();
+    expect(container.getByText(/Uni Testing Test/i)).toBeInTheDocument();
   });
 });

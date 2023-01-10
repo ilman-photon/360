@@ -18,7 +18,6 @@ export default function AuthLayout({
   imageSrc,
   title,
   customImageBg = false,
-  isReverseFlex = true,
   isNotShowHeader = false,
 }) {
   const isPatient = theme === "patient";

@@ -91,9 +91,15 @@ export default function ShareMyPageContent({
   isMobile,
   isDesktop,
   refType,
-  downloadPDF = () => {},
-  printHTML = () => {},
-  handleAssetDownload = () => {},
+  downloadPDF = () => {
+    //This is intentional
+  },
+  printHTML = () => {
+    //This is intentional
+  },
+  handleAssetDownload = () => {
+    //This is intentional
+  },
 }) {
   const iconPrescription = "/icon-prescription2.png";
 
@@ -143,15 +149,15 @@ export default function ShareMyPageContent({
     );
   };
 
-  const getUIView = (type) => {
+  const getUIView = (typeDocument) => {
     let content = null;
-    switch (type) {
+    switch (typeDocument) {
       case "glasses":
       case "contact":
         content = (
           <TablePrescriptionContent
             row={data}
-            type={type}
+            type={typeDocument}
             idx={idx}
             isMobile={isMobile}
             isSharePage={true}
@@ -162,7 +168,7 @@ export default function ShareMyPageContent({
         content = (
           <MedicationContent
             row={data}
-            medicationType={type}
+            medicationType={typeDocument}
             idx={idx}
             isMobile={isMobile}
             isSharePage={true}
@@ -178,6 +184,28 @@ export default function ShareMyPageContent({
     }
     return content;
   };
+
+  function getMenuListUI() {
+    return !isMobile ? (
+      renderCTAIcon(
+        () => {
+          downloadPDF(type?.detail, idx);
+        },
+        () => {
+          printHTML(type?.detail, idx);
+        }
+      )
+    ) : (
+      <MenuList
+        onClickDownloadButton={() => {
+          downloadPDF(type?.detail, idx);
+        }}
+        onClickPrintButton={() => {
+          printHTML(type?.detail, idx);
+        }}
+      />
+    );
+  }
 
   return (
     <ThemeProvider theme={patientTypography}>
@@ -226,25 +254,7 @@ export default function ShareMyPageContent({
                     </Typography>
                   </Box>
                 </Box>
-                {!isMobile ? (
-                  renderCTAIcon(
-                    () => {
-                      downloadPDF(type?.detail, idx);
-                    },
-                    () => {
-                      printHTML(type?.detail, idx);
-                    }
-                  )
-                ) : (
-                  <MenuList
-                    onClickDownloadButton={() => {
-                      downloadPDF(type?.detail, idx);
-                    }}
-                    onClickPrintButton={() => {
-                      printHTML(type?.detail, idx);
-                    }}
-                  />
-                )}
+                {getMenuListUI()}
               </Box>
               <Typography
                 sx={{

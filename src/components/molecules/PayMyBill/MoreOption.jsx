@@ -12,7 +12,7 @@ export const MoreOptionBtn = () => {
     setIsOpen(!showOpen);
   };
 
-  const onClickListBtn = (type) => {
+  const onClickListBtn = () => {
     setIsOpen(false);
   };
 

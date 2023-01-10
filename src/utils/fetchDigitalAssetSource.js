@@ -38,7 +38,7 @@ async function openNewTab(url) {
 export const fetchSource = async (
   id,
   isPrint = false,
-  newTab = true,
+  _newTab = true,
   isOpenPdf = false
 ) => {
   if (!id) {

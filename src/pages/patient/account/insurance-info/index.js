@@ -103,20 +103,20 @@ export default function InsuranceInfoPage() {
     } else return true;
   };
 
-  const OnCreateInsurance = async (postBody) => {
+  const OnCreateInsurance = (postBody) => {
     if (!postBody) return;
     if (!checkInsuranceCardCompletion(postBody)) return;
 
-    const { payload } = await dispatch(
-      postInsurance({ patientId, payload: postBody })
+    dispatch(postInsurance({ patientId, payload: postBody })).then(
+      ({ payload }) => {
+        if (payload.success) {
+          // after effect to add state of rawuserinsuranceData manually and rebuild
+          dispatch(addUserInsuranceData(payload.response));
+          showSuccessMessage("Insurance successfully added");
+          setOpenNewInsuranceForm(false);
+        }
+      }
     );
-
-    if (payload.success) {
-      // after effect to add state of rawuserinsuranceData manually and rebuild
-      dispatch(addUserInsuranceData(payload.response));
-      showSuccessMessage("Insurance successfully added");
-      setOpenNewInsuranceForm(false);
-    }
   };
 
   const OnRemoveInsurance = (payload) => {
@@ -124,25 +124,25 @@ export default function InsuranceInfoPage() {
     setConfirmationDeleteDialog(true);
   };
 
-  const OnConfirmRemoveInsurance = async () => {
-    const { payload } = await dispatch(
+  const OnConfirmRemoveInsurance = () => {
+    dispatch(
       deleteInsurance({ patientId, coverageId: formDeleteInsurance.id })
-    );
-
-    if (payload.success) {
-      // after effect to add state of rawuserinsuranceData manually and rebuild
-      dispatch(removeUserInsuranceData(formDeleteInsurance));
-      setConfirmationDeleteDialog(false);
-      dispatch(
-        setPageMessage({
-          isShow: true,
-          content: "Insurance successfully removed",
-        })
-      );
-      setTimeout(() => {
-        dispatch(closePageMessage());
-      }, 5000);
-    }
+    ).then(({ payload }) => {
+      if (payload.success) {
+        // after effect to add state of rawuserinsuranceData manually and rebuild
+        dispatch(removeUserInsuranceData(formDeleteInsurance));
+        setConfirmationDeleteDialog(false);
+        dispatch(
+          setPageMessage({
+            isShow: true,
+            content: "Insurance successfully removed",
+          })
+        );
+        setTimeout(() => {
+          dispatch(closePageMessage());
+        }, 5000);
+      }
+    });
   };
 
   const OnOpenEditInsuranceForm = (payload) => {
@@ -150,28 +150,27 @@ export default function InsuranceInfoPage() {
     setIsEditing(true);
   };
 
-  const OnEditInsurance = async (postBody) => {
+  const OnEditInsurance = (postBody) => {
     if (!postBody) return;
     if (!checkInsuranceCardCompletion(postBody)) return;
     const userStorageData = JSON.parse(localStorage.getItem("userData"));
 
-    const { payload } = await dispatch(
+    dispatch(
       updateInsurance({
         patientId: patientId,
         coverageId: postBody.id,
         payload: postBody,
       })
-    );
-    if (payload.success) {
-      // after effect to edit state of rawuserinsuranceData manually and rebuild
-      // dispatch(setUserInsuranceDataById(payload.response));
-
-      // show messages or anything
-      showSuccessMessage("Your changes were saved");
-      setEditForm(null);
-      setIsEditing(false);
-      dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
-    }
+    ).then(({ payload }) => {
+      if (payload.success) {
+        // after effect to edit state of rawuserinsuranceData manually and rebuild
+        // show messages or anything
+        showSuccessMessage("Your changes were saved");
+        setEditForm(null);
+        setIsEditing(false);
+        dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
+      }
+    });
   };
 
   const OnAddNewInsurance = () => {
@@ -279,7 +278,7 @@ export default function InsuranceInfoPage() {
                   border: "2px solid #F3F3F3",
                 }}
                 actionContent={
-                  isDesktop ? (
+                  isDesktop && (
                     <StyledButton
                       mode="primary"
                       size="small"
@@ -299,8 +298,6 @@ export default function InsuranceInfoPage() {
                         Add Insurance
                       </Stack>
                     </StyledButton>
-                  ) : (
-                    <></>
                   )
                 }
               >
@@ -323,7 +320,7 @@ export default function InsuranceInfoPage() {
                 </Collapse>
                 <Collapse in={!isEditing}>
                   <Stack spacing={3}>
-                    {!isDesktop ? (
+                    {!isDesktop && (
                       <StyledButton
                         className={styles.addButton}
                         disabled={openNewInsuranceForm}
@@ -341,8 +338,6 @@ export default function InsuranceInfoPage() {
                           Add Insurance
                         </Stack>
                       </StyledButton>
-                    ) : (
-                      <></>
                     )}
 
                     {/* {view user insurance data} */}

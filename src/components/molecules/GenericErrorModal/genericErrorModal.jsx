@@ -52,7 +52,6 @@ function GenericErrorModal({ storeContext = {} }) {
       >
         <Box style={styles.buttonContainer}>
           <StyledButton
-            theme="patient"
             mode="primary"
             size="small"
             gradient={false}

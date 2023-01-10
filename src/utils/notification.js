@@ -11,9 +11,25 @@ import AlarmIcon from "../assets/icons/AlarmIcon";
 
 export const getPrescriptionType = (string) => {
   return string
-    .split("Your")[1]
+    ?.split("Your")[1]
     .split("prescription is now available.")[0]
     .trim();
+};
+
+export const getTestLabType = (string) => {
+  return (
+    string
+      ?.split("Your")[1]
+      .split("test results are available now.")[0]
+      .trim() || "<test/ lab name>"
+  );
+};
+
+export const getProviderName = (string) => {
+  return (
+    string?.split("You have received a new message from")[1] ||
+    "<Provider name>"
+  );
 };
 
 const getAppointmentType = (string) => {
@@ -25,16 +41,9 @@ const getAppointmentTime = (string) => {
 };
 
 export const getIcon = (data) => {
-  const getPrescriptionIcon = (string) => {
-    const type = getPrescriptionType(string);
-    switch (type) {
-      default:
-        return <PrescriptionIcon width={24} height={24} />;
-    }
-  };
   switch (data.type) {
     case "prescription":
-      return getPrescriptionIcon(data.text);
+      return <PrescriptionIcon width={24} height={24} />;
     case "prescription-refill":
       return <PrescriptionIcon width={24} height={24} />;
     case "appointment-first-reminder":
@@ -72,10 +81,26 @@ export const getDescription = (data) => {
   const buildPrescriptionNotificationString = (string) => {
     return (
       <>
-        Your <b>{getPrescriptionType(string)} prescription</b> is available now
+        Your <b>{getPrescriptionType(string)} prescription</b> is now available
+        for pick up.
       </>
     );
   };
+
+  const buildAppointmentNotificationString = (string) => {
+    const appointmentTime = getAppointmentTime(string);
+    let appointmentTimeText = appointmentTime;
+    if (appointmentTime === "tomorrow.") {
+      appointmentTimeText = "in the next 24 hours.";
+    }
+    return (
+      <>
+        Remember: You have an <b>{getAppointmentType(string)}</b> appointment{" "}
+        {appointmentTimeText}
+      </>
+    );
+  };
+
   switch (data.type) {
     case "prescription":
       return buildPrescriptionNotificationString(data.text);
@@ -87,12 +112,7 @@ export const getDescription = (data) => {
       );
     case "appointment-first-reminder":
     case "appointment":
-      return (
-        <>
-          Remember: You have an <b>{getAppointmentType(data.text)}</b>{" "}
-          appointment {getAppointmentTime(data.text)}
-        </>
-      );
+      return buildAppointmentNotificationString(data.text);
     case "appointment-second-reminder":
     case "appointment-one":
       return (
@@ -105,14 +125,14 @@ export const getDescription = (data) => {
     case "test/lab results":
       return (
         <>
-          Your <b>lab test results</b> are available now.
+          Your <b>{getTestLabType(data.text)}</b> are available now.
         </>
       );
     case "message":
       return (
         <>
           Please note, you have received a <b>new message</b> from{" "}
-          <b>John Roe, O.D.</b>
+          <b>{getProviderName(data.text)}</b>
         </>
       );
     case "invoice":
@@ -124,8 +144,8 @@ export const getDescription = (data) => {
     case "appointment-summary":
       return (
         <>
-          Your visit summary for your appointment on <b>Tuesday, May 15</b> is
-          available now.
+          Your visit summary for your appointment on{" "}
+          <b>{"<appointment date>"}</b> is available now.
         </>
       );
     case "prescription-glasses":

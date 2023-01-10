@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  Box,
-  Stack,
-  Typography,
-  Button,
-  Divider,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Stack, Typography, Divider, useMediaQuery } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { styles } from "./style";
 import { useForm, Controller, useFormState } from "react-hook-form";
@@ -48,11 +41,9 @@ export const isDOB = (value) => {
   let date = new Date().getFullYear();
   if (value.getYear() < 0) {
     return false;
-  }
-  if (value.getFullYear() <= date) {
+  } else if (value.getFullYear() <= date) {
     return true;
-  }
-  return false;
+  } else return false;
 };
 
 export default function AppointmentForm({

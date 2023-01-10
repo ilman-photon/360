@@ -56,6 +56,18 @@ function getPatientId(postBody, callback) {
     });
 }
 
+const setCookies = (isNotNeedMfa) => {
+  if (isNotNeedMfa) {
+    cookies.set("authorized", true, { path: "/patient" });
+  } else {
+    cookies.set("mfa", true, { path: "/patient" });
+  }
+};
+
+const actionRedirect = (isNotNeedMfa, _router) => {
+  _router.push(isNotNeedMfa ? "/patient/" : "/patient/mfa/");
+};
+
 export const loginProps = {
   OnLoginClicked: function (postbody, _router, callback, dispatch) {
     api
@@ -132,28 +144,24 @@ export const loginProps = {
             }
           );
           getUserData(postbody, async (isNotNeedMfa) => {
-            if (isNotNeedMfa) {
-              cookies.set("authorized", true, { path: "/patient" });
-            } else {
-              cookies.set("mfa", true, { path: "/patient" });
-            }
+            setCookies(isNotNeedMfa);
 
             try {
               const userStorageData = JSON.parse(
                 localStorage.getItem("userData")
               );
               if (userStorageData) {
-                const response = await dispatch(
+                const userResponse = await dispatch(
                   fetchUser({ patientId: userStorageData.patientId })
                 );
-                response?.payload &&
+                userResponse?.payload &&
                   localStorage.setItem(
                     "userProfile",
-                    JSON.stringify(response.payload)
+                    JSON.stringify(userResponse.payload)
                   );
               }
 
-              _router.push(isNotNeedMfa ? "/patient/" : "/patient/mfa/");
+              actionRedirect(isNotNeedMfa, _router);
               callback({ status: "success" });
             } catch (error) {
               console.error("something went wrong when logging in: ", error);
@@ -207,7 +215,7 @@ export default function LoginPage() {
             xs: "85px",
           },
         }}
-        onClose={(openFloatingMsg) => {
+        onClose={() => {
           dispatch(setLoginMessage(null));
         }}
       />

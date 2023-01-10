@@ -34,7 +34,6 @@ export default function InsuranceForm({
   isEditing = true,
   isAutocompleteLoading = false,
   isSecondary = false,
-  memberId,
   OnProviderChanged = () => {
     // this is intended
   },

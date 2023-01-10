@@ -348,7 +348,6 @@ export default function UpdatePasswordView({
             }}
           >
             <StyledButton
-              theme={constants.PATIENT}
               mode={constants.SECONDARY}
               type="button"
               tabIndex={0}
@@ -368,7 +367,6 @@ export default function UpdatePasswordView({
               </Typography>
             </StyledButton>
             <StyledButton
-              theme={constants.PATIENT}
               mode={constants.PRIMARY}
               type="submit"
               tabIndex={0}

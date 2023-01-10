@@ -142,11 +142,15 @@ export default function ShareConfirmationPage({ query }) {
       typeContent == "glasses" ||
       typeContent == "contact" ||
       typeContent == "medication";
-    const content = isPrescription
-      ? "prescriptions"
-      : typeContent
-      ? "carePlans"
-      : "healthRecord";
+
+    const getContentEndpoint = () => {
+      if (isPrescription) {
+        return "prescriptions";
+      } else if (typeContent) {
+        return "carePlans";
+      } else return "healthRecord";
+    };
+    const content = getContentEndpoint();
     router.push(
       `/patient/shared-page/${content}?username=${routerData.email}&category=${typeContent}&documentId=${routerData.documentId}`
     );
@@ -167,7 +171,7 @@ export default function ShareConfirmationPage({ query }) {
     const api = new Api();
     api
       .verifyAccessCode(postBody)
-      .then((responses) => {
+      .then(() => {
         goToSharePageDetail();
       })
       .catch((responses) => {

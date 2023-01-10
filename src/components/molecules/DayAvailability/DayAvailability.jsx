@@ -55,7 +55,6 @@ export const buttonSchedule = (
     >
       <StyledButton
         data-testid={TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.timeslotButton}
-        theme={constants.PATIENT}
         mode={constants.PRIMARY}
         size={constants.SMALL}
         gradient={false}

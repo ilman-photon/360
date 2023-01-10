@@ -19,22 +19,22 @@ export const MessagingCardDetailView = ({
   });
   const isDesktop = useMediaQuery("(min-width: 834px)");
 
-  const convertDate = (data) => {
+  const convertDate = (payload) => {
     let dateTime = "";
-    if (data !== "") {
-      const convertDate = new Date(data);
-      const month = convertDate.toLocaleString("default", { month: "short" });
-      const date = convertDate.getDate();
+    if (payload !== "") {
+      const convertedDate = new Date(payload);
+      const month = convertedDate.toLocaleString("default", { month: "short" });
+      const date = convertedDate.getDate();
       dateTime = `${month} ${date}`;
     }
     return dateTime;
   };
 
-  const convertTime = (data) => {
+  const convertTime = (payload) => {
     let time = "";
-    if (data !== "") {
-      const convertDate = new moment(data);
-      time = convertDate.format("hh:mm A");
+    if (payload !== "") {
+      const convertedDate = new moment(payload);
+      time = convertedDate.format("hh:mm A");
     }
     return time;
   };

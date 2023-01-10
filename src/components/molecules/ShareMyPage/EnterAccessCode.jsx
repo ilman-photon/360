@@ -59,10 +59,13 @@ const AlertComponent = ({ severity, title, description }) => {
 };
 
 export const EnterAccessCode = ({
-  onSubmitCode = () => {},
-  handleResendCode = () => {},
+  onSubmitCode = () => {
+    //This is intentional
+  },
+  handleResendCode = () => {
+    //This is intentional
+  },
   isErrorMsg = false,
-  isSuccessResendCode = false,
   isActiveAccessCode = true,
   alertInfo = null,
 }) => {

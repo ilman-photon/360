@@ -6,7 +6,6 @@ export const submitShareModal = createAsyncThunk(
   async ({ payload }) => {
     const api = new Api();
     try {
-      const domain = window.location.origin;
       const response = await api.getResponse(
         `/ecp/patient/share/shareMyDocument`,
         payload,
@@ -37,8 +36,12 @@ const shareSlice = createSlice({
     showToastMessage: false,
     openModal: false,
     modalContent: <></>,
-    successCallback: () => {},
-    failureCallback: () => {},
+    successCallback: () => {
+      // This is intentional
+    },
+    failureCallback: () => {
+      // This is intentional
+    },
   },
   reducers: {
     setShareModalData: (state, { payload }) => {
@@ -67,8 +70,12 @@ const shareSlice = createSlice({
       };
       state.openModal = false;
       state.modalContent = <></>;
-      state.successCallback = () => {};
-      state.failureCallback = () => {};
+      state.successCallback = () => {
+        // This is intentional
+      };
+      state.failureCallback = () => {
+        // This is intentional
+      };
     },
   },
 });

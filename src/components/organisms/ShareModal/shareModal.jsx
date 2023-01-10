@@ -18,6 +18,7 @@ import StyledInput from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  resetShareData,
   setFailureCallback,
   setOpenModal,
   setShowToastMessage,
@@ -112,16 +113,14 @@ export function getDynamicShareContent(data) {
             <Grid container spacing={2}>
               <Grid item xs={12} md={6}>
                 <Typography className={styles.medicationTitle} tabIndex={0}>
-                  {`Medical Record - ${new moment(data.date).format(
-                    "MM/DD/YYYY"
-                  )}`}
+                  {`Medical Record - ${moment(data.date).format("MM/DD/YYYY")}`}
                 </Typography>
               </Grid>
               <Grid item xs={12} md={6}>
                 <Typography className={styles.prescriptionBold} tabIndex={0}>
                   Last Updated: &nbsp;
                   <Typography className={styles.prescriptionMedium}>
-                    {`${new moment(data.date).format("MM/DD/YYYY")}`}
+                    {`${moment(data.date).format("MM/DD/YYYY")}`}
                   </Typography>
                 </Typography>
               </Grid>
@@ -203,22 +202,34 @@ function ShareModal() {
   };
 
   const onCallShareAPI = async (postBody) => {
-    const { payload } = await dispatch(submitShareModal({ payload: postBody }));
-
-    dispatch(setOpenModal(false));
-
-    if (payload.success) {
-      if (successCallback) {
-        await successCallback({ message: shareModalData?.successPostmessage });
-        dispatch(setShowToastMessage(true));
-        dispatch(setSuccessCallback(() => {}));
+    dispatch(submitShareModal({ payload: postBody })).then(
+      async ({ payload }) => {
+        dispatch(setOpenModal(false));
+        if (payload.success) {
+          if (successCallback) {
+            await successCallback({
+              message: shareModalData?.successPostmessage,
+            });
+            dispatch(setShowToastMessage(true));
+            dispatch(
+              setSuccessCallback(() => {
+                // This is intentional
+              })
+            );
+          }
+        } else {
+          if (failureCallback) {
+            await failureCallback();
+            dispatch(
+              setFailureCallback(() => {
+                // This is intentional
+              })
+            );
+          }
+        }
+        dispatch(resetShareData());
       }
-    } else {
-      if (failureCallback) {
-        await failureCallback();
-        dispatch(setFailureCallback(() => {}));
-      }
-    }
+    );
   };
 
   const inputStyle = {
@@ -423,7 +434,6 @@ function ShareModal() {
                 }}
               />
               <StyledButton
-                theme="patient"
                 mode="primary"
                 size="small"
                 type="submit"

@@ -73,10 +73,6 @@ export default function AppointmentDetails() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
-  const handleClose = () => {
-    router.back();
-  };
-
   return (
     <>
       {isAuthenticated && (

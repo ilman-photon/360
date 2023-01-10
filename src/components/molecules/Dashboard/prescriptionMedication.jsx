@@ -119,33 +119,39 @@ export default function PrescriptionMedication({
     dispatch(setModalContent(shareContent));
   };
 
+  const buildFilterResult = (newFilterData) => {
+    const tempMedicationData = { ...medications };
+
+    let filterResult = tempMedicationData.active.concat(
+      tempMedicationData.past
+    );
+
+    for (const filter of newFilterData) {
+      if (filter.name === "Refill Requested" && filter.checked) {
+        filterResult = filterResult.filter((v) => v.type === "refill request");
+      }
+      if (filter.name === "Active" && filter.checked) {
+        filterResult = filterResult.filter((v) => v.type === "active");
+      }
+
+      if (filter.type === "provider") {
+        filterResult = filterResult.filter(
+          (v) => v.prescribedBy === filter.name
+        );
+      }
+    }
+
+    return filterResult;
+  };
+
   const onSetFilter = (newFilterData, isCloseAppliedFilter = false) => {
     setFilterOpen(!filterOpen);
     !isCloseAppliedFilter && setFilterOpen(!filterOpen);
     setActiveFilter([...newFilterData]);
 
     if (newFilterData.length > 0) {
-      const tempMedicationData = { ...medications };
-      let filterResult = tempMedicationData.active.concat(
-        tempMedicationData.past
-      );
-      for (const filter of newFilterData) {
-        if (filter.name === "Refill Requested" && filter.checked) {
-          filterResult = filterResult.filter(
-            (v) => v.type === "refill request"
-          );
-        }
-        if (filter.name === "Active" && filter.checked) {
-          filterResult = filterResult.filter((v) => v.type === "active");
-        }
-
-        if (filter.type === "provider") {
-          filterResult = filterResult.filter(
-            (v) => v.prescribedBy === filter.name
-          );
-        }
-      }
-      setFilterMedicationData(filterResult);
+      let result = buildFilterResult(newFilterData);
+      setFilterMedicationData(result);
     } else {
       setFilterMedicationData([]);
     }
@@ -240,7 +246,6 @@ export default function PrescriptionMedication({
         >
           <Box class={styles.dialogContainer}>
             <StyledButton
-              theme="patient"
               mode="secondary"
               size="small"
               gradient={false}
@@ -255,7 +260,6 @@ export default function PrescriptionMedication({
               Close
             </StyledButton>
             <StyledButton
-              theme="patient"
               mode="primary"
               size="small"
               gradient={false}
@@ -376,10 +380,13 @@ export default function PrescriptionMedication({
         />
       );
     });
-    return contentUI;
+    return <>{contentUI}</>;
   }
 
   function renderUIFilter() {
+    const imgFilterSrc = isFilterApplied ? imageSrcFilled : imageSrcState;
+    const imgFilterHeight = isFilterApplied ? "28px" : "26px";
+
     if (medications?.active?.length > 0 || medications?.past?.length > 0) {
       return (
         <Box
@@ -404,9 +411,9 @@ export default function PrescriptionMedication({
             <Box sx={{ width: "26px", height: "26px" }}>
               <Image
                 alt=""
-                src={isFilterApplied ? imageSrcFilled : imageSrcState}
+                src={imgFilterSrc}
                 width={"26px"}
-                height={isFilterApplied ? "28px" : "26px"}
+                height={imgFilterHeight}
                 onClick={() => {
                   setFilterOpen(!filterOpen);
                 }}

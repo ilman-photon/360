@@ -48,20 +48,31 @@ const getSummaryObjectData = (item) => ({
   providerName: `${item?.provider?.firstName} ${item?.provider?.lastName}`,
 });
 
-export const mappingListData = (data, isOpen) => {
+const pushNewDataByCondition = (newData, item, isOpen) => {
+  if (isOpen) {
+    if (
+      item?._invoiceStatus == "OPEN" ||
+      item?._invoiceStatus == "IN_PROGRESS"
+    ) {
+      newData.push(getObjectData(item));
+    }
+  } else if (item?._invoiceStatus == "FINALIZED") {
+    newData.push(getObjectData(item));
+  }
+};
+
+const mappingListData = (data, isOpen) => {
   let newData = [];
   data?.entities.map((item) => {
-    let objData = {};
-    if (
-      isOpen &&
-      (item?._invoiceStatus == "OPEN" || item?._invoiceStatus == "IN_PROGRESS")
-    ) {
-      objData = getObjectData(item);
-      newData.push(objData);
-    } else if (!isOpen && item?._invoiceStatus == "FINALIZED") {
-      objData = getObjectData(item);
-      newData.push(objData);
-    }
+    pushNewDataByCondition(newData, item, isOpen);
+  });
+  return newData;
+};
+
+const mappingSearchListData = (data, isOpen) => {
+  let newData = [];
+  data?.map((item) => {
+    pushNewDataByCondition(newData, item, isOpen);
   });
   return newData;
 };
@@ -92,7 +103,6 @@ const billSlice = createSlice({
       state.searchDataList = mappingListData(payload.response, payload.isOpen);
     },
     setSummaryData: (state, { payload }) => {
-      console.log(payload);
       state.summaryData = getSummaryObjectData(payload.response);
     },
   },

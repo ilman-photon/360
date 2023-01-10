@@ -84,8 +84,8 @@ export const ProfilePhotoUploader = ({
             OnPhotoChange(digitalAsset.source);
             setPreview(digitalAsset.source.presignedUrl);
           }
-        } catch (error) {
-          console.error("Error when uploading", error);
+        } catch (err) {
+          console.error("Error when uploading", err);
         } finally {
           setLoading(false);
         }

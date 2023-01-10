@@ -87,7 +87,7 @@ export default function MessagingPage() {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getProviderList = (
-    query = {
+    providerQuery = {
       name: "",
       location: "",
       specialty: "",
@@ -96,7 +96,7 @@ export default function MessagingPage() {
     const api = new Api();
     isRequest = true;
     api
-      .searchProvider(query)
+      .searchProvider(providerQuery)
       .then((responses) => {
         mapper(responses.entities);
       })
@@ -109,7 +109,7 @@ export default function MessagingPage() {
     const api = new Api();
     api
       .createPatientToDraft(postBody)
-      .then((responses) => {
+      .then(() => {
         setAddAttachmentsSource([]);
         setShowNewMessageDialog(false);
       })
@@ -122,8 +122,8 @@ export default function MessagingPage() {
     !isRequest && !isRequested && getProviderList();
   }, [getProviderList, isRequest, isRequested]);
 
-  const embedHighlight = (data, query) => {
-    const textToSearch = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const embedHighlight = (data, highlightQuery) => {
+    const textToSearch = highlightQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     let pattern = new RegExp(`${textToSearch}`, "gi");
     if (data?.name || data?.message) {
       data.name = data?.name.replace(
@@ -170,15 +170,18 @@ export default function MessagingPage() {
            * Highlight search text
            * handle to highlight text in message list base on search
            */
-          function highlightSearchText(query, post) {
-            const lastIndex = post.messages?.length - 1;
-            post.messages[lastIndex] = embedHighlight(
-              post.messages[lastIndex],
-              query
+          function highlightSearchText(highlightSearchQuery, highlightPost) {
+            const lastIndex = highlightPost.messages?.length - 1;
+            highlightPost.messages[lastIndex] = embedHighlight(
+              highlightPost.messages[lastIndex],
+              highlightSearchQuery
             );
-            post.subject = embedHighlight(post?.subject, query);
+            highlightPost.subject = embedHighlight(
+              highlightPost?.subject,
+              highlightSearchQuery
+            );
 
-            return post;
+            return highlightPost;
           }
 
           post = highlightSearchText(query, post);
@@ -357,7 +360,7 @@ export default function MessagingPage() {
     const api = new Api();
     api
       .deleteMessages(id)
-      .then(function (response) {
+      .then(function () {
         setShowDeletedDialog(false);
         setFloatingMsgText("Message successfully deleted");
         setOpenFloatingMsg(true);
@@ -371,13 +374,15 @@ export default function MessagingPage() {
     const api = new Api();
     api
       .createNewMessage(postBody)
-      .then(function (response) {
+      .then(function () {
         setAddAttachmentsSource([]);
         setShowNewMessageDialog(false);
         setFloatingMsgText("Your message has been sent");
         setOpenFloatingMsg(true);
       })
-      .catch(function () {});
+      .catch(function () {
+        // This is intentional
+      });
   };
 
   /**
@@ -655,7 +660,7 @@ export default function MessagingPage() {
         text={floatingMsgText}
         autoHideDuration={2000}
         onOpen={openFloatingMsg}
-        onClose={(openFloatingMsg) => {
+        onClose={() => {
           setOpenFloatingMsg(!openFloatingMsg);
         }}
       />

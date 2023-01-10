@@ -1,4 +1,5 @@
 import moment from "moment";
+import { showOrReturnEmpty } from "./viewUtil";
 
 export function appointmentParser(data = {}, appointmentTypes = []) {
   const firstname = data.provider?.firstName || "";
@@ -15,6 +16,16 @@ export function appointmentParser(data = {}, appointmentTypes = []) {
   const appointmentTypeCategory = appointmentTypes.find(
     (v) => v.title === data.appointmentType?.code
   )?.subtitle;
+
+  const getPatientName = (patientData = {}) => {
+    let patientName = "";
+    patientName += showOrReturnEmpty(patientData.firstName, true);
+    if (patientData.lastName) {
+      patientName += patientData.lastName;
+    }
+    return patientName;
+  };
+
   return {
     appointmentId: data._id,
     providerInfo: {
@@ -27,9 +38,7 @@ export function appointmentParser(data = {}, appointmentTypes = []) {
       image: data.provider?.profilePhoto?.digitalAsset || "",
     },
     patientInfo: {
-      name: `${data.patient?.firstName || ``}${
-        data.patient?.lastName ? ` ${data.patient?.lastName}` : ``
-      }`,
+      name: getPatientName(data.patient),
       firstname: data.patient?.firstName || ``,
       lastname: data.patient?.lastName || ``,
       dob: data.patient?.dob || ``,

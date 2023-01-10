@@ -9,11 +9,7 @@ import {
   Box,
   Stack,
   Button,
-  TableRow,
-  TableBody,
   TableCell,
-  TableContainer,
-  Table,
   tableCellClasses,
 } from "@mui/material";
 import AccountCard from "../AccountCard/accountCard";
@@ -35,7 +31,6 @@ import {
   setSuccessCallback,
 } from "../../../store/share";
 import TablePrescriptionContent from "./tablePrescriptionContent";
-import MenuList from "./menuList";
 import { styled } from "@mui/material/styles";
 
 export const StyledTableCell = styled(TableCell)(() => ({
@@ -220,7 +215,7 @@ export default function Prescriptions({
     dispatch(setModalContent(shareContent));
   };
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event, newValue) => {
     setValue(newValue);
   };
 
@@ -234,204 +229,6 @@ export default function Prescriptions({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prescriptionData]);
-
-  function getBoxStyle() {
-    if (!isMobile) {
-      if (isViewAll) {
-        return styles.quarteBox;
-      }
-      return styles.fullBox;
-    }
-    return {};
-  }
-
-  function renderPrescriptionTable(data, type, idxKey, lastRow = false) {
-    if (data && data.prescriptionDetails) {
-      let tableHeader = ["Eye", "Sphere", "Cylinder", "Axis", "Add"];
-      if (type === "contacts") {
-        tableHeader = ["Eye", "Sphere", "BC", "Cylinder", "AXIS"];
-      }
-      return (
-        <Box
-          key={type + idxKey}
-          className={
-            isViewAll && !isMobile
-              ? styles.prescriptionContent
-              : styles.prescriptionContentMobile
-          }
-          data-testid={`${type}-container-${idxKey}`}
-        >
-          <Box
-            className={[
-              styles.flexDisplay,
-              styles.margin,
-              idxKey === 0 ? styles.marginTop0 : "",
-            ].join(" ")}
-            sx={{
-              position: "relative",
-            }}
-          >
-            <Box tabIndex={0}>
-              <Typography
-                variant="customBodyRegular"
-                className={styles.glassesViewAll}
-              >
-                Prescribed on:&nbsp;
-              </Typography>
-              <Typography
-                variant="bodyMedium"
-                className={styles.glassesViewAll}
-                sx={{
-                  marginRight: "auto",
-                }}
-              >
-                {data.date}
-              </Typography>
-            </Box>
-            {isViewAll && !isMobile ? (
-              renderCTAIcon(
-                () => {
-                  downloadPDF(type, idxKey);
-                },
-                () => {
-                  printHTML(type, idxKey);
-                }
-              )
-            ) : (
-              <Box sx={{ position: "absolute", right: 0 }}>
-                <MenuList
-                  onClickDownloadButton={() => {
-                    downloadPDF(type, idxKey);
-                  }}
-                  onClickPrintButton={() => {
-                    printHTML(type, idxKey);
-                  }}
-                />
-              </Box>
-            )}
-          </Box>
-
-          <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
-            <Box className={[styles.flexDisplay, getBoxStyle()]} tabIndex={0}>
-              <Typography variant="customBodyRegular" sx={{ fontSize: "18px" }}>
-                Prescribed by: &nbsp;
-              </Typography>
-              <Typography variant="bodyMedium" sx={{ fontSize: "18px" }}>
-                {data.prescribedBy}
-              </Typography>
-            </Box>
-            {isViewAll && (
-              <Box
-                className={[
-                  styles.flexDisplay,
-                  isMobile ? styles.marginVertical : "",
-                ]}
-                tabIndex={0}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  sx={{ fontSize: "18px" }}
-                >
-                  Expires on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" sx={{ fontSize: "18px" }}>
-                  {data.expirationDate}
-                </Typography>
-              </Box>
-            )}
-          </Box>
-
-          {!isViewAll && (
-            <Box
-              className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
-              tabIndex={0}
-            >
-              <Typography variant="customBodyRegular" sx={{ fontSize: "18px" }}>
-                Expires on: &nbsp;
-              </Typography>
-              <Typography variant="bodyMedium" sx={{ fontSize: "18px" }}>
-                {data.expirationDate}
-              </Typography>
-            </Box>
-          )}
-
-          <Box
-            sx={{
-              borderBottom: lastRow ? 0 : 1,
-              borderColor: "divider",
-              padding: isViewAll ? "14px 16px 32px 16px" : "20px 16px",
-              "@media print": {
-                borderBottom: 0,
-              },
-            }}
-          >
-            <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
-              <Table
-                sx={{
-                  minWidth: "90%",
-                  fontSize: "14px",
-                  boxShadow: "inset 0px -1px 0px rgba(0, 0, 0, 0.12)",
-                  ".MuiTableCell-body": {
-                    fontFamily: "Roboto",
-                    fontSize: "14px",
-                    fontWeight: "400",
-                  },
-                  ".MuiTableCell-customHead": {
-                    fontFamily: "Roboto",
-                    fontSize: "14px",
-                    fontWeight: "500",
-                    backgroundColor: "#F4F4F4",
-                  },
-                }}
-                aria-label="prescription"
-              >
-                <TableRow
-                  sx={{
-                    border: "0.5px solid #A9A9A9",
-                  }}
-                >
-                  {tableHeader.map((header, idx) => (
-                    <StyledTableCell
-                      key={`${idxKey}-${idx}-tabel-header`}
-                      tabIndex={0}
-                      className="MuiTableCell-customHead"
-                    >
-                      {header}
-                    </StyledTableCell>
-                  ))}
-                </TableRow>
-                <TableBody>
-                  {data?.prescriptionDetails.map((row, idx) => (
-                    <TableRow
-                      key={`${idxKey}-${idx}-tabel-body`}
-                      sx={{
-                        // "&:last-child td, &:last-child th": { border: 0 },
-                        border: "0.5px solid #A9A9A9",
-                      }}
-                    >
-                      <TableCell scope="row" tabIndex={0}>
-                        {row.eye}
-                      </TableCell>
-                      <TableCell tabIndex={0}>{row.sph}</TableCell>
-                      <TableCell tabIndex={0}>
-                        {type === "contacts" ? row.bc : row.cyl}
-                      </TableCell>
-                      <TableCell tabIndex={0}>
-                        {type === "contacts" ? row.cyl : row.axis}
-                      </TableCell>
-                      <TableCell tabIndex={0}>
-                        {type === "contacts" ? row.axis : row.add}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Box>
-        </Box>
-      );
-    }
-  }
 
   function renderMedicationUI(data) {
     if (data && data.length > 0) {
@@ -512,7 +309,6 @@ export default function Prescriptions({
       contentUI.push(
         <Box className={styles.noPrescription}>
           <Typography tabIndex={0} className={styles.normalText}>
-            {/* {`There are no active ${type} prescriptions`} */}
             {isViewAll
               ? `There are currently 0 prescriptions for ${customType}. Check back later or contact your office if you have questions regarding your status.`
               : `We currently do not have any prescriptions associated with this account.`}
@@ -520,7 +316,7 @@ export default function Prescriptions({
         </Box>
       );
     }
-    return contentUI;
+    return <>{contentUI}</>;
   }
 
   function renderMedicationDetailUI() {
@@ -611,174 +407,135 @@ export default function Prescriptions({
     );
   }
 
+  const renderGlassesPrescriptionUI = () => {
+    return (
+      <Box>
+        <Box
+          className={[
+            styles.flexDisplay,
+            styles.spaceBetween,
+            styles.margin,
+            styles.marginBottom,
+          ]}
+          tabIndex={0}
+          aria-label={`Glasses Prescription ${prescription?.glasses?.length} Heading`}
+        >
+          <Typography
+            className={[
+              styles.titleText,
+              isViewAll && !isMobile ? styles.paddingTop22 : {},
+            ].join(" ")}
+            aria-hidden={true}
+          >
+            {"Glasses Prescription"}{" "}
+            {prescription?.glasses?.length > 0
+              ? `(${prescription?.glasses?.length})`
+              : ``}
+          </Typography>
+        </Box>
+        <Box ref={containerGlasses}>
+          {renderPrescriptionTabUI(prescription.glasses, "glasses")}
+        </Box>
+        {!isViewAll && (
+          <Box
+            className={[styles.flexDisplay, styles.viewPrescription]}
+            onClick={() => {
+              onViewPrescriptions(0);
+            }}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onViewPrescriptions(0);
+              }
+            }}
+            data-testid={"view-prescription-glasses"}
+          >
+            <Link
+              className={styles.viewPrescriptionText}
+              sx={{
+                color: "#008294",
+                fontFamily: "Inter",
+                paddingRight: "7px",
+              }}
+              tabIndex={0}
+              {...getLinkAria("View prescriptions option")}
+            >
+              View prescriptions
+            </Link>
+            <KeyboardArrowRightIcon />
+          </Box>
+        )}
+      </Box>
+    );
+  };
+
+  const renderContactsPrescriptionUI = () => {
+    return (
+      <Box>
+        <Box
+          className={[
+            styles.flexDisplay,
+            styles.spaceBetween,
+            styles.margin,
+            styles.marginBottom,
+          ]}
+          tabIndex={0}
+          aria-label={`Contacts Prescription ${prescription?.glasses?.length} Heading`}
+        >
+          <Typography
+            className={[
+              styles.titleText,
+              isViewAll && !isMobile ? styles.paddingTop22 : {},
+            ].join(" ")}
+            aria-hidden={true}
+          >
+            {"Contacts Prescription"}{" "}
+            {prescription?.contacts?.length > 0
+              ? `(${prescription?.contacts?.length})`
+              : ``}
+          </Typography>
+        </Box>
+        <Box ref={containerContact}>
+          {renderPrescriptionTabUI(prescription.contacts, "contacts")}
+        </Box>
+
+        {!isViewAll && (
+          <Box
+            className={[styles.flexDisplay, styles.viewPrescription]}
+            onClick={() => {
+              onViewPrescriptions(1);
+            }}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onViewPrescriptions(1);
+              }
+            }}
+            data-testid={"view-prescription-contact"}
+          >
+            <Link
+              className={styles.viewPrescriptionText}
+              sx={{
+                color: "#008294",
+                fontFamily: "Inter",
+                paddingRight: "7px",
+              }}
+              tabIndex={0}
+              {...getLinkAria("View prescriptions option")}
+            >
+              View prescriptions
+            </Link>
+            <KeyboardArrowRightIcon />
+          </Box>
+        )}
+      </Box>
+    );
+  };
+
   const contentPrescription = () => {
     switch (value) {
       case 0:
-        return (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-            }}
-          >
-            <Box
-              className={[
-                styles.flexDisplay,
-                styles.spaceBetween,
-                styles.margin,
-                styles.marginBottom,
-              ]}
-              tabIndex={0}
-              aria-label={`Glasses Prescription ${prescription?.glasses?.length} Heading`}
-            >
-              <Typography
-                className={[
-                  styles.titleText,
-                  isViewAll && !isMobile ? styles.paddingTop22 : {},
-                ].join(" ")}
-                aria-hidden={true}
-                sx={{
-                  fontSize: "24px !important",
-                }}
-              >
-                {"Glasses Prescription"}{" "}
-                {prescription?.glasses?.length > 0
-                  ? `(${prescription?.glasses?.length})`
-                  : ``}
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                flex: "1",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
-              <Box ref={containerGlasses}>
-                {renderPrescriptionTabUI(prescription.glasses, "glasses")}
-              </Box>
-              {!isViewAll && (
-                <Box
-                  className={[
-                    styles.flexDisplay,
-                    styles.viewPrescription,
-                    `${
-                      prescription?.glasses?.length < 1 &&
-                      styles.viewPrescriptionNoData
-                    }`,
-                  ]}
-                  onClick={() => {
-                    onViewPrescriptions(0);
-                  }}
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      onViewPrescriptions(0);
-                    }
-                  }}
-                  data-testid={"view-prescription-glasses"}
-                >
-                  <Link
-                    className={styles.viewPrescriptionText}
-                    sx={{
-                      color: "#008294",
-                      fontFamily: "Inter",
-                      paddingRight: "7px",
-                    }}
-                    tabIndex={0}
-                    {...getLinkAria("View prescriptions option")}
-                  >
-                    View Prescriptions
-                  </Link>
-                  <KeyboardArrowRightIcon />
-                </Box>
-              )}
-            </Box>
-          </Box>
-        );
+        return renderGlassesPrescriptionUI();
       case 1:
-        return (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-            }}
-          >
-            <Box
-              className={[
-                styles.flexDisplay,
-                styles.spaceBetween,
-                styles.margin,
-                styles.marginBottom,
-              ]}
-              tabIndex={0}
-              aria-label={`Contacts Prescription ${prescription?.glasses?.length} Heading`}
-            >
-              <Typography
-                className={[
-                  styles.titleText,
-                  isViewAll && !isMobile ? styles.paddingTop22 : {},
-                ].join(" ")}
-                aria-hidden={true}
-              >
-                {"Contacts Prescription"}{" "}
-                {prescription?.contacts?.length > 0
-                  ? `(${prescription?.contacts?.length})`
-                  : ``}
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                flex: "1",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-              }}
-            >
-              <Box ref={containerContact}>
-                {renderPrescriptionTabUI(prescription.contacts, "contacts")}
-              </Box>
-
-              {!isViewAll && (
-                <Box
-                  className={[
-                    styles.flexDisplay,
-                    styles.viewPrescription,
-                    `${
-                      prescription?.contacts?.length < 1 &&
-                      styles.viewPrescriptionNoData
-                    }`,
-                  ]}
-                  onClick={() => {
-                    onViewPrescriptions(1);
-                  }}
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      onViewPrescriptions(1);
-                    }
-                  }}
-                  data-testid={"view-prescription-contact"}
-                >
-                  <Link
-                    className={styles.viewPrescriptionText}
-                    sx={{
-                      color: "#008294",
-                      fontFamily: "Inter",
-                      paddingRight: "7px",
-                    }}
-                    tabIndex={0}
-                    {...getLinkAria("View prescriptions option")}
-                  >
-                    View Prescriptions
-                  </Link>
-                  <KeyboardArrowRightIcon />
-                </Box>
-              )}
-            </Box>
-          </Box>
-        );
+        return renderContactsPrescriptionUI();
       default:
         return !isViewAll
           ? renderSimpleMedicationUI()

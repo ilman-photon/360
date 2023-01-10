@@ -92,7 +92,7 @@ const FilterBy = ({
         >
           {isMultiple ? (
             category.checklist.map((item, index) => {
-              if (index > 5 && !expand && !isDoctorSearch) return false;
+              if (index > 5 && !expand && !isDoctorSearch) return <></>;
               return (
                 <CustomCheckbox
                   label={item.name}
@@ -194,7 +194,6 @@ const FilterBy = ({
       <Box className={styles.buttonContainer}>
         <StyledButton
           data-testId="filter-reset-button"
-          theme={constants.PATIENT}
           mode={constants.SECONDARY}
           size={constants.SMALL}
           gradient={false}

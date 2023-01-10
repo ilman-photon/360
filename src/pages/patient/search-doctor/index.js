@@ -215,7 +215,7 @@ export default function SearchDoctorPage() {
       activedFilter.splice(id, 1);
       setActiveFilter([...activedFilter]);
       setLoading(true);
-      await filterData(activedFilter);
+      filterData(activedFilter);
       setLoading(false);
     }
   };
@@ -237,50 +237,54 @@ export default function SearchDoctorPage() {
     );
   };
 
+  const renderResultContainer = () => (
+    <Box
+      sx={{
+        flexGrow: 1,
+        maxWidth: {
+          sm: "770px",
+          md: "1434px",
+        },
+        backgroundColor: {
+          xs: "transparent",
+          sm: "#FFFFFF",
+        },
+        margin: "0 auto 0 auto",
+      }}
+    >
+      <SearchBar
+        locationList={locationList}
+        specialtyList={specialtyList}
+        activeFilter={activeFilter}
+        onRemoveFilter={removeFilter}
+        openFilter={() => {
+          setFilterOpen(!filterOpen);
+        }}
+        onSearchDoctor={(data) => {
+          getProviderList(data, true);
+        }}
+      />
+      {!loading ? (
+        renderResult()
+      ) : (
+        <Box
+          sx={{
+            m: "0 auto",
+            pt: 3,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
+    </Box>
+  );
+
   return (
     <>
       {isRequested && !isError ? (
-        <Box
-          sx={{
-            flexGrow: 1,
-            maxWidth: {
-              sm: "770px",
-              md: "1434px",
-            },
-            backgroundColor: {
-              xs: "transparent",
-              sm: "#FFFFFF",
-            },
-            margin: "0 auto 0 auto",
-          }}
-        >
-          <SearchBar
-            locationList={locationList}
-            specialtyList={specialtyList}
-            activeFilter={activeFilter}
-            onRemoveFilter={removeFilter}
-            openFilter={() => {
-              setFilterOpen(!filterOpen);
-            }}
-            onSearchDoctor={(data) => {
-              getProviderList(data, true);
-            }}
-          />
-          {!loading ? (
-            renderResult()
-          ) : (
-            <Box
-              sx={{
-                m: "0 auto",
-                pt: 3,
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <CircularProgress />
-            </Box>
-          )}
-        </Box>
+        renderResultContainer()
       ) : (
         <Box
           sx={{

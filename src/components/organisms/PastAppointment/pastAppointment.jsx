@@ -154,10 +154,7 @@ export default function PastAppointment({ data }) {
     }
   }
 
-  const groupAppointments = groupBy(
-    appointments,
-    (appointments) => appointments.year
-  );
+  const groupAppointments = groupBy(appointments, (item) => item.year);
   const groupedAppointments = Array.from(groupAppointments);
   const isData =
     appointments.length == 0 ? (

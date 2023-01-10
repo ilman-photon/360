@@ -18,9 +18,6 @@ export const OpenInvoiceTableBody = ({
   onGoToViewDetail = () => {
     //This is intentional
   },
-  convertDate = () => {
-    //This is intentional
-  },
   handleAssetDownload = () => {
     //This is intentional
   },
@@ -29,6 +26,8 @@ export const OpenInvoiceTableBody = ({
   const { t } = useTranslation("translation", {
     keyPrefix: "payMyBill",
   });
+
+  const clipIfMobile = isDesktop ? "" : "clipped clip-2";
 
   const tableConfiguration = {
     header: [
@@ -131,7 +130,7 @@ export const OpenInvoiceTableBody = ({
         contentStyle: {
           padding: "0 24px",
         },
-        contentClass: isDesktop ? "" : "clipped clip-2",
+        contentClass: clipIfMobile,
       },
       {
         type: "text",
@@ -141,14 +140,14 @@ export const OpenInvoiceTableBody = ({
           padding: isDesktop ? "12px 0" : "8px 0",
           fontSize: isDesktop ? "unset" : "12px",
         },
-        contentClass: isDesktop ? "" : "clipped clip-2",
+        contentClass: clipIfMobile,
       },
       {
         type: "text",
         primary: true,
         valueKey: "provider",
         cellProps: { padding: "none" },
-        contentClass: isDesktop ? "" : "clipped clip-2",
+        contentClass: clipIfMobile,
       },
       {
         type: "text",
@@ -158,7 +157,7 @@ export const OpenInvoiceTableBody = ({
           padding: isDesktop ? "12px 0" : "8px 0",
           fontSize: isDesktop ? "unset" : "12px",
         },
-        contentClass: isDesktop ? "" : "clipped clip-2",
+        contentClass: clipIfMobile,
       },
       {
         type: "text",
@@ -169,7 +168,7 @@ export const OpenInvoiceTableBody = ({
           fontSize: isDesktop ? "unset" : "12px",
           color: "#0095A9",
         },
-        contentClass: isDesktop ? "" : "clipped clip-2",
+        contentClass: clipIfMobile,
       },
       {
         type: "button-icon-text",

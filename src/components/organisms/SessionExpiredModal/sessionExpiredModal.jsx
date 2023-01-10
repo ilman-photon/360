@@ -131,7 +131,6 @@ function SessionExpiredModal() {
         {!isExpired ? (
           <Box style={styles.buttonContainer}>
             <StyledButton
-              theme="patient"
               mode="secondary"
               size="small"
               gradient={false}
@@ -145,7 +144,6 @@ function SessionExpiredModal() {
               Log Off
             </StyledButton>
             <StyledButton
-              theme="patient"
               mode="primary"
               size="small"
               gradient={false}
@@ -169,7 +167,6 @@ function SessionExpiredModal() {
         ) : (
           <Box style={styles.buttonContainer}>
             <StyledButton
-              theme="patient"
               mode="primary"
               size="small"
               tabindex="1"

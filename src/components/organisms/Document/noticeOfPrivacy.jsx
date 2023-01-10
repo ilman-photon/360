@@ -42,7 +42,6 @@ export default function NoticeOfPrivacy({
           </Typography>
           <StyledButton
             disabled={disableInput}
-            theme="patient"
             mode="primary"
             size="small"
             gradient={false}

@@ -252,7 +252,7 @@ export function timeInWeekACLabel(startDate, endDate) {
 }
 
 Date.prototype.addDays = function (days) {
-  var date = new Date(this.valueOf());
+  let date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);
   return date;
 };
@@ -340,11 +340,11 @@ export function updateProviderTimeSchedule(
   endDate
 ) {
   const updateProviderList = [];
-  for (let index = 0; index < providerList.length; index++) {
+  for (const element of providerList) {
     const currentProvider = listOfProvider.find(
-      (item) => item.providerId === providerList[index].providerId
+      (item) => item.providerId === element.providerId
     );
-    const providerDataTmp = { ...providerList[index] };
+    const providerDataTmp = { ...element };
     if (currentProvider) {
       providerDataTmp.availability = currentProvider.availability;
     } else {
@@ -606,10 +606,10 @@ export function parseAppointmentDetails(appointmentDetails) {
         checkUndefinedObject(performer, "DocumentationCareProcisionDate")
       ).format("YYYY:MM:DD"),
     };
-    const performerList = performer.map((data) => {
+    const performerList = performer.map((performerItem) => {
       return {
         name: "Performer",
-        value: checkUndefinedObject(data, "performerName"),
+        value: checkUndefinedObject(performerItem, "performerName"),
       };
     });
     data.appointmentInfo.documentation.list = [
@@ -618,9 +618,9 @@ export function parseAppointmentDetails(appointmentDetails) {
     ];
   }
 
-  for (let i = 0; i < data.appointmentInfo.contents.length; i++) {
+  for (const element of data.appointmentInfo.contents) {
     let headers = [];
-    switch (data.appointmentInfo.contents[i].type.toLowerCase()) {
+    switch (element.type.toLowerCase()) {
       case "allergies":
         headers = ["Subtance", "Code", "Status", "Severity", "Reaction"];
         break;
@@ -644,7 +644,7 @@ export function parseAppointmentDetails(appointmentDetails) {
       default:
         break;
     }
-    data.appointmentInfo.contents[i].headers = headers;
+    element.headers = headers;
   }
   return data;
 }
@@ -742,7 +742,7 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
 }
 
 function setAvailableToday(dateSchedule) {
-  const newDate = new moment().format("YYYY-MM-DD");
+  const newDate = moment().format("YYYY-MM-DD");
   return dateSchedule === newDate;
 }
 
@@ -831,11 +831,13 @@ export async function parseProviderListData(
       const providerId = provider._id;
       const dateSchedule = new Date(providerTempItem.scheduleDate);
       const availabilityDate = {
-        date: new moment(dateSchedule).format("YYYY-MM-DD"),
+        date: moment(dateSchedule).format("YYYY-MM-DD"),
         list: parseTimeSlotAppointment(providerTempItem.slots),
       };
       const currentProvider = data.listOfProvider
-        ? data.listOfProvider.find((item) => item.providerId === providerId)
+        ? data.listOfProvider.find(
+            (providerItem) => providerItem.providerId === providerId
+          )
         : [];
 
       if (data.listOfProvider.length === 0 || !currentProvider) {
@@ -908,11 +910,11 @@ export async function parseProviderListData(
         providerTemp.filters["gender"] = gender;
       } else if (data.listOfProvider.length > 0 && currentProvider) {
         const isSameDate = currentProvider.availability.find(
-          (item) => item.date === availabilityDate.date
+          (availabilityItem) => availabilityItem.date === availabilityDate.date
         );
         if (!isSameDate) {
           currentProvider.availability.push(availabilityDate);
-          for (const [key, value] of Object.entries(currentProvider.filters)) {
+          for (const [key] of Object.entries(currentProvider.filters)) {
             if (!currentProvider[key]) {
               currentProvider[key] = setAvailableToday(availabilityDate.date);
             }
@@ -1009,8 +1011,8 @@ const getContents = (data) => {
       clinicalDocument.component.structuredBody.component?.length > 0
     ) {
       const components = clinicalDocument.component.structuredBody.component;
-      for (let i = 0; i < components.length; i++) {
-        const { section } = components[i];
+      for (const element of components) {
+        const { section } = element;
         const thead = section?.text?.table?.thead?.tr.th || [];
         const tbody = section?.text?.table?.tbody?.tr || [];
         const component = {
@@ -1019,14 +1021,17 @@ const getContents = (data) => {
         };
 
         const titles = [];
-        for (let j = 0; j < thead.length; j++) {
+        for (const elementTHead of thead) {
           titles.push(
-            thead[j]._text?.toLowerCase()?.replace("(", "")?.replace(")", "")
+            elementTHead._text
+              ?.toLowerCase()
+              ?.replace("(", "")
+              ?.replace(")", "")
           );
         }
 
-        for (let j = 0; j < tbody.length; j++) {
-          const tr = tbody[j];
+        for (const elementTBody of tbody) {
+          const tr = elementTBody;
           if (tr._attributes) {
             const trObj = {};
             for (let k = 0; k < tr.td.length; k++) {

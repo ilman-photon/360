@@ -15,7 +15,6 @@ import { patientTypography } from "../../../styles/theme";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 
 const iconintakeFoms = "/iconintakeFoms.png";
-const iconCardinsuranceCard = "/iconCardinsuranceCard.png";
 const iconHealthRecord = "/iconCarePlanRecord.png";
 const iconCarePlan = "/icon-carePlan.png";
 const iconPrescription2 = "/icon-prescription2.png";

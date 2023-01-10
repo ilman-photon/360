@@ -115,7 +115,6 @@ export default function PayMyBillCard() {
         <StyledButton
           tabIndex={0}
           aria-label={"Make a Payment"}
-          theme={"patient"}
           mode={"primary"}
           size={"small"}
           gradient={false}

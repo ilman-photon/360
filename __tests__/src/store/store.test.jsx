@@ -54,6 +54,10 @@ describe("Store User", () => {
     mock
       .onPut(`/ecp/patient/editPatient/${userData?.patientId}`)
       .reply(200, mockUserData);
+    
+    mock
+      .onPost(`/ecp/patient/editPatientsContactInfo`)
+      .reply(200, mockUserData);
   });
   afterEach(() => {
     mock.reset();
@@ -93,6 +97,9 @@ describe("Store User", () => {
     mock
       .onPut(`/ecp/patient/editPatient/${userData?.patientId}`)
       .reply(404, mockUserData);
+    mock
+      .onPost(`/ecp/patient/editPatientsContactInfo`)
+      .reply(200, mockUserData);
     const result = await store.dispatch(
       updateUser({
         patientId: userData.patientId,

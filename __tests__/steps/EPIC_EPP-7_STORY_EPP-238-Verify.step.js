@@ -1,7 +1,7 @@
 import { fireEvent, render, act, cleanup, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import UpdatePasswordPage from "../../src/pages/patient/update-password";
-import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPassword";
+import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPasswordComponent";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import AuthPage from "../../src/pages/patient/login";

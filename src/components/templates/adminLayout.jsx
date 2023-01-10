@@ -11,7 +11,6 @@ import AdminNavbar from "../molecules/AdminNavbar/adminNavbar";
 import { useLogin } from "../../utils/customHook";
 
 function AdminLayout({
-  pageMessage,
   theme = "patient",
   currentActivePage = "",
   pageTitle = "",

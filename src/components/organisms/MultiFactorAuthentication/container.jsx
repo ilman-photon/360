@@ -119,7 +119,6 @@ export default function Container({
               )}
               <Stack spacing={2}>
                 <StyledButton
-                  theme={constants.PATIENT}
                   mode={constants.PRIMARY}
                   type="button"
                   size={constants.SMALL}
@@ -133,7 +132,6 @@ export default function Container({
                 </StyledButton>
                 {!isEndView && (
                   <StyledButton
-                    theme={constants.PATIENT}
                     mode={constants.SECONDARY}
                     type="button"
                     size={constants.SMALL}

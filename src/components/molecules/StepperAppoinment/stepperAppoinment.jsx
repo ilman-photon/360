@@ -107,7 +107,7 @@ export default function StepperAppoinment({ ...props }) {
               }}
               aria-label={`Stepper ${idx + 1}. ${label} `}
             >
-              {isDesktop ? label : idx === props.activeStep ? label : null}
+              {isDesktop && idx === props.activeStep ? label : null}
             </StepLabel>
           </Step>
         ))}

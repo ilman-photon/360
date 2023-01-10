@@ -138,10 +138,10 @@ export default function AccountRecovery() {
     ],
   };
 
-  const handleActionClicked = async (action, rowData) => {
+  const handleActionClicked = (action, rowData) => {
     setActiveModalData({ action, rowData });
     if (action === "view-security-questions") {
-      await dispatch(onViewSecurityQuestions({ patientId: rowData.patientId }));
+      dispatch(onViewSecurityQuestions({ patientId: rowData.patientId }));
     }
     if (typeof action === "string") setIsModalOpened(true);
   };
@@ -200,58 +200,60 @@ export default function AccountRecovery() {
   });
 
   const onActivateAccount = async (data) => {
-    const { payload } = await dispatch(
-      onActivate({ patientId: data.patientId })
-    );
-    dispatch(setPageMessage(payload));
-    if (payload.success) {
-      await dispatch(setAccountDataById(payload.data));
-      setTableFormMessage(
-        `Account of ${payload.data.name} activated successfully`
-      );
-    }
+    dispatch(onActivate({ patientId: data.patientId })).then(({ payload }) => {
+      dispatch(setPageMessage(payload));
+      if (payload.success) {
+        dispatch(setAccountDataById(payload.data));
+        setTableFormMessage(
+          `Account of ${payload.data.name} activated successfully`
+        );
+      }
+    });
     setIsModalOpened(false);
   };
 
-  const onUnlockAccount = async (data) => {
-    const { payload } = await dispatch(onUnlock({ patientId: data.patientId }));
-    if (payload.success) {
-      await dispatch(setAccountDataById({ ...data, status: "Y" }));
-      setTableFormMessage(
-        `Account of ${data.name || "patient"} unlocked successfully`
-      );
-    }
+  const onUnlockAccount = (data) => {
+    dispatch(onUnlock({ patientId: data.patientId })).then(({ payload }) => {
+      if (payload.success) {
+        dispatch(setAccountDataById({ ...data, status: "Y" }));
+        setTableFormMessage(
+          `Account of ${data.name || "patient"} unlocked successfully`
+        );
+      }
+    });
     setIsModalOpened(false);
   };
 
-  const onSentPasswordSubmit = async (data) => {
-    const { payload } = await dispatch(
+  const onSentPasswordSubmit = (data) => {
+    dispatch(
       onSendPasswordReset({
         patientId: data.patientId,
         patientData: data,
         selectedCommunication: data.communication,
       })
-    );
-    if (payload.success) {
-      setTableFormMessage(
-        `Password reset link sent to ${data.name || "patient"} successfully`
-      );
-    }
+    ).then(({ payload }) => {
+      if (payload.success) {
+        setTableFormMessage(
+          `Password reset link sent to ${data.name || "patient"} successfully`
+        );
+      }
+    });
     setIsModalOpened(false);
   };
 
-  const onShareUsernameSubmit = async (data) => {
-    const { payload } = await dispatch(
+  const onShareUsernameSubmit = (data) => {
+    dispatch(
       onShareUsername({
         patientId: data.patientId,
         selectedCommunication: data.communication,
       })
-    );
-    if (payload.success) {
-      setTableFormMessage(
-        `Username shared to ${data.name || "patient"} successfully`
-      );
-    }
+    ).then(({ payload }) => {
+      if (payload.success) {
+        setTableFormMessage(
+          `Username shared to ${data.name || "patient"} successfully`
+        );
+      }
+    });
     setIsModalOpened(false);
   };
 
@@ -301,28 +303,35 @@ export default function AccountRecovery() {
     }
   };
 
+  const renderRadioLabel = (option) => {
+    if (option?.preferred) {
+      return (
+        <>
+          {option?.label} <b>(Prefered)</b>
+        </>
+      );
+    } else return option?.label;
+  };
+
   const getModalContent = ({ action, rowData }) => {
+    const patientName = rowData?.name || "patient";
     switch (action) {
       case "activate-account":
         return (
           <Typography
-            aria-label={`Are you sure you want to activate ${
-              rowData.name || "patient"
-            }?`}
+            aria-label={`Are you sure you want to activate ${patientName}?`}
             sx={{ color: "#003B4A", fontSize: "22px" }}
           >
-            {`Are you sure you want to activate ${rowData.name || "patient"}?`}
+            {`Are you sure you want to activate ${patientName}?`}
           </Typography>
         );
       case "unlock-account":
         return (
           <Typography
-            aria-label={`Are you sure you want to unlock ${
-              rowData.name || "patient"
-            }?`}
+            aria-label={`Are you sure you want to unlock ${patientName}?`}
             sx={{ color: "#003B4A", fontSize: "22px" }}
           >
-            {`Are you sure you want to unlock ${rowData.name || "patient"}?`}
+            {`Are you sure you want to unlock ${patientName}?`}
           </Typography>
         );
       case "send-password-reset":
@@ -350,15 +359,7 @@ export default function AccountRecovery() {
                       data-testid={"account-recovery-communication-mode-form"}
                       onChange={onChange}
                       label="Select mode of communication where to send password reset link."
-                      customRadioLabel={(option) => {
-                        if (option.preferred) {
-                          return (
-                            <>
-                              {option.label} <b>(Prefered)</b>
-                            </>
-                          );
-                        } else return option.label;
-                      }}
+                      customRadioLabel={renderRadioLabel()}
                       options={priorityOptions}
                     />
                   );
@@ -391,15 +392,7 @@ export default function AccountRecovery() {
                       value={value}
                       onChange={onChange}
                       label="Select mode of communication where to share username"
-                      customRadioLabel={(option) => {
-                        if (option.preferred) {
-                          return (
-                            <>
-                              {option.label} <b>(Prefered)</b>
-                            </>
-                          );
-                        } else return option.label;
-                      }}
+                      customRadioLabel={renderRadioLabel}
                       options={priorityOptions}
                     />
                   );
@@ -465,6 +458,37 @@ export default function AccountRecovery() {
     }
   };
 
+  const searchResultUI = () => {
+    return rows.length > 0 ? (
+      <>
+        <Typography
+          variant="headlineH4"
+          sx={{ display: { xs: "none", sm: "block" } }}
+        >
+          {rows.length} Results found using your search criteria
+        </Typography>
+        <TableWithSort
+          config={tableConfiguration}
+          rows={rows}
+          onActionClicked={handleActionClicked}
+          withNavigation={true}
+        />
+      </>
+    ) : (
+      <Stack
+        sx={{
+          height: 244,
+          spacing: "10px",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <AccountCircleOutlined sx={{ width: 62, height: 62 }} />
+        <Typography variant="headlineH4">No records found.</Typography>
+      </Stack>
+    );
+  };
+
   return (
     <>
       {/* desktop */}
@@ -508,46 +532,15 @@ export default function AccountRecovery() {
                 </Collapse>
 
                 {/* search result in table */}
-                {firstSearch ? (
-                  searchStatus === "loading" ? (
+                {firstSearch &&
+                  (searchStatus === "loading" ? (
                     <CircularProgress
                       data-testid="loading-state"
                       sx={{ margin: "0 auto" }}
                     />
-                  ) : rows.length > 0 ? (
-                    <>
-                      <Typography
-                        variant="headlineH4"
-                        tabIndex={0}
-                        sx={{ display: { xs: "none", sm: "block" } }}
-                      >
-                        {rows.length} Results found using your search criteria
-                      </Typography>
-                      <TableWithSort
-                        config={tableConfiguration}
-                        rows={rows}
-                        onActionClicked={handleActionClicked}
-                        withNavigation={true}
-                      />
-                    </>
                   ) : (
-                    <Stack
-                      sx={{
-                        height: 244,
-                        spacing: "10px",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <AccountCircleOutlined sx={{ width: 62, height: 62 }} />
-                      <Typography variant="headlineH4">
-                        No records found.
-                      </Typography>
-                    </Stack>
-                  )
-                ) : (
-                  <></>
-                )}
+                    searchResultUI()
+                  ))}
               </Stack>
             </div>
           </CardContent>

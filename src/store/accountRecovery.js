@@ -43,7 +43,7 @@ export const onUnlock = createAsyncThunk(
 
 export const onSendPasswordReset = createAsyncThunk(
   "accountRecovery/onSendPasswordReset",
-  async ({ patientId, patientData, selectedCommunication }) => {
+  async ({ patientData, selectedCommunication }) => {
     const api = new Api();
     const url = `/ecp/accountRecovery/sendPasswordResetLinkToUser`;
     const domain = window.location.origin;
@@ -164,7 +164,7 @@ export const accountRecoveryStore = createSlice({
       state.status = payload;
     },
     setAccountDataById: (state, { payload }) => {
-      const updatedState = state.patientList.map((item, idx) => {
+      const updatedState = state.patientList.map((item) => {
         const id = item.id || item.patientId;
         const payloadId = payload.id || payload.patientId;
         if (payloadId === id) {
@@ -193,7 +193,7 @@ export const accountRecoveryStore = createSlice({
       let mapped = [];
       if (response?.ResponseCode === 3000) {
         const securityQuestions = response.SecurityQuestions[0];
-        mapped = Object.keys(securityQuestions).map((keys, item) => {
+        mapped = Object.keys(securityQuestions).map((keys) => {
           return {
             question: keys,
             answer: securityQuestions[keys],

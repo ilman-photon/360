@@ -46,7 +46,9 @@ export default function DownloadPage() {
         <CircularProgress />
       ) : (
         !isAvailable && (
-          <Typography>File is not available or URL is wrong.</Typography>
+          <Typography data-testid="file-not-available-text">
+            File is not available or URL is wrong.
+          </Typography>
         )
       )}
     </Stack>

@@ -118,53 +118,52 @@ export default function ContactInformation({
     );
     let placesResponse = await getPlaceDetails(indexValue);
 
-    if (!placesResponse) return;
+    if (placesResponse) return;
     const addressComponents = placesResponse.address_components;
-    if (addressComponents) {
-      resetAddressForm();
-      let address1 = "";
-      try {
-        for (const component of addressComponents) {
-          const componentType = component.types[0];
-          switch (componentType) {
-            case "street_number": {
-              address1 = component.long_name;
-              break;
-            }
+    if (!addressComponents) return;
+    resetAddressForm();
+    let address1 = "";
+    try {
+      for (const component of addressComponents) {
+        const componentType = component.types[0];
+        switch (componentType) {
+          case "street_number": {
+            address1 = component.long_name;
+            break;
+          }
 
-            case "route": {
-              address1 += component.short_name;
-              break;
-            }
+          case "route": {
+            address1 += component.short_name;
+            break;
+          }
 
-            case "postal_code": {
-              setValue("zip", component.long_name);
-              break;
-            }
+          case "postal_code": {
+            setValue("zip", component.long_name);
+            break;
+          }
 
-            case "administrative_area_level_1": {
-              const isStateValid = usStatesList.find(
-                (v) => v.label === component.short_name
-              );
-              if (isStateValid) {
-                setValue("state", component.short_name);
-              }
-              break;
+          case "administrative_area_level_1": {
+            const isStateValid = usStatesList.find(
+              (v) => v.label === component.short_name
+            );
+            if (isStateValid) {
+              setValue("state", component.short_name);
             }
+            break;
+          }
 
-            case "administrative_area_level_2": {
-              setValue("city", component.long_name);
-              break;
-            }
+          case "administrative_area_level_2": {
+            setValue("city", component.long_name);
+            break;
           }
         }
-      } catch {
-      } finally {
-        if (address1) {
-          setValue("address", address1);
-        } else {
-          setValue("address", oldValue);
-        }
+      }
+    } catch {
+    } finally {
+      if (address1) {
+        setValue("address", address1);
+      } else {
+        setValue("address", oldValue);
       }
     }
   };
@@ -216,6 +215,15 @@ export default function ContactInformation({
         Edit
       </StyledButton>
     );
+  };
+
+  const checkFormat = (value) => {
+    if (value) {
+      return (
+        Regex.atLeastOneAlphabet.test(value) ||
+        "The selected field is not formatted correctly. Please try again."
+      );
+    } else return true;
   };
 
   return (
@@ -453,9 +461,9 @@ export default function ContactInformation({
                     options={placePredictions.map(
                       (option) => option.description
                     )}
-                    onChange={(e, value) => {
-                      if (value) {
-                        assignAddressFormValue(value);
+                    onChange={(_e, val) => {
+                      if (val) {
+                        assignAddressFormValue(val);
                       }
                     }}
                     value={value}
@@ -495,14 +503,7 @@ export default function ContactInformation({
               rules={{
                 required: "This field is required to proceed.",
                 validate: {
-                  incorrectFormat: (value) => {
-                    if (value) {
-                      return (
-                        Regex.atLeastOneAlphabet.test(value) ||
-                        "The selected field is not formatted correctly. Please try again."
-                      );
-                    } else return true;
-                  },
+                  incorrectFormat: checkFormat,
                 },
               }}
             />
@@ -543,14 +544,7 @@ export default function ContactInformation({
               rules={{
                 required: "This field is required to proceed.",
                 validate: {
-                  incorrectFormat: (value) => {
-                    if (value) {
-                      return (
-                        Regex.atLeastOneAlphabet.test(value) ||
-                        "The selected field is not formatted correctly. Please try again."
-                      );
-                    } else return true;
-                  },
+                  incorrectFormat: checkFormat,
                 },
               }}
             />

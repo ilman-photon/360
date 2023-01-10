@@ -24,15 +24,15 @@ export const isDOB = (value) => {
   let date = new Date().getFullYear();
   if (value.getYear() < 0) {
     return false;
-  }
-  if (value.getFullYear() <= date) {
+  } else if (value.getFullYear() <= date) {
     return true;
-  }
-  return false;
+  } else return false;
 };
 
 export default function Register({
-  OnRegisterClicked = () => {},
+  OnRegisterClicked = () => {
+    // This is intentional
+  },
   isRegisterLoading,
   formMessage = null,
 }) {

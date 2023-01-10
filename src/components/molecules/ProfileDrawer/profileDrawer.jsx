@@ -66,14 +66,11 @@ const ProfileDrawer = ({
 
   useEffect(() => {
     setHaveChildren(false);
-    switch (activeMenu) {
-      case "home":
-        navigateTo("/patient");
-        break;
-      default:
-        setHaveChildren(true);
-        setSidebarLinks(linkObject[activeMenu]);
-        break;
+    if (activeMenu === "home") {
+      navigateTo("/patient");
+    } else {
+      setHaveChildren(true);
+      setSidebarLinks(linkObject[activeMenu]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeMenu]);

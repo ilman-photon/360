@@ -56,7 +56,6 @@ const StyledMenu = styled((props) => (
 }));
 
 export default function MenuList({
-  pdfFile = "",
   onClickDownloadButton = () => {
     //this is intentional
   },
@@ -73,7 +72,7 @@ export default function MenuList({
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (callback) => {
+  const handleClose = () => {
     setAnchorEl(null);
   };
   const iconShare = "/icon-share.png";

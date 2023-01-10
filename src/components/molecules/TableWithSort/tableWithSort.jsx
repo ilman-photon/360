@@ -21,8 +21,6 @@ import React, { useEffect } from "react";
 import { visuallyHidden } from "@mui/utils";
 import styles from "./styles.module.scss";
 
-import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
-import ReplyIcon from "@mui/icons-material/Reply";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -132,6 +130,17 @@ const EnhancedTableHead = (props) => {
       return headCell.label;
     }
   };
+
+  const renderHiddenSortedUI = (headCell) => {
+    const sortedText = isDesc ? "sorted descending" : "sorted ascending";
+
+    return orderBy === headCell.id ? (
+      <Box component="span" sx={visuallyHidden}>
+        {sortedText}
+      </Box>
+    ) : null;
+  };
+
   return (
     <TableHead
       aria-hidden={false}
@@ -158,13 +167,6 @@ const EnhancedTableHead = (props) => {
                   padding={headCell.disablePadding ? "none" : "normal"}
                   width={headCell.width}
                   role={"rowheader"}
-                  // sx={{
-                  //   py: "15px",
-                  //   ".MuiTableSortLabel-icon": {
-                  //     opacity: 0.5,
-                  //   },
-                  //   ...headCell.sx,
-                  // }}
                 >
                   <b tabIndex={0} style={{ fontWeight: 600 }}>
                     {headCell.label}
@@ -200,11 +202,7 @@ const EnhancedTableHead = (props) => {
                     onClick={createSortHandler(headCell.id)}
                   >
                     <b style={{ fontWeight: 600 }}>{headCell.label}</b>
-                    {orderBy === headCell.id ? (
-                      <Box component="span" sx={visuallyHidden}>
-                        {isDesc ? "sorted descending" : "sorted ascending"}
-                      </Box>
-                    ) : null}
+                    {renderHiddenSortedUI(headCell)}
                   </TableSortLabel>
                 </TableCell>
               );
@@ -235,7 +233,7 @@ export default function TableWithSort({
   const [order, setOrder] = React.useState("");
   const [orderBy, setOrderBy] = React.useState("");
   const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
+  const [pageNumber, setPageNumber] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage] = React.useState(10);
   const [activeMenuData, setActiveMenuData] = React.useState({});
@@ -285,7 +283,9 @@ export default function TableWithSort({
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    pageNumber > 0
+      ? Math.max(0, (1 + pageNumber) * rowsPerPage - rows.length)
+      : 0;
 
   // menu MoreVertIcon
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -391,7 +391,7 @@ export default function TableWithSort({
     if (type === "date-time") {
       format = "MM/DD/YYYY hh:mmA";
     }
-    const dateValue = new moment(
+    const dateValue = moment(
       ref(tabelData.row, tabelData.cell.valueKey)
     ).format(format);
     return (
@@ -665,8 +665,8 @@ export default function TableWithSort({
     }
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const handleChangePage = (_event, newPage) => {
+    setPageNumber(newPage);
   };
   const inputRef = React.useRef([]);
 
@@ -713,8 +713,10 @@ export default function TableWithSort({
                 rows.slice().sort(getComparator(order, orderBy)) */}
             {stableSort(rows, getComparator(order, orderBy))
               .slice(
-                withNavigation ? page * rowsPerPage : 0,
-                withNavigation ? page * rowsPerPage + rowsPerPage : rows.length
+                withNavigation ? pageNumber * rowsPerPage : 0,
+                withNavigation
+                  ? pageNumber * rowsPerPage + rowsPerPage
+                  : rows.length
               )
               .map((row, rowIdx) => {
                 const isItemSelected = isSelected(row.id || row._id);
@@ -801,13 +803,13 @@ export default function TableWithSort({
         <TablePagination
           rowsPerPageOptions={[10]}
           labelRowsPerPage={""}
-          labelDisplayedRows={({ from, to, count, page }) => {
+          labelDisplayedRows={({ count, page }) => {
             return `${page + 1} of ${Math.ceil(count / rowsPerPage)}`;
           }}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
-          page={page}
+          page={pageNumber}
           onPageChange={handleChangePage}
         />
       )}

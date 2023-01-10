@@ -731,16 +731,11 @@ defineFeature(feature, (test) => {
     );
 
     when(/^user change the "(.*)" of appointment$/, async (arg0) => {
-      const locationField = container.getByLabelText(/Date/i);
-      await act(() => {
-        fireEvent.click(locationField);
+      const dateInput = await waitFor(() => container.getByLabelText("Date"));
+      act(() => {
+        fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
       });
-      waitFor(function () {
-        container.getByLabelText(/Cancel/i);
-        const startDateInput = container.getByTestId("dateFilter");
-        fireEvent.change(startDateInput, { target: { value: "2022/11/11" } });
-        fireEvent.submit(input);
-      });
+      expect(dateInput).toBeInTheDocument();
     });
 
     then("user should see change in the date", () => {

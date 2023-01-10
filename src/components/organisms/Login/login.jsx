@@ -187,7 +187,6 @@ export function Login({
                   </Typography>
                 </Grid>
                 <StyledButton
-                  theme={constants.PATIENT}
                   mode={constants.PRIMARY}
                   type="submit"
                   tabIndex={0}
@@ -243,7 +242,6 @@ export function Login({
             </Grid>
 
             <StyledButton
-              theme={constants.PATIENT}
               mode={constants.SECONDARY}
               tabIndex={0}
               aria-label={"Create Account button"}

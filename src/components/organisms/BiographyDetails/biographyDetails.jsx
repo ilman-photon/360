@@ -97,8 +97,9 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
     const state = addressPayload.state || "";
     const zipcode = addressPayload.zipcode || addressPayload.zip || "";
 
+    const replacedCharacters = /[ #]/g;
     return `${addressLine1}+${addressLine2}+${city}+${state}+${zipcode}`.replace(
-      / |#/g,
+      replacedCharacters,
       "+"
     );
   };

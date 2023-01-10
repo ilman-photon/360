@@ -115,10 +115,10 @@ export default function DocumentPage({ title }) {
     }
   };
 
-  function onCallCreatePatientDocument(digitalAsset) {
+  function onCallCreatePatientDocument(asset) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const postBody = {
-      name: digitalAsset.source.name,
+      name: asset.source.name,
       documentType: "application/pdf",
       category: "FORM CUSTOMIZATION",
       portalStatus: "Published",
@@ -126,7 +126,7 @@ export default function DocumentPage({ title }) {
       eSignedBy: userData?.patientId,
       eSignedDate: new moment().format("MMM DD, YYYY hh:mm:ss A"),
       digital_assets: {
-        _id: digitalAsset.source._id,
+        _id: asset.source._id,
       },
     };
     const api = new Api();
@@ -176,7 +176,7 @@ export default function DocumentPage({ title }) {
     const api = new Api();
     api
       .editformContent(postdata)
-      .then(function (response) {
+      .then(function () {
         setIsEdit(false);
         setShowMessage(true);
         setTimeout(() => {
@@ -208,7 +208,7 @@ export default function DocumentPage({ title }) {
 
   function validateChangeForm(callback) {
     let isChanges = false;
-    for (const [index, [key, value]] of Object.entries(
+    for (const [index, [_key, value]] of Object.entries(
       Object.entries(defaultDataValue)
     )) {
       if (value !== watchData[index]) {
@@ -384,7 +384,6 @@ export default function DocumentPage({ title }) {
         >
           <Box>
             <StyledButton
-              theme="patient"
               mode="secondary"
               size="small"
               gradient={false}
@@ -396,7 +395,6 @@ export default function DocumentPage({ title }) {
               Cancel
             </StyledButton>
             <StyledButton
-              theme="patient"
               size="small"
               gradient={false}
               data-testid="confirm-continue-btn"
@@ -457,7 +455,6 @@ export default function DocumentPage({ title }) {
         return (
           <Stack direction={"row"} className={styles.editBtnMenuContainer}>
             <StyledButton
-              theme="patient"
               mode="secondary"
               size="small"
               data-testid="edit-cancel-btn"
@@ -468,7 +465,6 @@ export default function DocumentPage({ title }) {
               Cancel
             </StyledButton>
             <StyledButton
-              type="submit"
               theme="patient"
               size="small"
               data-testid="edit-save-btn"
@@ -482,7 +478,6 @@ export default function DocumentPage({ title }) {
       } else {
         return (
           <StyledButton
-            theme="patient"
             mode="primary"
             size="small"
             gradient={false}
@@ -531,7 +526,6 @@ export default function DocumentPage({ title }) {
           }}
         >
           <StyledButton
-            theme="patient"
             mode="secondary"
             size="small"
             gradient={false}
@@ -555,7 +549,6 @@ export default function DocumentPage({ title }) {
           </StyledButton>
           <StyledButton
             type="submit"
-            theme="patient"
             mode="primary"
             size="small"
             gradient={false}

@@ -56,6 +56,11 @@ defineFeature(feature, (test) => {
     cleanup();
   };
 
+  const userSeeErrorAccountLockMessage = async () => {
+    const msg = await waitFor(() => container.getByText("errorAccountLock"));
+    expect(msg).toBeInTheDocument();
+  }
+
   test("EPIC_EPP-7_STORY_EPP-4916- Verify if the user enters a first-time wrong answer for a security question then the user account gets locked", ({
     given,
     and,
@@ -306,13 +311,10 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/securityquestions/validate`).reply(400, error);
       const continueButton = container.getByTestId("continuebtn");
       fireEvent.submit(continueButton);
-      await waitFor(() => {
-        container.getByText("errorAccountLock");
-      });
     });
 
     then("the user sees an error message Your account get locked", () => {
-      expect(container.getByText("errorAccountLock")).toBeInTheDocument();
+      userSeeErrorAccountLockMessage()
     });
   });
 
@@ -436,13 +438,10 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/securityquestions/validate`).reply(400, error);
       const continueButton = container.getByTestId("continuebtn");
       fireEvent.submit(continueButton);
-      await waitFor(() => {
-        container.getByText("errorAccountLock");
-      });
     });
 
     then("the user sees an error message Your account get locked", () => {
-      expect(container.getByText("errorAccountLock")).toBeInTheDocument();
+      userSeeErrorAccountLockMessage()
     });
 
     and("clicks on the Back to login button", () => {
@@ -612,13 +611,10 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/securityquestions/validate`).reply(400, error);
       const continueButton = container.getByTestId("continuebtn");
       fireEvent.submit(continueButton);
-      await waitFor(() => {
-        container.getByText("errorAccountLock");
-      });
     });
 
     then("the user sees an error message Your account get locked", () => {
-      expect(container.getByText("errorAccountLock")).toBeInTheDocument();
+      userSeeErrorAccountLockMessage()
     });
 
     and("clicks on the Back to login button", () => {

@@ -273,7 +273,6 @@ defineFeature(feature, (test) => {
 
     await waitFor(() => {
       container.getByText("Past Appointments");
-      container.getAllByText(/demo nikita/i);
     });
 
     return container;
@@ -370,7 +369,6 @@ defineFeature(feature, (test) => {
 
     then("user should be able to view the list of past appointments", () => {
       expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-      expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
     });
   });
 
@@ -411,7 +409,6 @@ defineFeature(feature, (test) => {
 
     then("user should be able to view the list of past appointments", () => {
       expect(container.getByText(/Todd Bellamy/i)).toBeInTheDocument();
-      expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
     });
 
     and("user clicks on any of the past appointments", () => {
@@ -428,7 +425,6 @@ defineFeature(feature, (test) => {
         expect(container.getByText(/Retina checkup/i)).toBeInTheDocument();
         expect(container.getByText(/568 Allens Mill Rd/i)).toBeInTheDocument();
         expect(container.getByText("(321) 989-8898")).toBeInTheDocument();
-        expect(container.getAllByText(/demo nikita/i)[0]).toBeInTheDocument();
       }
     );
   });

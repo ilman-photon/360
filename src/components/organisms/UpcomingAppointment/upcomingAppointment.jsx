@@ -15,7 +15,6 @@ export function UpcomingAppointmentCard({
   onRescheduleClicked,
   onCancelClicked,
   onAddToCalendarClicked,
-  onScheduleNewClicked,
 }) {
   function addHours(numOfHours, date = new Date()) {
     date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
@@ -142,7 +141,6 @@ export function UpcomingAppointmentCard({
 export function scheduleAppointmentButton(onScheduleClicked) {
   return (
     <StyledButton
-      theme={constants.PATIENT}
       mode={constants.PRIMARY}
       type="button"
       size={constants.SMALL}

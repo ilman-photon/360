@@ -13,7 +13,9 @@ import styles from "./styles.module.scss";
 
 const StackList = ({
   dataList = [],
-  onAssetDownload = () => {},
+  onAssetDownload = () => {
+    // This is intentional
+  },
   onShareDocument = () => {
     // This is intentional
   },
@@ -27,6 +29,26 @@ const StackList = ({
     setSortDataList(onSortData(event.target.value));
   };
 
+  function sortAscendingByDate(objA, objB) {
+    return (
+      new Date(objA._created).getTime() - new Date(objB._created).getTime()
+    );
+  }
+
+  function sortDescendingByDate(objA, objB) {
+    return (
+      new Date(objB._created).getTime() - new Date(objA._created).getTime()
+    );
+  }
+
+  function sortAscendingByName(objA, objB) {
+    return objA.name > objB.name ? 1 : -1;
+  }
+
+  function sortDescendingByName(objA, objB) {
+    return objA.name > objB.name ? -1 : 1;
+  }
+
   function onSortData(value) {
     if (dataList && dataList.length > 0) {
       let sortResult = [...dataList];
@@ -34,23 +56,15 @@ const StackList = ({
 
       if (splitValue[1] === "asc") {
         if (splitValue[0] === "date") {
-          sortResult.sort(
-            (objA, objB) =>
-              new Date(objA._created).getTime() -
-              new Date(objB._created).getTime()
-          );
+          sortResult.sort(sortAscendingByDate);
         } else {
-          sortResult.sort((objA, objB) => (objA.name > objB.name ? 1 : -1));
+          sortResult.sort(sortAscendingByName);
         }
       } else {
         if (splitValue[0] === "date") {
-          sortResult.sort(
-            (objA, objB) =>
-              new Date(objB._created).getTime() -
-              new Date(objA._created).getTime()
-          );
+          sortResult.sort(sortDescendingByDate);
         } else {
-          sortResult.sort((objA, objB) => (objA.name > objB.name ? -1 : 1));
+          sortResult.sort(sortDescendingByName);
         }
       }
       return sortResult;

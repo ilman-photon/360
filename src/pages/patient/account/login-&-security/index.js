@@ -54,10 +54,10 @@ export default function LoginSecurityPage() {
   const isSecurityQuestionNotEmpty =
     securityQuestions[0] && Object.keys(securityQuestions[0]).length > 0;
 
-  const fetchUserSecurityQuestion = async () => {
+  const fetchUserSecurityQuestion = () => {
     const userStorageData = JSON.parse(localStorage.getItem("userData"));
     if (userStorageData) {
-      await dispatch(
+      dispatch(
         onViewSecurityQuestions({ patientId: userStorageData.patientId })
       );
     }

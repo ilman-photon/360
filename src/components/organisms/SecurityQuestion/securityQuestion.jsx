@@ -23,7 +23,6 @@ const SecurityQuestion = ({
   testIds = {},
 }) => {
   const [questionVals, setQuestionVals] = useState([null, null, null]);
-  // const [questionValsDua] = useState(securityQuestionList);
 
   const handleQuestionValChange = (option, index) => {
     const newQuestionVals = questionVals;
@@ -32,11 +31,9 @@ const SecurityQuestion = ({
   };
 
   const getAvailableOptions = () => {
-    // const availableOptionsLeft = questionValsDua;
-    const questions = securityQuestionList.filter((questionOption) => {
+    return securityQuestionList.filter((questionOption) => {
       return questionVals.indexOf(questionOption) === -1;
     });
-    return questions;
   };
 
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
@@ -137,13 +134,6 @@ const SecurityQuestion = ({
                       color: "#003B4A !important",
                       fontWeight: "600",
                     },
-                    "& .MuiFormLabel-asterisk.MuiInputLabel-asterisk": {
-                      visibility: "hidden",
-                      "&::before": {
-                        content: '"*"',
-                        visibility: "visible",
-                      },
-                    },
                   }}
                   inputProps={{
                     "aria-label": `Question ${index} Dropdown Menu - Required`,
@@ -238,7 +228,6 @@ const SecurityQuestion = ({
         >
           <StyledButton
             type="submit"
-            theme="patient"
             mode="primary"
             size="small"
             data-testid={testIds.btnSubmitSecurity || "primary-button"}
@@ -253,7 +242,6 @@ const SecurityQuestion = ({
             {updateMode ? "Update" : "Submit"}
           </StyledButton>
           <StyledButton
-            theme="patient"
             mode="secondary"
             size="small"
             data-testid={testIds.btnSkip || "secondary-button"}
