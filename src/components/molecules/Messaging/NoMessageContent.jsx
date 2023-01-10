@@ -5,7 +5,9 @@ import styles from "./styles.module.scss";
 export const NoMessageContent = ({ message = "" }) => {
   return (
     <Box className={styles.noMessagesContent}>
-      <Typography>{message}</Typography>
+      <Typography variant="headlineH4" sx={{ fontWeight: 400 }}>
+        {message}
+      </Typography>
     </Box>
   );
 };

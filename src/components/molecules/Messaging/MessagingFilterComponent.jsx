@@ -37,6 +37,7 @@ export const MessagingFilterComponent = ({
               value={value}
               options={messageOptions}
               textSx={{ justifyContent: "space-between" }}
+              labelSx={{ fontWeight: 400, fontSize: 14, lineHeight: "18px" }}
               sx={{
                 flexDirection: isDesktop ? "row" : "column",
                 gap: "20px",
