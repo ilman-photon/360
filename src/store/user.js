@@ -6,6 +6,7 @@ import {
   RELATIONSHIP_LIST,
   TITLE_LIST,
 } from "../utils/constantData";
+import { formatPhoneNumber } from "../utils/phoneFormatter";
 import removeSpace from "../utils/removeSpace";
 import { formatSocialSecurity } from "../utils/ssnFormatter";
 
@@ -444,8 +445,14 @@ const buildUserData = (payload) => {
     dob: payload.dob,
     title: TITLE_LIST[payload.title - 1],
     ssn: formatSocialSecurity(payload.ssn),
-    email: payload.contactInformation?.emails[0]?.email,
-    mobile: payload.contactInformation?.phones[0]?.number,
+    email:
+      payload.contactInformation?.emails?.length > 0
+        ? payload.contactInformation.emails[0].email
+        : "",
+    mobile:
+      payload.contactInformation?.phones?.length > 0
+        ? payload.contactInformation.phones[0].number
+        : "",
     address: userAddress.addressLine1,
     city: userAddress.city,
     state: userAddress.state,
