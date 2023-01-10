@@ -73,7 +73,7 @@ export const FilterOptionPayMyBill = ({
     return (
       <Tooltip title={"Add Date of Birth"}>
         <IconButton aria-label={"Calendar icon"} edge="end">
-          <CalendarTodayIcon />
+          <CalendarTodayIcon sx={{ color: "#003B4A" }} />
         </IconButton>
       </Tooltip>
     );
@@ -167,6 +167,16 @@ export const FilterOptionPayMyBill = ({
                     components={{
                       OpenPickerIcon: DateIcon,
                     }}
+                    inputProps={{
+                      tabIndex: -1,
+                      readOnly: true,
+                      isTransparent: true,
+                    }}
+                    OpenPickerButtonProps={{
+                      style: {
+                        backgroundColor: "transparent",
+                      },
+                    }}
                   />
                 );
               }}
@@ -206,6 +216,16 @@ export const FilterOptionPayMyBill = ({
                       OpenPickerIcon: DateIcon,
                     }}
                     disableMaskedInput
+                    inputProps={{
+                      tabIndex: -1,
+                      readOnly: true,
+                      isTransparent: true,
+                    }}
+                    OpenPickerButtonProps={{
+                      style: {
+                        backgroundColor: "transparent",
+                      },
+                    }}
                   />
                 );
               }}
