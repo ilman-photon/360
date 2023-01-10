@@ -12,6 +12,7 @@ import { useTranslation } from "next-i18next";
 import { StyledInput } from "../../atoms/Input/input";
 import { Controller, useForm } from "react-hook-form";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import { Regex } from "../../../utils/regex";
 
 export const FilterOptionPayMyBill = ({
   handleChangeOption = () => {
@@ -53,6 +54,14 @@ export const FilterOptionPayMyBill = ({
   }, [optionSelected]);
 
   const keyDownPress = (e) => {
+    if (
+      !Regex.numberOnly.test(e.key) &&
+      e.key != "Backspace" &&
+      e.key != "Tab"
+    ) {
+      e.preventDefault();
+    }
+
     if (e.code && e.code.toLowerCase() === "enter" && e.target.value) {
       e.preventDefault();
       onFilterByInvoiceNumber(e.target.value);
