@@ -14,22 +14,28 @@ import {
 } from "../../../store/payMyBill";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
+import { LoadingModal } from "../../../components/molecules/LoadingModal/LoadingModal";
 
-export function getInvoiceReceipts(id, print) {
+export function getInvoiceReceipts(id, print, isOpen, callback) {
   const api = new Api();
   api
     .getInvoiceReceipts(id)
     .then(function (response) {
-      downloadReceipts(response.entities, print);
+      downloadReceipts(response.entities, print, isOpen);
     })
     .catch(function () {
       //Handle error searchInvoice by date
+    })
+    .finally(function () {
+      if (callback) {
+        callback();
+      }
     });
 }
 
-export function downloadReceipts(receipts, print) {
+export function downloadReceipts(receipts, print, isOpen) {
   receipts.forEach((item) => {
-    fetchSource(item.digitalAssetId, print);
+    fetchSource(item.digitalAssetId, print, true, isOpen);
   });
 }
 
@@ -57,6 +63,7 @@ export default function PayMyBillPage() {
     (state) => state.payMyBill.billingHistoryList
   );
   const searchDataList = useSelector((state) => state.payMyBill.searchDataList);
+  const [loading, setLoading] = useState(false);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "payMyBill",
@@ -281,8 +288,12 @@ export default function PayMyBillPage() {
     router.push(`/patient/pay-my-bill/summary-detail/${invoiceNumber}`);
   };
 
-  const handleAssetDownload = (id, print) => {
-    getInvoiceReceipts(id, print);
+  const handleAssetDownload = (id, print, isOpen = false) => {
+    setLoading(true);
+    const callBack = () => {
+      setLoading(false);
+    };
+    getInvoiceReceipts(id, print, isOpen, callBack);
   };
 
   return (
@@ -301,6 +312,7 @@ export default function PayMyBillPage() {
         accountCreditData={accountCredit}
         handleAssetDownload={handleAssetDownload}
       />
+      <LoadingModal open={loading} />
     </>
   );
 }
