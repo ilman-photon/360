@@ -10,9 +10,28 @@ import {
   setBillingOpenList,
   setBillingHistoryList,
   setSearchDataList,
+  getInvoiceReceipt,
 } from "../../../store/payMyBill";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
+
+export function getInvoiceReceipts(id, print) {
+  const api = new Api();
+  api
+    .getInvoiceReceipts(id)
+    .then(function (response) {
+      downloadReceipts(response.entities, print);
+    })
+    .catch(function () {
+      //Handle error searchInvoice by date
+    });
+}
+
+export function downloadReceipts(receipts, print) {
+  receipts.forEach((item) => {
+    fetchSource(item.digitalAssetId, print);
+  });
+}
 
 export default function PayMyBillPage() {
   const [payBillData, setPayBillData] = useState();
@@ -194,7 +213,7 @@ export default function PayMyBillPage() {
   useEffect(() => {
     const query = router?.query;
     setActiveTabs({
-      index: parseInt(query?.activeTab),
+      index: query?.activeTab ? parseInt(query?.activeTab) : 0,
       title: query?.activeTab == "0" ? t("openInvoices") : t("invoiceHistory"),
     });
     onCalledBillingInvoice();
@@ -260,24 +279,6 @@ export default function PayMyBillPage() {
   const onGoToViewDetail = (data) => {
     const invoiceNumber = data?.id;
     router.push(`/patient/pay-my-bill/summary-detail/${invoiceNumber}`);
-  };
-
-  const downloadReceipts = (receipts, print) => {
-    receipts.forEach((item) => {
-      fetchSource(item.digitalAssetId, print);
-    });
-  };
-
-  const getInvoiceReceipts = (id, print) => {
-    const api = new Api();
-    api
-      .getInvoiceReceipts(id)
-      .then(function (response) {
-        downloadReceipts(response.entities, print);
-      })
-      .catch(function () {
-        //Handle error searchInvoice by date
-      });
   };
 
   const handleAssetDownload = (id, print) => {

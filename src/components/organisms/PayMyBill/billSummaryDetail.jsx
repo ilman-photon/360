@@ -4,7 +4,7 @@ import Navbar from "../../molecules/Navbar/Navbar";
 import { patientTypography } from "../../../styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { useTranslation } from "next-i18next";
-import { Box, Button, Link, Typography } from "@mui/material";
+import { Box, Button, IconButton, Link, Typography } from "@mui/material";
 import styles from "./styles.module.scss";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
@@ -17,6 +17,9 @@ const SummaryBillDetail = ({
   data,
   isDesktop,
   goBack = () => {
+    //This is intentional
+  },
+  handleAssetDownload = () => {
     //This is intentional
   },
 }) => {
@@ -146,10 +149,21 @@ const SummaryBillDetail = ({
               </Box>
               {isDesktop ? (
                 <Box>
-                  <FileDownloadOutlinedIcon
-                    sx={{ color: "#003B4A", marginRight: "16px" }}
-                  />
-                  <LocalPrintshopOutlinedIcon sx={{ color: "#003B4A" }} />
+                  <IconButton
+                    sx={{ marginRight: "16px" }}
+                    onClick={() => {
+                      handleAssetDownload(data?.id, false);
+                    }}
+                  >
+                    <FileDownloadOutlinedIcon sx={{ color: "#003B4A" }} />
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {
+                      handleAssetDownload(data?.id, true);
+                    }}
+                  >
+                    <LocalPrintshopOutlinedIcon sx={{ color: "#003B4A" }} />
+                  </IconButton>
                 </Box>
               ) : (
                 <MoreOptionBtn />
