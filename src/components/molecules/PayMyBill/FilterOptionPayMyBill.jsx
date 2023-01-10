@@ -35,6 +35,7 @@ export const FilterOptionPayMyBill = ({
     option: "",
     show: false,
   });
+  const fontStyle = { color: "#303030", fontSize: "16px", fontStyle: "normal" };
 
   useEffect(() => {
     switch (optionSelected) {
@@ -124,19 +125,13 @@ export const FilterOptionPayMyBill = ({
           }}
         >
           <MenuItem value="">
-            <Typography sx={{ color: "#303030", fontSize: "16px" }}>
-              {t("selectOption")}
-            </Typography>
+            <Typography sx={fontStyle}>{t("selectOption")}</Typography>
           </MenuItem>
           <MenuItem value={"date"}>
-            <Typography sx={{ color: "#303030", fontSize: "16px" }}>
-              Date Range
-            </Typography>
+            <Typography sx={fontStyle}>Date Range</Typography>
           </MenuItem>
           <MenuItem value={"invoiceNumber"}>
-            <Typography sx={{ color: "#303030", fontSize: "16px" }}>
-              Invoice Number
-            </Typography>
+            <Typography sx={fontStyle}>Invoice Number</Typography>
           </MenuItem>
         </Select>
       </Box>

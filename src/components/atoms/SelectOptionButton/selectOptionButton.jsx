@@ -123,7 +123,7 @@ export default function SelectOptionButton({
               <MenuItem
                 key={idx}
                 value={option}
-                sx={{ fontSize: "16px" }}
+                sx={{ fontSize: "16px", whiteSpace: "pre-wrap" }}
                 // inputProps={{
                 //   "aria-label": `${option}`,
                 //   "aria-live": "polite",

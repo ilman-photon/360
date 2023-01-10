@@ -76,6 +76,9 @@ const payMyBill = [
     icon: iconPayBillInvoices,
     href: `/patient/pay-my-bill?activeTab=${0}`,
     label: "View & Pay Open Invoices",
+    width: "11px",
+    height: "18px",
+    margin: "0 10px 0 15px",
   },
   {
     icon: iconInvoiceHistory,
@@ -139,6 +142,9 @@ const Navbar = ({ isDashboard = false }) => {
   };
 
   function MenuItemLabel(item, itemIdx) {
+    const width = item?.width ? item?.width : "16px";
+    const height = item?.height ? item?.height : "16px";
+    const margin = item?.margin ? item?.margin : "0 10px";
     return (
       <MenuItem
         key={itemIdx}
@@ -146,13 +152,19 @@ const Navbar = ({ isDashboard = false }) => {
         aria-label={`${item.label} menu`}
       >
         {item.icon && (
-          <Image alt="" src={item?.icon} width={"16px"} height={"16px"} />
+          <Image
+            alt=""
+            src={item?.icon}
+            width={width}
+            height={height}
+            margin={margin}
+          />
         )}
         {item?.iconMui}
         <Typography
           textAlign="center"
           sx={{
-            margin: "0 10px",
+            margin,
             fontFamily: "Museo Sans",
             fontWeight: "400",
             fontSize: {
