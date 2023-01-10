@@ -61,17 +61,9 @@ const pushNewDataByCondition = (newData, item, isOpen) => {
   }
 };
 
-const mappingListData = (data, isOpen) => {
+export const mappingListData = (data, isOpen) => {
   let newData = [];
   data?.entities.map((item) => {
-    pushNewDataByCondition(newData, item, isOpen);
-  });
-  return newData;
-};
-
-const mappingSearchListData = (data, isOpen) => {
-  let newData = [];
-  data?.map((item) => {
     pushNewDataByCondition(newData, item, isOpen);
   });
   return newData;

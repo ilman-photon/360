@@ -106,6 +106,7 @@ export default function Appointments() {
         inline: "nearest",
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRequestedUpcoming]);
 
   useEffect(() => {
