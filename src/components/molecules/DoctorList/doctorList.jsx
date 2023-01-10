@@ -118,7 +118,7 @@ export default function DoctorList({
             display: "inherit",
             flexWrap: "inherit",
             flexDirection: "inherit",
-            width: isMobile ? "100%" : providerData.length === 1 && "50%",
+            width: providerData.length === 1 && !isMobile ? "50%" : "100%",
           }}
         >
           {showItems(providerData)}
