@@ -49,7 +49,7 @@ export default function RowRadioButtonsGroup({
           ...textSx,
         }}
       >
-        {props.label}
+        <div style={props.labelSx}>{props.label}</div>
         {tooltipContent ? (
           <>
             <Tooltip
