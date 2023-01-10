@@ -77,7 +77,7 @@ export default function UpdateUsernameView({
               }}
             >
               <Typography tabIndex={0} variant="bodyMedium" color={"#191919"}>
-                You can submit a valid email ID or phone number as your username
+                Enter a valid email ID or phone number as your username
               </Typography>
               <Controller
                 name="username"
