@@ -462,7 +462,7 @@ export class Api {
     const userProfile = JSON.parse(localStorage.getItem("userProfile"));
     const firstName = userProfile?.firstName || "";
     const lastName = userProfile?.lastName || "";
-    const url = `/ecp/appointments/patientDetails?search.query=((patient.firstName=eq=${firstName})AND(patient.lastName=eq=${lastName}))`;
+    const url = `/ecp/appointments/getProvidersBasedOnPatientName?search.query=((patient.firstName=eq=${firstName})AND(patient.lastName=eq=${lastName}))`;
     return this.getResponse(url, {}, "get");
   }
 
