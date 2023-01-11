@@ -19,6 +19,7 @@ import { colors } from "../../../styles/theme";
 import { resetFormMessage } from "../../../store";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "next-i18next";
+import { isFutureDate } from "../../../utils/dateFormatter";
 
 export const isDOB = (value) => {
   let date = new Date().getFullYear();
@@ -403,6 +404,11 @@ export default function Register({
                   validate: {
                     required: (value) => {
                       if (!isDOB(value)) return t("invalidDOB");
+                    },
+                    notFutureDate: (value) => {
+                      if (isFutureDate(value)) {
+                        return t("invalidDOB");
+                      }
                     },
                   },
                 }}
