@@ -6,3 +6,9 @@
 .customAddress {
   width: unset;
 }
+
+.scheduleDisableBtn {
+  background: #b1b1b1;
+  pointer-events: none;
+  cursor: not-allowed;
+}

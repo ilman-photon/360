@@ -543,7 +543,10 @@ export default function SearchBar({
   );
 
   return (
-    <Box padding={!isMobile ? "24px 21px" : "8px"} className={styles.searchDoctor}>
+    <Box
+      padding={!isMobile ? "24px 21px" : "8px"}
+      className={styles.searchDoctor}
+    >
       <Typography
         tabIndex={0}
         variant="h2"
