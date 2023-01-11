@@ -1,23 +1,26 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
-import TableWithSort from "../TableWithSort/tableWithSort";
-import { Button, Stack } from "@mui/material";
-import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
-import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
+import { Button, IconButton, Stack } from "@mui/material";
+import FileDownloadIcon from "../../../assets/icons/FileDownload";
 import { colors } from "../../../styles/theme";
-import { useEffect } from "react";
-import { resetDocuments } from "../../../store/document";
+import PatientAcccountCard from "../ManagePatientAccount/PatientAcccountCard";
+import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
+import ReceiptIcon from "@mui/icons-material/Receipt";
 
-export const InvoiceHistoryMobileView = ({ data }) => {
-  const dispatch = useDispatch();
-  const tableConfiguration = {
+export function tableConfiguration(
+  headerData = [],
+  cellData = [],
+  primaryAction,
+  secondaryAction
+) {
+  return {
     header: [
+      ...headerData,
       {
         type: "text",
-        id: "_numberInvoice",
+        id: "provider",
         numeric: false,
         disablePadding: true,
-        label: "Invoice Number",
+        label: "Provider",
         width: "70px",
         sx: {
           color: colors.darkGreen,
@@ -34,32 +37,16 @@ export const InvoiceHistoryMobileView = ({ data }) => {
           },
         },
       },
-      {
-        type: "text",
-        id: "_dos",
-        numeric: false,
-        disablePadding: true,
-        label: "Date of Service",
-        width: 85,
-        sx: {
-          color: colors.darkGreen,
-          fontSize: {
-            xs: 14,
-            md: 16,
-          },
-          maxWidth: "85px",
-        },
-      },
-      { type: "empty", width: 20, padding: "16px 0px" },
-      { type: "empty", width: 22 },
     ],
     cells: [
+      ...cellData,
       {
         type: "text",
         primary: true,
-        valueKey: "invoiceNumber",
+        valueKey: "provider",
         cellProps: { padding: "0px 24px" },
         contentStyle: {
+          flex: 2,
           padding: "0px 24px",
           ".MuiTableCell-root": {
             padding: "16px 24px",
@@ -68,93 +55,176 @@ export const InvoiceHistoryMobileView = ({ data }) => {
         contentClass: "clipped clip-2",
       },
       {
-        type: "text",
-        valueKey: "dos",
-        cellProps: {
-          align: "left",
-          component: "th",
-          padding: "none",
-          width: "30px",
-        },
-        contentStyle: {
-          padding: "8px 0",
-          fontSize: "12px",
-        },
-        contentClass: "clipped clip-2",
-      },
-      {
-        type: "button-icon-text",
-        cellProps: {
-          align: "left",
-          component: "td",
-          padding: "none",
-          height: "40px",
-        },
+        type: "custom-content",
         children: (props) => {
           return (
-            <Button
-              onClick={() => onGoToViewDetail(props)}
+            <Stack
+              flexDirection={"row"}
               sx={{
-                display: "flex",
-                flexDirection: "row",
-                backgroundColor: "#007e8f",
-                color: "#ffffff",
-                gap: "8px",
-                padding: "8px 20px",
-                height: "40px",
-                alignItems: "center",
-                justifyContent: "center",
-                textTransform: "inherit",
-                borderRadius: "50%",
-                minWidth: "40px",
-                width: "40px",
-                ":hover": { backgroundColor: "#007e8f" },
+                borderTop: "1px solid #dadada80",
+                paddingTop: "24px",
+                justifyContent: "space-between",
               }}
             >
-              <PictureAsPdfOutlinedIcon
-                sx={{
-                  color: "#FFFFFF",
-                  width: "20px",
-                  height: "20px",
+              <Button
+                onClick={() => {
+                  primaryAction(props);
                 }}
-              />
-            </Button>
+                sx={{
+                  display: "flex",
+                  backgroundColor: "#007e8f",
+                  color: "#ffffff",
+                  gap: "8px",
+                  padding: "8px 20px",
+                  height: "46px",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "30px",
+                  textTransform: "capitalize",
+                }}
+              >
+                <ReceiptIcon
+                  sx={{
+                    color: "#FFFFFF",
+                    width: "20px",
+                    height: "20px",
+                  }}
+                />
+                View Details
+              </Button>
+              <Stack
+                flexDirection={"row"}
+                sx={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "46px",
+                }}
+              >
+                <IconButton
+                  sx={{ width: 24, height: 24, p: 0, marginRight: "18px" }}
+                  data-testid="downloadPDFButton"
+                  onClick={() => {
+                    secondaryAction(props.id);
+                  }}
+                >
+                  <FileDownloadIcon sx={{ fill: colors.darkGreen }} />
+                </IconButton>
+                <IconButton
+                  sx={{ width: 24, height: 24, p: 0 }}
+                  data-testid="printPDFButton"
+                  onClick={() => {
+                    secondaryAction(props.id, true);
+                  }}
+                >
+                  <LocalPrintshopOutlinedIcon sx={{ fill: colors.darkGreen }} />
+                </IconButton>
+              </Stack>
+            </Stack>
           );
-        },
-      },
-      {
-        type: "menus",
-        valueKey: "digital_assets._id",
-        cellProps: {
-          padding: "none",
-          sx: {
-            textAlign: "center",
-          },
         },
       },
     ],
   };
+}
 
-  const handleAssetDownload = (id) => {
-    fetchSource(id);
-  };
+export const InvoiceHistoryMobileView = ({
+  handleAssetDownload = () => {
+    //This is intentional
+  },
+  onGoToViewDetail = () => {
+    //This is intentional
+  },
+  data,
+}) => {
+  const headerData = [
+    {
+      type: "text",
+      id: "invoiceNumber",
+      numeric: false,
+      disablePadding: true,
+      label: "Invoice Number",
+      width: "70px",
+      sx: {
+        color: colors.darkGreen,
+        fontSize: {
+          xs: 14,
+          md: 16,
+        },
+        padding: "0px 16px",
+        maxWidth: "140px",
+        ".MuiTableSortLabel-root": {
+          "&.Mui-active": {
+            color: colors.darkGreen,
+          },
+        },
+      },
+    },
+    {
+      type: "text",
+      id: "dos",
+      numeric: false,
+      disablePadding: true,
+      label: "Date of Service",
+      width: 85,
+      sx: {
+        color: colors.darkGreen,
+        fontSize: {
+          xs: 14,
+          md: 16,
+        },
+        maxWidth: "85px",
+      },
+    },
+  ];
 
-  useEffect(() => {
-    dispatch(resetDocuments());
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const cellsData = [
+    {
+      type: "text",
+      primary: true,
+      valueKey: "invoiceNumber",
+      cellProps: { padding: "0px 24px" },
+      contentStyle: {
+        padding: "0px 24px",
+        ".MuiTableCell-root": {
+          padding: "16px 24px",
+        },
+      },
+      contentClass: "clipped clip-2",
+    },
+    {
+      type: "text",
+      valueKey: "dos",
+      cellProps: {
+        align: "left",
+        component: "th",
+        padding: "none",
+        width: "30px",
+      },
+      contentStyle: {
+        padding: "8px 0",
+        fontSize: "12px",
+      },
+      contentClass: "clipped clip-2",
+    },
+  ];
 
   return (
     <Stack spacing={3} sx={{ mt: 1 }}>
       {data?.length > 0 && (
-        <TableWithSort
-          config={tableConfiguration}
+        <PatientAcccountCard
+          config={tableConfiguration(
+            headerData,
+            cellsData,
+            onGoToViewDetail,
+            handleAssetDownload
+          )}
           rows={data}
-          onAssetDownload={handleAssetDownload}
-          additionalProps={{
-            tableProps: { "aria-label": `Invoices History Mobile` },
+          showResultNum={false}
+          cardSx={{
+            borderColor: "#ECECEC",
+            borderStyle: "solid",
           }}
+          showSortFilter={false}
         />
       )}
     </Stack>

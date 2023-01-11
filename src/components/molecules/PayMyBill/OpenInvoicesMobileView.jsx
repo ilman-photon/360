@@ -1,15 +1,16 @@
 import * as React from "react";
-import { Box, Button, IconButton, Typography } from "@mui/material";
-import styles from "./styles.module.scss";
+import { Stack } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { colors } from "../../../styles/theme";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import FileDownloadIcon from "../../../assets/icons/FileDownload";
-import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
+import PatientAcccountCard from "../ManagePatientAccount/PatientAcccountCard";
+import { tableConfiguration } from "./InvoicesHistoryMobileView";
 
 export const OpenInvoiceMobileView = ({
   data,
   onGoToViewDetail = () => {
+    //This is intentional
+  },
+  handleAssetDownload = () => {
     //This is intentional
   },
 }) => {
@@ -17,84 +18,163 @@ export const OpenInvoiceMobileView = ({
     keyPrefix: "payMyBill",
   });
 
+  const headerData = [
+    {
+      type: "text",
+      id: "invoiceNumber",
+      numeric: false,
+      disablePadding: true,
+      label: "Invoice Number",
+      width: "70px",
+      sx: {
+        color: colors.darkGreen,
+        fontSize: {
+          xs: 14,
+          md: 16,
+        },
+        padding: "0px 16px",
+        maxWidth: "140px",
+        ".MuiTableSortLabel-root": {
+          "&.Mui-active": {
+            color: colors.darkGreen,
+          },
+        },
+      },
+    },
+    {
+      type: "text",
+      id: "dos",
+      numeric: false,
+      disablePadding: true,
+      label: "Date of Service",
+      width: 85,
+      sx: {
+        color: colors.darkGreen,
+        fontSize: {
+          xs: 14,
+          md: 16,
+        },
+        maxWidth: "85px",
+      },
+    },
+    {
+      type: "text",
+      id: "creditBalance",
+      numeric: false,
+      disablePadding: true,
+      label: "Credit Balance",
+      width: 85,
+      sx: {
+        color: colors.darkGreen,
+        fontSize: {
+          xs: 14,
+          md: 16,
+        },
+        maxWidth: "85px",
+      },
+    },
+    {
+      type: "text",
+      id: "patientDue",
+      numeric: false,
+      disablePadding: true,
+      label: "Patient Due",
+      width: 85,
+      sx: {
+        color: colors.darkGreen,
+        fontSize: {
+          xs: 14,
+          md: 16,
+        },
+        maxWidth: "85px",
+      },
+    },
+  ];
+
+  const cellsData = [
+    {
+      type: "text",
+      primary: true,
+      valueKey: "invoiceNumber",
+      cellProps: { padding: "0px 24px" },
+      contentStyle: {
+        padding: "0px 24px",
+        ".MuiTableCell-root": {
+          padding: "16px 24px",
+        },
+      },
+      contentClass: "clipped clip-2",
+    },
+    {
+      type: "text",
+      valueKey: "dos",
+      cellProps: {
+        align: "left",
+        component: "th",
+        padding: "none",
+        width: "30px",
+      },
+      contentStyle: {
+        padding: "8px 0",
+        fontSize: "12px",
+      },
+      contentClass: "clipped clip-2",
+    },
+    {
+      type: "text",
+      valueKey: "creditBalance",
+      cellProps: {
+        align: "left",
+        component: "th",
+        padding: "none",
+        width: "30px",
+      },
+      contentStyle: {
+        padding: "8px 0",
+        fontSize: "12px",
+      },
+      contentClass: "clipped clip-2",
+    },
+    {
+      type: "text",
+      valueKey: "patientDue",
+      cellProps: {
+        align: "left",
+        component: "th",
+        padding: "none",
+        width: "30px",
+      },
+      contentStyle: {
+        padding: "8px 0",
+        fontSize: "12px",
+      },
+      sx: {
+        color: "#0095A9",
+      },
+      contentClass: "clipped clip-2",
+    },
+  ];
+
   return (
-    <Box className={styles.mobileContainer}>
-      {data?.length > 0 &&
-        data?.map((item, index) => {
-          return (
-            <Box key={index} className={styles.mobileOpenInvoiceContainer}>
-              <Box className={styles.cardContainer}>
-                {Object.keys(item).map(function (key) {
-                  return (
-                    <Box key={key} className={styles.listInfoContent}>
-                      <Typography className={styles.subHeadingLeftText}>
-                        {t(key)}
-                      </Typography>
-                      <Typography
-                        className={
-                          key == "patientDue"
-                            ? styles.subHeadingBlueText
-                            : styles.subHeadingRightText
-                        }
-                      >
-                        {item[key]}
-                      </Typography>
-                    </Box>
-                  );
-                })}
-              </Box>
-              <Box className={styles.mobileOpenBtnContainer}>
-                <Button
-                  onClick={() => onGoToViewDetail(item)}
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    backgroundColor: "#007e8f",
-                    color: "#ffffff",
-                    gap: "8px",
-                    padding: "8px 20px",
-                    height: "46px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    textTransform: "inherit",
-                    borderRadius: "30px",
-                    width: "fit-content",
-                    ":hover": { backgroundColor: "#007e8f" },
-                  }}
-                >
-                  <ReceiptOutlinedIcon className={styles.btnIcon} />
-                  <Typography
-                    sx={{
-                      fontWeight: "600",
-                      color: "#FFFFFF",
-                      fontSize: "16px",
-                      lineHeight: "18px",
-                    }}
-                  >
-                    {t("viewDetails")}
-                  </Typography>
-                </Button>
-                <Box className={styles.mobileIconContainer}>
-                  <IconButton
-                    sx={{ width: 24, height: 24, p: 0 }}
-                    data-testid="downloadPDFButton"
-                  >
-                    <FileDownloadIcon sx={{ fill: colors.darkGreen }} />
-                  </IconButton>
-                  <IconButton
-                    sx={{ width: 24, height: 24, p: 0 }}
-                    data-testid="downloadPDFButton"
-                  >
-                    <LocalPrintshopOutlinedIcon
-                      sx={{ fill: colors.darkGreen }}
-                    />
-                  </IconButton>
-                </Box>
-              </Box>
-            </Box>
-          );
-        })}
-    </Box>
+    <Stack spacing={3} sx={{ mt: 1 }}>
+      {data?.length > 0 && (
+        <PatientAcccountCard
+          config={tableConfiguration(
+            headerData,
+            cellsData,
+            onGoToViewDetail,
+            handleAssetDownload
+          )}
+          rows={data}
+          showResultNum={false}
+          cardSx={{
+            borderColor: "#ECECEC",
+            borderStyle: "solid",
+          }}
+          showSortFilter={false}
+        />
+      )}
+    </Stack>
   );
 };
 

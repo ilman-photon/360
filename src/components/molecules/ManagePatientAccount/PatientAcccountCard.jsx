@@ -38,6 +38,7 @@ export default function PatientAcccountCard({
   },
   additionalContent = () => <></>,
   showResultNum = true,
+  showSortFilter = true,
   cardSx = {},
   sortSx = {},
 }) {
@@ -124,6 +125,14 @@ export default function PatientAcccountCard({
     sortOptions === undefined && generateSortOptions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSort]);
+
+  React.useEffect(() => {
+    if (!showSortFilter) {
+      setSortedRows(rows);
+      setrecords(rows.length);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rows]);
 
   const generateSortOptions = () => {
     const sort = [];
@@ -392,6 +401,8 @@ export default function PatientAcccountCard({
                       ))}
                     </Box>
                   );
+                case "custom-content":
+                  return <>{cell.children(item)}</>;
               }
             })}
           </Box>
@@ -403,65 +414,72 @@ export default function PatientAcccountCard({
     return data;
   };
 
-  return (
-    <>
-      <Stack
-        sx={{
-          flexDirection: "row",
-          alignItems: "center",
-          p: 2,
-          backgroundColor: "#f3f5f6",
-          gap: 2,
-          mt: 0,
-          ...sortSx,
-        }}
-      >
-        <Typography
+  function getSortFilterUI() {
+    return (
+      <>
+        <Stack
           sx={{
-            whiteSpace: "nowrap",
-            fontWeight: 600,
-            fontSize: "14px",
-            lineHeight: "18px",
-            color: colors.darkGreen,
+            flexDirection: "row",
+            alignItems: "center",
+            p: 2,
+            backgroundColor: "#f3f5f6",
+            gap: 2,
+            mt: 0,
+            ...sortSx,
           }}
         >
-          Sort By
-        </Typography>
-        {sortOptions !== undefined && (
-          <Select
+          <Typography
             sx={{
-              width: "100%",
-              backgroundColor: "white",
-              ".MuiInputBase-root": {
-                color: "#A5A5AC",
-              },
+              whiteSpace: "nowrap",
+              fontWeight: 600,
+              fontSize: "14px",
+              lineHeight: "18px",
+              color: colors.darkGreen,
             }}
-            IconComponent={KeyboardArrowDown}
-            MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
-            value={selectedSort}
-            onChange={(e) => setSelectedSort(e.target.value)}
           >
-            {sortOptions.map((option, idx) => {
-              return (
-                <MenuItem key={idx} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              );
-            })}
-          </Select>
+            Sort By
+          </Typography>
+          {sortOptions !== undefined && (
+            <Select
+              sx={{
+                width: "100%",
+                backgroundColor: "white",
+                ".MuiInputBase-root": {
+                  color: "#A5A5AC",
+                },
+              }}
+              IconComponent={KeyboardArrowDown}
+              MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+              value={selectedSort}
+              onChange={(e) => setSelectedSort(e.target.value)}
+            >
+              {sortOptions.map((option, idx) => {
+                return (
+                  <MenuItem key={idx} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          )}
+        </Stack>
+        {additionalContent()}
+        {showResultNum && (
+          <Typography
+            variant="headlineH4"
+            tabIndex={0}
+            sx={{ fontSize: "16px", p: 2, background: "white", mb: 0.1 }}
+          >
+            {`${rows.length} Results found using your search criteria`}
+          </Typography>
         )}
-      </Stack>
-      {additionalContent()}
-      {showResultNum && (
-        <Typography
-          variant="headlineH4"
-          tabIndex={0}
-          sx={{ fontSize: "16px", p: 2, background: "white", mb: 0.1 }}
-        >
-          {`${rows.length} Results found using your search criteria`}
-        </Typography>
-      )}
+      </>
+    );
+  }
 
+  return (
+    <>
+      {showSortFilter && getSortFilterUI()}
       <InfiniteScroll
         pageStart={0}
         loadMore={loadMore}
