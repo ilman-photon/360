@@ -91,7 +91,7 @@ export default function Bio({ embedApi, bio }) {
     specialties = specialties.filter((e) => e);
 
     const data = {
-      providerId: response.id || "",
+      providerId: response._id || "",
       image: response.providerDetails?.profilePhoto?.digitalAsset || "",
       name,
       rating: response.providerDetails?.rating || 0,
@@ -167,6 +167,7 @@ export default function Bio({ embedApi, bio }) {
         location,
         date: moment().format("MM/DD/YYYY"),
         purposeOfVisit: selectedAppointmentType?.title || "ALL",
+        providerId: data.providerId,
       };
 
       dispatch(setFilterData(filterData));

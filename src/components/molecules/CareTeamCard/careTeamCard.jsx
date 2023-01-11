@@ -51,6 +51,7 @@ export default function CareTeamCard({ provider, coordinate }) {
         location,
         date: moment().format("MM/DD/YYYY"),
         purposeOfVisit: selectedAppointmentType?.title || "ALL",
+        providerId: provider.providerId,
       };
 
       dispatch(setFilterData(filterData));
