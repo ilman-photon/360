@@ -89,9 +89,13 @@ export const AccountSidebar = () => {
               alignItems="center"
               sx={{ width: "100%" }}
             >
-              <SidebarLink router={router} href={link.href} child={link.child}>
-                <div style={{ color: colors.iconGrey }}>{link.icon}</div>
-                <div style={{ color: colors.grayscaleBlack }}>{link.label}</div>
+              <SidebarLink
+                router={router}
+                href={link.href}
+                child={link.child}
+                icon={link.icon}
+              >
+                <div>{link.label}</div>
               </SidebarLink>
             </Stack>
           ) : (

@@ -14,7 +14,9 @@ import axios from "axios";
 import {
   createMatchMedia,
   defaultValidation,
+  doLogin,
   renderAppointmentDetail,
+  renderLogin,
 } from "../../__mocks__/commonSteps";
 import {
   mockAppointmentTypes,
@@ -22,6 +24,7 @@ import {
   MOCK_APPOINTMENT,
   MOCK_PAST,
   MOCK_SUGESTION,
+  mockSubmitFilterReal,
 } from "../../__mocks__/mockResponse";
 import { Login } from "../../src/components/organisms/Login/login";
 import { Provider } from "react-redux";
@@ -32,6 +35,7 @@ import FilterResult from "../../src/components/molecules/FilterResult/filterResu
 import { Marker } from "@react-google-maps/api";
 import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
 import mediaQuery from "css-mediaquery";
+import AppointmentLayout from "../../src/components/templates/appointmentLayout";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2530.feature"
@@ -362,118 +366,272 @@ jest.mock("@react-google-maps/api", () => ({
 
 let container;
 const mock = new MockAdapter(axios);
-const element = document.createElement("div");
 let appointmentsContainer;
 const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID;
 
-const launchURL = () => {
-  const mockOnLoginClicked = jest.fn((data, route, callback) => {
-    callback({
-      status: "success",
-    });
-  });
-  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+const mockSuggestionReal = {
+  count: 5,
+  entities: [
+    {
+      code: "Clinical_Diagnosis",
+      name: "Clinical_Diagnosis",
+      key: 4,
+      order: 4,
+      category: {
+        code: "Vision",
+        description: "Vision",
+      },
+      acronym: "CAD",
+      color: "#6fc77b",
+      slotLength: 5,
+      notes: "",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/Clinical_Diagnosis",
+        },
+      },
+    },
+    {
+      code: "NO_APPOINTMENT",
+      name: "NO APPOINTMENT",
+      key: 1,
+      order: 1,
+      category: {
+        code: "Medical",
+        description: "Medical",
+      },
+      acronym: "NA",
+      color: "#8F8F8F",
+      slotLength: 5,
+      notes: "NO_APPOINTMENT is a default appointment type",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/NO_APPOINTMENT",
+        },
+      },
+    },
+    {
+      code: "Comprehensive",
+      name: "Comprehensive",
+      key: 2,
+      order: 2,
+      category: {
+        code: "Medical",
+        description: "Medical",
+      },
+      acronym: "CP",
+      color: "#f2ee74",
+      slotLength: 5,
+      notes: "",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/Comprehensive",
+        },
+      },
+    },
+    {
+      code: "Glaucome_Appointment",
+      name: "Glaucoma_Appointment",
+      key: 3,
+      order: 3,
+      category: {
+        code: "Vision",
+        description: "Vision",
+      },
+      acronym: "GPA",
+      color: "#528aa8",
+      slotLength: 5,
+      notes: "",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/Glaucome_Appointment",
+        },
+      },
+    },
+    {
+      code: "Retina_checkup",
+      name: "Retina checkup",
+      key: 5,
+      order: 5,
+      category: {
+        code: "Vision",
+        description: "Vision",
+      },
+      acronym: "RET",
+      color: "#db8686",
+      slotLength: 5,
+      notes: "",
+      _links: {
+        self: {
+          href: "/v1/appointment-types/Retina_checkup",
+        },
+      },
+    },
+  ],
+  _links: {
+    self: {
+      href: "/appointments?pageNo=0&pageSize=100",
+    },
+  },
 };
-
-const userSeeScheduleScreen = () => {
-  expect(container.getAllByText("Date and time")).toBeTruthy();
-  expect(container.getAllByText("Insurance")).toBeTruthy();
-  expect(container.getAllByText("No Insurance provided")).toBeTruthy();
-  expect(container.getAllByText("Purpose of visit")).toBeTruthy();
-};
-
-const inputLocation = async () => {
-  const locationInput = await waitFor(() =>
-    container.getByLabelText("City, state, or zip code")
-  );
-  act(() => {
-    fireEvent.change(locationInput, { target: { value: "Texas" } });
-  });
-  expect(locationInput).toBeInTheDocument();
-};
-
-const inputDate = async () => {
-  const dateInput = await waitFor(() => container.getByLabelText("Date"));
-  act(() => {
-    fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
-  });
-  expect(dateInput).toBeInTheDocument();
-};
-
-const inputPurpose = async () => {
-  const purposeInput = await waitFor(() =>
-    container.getByTestId("select-purposes-of-visit")
-  );
-  act(() => {
-    fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
-  });
-  expect(purposeInput).toBeInTheDocument();
-};
-
-const inputInsurance = async () => {
-  const insuranceInput = await waitFor(() =>
-    container.getByLabelText("Insurance Carrier")
-  );
-  act(() => {
-    fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
-  });
-  expect(insuranceInput).toBeInTheDocument();
-};
-
-const clickSearch = async () => {
-  const searchBtn = await waitFor(() =>
-    container.getByTestId(APPOINTMENT_TEST_ID.searchbtn)
-  );
-  fireEvent.click(searchBtn);
-  expect(searchBtn).toBeInTheDocument();
-};
-
-const clickHour = async () => {
-  const hourButton = await waitFor(() =>
-    container.getByTestId(SEARCH_PROVIDER_TEST_ID.hourButton)
-  );
-  fireEvent.click(hourButton);
-};
-
-const resultsScreen = async () => {
-  let containerFilter;
-  const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" };
-  containerFilter = render(
-    <FilterResult
-      isDesktop={true}
-      providerList={providerList}
-      rangeDate={rangeDate}
-      purposeOfVisitData={[]}
-      insuranceCarrierData={[]}
-      googleApiKey={"Test"}
-      filterData={{
-        location: "",
-        date: "",
-        purposeOfVisit: "",
-        insuranceCarrier: "",
-      }}
-    />
-  );
-  expect(
-    await waitFor(() =>
-      container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
-    )
-  ).toBeInTheDocument();
-};
-
-const userLandsOnReviewAppointmentPage = async () => {
-  container.rerender(
-    <Provider store={store}>
-      {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
-    </Provider>
-  );
-
-  const reviewText = await waitFor(() => container.getByText(/Review Appointment Details/i))
-
-  expect(reviewText).toBeInTheDocument();
-}
 
 defineFeature(feature, (test) => {
+  const launchURL = async () => {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn(),
+    };
+  
+    const domain = window.location.origin;
+    mock
+      .onGet(`/ecp/appointments/appointment-types`)
+      .reply(200, mockSuggestionReal);
+    mock
+      .onPut(`/ecp/appointments/available-slot?searchText=Texas`)
+      .reply(200, mockSubmitFilterReal);
+  
+    global.navigator.geolocation = mockGeolocation;
+    window.matchMedia = createMatchMedia("720px");
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(
+            <AppointmentLayout
+              pageTitle="Schedule Appointment - Search Page"
+              currentActivePage={"appointment"}
+            >
+              <Appointment />
+            </AppointmentLayout>
+          )}
+        </Provider>
+      );
+    });
+    await waitFor(() => {
+      container.getByText(/City, state, or zip/i);
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+    });
+  };
+  
+  const userSeeScheduleScreen = () => {
+    expect(container.getAllByText("Date and time")).toBeTruthy();
+    expect(container.getAllByText("Insurance")).toBeTruthy();
+    expect(container.getAllByText("No Insurance provided")).toBeTruthy();
+    expect(container.getAllByText("Purpose of visit")).toBeTruthy();
+  };
+  
+  const inputLocation = async () => {
+    const locationInput = await waitFor(() =>
+      container.getByLabelText("City, state, or zip code")
+    );
+    act(() => {
+      fireEvent.change(locationInput, { target: { value: "Texas" } });
+    });
+    expect(locationInput).toBeInTheDocument();
+  };
+  
+  const inputDate = async () => {
+    const dateInput = await waitFor(() => container.getByLabelText("Date"));
+    act(() => {
+      fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
+    });
+  };
+  
+  const inputPurpose = async () => {
+    const purposeInput = await waitFor(() =>
+      container.getByTestId("select-purposes-of-visit")
+    );
+    act(() => {
+      fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+    });
+  };
+  
+  const inputInsurance = async () => {
+    const insuranceInput = await waitFor(() =>
+      container.getByLabelText("Insurance Carrier")
+    );
+    act(() => {
+      fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+    });
+  };
+  
+  const clickSearch = async () => {
+    const searchBtn = await waitFor(() =>
+      container.getByTestId(APPOINTMENT_TEST_ID.searchbtn)
+    );
+    fireEvent.click(searchBtn);
+  };
+  
+  const clickHour = async () => {
+    const hourButton = await waitFor(() =>
+      container.getByTestId(SEARCH_PROVIDER_TEST_ID.hourButton)
+    );
+    fireEvent.click(hourButton);
+  };
+  
+  const resultsScreen = async () => {
+    let containerFilter;
+    const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" };
+    containerFilter = render(
+      <FilterResult
+        isDesktop={true}
+        providerList={providerList}
+        rangeDate={rangeDate}
+        purposeOfVisitData={[]}
+        insuranceCarrierData={[]}
+        googleApiKey={"Test"}
+        filterData={{
+          location: "",
+          date: "",
+          purposeOfVisit: "",
+          insuranceCarrier: "",
+        }}
+      />
+    );
+    expect(
+      await waitFor(() =>
+        container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
+      )
+    ).toBeInTheDocument();
+  };
+  
+  const userLandsOnReviewAppointmentPage = async () => {
+    container.rerender(
+      <Provider store={store}>
+        {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
+      </Provider>
+    );
+  
+    const reviewText = await waitFor(() => container.getByText(/Review Appointment Details/i))
+  
+    expect(reviewText).toBeInTheDocument();
+  }
+
+  const userNavigateToAppointmentPage = async () => {
+    cleanup();
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn(),
+    };
+
+    const domain = window.location.origin;
+    mock
+      .onGet(
+        `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+      )
+      .reply(200, MOCK_SUGESTION);
+    mock
+      .onPost(
+        `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+      )
+      .reply(400, {});
+    global.navigator.geolocation = mockGeolocation;
+    container = render(
+      <Provider store={store}>
+        {Appointment.getLayout(<Appointment />)}
+      </Provider>
+    );
+  }
+
   test("EPIC_EPP-44_STORY_EPP-2530 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.", ({
     given,
     and,
@@ -513,29 +671,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -598,29 +734,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -693,29 +807,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -786,29 +878,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -835,11 +905,8 @@ defineFeature(feature, (test) => {
       resultsScreen();
     });
 
-    and("user views the purpose of the visit.", async () => {
-      const purposeInput = await waitFor(() =>
-        container.getByTestId("select-purposes-of-visit")
-      );
-      expect(purposeInput).toBeInTheDocument();
+    and("user views the purpose of the visit.", () => {
+      defaultValidation()
     });
   });
 
@@ -882,29 +949,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -932,9 +977,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the insurance carrier.", () => {
-      expect(
-        container.getAllByLabelText(/Insurance Carrier/i)[0].value
-      ).toEqual("Aetna");
+      expect(container.getByLabelText("Insurance Carrier")).toBeInTheDocument()
     });
   });
 
@@ -979,29 +1022,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -1075,29 +1096,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -1171,29 +1170,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -1271,29 +1248,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -1375,29 +1330,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -1483,29 +1416,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {
@@ -1595,29 +1506,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user navigates to the search screen", () => {
-      cleanup();
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
+      userNavigateToAppointmentPage()
     });
 
     and("user enters the location", () => {

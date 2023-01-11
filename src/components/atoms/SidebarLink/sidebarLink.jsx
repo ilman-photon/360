@@ -4,7 +4,7 @@ import { colors } from "../../../styles/theme";
 import styles from "./sidebarLink.module.scss";
 import * as accountLayoutStyles from "../../templates/accountLayout.module.scss";
 
-const SidebarLink = ({ router, href, children }) => {
+const SidebarLink = ({ router, href, children, icon }) => {
   const isCurrentPath = router.pathname === href || router.asPath === href;
 
   const handleClick = (e) => {
@@ -39,11 +39,18 @@ const SidebarLink = ({ router, href, children }) => {
         <Typography
           variant="allVariants"
           sx={{
-            color: isCurrentPath ? colors.darkGreen : "#757575",
+            color: isCurrentPath ? colors.darkGreen : colors.grayscaleBlack,
             display: "flex",
             alignItems: "center",
           }}
         >
+          <div
+            style={{
+              color: isCurrentPath ? colors.darkGreen : colors.iconGrey,
+            }}
+          >
+            {icon}
+          </div>
           {children}
         </Typography>
       </a>
