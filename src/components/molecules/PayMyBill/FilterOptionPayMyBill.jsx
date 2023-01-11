@@ -71,11 +71,9 @@ export const FilterOptionPayMyBill = ({
 
   const DateIcon = () => {
     return (
-      <Tooltip title={"Add Date of Birth"}>
-        <IconButton aria-label={"Calendar icon"} edge="end">
-          <CalendarTodayIcon sx={{ color: "#003B4A" }} />
-        </IconButton>
-      </Tooltip>
+      <IconButton aria-label={"Calendar icon"} sx={{ color: "#003B4A" }}>
+        <CalendarTodayIcon sx={{ width: "16.36px", height: "18px" }} />
+      </IconButton>
     );
   };
 
