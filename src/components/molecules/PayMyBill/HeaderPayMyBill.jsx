@@ -56,7 +56,9 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
               color: "#008294",
             }}
           >
-            {convertCurrency(parseInt(accountCreditData?.totalCreditBalance))}
+            {convertCurrency(
+              parseInt(accountCreditData?.totalCreditBalance || 0)
+            )}
           </Typography>
         </Box>
         <Box
@@ -89,7 +91,7 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
               color: "#008294",
             }}
           >
-            {convertCurrency(parseInt(accountCreditData?.totalDueAmount))}
+            {convertCurrency(parseInt(accountCreditData?.totalDueAmount || 0))}
           </Typography>
         </Box>
       </Box>
