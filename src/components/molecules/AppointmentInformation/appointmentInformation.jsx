@@ -137,25 +137,21 @@ export default function AppointmentInformation({ data }) {
           >
             Insurance
           </Typography>
-          {data.appointmentInfo.insuranceCarrier.length > 0 ? (
-            data.appointmentInfo.insuranceCarrier.map((item, index) => {
-              return (
-                <Typography
-                  tabIndex={0}
-                  ariaLabel={item}
-                  variant="body2"
-                  key={index}
-                  sx={{ color: "#191919" }}
-                >
-                  {item}
-                </Typography>
-              );
-            })
-          ) : (
-            <Typography ariaLabel="-" variant="body2" sx={{ color: "#191919" }}>
-              -
-            </Typography>
-          )}
+          {data.appointmentInfo.insuranceCarrier.length > 0
+            ? data.appointmentInfo.insuranceCarrier.map((item, index) => {
+                return (
+                  <Typography
+                    tabIndex={0}
+                    ariaLabel={item}
+                    variant="body2"
+                    key={index}
+                    sx={{ color: "#191919" }}
+                  >
+                    {item}
+                  </Typography>
+                );
+              })
+            : null}
         </Box>
       </Box>
     </Box>
