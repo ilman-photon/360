@@ -985,6 +985,10 @@ export async function onCallSubmitFilterAPI(
         currentcoord
       );
       if (response?.offices?.length > 0) {
+        parseProviderData?.listOfProvider.sort((a, b) => {
+          const checkNextData = b.providerId == requestData.providerId ? 1 : 0;
+          return a.providerId == requestData.providerId ? -1 : checkNextData;
+        });
         dispatch(setProviderListData(parseProviderData?.listOfProvider));
       } else {
         dispatch(setProviderListData([]));
