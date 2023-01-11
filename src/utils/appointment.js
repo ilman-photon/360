@@ -802,6 +802,10 @@ export function addGenderFilter(sex, genderList) {
   return { genderList, gender };
 }
 
+const getDistanceNumber = (string) => {
+  return string?.split(" mi")[0];
+};
+
 export async function parseProviderListData(
   response,
   startDate,
@@ -924,6 +928,10 @@ export async function parseProviderListData(
     }
   }
 
+  data.listOfProvider.sort((a, b) => {
+    return getDistanceNumber(a.distance) - getDistanceNumber(b.distance);
+  });
+
   const getRangeDate = getDates(new Date(startDate), new Date(endDate), false);
   for (const providerData of data.listOfProvider) {
     providerData.availability = createAvailableTimeSlot(
@@ -945,6 +953,7 @@ export async function parseProviderListData(
       checklist: genderFilter,
     });
   }
+
   return data;
 }
 
