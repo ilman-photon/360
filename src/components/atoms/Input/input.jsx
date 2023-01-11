@@ -322,11 +322,6 @@ const renderPhoneInput = (props) => {
           maskChar={null}
           maskPlaceholder=""
           {...props}
-          sx={{
-            "&.MuiFormControl-root": {
-              margin: "0 0 0 10px",
-            },
-          }}
         >
           <StyledRedditField name="phone" type="text" />
         </InputMask>
@@ -374,10 +369,12 @@ const renderDOBTextField = (props, params) => {
         borderRadius: "4px",
         borderColor: "#B5B5B5",
         margin: !props.isFilter && !props.noMargin ? "8px" : 0,
-        width: {
-          xs: props.dobWidth,
-          sm: props.dobWidthSm || props.dobWidth,
-        },
+        width: props.fitWidthFormControl
+          ? "-webkit-fill-available"
+          : {
+              xs: props.dobWidth,
+              sm: props.dobWidthSm,
+            },
         ["& .MuiFilledInput-root"]: {
           border: props.isFilter ? "0px solid #ffff" : "1px solid #BDBDBD",
           ["& .MuiInputBase-input"]: {
@@ -451,47 +448,7 @@ const RenderDOBInput = (props) => {
               )}`;
             else return "Double tap to Choose date";
           }}
-          renderInput={(params) => (
-            <StyledRedditField
-              variant="filled"
-              sx={{
-                borderRadius: "4px",
-                borderColor: "#B5B5B5",
-                margin: !props.isFilter && !props.noMargin ? "8px" : 0,
-                width: {
-                  xs: props.dobWidth,
-                  sm: props.dobWidthSm || props.dobWidth,
-                },
-                ["& .MuiFilledInput-root"]: {
-                  border: props.isFilter
-                    ? "0px solid #ffff"
-                    : "1px solid #BDBDBD",
-                  ["& .MuiInputBase-input"]: {
-                    cursor: props.isFilter ? "pointer" : "inherit",
-                  },
-                },
-                ".Mui-disabled": {
-                  backgroundColor: "#efefef",
-                },
-              }}
-              {...params}
-              onClick={props.onClick}
-              error={props.error}
-              helperText={props.helperText}
-              onPaste={preventPasteHandler}
-              required={props.required}
-              inputProps={{
-                ...params.inputProps,
-                placeholder: "MM/DD/YYYY",
-                readOnly: props.inputProps?.readOnly,
-
-                className:
-                  props.inputProps?.readOnly && !props.inputProps.isTransparent
-                    ? "Mui-disabled"
-                    : undefined,
-              }}
-            />
-          )}
+          renderInput={(params) => renderDOBTextField(props, params)}
           {...props}
         />
       </LocalizationProvider>
