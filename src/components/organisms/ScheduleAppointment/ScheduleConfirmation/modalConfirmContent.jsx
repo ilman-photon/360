@@ -189,9 +189,6 @@ export default function ModalConfirmContent({
                   padding: { xs: "8px", md: "12px 100px" },
                   fontFamily: "Museo Sans",
                 }}
-                aria-label={thankYouText}
-                tabIndex={0}
-                aria-hidden={false}
               >
                 <MailOutlineIcon
                   sx={{ mr: 1, height: "35px", width: "28px" }}
@@ -226,7 +223,11 @@ export default function ModalConfirmContent({
             </div>
 
             {isOPH ? (
-              <Card variant="outlined" className={styles.cardInfoOPH}>
+              <Card
+                variant="outlined"
+                className={styles.cardInfoOPH}
+                tabIndex={0}
+              >
                 <CardContent
                   sx={{
                     px: { xs: 3, md: 3 },
@@ -237,6 +238,7 @@ export default function ModalConfirmContent({
                 >
                   <Typography
                     tabIndex={0}
+                    aria-live={"polite"}
                     aria-label={"Exam Information title"}
                     sx={{
                       fontFamily: "Museo Sans",
@@ -266,7 +268,9 @@ export default function ModalConfirmContent({
                     <Typography
                       tabIndex={0}
                       className={styles.dateBold}
-                      aria-label={appointmentData?.date}
+                      aria-label={formatAppointmentDateWithoutTime(
+                        appointmentData.date
+                      )}
                       sx={{
                         width: "50%",
                         pb: 2,
@@ -294,7 +298,7 @@ export default function ModalConfirmContent({
                       tabIndex={0}
                       className={styles.dateBold}
                       sx={{ pb: 2, width: "50%" }}
-                      aria-label={appointmentData?.date}
+                      aria-label={formatAppointmentTime(appointmentData.date)}
                     >
                       {formatAppointmentTime(appointmentData.date)}
                     </Typography>
@@ -680,17 +684,21 @@ export default function ModalConfirmContent({
                 <Typography
                   variant="caption"
                   sx={{
+                    float: isMobile ? "left" : "unset",
+                    display: "inline-flex",
                     fontSize: "16px",
                     fontFamily: "Museo Sans",
-                    float: isMobile ? "left" : "unset",
+                    gap: "2px",
                   }}
-                  aria-label={"Already have an account? Sign in"}
-                  tabIndex={0}
                 >
-                  Already have an account?{" "}
+                  <div aria-label={"Already have an account?"} tabIndex={0}>
+                    Already have an account?{" "}
+                  </div>
                   <Link
                     href="/patient/login"
                     data-testid={REGISTER_TEST_ID.loginlink}
+                    tabIndex={0}
+                    {...getLinkAria("Sign in")}
                   >
                     <a className={styles.loginLink}>Sign in</a>
                   </Link>
