@@ -441,9 +441,9 @@ export default function DetailAppointment({ data }) {
       <Box sx={{ p: 2, backgroundColor: grey[50] }}>
         <Box
           className={styles.dateContainer}
-          sx={{ p: 2, backgroundColor: "white" }}
+          sx={{ backgroundColor: "white", p: 2 }}
         >
-          <Grid container spacing={2} sx={{ p: 1 }}>
+          <Grid container spacing={2} sx={{ backgroundColor: "white", p: 2 }}>
             <Table tabaindex={-1} sx={{ minWidth: 650, ariaHidden: true }}>
               <TableHead tabaindex={-1}>
                 <TableRow tabaindex={-1}>
@@ -591,9 +591,9 @@ export default function DetailAppointment({ data }) {
       <Box sx={{ p: 2, backgroundColor: grey[50] }}>
         <Box
           className={styles.dateContainer}
-          sx={{ p: 2, backgroundColor: "white" }}
+          sx={{ backgroundColor: "white", p: 2 }}
         >
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={{ backgroundColor: "white", p: 2 }}>
             <Grid item xs={7}>
               <Typography
                 tabIndex={0}
@@ -659,7 +659,7 @@ export default function DetailAppointment({ data }) {
           </Grid>
 
           <Divider />
-          <Grid container spacing={2} sx={{ p: 1 }}>
+          <Grid container spacing={2} sx={{ backgroundColor: "white", p: 2 }}>
             <Table>
               <TableBody>
                 <TableRow>
@@ -792,12 +792,15 @@ export default function DetailAppointment({ data }) {
 
       {/* Document Of Care problem */}
       <Box sx={{ p: 2, backgroundColor: grey[50] }}>
-        <Box className={styles.dateContainer} sx={{ backgroundColor: "white" }}>
+        <Box
+          className={styles.dateContainer}
+          sx={{ backgroundColor: "white", p: 2 }}
+        >
           <Table>
             <TableBody>
               <TableRow>
                 <TableCell>
-                  <Grid container spacing={2} sx={{ p: 1 }}>
+                  <Grid container spacing={2}>
                     <Grid item xs={12}>
                       <Typography
                         tabIndex={0}
@@ -827,10 +830,10 @@ export default function DetailAppointment({ data }) {
               </TableRow>
             </TableBody>
           </Table>
-          <Grid container sx={{ p: 2 }}>
+          <Grid container sx={{ p: 2, background: "white" }}>
             {appointmentInfo.documentOfCareDetail.performers.map((item) => (
               <>
-                <Grid item xs={6} sx={{ p: 1 }}>
+                <Grid item xs={6}>
                   <Typography
                     tabIndex={0}
                     aria-label={"Performer"}
@@ -908,7 +911,7 @@ export default function DetailAppointment({ data }) {
       {/* Autho Eyecare 360 */}
       <Box sx={{ p: 2, backgroundColor: grey[50] }}>
         <Box className={styles.dateContainer} sx={{ backgroundColor: "white" }}>
-          <Grid container spacing={2} sx={{ p: 1 }}>
+          <Grid container spacing={2} sx={{ p: 2 }}>
             <Grid item xs={12}>
               <Box
                 display={"flex"}
