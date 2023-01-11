@@ -7,6 +7,7 @@ import MyCareTeamLayout from "../../../components/templates/myCareTeamLayout";
 import store from "../../../store/store";
 import { getArrayValue } from "../../../utils/bioUtils";
 import { Api } from "../../api/api";
+import { sortPrimaryAddress } from "../bio/[bio]";
 
 export default function MyCareTeamPage() {
   const [isRequested, setIsRequested] = useState(false);
@@ -36,7 +37,7 @@ export default function MyCareTeamPage() {
         email: provider.email || "",
         phone: provider.workPhone || "",
         specialties: getArrayValue(provider.specialization),
-        address: response.office,
+        address: sortPrimaryAddress(response.office)[0],
       };
 
       data.push(providerItem);
@@ -54,7 +55,7 @@ export default function MyCareTeamPage() {
     api
       .getProviderList()
       .then((responses) => {
-        mapper(responses.entities);
+        mapper(responses);
       })
       .catch(() => {
         //This is intentional
