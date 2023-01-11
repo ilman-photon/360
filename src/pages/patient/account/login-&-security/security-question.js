@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import UpdateSecurityQuestion from "../../../../components/organisms/UpdateSecurityQuestion/updateSecurityQuestion";
 import MfaLayout from "../../../../components/templates/mfaLayout";
-import { setFormMessage, setGenericErrorMessage } from "../../../../store";
+import {
+  resetFormMessage,
+  setFormMessage,
+  setGenericErrorMessage,
+} from "../../../../store";
 import store from "../../../../store/store";
 import { onViewSecurityQuestions } from "../../../../store/accountRecovery";
 import { Api } from "../../../api/api";
@@ -50,6 +54,8 @@ const AccountSecurityQuestionPage = () => {
   useEffect(() => {
     fetchSecurityQuestionList();
     fetchUserSecurityQuestion();
+
+    dispatch(resetFormMessage());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

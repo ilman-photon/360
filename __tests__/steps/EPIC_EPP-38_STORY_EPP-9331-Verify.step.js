@@ -1,6 +1,12 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 import "@testing-library/jest-dom/extend-expect";
-import { act, cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  waitFor,
+} from "@testing-library/react";
 import { Login } from "../../src/components/organisms/Login/login";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
@@ -11,7 +17,7 @@ import { Provider } from "react-redux";
 import { doLogin, renderLogin } from "../../__mocks__/commonSteps";
 import LoginSecurityPage from "../../src/pages/patient/account/login-&-security";
 import { onViewSecurityQuestions } from "../../src/store/accountRecovery";
-import moment from "moment"
+import moment from "moment";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint10/EPP-9331.feature"
@@ -23,9 +29,9 @@ defineFeature(feature, (test) => {
   let container;
 
   beforeEach(async () => {
-    Object.defineProperty(document, 'cookie', {
+    Object.defineProperty(document, "cookie", {
       writable: true,
-      value: 'authorized=true;accessToken=1234',
+      value: "authorized=true;accessToken=1234",
     });
 
     mock.onPost(`/ecp/patient/getLastUpdatedPasswordDate`).reply(200, {
@@ -46,9 +52,9 @@ defineFeature(feature, (test) => {
       ResponseCode: 2005,
       ResponseType: "success",
     });
-  })
+  });
 
-  afterEach(() => { });
+  afterEach(() => {});
 
   const defaultValidation = () => {
     expect(true).toBeTruthy();
@@ -65,45 +71,45 @@ defineFeature(feature, (test) => {
             "test2",
           "What is your favorite cold-weather activity?": "test1",
           "Who is your all-time favorite movie character?": "test4",
-          "In what city or town did your parents meet?": "test5"
+          "In what city or town did your parents meet?": "test5",
         },
       ],
     };
-    const patientId = "98f9404b-6ea8-4732-b14f-9c1a168d8066"
+    const patientId = "98f9404b-6ea8-4732-b14f-9c1a168d8066";
     mock
       .onGet(`/ecp/accountRecovery/viewSecurityQuestions/${patientId}`)
       .reply(200, mockSecurityQuestions);
-  }
+  };
 
   const userLandsOnLoginSecurityScreen = () => {
     container.rerender(
       <Provider store={store}>
         <LoginSecurityPage />
       </Provider>
-    )
-  }
+    );
+  };
 
   const userViewSetSecurityQuestionCTA = () => {
-    const ctaBtn = container.getByTestId("setup-security-question-btn")
-    expect(ctaBtn).toBeInTheDocument()
-    return ctaBtn
-  }
+    const ctaBtn = container.getByTestId("setup-security-question-btn");
+    expect(ctaBtn).toBeInTheDocument();
+    return ctaBtn;
+  };
 
   const userSeeUpdateSecurityQuestionBtn = () => {
-    const updateBtn = container.getByTestId("update-security-question-btn")
-    expect(updateBtn).toBeInTheDocument()
-    return updateBtn
-  }
+    const updateBtn = container.getByTestId("update-security-question-btn");
+    expect(updateBtn).toBeInTheDocument();
+    return updateBtn;
+  };
 
   const userClickSetSecurityQuestionCTA = () => {
-    const btn = userViewSetSecurityQuestionCTA()
-    fireEvent.click(btn)
-  }
+    const btn = userViewSetSecurityQuestionCTA();
+    fireEvent.click(btn);
+  };
 
   const userClickUpdateSecurityQuestionCTA = () => {
-    const btn = userSeeUpdateSecurityQuestionBtn()
-    fireEvent.click(btn)
-  }
+    const btn = userSeeUpdateSecurityQuestionBtn();
+    fireEvent.click(btn);
+  };
 
   const userLandsOnSecurityQuestionScreen = () => {
     const mockSecurityQuestionList = {
@@ -118,8 +124,8 @@ defineFeature(feature, (test) => {
         "What was the first film you saw in a theater?",
         "Where did you go the first time you flew on a plane?",
         "What is your favorite cold-weather activity?",
-      ]
-    }
+      ],
+    };
     mock
       .onGet(`/ecp/patient/getsecurityQuestions`)
       .reply(200, mockSecurityQuestionList);
@@ -127,109 +133,143 @@ defineFeature(feature, (test) => {
       <Provider store={store}>
         <AccountSecurityQuestionPage />
       </Provider>
-    )
-  }
+    );
+  };
 
   const userClickUpdateCTA = async () => {
-    const updateBtn = await waitFor(() => container.getByTestId("action-update-security-question-btn"))
-    fireEvent.click(updateBtn)
-  }
+    const updateBtn = await waitFor(() =>
+      container.getByTestId("action-update-security-question-btn")
+    );
+    fireEvent.click(updateBtn);
+  };
 
-  test('EPIC_EPP-38_STORY_EPP-9331- Verify User should be able to view the error message “You must answer all security questions”', ({ given, and, when, then }) => {
-    given('User has logged into the patient portal', async () => {
-      cleanup()
-      container = await renderLogin()
+  test("EPIC_EPP-38_STORY_EPP-9331- Verify User should be able to view the error message “You must answer all security questions”", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("User has logged into the patient portal", async () => {
+      cleanup();
+      container = await renderLogin();
     });
 
-    and('User has logged in as patient', () => {
-      doLogin(mock, container)
+    and("User has logged in as patient", () => {
+      doLogin(mock, container);
     });
 
-    and('User has setup the security question & answers', () => {
-      userHasSetupSecurityQuestion()
+    and("User has setup the security question & answers", () => {
+      userHasSetupSecurityQuestion();
     });
 
-    when('User lands on Set-up/ Update Security Question screen', () => {
-      userLandsOnLoginSecurityScreen()
+    when("User lands on Set-up/ Update Security Question screen", () => {
+      userLandsOnLoginSecurityScreen();
     });
 
-    then('User should be able to view Set security questions& answers CTA if security questions are not set by user during registration', () => {
-      userViewSetSecurityQuestionCTA()
+    then(
+      "User should be able to view Set security questions& answers CTA if security questions are not set by user during registration",
+      () => {
+        userViewSetSecurityQuestionCTA();
+      }
+    );
+
+    when("User clicks on the Set security questions& answers CTA", () => {
+      userClickSetSecurityQuestionCTA();
     });
 
-    when('User clicks on the Set security questions& answers CTA', () => {
-      userClickSetSecurityQuestionCTA()
-    });
+    then(
+      "User should be navigated to Set security questions& answers screen",
+      () => {
+        userLandsOnSecurityQuestionScreen();
+      }
+    );
 
-    then('User should be navigated to Set security questions& answers screen', () => {
-      userLandsOnSecurityQuestionScreen()
-    });
+    and(
+      "User has selected one or more new question & answer or has changed the answer to one or more question",
+      () => {
+        const answer1 = container.getByLabelText(/Answer 1/i);
+        fireEvent.change(answer1, { target: { value: "" } });
+        expect(answer1.value).toEqual("");
+      }
+    );
 
-    and('User has selected one or more new question & answer or has changed the answer to one or more question', () => {
-      const answer1 = container.getByLabelText(/Answer 1/i);
-      fireEvent.change(answer1, { target: { value: "" } });
-      expect(answer1.value).toEqual("");
-    });
-
-    when('User clicks on Update CTA', () => {
-      userClickUpdateCTA()
+    when("User clicks on Update CTA", () => {
+      userClickUpdateCTA();
     });
 
     and(/^User are not answered the (\d+) security questions$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
-    then('User should be able to view the error message “You must answer all security questions”', () => {
-      setTimeout(() => {
-        const postMessage = container.getByLabelText(
-          "You must answer all security questions"
-        );
-        expect(postMessage).toBeInTheDocument();
-      }, 200);
-    });
+    then(
+      "User should be able to view the error message “You must answer all security questions”",
+      () => {
+        setTimeout(() => {
+          const postMessage = container.getByLabelText(
+            "You must answer all security questions"
+          );
+          expect(postMessage).toBeInTheDocument();
+        }, 200);
+      }
+    );
   });
 
-  test('EPIC_EPP-38_STORY_EPP-9331- Verify User should be able to view the error message “No updated made” if the questions or answers are not changed', ({ given, and, when, then }) => {
-    given('User has logged into the patient portal', async () => {
-      cleanup()
-      container = await renderLogin()
+  test("EPIC_EPP-38_STORY_EPP-9331- Verify User should be able to view the error message “No updated made” if the questions or answers are not changed", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("User has logged into the patient portal", async () => {
+      cleanup();
+      container = await renderLogin();
     });
 
-    and('User has logged in as patient', () => {
-      doLogin(mock, container)
+    and("User has logged in as patient", () => {
+      doLogin(mock, container);
     });
 
-    and('User has setup the security question & answers', () => {
-      userHasSetupSecurityQuestion()
+    and("User has setup the security question & answers", () => {
+      userHasSetupSecurityQuestion();
     });
 
-    when('User lands on Set-up/ Update Security Question screen', () => {
-      userLandsOnLoginSecurityScreen()
+    when("User lands on Set-up/ Update Security Question screen", () => {
+      userLandsOnLoginSecurityScreen();
     });
 
-    then('User should be able to view Set security questions& answers CTA if security questions are not set by user during registration', () => {
-      userSeeUpdateSecurityQuestionBtn()
+    then(
+      "User should be able to view Set security questions& answers CTA if security questions are not set by user during registration",
+      () => {
+        userSeeUpdateSecurityQuestionBtn();
+      }
+    );
+
+    when("User clicks on the Set security questions& answers CTA", () => {
+      userClickUpdateSecurityQuestionCTA();
     });
 
-    when('User clicks on the Set security questions& answers CTA', () => {
-      userClickUpdateSecurityQuestionCTA()
+    then(
+      "User should be navigated to Set security questions& answers screen",
+      () => {
+        userLandsOnSecurityQuestionScreen();
+      }
+    );
+
+    and("User has not changed the answer to one or more question", () => {
+      defaultValidation();
     });
 
-    then('User should be navigated to Set security questions& answers screen', () => {
-      userLandsOnSecurityQuestionScreen()
+    when("User clicks on Update CTA", async () => {
+      await userClickUpdateCTA();
     });
 
-    and('User has not changed the answer to one or more question', () => {
-      defaultValidation()
-    });
-
-    when('User clicks on Update CTA', () => {
-      userClickUpdateCTA()
-    });
-
-    then('User should be able to view the error message “No updated made”', () => {
-      const noUpdatedMsg = container.getByText(/No updated made/i);
-      expect(noUpdatedMsg).toBeInTheDocument()
-    });
+    then(
+      "User should be able to view the error message “No updated made”",
+      async () => {
+        await waitFor(() => container.getByText(/No updated made/i));
+        const noUpdatedMsg = container.getByText(/No updated made/i);
+        expect(noUpdatedMsg).toBeInTheDocument();
+      }
+    );
   });
-})
+});
