@@ -29,7 +29,7 @@ export const FilterOptionPayMyBill = ({
   const { t } = useTranslation("translation", {
     keyPrefix: "payMyBill",
   });
-  const { control } = useForm();
+  const { control, setValue } = useForm();
   const [optionSelected, setOptionSelected] = useState("");
   const [showUiOption, setShowUiOption] = useState({
     option: "",
@@ -52,7 +52,12 @@ export const FilterOptionPayMyBill = ({
         });
         break;
     }
+    resetValue();
   }, [optionSelected]);
+
+  function resetValue() {
+    setValue("invoiceNumber", "");
+  }
 
   const keyDownPress = (e) => {
     if (
