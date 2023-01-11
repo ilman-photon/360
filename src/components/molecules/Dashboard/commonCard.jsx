@@ -92,7 +92,7 @@ export default function CommonCard({
         >
           <Link
             className={styles.viewPrescriptionText}
-            sx={{ color: "#008294", fontFamily: "Inter" }}
+            sx={{ color: "#008294", fontFamily: "Inter", paddingRight: "7px" }}
             onClick={() => {
               handleViewClicked();
             }}
