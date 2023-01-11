@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import { Divider, Typography, useMediaQuery } from "@mui/material";
+import { Divider, Grid, Typography, useMediaQuery } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Link from "next/link";
 import { useForm, Controller, useFormState } from "react-hook-form";
@@ -221,8 +221,10 @@ export default function Register({
     <>
       {ready && (
         <Box
-          className={globalStyles.container}
-          sx={{ ...styles.overideContainer }}
+          className={[
+            globalStyles.container,
+            globalStyles.registerContainer,
+          ].join(" ")}
         >
           <Stack spacing={3}>
             <HeadingTitle
@@ -260,159 +262,231 @@ export default function Register({
               autoComplete={"off"}
               noValidate
             >
-              <Controller
-                name="firstName"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => {
-                  return (
-                    <StyledInput
-                      required
-                      type="text"
-                      minLength={2}
-                      maxLength={50}
-                      id="firstName"
-                      label="First Name"
-                      aria-label="First name required text field"
-                      inputRef={inputRef}
-                      inputProps={{
-                        "aria-label": "First Name - Required",
-                      }}
-                      value={value}
-                      data-testid={REGISTER_TEST_ID.firstname}
-                      onChange={onChange}
-                      error={!!error}
-                      size="small"
-                      variant="filled"
-                      helperText={error ? error.message : null}
-                      sx={{
-                        margin: "8px",
-                      }}
-                    />
-                  );
-                }}
-                rules={{
-                  required: t("requiredField"),
-                  pattern: {
-                    value: Regex.nameValidation && Regex.isMin2Max50Length,
-                    message: "Incorrect format",
-                  },
-                }}
-              />
+              <Grid container columns={2}>
+                <Grid item xs={2} sm={1}>
+                  <Controller
+                    name="firstName"
+                    control={control}
+                    render={({
+                      field: { onChange, value },
+                      fieldState: { error },
+                    }) => {
+                      return (
+                        <StyledInput
+                          required
+                          type="text"
+                          minLength={2}
+                          maxLength={50}
+                          id="firstName"
+                          label="First Name"
+                          aria-label="First name required text field"
+                          inputRef={inputRef}
+                          inputProps={{
+                            "aria-label": "First Name - Required",
+                          }}
+                          value={value}
+                          data-testid={REGISTER_TEST_ID.firstname}
+                          onChange={onChange}
+                          error={!!error}
+                          size="small"
+                          variant="filled"
+                          helperText={error ? error.message : null}
+                          sx={{
+                            margin: "8px",
+                            width: "-webkit-fill-available",
+                          }}
+                        />
+                      );
+                    }}
+                    rules={{
+                      required: t("requiredField"),
+                      pattern: {
+                        value: Regex.nameValidation && Regex.isMin2Max50Length,
+                        message: "Incorrect format",
+                      },
+                    }}
+                  />
+                </Grid>
 
-              <Controller
-                name="lastName"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => {
-                  return (
-                    <StyledInput
-                      type="text"
-                      minLength={2}
-                      maxLength={50}
-                      id="lastName"
-                      label="Last Name"
-                      inputRef={inputLastName}
-                      aria-label={"Last name required text field"}
-                      inputProps={{
-                        "aria-label": "Last Name - Required",
-                      }}
-                      data-testid={REGISTER_TEST_ID.lastname}
-                      value={value}
-                      onChange={onChange}
-                      error={!!error}
-                      size="small"
-                      variant="filled"
-                      helperText={error ? error.message : null}
-                      sx={{
-                        margin: "8px",
-                      }}
-                      required
-                    />
-                  );
-                }}
-                rules={{
-                  required: t("requiredField"),
-                  pattern: {
-                    value: Regex.nameValidation && Regex.isMin2Max50Length,
-                    message: "Incorrect format",
-                  },
-                }}
-              />
+                <Grid item xs={2} sm={1}>
+                  <Controller
+                    name="lastName"
+                    control={control}
+                    render={({
+                      field: { onChange, value },
+                      fieldState: { error },
+                    }) => {
+                      return (
+                        <StyledInput
+                          type="text"
+                          minLength={2}
+                          maxLength={50}
+                          id="lastName"
+                          label="Last Name"
+                          inputRef={inputLastName}
+                          aria-label={"Last name required text field"}
+                          inputProps={{
+                            "aria-label": "Last Name - Required",
+                          }}
+                          data-testid={REGISTER_TEST_ID.lastname}
+                          value={value}
+                          onChange={onChange}
+                          error={!!error}
+                          size="small"
+                          variant="filled"
+                          helperText={error ? error.message : null}
+                          sx={{
+                            margin: "8px",
+                            width: "-webkit-fill-available",
+                          }}
+                          required
+                        />
+                      );
+                    }}
+                    rules={{
+                      required: t("requiredField"),
+                      pattern: {
+                        value: Regex.nameValidation && Regex.isMin2Max50Length,
+                        message: "Incorrect format",
+                      },
+                    }}
+                  />
+                </Grid>
 
-              <Controller
-                name="dob"
-                control={control}
-                tabIndex={0}
-                InputPropsLabel={{
-                  "aria-label": "Date of Birth required text field",
-                }}
-                aria-label="Date of Birth required text field"
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => {
-                  return (
-                    <StyledInput
-                      required
-                      open={open}
-                      onOpen={() => setOpen(true)}
-                      onClose={() => {
-                        setOpen(false);
-                        setTimeout(() => {
-                          inputDob?.current?.focus();
-                        }, 1);
-                      }}
-                      // onClick={() => setOpen(true)}
-                      aria-hidden={true}
-                      tabIndex={-1}
-                      type="dob"
-                      id="dob"
-                      inputRef={inputDob}
-                      data-testid={REGISTER_TEST_ID.dateofbirth}
-                      InputLabel={{ "aria-hidden": true }}
-                      InputLabelProps={{
-                        "aria-hidden": true,
-                      }}
-                      InputProps={{
-                        ref: inputDob,
-                        tabIndex: 0,
-                        "data-testid": REGISTER_TEST_ID.dateofbirth,
-                        "aria-label": "Date of Birth required text field",
-                      }}
-                      inputProps={{
-                        tabIndex: -1,
-                        readOnly: !isDesktop,
-                        isTransparent: true,
-                      }}
-                      label="Date of Birth"
-                      variant="filled"
-                      value={value}
-                      onChange={onChange}
-                      error={!!error}
-                      helperText={error ? error.message : null}
-                      disableFuture
-                    />
-                  );
-                }}
-                rules={{
-                  required: t("requiredField"),
-                  validate: {
-                    required: (value) => {
-                      if (!isDOB(value)) return t("invalidDOB");
-                    },
-                    notFutureDate: (value) => {
-                      if (isFutureDate(value)) {
-                        return t("invalidDOB");
-                      }
-                    },
-                  },
-                }}
-              />
+                <Grid item xs={2} sm={1}>
+                  <Controller
+                    name="dob"
+                    control={control}
+                    tabIndex={0}
+                    InputPropsLabel={{
+                      "aria-label": "Date of Birth required text field",
+                    }}
+                    aria-label="Date of Birth required text field"
+                    render={({
+                      field: { onChange, value },
+                      fieldState: { error },
+                    }) => {
+                      return (
+                        <StyledInput
+                          required
+                          open={open}
+                          onOpen={() => setOpen(true)}
+                          onClose={() => {
+                            setOpen(false);
+                            setTimeout(() => {
+                              inputDob?.current?.focus();
+                            }, 1);
+                          }}
+                          // onClick={() => setOpen(true)}
+                          aria-hidden={true}
+                          tabIndex={-1}
+                          type="dob"
+                          id="dob"
+                          inputRef={inputDob}
+                          data-testid={REGISTER_TEST_ID.dateofbirth}
+                          InputLabel={{ "aria-hidden": true }}
+                          InputLabelProps={{
+                            "aria-hidden": true,
+                          }}
+                          InputProps={{
+                            ref: inputDob,
+                            tabIndex: 0,
+                            "data-testid": REGISTER_TEST_ID.dateofbirth,
+                            "aria-label": "Date of Birth required text field",
+                          }}
+                          inputProps={{
+                            tabIndex: -1,
+                            readOnly: !isDesktop,
+                            isTransparent: true,
+                          }}
+                          label="Date of Birth"
+                          variant="filled"
+                          value={value}
+                          onChange={onChange}
+                          error={!!error}
+                          helperText={error ? error.message : null}
+                          disableFuture
+                          fitWidthFormControl
+                        />
+                      );
+                    }}
+                    rules={{
+                      required: t("requiredField"),
+                      validate: {
+                        required: (value) => {
+                          if (!isDOB(value)) return t("invalidDOB");
+                        },
+                        notFutureDate: (value) => {
+                          if (isFutureDate(value)) {
+                            return t("invalidDOB");
+                          }
+                        },
+                      },
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={2} sm={1}>
+                  <Controller
+                    name="mobileNumber"
+                    control={control}
+                    render={({
+                      field: { onChange, value },
+                      fieldState: { error },
+                    }) => {
+                      return (
+                        <StyledInput
+                          type="phone"
+                          inputRef={inputMobileNumber}
+                          id="mobileNumber"
+                          aria-label="Mobile Number required text field"
+                          data-testid={REGISTER_TEST_ID.mobilenumber}
+                          label="Mobile Number"
+                          inputProps={{
+                            "aria-label": `Mobile Number - Required`,
+                          }}
+                          value={value}
+                          onChange={onChange}
+                          error={!!error}
+                          size="small"
+                          variant="filled"
+                          helperText={error ? error.message : null}
+                          sxContainer={{
+                            m: 1,
+                            width: "-webkit-fill-available",
+                          }}
+                          required
+                        />
+                      );
+                    }}
+                    rules={{
+                      validate: {
+                        required: (value) => {
+                          if (!value) {
+                            if (watchedPreferredCommunication !== "email") {
+                              if (watchedPreferredCommunication === "phone") {
+                                return "This field is required to proceed.";
+                              } else if (
+                                watchedPreferredCommunication === "both" &&
+                                watchedEmail
+                              ) {
+                                return "This field is required to proceed.";
+                              } else {
+                                return "Either Email or Mobile number is required to proceed";
+                              }
+                            }
+                          }
+                        },
+                      },
+                      pattern: {
+                        value: Regex.isValidPhoneFormat,
+                        message: t("incorrectPhone"),
+                      },
+                    }}
+                  />
+                </Grid>
+              </Grid>
+
               <Controller
                 name="email"
                 control={control}
@@ -439,6 +513,7 @@ export default function Register({
                       helperText={error ? error.message : null}
                       sx={{
                         margin: "8px",
+                        width: "-webkit-fill-available",
                       }}
                       required
                     />
@@ -469,62 +544,7 @@ export default function Register({
                   },
                 }}
               />
-              <Controller
-                name="mobileNumber"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => {
-                  return (
-                    <StyledInput
-                      type="phone"
-                      inputRef={inputMobileNumber}
-                      id="mobileNumber"
-                      aria-label="Mobile Number required text field"
-                      data-testid={REGISTER_TEST_ID.mobilenumber}
-                      label="Mobile Number"
-                      inputProps={{
-                        "aria-label": `Mobile Number - Required`,
-                      }}
-                      value={value}
-                      onChange={onChange}
-                      error={!!error}
-                      size="small"
-                      variant="filled"
-                      helperText={error ? error.message : null}
-                      sxContainer={{
-                        m: 1,
-                      }}
-                      required
-                    />
-                  );
-                }}
-                rules={{
-                  validate: {
-                    required: (value) => {
-                      if (!value) {
-                        if (watchedPreferredCommunication !== "email") {
-                          if (watchedPreferredCommunication === "phone") {
-                            return "This field is required to proceed.";
-                          } else if (
-                            watchedPreferredCommunication === "both" &&
-                            watchedEmail
-                          ) {
-                            return "This field is required to proceed.";
-                          } else {
-                            return "Either Email or Mobile number is required to proceed";
-                          }
-                        }
-                      }
-                    },
-                  },
-                  pattern: {
-                    value: Regex.isValidPhoneFormat,
-                    message: t("incorrectPhone"),
-                  },
-                }}
-              />
+
               <Typography sx={{ ...styles.passwordLabel, fontSize: "18px" }}>
                 Please create a password
               </Typography>
@@ -627,9 +647,13 @@ export default function Register({
             </form>
 
             <Typography variant="caption" style={styles.bottomParagraph}>
-              {`By registering, you accept to our Terms & Conditions and Privacy Policy`}
+              By registering, you accept to our Terms & <br /> Conditions and
+              Privacy Policy
             </Typography>
-            <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
+            <Divider
+              margin={3}
+              sx={{ width: { xs: "288px", lg: "486px" }, alignSelf: "center" }}
+            />
             <Typography variant="caption" style={styles.bottomParagraph}>
               Already have an account?{" "}
               <Link

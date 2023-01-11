@@ -53,6 +53,7 @@ export const FilterOptionPayMyBill = ({
         break;
     }
     resetValue();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [optionSelected]);
 
   function resetValue() {
