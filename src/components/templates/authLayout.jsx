@@ -30,12 +30,17 @@ export default function AuthLayout({
   );
   const hasImage = imageSrcState ? true : false;
 
-  const appHeight = () => {
-    const doc = document.documentElement;
-    doc.style.setProperty("--app-height", `${window.innerHeight}px`);
-  };
-
   useEffect(() => {
+    const appHeight = () => {
+      const doc = document.documentElement;
+      const loginHeight =
+        title === "Patient Login"
+          ? `calc(${window.innerHeight}px - 92px)`
+          : `auto`;
+      doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+      doc.style.setProperty("--login-height", loginHeight);
+    };
+
     if (typeof window !== "undefined") {
       window.addEventListener("resize", appHeight);
       appHeight();
@@ -43,7 +48,7 @@ export default function AuthLayout({
     return () => {
       window.removeEventListener("resize", appHeight);
     };
-  }, []);
+  }, [title]);
 
   useEffect(() => {
     if (title) {

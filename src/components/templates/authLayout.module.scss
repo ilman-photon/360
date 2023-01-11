@@ -17,6 +17,10 @@
     flex-direction: column-reverse;
     flex: 0;
   }
+
+  @media (orientation: landscape) {
+    height: var(--login-height);
+  }
 }
 
 .authComponentContainer {
@@ -43,7 +47,7 @@
     padding-top: 35px;
   }
 
-  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  @media (min-width: 767px) and (max-width: 1024px) and (orientation: portrait) {
     width: 100vw;
     padding-top: 90px !important;
   }
@@ -121,5 +125,5 @@
 }
 
 .objPositionB > span > img {
-  object-position: center 7vh;
+  object-position: center;
 }
