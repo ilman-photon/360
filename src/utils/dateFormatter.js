@@ -1,11 +1,7 @@
 import moment from "moment";
 import "moment-timezone";
 
-export function convertToDate(date) {
-  if (!date) {
-    return "";
-  }
-
+export function convertToDate(payload) {
   const monthNames = [
     "Jan",
     "Feb",
@@ -20,11 +16,17 @@ export function convertToDate(date) {
     "Nov",
     "Dec",
   ];
-  const day = date.getDate();
-  const monthIndex = date.getMonth();
-  const year = date.getFullYear();
 
-  return `${monthNames[monthIndex]} ${day}, ${year}`;
+  if (!payload) {
+    return "";
+  } else {
+    const date = new Date(payload);
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+
+    return `${monthNames[monthIndex]} ${day}, ${year}`;
+  }
 }
 
 export function formatDate(payload, withTimezone) {
