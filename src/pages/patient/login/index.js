@@ -170,7 +170,9 @@ export const loginProps = {
         }
       })
       .catch(function (err) {
-        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+        if (err.ResponseCode === constants.ERROR_CODE.NETWORK_ERR) {
+          callback({ status: constants.ERROR_CODE.NETWORK_ERR });
+        } else if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
           const isLockedAccount = err.ResponseCode === 2004;
           callback({
             status: "failed",
