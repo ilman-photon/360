@@ -340,21 +340,21 @@ const mockApi = () => {
   mock
     .onGet(`/ecp/appointments/getDoctorDetails?pageSize=1&search.query=`)
     .reply(200, {
-      "count": 300
+      count: 300,
     });
   mock
     .onGet(
       `/ecp/appointments/getDoctorDetails?pageSize=1&search.query=((firstName=co=Robert)OR(lastName=co=Robert))`
     )
     .reply(200, {
-      "count": 300
+      count: 300,
     });
   mock
     .onGet(
       `/ecp/appointments/getDoctorDetails?pageSize=1&search.query=((firstName=co=Robert)OR(lastName=co=Robert)AND(offices.city=co=Chicago))`
     )
     .reply(200, {
-      "count": 300
+      count: 300,
     });
   mock
     .onGet(`/ecp/appointments/getDoctorDetails?pageSize=300&search.query=`)
@@ -397,8 +397,8 @@ const mockApi = () => {
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => { },
-    removeListener: () => { },
+    addListener: () => {},
+    removeListener: () => {},
   });
 }
 
@@ -453,7 +453,7 @@ defineFeature(feature, (test) => {
       containerDashboard.getByLabelText("Find a Doctor menu")
     ).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("Upcoming Appointments menu")
+      containerDashboard.getByLabelText("Upcoming & Past Appointments menu")
     ).toBeInTheDocument();
   };
 

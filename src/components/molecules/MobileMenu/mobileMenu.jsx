@@ -80,7 +80,7 @@ export default function MobileMenu({
               href: "/patient/search-doctor",
             },
             {
-              label: "Upcoming Appointments",
+              label: "Upcoming & Past Appointments",
               href: "/patient/appointments",
             },
           ],
