@@ -99,7 +99,7 @@ const MessagingContainer = ({
     } else {
       content = (
         <Grid container columns={6}>
-          <Grid item sm={6} lg={3}>
+          <Grid item sm={6} lg={3} sx={{ width: "-webkit-fill-available" }}>
             <MessagingListContent
               data={inboxData}
               onSelected={onSelectedMessage}
