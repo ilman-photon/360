@@ -111,7 +111,7 @@ describe("App", () => {
     );
 
     await waitFor(() => {
-      expect(container.getAllByText("viewDetails").length > 0).toBeTruthy();
+      expect(container.getAllByText("View Details").length > 0).toBeTruthy();
     });
   });
 
@@ -196,8 +196,8 @@ describe("App", () => {
     );
 
     await waitFor(() => {
-      expect(container.getByText("Invoice Number")).toBeInTheDocument();
-      expect(container.getByText("Date of Service")).toBeInTheDocument();
+      expect(container.getAllByText("Invoice Number")[0]).toBeInTheDocument();
+      expect(container.getAllByText("Date of Service")[0]).toBeInTheDocument();
     });
   });
 

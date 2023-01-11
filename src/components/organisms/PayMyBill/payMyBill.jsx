@@ -93,12 +93,18 @@ const PayMyBillContainer = ({
         contentView = (
           <OpenInvoiceMobileView
             data={data}
+            handleAssetDownload={handleAssetDownload}
             onGoToViewDetail={onGoToViewDetail}
           />
         );
       } else {
         contentView = (
-          <InvoiceHistoryMobileView isDesktop={isDesktop} data={data} />
+          <InvoiceHistoryMobileView
+            isDesktop={isDesktop}
+            data={data}
+            onGoToViewDetail={onGoToViewDetail}
+            handleAssetDownload={handleAssetDownload}
+          />
         );
       }
     } else {

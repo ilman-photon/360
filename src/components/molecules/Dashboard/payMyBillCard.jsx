@@ -151,14 +151,17 @@ export default function PayMyBillCard() {
   }
 
   function getBalanceData(data) {
-    const summary = data.summary;
-    const totalBalance =
-      summary.totalRetail -
-      summary.totalInsurance -
-      summary.totalDiscount +
-      summary.totalTax -
-      summary.totalAdjustment -
-      summary.totalPayment;
+    const summary = data?.summary;
+    let totalBalance = 0;
+    if (summary) {
+      totalBalance =
+        summary.totalRetail -
+        summary.totalInsurance -
+        summary.totalDiscount +
+        summary.totalTax -
+        summary.totalAdjustment -
+        summary.totalPayment;
+    }
     return formatter.format(totalBalance);
   }
 
@@ -216,15 +219,13 @@ export default function PayMyBillCard() {
                       tabIndex={0}
                       sx={{ maxWidth: "80px", wordBreak: "break-word" }}
                     >
-                      {payMyBillData._invoiceNumber}
+                      {payMyBillData.invoiceNumber}
                     </TableCell>
                     <TableCell tabIndex={0}>
                       {new moment(payMyBillData.serviceDate).format("MM/DD/YY")}
                     </TableCell>
                     <TableCell tabIndex={0} sx={{ maxWidth: "80px" }}>{`${
-                      payMyBillData.provider?.designation || ""
-                    } ${payMyBillData.provider?.firstName} ${
-                      payMyBillData.provider?.lastName
+                      payMyBillData.provider || ""
                     }`}</TableCell>
                     <TableCell tabIndex={0}>
                       {getBalanceData(payMyBillData)}
@@ -268,7 +269,7 @@ export default function PayMyBillCard() {
               >
                 <Typography className={styles.titleStyle}>Invoice #</Typography>
                 <Typography className={styles.valueStyle}>
-                  {payMyBillData._invoiceNumber}
+                  {payMyBillData.invoiceNumber}
                 </Typography>
               </Stack>
               <Stack
@@ -297,9 +298,7 @@ export default function PayMyBillCard() {
                   className={styles.valueStyle}
                   sx={{ width: "50%", textAlign: "end" }}
                 >
-                  {`${payMyBillData.provider?.designation || ""} ${
-                    payMyBillData.provider?.firstName
-                  } ${payMyBillData.provider?.lastName}`}
+                  {`${payMyBillData.provider || ""}`}
                 </Typography>
               </Stack>
               <Stack

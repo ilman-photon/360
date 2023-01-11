@@ -33,7 +33,7 @@ export function getInvoiceReceipts(id, print, isOpen, callback) {
     });
 }
 
-export function downloadReceipts(receipts, print, isOpen) {
+export function downloadReceipts(receipts, print, isOpen = false) {
   receipts.forEach((item) => {
     fetchSource(item.digitalAssetId, print, true, isOpen);
   });
@@ -280,9 +280,13 @@ export default function PayMyBillPage() {
     onCalledSearchByInvoiceNumber(id);
   };
 
-  const onGoToViewDetail = (data) => {
+  const onGoToViewDetail = (data, isSummary = true) => {
     const invoiceNumber = data?.id;
-    router.push(`/patient/pay-my-bill/summary-detail/${invoiceNumber}`);
+    if (isSummary) {
+      router.push(`/patient/pay-my-bill/summary-detail/${invoiceNumber}`);
+    } else {
+      handleAssetDownload(invoiceNumber, false, true);
+    }
   };
 
   const handleAssetDownload = (id, print, isOpen = false) => {

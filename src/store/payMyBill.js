@@ -14,8 +14,8 @@ const calculateBalanceObject = (summaryData) => {
 const getObjectData = (item) => ({
   invoiceNumber: item?._invoiceNumber,
   dos: item?.serviceDate,
-  creditBalance: calculateBalanceObject(item.summary),
-  patientDue: calculateBalanceObject(item.summary),
+  creditBalance: item?.summary ? calculateBalanceObject(item.summary) : 0,
+  patientDue: item?.summary ? calculateBalanceObject(item.summary) : 0,
   provider: `${item?.provider?.firstName} ${item?.provider?.lastName}`,
   invoiceType: item?._invoiceType,
   status: item?._invoiceStatus,
