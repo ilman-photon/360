@@ -15,6 +15,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 import { colors } from "../../../styles/theme";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { isFutureDate } from "../../../utils/dateFormatter";
 
 const DisclaimerText = (data) => {
   return (
@@ -572,6 +573,11 @@ export default function AppointmentForm({
                   validate: {
                     required: (value) => {
                       if (!isDOB(value)) {
+                        return t("invalidDOB");
+                      }
+                    },
+                    notFutureDate: (value) => {
+                      if (isFutureDate(value)) {
                         return t("invalidDOB");
                       }
                     },

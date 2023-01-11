@@ -179,3 +179,10 @@ export const upcomingAppointmentDate = (data, tzone) => {
     return `${momentDate} ${timezone}`;
   }
 };
+
+export const isFutureDate = (date) => {
+  const now = new Date();
+  if (date > now) {
+    return true;
+  } else return false;
+};
