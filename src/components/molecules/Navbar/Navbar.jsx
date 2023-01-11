@@ -95,7 +95,7 @@ const appointments = [
   {
     icon: iconAppointments,
     href: "/patient/appointments",
-    label: "Upcoming Appointments",
+    label: "Upcoming & Past Appointments",
   },
 ];
 

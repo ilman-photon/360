@@ -68,8 +68,8 @@ const mockApi = () => {
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => { },
-    removeListener: () => { },
+    addListener: () => {},
+    removeListener: () => {},
   });
 }
 
@@ -142,7 +142,7 @@ defineFeature(feature, (test) => {
           container.getByLabelText("Find a Doctor menu")
         ).toBeInTheDocument();
         expect(
-          container.getByLabelText("Upcoming Appointments menu")
+          container.getByLabelText("Upcoming & Past Appointments menu")
         ).toBeInTheDocument();
       }
     );
@@ -154,9 +154,9 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("user launch Patient Portal url", () => { });
+    given("user launch Patient Portal url", () => {});
 
-    and("user is logged into the portal", () => { });
+    and("user is logged into the portal", () => {});
 
     and("user lands on the dashboard screen", async () => {
       window.matchMedia = createMatchMedia("1980px");
@@ -190,7 +190,7 @@ defineFeature(feature, (test) => {
           container.getByLabelText("Find a Doctor menu")
         ).toBeInTheDocument();
         expect(
-          container.getByLabelText("Upcoming Appointments menu")
+          container.getByLabelText("Upcoming & Past Appointments menu")
         ).toBeInTheDocument();
       }
     );
@@ -204,10 +204,8 @@ defineFeature(feature, (test) => {
       window.matchMedia = createMatchMedia("1980px");
 
       mock
-        .onGet(
-          `/ecp/appointments/getDoctorDetails?pageSize=1&search.query=`
-        )
-        .reply(200, { "count": 1, "entities": [] });
+        .onGet(`/ecp/appointments/getDoctorDetails?pageSize=1&search.query=`)
+        .reply(200, { count: 1, entities: [] });
       act(() => {
         container = render(
           <Provider store={store}>
