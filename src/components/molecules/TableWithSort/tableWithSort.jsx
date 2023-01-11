@@ -168,7 +168,7 @@ const EnhancedTableHead = (props) => {
                   width={headCell.width}
                   role={"rowheader"}
                 >
-                  <b tabIndex={0} style={{ fontWeight: 600 }}>
+                  <b tabIndex={0} style={{ fontWeight: 600, color: "#003B4A" }}>
                     {headCell.label}
                   </b>
                 </TableCell>

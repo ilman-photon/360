@@ -34,7 +34,7 @@ export const InvoiceHistoryTableBody = ({
         numeric: false,
         disablePadding: true,
         label: "Invoice Number",
-        width: isDesktop ? 200 : 161,
+        width: isDesktop ? "24%" : 161,
         sx: {
           color: colors.darkGreen,
           fontSize: {
@@ -55,7 +55,7 @@ export const InvoiceHistoryTableBody = ({
         numeric: false,
         disablePadding: true,
         label: "Date of Service",
-        width: isDesktop ? 120 : 71,
+        width: isDesktop ? "13%" : 71,
         sx: {
           color: colors.darkGreen,
           fontSize: {
@@ -70,7 +70,7 @@ export const InvoiceHistoryTableBody = ({
         numeric: false,
         disablePadding: true,
         label: "Provider",
-        width: isDesktop ? 136 : 71,
+        width: isDesktop ? "38%" : 71,
         sx: {
           color: colors.darkGreen,
           fontSize: {
