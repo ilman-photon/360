@@ -68,7 +68,10 @@ export default function AccountUpdatePasswordPage() {
           },
         }}
       >
-        <Typography variant="h3" sx={{ fontWeight: 500 }}>
+        <Typography
+          variant="h3"
+          sx={{ fontWeight: 500, width: "calc(100% - 20px)" }}
+        >
           Are you sure to change password?
         </Typography>
       </CustomModal>
