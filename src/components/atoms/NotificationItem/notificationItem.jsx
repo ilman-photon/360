@@ -13,7 +13,7 @@ const NotificationItem = ({
   return (
     <Grid
       container
-      columns={12}
+      columns={{ xs: 12, sm: 20 }}
       alignItems={"center"}
       className={styles.container}
       onClick={onClick}
@@ -39,7 +39,7 @@ const NotificationItem = ({
           {getIcon(data)}
         </div>
       </Grid>
-      <Grid item xs={8} sx={{ pr: 1 }}>
+      <Grid item xs={8} sm={16} sx={{ pr: 1 }}>
         <Typography
           variant="headlineH4"
           sx={{ fontWeight: 400 }}
