@@ -40,8 +40,8 @@ const InfoWindowContent = ({
   };
 
   const getNextAvailable = () => {
-    if (!data[counter - 1]) return "-";
-    if (!data[counter - 1].availability.length == 0) return "-";
+    if (!data[counter - 1]) return "";
+    if (!data[counter - 1].availability.length == 0) return "";
     return `Next Available ${getLabelTime(
       data[counter - 1].availability[0].date
     )}`;
@@ -123,19 +123,16 @@ const InfoWindowContent = ({
                     >
                       {getLabelTime(v.date)}
                     </Typography>
-                    <Stack
-                      flexDirection="row"
-                      flexWrap="wrap"
-                      // overflow="auto"
-                      gap={1}
-                      // className="hide-scrollbar"
-                    >
+                    <Stack flexDirection="row" flexWrap="wrap" gap={1}>
                       {v.list.map((item, timeIdx) => {
                         return (
                           <StyledButton
                             key={timeIdx}
                             mode={constants.PRIMARY}
                             size={constants.SMALL}
+                            className={
+                              item.isDisable ? styles.scheduleDisableBtn : ""
+                            }
                             gradient={false}
                             data-testid={
                               constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
@@ -164,6 +161,8 @@ const InfoWindowContent = ({
                                 fontSize: "14px",
                                 fontWeight: 500,
                               },
+                              px: 2,
+                              py: "6px",
                             }}
                           >
                             <Typography variant="bodyRegularSmall">
