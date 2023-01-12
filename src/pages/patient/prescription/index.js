@@ -1,4 +1,5 @@
 import { CircularProgress, Stack, useMediaQuery } from "@mui/material";
+import { useRouter } from "next/router";
 import * as React from "react";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
@@ -119,6 +120,14 @@ export default function PrescriptionPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [activeTabs, setActiveTabs] = React.useState(null);
+  const router = useRouter();
+  useEffect(() => {
+    if (router.query?.activeTab > -1) {
+      setActiveTabs(router.query?.activeTab);
+    }
+  }, [router.query]);
+
   return (
     <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
       <Stack
@@ -137,6 +146,7 @@ export default function PrescriptionPage() {
             isViewAll={true}
             onMedicationRequestRefill={onMedicationRequestRefill}
             requestRefillResponseData={requestRefillResponse}
+            activeTabs={activeTabs}
           />
         ) : (
           <CircularProgress
