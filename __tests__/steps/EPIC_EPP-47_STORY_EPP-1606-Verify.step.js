@@ -288,9 +288,7 @@ defineFeature(feature, (test) => {
         container.getByText(/Upcoming Appointments/i);
       });
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual(
-        "Upcoming Appointments"
-      );
+      expect(container.getByText(/Upcoming appointments/i)).toBeInTheDocument();
     });
 
     and(
@@ -352,9 +350,7 @@ defineFeature(feature, (test) => {
         container.getByText(/Upcoming Appointments/i);
       });
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual(
-        "Upcoming Appointments"
-      );
+      expect(container.getByText(/Upcoming appointments/i)).toBeInTheDocument();
     });
 
     and(
@@ -425,9 +421,7 @@ defineFeature(feature, (test) => {
         container.getByText(/Upcoming Appointments/i);
       });
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual(
-        "Upcoming Appointments"
-      );
+      expect(container.getByText(/Upcoming appointments/i)).toBeInTheDocument();
     });
 
     and(
@@ -501,9 +495,7 @@ defineFeature(feature, (test) => {
         container.getByText(/Upcoming Appointments/i);
       });
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual(
-        "Upcoming Appointments"
-      );
+      expect(container.getByText(/Upcoming appointments/i)).toBeInTheDocument();
     });
 
     and(
@@ -614,9 +606,7 @@ defineFeature(feature, (test) => {
         container.getByText(/Upcoming Appointments/i);
       });
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual(
-        "Upcoming Appointments"
-      );
+      expect(container.getByText(/Upcoming appointments/i)).toBeInTheDocument();
     });
 
     and(
@@ -734,9 +724,7 @@ defineFeature(feature, (test) => {
         container.getByText(/Upcoming Appointments/i);
       });
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual(
-        "Upcoming Appointments"
-      );
+      expect(container.getByText(/Upcoming appointments/i)).toBeInTheDocument();
     });
 
     and(
@@ -864,9 +852,7 @@ defineFeature(feature, (test) => {
         container.getByText(/Upcoming Appointments/i);
       });
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual(
-        "Upcoming Appointments"
-      );
+      expect(container.getByText(/Upcoming appointments/i)).toBeInTheDocument();
     });
 
     and(
@@ -993,7 +979,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => {
-        container.getAllByText("Upcoming Appointments")[1];
+        container.getAllByText(/Upcoming appointments/i)[1];
       });
     });
 

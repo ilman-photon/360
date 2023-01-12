@@ -9,6 +9,14 @@
     padding: 16px;
   }
 }
+.visitOfPurpose {
+  font-family: "Museo Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.0016em;
+  text-align: left;
+}
 
 .title {
   font-family: "Museo Sans", sans-serif !important;
@@ -28,6 +36,7 @@
 
 .pastAppointmentDetail {
   padding: 24px;
+  font-weight: 600;
   border: 2px solid #f3f3f3;
   margin-bottom: 23px;
   @media (max-width: 992px) {
@@ -69,7 +78,7 @@
 .pastAppointmentDetail h6 {
   font-family: "Inter", sans-serif;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 18px;
   line-height: 28px;
   color: #003b4a;
@@ -114,6 +123,15 @@
   }
 }
 
+.dateContainer {
+  display: flex;
+  margin-bottom: 24px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
+}
 .viewDetails {
   width: 645px;
   display: flex;

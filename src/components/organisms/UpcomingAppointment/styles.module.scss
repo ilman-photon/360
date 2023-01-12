@@ -3,13 +3,44 @@
   margin: 0 auto;
   background-color: white;
   padding: 24px;
-
+  font-family: "Museo Sans", sans-serif;
   @media (max-width: 992px) {
     width: 100vw;
     padding: 16px;
   }
 }
 
+.visitOfPurpose p {
+  font-family: "Museo Sans", sans-serif;
+  font-size: "16px";
+}
+.visitOfPurpose #puposeOfVisitHead {
+  font-family: "Museo Sans", sans-serif;
+  font-size: "16px";
+}
+.visitOfPurpose {
+  height: 26px;
+  /* Visit Purpose: Routine */
+  font-family: "Museo Sans", sans-serif;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  /* identical to box height, or 144% */
+
+  letter-spacing: 0.0016em;
+
+  /* EyeCare/Dark Green */
+
+  color: #003b4a;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
 .title {
   font-family: "Museo Sans", sans-serif !important;
   font-style: normal !important;
@@ -84,7 +115,7 @@
 }
 
 .date {
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   font-size: 18px !important;
   margin-right: 81px !important;
   width: 340px;
@@ -99,7 +130,7 @@
   font-family: "Museo Sans", sans-serif !important;
   font-style: normal !important;
   font-weight: 700 !important;
-  font-size: 16px !important;
+  font-size: 18px !important;
   line-height: 24px !important;
   letter-spacing: 0.0016em !important;
   color: #003b4a !important;
@@ -110,7 +141,7 @@
 }
 
 .upcomingAppointmentDetail .dateContainer p {
-  font-size: 18px !important;
+  font-size: 16px !important;
 }
 
 .subTitleWrapper {

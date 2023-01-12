@@ -95,7 +95,7 @@ export function PastAppointmentCard({ data, threshold }) {
                     item.appointmentInfo.date,
                     item.appointmentInfo.timeZone
                   )}
-                  variant="subtitle1"
+                  variant="subtitle2"
                   className={styles.date}
                 >
                   {upcomingAppointmentDate(
@@ -106,15 +106,40 @@ export function PastAppointmentCard({ data, threshold }) {
                 <Box className={styles.subTitleWrapper}>
                   <Typography
                     tabIndex={0}
-                    ariaLabel={"Visit Purpose:"}
-                    variant="subtitle1"
+                    ariaLabel={"Purpose of Visit:"}
+                    variant="subtitle2"
+                    style={{
+                      height: "24px",
+                      "font-family": "Museo Sans",
+                      "font-style": "normal",
+                      "font-weight": "600",
+                      "font-size": "16px",
+                      "line-height": "24px",
+                      /* identical to box height, or 144% */
+
+                      "letter-spacing": "0.0016em",
+                      color: "#003B4A",
+                    }}
                   >
-                    Visit Purpose:{" "}
+                    Purpose of Visit:{" "}
                   </Typography>
                   <Typography
                     tabIndex={0}
                     ariaLabel={item.appointmentInfo.appointmentType}
                     variant="body2"
+                    sx={{
+                      width: "188px",
+                      height: "24px",
+                      "font-family": "Museo Sans",
+                      "font-style": "normal",
+                      "font-weight": "600",
+                      "font-size": "16px",
+                      "line-height": "24px",
+                      /* identical to box height, or 144% */
+
+                      "letter-spacing": "0.0016em",
+                      color: "#003B4A",
+                    }}
                   >
                     {item.appointmentInfo.appointmentType}
                   </Typography>

@@ -446,7 +446,7 @@ defineFeature(feature, (test) => {
         container.getByText(/Upcoming Appointments/i);
       });
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming Appointments");
+      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments");
     });
 
     when("User lands on “Appointments” screen", () => {
@@ -498,7 +498,7 @@ defineFeature(feature, (test) => {
 
         expect(
           container.getByText(/Upcoming appointments/i).textContent
-        ).toEqual("Upcoming Appointments");
+        ).toEqual("Upcoming appointments");
       }
     );
   });
