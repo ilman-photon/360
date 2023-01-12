@@ -21,8 +21,8 @@ const renderSpecialistList = (providerData) => {
       </Typography>
       <ul
         className={styles.specialistList}
-        sx={{
-          columnCount: providerData.specialties.length > 1 ? 2 : 1,
+        style={{
+          columnCount: providerData.specialties.length > 2 ? 2 : 1,
         }}
       >
         {providerData.specialties.map((item, index) => {
