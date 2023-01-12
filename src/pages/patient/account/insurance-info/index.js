@@ -4,11 +4,9 @@ import InsuranceView from "../../../../components/organisms/InsuranceInformation
 import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
-  addUserInsuranceData,
   deleteInsurance,
   fetchInsurance,
   postInsurance,
-  removeUserInsuranceData,
   updateInsurance,
 } from "../../../../store/user";
 import FormMessage from "../../../../components/molecules/FormMessage/formMessage";
@@ -75,6 +73,8 @@ export default function InsuranceInfoPage() {
 
   const newInsuranceComp = useRef(null);
 
+  const userStorageData = JSON.parse(localStorage.getItem("userData"));
+
   const showSuccessMessage = (message) => {
     dispatch(
       setPageMessage({
@@ -111,9 +111,10 @@ export default function InsuranceInfoPage() {
       ({ payload }) => {
         if (payload.success) {
           // after effect to add state of rawuserinsuranceData manually and rebuild
-          dispatch(addUserInsuranceData(payload.response));
+          // dispatch(addUserInsuranceData(payload.response));
           showSuccessMessage("Insurance successfully added");
           setOpenNewInsuranceForm(false);
+          dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
         }
       }
     );
@@ -125,22 +126,15 @@ export default function InsuranceInfoPage() {
   };
 
   const OnConfirmRemoveInsurance = () => {
+    setConfirmationDeleteDialog(false);
     dispatch(
       deleteInsurance({ patientId, coverageId: formDeleteInsurance.id })
     ).then(({ payload }) => {
       if (payload.success) {
         // after effect to add state of rawuserinsuranceData manually and rebuild
-        dispatch(removeUserInsuranceData(formDeleteInsurance));
-        setConfirmationDeleteDialog(false);
-        dispatch(
-          setPageMessage({
-            isShow: true,
-            content: "Insurance successfully removed",
-          })
-        );
-        setTimeout(() => {
-          dispatch(closePageMessage());
-        }, 5000);
+        // dispatch(removeUserInsuranceData(formDeleteInsurance));
+        showSuccessMessage("Insurance successfully removed");
+        dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
       }
     });
   };
@@ -153,7 +147,6 @@ export default function InsuranceInfoPage() {
   const OnEditInsurance = (postBody) => {
     if (!postBody) return;
     if (!checkInsuranceCardCompletion(postBody)) return;
-    const userStorageData = JSON.parse(localStorage.getItem("userData"));
 
     dispatch(
       updateInsurance({
@@ -200,7 +193,6 @@ export default function InsuranceInfoPage() {
   }, [openNewInsuranceForm]);
 
   useEffect(() => {
-    const userStorageData = JSON.parse(localStorage.getItem("userData"));
     if (userStorageData) {
       dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
       setPatientId(userStorageData.patientId);
@@ -235,28 +227,30 @@ export default function InsuranceInfoPage() {
         }}
       >
         <Collapse in={pageMessage.isShow}>
-          <FormMessage
-            withClose
-            onClose={() => {
-              dispatch(closePageMessage());
-            }}
-            role="button"
-            success={pageMessage.error ? false : true}
-            fontTitle={16}
-            sx={{
-              position: "relative",
-              justifyContent: "center",
-            }}
-          >
-            <Stack
+          {pageMessage.isShow && (
+            <FormMessage
+              withClose
+              onClose={() => {
+                dispatch(closePageMessage());
+              }}
+              role="button"
+              success={pageMessage.error ? false : true}
+              fontTitle={16}
               sx={{
-                flexDirection: "row",
-                alignItems: "center",
+                position: "relative",
+                justifyContent: "center",
               }}
             >
-              {pageMessage.content}
-            </Stack>
-          </FormMessage>
+              <Stack
+                sx={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                {pageMessage.content}
+              </Stack>
+            </FormMessage>
+          )}
         </Collapse>
       </div>
       {loadingInsurance === "loading" ? (

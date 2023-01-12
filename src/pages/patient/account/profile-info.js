@@ -128,41 +128,45 @@ export default function ProfileInformationPage({
   return (
     <section>
       <Collapse in={pageMessage.isShow}>
-        <div
-          style={{
-            borderRadius: "0px",
-            justifyContent: "center",
-            position: "absolute",
-            top: "-44px",
-            zIndex: "1",
-            left: 0,
-            width: "100%",
-            transition: "0.3 s ease-in-out",
-          }}
-        >
-          <FormMessage
-            withClose
-            onClose={() => {
-              dispatch(closePageMessage());
-            }}
-            role="button"
-            success={pageMessage.error ? false : true}
-            fontTitle={16}
-            sx={{
-              position: "relative",
+        {pageMessage.isShow && (
+          <div
+            style={{
+              borderRadius: "0px",
               justifyContent: "center",
+              position: "absolute",
+              top: "-44px",
+              zIndex: "1",
+              left: 0,
+              width: "100%",
+              transition: "0.3 s ease-in-out",
             }}
           >
-            <Stack
+            <FormMessage
+              withClose
+              onClose={() => {
+                dispatch(closePageMessage());
+              }}
+              success={pageMessage.error ? false : true}
+              fontTitle={16}
+              accessibility={{
+                tabIndex: "0",
+              }}
               sx={{
-                flexDirection: "row",
-                alignItems: "center",
+                position: "relative",
+                justifyContent: "center",
               }}
             >
-              {pageMessage.content}
-            </Stack>
-          </FormMessage>
-        </div>
+              <Stack
+                sx={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                {pageMessage.content}
+              </Stack>
+            </FormMessage>
+          </div>
+        )}
       </Collapse>
       {!isDesktop && (
         <Tabs
