@@ -7,6 +7,7 @@ export default function StyledRating({ value }) {
       value={value}
       precision={0.5}
       readOnly
+      aria-live="polite"
       aria-label={`Rating ${value} `}
       role="group"
       size="small"
