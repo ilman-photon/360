@@ -142,13 +142,8 @@ const EnhancedTableHead = (props) => {
   };
 
   return (
-    <TableHead
-      aria-hidden={false}
-      sx={{ backgroundColor: "#F3F5F6" }}
-      tabIndex={0}
-      aria-label="Table Header"
-    >
-      <TableRow aria-hidden={false} sx={{ whiteSpace: "nowrap" }}>
+    <TableHead sx={{ backgroundColor: "#F3F5F6" }}>
+      <TableRow aria-hidden={false} tabIndex={0} sx={{ whiteSpace: "nowrap" }}>
         {props.config.map((headCell, headIdx) => {
           switch (headCell.type) {
             case "empty":
@@ -398,7 +393,6 @@ export default function TableWithSort({
       <>
         <div
           style={tabelData.cell.contentStyle}
-          tabIndex={0}
           className={[styles.tableCell, tabelData.cell.contentClass].join(" ")}
         >
           {type === "date-time" ? getMultilineDate(dateValue) : dateValue}
