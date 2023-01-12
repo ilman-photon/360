@@ -44,6 +44,11 @@ export default function AppointmentLocation({
         aria-label="Location Heading"
         title={t("location")}
         isAppoinment={true}
+        sx={{
+          ".MuiCardContent-root": {
+            p: 3,
+          },
+        }}
         actionContent={
           <Button
             data-testid={
