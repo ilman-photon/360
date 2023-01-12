@@ -185,6 +185,7 @@ export default function MobileMenu({
         }}
         onClick={onClose}
         data-testid="user-menu-nav-close"
+        aria-label={"Close"}
       >
         <CloseOutlinedIcon />
       </IconButton>
