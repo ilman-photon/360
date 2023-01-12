@@ -28,6 +28,11 @@ export default function AppointmentDetails({
       <AccountCard
         title={t("appointmentDetails")}
         isAppoinment={true}
+        sx={{
+          ".MuiCardContent-root": {
+            p: 3,
+          },
+        }}
         actionContent={
           <Button
             data-testid={
