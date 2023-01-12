@@ -3,7 +3,7 @@ import styles from "./accountLayout.module.scss";
 import AccountSidebar from "../molecules/AccountSidebar/accountSidebar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
 import { patientTypography, providerTypography } from "../../styles/theme";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import { Provider, connect } from "react-redux";
@@ -20,6 +20,7 @@ function AccountLayout({
 }) {
   const isLogin = useLogin();
   const isPatient = theme === "patient";
+  const isDesktop = useMediaQuery("(min-width: 769px)");
 
   const getHeadingTitle = (pageName) => {
     switch (pageName) {
@@ -53,7 +54,7 @@ function AccountLayout({
           >
             <BaseHeader {...logoutProps} showNavbar={true} />
             <AccountTitleHeading
-              title={getHeadingTitle(currentActivePage)}
+              title={isDesktop ? "Your Account" : getHeadingTitle(currentActivePage)}
               sx={{
                 fontWeight: { xs: "500", md: "inherit" },
                 textAlign: { xs: "center", md: "inherit" },
