@@ -8,7 +8,14 @@ import styles from "./modalScheduling.module.scss";
 import constants from "../../../../utils/constants";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
-import { Box, Stack, Typography, Button, Link } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Typography,
+  Button,
+  Link,
+  useMediaQuery,
+} from "@mui/material";
 import { formatRescheduleDate } from "../../../../utils/dateFormatter";
 import { Regex } from "../../../../utils/regex";
 
@@ -23,6 +30,7 @@ export default function ModalCancelScheduling({
   const { handleSubmit, control, watch, reset } = useForm({
     defaultValues: {},
   });
+  const isDesktop = useMediaQuery("(min-width: 1195px)");
 
   const cancelRef = React.useRef(null);
 
@@ -175,7 +183,7 @@ export default function ModalCancelScheduling({
       <Box sx={{ width: "auto" }} className={styles.boxModalContents}>
         <Typography
           tabIndex={0}
-          aria-label={t("cancelTitle")}
+          aria-label={t("cancelReason")}
           variant="bodyMedium"
           className={styles.scheduledText}
           data-testid="title-cancel"
@@ -187,7 +195,11 @@ export default function ModalCancelScheduling({
           {t("cancelTitle3")}{" "}
           <Link
             onClick={() => onRescheduleClicked(choosenAppointment)}
-            sx={{ cursor: "pointer", color: "#0095A9" }}
+            sx={{
+              cursor: "pointer",
+              color: "#0095A9",
+              overflowWrap: "break-word",
+            }}
           >
             {rescheduleLink}
           </Link>
@@ -263,7 +275,7 @@ export default function ModalCancelScheduling({
                 width: "auto",
                 flexDirection: {
                   xs: "column",
-                  md: "row-reverse",
+                  sm: "row-reverse",
                 },
               }}
             >
@@ -273,14 +285,9 @@ export default function ModalCancelScheduling({
                 className={[styles.formButton, styles.cancel].join(" ")}
                 data-testid={CANCEL_SCHEDULE_TEST_ID.btnCancel}
                 sx={{
-                  width: {
-                    xs: "100% !important",
-                    md: "194px !important",
-                    lg: "100% !important",
-                  },
                   mb: {
                     xs: "8px",
-                    md: "0",
+                    sm: "0",
                   },
                   textTransform: "none",
                   borderRadius: 30,
@@ -294,11 +301,6 @@ export default function ModalCancelScheduling({
                 className={[styles.formButton, styles.outlined].join(" ")}
                 data-testid={CANCEL_SCHEDULE_TEST_ID.btnKeep}
                 sx={{
-                  width: {
-                    xs: "100% !important",
-                    md: "194px !important",
-                    lg: "100% !important",
-                  },
                   textTransform: "none",
                   borderRadius: 30,
                 }}
