@@ -1396,14 +1396,13 @@ defineFeature(feature, (test) => {
 
     when("User removes the selected filter", async () => {
       fireEvent.click(container.getByTestId("remove-Chicago"));
-      fireEvent.click(container.getByTestId("remove-Yorktown"));
       await waitFor(() => {
-        container.getByText(/Robert Fox/i);
+        container.getByText(/Jaco David/i);
       });
     });
 
     then("User should be able to view the list of doctors updated", () => {
-      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+      expect(container.getByText(/Jaco David/i)).toBeInTheDocument();
     });
   });
 
