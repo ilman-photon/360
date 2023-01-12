@@ -230,7 +230,7 @@ export default function PayMyBillCard() {
                     <TableCell tabIndex={0}>
                       {getBalanceData(payMyBillData)}
                     </TableCell>
-                    <TableCell tabIndex={0}>
+                    <TableCell>
                       {onRenderButtonView(() => {
                         // This is intentional
                       }, isDesktop)}
