@@ -10,7 +10,6 @@ import {
   setBillingOpenList,
   setBillingHistoryList,
   setSearchDataList,
-  getInvoiceReceipt,
 } from "../../../store/payMyBill";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";

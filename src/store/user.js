@@ -6,7 +6,6 @@ import {
   RELATIONSHIP_LIST,
   TITLE_LIST,
 } from "../utils/constantData";
-import { formatPhoneNumber } from "../utils/phoneFormatter";
 import removeSpace from "../utils/removeSpace";
 import { formatSocialSecurity } from "../utils/ssnFormatter";
 

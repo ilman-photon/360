@@ -8,7 +8,6 @@ import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import AccountSecurityIcon from "../../../assets/icons/AccountSecurity";
-import { colors } from "../../../styles/theme";
 
 export const AccountSidebar = () => {
   const [activeSidebarChild, setActiveSidebarChild] = useState(null);

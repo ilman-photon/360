@@ -390,6 +390,14 @@ export function parsePrescriptionItemData(prescriptionData, key) {
   return { data, latestDate };
 }
 
+function sortByDate(data, keySort) {
+  data.sort(function (a, b) {
+    let dateA = new Date(a[keySort]);
+    let dateB = new Date(b[keySort]);
+    return dateB < dateA ? -1 : dateB > dateA ? 1 : 0;
+  });
+}
+
 function getLatestDate(glassesDate, contactDate, medicationDate) {
   const listDate = [
     { name: "contact", date: contactDate, tab: 1 },
@@ -489,6 +497,7 @@ function parsePrescriptionItemMedication(medications) {
     }
   }
   filterData[1].checklist.push(...filterProvider);
+  sortByDate(past, "expirationDate");
   return { active, past, latestDateMedic, filterProvider: filterData };
 }
 

@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  IconButton,
-  MenuItem,
-  Select,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Box, IconButton, MenuItem, Select, Typography } from "@mui/material";
 import styles from "./styles.module.scss";
 import { useTranslation } from "next-i18next";
 import { StyledInput } from "../../atoms/Input/input";
