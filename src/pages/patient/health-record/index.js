@@ -294,6 +294,7 @@ HealthRecord.getLayout = function getLayout(page, store) {
     <Provider store={store}>
       <PrescriptionLayout
         title={"Health Records"}
+        pageTitle={"Health Records"}
         customClassName={styles.defaultContainer}
       >
         {page}

@@ -186,6 +186,9 @@ const EnhancedTableHead = (props) => {
                     ".MuiTableSortLabel-root:hover": {
                       color: "#003B4A !important",
                     },
+                    ".MuiTableSortLabel-root:focus": {
+                      color: "#003B4A !important",
+                    },
                     ...headCell.sx,
                   }}
                 >
@@ -394,6 +397,7 @@ export default function TableWithSort({
         <div
           style={tabelData.cell.contentStyle}
           className={[styles.tableCell, tabelData.cell.contentClass].join(" ")}
+          aria-label={dateValue}
         >
           {type === "date-time" ? getMultilineDate(dateValue) : dateValue}
         </div>
