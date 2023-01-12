@@ -154,7 +154,7 @@ export default function SearchDoctorPage() {
     setFilter(filters);
   };
 
-  const runFilterProvider = (data) => {
+  const runFilterProvider = async (data) => {
     return providerData.filter(function (item) {
       let show = false;
       for (const filterItem of data) {
@@ -171,9 +171,9 @@ export default function SearchDoctorPage() {
     });
   };
 
-  const filterData = (data) => {
+  const filterData = async (data) => {
     if (data.length > 0) {
-      const filteredProvider = runFilterProvider(data);
+      const filteredProvider = await runFilterProvider(data);
       setFilteredData(filteredProvider);
     } else {
       setFilteredData(undefined);
@@ -215,9 +215,17 @@ export default function SearchDoctorPage() {
       activedFilter.splice(id, 1);
       setActiveFilter([...activedFilter]);
       setLoading(true);
-      filterData(activedFilter);
+      await filterData(activedFilter);
       setLoading(false);
     }
+  };
+
+  const onClickDoneFilter = async (selectedFilterData) => {
+    setFilterOpen(!filterOpen);
+    setActiveFilter(selectedFilterData);
+    setLoading(true);
+    await filterData(selectedFilterData);
+    setLoading(false);
   };
 
   const renderResult = () => {
@@ -299,16 +307,14 @@ export default function SearchDoctorPage() {
       )}
       {filter && (
         <FilterBy
-          activedFilter={activeFilter}
+          activedFilter={[...activeFilter]}
           filter={filter}
           isOpen={filterOpen}
           onClose={() => {
             setFilterOpen(!filterOpen);
           }}
           onDone={(selectedFilterData) => {
-            setFilterOpen(!filterOpen);
-            setActiveFilter(selectedFilterData);
-            filterData(selectedFilterData);
+            onClickDoneFilter(selectedFilterData);
           }}
           isDoctorSearch={true}
         ></FilterBy>

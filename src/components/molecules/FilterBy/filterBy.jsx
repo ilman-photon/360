@@ -208,7 +208,6 @@ const FilterBy = ({
         </StyledButton>
         <StyledButton
           data-testId="filter-done-button"
-          theme={constants.PATIENT}
           mode={constants.PRIMARY}
           size={constants.SMALL}
           gradient={false}
