@@ -463,6 +463,7 @@ export default function AccountRecovery() {
       <>
         <Typography
           variant="headlineH4"
+          tabIndex={0}
           sx={{ display: { xs: "none", sm: "block" } }}
         >
           {rows.length} Results found using your search criteria
@@ -512,7 +513,7 @@ export default function AccountRecovery() {
               onSearch={handleSearchPatient}
             />
             <div className={styles.cardContent}>
-              <Stack spacing={2}>
+              <Stack spacing={2} sx={{ minHeight: "564px" }}>
                 <Collapse in={!!tableFormMessage}>
                   <FormMessage isWidthFilled success>
                     <Stack
@@ -532,15 +533,25 @@ export default function AccountRecovery() {
                 </Collapse>
 
                 {/* search result in table */}
-                {firstSearch &&
-                  (searchStatus === "loading" ? (
+                {firstSearch ? (
+                  searchStatus === "loading" ? (
                     <CircularProgress
                       data-testid="loading-state"
                       sx={{ margin: "0 auto" }}
                     />
                   ) : (
                     searchResultUI()
-                  ))}
+                  )
+                ) : (
+                  <>
+                    <Typography
+                      variant="titleCard"
+                      sx={{ textAlign: "center", pt: 12 }}
+                    >
+                      Please search to find the patient details
+                    </Typography>
+                  </>
+                )}
               </Stack>
             </div>
           </CardContent>
