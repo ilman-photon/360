@@ -54,11 +54,11 @@ export const fetchSource = async (
     const response = await digitalAsset.fetchSourceURL();
     if (response) {
       if (isPrint) {
-        print(response.presignedUrl);
+        await print(response.presignedUrl);
       } else if (isOpenPdf) {
-        openNewTab(response.presignedUrl);
+        await openNewTab(response.presignedUrl);
       } else {
-        download(response.presignedUrl);
+        await download(response.presignedUrl);
       }
       return {
         success: true,
