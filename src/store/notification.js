@@ -86,7 +86,11 @@ export const notificationStore = createSlice({
       state.status = "loading";
     },
     [fetchNotifications.fulfilled]: (state, { payload }) => {
-      state.list = payload.alerts;
+      // sort descending by recent created date
+      const sortedNotification = payload.alerts.sort((a, b) => {
+        return new Date(b._created).getTime() - new Date(a._created).getTime();
+      });
+      state.list = sortedNotification;
       state.status = "success";
     },
     [fetchNotifications.rejected]: (state, action) => {
