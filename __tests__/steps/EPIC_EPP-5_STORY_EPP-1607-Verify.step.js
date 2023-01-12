@@ -321,7 +321,7 @@ defineFeature(feature, (test) => {
       async () => {
         container = await renderPastAppointments();
         expect(
-          container.getByText("Upcoming Appointments")
+          container.getAllByText(/Upcoming Appointments/i)[0]
         ).toBeInTheDocument();
         expect(container.getByText("Past Appointments")).toBeInTheDocument();
       }

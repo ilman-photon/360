@@ -23,7 +23,6 @@ export function UpcomingAppointmentCard({
   }
 
   const isDesktop = useMediaQuery("(min-width: 993px)");
-
   const visitDate = new Date(data.appointmentInfo.date);
   const appointment = data;
   let hideHour = 0;
@@ -61,6 +60,12 @@ export function UpcomingAppointmentCard({
             )}
             className={styles.date}
             variant="subtitle1"
+            style={{
+              fontWeight: "18px",
+            }}
+            sx={{
+              fontWeight: "18px",
+            }}
           >
             {upcomingAppointmentDate(
               data.appointmentInfo.date,
@@ -70,8 +75,34 @@ export function UpcomingAppointmentCard({
           <Box className={styles.subTitleWrapper}>
             <Typography
               tabIndex={0}
+              id={"puposeOfVisitHead"}
               ariaLabel={"Purpose of Visit"}
-              variant="subtitle1"
+              variant={"body1"}
+              className={styles.visitOfPurpose}
+              style={{
+                height: "24px",
+                "font-family": "Museo Sans",
+                "font-style": "normal",
+                "font-weight": "600",
+                "font-size": "16px",
+                "line-height": "24px",
+                /* identical to box height, or 144% */
+
+                "letter-spacing": "0.0016em",
+                color: "#003B4A",
+              }}
+              sx={{
+                height: "24px",
+                "font-family": "Museo Sans",
+                "font-style": "normal",
+                "font-weight": "600",
+                "font-size": "16px",
+                "line-height": "24px",
+                /* identical to box height, or 144% */
+
+                "letter-spacing": "0.0016em",
+                color: "#003B4A",
+              }}
             >
               Purpose of Visit:{" "}
             </Typography>
@@ -184,11 +215,11 @@ export default function UpcomingAppointment({
         <Typography
           variant="h2"
           tabIndex={0}
-          label={"Upcoming appointments heading"}
+          label={"Upcoming appointments"}
           className={styles.title}
           data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
         >
-          Upcoming Appointments
+          Upcoming appointments
         </Typography>
         {isHasValue ? scheduleAppointmentButton(onScheduleNewClicked) : null}
       </Box>
