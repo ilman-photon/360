@@ -265,7 +265,22 @@ export default function Prescriptions({
               }}
               tabIndex={0}
             >
-              <Typography variant="customBodyRegular">
+              <Typography
+                variant="customBodyRegular"
+                sx={{
+                  fontSize: "18px",
+                  "font-family": "Libre Franklin",
+                  "font-style": "normal",
+                  "font-weight": "600",
+                  "font-size": "18px",
+                  "line-height": "26px",
+                  /* identical to box height, or 144% */
+
+                  "letter-spacing": "0.0016em",
+
+                  color: "#1C1F37",
+                }}
+              >
                 Prescribed on: &nbsp;
               </Typography>
               <Typography variant="bodyMedium">{row.date}</Typography>
