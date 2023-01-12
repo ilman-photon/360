@@ -370,6 +370,8 @@ export default function ScheduleAppointmentPage() {
     "Confirm",
   ];
 
+  const loginSteps = ["Location", "Review", "Confirm"];
+
   const headerText = [
     "Location",
     "Review Appointment Details",
@@ -603,7 +605,7 @@ export default function ScheduleAppointmentPage() {
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
       <StepperAppoinment
         activeStep={activeStep}
-        steps={steps}
+        steps={isLoggedIn ? loginSteps : steps}
         ariaLabelText="Review stage in progress bar"
       />
       {activeStep === 2 ? (
