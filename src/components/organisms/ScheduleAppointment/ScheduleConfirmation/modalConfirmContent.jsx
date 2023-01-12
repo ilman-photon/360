@@ -269,7 +269,7 @@ export default function ModalConfirmContent({
                       tabIndex={0}
                       className={styles.dateBold}
                       aria-label={formatAppointmentDateWithoutTime(
-                        appointmentData.date
+                        appointmentData?.date
                       )}
                       sx={{
                         width: "50%",
@@ -298,7 +298,7 @@ export default function ModalConfirmContent({
                       tabIndex={0}
                       className={styles.dateBold}
                       sx={{ pb: 2, width: "50%" }}
-                      aria-label={formatAppointmentTime(appointmentData.date)}
+                      aria-label={formatAppointmentTime(appointmentData?.date)}
                     >
                       {formatAppointmentTime(appointmentData.date)}
                     </Typography>
