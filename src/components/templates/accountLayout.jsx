@@ -54,7 +54,9 @@ function AccountLayout({
           >
             <BaseHeader {...logoutProps} showNavbar={true} />
             <AccountTitleHeading
-              title={isDesktop ? "Your Account" : getHeadingTitle(currentActivePage)}
+              title={
+                isDesktop ? "Your Account" : getHeadingTitle(currentActivePage)
+              }
               sx={{
                 fontWeight: { xs: "500", md: "inherit" },
                 textAlign: { xs: "center", md: "inherit" },

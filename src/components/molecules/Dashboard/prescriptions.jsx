@@ -138,6 +138,7 @@ export default function Prescriptions({
   },
   requestRefillResponseData = null,
   renderRirstOnly = false,
+  activeTabs,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const containerGlasses = React.useRef(null);
@@ -224,11 +225,15 @@ export default function Prescriptions({
       parsePrescriptionData(prescriptionData);
     setPrescriptione(parsePrescriptions);
     setFilterData(filterProvider);
-    if (isViewAll && requestRefillResponseData === null) {
+    if (isViewAll && !activeTabs && requestRefillResponseData === null) {
       setValue(activeTab);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prescriptionData]);
+
+  useEffect(() => {
+    if (activeTabs) setValue(Number(activeTabs));
+  }, [activeTabs]);
 
   function renderMedicationUI(data) {
     if (data && data.length > 0) {
