@@ -90,9 +90,15 @@ const StackList = ({
         >
           <Typography className={styles.titleStyle}>Medical Record</Typography>
           <Typography
-            className={styles.valueName}
+            className={
+              data?.digital_assets?._id
+                ? styles.valueName
+                : styles.valueNameDisable
+            }
             onClick={() => {
-              onAssetDownload(data?.digitalSignature._id);
+              if (data?.digital_assets?._id) {
+                onAssetDownload(data?.digital_assets?._id, false, true, true);
+              }
             }}
           >
             {data.name}
@@ -136,18 +142,22 @@ const StackList = ({
           justifyContent={"flex-end"}
           className={styles.stackContentButton}
         >
-          {renderCTAIcon(
-            () => {
-              onAssetDownload(data?.digitalSignature._id);
-            },
-            () => {
-              onAssetDownload(data?.digitalSignature._id, true);
-            },
-            () => {
-              onShareDocument(data);
-            },
-            ["download", "print", "share"],
-            styles.butttonIconContainer
+          {data?.digital_assets?._id ? (
+            renderCTAIcon(
+              () => {
+                onAssetDownload(data?.digital_assets?._id);
+              },
+              () => {
+                onAssetDownload(data?.digital_assets?._id, true);
+              },
+              () => {
+                onShareDocument(data);
+              },
+              ["download", "print", "share"],
+              styles.butttonIconContainer
+            )
+          ) : (
+            <></>
           )}
         </Stack>
       </Stack>

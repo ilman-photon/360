@@ -18,6 +18,12 @@ import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import StackList from "../../../components/organisms/StackList/StackList";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import {
+  parseHealthRecordData,
+  shareDocument,
+} from "../../../components/molecules/Dashboard/healthRecordCard";
+import { setGenericErrorMessage } from "../../../store";
+import { LoadingModal } from "../../../components/molecules/LoadingModal/LoadingModal";
 
 export function defaultHeader() {
   return {
@@ -111,7 +117,7 @@ export function tableConfiguration(
       },
       {
         type: "text",
-        valueKey: "digitalSignature.firstName,digitalSignature.lastName",
+        valueKey: "provider.firstName,provider.lastName",
         isMultipleKey: true,
         ...defaultCell(isDesktop),
       },
@@ -122,21 +128,17 @@ export function tableConfiguration(
       },
       {
         type: "menu-cta",
-        valueKey: "digitalSignature._id",
+        valueKey: "digital_assets._id",
         contentStyle: { padding: "16px" },
       },
     ],
   };
 }
-import {
-  parseHealthRecordData,
-  shareDocument,
-} from "../../../components/molecules/Dashboard/healthRecordCard";
-
 export default function HealthRecord() {
   const isDesktop = useMediaQuery("(min-width: 820px)");
   const dispatch = useDispatch();
   const [healthRecordDocument, setHealthRecordDocument] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
   const sortFilter = [
     {
@@ -189,8 +191,19 @@ export default function HealthRecord() {
     return "We do not have any health records associated with your account.";
   };
 
-  const handleAssetDownload = (id, print, newTab = true, isOpen = false) => {
-    fetchSource(id, print, newTab, isOpen);
+  const handleAssetDownload = async (
+    id,
+    print,
+    newTab = true,
+    isOpen = false
+  ) => {
+    if (id) {
+      setLoading(true);
+      await fetchSource(id, print, newTab, isOpen);
+      setLoading(false);
+    } else {
+      dispatch(setGenericErrorMessage("Please try again after sometime."));
+    }
   };
 
   useEffect(() => {
@@ -238,6 +251,7 @@ export default function HealthRecord() {
         ) : (
           <TableEmpty text={noResultText()} />
         )}
+        <LoadingModal open={loading} />
       </>
     );
   }
@@ -259,6 +273,7 @@ export default function HealthRecord() {
             <TableEmpty text={noResultText()} />
           </Stack>
         )}
+        <LoadingModal open={loading} />
       </>
     );
   }

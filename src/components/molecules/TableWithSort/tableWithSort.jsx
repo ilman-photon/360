@@ -414,14 +414,16 @@ export default function TableWithSort({
     if (cell.isMultipleKey) {
       return getTextMultipleValue(row, cell);
     } else if (cell.hasAction && cell.onClick) {
+      const assetId = ref(row, cell.additionalValueKey);
       return (
         <div
           role="button"
-          className={styles.actionText}
+          className={assetId ? styles.actionText : styles.actionTextDisable}
           aria-label={ref(row, cell.valueKey)}
           onClick={() => {
-            const assetId = ref(row, cell.additionalValueKey);
-            cell.onClick(assetId);
+            if (assetId) {
+              cell.onClick(assetId);
+            }
           }}
         >
           {ref(row, cell.valueKey)}
@@ -562,18 +564,22 @@ export default function TableWithSort({
       case "menu-cta":
         return (
           <>
-            {renderCTAIcon(
-              () => {
-                handleMoreMenu("download", row);
-              },
-              () => {
-                handleMoreMenu("print", rows);
-              },
-              () => {
-                handleMoreMenu("share", row);
-              },
-              ["download", "print", "share"],
-              styles.butttonIconContainer
+            {ref(row, cell.valueKey) ? (
+              renderCTAIcon(
+                () => {
+                  handleMoreMenu("download", row);
+                },
+                () => {
+                  handleMoreMenu("print", row);
+                },
+                () => {
+                  handleMoreMenu("share", row);
+                },
+                ["download", "print", "share"],
+                styles.butttonIconContainer
+              )
+            ) : (
+              <></>
             )}
           </>
         );

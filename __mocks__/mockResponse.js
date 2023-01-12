@@ -37823,46 +37823,46 @@ export const MOCK_GET_DELETE_MESSAGING = [
 ];
 
 export const medicalRecordMockData = {
-  "count": 1,
-  "entities": [
+  count: 1,
+  entities: [
     {
-      "encounter": {
-        "_id": "6de55801-e5de-4344-84d0-dd9fa90f8700",
-        "encounterNo": "10000643",
+      encounter: {
+        _id: "6de55801-e5de-4344-84d0-dd9fa90f8700",
+        encounterNo: "10000643",
       },
-      "provider": {
-        "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
-        "firstName": "indraku",
-        "lastName": "kumar",
-        "designation": "Mr"
+      provider: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
       },
-      "examSheetTemplate": {
-        "name": "Exam",
-        "active": true,
-        "deleted": false,
-        "isProvider": false,
-        "isall": false,
-        "appointmentType": "Comprehensive",
-        "_id": "2b3f89ed-9c44-4279-8068-e05e534ac207"
+      examSheetTemplate: {
+        name: "Exam",
+        active: true,
+        deleted: false,
+        isProvider: false,
+        isall: false,
+        appointmentType: "Comprehensive",
+        _id: "2b3f89ed-9c44-4279-8068-e05e534ac207",
       },
-      "digitalSignature": {
-        "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
-        "date": "Nov 14, 2022 - 05:31 PM",
-        "lastName": "kumar",
-        "firstName": "indraku",
-        "designation": "Mr"
+      digital_assets: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        date: "Nov 14, 2022 - 05:31 PM",
+        lastName: "kumar",
+        firstName: "indraku",
+        designation: "Mr",
       },
-      "_id": "7dff3225-4213-42ee-8112-8d088d43fff6",
-      "_version": "5fc82452-bc3f-4c15-abba-e423ae41a607",
-      "_created": "Oct 7, 2022, 10:00:00 AM"
-    }
+      _id: "7dff3225-4213-42ee-8112-8d088d43fff6",
+      _version: "5fc82452-bc3f-4c15-abba-e423ae41a607",
+      _created: "Oct 7, 2022, 10:00:00 AM",
+    },
   ],
-  "_links": {
-    "self": {
-      "href": "/emr?pageNo=0&pageSize=20"
-    }
-  }
-}
+  _links: {
+    self: {
+      href: "/emr?pageNo=0&pageSize=20",
+    },
+  },
+};
 
 export const dummyFormDocument = [
   {

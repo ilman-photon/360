@@ -65,12 +65,14 @@ export function parseHealthRecordData(documentList, rows) {
       const currentDoc = documentList.find(
         (item) => item.encounterNo === healthItem.encounter?.encounterNo
       );
+      let tempHealthItem = {
+        ...healthItem,
+      };
+
       if (currentDoc) {
-        healthRecordTemp.push({
-          ...healthItem,
-          digital_assets: currentDoc.digital_assets,
-        });
+        tempHealthItem["digital_assets"] = currentDoc.digital_assets;
       }
+      healthRecordTemp.push(tempHealthItem);
     }
   } else {
     healthRecordTemp = rows;
