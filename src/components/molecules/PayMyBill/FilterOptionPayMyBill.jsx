@@ -6,6 +6,14 @@ import { StyledInput } from "../../atoms/Input/input";
 import { Controller, useForm } from "react-hook-form";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { Regex } from "../../../utils/regex";
+import { isFutureDate } from "../../../utils/dateFormatter";
+
+export function isValidDateFormat(date) {
+  if (!isNaN(date) && date && date.getFullYear) {
+    return date.getFullYear().toString().length == 4;
+  }
+  return false;
+}
 
 export const FilterOptionPayMyBill = ({
   handleChangeOption = () => {
@@ -22,7 +30,9 @@ export const FilterOptionPayMyBill = ({
   const { t } = useTranslation("translation", {
     keyPrefix: "payMyBill",
   });
-  const { control, setValue } = useForm();
+  const { control, setValue } = useForm({
+    mode: "onChange",
+  });
   const [optionSelected, setOptionSelected] = useState("");
   const [showUiOption, setShowUiOption] = useState({
     option: "",
@@ -145,8 +155,16 @@ export const FilterOptionPayMyBill = ({
           >
             <Controller
               name="fromDate"
+              tabIndex={0}
+              InputPropsLabel={{
+                "aria-label": "Fiter from date",
+              }}
+              aria-label="Fiter from date"
               control={control}
-              render={({ field: { onChange, value } }) => {
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
                 return (
                   <StyledInput
                     type="dob"
@@ -157,16 +175,18 @@ export const FilterOptionPayMyBill = ({
                     variant="filled"
                     value={value}
                     onChange={(val) => {
-                      onFilterByDate("fromDate", val);
+                      console.log(val);
+                      if (isValidDateFormat(val)) {
+                        onFilterByDate("fromDate", val);
+                      }
                       onChange(val);
                     }}
-                    disableMaskedInput
                     components={{
                       OpenPickerIcon: DateIcon,
                     }}
                     inputProps={{
                       tabIndex: -1,
-                      readOnly: true,
+                      readOnly: !isDesktop,
                       isTransparent: true,
                     }}
                     OpenPickerButtonProps={{
@@ -174,8 +194,24 @@ export const FilterOptionPayMyBill = ({
                         backgroundColor: "transparent",
                       },
                     }}
+                    showInputAdornment
+                    error={!!error}
+                    helperText={error ? error.message : null}
                   />
                 );
+              }}
+              rules={{
+                validate: {
+                  required: (value) => {
+                    if (!isValidDateFormat(value))
+                      return "Incorrect date format";
+                  },
+                  notFutureDate: (value) => {
+                    if (isFutureDate(value)) {
+                      return "Incorrect date format";
+                    }
+                  },
+                },
               }}
             />
             <Typography
@@ -194,8 +230,16 @@ export const FilterOptionPayMyBill = ({
             </Typography>
             <Controller
               name="toDate"
+              tabIndex={0}
+              InputPropsLabel={{
+                "aria-label": "Fiter to date",
+              }}
+              aria-label="Fiter to date"
               control={control}
-              render={({ field: { onChange, value } }) => {
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
                 return (
                   <StyledInput
                     aria-label={"To Date field"}
@@ -206,16 +250,17 @@ export const FilterOptionPayMyBill = ({
                     variant="filled"
                     value={value}
                     onChange={(val) => {
-                      onFilterByDate("toDate", val);
+                      if (isValidDateFormat(val)) {
+                        onFilterByDate("toDate", val);
+                      }
                       onChange(val);
                     }}
                     components={{
                       OpenPickerIcon: DateIcon,
                     }}
-                    disableMaskedInput
                     inputProps={{
                       tabIndex: -1,
-                      readOnly: true,
+                      readOnly: !isDesktop,
                       isTransparent: true,
                     }}
                     OpenPickerButtonProps={{
@@ -223,8 +268,24 @@ export const FilterOptionPayMyBill = ({
                         backgroundColor: "transparent",
                       },
                     }}
+                    showInputAdornment
+                    error={!!error}
+                    helperText={error ? error.message : null}
                   />
                 );
+              }}
+              rules={{
+                validate: {
+                  required: (value) => {
+                    if (!isValidDateFormat(value))
+                      return "Incorrect date format";
+                  },
+                  notFutureDate: (value) => {
+                    if (isFutureDate(value)) {
+                      return "Incorrect date format";
+                    }
+                  },
+                },
               }}
             />
           </Box>

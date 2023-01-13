@@ -210,7 +210,7 @@ const SummaryBillDetail = ({
               </Box>
               <Box className={styles.infoContent}>
                 {Object.keys(data).map(function (key) {
-                  if (key != "invoiceNumber" && key != "dos") {
+                  if (key != "invoiceNumber" && key != "dos" && key != "id") {
                     return (
                       <Box key={key} className={styles.listInfoContent}>
                         <Typography

@@ -10,7 +10,8 @@ export function tableConfiguration(
   headerData = [],
   cellData = [],
   primaryAction,
-  secondaryAction
+  secondaryAction,
+  isSummary = true
 ) {
   return {
     header: [
@@ -68,7 +69,7 @@ export function tableConfiguration(
             >
               <Button
                 onClick={() => {
-                  primaryAction(props);
+                  primaryAction(props, isSummary);
                 }}
                 sx={{
                   display: "flex",
@@ -216,7 +217,8 @@ export const InvoiceHistoryMobileView = ({
             headerData,
             cellsData,
             onGoToViewDetail,
-            handleAssetDownload
+            handleAssetDownload,
+            false
           )}
           rows={data}
           showResultNum={false}

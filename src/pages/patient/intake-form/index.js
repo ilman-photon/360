@@ -521,7 +521,7 @@ export default function IntakeFormPage() {
   function onRenderUserUI() {
     return (
       <>
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: "100%" }} className={styles.containerForm}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
               sx={{

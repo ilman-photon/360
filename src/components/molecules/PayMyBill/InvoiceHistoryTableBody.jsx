@@ -172,7 +172,7 @@ export const InvoiceHistoryTableBody = ({
         icon: (
           <IconButton
             sx={{ width: 24, height: 24, p: 0 }}
-            data-testid="downloadPDFButton"
+            data-testid="printPDFButton"
           >
             <LocalPrintshopOutlinedIcon sx={{ fill: colors.darkGreen }} />
           </IconButton>

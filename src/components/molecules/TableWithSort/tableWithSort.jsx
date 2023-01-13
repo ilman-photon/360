@@ -443,6 +443,7 @@ export default function TableWithSort({
       case "icon":
         return <>{cell.icon}</>;
       case "download-asset":
+        const isPrint = cell.customTooltipText == "Print";
         return (
           <Tooltip
             title={
@@ -463,7 +464,7 @@ export default function TableWithSort({
             <div
               onClick={() => {
                 const assetId = ref(row, cell.valueKey);
-                onAssetDownload(assetId);
+                onAssetDownload(assetId, isPrint);
               }}
               aria-label="Download"
             >
