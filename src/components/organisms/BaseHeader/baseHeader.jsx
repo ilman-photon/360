@@ -130,7 +130,7 @@ export default function BaseHeader({
     setIsNotificationLoading(false);
   };
 
-  const handleMarkAllAsRead = () => {
+  const handleMarkAllAsRead = async () => {
     const notificationIds = notifications.map((item) => item._id);
     dispatch(
       readNotificationItem({ patientId, notificationIds: notificationIds })
