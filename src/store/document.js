@@ -142,7 +142,10 @@ const documentSlice = createSlice({
   initialState: {
     documentList: [],
     status: null,
-    showPostmessage: false,
+    showPostmessage: {
+      isShow: false,
+      message: "",
+    },
     defaultDataValue: {},
     defaultDataKey: [],
     intakeFormData: {

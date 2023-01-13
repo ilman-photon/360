@@ -181,13 +181,13 @@ export default function IntakeFormPage() {
       onCallGetSubmitedForm();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [document, showPostmessage]);
+  }, [document]);
 
   useEffect(() => {
-    if (showPostmessage) {
+    if (showPostmessage && showPostmessage.isShow) {
       setTimeout(() => {
-        dispatch(setShowPostmessage(false));
-      }, 3000);
+        dispatch(setShowPostmessage({ isShow: false, message: "" }));
+      }, 5000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showPostmessage]);
@@ -416,7 +416,8 @@ export default function IntakeFormPage() {
                     margin: "auto 0",
                   }}
                   tabIndex={0}
-                  aria-label="download button"
+                  aria-label="download"
+                  role="button"
                   onClick={() => {
                     onDownloadDigitalAsset(item.digitalAssetId);
                   }}
@@ -576,10 +577,10 @@ export default function IntakeFormPage() {
   return (
     <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
       {renderPostMessage(
-        showPostmessage,
-        "Consent to User and Disclosure was successfully saved",
+        showPostmessage?.isShow,
+        `${showPostmessage?.message} was successfully saved`,
         () => {
-          dispatch(setShowPostmessage(false));
+          dispatch(setShowPostmessage({ isShow: false, message: "" }));
         }
       )}
       <Stack

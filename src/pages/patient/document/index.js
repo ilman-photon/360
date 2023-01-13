@@ -133,7 +133,7 @@ export default function DocumentPage({ title }) {
     return api
       .createPatientDocument([postBody])
       .then(function () {
-        dispatch(setShowPostmessage(true));
+        dispatch(setShowPostmessage({ isShow: true, message: title }));
         router.push(`/patient/intake-form`);
       })
       .catch(() => {
