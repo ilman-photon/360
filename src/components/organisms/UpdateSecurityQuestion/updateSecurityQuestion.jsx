@@ -39,7 +39,12 @@ const UpdateSecurityQuestion = ({
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
-  const { handleSubmit, control, setValue } = useForm({
+  const {
+    handleSubmit,
+    control,
+    setValue,
+    formState: { isDirty },
+  } = useForm({
     defaultValues: {
       "question-1": "",
       "answer-1": "",
@@ -109,18 +114,7 @@ const UpdateSecurityQuestion = ({
       }
     });
 
-    function arraysEqual(a, b) {
-      const a1 = a ? Object.keys(a) : [];
-      const b1 = b ? Object.keys(b) : [];
-      return (
-        a1.length == b1.length &&
-        a1.every(function (element, index) {
-          return element === b1[index];
-        })
-      );
-    }
-    let same = arraysEqual(payload, userQuestion[0]);
-    onUpdateSecurityQuestion(payload, same);
+    onUpdateSecurityQuestion(payload, !isDirty);
   };
 
   const showErrorMessage = () => {
