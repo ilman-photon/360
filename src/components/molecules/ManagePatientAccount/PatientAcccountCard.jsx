@@ -240,6 +240,7 @@ export default function PatientAcccountCard({
                     </Box>
                   );
                 case "date":
+                case "date-locked-account":
                   return (
                     <Box
                       key={`row-${i}-cell-${idx}`}
@@ -277,7 +278,11 @@ export default function PatientAcccountCard({
                           ...cell.sx,
                         }}
                       >
-                        {moment(ref(item, cell.valueKey)).format("MM/DD/YYYY")}
+                        {moment(ref(item, cell.valueKey)).format(
+                          cell.type === "date-locked-account"
+                            ? "MM/DD/YYYY hh:mmA"
+                            : "MM/DD/YYYY"
+                        )}
                       </Typography>
                     </Box>
                   );
