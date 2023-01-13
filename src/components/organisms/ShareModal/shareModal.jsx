@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import {
@@ -13,7 +13,7 @@ import styles from "./styles.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Box } from "@mui/system";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useFormState } from "react-hook-form";
 import StyledInput from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import { useDispatch, useSelector } from "react-redux";
@@ -159,6 +159,11 @@ export function getDynamicShareContent(data) {
 function ShareModal() {
   const { handleSubmit, control, setError, setValue } = useForm();
   const dispatch = useDispatch();
+  const { errors, isSubmitting } = useFormState({
+    control,
+  });
+
+  const emailRef = useRef(null);
 
   const shareModalData = useSelector((state) => state?.share?.shareModalData);
   const openModal = useSelector((state) => state?.share?.openModal);
@@ -174,6 +179,13 @@ function ShareModal() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openModal]);
+
+  useEffect(() => {
+    if (errors.email) {
+      emailRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   const onSubmit = (data) => {
     if (data?.email.length == "") {
@@ -388,6 +400,7 @@ function ShareModal() {
                 }) => {
                   return (
                     <StyledInput
+                      inputRef={emailRef}
                       aria-label="Email, Direct Email or Phone"
                       label="Email, Direct Email or Phone"
                       id="email"
