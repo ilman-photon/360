@@ -34,11 +34,22 @@ import Image from "next/image";
 function descendingComparator(a, b, orderBy) {
   const refA = ref(a, orderBy);
   const refB = ref(b, orderBy);
-  if (refB < refA) {
-    return -1;
-  }
-  if (refB > refA) {
-    return 1;
+
+  if (orderBy.includes("date")) {
+    // specific case with date
+    if (new Date(refB) < new Date(refA)) {
+      return -1;
+    }
+    if (new Date(refB) > new Date(refA)) {
+      return 1;
+    }
+  } else {
+    if (refB < refA) {
+      return -1;
+    }
+    if (refB > refA) {
+      return 1;
+    }
   }
   return 0;
 }

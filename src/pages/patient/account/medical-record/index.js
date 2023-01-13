@@ -119,7 +119,7 @@ export default function MedicalRecordPage() {
       },
       {
         type: "text",
-        id: "date",
+        id: "data.testingOrder.orderDetails.dateTime.startDate",
         numeric: false,
         disablePadding: true,
         label: "Test Date",
