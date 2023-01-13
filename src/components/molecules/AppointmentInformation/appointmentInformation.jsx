@@ -104,7 +104,10 @@ export default function AppointmentInformation({ data }) {
               {data.providerInfo.position}
             </Typography>
             {data.providerInfo.address !== "" && (
-              <Typography variant="body2" sx={{ color: "#191919" }}>
+              <Typography
+                variant="body2"
+                sx={{ color: "#191919", fontWeight: "300" }}
+              >
                 {data.providerInfo.address.addressLine1 +
                   `\n` +
                   data.providerInfo.address.city +
@@ -116,7 +119,10 @@ export default function AppointmentInformation({ data }) {
               </Typography>
             )}
           </div>
-          <PhoneNumber phone={data.providerInfo.phoneNumber} />
+          <PhoneNumber
+            sx={{ fontWeight: "300" }}
+            phone={data.providerInfo.phoneNumber}
+          />
           <Box className={styles.getDirectionLink}>
             <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
             <Link

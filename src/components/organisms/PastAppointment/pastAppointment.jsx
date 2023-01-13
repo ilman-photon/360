@@ -113,7 +113,7 @@ export function PastAppointmentCard({ data, threshold }) {
                       "font-family": "Museo Sans",
                       "font-style": "normal",
                       "font-weight": "600",
-                      "font-size": "16px",
+                      "font-size": "18px",
                       "line-height": "24px",
                       /* identical to box height, or 144% */
 
@@ -132,8 +132,8 @@ export function PastAppointmentCard({ data, threshold }) {
                       height: "24px",
                       "font-family": "Museo Sans",
                       "font-style": "normal",
-                      "font-weight": "600",
-                      "font-size": "16px",
+                      "font-weight": "300",
+                      "font-size": "18px",
                       "line-height": "24px",
                       /* identical to box height, or 144% */
 
