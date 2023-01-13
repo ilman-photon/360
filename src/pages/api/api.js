@@ -679,7 +679,7 @@ export class Api {
 
   changeUsername(postBody) {
     const url = `/ecp/patient/settings/updateUsername`;
-    return this.getResponse(url, postBody, "post");
+    return this.getResponse(url, postBody, "post", false);
   }
 
   changePassword(postBody) {

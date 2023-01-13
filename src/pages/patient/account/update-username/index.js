@@ -3,9 +3,10 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch } from "react-redux";
 import CustomModal from "../../../../components/molecules/CustomModal/customModal";
+import FormMessage from "../../../../components/molecules/FormMessage/formMessage";
 import UpdateUsernameView from "../../../../components/molecules/UpdateUsernameView/updateUsernameView";
 import UpdateLoginLayout from "../../../../components/templates/updateLoginLayout";
-import { setLoginMessage } from "../../../../store";
+import { setGenericErrorMessage, setLoginMessage } from "../../../../store";
 import store from "../../../../store/store";
 import { logoutProps } from "../../../../utils/authetication";
 import { formatPhoneNumber } from "../../../../utils/phoneFormatter";
@@ -17,6 +18,7 @@ export default function UpdateUsername() {
   const [userData, setUserData] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const [username, setUsername] = useState("");
 
   useEffect(() => {
@@ -36,10 +38,51 @@ export default function UpdateUsername() {
         dispatch(setLoginMessage("Your username was successfully updated."));
         logoutProps.OnLogoutClicked(router, null, username);
       })
-      .catch(() => {
-        // This is intentional
+      .catch((err) => {
+        if (err.responseCode === 3002) {
+          setShowErrorModal(true);
+        } else {
+          dispatch(setGenericErrorMessage(err.responseType));
+        }
       });
   };
+
+  const renderErrorModal = () => (
+    <CustomModal
+      open={showErrorModal}
+      buttonText={"OK"}
+      onClickButton={() => {
+        setShowErrorModal(false);
+      }}
+      sx={{
+        "& .MuiPaper-root": {
+          position: { xs: "absolute", md: "absolute" },
+          top: { xs: "71px", md: "87px" },
+          m: 2,
+          width: {
+            md: "468px",
+          },
+        },
+        "& .MuiDialogContent-root": {
+          padding: "16px !important",
+        },
+      }}
+    >
+      <Typography variant="h3" sx={{ fontWeight: 300 }}>
+        Username already exists!
+      </Typography>
+      <FormMessage
+        success={false}
+        id="alert-dialog-description"
+        sx={{
+          fontWeight: "300",
+          my: 2,
+        }}
+      >
+        Please provide a different Email id or Phone number
+      </FormMessage>
+    </CustomModal>
+  );
 
   return (
     <>
@@ -124,6 +167,8 @@ export default function UpdateUsername() {
           </Typography>
         </Box>
       </CustomModal>
+
+      {renderErrorModal()}
     </>
   );
 }

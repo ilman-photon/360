@@ -182,9 +182,9 @@ defineFeature(feature, (test) => {
 
     when("user clicks Yes", () => {
       expect(
-        container.getAllByRole("button", { name: /Update/i })[0]
+        container.getAllByRole("button", { name: /Update/i })[1]
       ).toBeInTheDocument();
-      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[1]);
     });
 
     then(
@@ -284,9 +284,9 @@ defineFeature(feature, (test) => {
 
     when("user clicks Yes", () => {
       expect(
-        container.getAllByRole("button", { name: /Update/i })[0]
+        container.getAllByRole("button", { name: /Update/i })[1]
       ).toBeInTheDocument();
-      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[1]);
     });
 
     then(
@@ -386,9 +386,9 @@ defineFeature(feature, (test) => {
 
     when("user clicks Yes", () => {
       expect(
-        container.getAllByRole("button", { name: /Update/i })[0]
+        container.getAllByRole("button", { name: /Update/i })[1]
       ).toBeInTheDocument();
-      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[1]);
     });
 
     then(
@@ -519,9 +519,9 @@ defineFeature(feature, (test) => {
 
     when("user clicks Yes", () => {
       expect(
-        container.getAllByRole("button", { name: /Update/i })[0]
+        container.getAllByRole("button", { name: /Update/i })[1]
       ).toBeInTheDocument();
-      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[1]);
     });
 
     then(
@@ -748,9 +748,9 @@ defineFeature(feature, (test) => {
 
     when("user clicks Yes", () => {
       expect(
-        container.getAllByRole("button", { name: /Update/i })[0]
+        container.getAllByRole("button", { name: /Update/i })[1]
       ).toBeInTheDocument();
-      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[1]);
     });
 
     then(

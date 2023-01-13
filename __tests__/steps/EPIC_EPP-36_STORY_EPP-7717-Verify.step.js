@@ -392,18 +392,18 @@ defineFeature(feature, (test) => {
 
     and("user should be able to view Update button", () => {
       expect(
-        container.getAllByRole("button", { name: /Update/i })[0]
+        container.getAllByRole("button", { name: /Update/i })[1]
       ).toBeInTheDocument();
     });
 
     and("user should be able to view Cancel button", () => {
       expect(
-        container.getAllByRole("button", { name: /Cancel/i })[0]
+        container.getAllByRole("button", { name: /Cancel/i })[1]
       ).toBeInTheDocument();
     });
 
     when("user click on Update button", () => {
-      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[1]);
     });
 
     then(
@@ -499,18 +499,18 @@ defineFeature(feature, (test) => {
 
     and("user should be able to view Update button", () => {
       expect(
-        container.getAllByRole("button", { name: /Update/i })[0]
+        container.getAllByRole("button", { name: /Update/i })[1]
       ).toBeInTheDocument();
     });
 
     and("user should be able to view Cancel button", () => {
       expect(
-        container.getAllByRole("button", { name: /Cancel/i })[0]
+        container.getAllByRole("button", { name: /Cancel/i })[1]
       ).toBeInTheDocument();
     });
 
     when("user click on Update button", () => {
-      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[0]);
+      fireEvent.click(container.getAllByRole("button", { name: /Update/i })[1]);
     });
 
     then(
@@ -613,18 +613,18 @@ defineFeature(feature, (test) => {
 
     and("user should be able to view Update button", () => {
       expect(
-        container.getAllByRole("button", { name: /Update/i })[0]
+        container.getAllByRole("button", { name: /Update/i })[1]
       ).toBeInTheDocument();
     });
 
     and("user should be able to view Cancel button", () => {
       expect(
-        container.getAllByRole("button", { name: /Cancel/i })[0]
+        container.getAllByRole("button", { name: /Cancel/i })[1]
       ).toBeInTheDocument();
     });
 
     when("user click on Cancel button", () => {
-      fireEvent.click(container.getAllByRole("button", { name: /Cancel/i })[0]);
+      fireEvent.click(container.getAllByRole("button", { name: /Cancel/i })[1]);
     });
 
     then(
