@@ -397,7 +397,7 @@ export default function TableWithSort({
 
   function getDateTabelCell(tabelData, type) {
     let format = "MM/DD/YYYY";
-    if (type === "date-time") {
+    if (type === "date-time" || type === "date-locked-account") {
       format = "MM/DD/YYYY hh:mmA";
     }
     const dateValue = moment(
@@ -410,7 +410,9 @@ export default function TableWithSort({
           className={[styles.tableCell, tabelData.cell.contentClass].join(" ")}
           aria-label={dateValue}
         >
-          {type === "date-time" ? getMultilineDate(dateValue) : dateValue}
+          {type === "date-time" && type !== "date-locked-account"
+            ? getMultilineDate(dateValue)
+            : dateValue}
         </div>
       </>
     );
@@ -603,6 +605,11 @@ export default function TableWithSort({
         return getDateTabelCell({ rowIdx, cellIdx, cell, row }, "date");
       case "date-time":
         return getDateTabelCell({ rowIdx, cellIdx, cell, row }, "date-time");
+      case "date-locked-account":
+        return getDateTabelCell(
+          { rowIdx, cellIdx, cell, row },
+          "date-locked-account"
+        );
       case "account-recovery-menu":
         return (
           <>

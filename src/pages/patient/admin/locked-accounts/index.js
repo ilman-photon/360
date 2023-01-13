@@ -17,18 +17,23 @@ import CustomModal from "../../../../components/molecules/CustomModal/customModa
 import { colors } from "../../../../styles/theme";
 import { useEffect, useState } from "react";
 import { Api } from "../../../api/api";
-import moment from "moment";
 
 function mapper(data) {
   const parsedAccountList = [];
+  const nullChecker = (text) => {
+    if (text === "" || text === "null") {
+      return "-";
+    }
+    return text;
+  };
   data.map((item, id) => {
     const account = {
       id,
-      name: item.patientName,
+      name: nullChecker(item.patientName),
       patientId: item.patientId,
-      email: item.emailId,
-      phone: item.phoneNumber,
-      lockedDate: moment(item.lockedDate).format("MM/DD/YYYY hh:mmA") || "",
+      email: nullChecker(item.emailId),
+      phone: nullChecker(item.phoneNumber),
+      lockedDate: item.lockedDate,
       status: item.status === "L" ? "Locked" : item.status,
       lockValue: {
         patientId: item.patientId,
@@ -127,7 +132,7 @@ export default function LockedAccount() {
         },
       },
       {
-        type: "text",
+        type: "date-locked-account",
         valueKey: "lockedDate",
         contentStyle: {
           fontWeight: 500,
