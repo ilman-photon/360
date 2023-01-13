@@ -38,13 +38,18 @@ const FilterBy = ({
   const onFilterChecked = (target, type) => {
     const value = target.value;
     if (target.checked) {
-      const data = activeFilter;
-      data.push({
-        name: value,
-        type: type,
-        checked: true,
-      });
-      setActiveFilter(data);
+      if (isPrescription && value === "All") {
+        setActiveFilter([{ name: "All", type: "general", checked: true }]);
+      } else {
+        const data = activeFilter;
+        data.push({
+          name: value,
+          type: type,
+          checked: true,
+        });
+        const dataFilter = data.filter((e) => e.name !== "All");
+        setActiveFilter(isPrescription ? dataFilter : data);
+      }
     } else {
       const dataIndex = activeFilter.findIndex((x) => x.name === value);
       if (dataIndex > -1) {

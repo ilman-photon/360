@@ -48,11 +48,18 @@ export default function PrescriptionMedication({
   const containerActive = React.useRef(null);
   const containerPast = React.useRef(null);
   const [filterOpen, setFilterOpen] = React.useState(false);
-  const [activeFilter, setActiveFilter] = React.useState([]);
+  const [activeFilter, setActiveFilter] = React.useState([
+    {
+      name: "All",
+      type: "general",
+      checked: true,
+    },
+  ]);
   const [selectedData, setSelectedData] = React.useState({});
   const [filterData, setFilterData] = React.useState([]);
   const [filterMedicationData, setFilterMedicationData] = React.useState([]);
-  const isFilterApplied = activeFilter.length > 0;
+  const isContainAll = activeFilter.find(e => e.name === "All")
+  const isFilterApplied = !(activeFilter.length >= 1 && isContainAll) && activeFilter.length > 0;
   const imageSrcState = "/mobileFilter.png";
   const imageSrcFilled = "/appliedMobileFilter.png";
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -145,7 +152,6 @@ export default function PrescriptionMedication({
   };
 
   const onSetFilter = (newFilterData, isCloseAppliedFilter = false) => {
-    setFilterOpen(!filterOpen);
     !isCloseAppliedFilter && setFilterOpen(!filterOpen);
     setActiveFilter([...newFilterData]);
 
@@ -283,7 +289,8 @@ export default function PrescriptionMedication({
 
   function renderAppliedFilter() {
     return activeFilter.map((option, idx) => {
-      return (
+      const allField = option.name === "All";
+      return !allField ? (
         <Box className={styles.filterChildButton} key={idx}>
           <Box className={styles.filterText}>{option.name}</Box>
           <CloseIcon
@@ -299,6 +306,8 @@ export default function PrescriptionMedication({
             }}
           />
         </Box>
+      ) : (
+        <></>
       );
     });
   }
@@ -531,7 +540,7 @@ export default function PrescriptionMedication({
           } heading`}
         >
           {isFilterApplied ? "Medications" : ActiveMedHeading}{" "}
-          {filterMedicationData.length > 0
+          {isFilterApplied
             ? `(${filterMedicationData.length})`
             : ``}
         </Typography>

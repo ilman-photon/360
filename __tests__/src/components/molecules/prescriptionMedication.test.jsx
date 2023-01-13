@@ -183,7 +183,7 @@ describe("Prescription Medication test", () => {
     await waitFor(() => fireEvent.click(checkboxActive));
     await waitFor(() => fireEvent.click(checkboxProvider));
 
-    expect(checkboxAll).toHaveProperty("checked", true);
+    expect(checkboxAll).toHaveProperty("checked", false);
     const doneButton = container.getByText(/done/i);
     await waitFor(() => fireEvent.click(doneButton));
     expect(container.getAllByTestId(/CloseIcon/i)[0]).toBeInTheDocument();
@@ -215,7 +215,7 @@ describe("Prescription Medication test", () => {
     await waitFor(() => fireEvent.click(checkboxActive));
     await waitFor(() => fireEvent.click(checkboxProvider));
 
-    expect(checkboxAll).toHaveProperty("checked", true);
+    expect(checkboxAll).toHaveProperty("checked", false);
     const doneButton = container.getByText(/done/i);
     await waitFor(() => fireEvent.click(doneButton));
     expect(container.getAllByTestId(/CloseIcon/i)[0]).toBeInTheDocument();
