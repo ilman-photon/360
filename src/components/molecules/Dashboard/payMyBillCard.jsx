@@ -36,7 +36,7 @@ export default function PayMyBillCard() {
   const getPatientAccountBalance = async () => {
     const api = new Api();
     api
-      .getPatientAccountBalance()
+      .getPatientAccountBalance(false)
       .then((responses) => {
         setPatientCredit(responses);
       })
@@ -48,7 +48,7 @@ export default function PayMyBillCard() {
   const getInvoiceWithPatientDetails = async () => {
     const api = new Api();
     api
-      .getInvoiceWithPatientDetails()
+      .getInvoiceWithPatientDetails(false)
       .then((responses) => {
         if (responses && responses.entities?.length > 0) {
           const openInvoice = mappingListData(responses, true);

@@ -91,7 +91,7 @@ export default function HomePage({ googleApiKey }) {
   function onCalledGetAppointmentTypesAPI() {
     const api = new Api();
     api
-      .getAppointmentTypes()
+      .getAppointmentTypes(false)
       .then(function (response) {
         const filterSuggestion = {
           purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
@@ -155,7 +155,7 @@ export default function HomePage({ googleApiKey }) {
   function onCalledGetAllAppointment() {
     const api = new Api();
     api
-      .getUpcomingAppointment()
+      .getUpcomingAppointment(false)
       .then(function (response) {
         const upcomingAppointment = [];
         response.entities.map((data) => {

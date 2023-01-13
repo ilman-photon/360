@@ -30,6 +30,17 @@ export class Api {
     this.maxRequestCounter = 3;
   }
 
+  medicationPrescriptionExpection(err, url) {
+    //Handle user doesn't have medication data
+    return (
+      [400].indexOf(err.response?.status) > -1 &&
+      url.indexOf(`/prescriptions/patient`) > -1 &&
+      err.response?.data?._errors?.length > 0 &&
+      err.response?.data?._errors[0]?.description ==
+        "patient details does not exist"
+    );
+  }
+
   errorGenericValidation = (err, url) => {
     return (
       err &&
@@ -50,7 +61,11 @@ export class Api {
 
   rejecterHandler = function (url, err, showError) {
     const api = new Api();
-    if (api.errorGenericValidation(err, url) && showError) {
+    if (
+      api.errorGenericValidation(err, url) &&
+      showError &&
+      !api.medicationPrescriptionExpection(err, url)
+    ) {
       store.dispatch(
         setGenericErrorMessage("Please try again after sometime.")
       );
@@ -60,7 +75,12 @@ export class Api {
       };
     } else if (err && err.response && err.response.data) {
       const errors = err.response.data._errors;
-      if (errors && showError && url.indexOf(`/available-slot`) < 0) {
+      if (
+        errors &&
+        showError &&
+        url.indexOf(`/available-slot`) < 0 &&
+        url.indexOf(`/prescriptions/patient`) < 0
+      ) {
         store.dispatch(setGenericErrorMessage(errors[0].description));
       }
       return err.response.data;
@@ -288,7 +308,7 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  getUpcomingAppointment() {
+  getUpcomingAppointment(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `/${userData?.patientId}`;
     const params = {
@@ -298,7 +318,7 @@ export class Api {
     const url = `/ecp/appointments${
       userData?.patientId ? patientId : ""
     }/upcoming`;
-    return this.getResponse(url, { params }, "get");
+    return this.getResponse(url, { params }, "get", showError);
   }
 
   getPastAppointment() {
@@ -378,9 +398,9 @@ export class Api {
     }
   }
 
-  getAppointmentTypes() {
+  getAppointmentTypes(showError = true) {
     const url = "/ecp/appointments/appointment-types";
-    return this.getResponse(url, {}, "get");
+    return this.getResponse(url, {}, "get", showError);
   }
 
   submitFilter(locationName, requestData, filterSuggestionData) {
@@ -416,18 +436,18 @@ export class Api {
     return this.getResponse(url, {}, "get", showError);
   }
 
-  getPrescriptionGlasses() {
+  getPrescriptionGlasses(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `/${userData?.patientId}`;
     const url = `/ecp/prescriptions/patient${patientId}/getGlassesData`;
-    return this.getResponse(url, {}, "get");
+    return this.getResponse(url, {}, "get", showError);
   }
 
-  getPrescriptionContacts() {
+  getPrescriptionContacts(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `/${userData?.patientId}`;
     const url = `/ecp/prescriptions/patient${patientId}/getContactsData`;
-    return this.getResponse(url, {}, "get");
+    return this.getResponse(url, {}, "get", showError);
   }
 
   getRegistrationSetPassword(postBody) {
@@ -680,16 +700,16 @@ export class Api {
     return this.getResponse(url, postBody, "post");
   }
 
-  getPatientAccountBalance() {
+  getPatientAccountBalance(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const url = `/ecp/patientbillingsystem/getPatientCredits/${userData?.patientId}`;
-    return this.getResponse(url, {}, "get");
+    return this.getResponse(url, {}, "get", showError);
   }
 
-  getInvoiceWithPatientDetails() {
+  getInvoiceWithPatientDetails(showError = true) {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const url = `/ecp/patientbillingsystem/getInvoiceWithPatientDetails?search.query=((patient.uid=eq=${userData?.patientId}))`;
-    return this.getResponse(url, {}, "get");
+    return this.getResponse(url, {}, "get", showError);
   }
 
   validatePassword(postBody) {

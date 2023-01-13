@@ -13,15 +13,15 @@ function onCalledMedicationAPI(resolve, showError = true) {
       medicationData = [];
     })
     .finally(function () {
-      onCalledGlassesAPI(medicationData, resolve);
+      onCalledGlassesAPI(medicationData, resolve, showError);
     });
 }
 
-function onCalledGlassesAPI(medicationData, resolve) {
+function onCalledGlassesAPI(medicationData, resolve, showError) {
   let glassesData = [];
   const api = new Api();
   api
-    .getPrescriptionGlasses()
+    .getPrescriptionGlasses(showError)
     .then(function (response) {
       glassesData = response?.entities || [];
     })
@@ -29,15 +29,20 @@ function onCalledGlassesAPI(medicationData, resolve) {
       glassesData = [];
     })
     .finally(function () {
-      onCalledContactsAPI(medicationData, glassesData, resolve);
+      onCalledContactsAPI(medicationData, glassesData, resolve, showError);
     });
 }
 
-function onCalledContactsAPI(medicationData, glassesData, resolve, _reject) {
+function onCalledContactsAPI(
+  medicationData,
+  glassesData,
+  resolve,
+  showError = true
+) {
   let contactData = [];
   const api = new Api();
   api
-    .getPrescriptionContacts()
+    .getPrescriptionContacts(showError)
     .then(function (response) {
       contactData = response?.entities || [];
     })
