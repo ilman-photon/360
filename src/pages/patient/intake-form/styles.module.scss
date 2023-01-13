@@ -13,18 +13,20 @@
   top: 18%;
 }
 
-.containerItem {
-  @media (max-width: 600px) {
-    width: auto;
-  }
-  .containerLeft {
+.containerForm {
+  .containerItem {
     @media (max-width: 600px) {
-      padding: 0;
+      width: auto;
     }
-  }
-  .containerRight {
-    @media (max-width: 600px) {
-      padding: 0;
+    .containerLeft {
+      @media (max-width: 600px) {
+        padding: 0;
+      }
+    }
+    .containerRight {
+      @media (max-width: 600px) {
+        padding: 0;
+      }
     }
   }
 }

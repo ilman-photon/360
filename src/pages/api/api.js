@@ -30,6 +30,13 @@ export class Api {
     this.maxRequestCounter = 3;
   }
 
+  validateUrl(url) {
+    return (
+      url.indexOf(`/available-slot`) < 0 &&
+      url.indexOf(`/getPatientCredits`) < 0
+    );
+  }
+
   medicationPrescriptionExpection(err, url) {
     //Handle user doesn't have medication data
     return (
@@ -45,7 +52,7 @@ export class Api {
     return (
       err &&
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
-        url.indexOf(`/available-slot`) < 0 &&
+        this.validateUrl(url) &&
         err.response?.data?.ResponseCode === undefined) ||
         ((err.code === constants.ERROR_CODE.NETWORK_ERR ||
           [500].indexOf(err.response?.status) !== -1) &&
@@ -78,7 +85,7 @@ export class Api {
       if (
         errors &&
         showError &&
-        url.indexOf(`/available-slot`) < 0 &&
+        api.validateUrl(url) &&
         url.indexOf(`/prescriptions/patient`) < 0
       ) {
         store.dispatch(setGenericErrorMessage(errors[0].description));

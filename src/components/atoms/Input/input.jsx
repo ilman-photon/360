@@ -410,7 +410,9 @@ const RenderDOBInput = (props) => {
     <>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker
-          InputAdornmentProps={{ style: { display: "none" } }}
+          InputAdornmentProps={{
+            style: { display: props.showInputAdornment ? "inherit" : "none" },
+          }}
           inputFormat="MM/dd/yyyy"
           disableOpenPicker={props.selectorDisabled}
           disableFuture={props.disableFuture}

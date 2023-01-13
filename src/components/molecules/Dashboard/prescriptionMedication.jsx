@@ -58,8 +58,9 @@ export default function PrescriptionMedication({
   const [selectedData, setSelectedData] = React.useState({});
   const [filterData, setFilterData] = React.useState([]);
   const [filterMedicationData, setFilterMedicationData] = React.useState([]);
-  const isContainAll = activeFilter.find(e => e.name === "All")
-  const isFilterApplied = !(activeFilter.length >= 1 && isContainAll) && activeFilter.length > 0;
+  const isContainAll = activeFilter.find((e) => e.name === "All");
+  const isFilterApplied =
+    !(activeFilter.length >= 1 && isContainAll) && activeFilter.length > 0;
   const imageSrcState = "/mobileFilter.png";
   const imageSrcFilled = "/appliedMobileFilter.png";
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -540,9 +541,7 @@ export default function PrescriptionMedication({
           } heading`}
         >
           {isFilterApplied ? "Medications" : ActiveMedHeading}{" "}
-          {isFilterApplied
-            ? `(${filterMedicationData.length})`
-            : ``}
+          {isFilterApplied ? `(${filterMedicationData.length})` : ``}
         </Typography>
         {renderUIFilter()}
       </Box>
