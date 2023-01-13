@@ -419,7 +419,12 @@ export default function Prescriptions({
               >
                 View Prescriptions
               </Link>
-              <KeyboardArrowRightIcon />
+              <KeyboardArrowRightIcon
+                sx={{
+                  width: "24px",
+                  height: "24px",
+                }}
+              />
             </Box>
           )}
         </Box>
@@ -481,7 +486,12 @@ export default function Prescriptions({
             >
               View prescriptions
             </Link>
-            <KeyboardArrowRightIcon />
+            <KeyboardArrowRightIcon
+              sx={{
+                width: "24px",
+                height: "24px",
+              }}
+            />
           </Box>
         )}
       </Box>
@@ -543,7 +553,12 @@ export default function Prescriptions({
             >
               View prescriptions
             </Link>
-            <KeyboardArrowRightIcon />
+            <KeyboardArrowRightIcon
+              sx={{
+                width: "24px",
+                height: "24px",
+              }}
+            />
           </Box>
         )}
       </Box>
