@@ -29,6 +29,7 @@ const EducationMaterials = ({
           height: "auto",
           minHeight: "195px",
           width: "100%",
+          marginBottom: { sm: "30px !important" },
         }}
       >
         <Grid item xs={12} sm={2.2}>
@@ -57,10 +58,11 @@ const EducationMaterials = ({
         >
           <Typography
             sx={{
-              fontFamily: `"Museo Sans, sans-serif`,
-              fontWeight: "400",
+              fontFamily: `"Museo Sans", sans-serif`,
+              fontWeight: "300",
               fontSize: "26px",
               cursor: "pointer",
+              color: "#003B4A",
             }}
             tabIndex={0}
             onClick={() => {
@@ -79,7 +81,7 @@ const EducationMaterials = ({
             <Typography
               sx={{
                 fontFamily: `"Museo Sans", sans-serif`,
-                fontWeight: "400",
+                fontWeight: "300",
                 fontSize: "16px",
                 color: "#575757",
               }}

@@ -72,7 +72,7 @@ export default function InsuranceCommunication({
         controlName={{
           sign: controlName.sign,
         }}
-        customSignText={"Intital"}
+        customSignText={"Initial"}
       />
       <Typography
         className={styles.subtitleTxt}
@@ -137,7 +137,7 @@ export default function InsuranceCommunication({
         controlName={{
           sign: controlName.signPrivatePay,
         }}
-        customSignText={"Intital"}
+        customSignText={"Initial"}
       />
     </Stack>
   );
