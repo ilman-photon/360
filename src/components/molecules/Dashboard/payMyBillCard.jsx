@@ -22,7 +22,8 @@ import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import PaymentOutlinedIcon from "@mui/icons-material/PaymentOutlined";
 import CommonCard, { onRenderButtonView } from "./commonCard";
 import { Api } from "../../../pages/api/api";
-import { mappingListData } from "../../../store/payMyBill";
+import { getBalanceData, mappingListData } from "../../../store/payMyBill";
+import { useRouter } from "next/router";
 
 export default function PayMyBillCard() {
   const [payMyBillData, setPayMyBillData] = React.useState({});
@@ -32,6 +33,7 @@ export default function PayMyBillCard() {
     style: "currency",
     currency: "USD",
   });
+  const router = useRouter();
 
   const getPatientAccountBalance = async () => {
     const api = new Api();
@@ -150,21 +152,6 @@ export default function PayMyBillCard() {
     );
   }
 
-  function getBalanceData(data) {
-    const summary = data?.summary;
-    let totalBalance = 0;
-    if (summary) {
-      totalBalance =
-        summary.totalRetail -
-        summary.totalInsurance -
-        summary.totalDiscount +
-        summary.totalTax -
-        summary.totalAdjustment -
-        summary.totalPayment;
-    }
-    return formatter.format(totalBalance);
-  }
-
   function renderDekstopView() {
     const tableHeader = ["Invoice #", "DOS", "Provider", "Balance", ""];
     return (
@@ -232,7 +219,9 @@ export default function PayMyBillCard() {
                     </TableCell>
                     <TableCell>
                       {onRenderButtonView(() => {
-                        // This is intentional
+                        router.push(
+                          `/patient/pay-my-bill/summary-detail/${payMyBillData?.id}`
+                        );
                       }, isDesktop)}
                     </TableCell>
                   </TableRow>
@@ -315,7 +304,9 @@ export default function PayMyBillCard() {
               </Stack>
               <Divider sx={{ marginBottom: "18px" }} />
               {onRenderButtonView(() => {
-                // This is intentional
+                router.push(
+                  `/patient/pay-my-bill/summary-detail/${payMyBillData?.id}`
+                );
               }, isDesktop)}
             </Stack>
             {renderMakePaymentButton()}

@@ -35,15 +35,30 @@ const getDescription = (item) => {
   return desc;
 };
 
+export function getBalanceData(data) {
+  const summary = data?.summary;
+  let totalBalance = 0;
+  if (summary) {
+    totalBalance =
+      summary.totalRetail -
+      summary.totalInsurance -
+      summary.totalDiscount +
+      summary.totalTax -
+      summary.totalAdjustment -
+      summary.totalPayment;
+  }
+  return formatter.format(totalBalance);
+}
+
 const getSummaryObjectData = (item) => ({
   id: item?._id,
   invoiceNumber: item?._invoiceNumber,
   dos: item?.serviceDate,
-  balanceDue: 75,
-  totalCharges: 227.5,
-  totalAllowed: 239.5,
-  insurancePaid: 174.5,
-  patientPaid: 302.2,
+  balanceDue: getBalanceData(item),
+  totalCharges: item?.summary?.totalRetail,
+  totalAllowed: 0,
+  insurancePaid: item?.summary?.totalInsurance,
+  patientPaid: item?.summary?.totalPayment,
   description: getDescription(item.lineItems),
   providerName: `${item?.provider?.firstName} ${item?.provider?.lastName}`,
 });
