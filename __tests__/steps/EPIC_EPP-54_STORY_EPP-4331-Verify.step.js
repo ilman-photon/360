@@ -93,8 +93,8 @@ defineFeature(feature, (test) => {
     });
 
     when("User clicks on the option to download the invoice", async () => {
-      await waitFor(() => container.getByTestId("FileDownloadOutlinedIcon"));
-      fireEvent.click(container.getByTestId("FileDownloadOutlinedIcon"));
+      await waitFor(() => container.getAllByTestId("FileDownloadOutlinedIcon"));
+      fireEvent.click(container.getAllByTestId("FileDownloadOutlinedIcon")[0]);
     });
 
     then(
