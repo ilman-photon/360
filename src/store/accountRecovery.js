@@ -6,7 +6,19 @@ export const fetchPatientAccount = createAsyncThunk(
   async ({ keyword }) => {
     const api = new Api();
     const url = `/ecp/accountRecovery/getPatientDetails/${keyword}`;
-    return api.getResponse(url, null, "get");
+
+    try {
+      const response = await api.getResponse(url, null, "get");
+      return {
+        searchKey: keyword,
+        data: response,
+      };
+    } catch {
+      return {
+        searchKey: keyword,
+        data: [],
+      };
+    }
   }
 );
 
@@ -136,13 +148,23 @@ const getPatientStatus = (data) => {
   }
 };
 
-const buildAccountData = (data) => {
+const validateSearchHighlight = (data, searchKey) => {
+  let text = data;
+  if (text === "null" || text === "" || text === undefined) {
+    return "-";
+  }
+  const pattern = new RegExp(`${searchKey}`, "gi");
+  text = text.replace(pattern, (match) => `<span>${match}</span>`);
+  return text;
+};
+
+const buildAccountData = ({ data, searchKey }) => {
   return data.map((item) => {
     return {
       ...item,
-      name: item.patientName || item.name,
-      email: item.emailId,
-      phone: item.phoneNumber,
+      name: validateSearchHighlight(item.patientName || item.name, searchKey),
+      email: validateSearchHighlight(item.emailId, searchKey),
+      phone: validateSearchHighlight(item.phoneNumber, searchKey),
       status: getPatientStatus(item),
     };
   });
@@ -174,7 +196,7 @@ export const accountRecoveryStore = createSlice({
         return item;
       });
 
-      state.patientList = buildAccountData(updatedState);
+      state.patientList = buildAccountData({ data: updatedState });
     },
   },
   extraReducers: {

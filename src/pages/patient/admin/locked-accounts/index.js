@@ -18,21 +18,25 @@ import { colors } from "../../../../styles/theme";
 import { useEffect, useState } from "react";
 import { Api } from "../../../api/api";
 
-function mapper(data) {
+export const validateResultText = (rawText, searchKey) => {
+  let text = rawText;
+  if (text === "" || text === "null" || text === undefined) {
+    return "-";
+  }
+  const pattern = new RegExp(`${searchKey}`, "gi");
+  text = text.replace(pattern, (match) => `<span>${match}</span>`);
+  return text;
+};
+
+function mapper(data, searchKey) {
   const parsedAccountList = [];
-  const nullChecker = (text) => {
-    if (text === "" || text === "null") {
-      return "-";
-    }
-    return text;
-  };
   data.map((item, id) => {
     const account = {
       id,
-      name: nullChecker(item.patientName),
+      name: validateResultText(item.patientName, searchKey),
       patientId: item.patientId,
-      email: nullChecker(item.emailId),
-      phone: nullChecker(item.phoneNumber),
+      email: validateResultText(item.emailId, searchKey),
+      phone: validateResultText(item.phoneNumber, searchKey),
       lockedDate: item.lockedDate,
       status: item.status === "L" ? "Locked" : item.status,
       lockValue: {
@@ -102,42 +106,22 @@ export default function LockedAccount() {
       {
         type: "text",
         valueKey: "name",
-        contentStyle: {
-          fontWeight: 500,
-          fontSize: 14,
-        },
       },
       {
         type: "text",
         valueKey: "patientId",
-        contentStyle: {
-          fontWeight: 500,
-          fontSize: 14,
-        },
       },
       {
         type: "text",
         valueKey: "email",
-        contentStyle: {
-          fontWeight: 500,
-          fontSize: 14,
-        },
       },
       {
         type: "text",
         valueKey: "phone",
-        contentStyle: {
-          fontWeight: 500,
-          fontSize: 14,
-        },
       },
       {
         type: "date-locked-account",
         valueKey: "lockedDate",
-        contentStyle: {
-          fontWeight: 500,
-          fontSize: 14,
-        },
       },
       {
         type: "user-status",
@@ -185,7 +169,7 @@ export default function LockedAccount() {
     api
       .getLockedAccounts(data)
       .then((responses) => {
-        const mappedData = mapper(responses.entities);
+        const mappedData = mapper(responses.entities, data.keyword);
         setRows(mappedData);
       })
       .catch(() => {

@@ -238,11 +238,15 @@ export default function PatientAcccountCard({
                           color: "#191919",
                           textAlign: "end",
                           flex: 1,
+                          "& span": {
+                            backgroundColor: "#EEF5F7",
+                          },
                           ...cell.sx,
                         }}
-                      >
-                        {ref(item, cell.valueKey)}
-                      </Typography>
+                        dangerouslySetInnerHTML={{
+                          __html: ref(item, cell.valueKey),
+                        }}
+                      />
                     </Box>
                   );
                 case "date":
