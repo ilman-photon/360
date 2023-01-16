@@ -255,6 +255,7 @@ export function renderInsuranceCarrier(
           >
             <Autocomplete
               {...isOpenProps}
+              disablePortal
               sx={{
                 paddingLeft: "15px",
                 height: "100%",
@@ -332,18 +333,20 @@ export function renderInsuranceCarrier(
                 );
               }}
             />
-            <Typography
-              className={styles.optionalPurposeText}
-              variant={"bodyTinyRegular"}
-              sx={{
-                position: "absolute",
-                bottom: "-25px",
-                color: "#ffffff",
-                opacity: "0.8",
-              }}
-            >
-              (Optional)
-            </Typography>
+            {isDesktop && (
+              <Typography
+                className={styles.optionalPurposeText}
+                variant={"bodyTinyRegular"}
+                sx={{
+                  position: "absolute",
+                  bottom: "-25px",
+                  color: "#ffffff",
+                  opacity: "0.8",
+                }}
+              >
+                (Optional)
+              </Typography>
+            )}
           </Box>
         );
       }}

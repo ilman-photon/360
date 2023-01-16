@@ -54,6 +54,12 @@ input[type="number"] {
   }
 }
 
+.MuiAutocomplete-popperDisablePortal {
+  &.filter-heading-mobile {
+    left: 0 !important;
+  }
+}
+
 .MuiDialog-container {
   .MuiPaper-root {
     max-width: none;
