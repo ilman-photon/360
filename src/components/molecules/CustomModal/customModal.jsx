@@ -48,6 +48,7 @@ export default function CustomModal({
               top: "14px",
               padding: 0,
             }}
+            aria-label="close"
           >
             <CloseIcon
               sx={{

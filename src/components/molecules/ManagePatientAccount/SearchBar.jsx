@@ -95,6 +95,7 @@ export default function SearchBar({
                 sx={{ p: 0 }}
                 type="submit"
                 data-testid="submit-search-bar-form"
+                aria-label="search"
               >
                 <Search
                   sx={{ width: 26, height: 26, color: colors.darkGreen }}
