@@ -59,6 +59,12 @@ export default function PrescriptionLayout({
     }
   };
 
+  function scollToTop() {
+    if (window) {
+      window.scrollTo(0, 0);
+    }
+  }
+
   return (
     <>
       <Head>
@@ -69,6 +75,7 @@ export default function PrescriptionLayout({
       <div className={styles.defaultLayout}>
         <BaseHeader {...logoutProps} />
         {isAdmin ? <AdminNavbar /> : <Navbar />}
+        {showToastMessage && scollToTop()}
         <Collapse
           in={showToastMessage}
           unmountOnExit

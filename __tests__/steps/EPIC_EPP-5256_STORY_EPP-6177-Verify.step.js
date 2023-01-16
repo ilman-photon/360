@@ -224,7 +224,7 @@ defineFeature(feature, (test) => {
 
     and("user fill on that field below", (table) => {
       const text = container
-        .getByTestId("guardian-field")
+        .getAllByTestId("guardian-field")[0]
         .querySelector("input");
 
       fireEvent.change(text, { target: { value: "Test Input" } });

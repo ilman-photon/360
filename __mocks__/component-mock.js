@@ -52,6 +52,7 @@ beforeAll(() => {
     NEXT_PUBLIC_ONE_TIME_LINK: "/patient/validate",
   };
   mockGoogleWindow();
+  window.scrollTo = jest.fn();
 });
 
 afterAll(cleanup);

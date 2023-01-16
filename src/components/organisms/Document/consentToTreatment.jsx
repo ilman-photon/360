@@ -176,7 +176,6 @@ export default function ConsentToTreatment({
         <Grid
           item
           xs={12}
-          md={6.2}
           sx={{
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
@@ -196,13 +195,41 @@ export default function ConsentToTreatment({
             true,
             { backgroundColor: "#F4F4F4" }
           )}
+          <Stack
+            direction={"row"}
+            sx={{
+              display: { xs: "none !important", md: "flex !important" },
+              flex: { xs: "0 !important", md: "1 !important" },
+              margin: "auto 10px !important",
+            }}
+          >
+            <Typography
+              className={styles.minorText}
+              tabIndex={0}
+              sx={{
+                margin: "auto 0px !important",
+              }}
+            >
+              , a minor, authorizes
+            </Typography>
+            {renderDefaultInput(
+              "babysitter, guardian, etc.",
+              controlName.guardian,
+              "guardian-field",
+              "320px",
+              "0",
+              "10px",
+              false,
+              { backgroundColor: "#F4F4F4" }
+            )}
+          </Stack>
         </Grid>
         <Grid
           item
           xs={12}
           md={5}
           sx={{
-            display: "flex",
+            display: { xs: "flex", md: "none" },
             paddingLeft: "0px !important",
             flexDirection: { xs: "column", md: "row" },
             alignItems: { xs: "flex-start", md: "center" },
@@ -293,7 +320,7 @@ export default function ConsentToTreatment({
       </Grid>
       <Grid container>
         <Grid item xs={12}>
-          <Typography tabIndex={0}>
+          <Typography tabIndex={0} className={styles.minorTextInput}>
             1. Persons to contact in an emergency:
           </Typography>
         </Grid>
@@ -350,7 +377,7 @@ export default function ConsentToTreatment({
           )}
         </Grid>
         <Grid item xs={12}>
-          <Typography tabIndex={0}>
+          <Typography tabIndex={0} className={styles.minorTextInput}>
             2. Medical concerns or any learning disabilities
           </Typography>
           {renderDefaultInput(
@@ -359,14 +386,16 @@ export default function ConsentToTreatment({
             "medical-concern-field",
             "100%"
           )}
-          <Typography tabIndex={0}>3. Known allergies</Typography>
+          <Typography tabIndex={0} className={styles.minorTextInput}>
+            3. Known allergies
+          </Typography>
           {renderDefaultInput(
             "Known Allergies",
             controlName.knownAlergies,
             "known-allergies-field",
             "100%"
           )}
-          <Typography tabIndex={0}>
+          <Typography tabIndex={0} className={styles.minorTextInput}>
             4. Health Insurance Plan (name and number)
           </Typography>
           {renderDefaultInput(
@@ -377,7 +406,9 @@ export default function ConsentToTreatment({
           )}
         </Grid>
         <Grid item xs={12}>
-          <Typography tabIndex={0}>Parent(s) Name</Typography>
+          <Typography tabIndex={0} className={styles.minorTextInput}>
+            Parent(s) Name
+          </Typography>
         </Grid>
         <Grid
           item

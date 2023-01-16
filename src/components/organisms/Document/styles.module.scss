@@ -1,34 +1,44 @@
-.subtitleTxt {
-  text-align: center;
-  font-family: "Museo Sans", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 32px;
-  color: #003b4a;
-  align-self: center;
-  margin: 8px auto;
-}
-
-.minorText {
-  font-family: "Museo Sans", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 28px;
-  color: #003b4a;
-}
-
-.minorNoteTxt {
-  font-family: "Museo Sans", sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 26px;
-  letter-spacing: 0.0016em;
-  color: #003b4a;
-  margin: 10px 0;
-}
-
 .textContainer {
+  .subtitleTxt {
+    text-align: center;
+    font-family: "Museo Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 32px;
+    color: #003b4a;
+    align-self: center;
+    margin: 8px auto;
+  }
+
+  .minorTextInput {
+    font-family: "Museo Sans";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+  }
+
+  .minorText {
+    font-family: "Museo Sans", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: #003b4a;
+  }
+
+  .minorNoteTxt {
+    font-family: "Museo Sans", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+    margin: 10px 0;
+  }
+
   .textInfo {
     font-family: "Museo Sans", sans-serif;
     font-style: normal;
