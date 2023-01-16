@@ -397,13 +397,13 @@ export default function HomePage({ googleApiKey }) {
       <ModalConfirmation
         isLoggedIn={true}
         patientData={{
-          name: userStorageData.name,
-          firstName: userStorageData.firstName,
-          lastName: userStorageData.lastName,
-          dob: userStorageData.dob,
-          phoneNumber: userStorageData.mobile,
-          email: userStorageData.email,
-          preferredCommunication: userStorageData.preferredCommunication,
+          name: userStorageData?.name,
+          firstName: userStorageData?.firstName,
+          lastName: userStorageData?.lastName,
+          dob: userStorageData?.dob,
+          phoneNumber: userStorageData?.mobile,
+          email: userStorageData?.email,
+          preferredCommunication: userStorageData?.preferredCommunication,
         }}
         providerData={appointmentScheduleData.providerInfo}
         appointmentData={appointmentScheduleData.appointmentInfo}
