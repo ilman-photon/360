@@ -176,6 +176,7 @@ export default function ModalCancelScheduling({
           },
         },
       }}
+      role="alertdialog"
     >
       <Head>
         <title>Cancel Appointment popup </title>
@@ -183,7 +184,11 @@ export default function ModalCancelScheduling({
       <Box sx={{ width: "auto" }} className={styles.boxModalContents}>
         <Typography
           tabIndex={0}
-          aria-label={t("cancelReason")}
+          aria-label={
+            t("cancelTitle2") +
+            `. ${formatRescheduleDate(appointmentData?.date)}` +
+            `. ${t("cancelTitle3")}`
+          }
           variant="bodyMedium"
           className={styles.scheduledText}
           data-testid="title-cancel"
@@ -225,6 +230,9 @@ export default function ModalCancelScheduling({
                       value={value}
                       onChange={onChange}
                       label={t("cancelReason")}
+                      inputProps={{
+                        "aria-label": `Reason for cancelation`,
+                      }}
                       options={options}
                       helperText={error ? error.message : null}
                       isCancelSchedule={true}
