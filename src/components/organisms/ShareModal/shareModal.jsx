@@ -197,14 +197,19 @@ function ShareModal() {
       Regex.REGEX_PHONE_NUMBER.test(data.email) ||
       Regex.emailValidation.test(data.email)
     ) {
-      // Call share API
-      onCallShareAPI({
+      const postBody = {
         patientUserName: userData.username || "",
         documentId: shareModalData.id || "",
         email: data?.email,
-        messageSubject: data?.message,
         documentType: shareModalData.type || "",
-      });
+      };
+
+      if (data?.message) {
+        postBody["messageSubject"] = data?.message;
+      }
+
+      // Call share API
+      onCallShareAPI(postBody);
     } else {
       setError("email", {
         type: "custom",
@@ -239,7 +244,6 @@ function ShareModal() {
             );
           }
         }
-        dispatch(resetShareData());
       }
     );
   };
