@@ -56,25 +56,27 @@ export const MessagingListContent = ({ data, onSelected, isSelectedMsg }) => {
 
   return (
     <div className={styles.listContainer}>
-      {data?.map((item) => {
-        return (
-          <MessagingCardView
-            key={item._id}
-            id={item._id}
-            subject={item.subject}
-            name={getNewMessage(item.messageReceipients)?.name}
-            lastName={getNewMessage(item.messageReceipients)?.lastName}
-            time={item.deliveryDate}
-            message={item.bodyNote}
-            isHasAttach={checkMessagesHasAttachment(item.digitalAssets)}
-            isUnread={checkStatusNewMessage(item.messageReceipients)}
-            onSelect={() => onSelected(item)}
-            isSelectedMsg={isSelectedMsg}
-            isDraftMsg={checkIsDraftMessages(item.messageStatus)}
-            designation={getNewMessage(item.messageReceipients)?.designation}
-          />
-        );
-      })}
+      {data &&
+        data.length &&
+        data.map((item) => {
+          return (
+            <MessagingCardView
+              key={item._id}
+              id={item._id}
+              subject={item.subject}
+              name={getNewMessage(item.messageReceipients)?.name}
+              lastName={getNewMessage(item.messageReceipients)?.lastName}
+              time={item.deliveryDate}
+              message={item.bodyNote}
+              isHasAttach={checkMessagesHasAttachment(item.digitalAssets)}
+              isUnread={checkStatusNewMessage(item.messageReceipients)}
+              onSelect={() => onSelected(item)}
+              isSelectedMsg={isSelectedMsg}
+              isDraftMsg={checkIsDraftMessages(item.messageStatus)}
+              designation={getNewMessage(item.messageReceipients)?.designation}
+            />
+          );
+        })}
     </div>
   );
 };

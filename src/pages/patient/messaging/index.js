@@ -58,26 +58,21 @@ export default function MessagingPage() {
   });
 
   const mapper = (responses) => {
-    const data = [];
-    responses.map((response) => {
-      const designation = response.designation
-        ? `, ${response.designation}`
-        : "";
-      const name = `${response.firstName || ""} ${
-        response.lastName || ""
-      }${designation}`;
+    const data = responses.map((response) => {
+      const providerData = response.provider;
 
+      const designation = providerData.designation
+        ? `, ${providerData.designation}`
+        : "";
+      const name = `${providerData.firstName || ""} ${
+        providerData.lastName || ""
+      }${designation}`;
       const providerItem = {
-        providerId: response._id || "",
-        image: response.providerDetails?.profilePhoto?.digitalAsset || "",
+        providerId: providerData._id,
         name,
-        email: response.email || "",
-        phone: response.workPhone || "",
-        specialties: getArrayValue(response.providerDetails?.specialization),
-        address: response.offices[0],
       };
 
-      data.push(providerItem);
+      return providerItem;
     });
 
     isRequest = false;
@@ -96,9 +91,9 @@ export default function MessagingPage() {
     const api = new Api();
     isRequest = true;
     api
-      .searchProvider(providerQuery)
+      .getProviderList()
       .then((responses) => {
-        mapper(responses.entities);
+        mapper(responses);
       })
       .catch(() => {
         setIsRequested(true);
@@ -267,8 +262,9 @@ export default function MessagingPage() {
           api
             .getDraftMessages()
             .then(function (response) {
-              setDataMessages(response);
-              setHandleShowDataUI(response, "draft");
+              let newResponse = messageParser(response.entities);
+              setDataMessages(newResponse);
+              setHandleShowDataUI(newResponse, "draft");
             })
             .catch(function () {
               //Handle error getAllAppointment
@@ -397,7 +393,9 @@ export default function MessagingPage() {
       if (item.id === currentData.id) {
         item.messageReceipients.map((message) => {
           message.isNew = false;
-          setUnReadMsg(unReadMsg - 1);
+          if (unReadMsg > 0) {
+            setUnReadMsg(unReadMsg - 1);
+          }
         });
       }
     });
@@ -514,7 +512,7 @@ export default function MessagingPage() {
       subject: data.subject,
       bodyNote: data.message,
       senderIsPatient: true,
-      receiverIsPatient: true,
+      receiverIsPatient: false,
       senderPatientId: userData?.patientId,
       messageReceipients: [
         {
@@ -541,10 +539,11 @@ export default function MessagingPage() {
       subject: data?.subject,
       bodyNote: data?.message,
       senderIsPatient: true,
+      receiverIsPatient: false,
       senderPatientId: userData?.patientId,
       messageReceipients: [
         {
-          recipientUid: data?.name[0]?.providerId || "",
+          recipientUid: data?.name[0]?.providerId,
         },
       ],
       digitalAssets: assets,

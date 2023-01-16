@@ -52,7 +52,7 @@ export const NewMessageDialog = ({
     keyPrefix: "messaging",
   });
 
-  const { handleSubmit, control, watch, setValue, getValues } = useForm({
+  const { handleSubmit, control, watch, setValue, getValues, reset } = useForm({
     defaultValues: {
       name: "",
       subject: "",
@@ -90,13 +90,12 @@ export const NewMessageDialog = ({
     setClicked(true);
     setEmptyName(watchedName.length === 0);
     setEmptyMessage(watchedMessage.length === 0);
-    setValue("name", "");
-    setValue("subject", "");
-    setValue("message", "");
   };
 
   const onSubmit = (data) => {
     onSendMessage(data);
+    setNameProviderValue([]);
+    reset();
   };
 
   function renderMandatoryFieldError(isError) {
