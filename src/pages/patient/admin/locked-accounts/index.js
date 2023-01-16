@@ -150,6 +150,15 @@ export default function LockedAccount() {
     ],
   };
 
+  useEffect(() => {
+    if (showMessage) {
+      setTimeout(() => {
+        setShowMessage(null);
+      }, 3000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showMessage]);
+
   const onUnlockAccount = async (data) => {
     const api = new Api();
     api
@@ -196,7 +205,7 @@ export default function LockedAccount() {
 
   const renderMessage = () =>
     showMessage !== null && (
-      <FormMessage isWidthFilled success>
+      <FormMessage isWidthFilled success aria-live={"assertive"}>
         <Stack
           sx={{
             flexDirection: "row",
@@ -255,9 +264,12 @@ export default function LockedAccount() {
           justifyContent: "center",
           background: "white",
         }}
+        tabIndex={0}
       >
         <AccountCircleOutlined sx={{ width: 62, height: 62 }} />
-        <Typography variant="headlineH4">No results found.</Typography>
+        <Typography variant="headlineH4" aria-live="polite">
+          No results found.
+        </Typography>
       </Stack>
     ) : (
       <Stack

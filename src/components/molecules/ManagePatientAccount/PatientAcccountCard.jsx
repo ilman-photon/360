@@ -92,7 +92,13 @@ export default function PatientAcccountCard({
 
   const renderMenuItemContent = ({ type, title }) => {
     return (
-      <Typography variant="bodyRegular" sx={sortStyles.typography}>
+      <Typography
+        variant="bodyRegular"
+        sx={sortStyles.typography}
+        aria-label={
+          type === "asc" ? `${title} ascending` : `${title} descending`
+        }
+      >
         {title}
         {type === "asc" ? (
           <ArrowUpward sx={sortStyles.icon} />
