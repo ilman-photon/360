@@ -24,6 +24,7 @@ import styles from "./styles.module.scss";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import * as Styled from "./ListAutoCompleteStyled";
+import { colors } from "../../../../src/styles/theme";
 
 export const NewMessageDialog = ({
   providerData = [],
@@ -152,13 +153,14 @@ export const NewMessageDialog = ({
             display: "flex",
             flexDirection: "column",
             gap: "16px",
-            padding: !isDraft && !isSelectedMsg?.active ? "20px 24px" : "0px",
+            padding: !isDraft && !isSelectedMsg?.active ? "20px 16px" : "0px",
           }}
         >
           {!isDraft && !isSelectedMsg?.active && (
             <Box
               sx={{
                 display: "flex",
+                alignItems: "center",
                 justifyContent: "space-between",
                 borderBottom: isDesktop ? "none" : "1px solid #D4D4D4",
               }}
@@ -173,7 +175,6 @@ export const NewMessageDialog = ({
                   fontStyle: "normal",
                   color: "#003B4A",
                   lineHeight: "30px",
-                  padding: "10px",
                 }}
               >
                 {t("newMessageTitle")}
@@ -394,7 +395,7 @@ export const NewMessageDialog = ({
             position: isDesktop || isDraft ? "unset" : "absolute",
             bottom: isDesktop || isDraft ? "unset" : "0px",
             width: isDesktop || isDraft ? "auto" : "100%",
-            padding: isDesktop || isDraft ? "8px" : "20px 16px",
+            padding: isDesktop || isDraft ? "20px 16px" : "8px",
           }}
         >
           <Button
@@ -404,7 +405,7 @@ export const NewMessageDialog = ({
             }}
             sx={{
               gap: "5px",
-              textTransform: "capitalize",
+              textTransform: "lowercase",
               border: "1px solid #003B4A",
               margin: "8px 0",
               borderRadius: "30px",
@@ -421,13 +422,12 @@ export const NewMessageDialog = ({
               }}
             />
             <Typography
-              tabIndex={0}
+              variant="bodyRegularSemiBold"
               sx={{
-                fontSize: "16px",
-                fontWeight: "600",
-                fontStyle: "normal",
-                color: "#007E8F",
-                lineHeight: "18px",
+                color: colors.primaryButton,
+                ":first-letter": {
+                  textTransform: "capitalize",
+                },
               }}
             >
               {t("addAttachments")}
@@ -449,13 +449,22 @@ export const NewMessageDialog = ({
                   aria-label={t("moveToDraft")}
                   sx={{
                     color: "#007E8F",
-                    textTransform: "capitalize",
                     fontSize: "16px",
+                    textTransform: "lowercase",
                     fontStyle: "normal",
                     width: isDesktop || isDraft ? "fitContent" : "100%",
                   }}
                 >
-                  {t("moveToDraft")}
+                  <Typography
+                    variant="bodyRegularSemiBold"
+                    sx={{
+                      ":first-letter": {
+                        textTransform: "capitalize",
+                      },
+                    }}
+                  >
+                    {t("moveToDraft")}
+                  </Typography>
                 </Button>
                 <Button
                   type="submit"
@@ -544,9 +553,6 @@ export const NewMessageDialog = ({
               width: "700px",
               position: "absolute",
               top: "116px",
-            },
-            ".MuiDialogActions-root": {
-              padding: "15px",
             },
           }}
         >
