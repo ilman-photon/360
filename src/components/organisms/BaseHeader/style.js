@@ -51,6 +51,6 @@ export const styles = {
     color: "#191919 !important",
   },
   menuProfileMenu: { mt: "45px" },
-  buttonProfileMenu: { color: "black" },
+  buttonProfileMenu: { color: "black", textTransform: "none" },
   eyecareLogoToolbarStyled: { mr: 1 },
 };
