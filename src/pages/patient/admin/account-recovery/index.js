@@ -210,6 +210,9 @@ export default function AccountRecovery() {
         setTableFormMessage(
           `Account of ${payload.data.name} activated successfully`
         );
+        setTimeout(() => {
+          setTableFormMessage(false);
+        }, 5000);
       }
     });
     setIsModalOpened(false);
@@ -222,6 +225,9 @@ export default function AccountRecovery() {
         setTableFormMessage(
           `Account of ${data.name || "patient"} unlocked successfully`
         );
+        setTimeout(() => {
+          setTableFormMessage(false);
+        }, 5000);
       }
     });
     setIsModalOpened(false);
@@ -239,6 +245,9 @@ export default function AccountRecovery() {
         setTableFormMessage(
           `Password reset link sent to ${data.name || "patient"} successfully`
         );
+        setTimeout(() => {
+          setTableFormMessage(false);
+        }, 5000);
       }
     });
     setIsModalOpened(false);
@@ -255,6 +264,9 @@ export default function AccountRecovery() {
         setTableFormMessage(
           `Username shared to ${data.name || "patient"} successfully`
         );
+        setTimeout(() => {
+          setTableFormMessage(false);
+        }, 5000);
       }
     });
     setIsModalOpened(false);
