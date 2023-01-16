@@ -383,6 +383,7 @@ export default function IntakeFormPage() {
                 width: isSubmit ? "55%" : "90%",
               }}
               onClick={() => handleNavigateToDocument({ item, isSubmit })}
+              role={"link"}
               tabIndex={0}
             >
               {item.title}

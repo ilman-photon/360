@@ -11,7 +11,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 export default function DocumentLayout({
   children,
-  pageTitle = "EyeCare Patient Portal - Prescription",
+  pageTitle = "EyeCare Patient Portal - Form Customization",
   backTitle = "",
   isHideHeader = false,
 }) {
