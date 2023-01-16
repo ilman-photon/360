@@ -50,9 +50,7 @@ export function formatAppointmentDate(date, tzone) {
   if (!date) {
     return "-";
   } else {
-    const momentDate = new moment(date).format(
-      "dddd, MMM DD, YYYY, [AT] h:mm A"
-    );
+    const momentDate = new moment(date).format("dddd, MMM DD - h:mm a");
     const timezone = tzone
       ? new moment.tz(tzone).format("z")
       : new moment.tz(moment.tz.guess()).format("z");
