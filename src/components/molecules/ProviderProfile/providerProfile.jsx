@@ -188,7 +188,10 @@ export default function ProviderProfile({
             <span className={styles.doctorName}>{providerData.name}</span>
           </Typography>
           {showPosition && (
-            <Typography variant="h3" tabIndex={0}>
+            <Typography
+              tabIndex={getAddressName(providerData.address) ? 0 : -1}
+              variant="h3"
+            >
               {getAddressName(providerData.address)}
             </Typography>
           )}
