@@ -488,7 +488,7 @@ export default function ScheduleAppointmentPage() {
       mobileNumber: data.mobile,
       password: data.password,
       preferredCommunication: data.preferredCommunication,
-      userType: "G",
+      userType: data.password && data.password !== "" ? "R" : "G",
     };
     dispatch(resetFormMessage());
 
