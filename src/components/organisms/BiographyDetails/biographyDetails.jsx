@@ -223,7 +223,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
     aboutMenuRef.current.className = styles.menuTextSelected;
     window.scrollTo({
       left: 0,
-      top: 0,
+      top: aboutRef.current.offsetTop - 120,
       behavior: "smooth",
     });
   };
