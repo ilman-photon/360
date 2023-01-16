@@ -48,6 +48,7 @@ export default function BaseHeader({
   showNavbar = false,
   isNotShowHeader = false,
   isAdmin = false,
+  sxSubNavigation,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
@@ -517,7 +518,11 @@ export default function BaseHeader({
       )}
       {showNavbar && isUserLoged && <Navbar />}
       {backTitle && (
-        <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
+        <SubNavigation
+          sxSubNavigation={sxSubNavigation}
+          onClick={onBackClicked}
+          backTitle={backTitle}
+        />
       )}
 
       {/* notification drawer */}

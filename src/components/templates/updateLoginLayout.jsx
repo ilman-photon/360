@@ -21,11 +21,14 @@ export default function UpdateLoginLayout({
         {isLogin && (
           <div className={styles.defaultLayout}>
             <BaseHeader
-              backTitle={"Back  to Login & Security"}
+              backTitle={"Back to Login & Security"}
               onBackClicked={() => {
                 router.push("/patient/account/login-&-security");
               }}
               showNavbar={true}
+              sxSubNavigation={{
+                paddingLeft: "48px",
+              }}
             />
             <div className={styles.defaultContainer}>{children}</div>
           </div>

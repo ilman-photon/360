@@ -2,6 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { Controller, useForm, useFormState } from "react-hook-form";
+import { colors } from "../../../styles/theme";
 import { Regex } from "../../../utils/regex";
 import { StyledButton } from "../../atoms/Button/button";
 import StyledInput from "../../atoms/Input/input";
@@ -67,6 +68,7 @@ export default function UpdateUsernameView({
               tabIndex={0}
               aria-label={"Update Username"}
               variant="headlineH2"
+              color={colors.darkGreen}
             >
               Update Username
             </Typography>
@@ -150,7 +152,12 @@ export default function UpdateUsernameView({
                   router.push("/patient/account/login-&-security");
                 }}
               >
-                Cancel
+                <Typography
+                  variant="controlButtonText"
+                  color={colors.primaryButton}
+                >
+                  Cancel
+                </Typography>
               </StyledButton>
               <StyledButton
                 mode={constants.PRIMARY}
@@ -161,7 +168,9 @@ export default function UpdateUsernameView({
                 data-testid={"update-btn"}
                 gradient={false}
               >
-                Update
+                <Typography variant="controlButtonText" color={"unset"}>
+                  Update
+                </Typography>
               </StyledButton>
             </Box>
           </Stack>
