@@ -35,6 +35,7 @@ export default function RowRadioButtonsGroup({
       <FormLabel
         id="row-radio-buttons-group-label"
         aria-label={`${props.label}`}
+        tabIndex={"0"}
         sx={{
           fontSize: 16,
           fontWeight: "600",
@@ -107,9 +108,11 @@ export default function RowRadioButtonsGroup({
                     },
                     height: isCancelSchedule ? "40px" : "auto",
                   }}
+                  tabIndex={-1}
                 />
               }
               label={customRadioLabel ? customRadioLabel(option) : option.label}
+              tabIndex={0}
               sx={{
                 "& .MuiRadio-root": {
                   padding: isCancelSchedule ? "2px 9px 2px 16px" : "9px",
