@@ -572,7 +572,7 @@ export class Api {
   getDraftMessages() {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `${userData?.patientId}`;
-    const url = `/ecp/messages/getInbox?search.query=((messageReceipients.recipientType=eq=TO)(messageStatus=eq=DRAFT)(messageReceipients.isDeleted=eq=false))&sessionUserId=${patientId}`; // cdd6587b-b7af-4ef4-848d-214b957b9699
+    const url = `/ecp/messages/getOutbox?search.query=((messageStatus=eq=DRAFT)(messageReceipients.isDeleted=eq=false))&sessionUserId=${patientId}`; // cdd6587b-b7af-4ef4-848d-214b957b9699
     return this.getResponse(url, {}, "get");
   }
 
