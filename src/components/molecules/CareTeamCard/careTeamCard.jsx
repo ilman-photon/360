@@ -1,8 +1,9 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Box, IconButton, Link, Typography } from "@mui/material";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilterData, setIsFilterApplied } from "../../../store/appointment";
 import { useRouter } from "next/router";
@@ -118,6 +119,22 @@ export default function CareTeamCard({ provider, coordinate }) {
           >
             {address}
           </Typography>
+        </Box>
+        <Box>
+          <IconButton
+            aria-label="more option"
+            id="more-button"
+            sx={{
+              position: "absolute",
+              right: 0,
+              padding: {
+                xs: "12.5px",
+                sm: "22px",
+              },
+            }}
+          >
+            <MoreVertIcon />
+          </IconButton>
         </Box>
       </Box>
       <Box className={styles.infoContainer}>
