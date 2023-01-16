@@ -55,7 +55,6 @@ export default function AppointmentDetails({
         }
       >
         <Stack spacing={2}>
-          timezon{JSON.stringify(appointmentData.timeZone)}
           <LabelWithInfo
             label="Date and time"
             iconWidth={"24px"}

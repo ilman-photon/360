@@ -215,7 +215,7 @@ describe("App", () => {
   it("Appointment Schedule Data No Patient info ", async () => {
     window.matchMedia = createMatchMedia("1920px");
     expect(
-      container.getAllByText(/Friday, Oct 21, 2022, AT 9:00/i)[0]
+      container.getAllByText(/Friday, Oct 21 - 9:00 am/i)[0]
     ).toBeInTheDocument();
   });
 
