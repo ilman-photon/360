@@ -151,6 +151,7 @@ const buildAccountData = (data) => {
 const INITIAL_STATE = {
   patientList: [],
   securityQuestions: [],
+  securityQuestionStatus: null,
   securityQuestionsRaw: {},
   status: null,
   error: null,
@@ -188,6 +189,9 @@ export const accountRecoveryStore = createSlice({
       state.error = action;
       state.status = "failed";
     },
+    [onViewSecurityQuestions.pending]: (state) => {
+      state.securityQuestionStatus = "loading";
+    },
     [onViewSecurityQuestions.fulfilled]: (state, { payload }) => {
       const response = payload.response;
       let mapped = [];
@@ -204,7 +208,12 @@ export const accountRecoveryStore = createSlice({
       }
 
       state.securityQuestions = mapped;
-      state.status = "success";
+      state.securityQuestionStatus = "success";
+    },
+    [onViewSecurityQuestions.rejected]: (state, action) => {
+      state.error = action;
+      state.securityQuestionStatus = "failed";
+      state.securityQuestions = [];
     },
     [fetchPatientAccount.rejected]: (state, action) => {
       state.error = action;

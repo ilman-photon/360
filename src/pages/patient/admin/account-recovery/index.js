@@ -42,6 +42,9 @@ export default function AccountRecovery() {
   const securityQuestions = useSelector(
     (state) => state.accountRecovery.securityQuestions
   );
+  const securityQuestionStatus = useSelector(
+    (state) => state.accountRecovery.securityQuestionStatus
+  );
 
   const [tableFormMessage, setTableFormMessage] = useState(false);
   const [activeModalData, setActiveModalData] = useState(false);
@@ -411,7 +414,12 @@ export default function AccountRecovery() {
             >
               Security Questions
             </Typography>
-            {securityQuestions.length === 0 ? (
+            {securityQuestionStatus === "loading" ? (
+              <CircularProgress
+                data-testid="loading-state"
+                sx={{ margin: "0 auto" }}
+              />
+            ) : securityQuestions.length === 0 ? (
               <Typography variant="bodyRegularSemiBold">
                 User has not set-up security questions.
               </Typography>
