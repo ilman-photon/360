@@ -448,7 +448,13 @@ export default function TableWithSort({
       );
     }
 
-    return ref(row, cell.valueKey);
+    return (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: ref(row, cell.valueKey),
+        }}
+      />
+    );
   }
 
   const renderCellContent = ({ row, cell, rowIdx, cellIdx }) => {
