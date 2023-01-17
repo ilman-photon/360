@@ -32,17 +32,23 @@ export const styles = {
     color: "#003B4A",
   },
   boxStyledMobile: {
-    display: { xs: "flex", sm: "none" },
+    display: "none !important",
     justifyContent: "flex-end",
-    "@media print": {
-      display: "none !important",
+    "@media (max-width: 833px)": {
+      display: "flex !important",
     },
   },
   menuMobile: {
     display: { xs: "block", md: "none" },
   },
   menuItemMobile: { color: "black" },
-  boxProfileMenuStyles: { flexGrow: 0, display: { xs: "none", md: "flex" } },
+  boxProfileMenuStyles: {
+    flexGrow: 0,
+    display: "flex",
+    "@media (max-width: 899px)": {
+      display: "none",
+    },
+  },
   boxButtonStyles: { color: "black", textTransform: "none" },
   userText: {
     fontWeight: "700 !important",

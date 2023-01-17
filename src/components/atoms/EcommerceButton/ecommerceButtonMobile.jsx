@@ -1,13 +1,10 @@
 import { Box, Button } from "@mui/material";
 
-export default function EcommerceButtonMobile({ menu = [] }) {
+export default function EcommerceButtonMobile({ menu = [], isDesktop }) {
   return (
     <Box
       sx={{
-        display: {
-          xs: "flex",
-          sm: "none",
-        },
+        display:  isDesktop ? "none" : "flex" ,
         padding: "8px 20px",
         backgroundColor: "#DDF1F3",
         gap: "24px",

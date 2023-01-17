@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Badge, Button, Stack, Typography } from "@mui/material";
+import { Badge, Button, Stack, Typography, useMediaQuery } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -58,6 +58,8 @@ export default function BaseHeader({
   const userData = useSelector((state) => state.user.userData);
   const iconLinkEcomm = "/icon-link-ecomm-mobile.png";
   const iconEyeContact = "/icon-eye-contacts.png";
+  const isDesktop = useMediaQuery("(min-width: 834px)");
+
 
   const [user, setUser] = React.useState({});
   React.useEffect(() => {
@@ -268,7 +270,7 @@ export default function BaseHeader({
                       aria-label="Shop for Contacts button"
                       wrapperStyle={{
                         margin: "12px 16px",
-                        display: { xs: "none", sm: "flex" },
+                        display:  isDesktop ? "flex" : "none" ,
                       }}
                     >
                       Shop for Contacts
@@ -283,10 +285,7 @@ export default function BaseHeader({
                         router.push("/patient/appointment");
                       }}
                       sx={{
-                        display: {
-                          xs: "none !important",
-                          sm: "flex !important",
-                        },
+                        display:  isDesktop ? "flex !important" : "none !important" ,
                         height: "40px !important",
                         fontFamily: "'Museo Sans', sans-serif",
                         fontWeight: "400 !important",
@@ -354,7 +353,7 @@ export default function BaseHeader({
                   sx={{
                     display: {
                       xs: "none",
-                      sm: "flex",
+                      sm: isDesktop? "flex" : "none",
                       md: "none",
                     },
                   }}
@@ -496,6 +495,7 @@ export default function BaseHeader({
       </AppBar>
       {isUserLoged && (
         <EcommerceButtonMobile
+          isDesktop={isDesktop}
           menu={[
             {
               icon: <Image alt="" src={iconLinkEcomm} width={18} height={18} />,
@@ -516,7 +516,7 @@ export default function BaseHeader({
           ]}
         />
       )}
-      {showNavbar && isUserLoged && <Navbar />}
+      {showNavbar && isUserLoged && <Navbar isDesktop={isDesktop} baseHeader={true} />}
       {backTitle && (
         <SubNavigation
           sxSubNavigation={sxSubNavigation}
