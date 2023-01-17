@@ -14,10 +14,6 @@ export const OpenInvoiceMobileView = ({
     //This is intentional
   },
 }) => {
-  const { t } = useTranslation("translation", {
-    keyPrefix: "payMyBill",
-  });
-
   const headerData = [
     {
       type: "text",

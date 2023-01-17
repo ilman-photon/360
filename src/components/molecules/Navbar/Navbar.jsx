@@ -13,7 +13,6 @@ import { useRouter } from "next/router";
 import { ThemeProvider, useMediaQuery } from "@mui/material";
 import { patientTypography } from "../../../styles/theme";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
-import styles from "./styles.module.scss";
 
 const iconintakeFoms = "/iconintakeFoms.png";
 const iconHealthRecord = "/iconCarePlanRecord.png";
@@ -170,7 +169,7 @@ const Navbar = ({ isDashboard = false }) => {
             margin,
             fontFamily: "Museo Sans",
             fontWeight: "400",
-            fontSize: isTablet ? "14px" : "16px"
+            fontSize: isTablet ? "14px" : "16px",
           }}
         >
           {item.label}
@@ -189,7 +188,7 @@ const Navbar = ({ isDashboard = false }) => {
           marginTop: isDashboard ? "-16px" : "0px",
           zIndex: "3",
           position: "relative",
-          display:  isDesktop ? "block" : "none",
+          display: isDesktop ? "block" : "none",
         }}
       >
         <Container maxWidth="xl">
@@ -204,7 +203,7 @@ const Navbar = ({ isDashboard = false }) => {
                 },
                 gap: {
                   md: "15px",
-                  lg: "16px"
+                  lg: "16px",
                 },
               }}
             >
@@ -225,7 +224,7 @@ const Navbar = ({ isDashboard = false }) => {
                     borderBottom: isCurrentPath(page.href)
                       ? "solid 4px #D9D9D9"
                       : "solid 4px transparent",
-                    fontSize: isTablet ? "14px" : "16px"
+                    fontSize: isTablet ? "14px" : "16px",
                   }}
                 >
                   {page.label}

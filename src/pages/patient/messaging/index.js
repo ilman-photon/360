@@ -15,7 +15,6 @@ import { Box, Button, Typography, useMediaQuery } from "@mui/material";
 import MessagingFilterComponent from "../../../components/molecules/Messaging/MessagingFilterComponent";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { useTranslation } from "next-i18next";
-import { getArrayValue } from "../../../utils/bioUtils";
 import { messageParser } from "../../../utils/messaging";
 import moment from "moment";
 
