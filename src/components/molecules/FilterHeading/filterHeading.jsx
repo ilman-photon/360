@@ -543,6 +543,7 @@ const FilterHeading = ({
                       }}
                       InputProps={{
                         ...params.InputProps,
+                        name: "main-content",
                         endAdornment: (
                           <InputAdornment position="start">
                             <NearMeOutlinedIcon
