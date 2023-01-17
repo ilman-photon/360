@@ -10,9 +10,10 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, useMediaQuery } from "@mui/material";
 import { patientTypography } from "../../../styles/theme";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import styles from "./styles.module.scss";
 
 const iconintakeFoms = "/iconintakeFoms.png";
 const iconHealthRecord = "/iconCarePlanRecord.png";
@@ -107,6 +108,9 @@ const Navbar = ({ isDashboard = false }) => {
 
   const router = useRouter();
 
+  const isDesktop = useMediaQuery("(min-width: 834px)");
+  const isTablet = useMediaQuery("(max-width: 980px)");
+
   const isCurrentPath = (href) => {
     return (
       router.pathname === href ||
@@ -166,10 +170,7 @@ const Navbar = ({ isDashboard = false }) => {
             margin,
             fontFamily: "Museo Sans",
             fontWeight: "400",
-            fontSize: {
-              sm: "14px",
-              md: "16px",
-            },
+            fontSize: isTablet ? "14px" : "16px"
           }}
         >
           {item.label}
@@ -188,7 +189,7 @@ const Navbar = ({ isDashboard = false }) => {
           marginTop: isDashboard ? "-16px" : "0px",
           zIndex: "3",
           position: "relative",
-          display: { xs: "none", sm: "block" },
+          display:  isDesktop ? "block" : "none",
         }}
       >
         <Container maxWidth="xl">
@@ -202,7 +203,8 @@ const Navbar = ({ isDashboard = false }) => {
                   md: "normal",
                 },
                 gap: {
-                  md: "16px",
+                  md: "15px",
+                  lg: "16px"
                 },
               }}
             >
@@ -223,10 +225,7 @@ const Navbar = ({ isDashboard = false }) => {
                     borderBottom: isCurrentPath(page.href)
                       ? "solid 4px #D9D9D9"
                       : "solid 4px transparent",
-                    fontSize: {
-                      sm: "14px",
-                      md: "16px",
-                    },
+                    fontSize: isTablet ? "14px" : "16px"
                   }}
                 >
                   {page.label}
@@ -246,6 +245,7 @@ const Navbar = ({ isDashboard = false }) => {
                     borderRadius: "2px 2px 0px 0px",
                     borderTop: "solid 4px transparent",
                     paddingBottom: "1px",
+                    fontSize: isTablet ? "14px" : "16px",
                     borderBottom:
                       isCurrentPath("/patient/appointments") ||
                       isCurrentPath("/patient/search-doctor")
@@ -298,10 +298,7 @@ const Navbar = ({ isDashboard = false }) => {
                       isCurrentPath("/patient/prescription")
                         ? "solid 4px #D9D9D9"
                         : "solid 4px transparent",
-                    fontSize: {
-                      sm: "14px",
-                      md: "16px",
-                    },
+                    fontSize: isTablet ? "14px" : "16px",
                   }}
                   endIcon={<ExpandMoreIcon />}
                 >
@@ -338,6 +335,7 @@ const Navbar = ({ isDashboard = false }) => {
                   borderRadius: "2px 2px 0px 0px",
                   borderTop: "solid 4px transparent",
                   paddingBottom: "1px",
+                  fontSize: isTablet ? "14px" : "16px",
                   borderBottom:
                     isCurrentPath(myCareTeam.href) ||
                     isCurrentPath(myCareTeam.additional)
@@ -365,10 +363,7 @@ const Navbar = ({ isDashboard = false }) => {
                       isCurrentPath(pages.additional)
                         ? "solid 4px #D9D9D9"
                         : "solid 4px transparent",
-                    fontSize: {
-                      sm: "14px",
-                      md: "16px",
-                    },
+                    fontSize: isTablet ? "14px" : "16px",
                   }}
                   endIcon={<ExpandMoreIcon />}
                 >
@@ -407,6 +402,7 @@ const Navbar = ({ isDashboard = false }) => {
                   borderRadius: "2px 2px 0px 0px",
                   borderTop: "solid 4px transparent",
                   paddingBottom: "1px",
+                  fontSize: isTablet ? "14px" : "16px",
                   borderBottom:
                     isCurrentPath(messaging.href) ||
                     isCurrentPath(messaging.additional)
@@ -436,10 +432,7 @@ const Navbar = ({ isDashboard = false }) => {
                       isCurrentPath("/patient/account/documents")
                         ? "solid 4px #D9D9D9"
                         : "solid 4px transparent",
-                    fontSize: {
-                      sm: "14px",
-                      md: "16px",
-                    },
+                    fontSize: isTablet ? "14px" : "16px",
                   }}
                   endIcon={<ExpandMoreIcon />}
                 >
