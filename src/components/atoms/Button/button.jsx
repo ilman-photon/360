@@ -20,6 +20,7 @@ export const CustomButton = styled(Button)(
   font-style: normal; 
   font-weight: 600;
   line-height: 20px;
+  font-size: 16px;
   text-transform: none;
   border-radius: 46px;
 
