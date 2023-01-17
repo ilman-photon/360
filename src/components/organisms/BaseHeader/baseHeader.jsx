@@ -250,15 +250,20 @@ export default function BaseHeader({
         <Container maxWidth="xl">
           {isUserLoged && !isNotShowHeader ? (
             <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
-              <Link href={"/patient"} role={"none"} tabIndex={0}>
+              <Link
+                aria-hidden={"false"}
+                href={"/patient"}
+                role={"none"}
+                tabIndex={0}
+              >
                 <Image
+                  tabIndex={0}
                   src={logo}
                   width={124}
                   height={36}
                   style={styles.logoStyled}
                   aria-label={"Clarkson Eyecare logo"}
                   title="Your Account"
-                  tabIndex={0}
                   role={"img"}
                   data-testid={HOME_TEST_ID.header.logo}
                 ></Image>
