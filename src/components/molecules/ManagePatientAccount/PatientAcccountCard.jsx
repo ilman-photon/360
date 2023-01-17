@@ -29,6 +29,7 @@ import {
   stableSort,
 } from "../TableWithSort/tableWithSort";
 import InfiniteScroll from "react-infinite-scroller";
+import Image from "next/image";
 
 export default function PatientAcccountCard({
   config,
@@ -52,6 +53,7 @@ export default function PatientAcccountCard({
   const itemsPerPage = rows.length < 10 ? rows.length : 10;
   const [hasMore, setHasMore] = React.useState(true);
   const [records, setrecords] = React.useState(itemsPerPage);
+  const iconShare = "/icon-share.png";
 
   const carePlanMenus = [
     {
@@ -70,10 +72,13 @@ export default function PatientAcccountCard({
     },
     {
       id: "share",
-      icon: <ReplyIcon />,
+      icon: <Image alt="" src={iconShare} width={24} height={24} />,
       label: "Share",
       dataTestId: "share-button",
       ariaLabel: "share button",
+      sx: {
+        padding: "3px",
+      },
     },
   ];
 
@@ -409,6 +414,7 @@ export default function PatientAcccountCard({
                             width: 24,
                             height: 24,
                             color: "#003B4A",
+                            ...(more.sx || {}),
                           }}
                         >
                           {more.icon}
