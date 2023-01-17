@@ -98,7 +98,11 @@ const NotificationDrawer = ({
     >
       {/* drawer header */}
       <Stack>
-        <IconButton onClick={onDrawerClose} sx={{ ml: "auto", p: 0 }}>
+        <IconButton
+          onClick={onDrawerClose}
+          sx={{ ml: "auto", p: 0 }}
+          aria-label={"close"}
+        >
           <CloseOutlinedIcon />
         </IconButton>
         <Typography
