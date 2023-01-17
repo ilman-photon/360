@@ -37,6 +37,7 @@ import Link from "next/link";
 import EcommerceButton from "../../atoms/EcommerceButton/ecommerceButton";
 import EcommerceButtonMobile from "../../atoms/EcommerceButton/ecommerceButtonMobile";
 import { StyledButton } from "../../atoms/Button/button";
+import ButtonSkipToContent from "../SkipToMainContent";
 import { stringAvatar } from "../../../utils/avatar";
 
 export default function BaseHeader({
@@ -245,6 +246,7 @@ export default function BaseHeader({
           zIndex: 10,
         }}
       >
+        <ButtonSkipToContent />
         <Container maxWidth="xl">
           {isUserLoged && !isNotShowHeader ? (
             <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>

@@ -4,6 +4,7 @@ import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import { ThemeProvider } from "@mui/material/styles";
 import { patientTypography } from "../../styles/theme";
 import { useRouter } from "next/router";
+import ButtonSkipToContent from "../organisms/SkipToMainContent";
 
 export default function AppointmentLayout({
   children,
@@ -20,6 +21,7 @@ export default function AppointmentLayout({
       </Head>
       <ThemeProvider theme={patientTypography}>
         <div className={styles.defaultLayout}>
+          <ButtonSkipToContent />
           <BaseHeader
             backTitle={backTitle}
             onBackClicked={() => {
