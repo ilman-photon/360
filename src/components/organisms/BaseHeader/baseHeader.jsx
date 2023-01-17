@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/role-supports-aria-props */
 import * as React from "react";
 import { styles } from "./style";
 import { Badge, Button, Stack, Typography, useMediaQuery } from "@mui/material";
@@ -60,7 +61,6 @@ export default function BaseHeader({
   const iconLinkEcomm = "/icon-link-ecomm-mobile.png";
   const iconEyeContact = "/icon-eye-contacts.png";
   const isDesktop = useMediaQuery("(min-width: 834px)");
-
 
   const [user, setUser] = React.useState({});
   React.useEffect(() => {
@@ -277,7 +277,7 @@ export default function BaseHeader({
                       aria-label="Shop for Contacts button"
                       wrapperStyle={{
                         margin: "12px 16px",
-                        display:  isDesktop ? "flex" : "none" ,
+                        display: isDesktop ? "flex" : "none",
                       }}
                     >
                       Shop for Contacts
@@ -292,7 +292,9 @@ export default function BaseHeader({
                         router.push("/patient/appointment");
                       }}
                       sx={{
-                        display:  isDesktop ? "flex !important" : "none !important" ,
+                        display: isDesktop
+                          ? "flex !important"
+                          : "none !important",
                         height: "40px !important",
                         fontFamily: "'Museo Sans', sans-serif",
                         fontWeight: "400 !important",
@@ -360,7 +362,7 @@ export default function BaseHeader({
                   sx={{
                     display: {
                       xs: "none",
-                      sm: isDesktop? "flex" : "none",
+                      sm: isDesktop ? "flex" : "none",
                       md: "none",
                     },
                   }}
@@ -523,7 +525,9 @@ export default function BaseHeader({
           ]}
         />
       )}
-      {showNavbar && isUserLoged && <Navbar isDesktop={isDesktop} baseHeader={true} />}
+      {showNavbar && isUserLoged && (
+        <Navbar isDesktop={isDesktop} baseHeader={true} />
+      )}
       {backTitle && (
         <SubNavigation
           sxSubNavigation={sxSubNavigation}
