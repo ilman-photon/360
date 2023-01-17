@@ -18,6 +18,7 @@ const NotificationItem = ({
       className={styles.container}
       onClick={onClick}
       data-testid="notification-item"
+      tabIndex={0}
     >
       <Grid item xs={1}>
         <div
