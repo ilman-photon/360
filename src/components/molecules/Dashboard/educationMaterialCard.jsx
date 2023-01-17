@@ -46,7 +46,7 @@ export default function EducationMaterialCard() {
               title: item.name,
               imgSrc: "/image166.png",
               author: `${item.uploadedBy?.firstName} ${item.uploadedBy?.lastName}`,
-              date: new moment(item._created).format("MMM dd, yyyy"),
+              date: new moment(item._created).format("MMMM DD, yyyy"),
               digital_assets: item.digital_assets,
               desc: "",
             });
@@ -67,6 +67,10 @@ export default function EducationMaterialCard() {
   const handleAssetDownload = (id, isPrint = false) => {
     fetchSource(id, isPrint);
   };
+
+  function getDateSectioUI(item) {
+    return isDesktop ? item.date : `${item.author}, ${item.date}`;
+  }
 
   function renderDekstopView() {
     const tableEmptyStyle = !isDesktop
@@ -123,15 +127,9 @@ export default function EducationMaterialCard() {
                         {item.title}
                       </Typography>
                       <Typography className={styles.materialDate} tabIndex={0}>
-                        {new moment(item.date).format("MMMM DD, YYYY")}
+                        {getDateSectioUI(item)}
                       </Typography>
-                      <Stack
-                        sx={{
-                          display: "flex",
-                          height: "60%",
-                          justifyContent: "space-between",
-                        }}
-                      >
+                      <Stack className={styles.contentContainer}>
                         <Typography
                           className={styles.materialDescription}
                           tabIndex={0}
