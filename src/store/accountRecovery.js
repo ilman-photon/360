@@ -237,7 +237,7 @@ export const accountRecoveryStore = createSlice({
       state.securityQuestionStatus = "failed";
       state.securityQuestions = [];
     },
-    [fetchPatientAccount.rejected]: (state, action) => {
+    [onViewSecurityQuestions.rejected]: (state, action) => {
       state.error = action;
       state.securityQuestions = [];
     },
