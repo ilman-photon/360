@@ -221,6 +221,7 @@ export default function LockedAccount() {
         <PatientAcccountCard
           config={tableConfiguration}
           rows={rows}
+          showResultNum={showResult}
           onActionClicked={(val) => {
             setShowModal(val);
           }}

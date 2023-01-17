@@ -147,8 +147,10 @@ export default function PatientAcccountCard({
 
   const generateSortOptions = () => {
     const sort = [];
-    config.header.map((item) => {
+    let defaultIndex = 0;
+    config.header.map((item, idx) => {
       if (item.type !== "empty" && item.type !== "textNoSort") {
+        if (item.id === "lockedDate") defaultIndex = idx * 2;
         sort.push(
           {
             label: renderMenuItemContent({
@@ -169,7 +171,7 @@ export default function PatientAcccountCard({
     });
 
     setSortOptions(sort);
-    setSelectedSort(sort[0].value);
+    setSelectedSort(sort[defaultIndex].value);
   };
 
   const handleAccountRecoveryMenuClick = (event, row) => {
