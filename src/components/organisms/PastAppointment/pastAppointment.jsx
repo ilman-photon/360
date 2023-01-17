@@ -68,8 +68,10 @@ export function PastAppointmentCard({ data, threshold }) {
           }}
         >
           <Button
+            tabIndex={0}
             onClick={() => (threshold == 0 ? handleClickAlt() : handleClick())}
-            aria-label={"Collapse"}
+            aria-live={"polite"}
+            aria-label={expandCondition ? "Collapse Button" : "Expanded Button"}
             ariaExpanded={expandCondition ? "true" : "false"}
           >
             {expandCondition ? (
