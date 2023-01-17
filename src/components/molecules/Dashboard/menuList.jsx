@@ -131,6 +131,7 @@ export default function MenuList({
     <div>
       <Box
         aria-label="More option"
+        role="button"
         onClick={handleClick}
         tabIndex={0}
         data-testId="more-option-test"
