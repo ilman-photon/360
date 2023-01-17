@@ -178,7 +178,11 @@ export const NewMessageDialog = ({
               >
                 {t("newMessageTitle")}
               </DialogContentText>
-              <IconButton onClick={handleClosed}>
+              <IconButton
+                onClick={handleClosed}
+                tabIndex={0}
+                aria-label="close"
+              >
                 <CloseIcon />
               </IconButton>
             </Box>
