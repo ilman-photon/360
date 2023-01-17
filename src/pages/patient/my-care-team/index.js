@@ -130,10 +130,7 @@ export default function MyCareTeamPage() {
                 sx={{
                   background: "#F2F7F7",
                   padding: "16px 10px",
-                  fontWeight: {
-                    xs: 400,
-                    sm: 500,
-                  },
+                  fontWeight: 300,
                   fontSize: "18px",
                   lineHeight: "28px",
                   textAlign: {

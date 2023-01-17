@@ -69,7 +69,7 @@ export const patientTypography = createTheme({
     h1: {
       fontFamily: "Museo Sans, sans-serif",
       color: "#003B4A",
-      fontWeight: 500,
+      fontWeight: 300,
       fontSize: 46,
       lineHeight: "60px",
     },
@@ -239,7 +239,7 @@ export const patientTypography = createTheme({
     grayscaleBlack: {
       fontFamily: "Museo Sans, sans-serif",
       color: "#292929",
-      fontWeight: "500",
+      fontWeight: 500,
       fontSize: 22,
       lineHeight: "30px",
     },
@@ -259,7 +259,7 @@ export const patientTypography = createTheme({
     headlineH3: {
       fontFamily: "Museo Sans, sans-serif",
       fontStyle: "normal",
-      fontWeight: 400,
+      fontWeight: 300,
       fontSize: "26px",
       lineHeight: "32px",
     },
