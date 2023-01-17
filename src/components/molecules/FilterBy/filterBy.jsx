@@ -84,7 +84,11 @@ const FilterBy = ({
             isDoctorSearch && {
               height: {
                 sm: "calc((100vh - 335px)/2) !important",
-                md: "280px !important",
+                md: `${
+                  category.checklist.length < 7
+                    ? category.checklist.length * 40
+                    : "280"
+                }px !important`,
               },
               flexWrap: "nowrap",
               overflow: "scroll",
@@ -164,6 +168,7 @@ const FilterBy = ({
               position: "absolute",
               margin: "16px",
               fontSize: "26px",
+              "font-weight": "300 !important",
             }}
           >
             Filters
@@ -207,6 +212,8 @@ const FilterBy = ({
           }}
           sx={{
             flex: 1,
+            fontSize: "16px",
+            "font-weight": "400 !important",
           }}
         >
           Reset
@@ -221,6 +228,8 @@ const FilterBy = ({
           }}
           sx={{
             flex: 1,
+            fontSize: "16px",
+            "font-weight": "400 !important",
           }}
         >
           Done

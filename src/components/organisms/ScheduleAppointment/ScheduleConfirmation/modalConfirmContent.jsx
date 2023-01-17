@@ -138,6 +138,8 @@ export default function ModalConfirmContent({
     ? "Reschedule Appointment Successful"
     : "You’re Scheduled!";
 
+  const isRescheduleFontWeight = isReschedule ? 300 : 700;
+
   const thankYouText = isReschedule ? t("thanksBarReschedule") : t("thanksBar");
 
   const appointmentTypeOrDefault =
@@ -160,7 +162,11 @@ export default function ModalConfirmContent({
             aria-hidden={false}
             aria-label={dialogTitle}
           >
-            <Typography variant="bodyMedium" className={styles.scheduledText}>
+            <Typography
+              variant="bodyMedium"
+              className={styles.scheduledText}
+              sx={{ fontWeight: isRescheduleFontWeight }}
+            >
               <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />
               <div>{dialogTitle}</div>
             </Typography>

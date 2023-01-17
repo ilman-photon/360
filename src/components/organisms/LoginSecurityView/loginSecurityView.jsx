@@ -73,6 +73,7 @@ export default function LoginSecurityView() {
       hideFixedAction
       titleIcon={<AccountSecurityIcon />}
       title="Login"
+      textStyle={{ fontWeight: 500 }}
       sx={{
         border: "2px solid #F3F3F3",
       }}

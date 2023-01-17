@@ -97,7 +97,7 @@ const SummaryBillDetail = ({
               sx={{
                 fontFamily: "Museo Sans",
                 fontStyle: "normal",
-                fontWeight: 400,
+                fontWeight: 300,
                 fontSize: isDesktop ? "32px" : "24px",
                 lineHeight: "44px",
                 color: "#003b4a",
@@ -135,7 +135,7 @@ const SummaryBillDetail = ({
                   sx={{
                     fontFamily: "Museo Sans",
                     fontStyle: "normal",
-                    fontWeight: 500,
+                    fontWeight: 300,
                     fontSize: isDesktop ? "26px" : "20px",
                     lineHeight: "32px",
                     color: "#003b4a",

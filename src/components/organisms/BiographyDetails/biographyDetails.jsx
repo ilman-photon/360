@@ -364,7 +364,12 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
       <Stack spacing={3} className={styles.detailedBioContainer}>
         {!isEmpty(providerData.about) && (
           <>
-            <Typography variant="h3" ref={aboutRef} tabIndex={0}>
+            <Typography
+              variant="h3"
+              ref={aboutRef}
+              tabIndex={0}
+              sx={{ fontWeight: 300 }}
+            >
               {`About ${providerData.name}`}
             </Typography>
             <Typography variant="body2" tabIndex={0}>
@@ -372,7 +377,7 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
             </Typography>
           </>
         )}
-        <Typography variant="h3" tabIndex={0}>
+        <Typography variant="h3" tabIndex={0} sx={{ fontWeight: 300 }}>
           Gender
         </Typography>
         <Typography variant="body2" tabIndex={0}>
@@ -381,7 +386,12 @@ export default function BiographyDetails({ providerData, googleApiKey }) {
 
         {locations && !isEmpty(locations) && (
           <>
-            <Typography variant="h3" ref={locationRef} tabIndex={0}>
+            <Typography
+              variant="h3"
+              ref={locationRef}
+              tabIndex={0}
+              sx={{ fontWeight: 300 }}
+            >
               Locations
             </Typography>
             <Box className={styles.mapContainer}>

@@ -376,7 +376,7 @@ export default function IntakeFormPage() {
               sx={{
                 fontFamily: "Museo Sans, sans-serif",
                 fontStyle: "normal",
-                fontWeight: "400",
+                fontWeight: "300",
                 fontSize: "22px",
                 lineHeight: "32px",
                 color: "#003B4A",

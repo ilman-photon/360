@@ -96,6 +96,7 @@ function SessionExpiredModal() {
         aria-label={
           !isExpired ? "Session Timeout heading" : "Session Expired heading"
         }
+        sx={{ fontWeight: 300 }}
       >
         {!isExpired ? "Session Timeout" : "Session Expired"}
       </DialogTitle>

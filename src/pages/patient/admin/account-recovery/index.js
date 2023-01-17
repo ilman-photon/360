@@ -335,7 +335,7 @@ export default function AccountRecovery() {
         return (
           <Typography
             aria-label={`Are you sure you want to activate ${patientName}?`}
-            sx={{ color: "#003B4A", fontSize: "22px" }}
+            sx={{ color: "#003B4A", fontSize: "22px", fontWeight: 300 }}
           >
             {`Are you sure you want to activate ${patientName}?`}
           </Typography>
@@ -344,7 +344,7 @@ export default function AccountRecovery() {
         return (
           <Typography
             aria-label={`Are you sure you want to unlock ${patientName}?`}
-            sx={{ color: "#003B4A", fontSize: "22px" }}
+            sx={{ color: "#003B4A", fontSize: "22px", fontWeight: 300 }}
           >
             {`Are you sure you want to unlock ${patientName}?`}
           </Typography>
@@ -354,7 +354,7 @@ export default function AccountRecovery() {
           <>
             <Typography
               aria-label={"Are you sure you want to send password reset?"}
-              sx={{ color: "#003B4A", fontSize: "22px" }}
+              sx={{ color: "#003B4A", fontSize: "22px", fontWeight: 300 }}
             >
               Are you sure you want to send password reset?
             </Typography>
@@ -388,7 +388,7 @@ export default function AccountRecovery() {
           <>
             <Typography
               aria-label={"Are you sure you want to share username?"}
-              sx={{ color: "#003B4A", fontSize: "22px" }}
+              sx={{ color: "#003B4A", fontSize: "22px", fontWeight: 300 }}
             >
               Are you sure you want to share username?
             </Typography>
@@ -421,7 +421,7 @@ export default function AccountRecovery() {
           <Stack spacing={2}>
             <Typography
               aria-label={"Security Questions"}
-              sx={{ color: "#003B4A", fontSize: "22px" }}
+              sx={{ color: "#003B4A", fontSize: "22px", fontWeight: 300 }}
               data-testid={"modal-view-security-questions-title"}
             >
               Security Questions

@@ -24,7 +24,7 @@ export const styles = {
     marginTop: "2px",
   },
   boldText: {
-    fontWeight: "600",
+    fontWeight: "700",
   },
   continueButton: {
     fontFamily: "Museo Sans",
