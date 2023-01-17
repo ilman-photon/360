@@ -563,7 +563,7 @@ export default function AccountRecovery() {
                   searchStatus === "loading" ? (
                     <CircularProgress
                       data-testid="loading-state"
-                      sx={{ margin: "0 auto" }}
+                      sx={{ margin: "0 auto", alignSelf: "center" }}
                     />
                   ) : (
                     searchResultUI()
