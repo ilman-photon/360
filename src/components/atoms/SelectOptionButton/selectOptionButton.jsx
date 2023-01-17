@@ -52,6 +52,7 @@ export default function SelectOptionButton({
   onChange,
   renderMenuListUI = null,
   ariaLabel = "",
+  inputRef = null,
   helperText = "",
   inputProps = {},
   renderValue,
@@ -99,8 +100,10 @@ export default function SelectOptionButton({
             backgroundColor: "#fff",
           },
         }}
+        inputRef={inputRef}
+        aria-label= {ariaLabel}
         inputProps={{
-          "aria-label": `${label}. ${value}`,
+          "aria-label": `${ariaLabel || label}. ${value}`,
           "aria-live": "polite",
           "data-testid": `select-${id}`,
           ...inputProps,

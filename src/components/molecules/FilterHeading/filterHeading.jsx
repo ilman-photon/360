@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 import StyledInput from "../../atoms/Input/input";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFormState } from "react-hook-form";
 import constants from "../../../utils/constants";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import NearMeOutlinedIcon from "@mui/icons-material/NearMeOutlined";
@@ -364,7 +364,6 @@ export function renderMandatoryFieldError(isError, isDesktop = true) {
         fontSize: isDesktop ? "16px" : "14px",
         color: isDesktop ? "#FFE2DF !important" : "#F98F85 !important",
       }}
-      tabIndex={0}
     >
       This field is required
     </Typography>
@@ -424,6 +423,10 @@ const FilterHeading = ({
       });
   }
 
+  const { isSubmitting } = useFormState({
+    control,
+  });
+
   const onSubmit = (data) => {
     let isError = false;
     if (!data.location?.trim()) {
@@ -441,10 +444,24 @@ const FilterHeading = ({
     }
   };
 
+  const locationRef = React.useRef(null);
+  const purposeRef = React.useRef(null);
+
   React.useEffect(() => {
     if (currentCity) setValue("location", currentCity);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCity]);
+
+  React.useEffect(() => {
+    if (isEmptyLocation) {
+      locationRef.current?.focus();
+      console.log(locationRef, "locationRef");
+    } else if (isEmptyAppointmentType) {
+      purposeRef.current?.focus();
+      console.log(purposeRef, "purposeRef");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   const minDate = new Date();
   const maxDate = new Date(); // add arguments as needed
@@ -526,17 +543,20 @@ const FilterHeading = ({
                       paddingLeft: "15px",
                       height: "100%",
                     }}
-                    aria-label="City, state, or zip code field"
-                    tabIndex={0}
                   >
                     {locationIconUI(isDesktop)}
                     <StyledInput
+                      inputRef={locationRef}
                       type="default"
                       variant="filled"
                       {...params}
-                      aria-hidden={true}
+                      inputProps={{
+                        ...params.inputProps,
+                        "aria-label" : isEmptyLocation
+                        ? "City, state, or zip code mandatory field. This field is required"
+                        : "City, state, or zip code mandatory field"
+                      }}
                       label="City, state, or zip code"
-                      tabIndex={-1}
                       onChange={(event) => {
                         onChange(event.target.value);
                         getPlaceSuggestion(event.target.value);
@@ -742,10 +762,14 @@ const FilterHeading = ({
                       fontWeight: "600",
                     },
                   }}
-                  ariaLabel={"Purpose of Visit dropdown"}
+                  ariaLabel={
+                    isEmptyAppointmentType
+                      ? "Purpose of Visit dropdown menu mandatory field. This field is required"
+                      : "Purpose of Visit dropdown menu mandatory field"
+                  }
+                  inputRef={purposeRef}
                   role="menu"
                   label={"Purpose of Visit"}
-                  labelId={`purposes-of-visit`}
                   id={`purposes-of-visit`}
                   options={purposeOfVisitData}
                   onChange={(event) => {
