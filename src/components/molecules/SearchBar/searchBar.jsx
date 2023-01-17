@@ -471,7 +471,7 @@ export default function SearchBar({
           });
         }}
         sx={{
-          height: "52px",
+          height: "56px",
           background: "#BFE4E8",
           border: "0px",
           cursor: "pointer",
