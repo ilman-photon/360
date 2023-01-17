@@ -787,6 +787,15 @@
       }
     }
   }
+
+  .contentContainer {
+    display: flex;
+    height: 60%;
+    justify-content: space-between;
+    @media (max-width: 700px) {
+      justify-content: flex-start;
+    }
+  }
 }
 
 .directionContent {

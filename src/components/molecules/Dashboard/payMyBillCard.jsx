@@ -142,11 +142,11 @@ export default function PayMyBillCard() {
       <Stack direction={"row"} sx={{ marginBottom: "16px" }}>
         {renderHighlightBox(
           "Account Credit Balance",
-          formatter.format(patientCredit?.totalCreditBalance)
+          formatter.format(patientCredit?.totalCreditBalance || 0)
         )}
         {renderHighlightBox(
           "Patient Due",
-          formatter.format(patientCredit?.totalDueAmount)
+          formatter.format(patientCredit?.totalDueAmount || 0)
         )}
       </Stack>
     );

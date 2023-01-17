@@ -135,19 +135,23 @@ export default function HealthRecordCard({
   }, [documentList, rows]);
 
   function onRenderCTA() {
-    return renderCTAIcon(
-      () => {
-        handleAssetDownload(healthRecordData.digital_assets?._id);
-      },
-      () => {
-        handleAssetDownload(healthRecordData.digital_assets?._id, true);
-      },
-      () => {
-        shareDocument(healthRecordData, dispatch, onHandleSuccessShare);
-      },
-      ["download", "print", "share"],
-      styles.butttonIconContainer,
-      styles.buttonContainer
+    return healthRecordData?.digital_assets ? (
+      renderCTAIcon(
+        () => {
+          handleAssetDownload(healthRecordData.digital_assets?._id);
+        },
+        () => {
+          handleAssetDownload(healthRecordData.digital_assets?._id, true);
+        },
+        () => {
+          shareDocument(healthRecordData, dispatch, onHandleSuccessShare);
+        },
+        ["download", "print", "share"],
+        styles.butttonIconContainer,
+        styles.buttonContainer
+      )
+    ) : (
+      <></>
     );
   }
 
@@ -215,7 +219,11 @@ export default function HealthRecordCard({
                   </TableCell>
                   <TableCell tabIndex={0}>{onRenderCTA()}</TableCell>
                   <TableCell tabIndex={0}>
-                    {onRenderButtonView(buttonViewCallback, isDesktop)}
+                    {healthRecordData?.digital_assets ? (
+                      onRenderButtonView(buttonViewCallback, isDesktop)
+                    ) : (
+                      <></>
+                    )}
                   </TableCell>
                 </TableRow>
               </TableBody>
@@ -265,7 +273,11 @@ export default function HealthRecordCard({
               }}
             >
               {onRenderCTA()}
-              {onRenderButtonView(buttonViewCallback, isDesktop)}
+              {healthRecordData?.digital_assets ? (
+                onRenderButtonView(buttonViewCallback, isDesktop)
+              ) : (
+                <></>
+              )}
             </Stack>
           </Stack>
         ) : (

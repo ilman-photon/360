@@ -36,6 +36,11 @@ const getDescription = (item) => {
 };
 
 export function getBalanceData(data) {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
   const summary = data?.summary;
   let totalBalance = 0;
   if (summary) {

@@ -4,7 +4,7 @@ export default function EcommerceButtonMobile({ menu = [], isDesktop }) {
   return (
     <Box
       sx={{
-        display:  isDesktop ? "none" : "flex" ,
+        display: isDesktop ? "none" : "flex",
         padding: "8px 20px",
         backgroundColor: "#DDF1F3",
         gap: "24px",

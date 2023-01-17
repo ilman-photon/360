@@ -20,14 +20,13 @@ const clickNewMessage = (container) => {
 };
 
 const fillTypeName = async (container) => {
-  await waitFor(() => container.getByLabelText(/typeName/i));
-  const field1 = container.getByLabelText(/typeName/i);
+  const field1 = await waitFor(() => container.getByLabelText(/Type a Name/i));
   fireEvent.change(field1, { target: { value: "name" } });
 };
 
 const fillSubject = async (container) => {
-  await waitFor(() => container.getByLabelText(/subject/i));
-  const field2 = container.getByLabelText(/subject/i);
+  await waitFor(() => container.getAllByLabelText(/subject/i));
+  const field2 = container.getAllByLabelText(/subject/i)[0];
   fireEvent.change(field2, { target: { value: "subject" } });
 };
 
@@ -108,17 +107,20 @@ defineFeature(feature, (test) => {
       clickNewMessage(container);
     });
 
-    and("enter the Recipient name in the 'To' field.", () => {
-      fillTypeName(container);
+    and("enter the Recipient name in the 'To' field.", async () => {
+      await fillTypeName(container);
     });
 
-    and("enter the Subject regarding that message.", () => {
-      fillSubject(container);
+    and("enter the Subject regarding that message.", async () => {
+      await fillSubject(container);
     });
 
-    and("enter the message that need to be send to the Recipient.", () => {
-      fillWriteMessage(container);
-    });
+    and(
+      "enter the message that need to be send to the Recipient.",
+      async () => {
+        await fillWriteMessage(container);
+      }
+    );
 
     and("if neccessary Add the attachment.", () => {
       clickAddAttachment(container);
@@ -132,8 +134,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("click the Sent Messages", () => {
-      clickSentTab(container);
+    and("click the Sent Messages", async () => {
+      await clickSentTab(container);
     });
 
     then("user should see the recent sent message at the top", () => {
@@ -172,17 +174,20 @@ defineFeature(feature, (test) => {
       clickNewMessage(container);
     });
 
-    and("enter the Recipient name in the 'To' field.", () => {
-      fillTypeName(container);
+    and("enter the Recipient name in the 'To' field.", async () => {
+      await fillTypeName(container);
     });
 
-    and("enter the Subject regarding that message.", () => {
-      fillSubject(container);
+    and("enter the Subject regarding that message.", async () => {
+      await fillSubject(container);
     });
 
-    and("enter the message that need to be send to the Recipient.", () => {
-      fillWriteMessage(container);
-    });
+    and(
+      "enter the message that need to be send to the Recipient.",
+      async () => {
+        await fillWriteMessage(container);
+      }
+    );
 
     and("if neccessary Add the attachment.", () => {
       clickAddAttachment(container);
@@ -196,8 +201,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("click the Sent Messages", () => {
-      clickSentTab(container);
+    and("click the Sent Messages", async () => {
+      await clickSentTab(container);
     });
 
     then(
@@ -239,17 +244,20 @@ defineFeature(feature, (test) => {
       clickNewMessage(container);
     });
 
-    and("enter the Recipient name in the 'To' field.", () => {
-      fillTypeName(container);
+    and("enter the Recipient name in the 'To' field.", async () => {
+      await fillTypeName(container);
     });
 
-    and("enter the Subject regarding that message.", () => {
-      fillSubject(container);
+    and("enter the Subject regarding that message.", async () => {
+      await fillSubject(container);
     });
 
-    and("enter the message that need to be send to the Recipient.", () => {
-      fillWriteMessage(container);
-    });
+    and(
+      "enter the message that need to be send to the Recipient.",
+      async () => {
+        await fillWriteMessage(container);
+      }
+    );
 
     and("if neccessary Add the attachment.", () => {
       clickAddAttachment(container);
@@ -263,8 +271,8 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("click the Sent Messages", () => {
-      clickSentTab(container);
+    and("click the Sent Messages", async () => {
+      await clickSentTab(container);
     });
 
     and("login as recipient", () => {
@@ -303,8 +311,8 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("click the Sent messages", () => {
-      clickSentTab(container);
+    and("click the Sent messages", async () => {
+      await clickSentTab(container);
     });
 
     then("user should see the sender details in the list view.", () => {

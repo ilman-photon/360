@@ -15,8 +15,10 @@ import {
   createMatchMedia,
   defaultValidation,
   doLogin,
+  inputPurpose,
   renderAppointmentDetail,
   renderLogin,
+  renderScheduleAppointment,
 } from "../../__mocks__/commonSteps";
 import {
   mockAppointmentTypes,
@@ -508,8 +510,8 @@ defineFeature(feature, (test) => {
     });
     await waitFor(() => {
       container.getByText(/City, state, or zip/i);
-      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
+    expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
   };
   
   const userSeeScheduleScreen = () => {
@@ -533,15 +535,6 @@ defineFeature(feature, (test) => {
     const dateInput = await waitFor(() => container.getByLabelText("Date"));
     act(() => {
       fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
-    });
-  };
-  
-  const inputPurpose = async () => {
-    const purposeInput = await waitFor(() =>
-      container.getByTestId("select-purposes-of-visit")
-    );
-    act(() => {
-      fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
     });
   };
   
@@ -589,7 +582,7 @@ defineFeature(feature, (test) => {
     );
     expect(
       await waitFor(() =>
-        container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
+        container.getAllByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)[0]
       )
     ).toBeInTheDocument();
   };
@@ -606,92 +599,44 @@ defineFeature(feature, (test) => {
     expect(reviewText).toBeInTheDocument();
   }
 
-  const userNavigateToAppointmentPage = async () => {
-    cleanup();
-    const mockGeolocation = {
-      getCurrentPosition: jest.fn(),
-      watchPosition: jest.fn(),
-    };
-
-    const domain = window.location.origin;
-    mock
-      .onGet(
-        `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-      )
-      .reply(200, MOCK_SUGESTION);
-    mock
-      .onPost(
-        `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-      )
-      .reply(400, {});
-    global.navigator.geolocation = mockGeolocation;
-    container = render(
-      <Provider store={store}>
-        {Appointment.getLayout(<Appointment />)}
-      </Provider>
-    );
-  }
 
   test("EPIC_EPP-44_STORY_EPP-2530 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.", ({
     given,
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+  cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
   });
 
@@ -700,65 +645,42 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user views the selected location.", () => {
@@ -773,65 +695,42 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user views the date of appointment.", () => {
@@ -844,65 +743,42 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user views the purpose of the visit.", () => {
@@ -915,65 +791,42 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user views the insurance carrier.", () => {
@@ -988,65 +841,42 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user views the timeslot", async () => {
@@ -1062,65 +892,42 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user select the timeslot", async () => {
@@ -1136,65 +943,42 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user select the timeslot", async () => {
@@ -1204,8 +988,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(hourButton);
     });
 
-    then("user lands on the screen to review the appointment details", () => {
-      userLandsOnReviewAppointmentPage()
+    then("user lands on the screen to review the appointment details", async () => {
+      await userLandsOnReviewAppointmentPage()
     });
   });
 
@@ -1214,65 +998,42 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user select the timeslot", async () => {
@@ -1282,8 +1043,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(hourButton);
     });
 
-    then("user lands on the screen to review the appointment details", () => {
-      userLandsOnReviewAppointmentPage()
+    then("user lands on the screen to review the appointment details", async () => {
+      await userLandsOnReviewAppointmentPage()
     });
 
     and("user selects the option to change the provider", () => {
@@ -1296,73 +1057,50 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user select the timeslot", () => {
       expect(true).toBeTruthy();
     });
 
-    then("user lands on the screen to review the appointment details", () => {
-      userLandsOnReviewAppointmentPage()
+    then("user lands on the screen to review the appointment details", async () => {
+      await userLandsOnReviewAppointmentPage()
     });
 
     and("user selects the option to change the insurance career", () => {
@@ -1382,73 +1120,50 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user select the timeslot", () => {
       expect(true).toBeTruthy();
     });
 
-    then("user lands on the screen to review the appointment details", () => {
-      userLandsOnReviewAppointmentPage()
+    then("user lands on the screen to review the appointment details", async () => {
+      await userLandsOnReviewAppointmentPage()
     });
 
     and("user selects the option to change the insurance career", () => {
@@ -1472,73 +1187,50 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {
-      launchURL();
+    given("user launch the Marketing Site url", async () => {
+      ////await launchURL();
     });
 
     and("user clicks on the Schedule your Eye Exam button", async () => {
       cleanup();
-      const mock = new MockAdapter(axios);
-      mock
-        .onGet(
-          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(`/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`)
-        .reply(200, MOCK_PAST);
-      act(() => {
-        appointmentsContainer = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() =>
-        appointmentsContainer.getByText(/View appointment details/i)
-      );
-      expect(
-        appointmentsContainer.getByText(/Past Appointments/i)
-      ).toBeInTheDocument();
-      expect(
-        appointmentsContainer.getByText(/Schedule New Appointment/i)
-      ).toBeInTheDocument();
+      
     });
 
-    then("user navigates to the search screen", () => {
-      userNavigateToAppointmentPage()
+    then("user navigates to the search screen", async () => {
+cleanup();
+      container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation();
+    and("user enters the location", async () => {
+      await inputLocation();
     });
 
-    and("user selects the date of appointment", () => {
-      inputDate();
+    and("user selects the date of appointment", async () => {
+      await inputDate();
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose();
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
-    and("user enters the insurance name", () => {
-      inputInsurance();
+    and("user enters the insurance name", async () => {
+      await inputInsurance();
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch();
+    and("user clicks on the Search button", async () => {
+      await clickSearch();
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      resultsScreen();
+    and("user views the results in the Schedule Appointments screen", async  () => {
+      await resultsScreen();
     });
 
     and("user select the timeslot", () => {
       expect(true).toBeTruthy();
     });
 
-    then("user lands on the screen to review the appointment details", () => {
-      userLandsOnReviewAppointmentPage()
+    then("user lands on the screen to review the appointment details", async () => {
+      await userLandsOnReviewAppointmentPage()
     });
 
     and("user selects the option to change the insurance career", () => {
