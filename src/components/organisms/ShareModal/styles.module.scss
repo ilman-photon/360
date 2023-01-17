@@ -1,12 +1,18 @@
 .dialogContainer {
+  .dialogHeaderContainer {
+    margin-bottom: 16px;
+    @media (max-width: 768px) {
+      margin-bottom: 0px;
+    }
+  }
   .dialogSubContent {
     .prescriptionTitle {
       font-family: "Museo Sans", sans-serif;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 300;
       font-size: 18px;
       line-height: 28px;
-      color: #205a63;
+      color: #191919;
       display: flex;
     }
     .prescriptionBold {
@@ -21,7 +27,7 @@
     .prescriptionMedium {
       font-family: "Museo Sans", sans-serif;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 300;
       font-size: 16px;
       line-height: 28px;
       color: #1c1f37;
@@ -31,13 +37,12 @@
     .myCareTitle {
       font-family: "Museo Sans", sans-serif;
       font-style: normal;
-      font-weight: 500;
+      font-weight: 300;
       font-size: 18px;
       line-height: 28px;
-      color: #008294;
+      color: #191919;
     }
     .myCareTitle {
-      color: #205a63;
       word-break: break-all;
     }
   }
@@ -46,11 +51,14 @@
     .dialogTitle {
       font-family: "Museo Sans", sans-serif;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 300;
       font-size: 22px;
       line-height: 30px;
       letter-spacing: 0.0016em;
       color: #003b4a;
+      @media (max-width: 768px) {
+        padding-right: 28px;
+      }
     }
   }
 
@@ -124,7 +132,7 @@
       .dialogSecurityTitle {
         font-family: "Museo Sans", sans-serif;
         font-style: normal;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: 0.0016em;
@@ -133,7 +141,7 @@
       .dialogSecurityDirection {
         font-family: "Museo Sans", sans-serif;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 300;
         font-size: 16px;
         line-height: 20px;
         letter-spacing: 0.0016em;

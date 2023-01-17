@@ -484,7 +484,7 @@ export default function Prescriptions({
               tabIndex={0}
               {...getLinkAria("View prescriptions option")}
             >
-              View prescriptions
+              View Prescriptions
             </Link>
             <KeyboardArrowRightIcon
               sx={{

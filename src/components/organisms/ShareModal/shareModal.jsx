@@ -18,7 +18,6 @@ import StyledInput from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  resetShareData,
   setFailureCallback,
   setOpenModal,
   setShowToastMessage,
@@ -157,7 +156,7 @@ export function getDynamicShareContent(data) {
 }
 
 function ShareModal() {
-  const { handleSubmit, control, setError, setValue } = useForm();
+  const { handleSubmit, control, setError, setValue, reset } = useForm();
   const dispatch = useDispatch();
   const { errors, isSubmitting } = useFormState({
     control,
@@ -244,6 +243,7 @@ function ShareModal() {
             );
           }
         }
+        reset();
       }
     );
   };
@@ -254,14 +254,14 @@ function ShareModal() {
     },
     ".MuiFilledInput-input": {
       fontFamily: "Museo Sans",
-      color: "#6C6C6C !important",
+      color: "#6C6C6C",
       fontSize: "16px",
       lineHeight: "12px",
       width: "100%",
     },
     ".MuiInputLabel-root": {
       fontSize: "16px",
-      color: "#303030 !important",
+      color: "#303030",
       fontStyle: "normal",
       fontWeight: "400",
     },
@@ -283,9 +283,7 @@ function ShareModal() {
       >
         <DialogTitle
           id="share-dialog-title"
-          sx={{
-            marginBottom: "16px",
-          }}
+          className={styles.dialogHeaderContainer}
         >
           <Box
             aria-label={`${shareModalData?.title} heading`}
@@ -300,6 +298,7 @@ function ShareModal() {
             aria-label="close"
             onClick={() => {
               dispatch(setOpenModal(false));
+              reset();
             }}
             sx={{
               position: "absolute",
