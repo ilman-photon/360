@@ -478,6 +478,22 @@ export default function AccountRecovery() {
     }
   };
 
+  const renderNoRecordsUI = () => {
+    return (
+      <Stack
+        sx={{
+          height: 244,
+          spacing: "10px",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <AccountCircleOutlined sx={{ width: 62, height: 62 }} />
+        <Typography variant="headlineH4">No records found.</Typography>
+      </Stack>
+    );
+  };
+
   const searchResultUI = () => {
     return rows.length > 0 ? (
       <>
@@ -496,17 +512,7 @@ export default function AccountRecovery() {
         />
       </>
     ) : (
-      <Stack
-        sx={{
-          height: 244,
-          spacing: "10px",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <AccountCircleOutlined sx={{ width: 62, height: 62 }} />
-        <Typography variant="headlineH4">No records found.</Typography>
-      </Stack>
+      renderNoRecordsUI()
     );
   };
 
@@ -588,20 +594,25 @@ export default function AccountRecovery() {
       >
         <SearchBar onSearch={handleSearchPatient} />
 
-        {searchStatus === "success"
-          ? rows.length > 0 && (
+        {firstSearch &&
+          (searchStatus === "success" ? (
+            rows.length > 0 ? (
               <PatientAcccountCard
                 config={tableConfiguration}
                 rows={rows}
                 onActionClicked={handleActionClicked}
               />
+            ) : (
+              renderNoRecordsUI()
             )
-          : searchStatus !== null && (
+          ) : (
+            searchStatus !== null && (
               <CircularProgress
                 data-testid="loading-state"
                 sx={{ margin: "0 auto" }}
               />
-            )}
+            )
+          ))}
       </Stack>
 
       <CustomModal
