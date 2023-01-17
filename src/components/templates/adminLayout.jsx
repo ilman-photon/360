@@ -48,7 +48,6 @@ function AdminLayout({
               title={getHeadingTitle(currentActivePage)}
               sx={{
                 fontWeight: { xs: "500", md: "inherit" },
-                textAlign: { xs: "center", sm: "inherit" },
                 padding: {
                   sm: "0 !important",
                   md: "0 24px",
