@@ -88,6 +88,9 @@ const AccountSecurityQuestionPage = () => {
         dispatch(setGenericErrorMessage(error.responseType));
       }
     }
+    setTimeout(() => {
+      dispatch(resetFormMessage());
+    }, 5000);
   };
 
   return (
