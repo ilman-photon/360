@@ -1,4 +1,11 @@
-import { Box, Button, Typography, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import * as React from "react";
 import MessagingCardDetailView from "./MessagingCardDetailView";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -30,6 +37,8 @@ export const MessagingDetailContentView = ({
 
   const isDesktop = useMediaQuery("(min-width: 835px)");
 
+  const [replyContent, setReplyContent] = React.useState("");
+
   const getDraftContentValue = () => {
     let message = "";
     data?.messages?.map((item) => {
@@ -40,57 +49,66 @@ export const MessagingDetailContentView = ({
     return message;
   };
 
+  // const messageNotEmpty = data?.messages?.length > 0 && !data.messages[0].isDraft
+
   return (
     <Box
       className={styles.detailViewContainer}
       data-testId="messaging-container-detail"
     >
-      {data?.messages?.length > 0 && !data.messages[0].isDraft && (
-        <Box className={styles.detailContentHeaderView}>
-          <Typography
-            tabIndex={0}
-            sx={{
-              fontFamily: "Museo Sans",
-              fontSize: "22px",
-              fontWeight: "400",
-              fontStyle: "normal",
-              color: "#003B4A",
-              lineHeight: "32px",
-            }}
-          >
-            {data.subject}
-          </Typography>
-          <span tabIndex={0} aria-label={"Delete Button"}>
-            <DeleteOutlinedIcon
-              data-testId="delete-message-icon"
-              onClick={() => openDeletedDialog()}
-            />
-          </span>
-        </Box>
-      )}
-      <Box
-        className={
-          data?.messages?.length > 1
-            ? styles.cardDetailViewContainer
-            : styles.cardDetailDraftNewMsgContainer
-        }
+      {/* {messageNotEmpty && ( */}
+      <Box className={styles.detailContentHeaderView}>
+        <Typography
+          tabIndex={0}
+          sx={{
+            fontFamily: "Museo Sans",
+            fontSize: "22px",
+            fontWeight: "400",
+            fontStyle: "normal",
+            color: "#003B4A",
+            lineHeight: "32px",
+          }}
+        >
+          Follow-up from past visit/message
+        </Typography>
+        <IconButton
+          tabIndex={0}
+          aria-label={"Delete Button"}
+          onClick={() => openDeletedDialog(data._id, data)}
+        >
+          <DeleteOutlinedIcon data-testId="delete-message-icon" />
+        </IconButton>
+      </Box>
+      {/* )} */}
+      <Stack
+        sx={{
+          p: 2,
+          border: "1px solid #D4D4D4",
+          borderRadius: "4px",
+        }}
       >
-        {data?.messages?.length > 0 && !data.messages[0].isDraft ? (
+        <Box
+          className={
+            data?.messages?.length > 1
+              ? styles.cardDetailViewContainer
+              : styles.cardDetailDraftNewMsgContainer
+          }
+        >
+          {/* {messageNotEmpty ? ( */}
           <>
-            {data.messages.map((item) => {
-              if (!item.isDraft) {
-                return (
-                  <MessagingCardDetailView
-                    key={item.id}
-                    data={item}
-                    handleAssetDownload={handleAssetDownload}
-                    onDownloadAllAttachmentClicked={
-                      onDownloadAllAttachmentClicked
-                    }
-                  />
-                );
-              }
-            })}
+            {/* {data.messages.map((item) => {
+                if (!item.isDraft) {
+                  return ( */}
+            <MessagingCardDetailView
+              // key={item.id}
+              // data={item}
+              data={data}
+              handleAssetDownload={handleAssetDownload}
+              onDownloadAllAttachmentClicked={onDownloadAllAttachmentClicked}
+            />
+            {/* );
+                }
+              })} */}
             <Box
               tabIndex={0}
               aria-label={`${t("writeMessages")} Field`}
@@ -103,9 +121,11 @@ export const MessagingDetailContentView = ({
             >
               <StyledInput
                 placeholder={`${t("writeMessages")}*`}
-                value={getDraftContentValue()}
+                // value={getDraftContentValue()}
+                value={replyContent}
+                onChange={(e) => setReplyContent(e.target.value)}
                 multiline
-                rows={2}
+                minRows={2}
                 maxRows={3}
                 ref={addAttachments}
                 type="file"
@@ -178,19 +198,20 @@ export const MessagingDetailContentView = ({
               </Button>
             </Box>
           </>
-        ) : (
-          <NewMessageDialog
-            isDesktop={isDesktop}
-            isDraft={data?.messages?.length === 1}
-            isSelectedMsg={isSelectedMsg}
-            valueText={getDraftContentValue()}
-            onAddAttachFile={handleAssetDownload}
-            refAttachments={addAttachments}
-            attachmentsSource={attachmentsSource}
-            onDiscardMessage={onDiscardMessage}
-          />
-        )}
-      </Box>
+          {/* ) : (
+            <NewMessageDialog
+              isDesktop={isDesktop}
+              isDraft={data?.messages?.length === 1}
+              isSelectedMsg={isSelectedMsg}
+              valueText={getDraftContentValue()}
+              onAddAttachFile={handleAssetDownload}
+              refAttachments={addAttachments}
+              attachmentsSource={attachmentsSource}
+              onDiscardMessage={onDiscardMessage}
+            />
+          )} */}
+        </Box>
+      </Stack>
     </Box>
   );
 };

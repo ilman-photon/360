@@ -12,6 +12,7 @@ describe("container Components", () => {
   const MOCK_DATA = {
     id: 6783,
     subject: "Follow-up from past visit/message",
+    source: "/doctor.png",
     messages: [
       {
         id: 7395,

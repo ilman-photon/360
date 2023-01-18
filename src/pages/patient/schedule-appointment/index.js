@@ -687,7 +687,7 @@ export default function ScheduleAppointmentPage() {
         role={"alertdialog"}
         onClose={handleCancelReschedule}
         open={modalConfirmReschedule}
-        aria-label={open ? "Are you sure you want to reschedule?" : ""}
+        aria-label={"Are you sure you want to reschedule?"}
         sx={{
           ".MuiPaper-root": {
             minWidth: { xs: "90%", sm: "500px" },

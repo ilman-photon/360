@@ -44,6 +44,7 @@ export default function MessagingPage() {
   const [saveId, setSaveId] = useState({
     id: "",
     key: "",
+    data: {},
   });
   const [providerList, setProviderList] = useState([]);
   const [isRequested, setIsRequested] = useState(false);
@@ -278,7 +279,7 @@ export default function MessagingPage() {
         function onCalledGetDeleteMessages() {
           const api = new Api();
           api
-            .getAllDeletedMessages()
+            .getDeletedMessages()
             .then(function (response) {
               let newResponse = messageParser(response.entities);
               setHandleShowDataUI(newResponse, "deleted");
@@ -346,15 +347,20 @@ export default function MessagingPage() {
     }
   };
 
-  const onCallViewSelectedMessageByID = (id) => {
-    const api = new Api();
-    api.viewMessagesById(id);
-  };
-
-  const onCallDeleteMessage = (id) => {
+  const onCallViewSelectedMessageByID = (id, senderId) => {
     const api = new Api();
     api
-      .deleteMessages(id)
+      .viewMessagesById(id, senderId)
+      .then(function () {})
+      .catch(function () {
+        //Handle error getAllAppointment
+      });
+  };
+
+  const onCallDeleteMessage = (messageId, senderId) => {
+    const api = new Api();
+    api
+      .deleteMessages(messageId, senderId)
       .then(function () {
         setShowDeletedDialog(false);
         setFloatingMsgText("Message successfully deleted");
@@ -368,7 +374,7 @@ export default function MessagingPage() {
   const onCallSendMessage = (postBody) => {
     const api = new Api();
     api
-      .createNewMessage(postBody)
+      .createPatientToDraft(postBody)
       .then(function () {
         setAddAttachmentsSource([]);
         setShowNewMessageDialog(false);
@@ -386,7 +392,10 @@ export default function MessagingPage() {
    */
   const onSelectedMessage = (currentData) => {
     const cloneDataMessage = JSON.parse(JSON.stringify(dataMessages));
-    onCallViewSelectedMessageByID();
+    onCallViewSelectedMessageByID(
+      currentData._id,
+      currentData.senderProviderId || currentData.senderPatientId
+    );
     setSelectedMessage(currentData);
     cloneDataMessage.map((item) => {
       if (item.id === currentData.id) {
@@ -449,8 +458,8 @@ export default function MessagingPage() {
    * Show Delete Dialog
    * @param {string} id
    */
-  const openDeletedDialog = (id) => {
-    setSaveId({ id, key: "delete" });
+  const openDeletedDialog = (id, data) => {
+    setSaveId({ id, key: "delete", data });
     setShowDeletedDialog(true);
   };
 
@@ -467,7 +476,10 @@ export default function MessagingPage() {
   const deletedMessage = () => {
     // Integrasi API service for this to deleted the message base on ID
     if (saveId.key == "delete") {
-      onCallDeleteMessage(saveId.id);
+      onCallDeleteMessage(
+        saveId.id,
+        saveId.data?.senderProviderId || saveId.data?.senderPatientId
+      );
     }
   };
 

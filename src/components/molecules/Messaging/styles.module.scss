@@ -174,7 +174,6 @@
   flex-direction: row;
   border-bottom: 1px solid #bdbdbd;
   padding: 15px 0;
-  justify-content: space-between;
   gap: 16px;
 
   @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
@@ -217,7 +216,7 @@
 
 .profilePicture {
   display: inline-block;
-  width: 61.95px;
+  width: 44px;
   height: 44px;
 
   @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
