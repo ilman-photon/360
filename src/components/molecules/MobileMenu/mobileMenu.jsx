@@ -290,13 +290,16 @@ export default function MobileMenu({
       open={open}
       onClose={onClose}
       onOpen={onOpen}
-      sx={{ width: "70%" }}
+      sx={{
+        width: "70%",
+        ".MuiPaper-root": {
+          justifyContent: "space-between",
+        },
+      }}
     >
       {renderMenuList()}
       <Box
         sx={{
-          position: "absolute",
-          bottom: 0,
           width: "100%",
           paddingBottom: "16px",
         }}
