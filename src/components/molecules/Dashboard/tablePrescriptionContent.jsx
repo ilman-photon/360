@@ -191,7 +191,11 @@ export const TablePrescriptionContent = ({
         </Box>
 
         <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
-          <Box className={[styles.flexDisplay, getBoxStyle()]} tabIndex={0}>
+          <Box
+            className={[styles.flexDisplay, getBoxStyle()]}
+            tabIndex={0}
+            aria-label={`Prescribed by ${data.prescribedBy}`}
+          >
             <Typography variant="customBodyRegular">
               Prescribed by: &nbsp;
             </Typography>
@@ -204,6 +208,7 @@ export const TablePrescriptionContent = ({
                 isMobile ? styles.marginVertical : "",
               ]}
               tabIndex={0}
+              aria-label={`Expires on ${data.expirationDate}`}
             >
               <Typography variant="customBodyRegular">
                 Expires on: &nbsp;
