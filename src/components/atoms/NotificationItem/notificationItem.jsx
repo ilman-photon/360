@@ -15,7 +15,7 @@ const NotificationItem = ({
       container
       columns={{ xs: 12, sm: 20 }}
       alignItems={"center"}
-      className={styles.container}
+      className={[styles.container, isRead ? "" : styles.unread].join(" ")}
       onClick={onClick}
       data-testid="notification-item"
       tabIndex={0}
