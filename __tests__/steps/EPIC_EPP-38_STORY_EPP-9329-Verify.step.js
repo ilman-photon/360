@@ -1,16 +1,13 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 import "@testing-library/jest-dom/extend-expect";
-import { act, cleanup, fireEvent, render, waitFor } from "@testing-library/react";
-import { Login } from "../../src/components/organisms/Login/login";
+import { cleanup, fireEvent, waitFor } from "@testing-library/react";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { renderWithProviders } from "../src/utils/test-util";
 import AccountSecurityQuestionPage from "../../src/pages/patient/account/login-&-security/security-question";
 import store from "../../src/store/store";
 import { Provider } from "react-redux";
 import { doLogin, renderLogin } from "../../__mocks__/commonSteps";
 import LoginSecurityPage from "../../src/pages/patient/account/login-&-security";
-import { onViewSecurityQuestions } from "../../src/store/accountRecovery";
 import moment from "moment"
 
 const feature = loadFeature(
@@ -49,10 +46,6 @@ defineFeature(feature, (test) => {
   })
 
   afterEach(() => { });
-
-  const defaultValidation = () => {
-    expect(true).toBeTruthy();
-  };
 
   const userHasSetupSecurityQuestion = async () => {
     const mockSecurityQuestions = {
@@ -120,7 +113,7 @@ defineFeature(feature, (test) => {
       <Provider store={store}>
         <AccountSecurityQuestionPage />
       </Provider>
-    )
+    );
   }
 
   const userChangeTheAnswerOfQuestionOne = () => {

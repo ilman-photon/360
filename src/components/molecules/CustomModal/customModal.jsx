@@ -73,6 +73,7 @@ export default function CustomModal({
             <StyledButton
               mode={constants.SECONDARY}
               type="button"
+              tabIndex={1}
               size={constants.SMALL}
               gradient={false}
               onClick={onClickSecondaryButton}
@@ -83,8 +84,12 @@ export default function CustomModal({
           <StyledButton
             mode={constants.PRIMARY}
             type="button"
+            tabIndex={0}
             size={constants.SMALL}
             gradient={false}
+            aria-label={
+              buttonText == "Update" ? buttonText + " password" : buttonText
+            }
             onClick={onClickButton}
           >
             {buttonText}
