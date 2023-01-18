@@ -4,7 +4,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { FormHelperText, IconButton } from "@mui/material";
+import { FormHelperText, IconButton, Typography } from "@mui/material";
 import { colors } from "../../../styles/theme";
 import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
@@ -91,14 +91,16 @@ export default function RowRadioButtonsGroup({
               key={idx}
               value={option.value}
               data-testid={`${option.value}-test`}
+              componentsProps={{
+                typography: {
+                  tabindex: -1,
+                  "aria-hidden": true,
+                },
+              }}
               control={
                 <Radio
                   checked={props.value === option.value}
                   data-testid={props.testId}
-                  inputProps={{
-                    tabindex: -1,
-                    "aria-hidden": true,
-                  }}
                   sx={{
                     ".MuiSvgIcon-root": {
                       width: iconSize,
