@@ -187,7 +187,12 @@ const StackList = ({
           >
             {sortFilterData.map((data, idx) => {
               return (
-                <MenuItem key={`sort-menu-${idx}`} value={data.value}>
+                <MenuItem
+                  key={`sort-menu-${idx}`}
+                  value={data.value}
+                  aria-label={data.ariaLabel}
+                  tabIndex={0}
+                >
                   {data.label}
                   {data.labelIcon}
                 </MenuItem>

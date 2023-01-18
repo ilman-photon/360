@@ -144,6 +144,7 @@ export default function HealthRecord() {
     {
       id: 0,
       label: "Medical Record",
+      ariaLabel: "Medical Record sorted ascending",
       labelIcon: (
         <ArrowUpwardIcon fontSize={"10px"} sx={{ marginLeft: "10px" }} />
       ),
@@ -152,6 +153,7 @@ export default function HealthRecord() {
     {
       id: 1,
       label: "Medical Record",
+      ariaLabel: "Medical Record sorted descending",
       labelIcon: (
         <ArrowDownwardIcon fontSize={"10px"} sx={{ marginLeft: "10px" }} />
       ),
@@ -160,6 +162,7 @@ export default function HealthRecord() {
     {
       id: 2,
       label: "Appointment Date",
+      ariaLabel: "Appointment Date sorted ascending",
       labelIcon: (
         <ArrowUpwardIcon fontSize={"10px"} sx={{ marginLeft: "10px" }} />
       ),
@@ -168,6 +171,7 @@ export default function HealthRecord() {
     {
       id: 3,
       label: "Appointment Date",
+      ariaLabel: "Appointment Date sorted descending",
       labelIcon: (
         <ArrowDownwardIcon fontSize={"10px"} sx={{ marginLeft: "10px" }} />
       ),

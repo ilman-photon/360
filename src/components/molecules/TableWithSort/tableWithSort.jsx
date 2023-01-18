@@ -409,6 +409,7 @@ export default function TableWithSort({
           style={tabelData.cell.contentStyle}
           className={[styles.tableCell, tabelData.cell.contentClass].join(" ")}
           aria-label={dateValue}
+          tabIndex={0}
         >
           {type === "date-time" && type !== "date-locked-account"
             ? getMultilineDate(dateValue)
