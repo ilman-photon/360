@@ -211,7 +211,8 @@ const Navbar = ({ isDashboard = false }) => {
                 <Button
                   key={pageIdx}
                   onClick={() => router.push(page.href)}
-                  aria-label={`${page.label} menu`}
+                  aria-label={page.label}
+                  role={"menu"}
                   sx={{
                     my: 2,
                     color: "white",
@@ -234,7 +235,8 @@ const Navbar = ({ isDashboard = false }) => {
               <Box>
                 <Button
                   onClick={handleOpenAppointments}
-                  aria-label={`Appointments menu`}
+                  aria-label={`Appointments dropdown`}
+                  role={"menu"}
                   sx={{
                     my: 2,
                     color: "white",
@@ -282,7 +284,8 @@ const Navbar = ({ isDashboard = false }) => {
                 <Button
                   key={"Health Chart"}
                   onClick={handleOpenHealth}
-                  aria-label={`Health Chart menu`}
+                  aria-label={`Health Chart dropdown`}
+                  role={"menu"}
                   sx={{
                     my: 2,
                     color: "white",
@@ -346,7 +349,9 @@ const Navbar = ({ isDashboard = false }) => {
               </Button>
               <Box>
                 <Button
+                  key={"PayMyBill"}
                   aria-label={`Pay My Bill menu`}
+                  role={"menu"}
                   onClick={handleOpenPayMyBill}
                   sx={{
                     my: 2,
@@ -415,7 +420,8 @@ const Navbar = ({ isDashboard = false }) => {
               <Box>
                 <Button
                   key={"Documents"}
-                  aria-label={`Documents menu`}
+                  aria-label={`Documents dropdown`}
+                  role={"menu"}
                   onClick={handleOpenDocument}
                   sx={{
                     my: 2,

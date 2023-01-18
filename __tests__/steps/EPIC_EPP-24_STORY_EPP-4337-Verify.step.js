@@ -319,7 +319,6 @@ const specialtiesMock = ["Glaucoma", "Ophthalmology", "Dry Eye"];
 const mockApi = () => {
   const mock = new MockAdapter(axios);
   const domain = window.location.origin;
-  const userData = JSON.parse(localStorage.getItem("userData"));
   mock.onGet(`/ecp/appointments/appointment-types`).reply(200, {});
   mock
     .onGet(
@@ -375,23 +374,6 @@ const mockApi = () => {
       `/ecp/appointments/getSpecialization?search.query=((entityName=eq=document)AND(attributeName=eq=specialization))`
     )
     .reply(200, { specializations: specialtiesMock });
-  mock
-    .onGet(
-      `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=EducationMaterials))`
-    )
-    .reply(200, {});
-  mock
-    .onGet(`/ecp/patientbillingsystem/getPatientCredits/${userData?.patientId}`)
-    .reply(200, {});
-  mock
-    .onGet(
-      `/ecp/patientbillingsystem/getInvoiceWithPatientDetails?search.query=((patient.uid=eq=${userData?.patientId}))`
-    )
-    .reply(200, {});
-  mock
-    .onGet(`/ecp/patient/phr/patientchart/${userData?.patientId}`)
-    .reply(200, {});
-  mock.onGet(`/ecp/testResult/${userData?.patientId}`).reply(200, {});
 };
 
 function createMatchMedia(width) {
@@ -424,14 +406,12 @@ defineFeature(feature, (test) => {
   };
 
   const expectMenu = () => {
+    expect(containerDashboard.getByLabelText("Dashboard")).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("Dashboard menu")
+      containerDashboard.getAllByLabelText("Appointments")[0]
     ).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("Appointments menu")
-    ).toBeInTheDocument();
-    expect(
-      containerDashboard.getByLabelText("Health Chart menu")
+      containerDashboard.getByLabelText("Health Chart dropdown")
     ).toBeInTheDocument();
     expect(
       containerDashboard.getByLabelText("My Care Team menu")
@@ -440,12 +420,12 @@ defineFeature(feature, (test) => {
       containerDashboard.getByLabelText("Messaging menu")
     ).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("Documents menu")
+      containerDashboard.getByLabelText("Documents dropdown")
     ).toBeInTheDocument();
   };
 
   const clickAppointmentsMenu = () => {
-    fireEvent.click(containerDashboard.getByLabelText("Appointments menu"));
+    fireEvent.click(containerDashboard.getAllByLabelText("Appointments")[0]);
   };
 
   const expectAppointmentsMenu = () => {
@@ -545,16 +525,16 @@ defineFeature(feature, (test) => {
     when("user click on search icon", async () => {
       fireEvent.click(container.getByTestId("search-btn"));
       await waitFor(() => {
-        container.getByText(/Robert Fox/i);
+        container.getAllByText(/Robert Fox/i)[0];
       });
     });
 
     then("user should see result from keyword they search", () => {
-      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+      expect(container.getAllByText(/Robert Fox/i)[0]).toBeInTheDocument();
     });
 
     and("user should view a card with basic details of a doctor", () => {
-      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+      expect(container.getAllByText(/Robert Fox/i)[0]).toBeInTheDocument();
       expect(container.getByText(/Chicago Eye Institute/i)).toBeInTheDocument();
       expect(container.getAllByText("Email")[1]).toBeInTheDocument();
       expect(container.getAllByText("Phone")[1]).toBeInTheDocument();
@@ -567,23 +547,23 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user click on one of specialities from the list", async () => {
-      fireEvent.click(container.getByTestId("search-btn"));
-      await waitFor(
-        () => {
-          container.getByText(/Robert Fox/i);
-        },
-        { timeout: 30000 }
-      );
-    });
+    and(
+      "user click on one of specialities from the list",
+      async () => {
+        fireEvent.click(container.getByTestId("search-btn"));
+        await waitFor(() => {
+          container.getAllByText(/Robert Fox/i)[0];
+        });
+      }
+    );
 
     then(
       "user should be able to view list of doctor from the selected specialities",
       () => {
-        expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+        expect(container.getAllByText(/Robert Fox/i)[0]).toBeInTheDocument();
       }
     );
-  }, 35000);
+  });
 
   test("EPIC_EPP-24_STORY_EPP-4337 - Verify User able to view filter result from specialities that they selected", ({
     given,
@@ -642,16 +622,16 @@ defineFeature(feature, (test) => {
     when("user click on search icon", async () => {
       fireEvent.click(container.getByTestId("search-btn"));
       await waitFor(() => {
-        container.getByText(/Robert Fox/i);
+        container.getAllByText(/Robert Fox/i)[0];
       });
     });
 
     then("user should see result from keyword they search", () => {
-      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+      expect(container.getAllByText(/Robert Fox/i)[0]).toBeInTheDocument();
     });
 
     and("user should view a card with basic details of a doctor", () => {
-      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+      expect(container.getAllByText(/Robert Fox/i)[0]).toBeInTheDocument();
       expect(container.getByText(/Chicago Eye Institute/i)).toBeInTheDocument();
       expect(container.getAllByText("Email")[1]).toBeInTheDocument();
       expect(container.getAllByText("Phone")[1]).toBeInTheDocument();
@@ -667,14 +647,14 @@ defineFeature(feature, (test) => {
     and("user click on one of specialities from the list", async () => {
       fireEvent.click(container.getByTestId("search-btn"));
       await waitFor(() => {
-        container.getByText(/Robert Fox/i);
+        container.getAllByText(/Robert Fox/i)[0];
       });
     });
 
     then(
       "user should be able to view list of doctor from the selected specialities",
       () => {
-        expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+        expect(container.getAllByText(/Robert Fox/i)[0]).toBeInTheDocument();
       }
     );
 
@@ -745,16 +725,16 @@ defineFeature(feature, (test) => {
     when("user click on search icon", async () => {
       fireEvent.click(container.getByTestId("search-btn"));
       await waitFor(() => {
-        container.getByText(/Robert Fox/i);
+        container.getAllByText(/Robert Fox/i)[0];
       });
     });
 
     then("user should see result from keyword they search", () => {
-      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+      expect(container.getAllByText(/Robert Fox/i)[0]).toBeInTheDocument();
     });
 
     and("user should view a card with basic details of a doctor", () => {
-      expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+      expect(container.getAllByText(/Robert Fox/i)[0]).toBeInTheDocument();
       expect(container.getByText(/Chicago Eye Institute/i)).toBeInTheDocument();
       expect(container.getAllByText("Email")[1]).toBeInTheDocument();
       expect(container.getAllByText("Phone")[1]).toBeInTheDocument();
@@ -770,14 +750,14 @@ defineFeature(feature, (test) => {
     and("user click on one of specialities from the list", async () => {
       fireEvent.click(container.getByTestId("search-btn"));
       await waitFor(() => {
-        container.getByText(/Robert Fox/i);
+        container.getAllByText(/Robert Fox/i)[0];
       });
     });
 
     then(
       "user should be able to view list of doctor from the selected specialities",
       () => {
-        expect(container.getByText(/Robert Fox/i)).toBeInTheDocument();
+        expect(container.getAllByText(/Robert Fox/i)[0]).toBeInTheDocument();
       }
     );
 

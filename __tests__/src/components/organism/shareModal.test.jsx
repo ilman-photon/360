@@ -58,7 +58,6 @@ describe("ShareModal", () => {
     });
     const mainContainer = content.props.children
     const subContainer = mainContainer.props.children
-    console.log(subContainer.props.children.length)
     expect(subContainer.props.children.length).toEqual(2)
   });
 

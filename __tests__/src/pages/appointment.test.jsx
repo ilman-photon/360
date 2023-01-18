@@ -369,7 +369,6 @@ describe("App", () => {
     );
     const filterBy = store.getState().appointment.filterBy;
 
-    console.log(":::filterBy", filterBy);
     // const server = await getStaticProps();
     // act(() => {
     //   container = render(
