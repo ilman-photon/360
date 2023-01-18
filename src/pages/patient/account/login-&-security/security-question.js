@@ -20,7 +20,6 @@ const AccountSecurityQuestionPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cookies = new Cookies();
-  const el = document.getElementById("backLoginSecurity");
   const [securityQuestionsList, setSecurityQuestion] = useState([]);
 
   const userSecurityQuestions = useSelector((state) => {
@@ -54,6 +53,7 @@ const AccountSecurityQuestionPage = () => {
   useEffect(() => {
     fetchSecurityQuestionList();
     fetchUserSecurityQuestion();
+    const el = document?.getElementById("backLoginSecurity");
     if (el) {
       el.focus();
     }
