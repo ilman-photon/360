@@ -36,7 +36,6 @@ defineFeature(feature, (test) => {
   });
 
   afterEach(() => {
-    console.log(mock.handlers.get);
     mock.reset();
   });
   test("EPIC_EPP-54_STORY_EPP-4331 - Verify User should be able to see the invoice downloaded as a pdf document to their local system/ devices", ({

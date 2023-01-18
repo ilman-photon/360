@@ -73,7 +73,6 @@ describe("PersonalInformation Components", () => {
 
   test("is edit button clicked", async () => {
     // const mockCallBack = jest.fn();
-    // console.log(<PersonalInformation isEditing={true} userData={mockUserdata} />)
     // container.rerender(
     //   <PersonalInformation
     //     isEditing={true}

@@ -440,14 +440,12 @@ defineFeature(feature, (test) => {
   };
 
   const expectMenu = () => {
+    expect(containerDashboard.getByLabelText("Dashboard")).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("Dashboard menu")
+      containerDashboard.getAllByLabelText("Appointments")[0]
     ).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("Appointments menu")
-    ).toBeInTheDocument();
-    expect(
-      containerDashboard.getByLabelText("Health Chart menu")
+      containerDashboard.getByLabelText("Health Chart dropdown")
     ).toBeInTheDocument();
     expect(
       containerDashboard.getByLabelText("My Care Team menu")
@@ -456,12 +454,12 @@ defineFeature(feature, (test) => {
       containerDashboard.getByLabelText("Messaging menu")
     ).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("Documents menu")
+      containerDashboard.getByLabelText("Documents dropdown")
     ).toBeInTheDocument();
   };
 
   const clickAppointmentsMenu = () => {
-    fireEvent.click(containerDashboard.getByLabelText("Appointments menu"));
+    fireEvent.click(containerDashboard.getAllByLabelText("Appointments")[0]);
   };
 
   const expectAppointmentsMenu = () => {
