@@ -57,7 +57,7 @@ export default function Bio({ embedApi, bio }) {
       const isMultipleValue = Array.isArray(data);
       return !isMultipleValue ? splitByComa(data) : data;
     } else {
-      return "";
+      return [];
     }
   };
 

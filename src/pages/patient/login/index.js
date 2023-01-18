@@ -210,7 +210,7 @@ export default function LoginPage() {
     <>
       <FloatingMessage
         text={loginMessage}
-        autoHideDuration={100000}
+        autoHideDuration={5000}
         onOpen={loginMessage !== null}
         sx={{
           top: {
