@@ -20,7 +20,7 @@ const AccountSecurityQuestionPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cookies = new Cookies();
-
+  const el = document.getElementById("backLoginSecurity");
   const [securityQuestionsList, setSecurityQuestion] = useState([]);
 
   const userSecurityQuestions = useSelector((state) => {
@@ -54,7 +54,9 @@ const AccountSecurityQuestionPage = () => {
   useEffect(() => {
     fetchSecurityQuestionList();
     fetchUserSecurityQuestion();
-
+    if (el) {
+      el.focus();
+    }
     dispatch(resetFormMessage());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -106,6 +108,7 @@ const AccountSecurityQuestionPage = () => {
         >
           <KeyboardArrowLeft sx={{ color: colors.teal20 }} />
           <Typography
+            id="backLoginSecurity"
             variant="bodyRegularSemiBold"
             color={colors.teal20}
             tabIndex={0}

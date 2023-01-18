@@ -19,6 +19,8 @@ export const FormMessage = (
   return (
     <>
       <Box
+        aria-live="polite"
+        role="alert"
         ref={ref}
         sx={{
           backgroundColor: props.success ? colors.foundationGreen : "#B93632",

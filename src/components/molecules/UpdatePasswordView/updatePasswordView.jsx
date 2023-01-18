@@ -370,7 +370,7 @@ export default function UpdatePasswordView({
               mode={constants.PRIMARY}
               type="submit"
               tabIndex={0}
-              aria-label={"Update button"}
+              aria-label={"Update Password "}
               size={constants.SMALL}
               data-testid={"update-btn"}
               gradient={false}

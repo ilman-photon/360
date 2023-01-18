@@ -3,8 +3,12 @@ import React from "react";
 import styles from "./accountTitleHeading.module.scss";
 
 const AccountTitleHeading = ({ title, sx = {}, sxContainer = {} }) => {
+  React.useEffect(() => {
+    document.getElementById("HeadingTitle").focus();
+  }, []);
   return (
     <div
+      id="HeadingTitle"
       className={styles.titleHeadingWrapper}
       style={{
         position: "relative",
