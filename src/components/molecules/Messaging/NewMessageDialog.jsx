@@ -52,31 +52,18 @@ export const NewMessageDialog = ({
     keyPrefix: "messaging",
   });
 
-  const { handleSubmit, control, watch, setValue, getValues, reset } = useForm({
-    defaultValues: {
-      name: "",
-      subject: "",
-      message: "",
-    },
-  });
+  const { handleSubmit, control, watch, setValue, setFocus, getValues } =
+    useForm({
+      defaultValues: {
+        name: "",
+        subject: "",
+        message: "",
+      },
+    });
 
-  const nameRef = React.useRef(null);
-  const subjectRef = React.useRef(null);
-  const messageRef = React.useRef(null);
-  const { errors, isSubmitting } = useFormState({
+  const { errors } = useFormState({
     control,
   });
-
-  React.useEffect(() => {
-    if (errors.name) {
-      nameRef.current?.focus();
-    } else if (errors.subject) {
-      subjectRef.current?.focus();
-    } else if (errors.message) {
-      messageRef.current?.focus();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSubmitting]);
 
   const [watchedName, watchedMessage] = watch(["name", "message"]);
 
@@ -98,10 +85,16 @@ export const NewMessageDialog = ({
     reset();
   };
 
+  const onError = () => {
+    const firstErrorKey = Object.keys(errors).find((key) => errors[key]);
+    if (firstErrorKey) {
+      setFocus(firstErrorKey);
+    }
+  };
+
   function renderMandatoryFieldError(isError) {
     return (
       <Typography
-        tabIndex={0}
         className={styles.errorText}
         variant={"bodyMedium"}
         sx={{
@@ -146,7 +139,7 @@ export const NewMessageDialog = ({
 
   function getNewMessageContentView() {
     return (
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
         <DialogContent
           sx={{
             display: "flex",
@@ -205,7 +198,7 @@ export const NewMessageDialog = ({
                 name="name"
                 control={control}
                 defaultValue=""
-                render={({ fieldState: { error } }) => {
+                render={({ fieldState: { error }, field: { ref } }) => {
                   return (
                     <Autocomplete
                       multiple
@@ -220,10 +213,16 @@ export const NewMessageDialog = ({
                         return (
                           <TextField
                             {...params}
-                            tabIndex={0}
                             variant="standard"
                             label="Type a Name"
                             required
+                            inputRef={ref}
+                            inputProps={{
+                              ...params.inputProps,
+                              "aria-label": `${"Type a Name"} ${
+                                isEmptyName ? ", This field is required" : ""
+                              }`,
+                            }}
                           />
                         );
                       }}
@@ -265,7 +264,6 @@ export const NewMessageDialog = ({
                       }}
                       error={!!error}
                       required
-                      inputRef={nameRef}
                     />
                   );
                 }}
@@ -291,10 +289,12 @@ export const NewMessageDialog = ({
             name="subject"
             control={control}
             defaultValue=""
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            render={({
+              field: { onChange, value, ref },
+              fieldState: { error },
+            }) => {
               return (
                 <StyledInput
-                  tabIndex={0}
                   aria-label="Subject"
                   label={"Subject"}
                   id="subject"
@@ -321,7 +321,12 @@ export const NewMessageDialog = ({
                   error={!!error}
                   helperText={error ? error.message : null}
                   required
-                  inputRef={subjectRef}
+                  inputProps={{
+                    "aria-label": `${"Subject"} ${
+                      error ? ", Please update all required fields." : ""
+                    }`,
+                  }}
+                  inputRef={ref}
                 />
               );
             }}
@@ -343,12 +348,11 @@ export const NewMessageDialog = ({
               control={control}
               defaultValue=""
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <StyledInput
-                    tabIndex={0}
                     aria-label="Write a message"
                     label={t("writeMessages")}
                     id="message"
@@ -380,7 +384,12 @@ export const NewMessageDialog = ({
                     }}
                     error={!!error}
                     required
-                    inputRef={messageRef}
+                    inputRef={ref}
+                    inputProps={{
+                      "aria-label": `${"Message"} ${
+                        error ? ", This field is required" : ""
+                      }`,
+                    }}
                     // helperText={error ? error.message : null}
                   />
                 );
