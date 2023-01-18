@@ -56,8 +56,7 @@ export const MessagingListContent = ({ data, onSelected, isSelectedMsg }) => {
 
   return (
     <div className={styles.listContainer}>
-      {data &&
-        data.length &&
+      {data?.map &&
         data.map((item) => {
           return (
             <MessagingCardView

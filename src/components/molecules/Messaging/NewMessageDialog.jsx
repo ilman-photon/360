@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -52,13 +51,15 @@ export const NewMessageDialog = ({
     keyPrefix: "messaging",
   });
 
-  const { handleSubmit, control, watch, setValue, setFocus, getValues } =
+  const MESSAGE_DEFAULT_VALUE = {
+    name: "",
+    subject: "",
+    message: "",
+  };
+
+  const { handleSubmit, control, watch, setValue, setFocus, getValues, reset } =
     useForm({
-      defaultValues: {
-        name: "",
-        subject: "",
-        message: "",
-      },
+      defaultValues: MESSAGE_DEFAULT_VALUE,
     });
 
   const { errors } = useFormState({
@@ -75,8 +76,6 @@ export const NewMessageDialog = ({
 
   const onClickCheck = () => {
     setClicked(true);
-    setEmptyName(watchedName.length === 0);
-    setEmptyMessage(watchedMessage.length === 0);
   };
 
   const onSubmit = (data) => {
@@ -271,7 +270,6 @@ export const NewMessageDialog = ({
           <Controller
             name="subject"
             control={control}
-            defaultValue=""
             render={({
               field: { onChange, value, ref },
               fieldState: { error },
@@ -329,7 +327,6 @@ export const NewMessageDialog = ({
             <Controller
               name="message"
               control={control}
-              defaultValue=""
               render={({
                 field: { onChange, value, ref },
                 fieldState: { error },
@@ -342,7 +339,7 @@ export const NewMessageDialog = ({
                     maxLength={254}
                     ref={refAttachments}
                     variant="filled"
-                    value={valueText !== "" ? valueText : value}
+                    value={valueText || value}
                     onChange={(event) => {
                       onChange(event);
                       if (isClicked) {

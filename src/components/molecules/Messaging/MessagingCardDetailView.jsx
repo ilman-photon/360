@@ -7,6 +7,7 @@ import { useTranslation } from "next-i18next";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import moment from "moment";
+import { showOrReturnEmpty } from "../../../utils/viewUtil";
 
 export const MessagingCardDetailView = ({
   key,
@@ -42,7 +43,7 @@ export const MessagingCardDetailView = ({
   const getProfilePicture = () => {
     return (
       <Box className={styles.profilePicture}>
-        {data.source !== null ? (
+        {data?.source ? (
           <Image
             src={data.source}
             alt={"profilePicture"}
@@ -62,10 +63,25 @@ export const MessagingCardDetailView = ({
     );
   };
 
+  const getSenderName = () => {
+    if (data?.name) {
+      return showOrReturnEmpty(data.name);
+    } else {
+      const employeeData = data?.messageReceipients?.find(
+        (v) => v.recipientType === "SENDER"
+      );
+      if (employeeData) {
+        return `${showOrReturnEmpty(employeeData.name)} ${showOrReturnEmpty(
+          employeeData.lastName
+        )}`;
+      }
+    }
+  };
+
   return (
     <Box key={key} className={styles.cardDetailView}>
       {isDesktop && getProfilePicture()}
-      <Box>
+      <Box flex={1}>
         <Box className={styles.cardDetailHeader}>
           {!isDesktop && getProfilePicture()}
           <Typography
@@ -77,7 +93,7 @@ export const MessagingCardDetailView = ({
               lineHeight: isDesktop ? "24px" : "32px",
             }}
           >
-            {data.name}
+            {getSenderName()}
           </Typography>
           <Box sx={{ textAlign: "end", justifyContent: "flex-end" }}>
             <Typography
@@ -90,19 +106,19 @@ export const MessagingCardDetailView = ({
                 lineHeight: "24px",
               }}
             >
-              {convertDate(data.modifiedAt)}
+              {convertDate(data?.modifiedAt || data?._created)}
             </Typography>
             <Typography
               tabIndex={0}
               sx={{
-                fontSize: "16px",
-                fontWeight: "400",
+                fontSize: "12px",
+                fontWeight: "300",
                 fontStyle: "normal",
                 color: "#535353",
                 lineHeight: "20px",
               }}
             >
-              {convertTime(data.modifiedAt)}
+              {convertTime(data?.modifiedAt || data?._created)}
             </Typography>
           </Box>
         </Box>
@@ -112,16 +128,16 @@ export const MessagingCardDetailView = ({
               tabIndex={0}
               sx={{
                 fontSize: "16px",
-                fontWeight: "400",
+                fontWeight: "300",
                 fontStyle: "normal",
                 color: "#292929",
                 lineHeight: "24px",
                 marginBottom: "17px",
               }}
             >
-              {data.message}
+              {data.message || data.bodyNote}
             </Typography>
-            {data.attachments?.length > 0 && (
+            {data?.attachments?.length > 0 && (
               <Box className={styles.attachmentContent}>
                 <Box
                   sx={{
@@ -134,7 +150,7 @@ export const MessagingCardDetailView = ({
                     marginBottom: "8px",
                   }}
                 >
-                  {data.attachments.map((item, index) => {
+                  {data?.attachments.map((item, index) => {
                     return (
                       <Button
                         key={index}
@@ -174,11 +190,11 @@ export const MessagingCardDetailView = ({
                     );
                   })}
                 </Box>
-                {data.attachments.length > 1 && (
+                {data?.attachments.length > 1 && (
                   <Button
                     className={styles.downloadAttachContent}
                     onClick={() =>
-                      onDownloadAllAttachmentClicked(data.attachments)
+                      onDownloadAllAttachmentClicked(data?.attachments)
                     }
                     data-testId="button-all-asset-download-test"
                   >
@@ -214,9 +230,9 @@ export const MessagingCardDetailView = ({
               marginBottom: "17px",
             }}
           >
-            {data.message}
+            {data?.message}
           </Typography>
-          {data.attachments?.length > 0 && (
+          {data?.attachments?.length > 0 && (
             <Box className={styles.attachmentContent}>
               <Box
                 sx={{
@@ -269,7 +285,7 @@ export const MessagingCardDetailView = ({
                   );
                 })}
               </Box>
-              {data.attachments.length > 1 && (
+              {data?.attachments.length > 1 && (
                 <Button
                   className={styles.downloadAttachContent}
                   data-testId="button-all-asset-download-mobile-test"

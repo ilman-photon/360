@@ -5,7 +5,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTranslation } from "next-i18next";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 
 export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
   const { t } = useTranslation("translation", {
@@ -30,6 +30,7 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "flex-start",
         }}
       >
         <DialogContentText
@@ -48,9 +49,9 @@ export const DeletedDialog = ({ opened, handleClosed, onDeleted }) => {
           {t("deleteMessage")}
         </DialogContentText>
 
-        <span tabIndex={0} aria-label={"Close button"}>
-          <CloseIcon onClick={handleClosed} />
-        </span>
+        <IconButton aria-label={"Close"} onClick={handleClosed}>
+          <CloseIcon />
+        </IconButton>
       </DialogContent>
       <DialogActions
         sx={{

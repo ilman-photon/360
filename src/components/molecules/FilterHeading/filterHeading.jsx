@@ -552,9 +552,9 @@ const FilterHeading = ({
                       {...params}
                       inputProps={{
                         ...params.inputProps,
-                        "aria-label" : isEmptyLocation
-                        ? "City, state, or zip code mandatory field. This field is required"
-                        : "City, state, or zip code mandatory field"
+                        "aria-label": isEmptyLocation
+                          ? "City, state, or zip code mandatory field. This field is required"
+                          : "City, state, or zip code mandatory field",
                       }}
                       label="City, state, or zip code"
                       onChange={(event) => {

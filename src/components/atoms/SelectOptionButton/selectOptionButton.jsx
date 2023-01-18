@@ -101,7 +101,7 @@ export default function SelectOptionButton({
           },
         }}
         inputRef={inputRef}
-        aria-label= {ariaLabel}
+        aria-label={ariaLabel}
         inputProps={{
           "aria-label": `${ariaLabel || label}. ${value}`,
           "aria-live": "polite",

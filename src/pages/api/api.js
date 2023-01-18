@@ -576,10 +576,14 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  deleteMessages(messageId) {
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = `/${userData?.patientId}`;
-    const url = `/ecp/messages/deleteMessageById/${messageId}?sessionUserId=${patientId}`;
+  getDeleteMessages() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/messaging/getDeleteMessages`;
+    return Promise.reject({});
+  }
+
+  deleteMessages(messageId, senderId) {
+    const url = `/ecp/messages/deleteMessageById/${messageId}?sessionUserId=${senderId}`;
     return this.getResponse(url, {}, "delete");
   }
 
@@ -593,10 +597,15 @@ export class Api {
     return this.getResponse(url, postbody, "post");
   }
 
-  viewMessagesById() {
+  getDeletedMessages() {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `${userData?.patientId}`;
-    const url = `/ecp/messages/viewMessageById/be072f9f-da68-456c-a6bd-9a1f8e8a5d3d?sessionUserId=${patientId}`;
+    const url = `/ecp/messages/getDeletedFolderOfPatient/${patientId}`; // cdd6587b-b7af-4ef4-848d-214b957b9699
+    return this.getResponse(url, {}, "get");
+  }
+
+  viewMessagesById(messageId, senderId) {
+    const url = `/ecp/messages/viewMessageById/${messageId}?sessionUserId=${senderId}`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -638,10 +647,6 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  createNewMessage(postBody) {
-    const url = `/ecp/messages/createPatientToPatientMsg`;
-    return this.getResponse(url, postBody, "post");
-  }
   verifyAccessCode(postBody) {
     const url = `/ecp/patient/share/share-confirmation/verifyAccessCode`;
     return this.getResponse(url, postBody, "post");
