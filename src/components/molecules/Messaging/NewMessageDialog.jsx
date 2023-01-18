@@ -119,22 +119,6 @@ export const NewMessageDialog = ({
       setShowInfoName(false);
       setNameProvider(value);
     }
-    setValue("name", value);
-  };
-
-  function Tag(props) {
-    const { label, onDelete, ...other } = props;
-    return (
-      <div {...other}>
-        <span>{label}</span>
-        <CloseIcon onClick={onDelete} />
-      </div>
-    );
-  }
-
-  Tag.propTypes = {
-    label: PropTypes.string.isRequired,
-    onDelete: PropTypes.func.isRequired,
   };
 
   function getNewMessageContentView() {
@@ -193,7 +177,6 @@ export const NewMessageDialog = ({
               <SearchIcon sx={{ width: "24px" }} />
             </Box>
             <Styled.InputWrapper>
-              {/* <Styled.StyledTag key={index} label={value} {...getTagProps()} /> */}
               <Controller
                 name="name"
                 control={control}
@@ -205,8 +188,8 @@ export const NewMessageDialog = ({
                       id="providerName"
                       options={providerData}
                       getOptionLabel={(option) => option?.name}
-                      onChange={(_event, value) => {
-                        setNameProviderValue(value);
+                      onChange={(event, value) => {
+                        setNameProviderValue(value, event);
                       }}
                       value={nameProvider}
                       renderInput={(params) => {
