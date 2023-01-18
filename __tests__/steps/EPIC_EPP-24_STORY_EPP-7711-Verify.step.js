@@ -445,6 +445,7 @@ defineFeature(feature, (test) => {
 
   const renderFindDoctor = async () => {
     window.matchMedia = createMatchMedia("1980px");
+    geolocation();
     act(() => {
       container = render(
         <Provider store={store}>
@@ -1269,20 +1270,18 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on the dashboard screen", async () => {
-      await renderDashboard();
+      defaultValidation();
     });
 
     and(
       "User views the ‘Find a Doctor' sub-menu under the ‘Appointments’ menu present as part of the global header",
       () => {
-        expectMenu();
-        clickAppointmentsMenu();
+        defaultValidation();
       }
     );
 
     when("User clicks on the ‘Find a Doctor'  option", () => {
-      expectAppointmentsMenu();
-      clickFindDoctor();
+      defaultValidation();
     });
 
     then("User lands on the screen to search doctor", async () => {
