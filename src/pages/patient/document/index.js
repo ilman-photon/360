@@ -352,6 +352,7 @@ export default function DocumentPage({ title }) {
             marginBottom: "auto",
           },
         }}
+        aria-live={"assertive"}
       >
         <DialogTitle
           sx={{
@@ -366,7 +367,6 @@ export default function DocumentPage({ title }) {
         <DialogContent
           className={styles.dialogContent}
           style={{ padding: "16px" }}
-          aria-live={"assertive"}
           sx={{
             width: "500px",
             "@media (max-width: 992px)": {
