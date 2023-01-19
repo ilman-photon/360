@@ -118,7 +118,7 @@ export default function ContactInformation({
     );
     let placesResponse = await getPlaceDetails(indexValue);
 
-    if (placesResponse) return;
+    if (!placesResponse) return;
     const addressComponents = placesResponse.address_components;
     if (!addressComponents) return;
     resetAddressForm();
@@ -486,6 +486,11 @@ export default function ContactInformation({
                         onChange={(event) => {
                           onChange(event.target.value);
                           getPlacePredictions({ input: event.target.value });
+                        }}
+                        inputProps={{
+                          ...params.inputProps,
+                          "aria-label": "Address field",
+                          "data-testid": "address-input-test",
                         }}
                         placeholder="Start typing your address, e.g. 123 United States..."
                         error={!!error}
