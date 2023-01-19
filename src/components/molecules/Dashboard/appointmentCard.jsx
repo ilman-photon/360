@@ -308,7 +308,11 @@ export default function AppointmentCard({
                       color: "#003B4A",
                     }}
                   />
-                  <span style={{ fontSize: 14, color: "#007E8F" }}>Cancel</span>
+                  <span
+                    style={{ fontSize: 14, color: "#007E8F", fontWeight: 500 }}
+                  >
+                    Cancel
+                  </span>
                 </Stack>
               </StyledButton>
               <StyledButton
@@ -334,7 +338,9 @@ export default function AppointmentCard({
                       color: "#003B4A",
                     }}
                   />
-                  <span style={{ fontSize: 14, color: "#007E8F" }}>
+                  <span
+                    style={{ fontSize: 14, color: "#007E8F", fontWeight: 500 }}
+                  >
                     Reschedule
                   </span>
                 </Stack>

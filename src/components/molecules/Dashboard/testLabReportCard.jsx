@@ -98,12 +98,12 @@ export default function TestLabReportCard() {
                   minWidth: "90%",
                   fontSize: "14px",
                   ".MuiTableCell-body": {
-                    fontFamily: "Roboto",
+                    fontFamily: "Museo Sans",
                     fontSize: "14px",
                     fontWeight: "400",
                   },
                   ".MuiTableCell-customHead": {
-                    fontFamily: "Roboto",
+                    fontFamily: "Museo Sans",
                     fontSize: "14px",
                     fontWeight: "500",
                     backgroundColor: "#F4F4F4",

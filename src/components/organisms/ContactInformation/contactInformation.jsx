@@ -231,6 +231,7 @@ export default function ContactInformation({
       tabIndex={0}
       title="Contact Information"
       titleIcon={<PermContactCalendarOutlinedIcon />}
+      textStyle={{ fontWeight: 500 }}
       isEditing={isEditing}
       actionContent={accountCardActionContent()}
       label={"Contact Information heading"}

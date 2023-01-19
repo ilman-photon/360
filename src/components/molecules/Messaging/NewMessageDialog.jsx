@@ -258,7 +258,7 @@ export const NewMessageDialog = ({
             <Typography
               tabIndex={0}
               sx={{
-                fontFamily: "Roboto",
+                fontFamily: "Museo Sans",
                 fontSize: "12px",
                 fontWeight: 400,
                 lineHeight: "16px",

@@ -160,6 +160,7 @@ export default function PersonalInformation({
         <AccountCard
           titleIcon={<AccountCircleOutlinedIcon />}
           title="Personal Information"
+          textStyle={{ fontWeight: 500 }}
           isEditing={isEditing}
           actionContent={
             isDesktop ? (
@@ -550,7 +551,7 @@ export default function PersonalInformation({
                         sx={{
                           ".MuiInputBase-root": {
                             color: "#303030",
-                            fontFamily: "Roboto",
+                            fontFamily: "Museo Sans",
                           },
                         }}
                         SelectProps={{

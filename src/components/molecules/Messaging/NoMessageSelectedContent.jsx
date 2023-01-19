@@ -18,7 +18,7 @@ export const NoMessageSelectedContent = () => {
         sx={{
           fontFamily: "Museo Sans",
           fontSize: "18px",
-          fontWeight: "400",
+          fontWeight: "300",
           fontStyle: "normal",
           color: "#003B4A",
           lineHeight: "28px",
@@ -30,7 +30,7 @@ export const NoMessageSelectedContent = () => {
       <Typography
         sx={{
           fontSize: "16px",
-          fontWeight: "400",
+          fontWeight: "300",
           fontStyle: "normal",
           color: "#000000",
           lineHeight: "24px",

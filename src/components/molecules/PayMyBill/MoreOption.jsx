@@ -56,7 +56,7 @@ export const MoreOptionBtn = () => {
             <FileDownloadIcon sx={{ fill: "#676879" }} />
             <Typography
               sx={{
-                fontFamily: "Roboto",
+                fontFamily: "Museo Sans",
                 fontWeight: 400,
                 color: "#323338",
                 fontSize: "14px",
@@ -87,7 +87,7 @@ export const MoreOptionBtn = () => {
             <LocalPrintshopOutlinedIcon sx={{ color: "#676879" }} />
             <Typography
               sx={{
-                fontFamily: "Roboto",
+                fontFamily: "Museo Sans",
                 fontWeight: 400,
                 color: "#323338",
                 fontSize: "14px",
