@@ -45,11 +45,13 @@ const BootstrapDialogTitle = (props) => {
   const { children, onClose, isPage, ...other } = props;
 
   return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
+    <>
+      <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+        {children}
+      </DialogTitle>
       {onClose && !isPage ? (
         <IconButton
-          aria-label="close option"
+          aria-label="close"
           onClick={onClose}
           sx={{
             position: "absolute",
@@ -61,7 +63,7 @@ const BootstrapDialogTitle = (props) => {
           <CloseIcon />
         </IconButton>
       ) : null}
-    </DialogTitle>
+    </>
   );
 };
 
@@ -198,8 +200,8 @@ export default function ModalConfirmContent({
               >
                 <MailOutlineIcon
                   sx={{ mr: 1, height: "35px", width: "28px" }}
-                />{" "}
-                {thankYouText}
+                />
+                {` ${thankYouText}`}
               </Box>
             </div>
 
