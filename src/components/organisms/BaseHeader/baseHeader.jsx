@@ -328,6 +328,8 @@ export default function BaseHeader({
                   {!isAdmin && (
                     <IconButton
                       size="large"
+                      tabIndex={0}
+                      aria-label="username icon"
                       onClick={() => setOpenedProfileDrawer(true)}
                       data-testid={HOME_TEST_ID.header.userAvatar}
                     >
@@ -345,9 +347,9 @@ export default function BaseHeader({
                   )}
                   <IconButton
                     size="large"
-                    aria-label="menu icon"
+                    tabIndex={0}
+                    aria-label="username dropdown"
                     aria-controls="menu-appbar"
-                    aria-haspopup="true"
                     data-testid="user-menu-nav-open"
                     onClick={() => {
                       setAnchorElNav(true);

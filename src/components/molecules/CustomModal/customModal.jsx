@@ -42,13 +42,13 @@ export default function CustomModal({
           <IconButton
             data-testid="custom-modal-close-btn"
             onClick={onClickCloseButton}
+            aria-label="close"
             sx={{
               position: "absolute",
               right: "14px",
               top: "14px",
               padding: 0,
             }}
-            aria-label="close"
           >
             <CloseIcon
               sx={{
@@ -73,6 +73,7 @@ export default function CustomModal({
             <StyledButton
               mode={constants.SECONDARY}
               type="button"
+              aria-label={secondaryButtonText}
               tabIndex={1}
               size={constants.SMALL}
               gradient={false}
