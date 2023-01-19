@@ -320,6 +320,7 @@ export default function PatientAcccountCard({
                           lineHeight: "18px",
                           color: "#003B4A",
                           flex: 1,
+                          ...cell.headSx,
                         }}
                       >
                         Status

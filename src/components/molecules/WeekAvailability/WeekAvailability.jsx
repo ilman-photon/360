@@ -125,6 +125,9 @@ export const WeekAvailability = ({
           )
         : "";
       const isDisableStyle = isDisable ? styles.scheduleDisableBtn : {};
+      const buttonTestId = `${
+        constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.hourButton
+      }${isDisable ? "_disabled" : ""}`;
       return (
         <Box
           key={index}
@@ -137,7 +140,7 @@ export const WeekAvailability = ({
             size={constants.SMALL}
             gradient={false}
             className={[styles.scheduleBtn, isDisableStyle].join(" ")}
-            data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.hourButton}
+            data-testid={buttonTestId}
             onClick={() => {
               if (isLabelMore) {
                 onClickViewAllAvailability();

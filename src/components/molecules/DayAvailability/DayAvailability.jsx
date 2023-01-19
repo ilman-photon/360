@@ -47,6 +47,9 @@ export const buttonSchedule = (
   const scheduleButtonStyle = !isScheduleAvailability
     ? styles.scheduleBtn
     : styles.scheduleAvailBtn;
+  const buttonTestId = `${
+    TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.timeslotButton
+  }${isDisable ? "_disabled" : ""}`;
   return (
     <Box
       key={idx}
@@ -54,7 +57,7 @@ export const buttonSchedule = (
       className={styles.scheduleBtnWarpper}
     >
       <StyledButton
-        data-testid={TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.timeslotButton}
+        data-testid={buttonTestId}
         mode={constants.PRIMARY}
         size={constants.SMALL}
         gradient={false}
