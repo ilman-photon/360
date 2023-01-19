@@ -136,7 +136,6 @@ export default function ConstentToTreat({
               onChange={onChange}
               value={value}
               isEdit={isEditable}
-              tabIndex={0}
               helperText={error ? error.message : null}
               sx={{
                 marginBottom: "24px",

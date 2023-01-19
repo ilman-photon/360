@@ -310,7 +310,6 @@ export default function AuthorizationToDisclose({
               isEdit={isEditable}
               noBorder={!disableInput}
               helperText={error ? error.message : null}
-              tabIndex={0}
               sx={{
                 margin: "14px 0 0 0",
                 ".MuiInputBase-inputMultiline": {

@@ -528,6 +528,7 @@ export default function PrescriptionMedication({
         ]}
       >
         <Typography
+          data-testid="medication-header"
           tabIndex={"0"}
           variant="titleCard"
           className={[

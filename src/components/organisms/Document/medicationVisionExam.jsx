@@ -37,7 +37,6 @@ export default function MedicationVisionExam({
               isEdit={isEditable}
               noBorder={!disableInput}
               helperText={error ? error.message : null}
-              tabIndex={0}
               sx={{
                 margin: "24px 0",
                 ".MuiInputBase-inputMultiline": {
