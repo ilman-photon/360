@@ -37,7 +37,6 @@ export default function InsuranceCommunication({
               value={value}
               data-testid={`${controlName.textInfo}-txt`}
               isEdit={isEditable}
-              tabIndex={0}
               helperText={error ? error.message : null}
               sx={{
                 margin: "24px 0",
@@ -101,7 +100,6 @@ export default function InsuranceCommunication({
               onChange={onChange}
               value={value}
               isEdit={isEditable}
-              tabIndex={0}
               helperText={error ? error.message : null}
               sx={{
                 margin: "24px 0",

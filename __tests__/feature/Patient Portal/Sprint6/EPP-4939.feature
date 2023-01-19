@@ -6,6 +6,7 @@ Feature: Patient Portal : Prescription Results - View contact lens prescriptions
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4939- To verify whether the patient is able navigate to Prescription screen.
     Given patient launch the browser and enter the patient portal url
@@ -20,6 +21,7 @@ Feature: Patient Portal : Prescription Results - View contact lens prescriptions
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4939- To verify whether the user should be able to view each prescriptions for contact lens
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -35,6 +37,7 @@ Feature: Patient Portal : Prescription Results - View contact lens prescriptions
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4939- To verify whether the  user should be able to view each prescriptions for contact lens with details in contact lens prescriptions section
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -50,6 +53,7 @@ Feature: Patient Portal : Prescription Results - View contact lens prescriptions
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4939- To verify whether the  user should be able to view details/fields for contact lens prescriptions
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -65,6 +69,7 @@ Feature: Patient Portal : Prescription Results - View contact lens prescriptions
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4939- To verify whether the User should be able to view Download and Print CTA for contact lens prescriptions
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -81,6 +86,7 @@ Feature: Patient Portal : Prescription Results - View contact lens prescriptions
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4939- To verify whether the User should be able to view Downloaded PDF file
     Given Patient Launch  the browser and enter the Patient portal URL

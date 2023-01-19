@@ -70,7 +70,6 @@ export default function ConsentToUse({
                   onChange={onChange}
                   value={value}
                   isEdit={isEditable}
-                  tabIndex={0}
                   noBorder={!disableInput}
                   helperText={error ? error.message : null}
                   sx={{
@@ -167,7 +166,6 @@ export default function ConsentToUse({
                   value={value}
                   isEdit={isEditable}
                   noBorder={!disableInput}
-                  tabIndex={0}
                   helperText={error ? error.message : null}
                   sx={{
                     backgroundColor: !disableInput ? "transparent" : "",
@@ -321,7 +319,6 @@ export default function ConsentToUse({
               value={value}
               isEdit={isEditable}
               helperText={error ? error.message : null}
-              tabIndex={0}
               sx={{
                 margin: "24px 0",
                 ".MuiInputBase-inputMultiline": {
@@ -367,7 +364,6 @@ export default function ConsentToUse({
               isEdit={isEditable}
               noBorder={!disableInput}
               helperText={error ? error.message : null}
-              tabIndex={0}
               sx={{
                 margin: "24px 0",
                 ".MuiInputBase-inputMultiline": {
@@ -417,7 +413,6 @@ export default function ConsentToUse({
               isEdit={isEditable}
               noBorder={!disableInput}
               helperText={error ? error.message : null}
-              tabIndex={0}
               sx={{
                 margin: "24px 0",
                 ".MuiInputBase-inputMultiline": {
@@ -466,7 +461,6 @@ export default function ConsentToUse({
               isEdit={isEditable}
               noBorder={!disableInput}
               helperText={error ? error.message : null}
-              tabIndex={0}
               sx={{
                 margin: "24px 0",
                 ".MuiInputBase-inputMultiline": {

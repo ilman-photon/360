@@ -6,6 +6,7 @@ Feature: Patient Portal : Prescription Results - No medication prescription avai
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4945 - Verify the patient is able to navigate to prescription screen.
     Given patient launch the browser and enter the patient portal url
@@ -20,6 +21,7 @@ Feature: Patient Portal : Prescription Results - No medication prescription avai
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4945- Verify the patient is able see the verbiage message in Medications section if there are no medication prescriptions are available.
     Given patient launch the browser and enter the patient portal url
@@ -36,6 +38,7 @@ Feature: Patient Portal : Prescription Results - No medication prescription avai
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4944 - Verify the patient is able see the medications prescriptions details in medications section if prescription details are available in Prescriptions page.
     Given patient launch the browser and enter the patient portal url
@@ -55,6 +58,7 @@ Feature: Patient Portal : Prescription Results - No medication prescription avai
   @P1
   @Patient_Portal
   @Prescription
+  @included
   @Regression
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4945 - Verify the default page appearance when prescription page is loaded.

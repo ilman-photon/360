@@ -6,11 +6,13 @@ export const StyledTextArea = (props) => {
       hiddenLabel
       type="textarea"
       multiline
+      InputLabelProps={{
+        "aria-hidden": true,
+      }}
       {...props}
       inputProps={{
         readOnly: !props.isEdit,
         isTransparent: true,
-        "aria-label": "",
       }}
       sx={{
         width: "100%",

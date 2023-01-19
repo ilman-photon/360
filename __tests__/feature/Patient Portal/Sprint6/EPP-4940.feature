@@ -1,13 +1,11 @@
 
 Feature: Patient Portal : Prescription Results - View medication prescriptions with details
-  User Story: As a user, I should be able to view each prescriptions for medications with details in medication prescriptions section
-
-  
 
   @BDDTEST-EPP-6376
   @P1
   @Patient_Portal
   @Prescription
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if patient is able navigates to medication prescriptions section
     Given patient launch the browser and enter the patient portal url
@@ -23,6 +21,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if patient is able see the medication prescriptions latest in  first row
     Given patient launch the browser and enter the patient portal url
@@ -39,6 +38,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if patient is able view active medication prescriptions based on the expires date in future
     Given patient launch the browser and enter the patient portal url
@@ -56,6 +56,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if patient is able view past medication prescriptions based on the expires on date
     Given patient launch the browser and enter the patient portal url
@@ -73,6 +74,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @P2
   @Patient_Portal
   @Prescription
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if  when medications prescription page appearence with default details
     Given patient launch the browser and enter the patient portal url
@@ -90,6 +92,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @P2
   @Patient_Portal
   @Prescription
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if patient able to view medication prescription Download and Print CTA icons for  each prescription
     Given patient launch the browser and enter the patient portal url
@@ -108,6 +111,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @P2
   @Patient_Portal
   @Prescription
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if patient able to view medication prescription click on Download to download icons for  each prescription as PDF file
     Given patient launch the browser and enter the patient portal url
@@ -127,6 +131,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if patient able to view medication prescription click on print icon to print the prescription
     Given patient launch the browser and enter the patient portal url
@@ -145,6 +150,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @P2
   @Patient_Portal
   @Prescription
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if patient able to view CTA request or cancel refill medication prescription
     Given patient launch the browser and enter the patient portal url
@@ -164,6 +170,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-4940 - Verify if patient able to see the Filter icon right options selected and able to remove the selected filter options medication prescription
     Given patient launch the browser and enter the patient portal url
@@ -185,6 +192,7 @@ Feature: Patient Portal : Prescription Results - View medication prescriptions w
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario:  EPIC_EPP-17_STORY_EPP-4940 - Verify if patient able to see the Filter icon right options selected the medication prescription
     Given patient launch the browser and enter the patient portal url
