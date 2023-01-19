@@ -214,6 +214,7 @@ export default function UpdatePasswordView({
         <Stack spacing={3}>
           <Typography
             tabIndex={0}
+            aria-label="Update Password heading"
             variant="headlineH2"
             color={colors.darkGreen}
           >

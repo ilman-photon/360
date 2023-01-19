@@ -132,6 +132,7 @@ const UpdateSecurityQuestion = ({
     <Stack spacing={3} sx={{ px: 3, py: 4 }}>
       <Typography
         variant="headlineH2"
+        aria-live="polite"
         color={colors.darkGreen}
         tabIndex={0}
         role="heading"
@@ -142,6 +143,8 @@ const UpdateSecurityQuestion = ({
       {formMessage.content && (
         <FormMessage
           withClose
+          role="presentation"
+          textRole="presentation"
           onClose={() => {
             dispatch(resetFormMessage());
           }}
