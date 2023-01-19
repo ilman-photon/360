@@ -107,6 +107,7 @@ export default function SearchBar({
   const isMobile = useMediaQuery("(max-width: 600px)");
 
   const [name, setName] = useState("");
+  const [searchName, setSearchName] = useState("");
   const [location, setLocation] = useState("");
   const [specialty, setSpecialty] = useState("");
 
@@ -152,11 +153,12 @@ export default function SearchBar({
             flexDirection: "column",
             display: "flex",
             justifyContent: "center",
+            whiteSpace: "nowrap",
           }}
         >
           <Typography
             sx={
-              name === ""
+              searchName === ""
                 ? {
                     fontSize: "16px",
                     lineHeight: "24px",
@@ -172,15 +174,18 @@ export default function SearchBar({
           >
             Doctor Name or practice name
           </Typography>
-          {name !== "" && (
+          {searchName !== "" && (
             <Typography
               sx={{
                 fontSize: "16px",
                 lineHeight: "24px",
                 color: "#303030",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                width: "75vw",
               }}
             >
-              {name}
+              {searchName}
             </Typography>
           )}
         </Box>
@@ -279,6 +284,7 @@ export default function SearchBar({
                   border: "none",
                 },
               }}
+              inputProps={{ maxLength: 50 }}
             />
           </Box>
           <Box
@@ -344,6 +350,7 @@ export default function SearchBar({
               type="submit"
               onClick={() => {
                 setOpenMobileForm(false);
+                setSearchName(name);
                 onSearchDoctor({
                   name,
                   location,
@@ -398,6 +405,7 @@ export default function SearchBar({
               height: "56px",
             },
           }}
+          inputProps={{ maxLength: 50 }}
         />
       </Box>
       <Divider
@@ -464,6 +472,7 @@ export default function SearchBar({
         gradient={false}
         data-testid={"search-btn"}
         onClick={() => {
+          setSearchName(name);
           onSearchDoctor({
             name,
             location,
