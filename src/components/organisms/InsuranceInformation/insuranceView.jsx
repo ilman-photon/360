@@ -122,7 +122,7 @@ export default function InsuranceView({
                         <div>
                           <Typography
                             variant="h3"
-                            sx={{ pb: 2, color: colors.black }}
+                            sx={{ pb: 2, color: colors.black, fontWeight: 500 }}
                           >
                             Policy Holder
                           </Typography>

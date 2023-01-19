@@ -144,7 +144,7 @@ export const styles = {
   },
 
   getDirectionLinkText: {
-    fontFamily: "Roboto, sans-serif",
+    fontFamily: "Museo Sans, sans-serif",
     fontStyle: "normal",
     fontWeight: 500,
     fontSize: "16px",

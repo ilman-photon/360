@@ -40,7 +40,7 @@ export function renderCTAIcon(
           textTransform: "initial",
           gap: "12px",
           marginRight: "40px",
-          fontFamily: "Roboto",
+          fontFamily: "Museo Sans",
           fontSize: "14px",
           fontWeight: "400",
           lineHeight: "22px",
@@ -58,7 +58,7 @@ export function renderCTAIcon(
         sx={{
           textTransform: "initial",
           gap: "12px",
-          fontFamily: "Roboto",
+          fontFamily: "Museo Sans",
           fontSize: "14px",
           fontWeight: "400",
           lineHeight: "22px",

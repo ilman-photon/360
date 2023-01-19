@@ -50,7 +50,7 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
             sx={{
               fontFamily: "Museo Sans",
               fontStyle: "normal",
-              fontWeight: "400",
+              fontWeight: "300",
               fontSize: "26px",
               lineHeight: "36px",
               color: "#008294",
@@ -85,7 +85,7 @@ export const HeaderPayMyBill = ({ isDesktop, accountCreditData }) => {
             sx={{
               fontFamily: "Museo Sans",
               fontStyle: "normal",
-              fontWeight: "400",
+              fontWeight: "300",
               fontSize: "26px",
               lineHeight: "36px",
               color: "#008294",

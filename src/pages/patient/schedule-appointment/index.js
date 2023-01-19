@@ -709,7 +709,7 @@ export default function ScheduleAppointmentPage() {
           <DialogContentText
             role={"polite"}
             id="alert-dialog-description"
-            sx={{ color: colors.darkGreen, fontSize: "22px" }}
+            sx={{ color: colors.darkGreen, fontSize: "22px", fontWeight: 300 }}
           >
             Please confirm that you would like to reschedule your appointment on{" "}
             {formatRescheduleDate(appointmentScheduleData.appointmentInfo.date)}

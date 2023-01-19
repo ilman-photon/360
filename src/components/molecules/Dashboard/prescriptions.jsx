@@ -38,7 +38,7 @@ export const StyledTableCell = styled(TableCell)(() => ({
     backgroundColor: "#F4F4F4",
   },
   [`&.${tableCellClasses.body}`]: {
-    fontFamily: "Roboto",
+    fontFamily: "Museo Sans",
     fontWeight: 500,
     fontSize: 14,
   },
@@ -269,7 +269,7 @@ export default function Prescriptions({
                 variant="customBodyRegular"
                 sx={{
                   fontSize: "18px",
-                  "font-family": "Libre Franklin",
+                  "font-family": "Museo Sans",
                   "font-style": "normal",
                   "font-weight": "600",
                   "font-size": "18px",

@@ -1,6 +1,5 @@
 import { createTheme } from "@mui/material/styles";
 import "@fontsource/libre-franklin";
-import "@fontsource/roboto";
 
 export const colors = {
   darkGreen: "#003B4A",
@@ -99,7 +98,7 @@ export const patientTypography = createTheme({
       lineHeight: "24px",
     },
     cutomH4: {
-      fontFamily: "Roboto, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       color: "#003B4A",
       fontWeight: "600",
       fontSize: 18,
@@ -147,8 +146,8 @@ export const patientTypography = createTheme({
       fontWeight: 500,
       fontSize: 14,
     },
-    smallMediumRoboto: {
-      fontFamily: "Roboto, sans-serif",
+    smallMediumMuseo: {
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 400,
       fontSize: 14,
     },
@@ -168,7 +167,7 @@ export const patientTypography = createTheme({
       fontSize: 12,
     },
     bodyLink: {
-      fontFamily: "Roboto, sans-serif",
+      fontFamily: "Museo Sans, sans-serif",
       fontWeight: 500,
       fontSize: 16,
       lineHeight: "20px",
@@ -293,46 +292,46 @@ export const patientTypography = createTheme({
 
 export const providerTypography = createTheme({
   typography: {
-    fontFamily: "Roboto",
+    fontFamily: "Museo Sans",
     fontWeight: "normal",
     fontSize: 16,
     h1: {
-      fontFamily: "Roboto",
+      fontFamily: "Museo Sans",
       fontWeight: 500,
       fontSize: 24,
     },
     h2: {
-      fontFamily: "Roboto",
+      fontFamily: "Museo Sans",
       fontWeight: 500,
       fontSize: 20,
     },
     h3: {
-      fontFamily: "Roboto",
+      fontFamily: "Museo Sans",
       fontWeight: 500,
       fontSize: 16,
     },
     bodyLarge: {
-      fontFamily: "Roboto",
+      fontFamily: "Museo Sans",
       fontWeight: "normal",
       fontSize: 16,
     },
     bodySmallRegular: {
-      fontFamily: "Roboto",
+      fontFamily: "Museo Sans",
       fontWeight: "normal",
       fontSize: 16,
     },
     bodySmallMedium: {
-      fontFamily: "Roboto",
+      fontFamily: "Museo Sans",
       fontWeight: 500,
       fontSize: 16,
     },
     bodyTinyRegular: {
-      fontFamily: "Roboto",
+      fontFamily: "Museo Sans",
       fontWeight: "normal",
       fontSize: 16,
     },
     bodyTinyMedium: {
-      fontFamily: "Roboto",
+      fontFamily: "Museo Sans",
       fontWeight: 500,
       fontSize: 16,
     },

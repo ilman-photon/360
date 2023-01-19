@@ -98,7 +98,7 @@ const InfoWindowContent = ({
               />
             </Stack>
             <Typography
-              variant="smallMediumRoboto"
+              variant="smallMediumMuseo"
               sx={{ textAlign: "right", pt: "10px" }}
             >
               {data[counter - 1] ? data[counter - 1].distance : "-"}
