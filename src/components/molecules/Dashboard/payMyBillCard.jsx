@@ -205,16 +205,25 @@ export default function PayMyBillCard() {
                       scope="row"
                       tabIndex={0}
                       sx={{ maxWidth: "80px", wordBreak: "break-word" }}
+                      aria-label={`Invoice. ${payMyBillData.invoiceNumber}`}
                     >
                       {payMyBillData.invoiceNumber}
                     </TableCell>
-                    <TableCell tabIndex={0}>
+                    <TableCell
+                      tabIndex={0}
+                      aria-label={`Date of service. ${payMyBillData.serviceDate}`}
+                    >
                       {new moment(payMyBillData.serviceDate).format("MM/DD/YY")}
                     </TableCell>
-                    <TableCell tabIndex={0} sx={{ maxWidth: "80px" }}>{`${
-                      payMyBillData.provider || ""
-                    }`}</TableCell>
-                    <TableCell tabIndex={0}>
+                    <TableCell
+                      tabIndex={0}
+                      sx={{ maxWidth: "80px" }}
+                      aria-label={`Provider. ${payMyBillData.provider}`}
+                    >{`${payMyBillData.provider || ""}`}</TableCell>
+                    <TableCell
+                      tabIndex={0}
+                      aria-label={`Balance. ${getBalanceData(payMyBillData)}`}
+                    >
                       {getBalanceData(payMyBillData)}
                     </TableCell>
                     <TableCell>
