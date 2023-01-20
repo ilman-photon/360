@@ -149,7 +149,7 @@ export default function PatientAcccountCard({
     let defaultIndex = 0;
     config.header.map((item, idx) => {
       if (item.type !== "empty" && item.type !== "textNoSort") {
-        if (item.id === "lockedDate") defaultIndex = idx * 2;
+        if (item.id === "lockedDate") defaultIndex = idx * 2 + 1;
         sort.push(
           {
             label: renderMenuItemContent({
