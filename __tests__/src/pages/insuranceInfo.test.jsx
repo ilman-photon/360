@@ -143,8 +143,8 @@ describe("InsuranceInformationPage Components", () => {
     await inputProviderSubsId("EyeMed");
     await inputPlanGroup();
 
-    await waitFor(() => container.getByLabelText("Yes"));
-    fireEvent.click(container.getByLabelText("Yes"));
+    await waitFor(() => container.getAllByLabelText("Yes")[0]);
+    fireEvent.click(container.getAllByLabelText("Yes")[0]);
     const addButton = await waitFor(() =>
       container.getByTestId(constants.TEST_ID.INSURANCE_TEST_ID.save)
     );
@@ -189,8 +189,8 @@ describe("InsuranceInformationPage Components", () => {
     await inputProviderSubsId("EyeMed");
     await inputPlanGroup();
 
-    await waitFor(() => container.getByLabelText("Yes"));
-    fireEvent.click(container.getByLabelText("Yes"));
+    await waitFor(() => container.getAllByLabelText("Yes"));
+    fireEvent.click(container.getAllByLabelText("Yes")[0]);
     const addButton = await waitFor(() =>
       container.getByTestId(constants.TEST_ID.INSURANCE_TEST_ID.save)
     );
