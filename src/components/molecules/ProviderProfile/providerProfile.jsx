@@ -179,9 +179,11 @@ export default function ProviderProfile({
             tabIndex={0}
             fontSize={getNameFontSize()}
             aria-label={providerData.name}
+            role={isViewSchedule ? "link" : "text"}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name}
             onClick={() => {
-              router.push(`/patient/bio/${providerData.providerId}`);
+              isViewSchedule &&
+                router.push(`/patient/bio/${providerData.providerId}`);
             }}
             className={getDoctorNameStyle()}
           >
