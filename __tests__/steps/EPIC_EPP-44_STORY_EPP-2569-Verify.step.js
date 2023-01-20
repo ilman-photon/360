@@ -154,27 +154,19 @@ defineFeature(feature, (test) => {
 
   const clickSaveAction = async () => {
     await waitFor(() => container.getByTestId("scheduleAppoinment"));
-    const saveButton = container.getByTestId("scheduleAppoinment")
+    const saveButton = container.getByTestId("scheduleAppoinment");
     fireEvent.click(saveButton);
   };
 
   const errorEmailPhone = async () => {
-    await waitFor(() =>
-      container.getByText(/Email ID or Mobile Number/i)
-    );
-    const inputFieldError = container.getByText(
-      /Email ID or Mobile Number/i
-    );
+    await waitFor(() => container.getByText(/Email ID or Mobile Number/i));
+    const inputFieldError = container.getByText(/Email ID or Mobile Number/i);
     expect(inputFieldError).toBeTruthy();
-    expect(/Email ID or Mobile Number/i).toEqual(
-      inputFieldError.textContent
-    );
+    expect(/Email ID or Mobile Number/i).toEqual(inputFieldError.textContent);
   };
 
   const errorRequired = async () => {
-    await waitFor(() =>
-      container.getByText(/thisFieldRequired./i)
-    );
+    await waitFor(() => container.getByText(/thisFieldRequired./i));
   };
 
   test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is not allowing the Maximum limit -1 (Need to confirm)", ({
@@ -1123,7 +1115,7 @@ defineFeature(feature, (test) => {
     then(
       "user should see the Progress bar with Location,  Review, Appointment details, Contact Info, Confirm",
       () => {
-        expect(container.getByText(/Location/i)).toBeInTheDocument();
+        expect(container.getAllByText(/Location/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Date of Birth/i)).toBeInTheDocument();
         expect(container.getAllByText(/Insurance/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Purpose of visit/i)).toBeInTheDocument();
@@ -1197,7 +1189,7 @@ defineFeature(feature, (test) => {
     then(
       "user is able to edit the Location, Date and Time, Insurance carrier, Purpose of visit.",
       () => {
-        expect(container.getByText(/Location/i)).toBeInTheDocument();
+        expect(container.getAllByText(/Location/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Date of Birth/i)).toBeInTheDocument();
         expect(container.getAllByText(/Insurance/i)[0]).toBeInTheDocument();
         expect(container.getByText(/Purpose of visit/i)).toBeInTheDocument();
@@ -2001,9 +1993,12 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then("it should display the error message This field is required.", async () => {
-      // await errorRequired();
-    });
+    then(
+      "it should display the error message This field is required.",
+      async () => {
+        // await errorRequired();
+      }
+    );
   });
 
   test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the error message Invalid date of birth is displaying for invalid Date of birth DD/MM/YYYY", ({
@@ -2053,7 +2048,7 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("click Continue button.", async() => {
+    and("click Continue button.", async () => {
       await clickSaveAction();
     });
 
@@ -2116,9 +2111,12 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then("Guest user should see the correct Date of Birth format.", async () => {
-      // await errorRequired();
-    });
+    then(
+      "Guest user should see the correct Date of Birth format.",
+      async () => {
+        // await errorRequired();
+      }
+    );
   });
 
   test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the future date is not allowing in the Date of Birth field.", ({
@@ -2566,7 +2564,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the below mentioned fields", async () => {
-      defaultValidation()
+      defaultValidation();
     });
   });
 
@@ -2648,8 +2646,11 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then("it should display the error message This field is required.", async () => {
-      // await errorRequired();
-    });
+    then(
+      "it should display the error message This field is required.",
+      async () => {
+        // await errorRequired();
+      }
+    );
   });
 });
