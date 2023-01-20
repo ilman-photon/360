@@ -127,8 +127,8 @@ export default function LockedAccount() {
         type: "user-status",
         valueKey: "status",
         headSx: {
-          margin: "auto"
-        }
+          margin: "auto",
+        },
       },
       {
         type: "unlock-button",
@@ -370,7 +370,7 @@ export default function LockedAccount() {
               color: colors.darkGreen,
               fontSize: "22px",
               fontWeight: 300,
-              maxWidth: "85%"
+              maxWidth: "85%",
             }}
           >{`Are you sure you want to unlock ${showModal.name}?`}</Typography>
         </CustomModal>

@@ -407,7 +407,7 @@ function ShareModal() {
                       aria-label="Email, Direct Email or Phone"
                       label="Email, Direct Email or Phone"
                       id="email"
-                      maxLength={254}
+                      maxLength={50}
                       variant="filled"
                       value={value}
                       data-testid={"share-email"}
@@ -418,6 +418,7 @@ function ShareModal() {
                       sx={{ ...inputStyle }}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      inputProps={{ maxLength: 50 }}
                     />
                   );
                 }}

@@ -76,7 +76,7 @@ export default function MenuList({
     setAnchorEl(null);
   };
   const iconShare = "/icon-share.png";
-  const iconDownload = "/icon-download.png";
+  const iconDownload = "/download_icon.png";
 
   const downloadItem = (
     <MenuItem
@@ -88,8 +88,8 @@ export default function MenuList({
       }}
       data-testId="menu-download-test"
     >
-      <Box className={"MuiSvgIcon-root"}>
-        <Image alt="" src={iconDownload} width={15} height={15} />
+      <Box className={["MuiSvgIcon-root", styles.downloadIcon].join(" ")}>
+        <Image alt="" src={iconDownload} width={12} height={15} />
       </Box>
       Download
     </MenuItem>
@@ -105,8 +105,13 @@ export default function MenuList({
       data-testId="menu-share-test"
       disableRipple
     >
-      <Box className={"MuiSvgIcon-root"}>
-        <Image alt="" src={iconShare} width={15} height={15} />
+      <Box
+        className={"MuiSvgIcon-root"}
+        sx={{
+          paddingRight: "1px",
+        }}
+      >
+        <Image alt="" src={iconShare} width={14} height={13} />
       </Box>
       Share
     </MenuItem>
@@ -122,7 +127,14 @@ export default function MenuList({
       className={styles.menuItem}
       disableRipple
     >
-      <LocalPrintshopOutlinedIcon sx={{ color: colors.darkGreen }} />
+      <LocalPrintshopOutlinedIcon
+        sx={{
+          color: colors.darkGreen,
+          width: "17px",
+          height: "17px",
+          marginRight: "10px !important",
+        }}
+      />
       Print
     </MenuItem>
   );
