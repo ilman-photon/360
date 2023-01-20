@@ -53,8 +53,8 @@ const clickSendButton = (container) => {
 };
 
 const errorMessage = async (container) => {
-  await waitFor(() => container.getByText("thisFieldRequired"));
-  expect(container.getByText("thisFieldRequired")).toBeInTheDocument();
+  await waitFor(() => container.getAllByText("thisFieldRequired"));
+  expect(container.getAllByText("thisFieldRequired")[0]).toBeInTheDocument();
 };
 
 defineFeature(feature, (test) => {

@@ -229,8 +229,7 @@ const SummaryBillDetail = ({
                         </Typography>
                         <Typography
                           sx={{
-                            fontFamily:
-                              key == "balanceDue" ? "Museo Sans" : "Inter",
+                            fontFamily: "Museo Sans",
                             fontStyle: "normal",
                             fontWeight: key == "balanceDue" ? 500 : 700,
                             fontSize: key == "balanceDue" ? "26px" : "18px",

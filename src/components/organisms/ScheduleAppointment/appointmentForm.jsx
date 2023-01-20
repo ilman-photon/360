@@ -214,7 +214,7 @@ export default function AppointmentForm({
     } else {
       return {
         fontSize: isDesktop ? "26px" : "22px",
-        fontFamily: "Inter",
+        fontFamily: "Museo Sans",
         fontWeight: "500",
       };
     }
