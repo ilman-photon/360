@@ -24,6 +24,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import * as Styled from "./ListAutoCompleteStyled";
 import { colors } from "../../../../src/styles/theme";
+import { useEffect } from "react";
 
 export const NewMessageDialog = ({
   providerData = [],
@@ -57,7 +58,7 @@ export const NewMessageDialog = ({
     message: "",
   };
 
-  const { handleSubmit, control, watch, setValue, setFocus, getValues, reset } =
+  const { handleSubmit, control, clearErrors, setFocus, getValues, reset } =
     useForm({
       defaultValues: MESSAGE_DEFAULT_VALUE,
     });
@@ -65,14 +66,17 @@ export const NewMessageDialog = ({
   const { errors } = useFormState({
     control,
   });
-
-  const [watchedName, watchedMessage] = watch(["name", "message"]);
+  const [attachments, setAttachments] = useState([]);
 
   const [isEmptyName, setEmptyName] = useState(false);
   const [isEmptyMessage, setEmptyMessage] = useState(false);
   const [isClicked, setClicked] = useState(false);
   const [nameProvider, setNameProvider] = useState([]);
   const [showInfoName, setShowInfoName] = useState(false);
+
+  useEffect(() => {
+    setAttachments(attachmentsSource);
+  }, [attachmentsSource]);
 
   const onClickCheck = () => {
     setClicked(true);
@@ -82,6 +86,7 @@ export const NewMessageDialog = ({
     onSendMessage(data);
     setNameProviderValue([]);
     reset();
+    setAttachments([]);
   };
 
   const onError = () => {
@@ -120,6 +125,12 @@ export const NewMessageDialog = ({
     }
   };
 
+  const onCloseClicked = () => {
+    setAttachments([]);
+    clearErrors();
+    handleClosed();
+  };
+
   function getNewMessageContentView() {
     return (
       <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
@@ -155,7 +166,7 @@ export const NewMessageDialog = ({
                 {t("newMessageTitle")}
               </DialogContentText>
               <IconButton
-                onClick={handleClosed}
+                onClick={onCloseClicked}
                 tabIndex={0}
                 aria-label="close"
               >
@@ -165,9 +176,9 @@ export const NewMessageDialog = ({
           )}
           <Box
             sx={{
-              background: `${isEmptyName ? "#FBF4F4" : "transparent"}`,
+              background: `${errors.name ? "#FBF4F4" : "transparent"}`,
               border: `${
-                isEmptyName ? "2px solid #B93632" : "1px solid #bdbdbd"
+                errors.name ? "2px solid #B93632" : "1px solid #bdbdbd"
               }`,
             }}
             className={styles.typeNameContainer}
@@ -202,7 +213,7 @@ export const NewMessageDialog = ({
                             inputProps={{
                               ...params.inputProps,
                               "aria-label": `${"Type a Name"} ${
-                                isEmptyName ? ", This field is required" : ""
+                                error ? ", This field is required" : ""
                               }`,
                             }}
                           />
@@ -374,9 +385,17 @@ export const NewMessageDialog = ({
                   />
                 );
               }}
-              rules={{ required: t("thisFieldRequired") }}
+              rules={{
+                validate: {
+                  required: (value) => {
+                    if (attachments.length === 0 && !value)
+                      return t("thisFieldRequired");
+                    else return true;
+                  },
+                },
+              }}
             />
-            <AttachmentFile attachmentsSource={attachmentsSource} />
+            <AttachmentFile attachmentsSource={attachments} />
           </Box>
           {renderMandatoryFieldError(isEmptyMessage)}
         </DialogContent>
@@ -537,7 +556,7 @@ export const NewMessageDialog = ({
       {isDesktop ? (
         <Dialog
           open={opened}
-          close={handleClosed}
+          close={onCloseClicked}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
           sx={{
