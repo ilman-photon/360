@@ -360,7 +360,10 @@ export function updateProviderTimeSchedule(
       );
       providerDataTmp.availability = availability;
       if (providerDataTmp && providerDataTmp.filters) {
-        providerDataTmp.filters["isAvailableToday"] = isAvailableToday;
+        providerDataTmp.filters = {
+          ...providerDataTmp.filters,
+          isAvailableToday
+        };
       }
     }
     updateProviderList.push(providerDataTmp);
