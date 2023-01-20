@@ -122,6 +122,9 @@ export const FilterResultHeading = ({
   }
 
   function renderDesktopView() {
+    const disabledPrevArrowButton = isPrevArrowDisable(dateList)
+      ? `Disabled`
+      : ``;
     return (
       <Box
         className={[
@@ -208,7 +211,7 @@ export const FilterResultHeading = ({
                   ? styles.prevArrowDisable
                   : styles.prevArrowActive
               }
-              aria-label={"Navigate to previous week option"}
+              aria-label={`Navigate to previous week option. ${disabledPrevArrowButton}`}
             >
               <ArrowBackIosIcon
                 sx={{
