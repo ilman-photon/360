@@ -18,7 +18,7 @@ import { act } from "react-dom/test-utils";
 import {
   mockAppointmentTypes,
   mockInsurance,
-  mockSubmitFilterReal
+  mockSubmitFilterReal,
 } from "../../../__mocks__/mockResponse";
 import { TEST_ID } from "../../../src/utils/constants";
 import { createMatchMedia } from "../../../__mocks__/commonSteps";
@@ -79,7 +79,7 @@ describe("App", () => {
       .reply(200, mockInsurance);
     mock
       .onPut("/ecp/appointments/available-slot?searchText=Kabupaten Bogor")
-      .reply(200, mockSubmitFilterReal)
+      .reply(200, mockSubmitFilterReal);
     mock.onGet("/api/dummy/notification").reply(200, []);
     mock
       .onGet(
@@ -237,13 +237,13 @@ describe("App", () => {
     fireEvent.click(
       container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
     );
-    clickSearch()
+    clickSearch();
   };
 
   const clickSearch = async () => {
-    const searchBtn = await waitFor(() => container.getByTestId("searchbtn"))
-    fireEvent.click(searchBtn)
-  }
+    const searchBtn = await waitFor(() => container.getByTestId("searchbtn"));
+    fireEvent.click(searchBtn);
+  };
 
   it("on Submit filter", flowSubmitFilter, 20000);
   it("on Submit filter on tablet", async () => {
@@ -290,7 +290,7 @@ describe("App", () => {
         TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.timeslotButton
       )
     );
-  }, 20000);
+  });
 
   it("Handle filterSuggestionData purposeOfVisit", async () => {
     const server = await getStaticProps();
