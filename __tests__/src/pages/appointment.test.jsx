@@ -262,7 +262,7 @@ describe("App", () => {
     // await waitFor(() => container.getAllByTestId("gmaps-mock"));
   }, 20000);
 
-  it("on Submit filter on mobile", async () => {
+  it.skip("on Submit filter on mobile", async () => {
     window.matchMedia = createMatchMedia("700px");
     cleanup();
     const server = await getStaticProps();

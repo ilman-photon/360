@@ -362,7 +362,7 @@ export function updateProviderTimeSchedule(
       if (providerDataTmp && providerDataTmp.filters) {
         providerDataTmp.filters = {
           ...providerDataTmp.filters,
-          isAvailableToday
+          isAvailableToday,
         };
       }
     }
