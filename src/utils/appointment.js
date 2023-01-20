@@ -324,10 +324,11 @@ export function getProvideOverlay(
       new Date(endDate),
       false
     );
-    providerDataTmp.availability = createAvailableTimeSlot(
+    const { availability } = createAvailableTimeSlot(
       providerDataTmp,
       getRangeDate
     );
+    providerDataTmp.availability = availability;
   }
 
   return providerDataTmp;
@@ -353,10 +354,14 @@ export function updateProviderTimeSchedule(
         new Date(endDate),
         false
       );
-      providerDataTmp.availability = createAvailableTimeSlot(
+      const { availability, isAvailableToday } = createAvailableTimeSlot(
         providerDataTmp,
         getRangeDate
       );
+      providerDataTmp.availability = availability;
+      if (providerDataTmp && providerDataTmp.filters) {
+        providerDataTmp.filters["isAvailableToday"] = isAvailableToday;
+      }
     }
     updateProviderList.push(providerDataTmp);
   }
@@ -709,6 +714,7 @@ function parseTimeSlotAppointment(timeSlotList) {
 
 function createAvailableTimeSlot(providerData, getRangeDate) {
   const availabilityList = [];
+  let isAvailableToday = false;
   for (const dateItem of getRangeDate.dateRange) {
     const availability = {
       date: yyyymmddDateFormat(dateItem),
@@ -730,6 +736,7 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
             el.isDisable = true;
           } else {
             el.isDisable = false;
+            isAvailableToday = true;
           }
         });
         availability.list = isSameAvailability.list;
@@ -747,7 +754,7 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
     }
     availabilityList.push(availability);
   }
-  return availabilityList;
+  return { availability: availabilityList, isAvailableToday };
 }
 
 function setAvailableToday(dateSchedule) {
@@ -943,10 +950,12 @@ export async function parseProviderListData(
 
   const getRangeDate = getDates(new Date(startDate), new Date(endDate), false);
   for (const providerData of data.listOfProvider) {
-    providerData.availability = createAvailableTimeSlot(
+    const { availability, isAvailableToday } = createAvailableTimeSlot(
       providerData,
       getRangeDate
     );
+    providerData.availability = availability;
+    providerData.filters["isAvailableToday"] = isAvailableToday;
   }
 
   if (languageFilter.length > 0) {

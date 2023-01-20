@@ -664,7 +664,9 @@ export default function Register({
               sx={{ width: { xs: "288px", lg: "486px" }, alignSelf: "center" }}
             />
             <Typography variant="caption" style={styles.bottomParagraph}>
-              <span role="group" tabIndex={0}>Already have an account? </span>
+              <span role="group" tabIndex={0}>
+                Already have an account?{" "}
+              </span>
               <Link
                 href="/patient/login"
                 data-testid={REGISTER_TEST_ID.loginlink}
