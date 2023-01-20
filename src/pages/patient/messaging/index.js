@@ -325,6 +325,7 @@ export default function MessagingPage() {
    * Handle attachment file
    */
   const handleUploadAttachments = async (event) => {
+    console.log("uploading...");
     const max = 4;
     const maxSize = max * 1024 * 1024; // 4MB
     if (event.target.files && event.target.files[0]) {
@@ -337,8 +338,11 @@ export default function MessagingPage() {
           digitalAsset.setFile(file);
           await digitalAsset.upload();
           if (digitalAsset.status === "success") {
-            addAttachmentsSource.push(digitalAsset.source);
-            setAddAttachmentsSource(assetUploaded);
+            console.log("upload success");
+            setAddAttachmentsSource((oldArray) => [
+              ...oldArray,
+              digitalAsset.source,
+            ]);
           }
         } catch (error) {
           console.error("Error when uploading", error);
