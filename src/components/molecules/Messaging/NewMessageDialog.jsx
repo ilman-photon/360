@@ -8,7 +8,6 @@ import { useTranslation } from "next-i18next";
 import {
   Box,
   Button,
-  TextField,
   Typography,
   Autocomplete,
   IconButton,
@@ -17,7 +16,7 @@ import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
 import { Controller, useForm, useFormState } from "react-hook-form";
-import StyledInput from "../../atoms/Input/input";
+import StyledInput, { StyledRedditField } from "../../atoms/Input/input";
 import AttachmentFile from "./AttachmentFile";
 import styles from "./styles.module.scss";
 import SearchIcon from "@mui/icons-material/Search";
@@ -110,7 +109,7 @@ export const NewMessageDialog = ({
           position: isError ? "unset" : "absolute",
         }}
       >
-        This field is required
+        {t("thisFieldRequired")}
       </Typography>
     );
   }
@@ -186,34 +185,56 @@ export const NewMessageDialog = ({
             <Box className={styles.searchIcon}>
               <SearchIcon sx={{ width: "24px" }} />
             </Box>
-            <Styled.InputWrapper>
+            <Styled.InputWrapper
+              sx={{
+                // ".MuiInputBase-root.Mui-error": {
+                backgroundColor: errors.name ? "#FBF4F4" : "transparent",
+                // },
+              }}
+            >
               <Controller
                 name="name"
                 control={control}
-                defaultValue=""
-                render={({ fieldState: { error }, field: { ref } }) => {
+                render={({
+                  fieldState: { error },
+                  field: { onChange, value, ref },
+                }) => {
                   return (
                     <Autocomplete
                       multiple
                       id="providerName"
                       options={providerData}
+                      filterSelectedOptions
                       getOptionLabel={(option) => option?.name}
                       onChange={(_event, value) => {
-                        setNameProviderValue(value);
+                        if (value.length < 2) onChange(value);
                       }}
-                      value={nameProvider}
+                      isOptionEqualToValue={(option) => option?.name}
                       renderInput={(params) => {
+                        console.log({ errors });
                         return (
-                          <TextField
+                          <StyledRedditField
                             {...params}
-                            variant="standard"
-                            label="Type a Name"
-                            required
+                            id="name"
+                            label="Type a name"
+                            sx={{
+                              width: "100%",
+                              ".MuiFilledInput-root": {
+                                backgroundColor: "#FFF",
+                              },
+                              ".MuiFormHelperText-root.Mui-error": {
+                                fontSize: "0.75rem",
+                              },
+                            }}
                             inputRef={ref}
+                            error={!!error}
+                            size="small"
+                            variant="standard"
+                            required
                             inputProps={{
                               ...params.inputProps,
                               "aria-label": `${"Type a Name"} ${
-                                error ? ", This field is required" : ""
+                                error ? `, ${error.message}` : ""
                               }`,
                             }}
                           />
@@ -229,8 +250,6 @@ export const NewMessageDialog = ({
                             borderBottom: "none",
                           },
                         ".MuiInput-input": {
-                          padding: "0px !important",
-                          height: "52px",
                           background: "transparent",
                         },
                         ".MuiAutocomplete-tag": {
@@ -238,11 +257,6 @@ export const NewMessageDialog = ({
                           background: "#EEF5F7",
                           borderRadius: "4px",
                           height: "30px",
-                          top: "7px",
-                        },
-                        ".MuiInputLabel-root.Mui-focused": {
-                          color: "#003B4A",
-                          top: "3px",
                         },
                         ".MuiInputLabel-root": {
                           fontSize: "12px",
@@ -250,9 +264,6 @@ export const NewMessageDialog = ({
                         },
                         ".MuiInput-root:hover:not(.Mui-disabled):before": {
                           borderBottom: "none",
-                        },
-                        ".MuiInput-root": {
-                          marginTop: "0px !important",
                         },
                       }}
                       error={!!error}
@@ -264,8 +275,8 @@ export const NewMessageDialog = ({
               />
             </Styled.InputWrapper>
           </Box>
-          {renderMandatoryFieldError(isEmptyName)}
-          {showInfoName && (
+          {renderMandatoryFieldError(errors.name)}
+          {getValues("name").length > 0 && (
             <Typography
               tabIndex={0}
               sx={{
@@ -315,7 +326,7 @@ export const NewMessageDialog = ({
                   required
                   inputProps={{
                     "aria-label": `${"Subject"} ${
-                      error ? ", Please update all required fields." : ""
+                      error ? `, ${error.message}` : ""
                     }`,
                   }}
                   inputRef={ref}
@@ -326,12 +337,10 @@ export const NewMessageDialog = ({
           />
           <Box
             sx={{
-              padding: "0 0 8px !important",
               marginTop: "0 !important",
               border: `${
-                isEmptyMessage ? "2px solid #B93632" : "1px solid #bdbdbd"
+                errors.message ? "2px solid #B93632" : "1px solid #bdbdbd"
               }`,
-              background: `${isEmptyMessage ? "#FBF4F4" : "transparent"}`,
             }}
             className={styles.messagesTextAreaContent}
           >
@@ -347,10 +356,12 @@ export const NewMessageDialog = ({
                     aria-label="Write a message"
                     label={t("writeMessages")}
                     id="message"
+                    multiline
+                    rows={3}
                     maxLength={254}
                     ref={refAttachments}
                     variant="filled"
-                    value={valueText || value}
+                    value={value}
                     onChange={(event) => {
                       onChange(event);
                       if (isClicked) {
@@ -370,7 +381,8 @@ export const NewMessageDialog = ({
                       },
                       ".MuiFilledInput-root": {
                         border: "unset",
-                        height: isSelectedMsg?.active ? "450px" : "52px",
+                        height: "unset",
+                        // height: isSelectedMsg?.active ? "450px" : "52px",
                       },
                     }}
                     error={!!error}
@@ -378,7 +390,7 @@ export const NewMessageDialog = ({
                     inputRef={ref}
                     inputProps={{
                       "aria-label": `${"Message"} ${
-                        error ? ", This field is required" : ""
+                        error ? `, ${error.message}` : ""
                       }`,
                     }}
                     // helperText={error ? error.message : null}
@@ -397,7 +409,7 @@ export const NewMessageDialog = ({
             />
             <AttachmentFile attachmentsSource={attachments} />
           </Box>
-          {renderMandatoryFieldError(isEmptyMessage)}
+          {renderMandatoryFieldError(errors.message)}
         </DialogContent>
         <DialogActions
           sx={{
@@ -563,7 +575,7 @@ export const NewMessageDialog = ({
             ".MuiDialog-container .MuiPaper-root ": {
               width: "700px",
               position: "absolute",
-              top: "116px",
+              // top: "116px",
             },
           }}
         >
