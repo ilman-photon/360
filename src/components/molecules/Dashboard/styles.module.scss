@@ -477,6 +477,13 @@
 .menuItem {
   min-height: 32px;
   height: 32px;
+
+  .downloadIcon {
+    align-items: center;
+    display: flex;
+    margin-left: 2px !important;
+    margin-right: 13px !important;
+  }
 }
 
 .dialogActionContainer {

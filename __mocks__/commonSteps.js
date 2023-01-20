@@ -1089,7 +1089,7 @@ export async function renderResultsScreen() {
   );
   expect(
     await waitFor(() =>
-      container.getByTestId(TEST_ID.APPOINTMENT_TEST_ID.FILTER_RESULT.container)
+      container.getAllByTestId(TEST_ID.APPOINTMENT_TEST_ID.FILTER_RESULT.container)[0]
     )
   ).toBeInTheDocument();
 }

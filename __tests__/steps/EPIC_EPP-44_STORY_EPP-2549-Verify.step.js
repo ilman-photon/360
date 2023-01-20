@@ -97,8 +97,8 @@ defineFeature(feature, (test) => {
       container = await renderScheduleAppointment(mock);
     });
 
-    and("user enters the location", () => {
-      inputLocation(container);
+    and("user enters the location", async () => {
+      await inputLocation(container);
     });
 
     and("user selects the date of appointment", async () => {
@@ -108,8 +108,8 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user chooses the purpose of the visit", () => {
-      inputPurpose(container);
+    and("user chooses the purpose of the visit", async () => {
+      await inputPurpose(container);
     });
 
     and("user enters the insurance name", async () => {
@@ -121,12 +121,12 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user clicks on the Search button", () => {
-      clickSearch(container);
+    and("user clicks on the Search button", async() => {
+      await clickSearch(container);
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      renderResultsScreen(container);
+    and("user views the results in the Schedule Appointments screen", async () => {
+      await renderResultsScreen(container);
     });
 
     and("user selected a time slot", async () => {
@@ -221,7 +221,8 @@ defineFeature(feature, (test) => {
         act(() => {
           fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
         });
-        clickSearch();
+        await clickSearch(container);
+        await renderResultsScreen(container);
       }
     );
 
@@ -260,12 +261,12 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user clicks on the Continue button", () => {
-      clickSearch(container);
+    and("user clicks on the Continue button", async () => {
+      await clickSearch(container);
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      renderResultsScreen(container);
+    and("user views the results in the Schedule Appointments screen", async() => {
+      await renderResultsScreen(container);
     });
 
     and("user selected a time slot", async () => {
@@ -314,14 +315,14 @@ defineFeature(feature, (test) => {
         act(() => {
           fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
         });
-        clickSearch(container);
+        await clickSearch(container);
       }
     );
 
     and(
       "user selects the time slot and review the appoiment details",
       async () => {
-        renderResultsScreen(container);
+        await renderResultsScreen(container);
         expect(
           container.getByText("3 In-network providers")
         ).toBeInTheDocument();
@@ -345,7 +346,7 @@ defineFeature(feature, (test) => {
     and("user views the Purpose of the Visit", async () => {
       cleanup();
       container = await renderScheduleAppointment(mock);
-      inputPurpose(container);
+      await inputPurpose(container);
       expect(container.getAllByText(/Purpose of Visit/i)).toBeTruthy();
     });
 
@@ -358,12 +359,12 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user clicks on the continue button", () => {
-      clickSearch(container);
+    and("user clicks on the continue button", async () => {
+      await clickSearch(container);
     });
 
-    and("user views the results in the Schedule Appointments screen", () => {
-      renderResultsScreen(container);
+    and("user views the results in the Schedule Appointments screen", async () => {
+      await renderResultsScreen(container);
     });
 
     and("user selected a time slot", async () => {
