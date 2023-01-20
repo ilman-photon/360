@@ -104,10 +104,14 @@ export default function StepperAppoinment({ ...props }) {
                   fontSize: "15px",
                 },
                 fontFamily: "Museo Sans !important",
+                display: {
+                  xs: idx === props.activeStep ? "flex" : "none",
+                  sm: "flex",
+                },
               }}
               aria-label={`Stepper ${idx + 1}. ${label} `}
             >
-              {isDesktop && idx === props.activeStep ? label : null}
+              {label}
             </StepLabel>
           </Step>
         ))}

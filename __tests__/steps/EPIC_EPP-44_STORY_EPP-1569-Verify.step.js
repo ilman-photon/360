@@ -184,7 +184,7 @@ defineFeature(feature, (test) => {
 
   const guestSeeGuestScreen = async () => {
     await waitFor(() => container.getByText(/Contact Info/i));
-  }
+  };
 
   test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the Mobile number is not allowing the Maximum limit -1 (Need to confirm)", ({
     given,
@@ -222,7 +222,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -288,7 +288,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -354,7 +354,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -420,7 +420,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -485,7 +485,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     then(
@@ -532,7 +532,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -601,7 +601,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -670,7 +670,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -753,7 +753,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -835,7 +835,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -902,7 +902,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -973,7 +973,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -1102,7 +1102,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -1132,7 +1132,7 @@ defineFeature(feature, (test) => {
     then(
       "user should see the Progress bar with Location,  Review, Appointment details, Contact Info, Confirm",
       () => {
-        expect(container.getByText(/Location/i)).toBeInTheDocument();
+        expect(container.getAllByText(/Location/i)[0]).toBeInTheDocument();
       }
     );
   });
@@ -1173,7 +1173,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -1203,7 +1203,7 @@ defineFeature(feature, (test) => {
     then(
       "user is able to edit the Location, Date and Time, Insurance carrier, Purpose of visit.",
       () => {
-        expect(container.getByText(/Location/i)).toBeInTheDocument();
+        expect(container.getAllByText(/Location/i)[0]).toBeInTheDocument();
       }
     );
   });
@@ -1244,7 +1244,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -1310,7 +1310,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -1426,7 +1426,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and(
@@ -1484,7 +1484,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and(
@@ -1545,7 +1545,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and(
@@ -1599,7 +1599,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and(
@@ -1660,7 +1660,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("without entering the Last name, click the Continue", () => {
@@ -1708,7 +1708,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the Last name with numbers, click the Continue", async () => {
@@ -1765,7 +1765,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and(
@@ -1824,7 +1824,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and(
@@ -1880,7 +1880,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and(
@@ -1941,7 +1941,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and(
@@ -1997,7 +1997,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("without entering the Date of birth, click the Continue", () => {
@@ -2045,7 +2045,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name", () => {
@@ -2104,7 +2104,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name", () => {
@@ -2160,7 +2160,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -2216,7 +2216,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -2272,7 +2272,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -2328,7 +2328,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -2387,7 +2387,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -2448,7 +2448,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
@@ -2508,7 +2508,7 @@ defineFeature(feature, (test) => {
     });
 
     and("Guest user should see the Guest Access screen.", () => {
-      guestSeeGuestScreen()
+      guestSeeGuestScreen();
     });
 
     and("enter the First name, Last name.", () => {
