@@ -411,7 +411,7 @@ export default function Prescriptions({
                 className={styles.viewPrescriptionText}
                 sx={{
                   color: "#008294",
-                  fontFamily: "Inter",
+                  fontFamily: "Museo Sans",
                   paddingRight: "7px",
                 }}
                 tabIndex={0}
@@ -478,7 +478,7 @@ export default function Prescriptions({
               className={styles.viewPrescriptionText}
               sx={{
                 color: "#008294",
-                fontFamily: "Inter",
+                fontFamily: "Museo Sans",
                 paddingRight: "7px",
               }}
               tabIndex={0}
@@ -545,7 +545,7 @@ export default function Prescriptions({
               className={styles.viewPrescriptionText}
               sx={{
                 color: "#008294",
-                fontFamily: "Inter",
+                fontFamily: "Museo Sans",
                 paddingRight: "7px",
               }}
               tabIndex={0}

@@ -80,7 +80,6 @@ export default function AppointmentDetails({
               "letter-spacing": "0.0016em",
               color: colors.darkGreen,
               fontWeight: "600",
-              fontSize: "16px",
             }}
           >
             <Typography
@@ -131,7 +130,6 @@ export default function AppointmentDetails({
               "letter-spacing": "0.0016em",
               color: colors.darkGreen,
               fontWeight: "600",
-              fontSize: "16px",
             }}
           >
             <Typography
@@ -177,7 +175,6 @@ export default function AppointmentDetails({
               "letter-spacing": "0.0016em",
               color: colors.darkGreen,
               fontWeight: "600",
-              fontSize: "16px",
             }}
           >
             <Typography
