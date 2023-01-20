@@ -115,6 +115,8 @@ export default function RowRadioButtonsGroup({
               }
               label={customRadioLabel ? customRadioLabel(option) : option.label}
               tabIndex={0}
+              aria-label={`${option.label}`}
+              role="radio"
               sx={{
                 "& .MuiRadio-root": {
                   padding: isCancelSchedule ? "2px 9px 2px 16px" : "9px",

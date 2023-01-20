@@ -730,7 +730,7 @@ defineFeature(feature, (test) => {
       "user should see verbiage Already have an account? with Login link",
       () => {
         const title = container.getByText("Already have an account?");
-        expect("Already have an account? Login").toEqual(title.textContent);
+        expect("Already have an account? ").toEqual(title.textContent);
       }
     );
 
@@ -857,7 +857,7 @@ defineFeature(feature, (test) => {
       "user should see verbiage Already have an account? with Login link",
       (arg0) => {
         const title = container.getByText("Already have an account?");
-        expect("Already have an account? Login").toEqual(title.textContent);
+        expect("Already have an account? ").toEqual(title.textContent);
       }
     );
 
@@ -982,7 +982,7 @@ defineFeature(feature, (test) => {
       "user should see verbiage Already have an account? with Login link",
       () => {
         const title = container.getByText("Already have an account?");
-        expect("Already have an account? Login").toEqual(title.textContent);
+        expect("Already have an account? ").toEqual(title.textContent);
       }
     );
 
@@ -1104,7 +1104,7 @@ defineFeature(feature, (test) => {
       "user should see verbiage Already have an account? with Login link",
       (arg0) => {
         const title = container.getByText("Already have an account?");
-        expect("Already have an account? Login").toEqual(title.textContent);
+        expect("Already have an account? ").toEqual(title.textContent);
       }
     );
 
@@ -1221,7 +1221,7 @@ defineFeature(feature, (test) => {
       "user should see verbiage Already have an account? with Login link",
       () => {
         const title = container.getByText("Already have an account?");
-        expect("Already have an account? Login").toEqual(title.textContent);
+        expect("Already have an account? ").toEqual(title.textContent);
       }
     );
 
@@ -1237,7 +1237,7 @@ defineFeature(feature, (test) => {
       expect(lastnameField.value).toEqual("asd%^&%asd");
       expect(emailField[0].value).toEqual("a@aa.aa");
       expect(mobileField.value).toEqual("");
-      expect(passwordField.value).toEqual("password")
+      expect(passwordField.value).toEqual("password");
     });
 
     then(
@@ -1327,7 +1327,7 @@ defineFeature(feature, (test) => {
       "user should see verbiage Already have an account? with Login link",
       () => {
         const title = container.getByText("Already have an account?");
-        expect("Already have an account? Login").toEqual(title.textContent);
+        expect("Already have an account? ").toEqual(title.textContent);
       }
     );
 
@@ -1343,7 +1343,7 @@ defineFeature(feature, (test) => {
       expect(lastnameField.value).toEqual("asd%^&%asd");
       expect(emailField[0].value).toEqual("a@aa.aa");
       expect(mobileField.value).toEqual("");
-      expect(passwordField.value).toEqual("password")
+      expect(passwordField.value).toEqual("password");
     });
 
     then(

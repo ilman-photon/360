@@ -234,7 +234,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -300,7 +300,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -366,7 +366,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -432,7 +432,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -682,7 +682,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -2520,7 +2520,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 

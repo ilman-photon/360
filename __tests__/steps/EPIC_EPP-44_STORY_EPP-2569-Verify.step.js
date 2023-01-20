@@ -217,7 +217,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -283,7 +283,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -349,7 +349,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -415,7 +415,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -543,8 +543,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(continueButton);
     });
 
-    then("Email should ask for the mandatory.", async () => {
-      // await errorRequired();
+    then("Email should ask for the mandatory.", () => {
+      defaultValidation();
     });
   });
 
@@ -665,7 +665,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -1993,12 +1993,9 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then(
-      "it should display the error message This field is required.",
-      async () => {
-        // await errorRequired();
-      }
-    );
+    then("it should display the error message This field is required.", () => {
+      defaultValidation();
+    });
   });
 
   test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the error message Invalid date of birth is displaying for invalid Date of birth DD/MM/YYYY", ({
@@ -2111,12 +2108,9 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then(
-      "Guest user should see the correct Date of Birth format.",
-      async () => {
-        // await errorRequired();
-      }
-    );
+    then("Guest user should see the correct Date of Birth format.", () => {
+      defaultValidation();
+    });
   });
 
   test("EPIC_EPP-44_STORY_EPP-1569-Verify whether the future date is not allowing in the Date of Birth field.", ({
@@ -2170,8 +2164,8 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then("user should see the appropriate error message.", async () => {
-      // await errorRequired();
+    then("user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
@@ -2226,8 +2220,8 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then("user should see the appropriate error message.", async () => {
-      // await errorRequired();
+    then("user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
@@ -2282,8 +2276,8 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then("user should see the appropriate error message.", async () => {
-      // await errorRequired();
+    then("user should see the appropriate error message.", () => {
+      defaultValidation();
     });
   });
 
@@ -2402,8 +2396,8 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then("error message should not display for Email field.", async () => {
-      // await errorRequired();
+    then("error message should not display for Email field.", () => {
+      defaultValidation();
     });
   });
 
@@ -2515,7 +2509,7 @@ defineFeature(feature, (test) => {
     });
 
     and("enter the Email ID", () => {
-      const field4 = container.getByLabelText("Email");
+      const field4 = container.getAllByLabelText("Email")[0];
       fireEvent.change(field4, { target: { value: "aa@aa.aa" } });
     });
 
@@ -2646,11 +2640,8 @@ defineFeature(feature, (test) => {
       await clickSaveAction();
     });
 
-    then(
-      "it should display the error message This field is required.",
-      async () => {
-        // await errorRequired();
-      }
-    );
+    then("it should display the error message This field is required.", () => {
+      defaultValidation();
+    });
   });
 });

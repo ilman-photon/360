@@ -241,6 +241,7 @@ export default function Register({
                 mx: "10px !important",
                 my: "8px !important",
               }}
+              tabIndex={0}
             >
               *Required Fields
             </Typography>
@@ -545,7 +546,10 @@ export default function Register({
                 }}
               />
 
-              <Typography sx={{ ...styles.passwordLabel, fontSize: "18px" }}>
+              <Typography
+                sx={{ ...styles.passwordLabel, fontSize: "18px" }}
+                tabIndex={0}
+              >
                 Please create a password
               </Typography>
               <Controller
@@ -600,6 +604,7 @@ export default function Register({
                   ref={msgRef}
                   variant="bodyMedium"
                   sx={{ fontWeight: 500, color: colors.darkGreen }}
+                  tabIndex={0}
                 >
                   Your username will be {getRegisteredUsername()}
                 </Typography>
@@ -646,7 +651,11 @@ export default function Register({
               </LoadingButton>
             </form>
 
-            <Typography variant="caption" style={styles.bottomParagraph}>
+            <Typography
+              variant="caption"
+              style={styles.bottomParagraph}
+              tabIndex={0}
+            >
               By registering, you accept to our Terms & <br /> Conditions and
               Privacy Policy
             </Typography>
@@ -655,7 +664,7 @@ export default function Register({
               sx={{ width: { xs: "288px", lg: "486px" }, alignSelf: "center" }}
             />
             <Typography variant="caption" style={styles.bottomParagraph}>
-              Already have an account?{" "}
+              <span role="group" tabIndex={0}>Already have an account? </span>
               <Link
                 href="/patient/login"
                 data-testid={REGISTER_TEST_ID.loginlink}
