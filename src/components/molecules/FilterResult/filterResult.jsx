@@ -151,6 +151,12 @@ export const FilterResult = ({
   }
 
   function renderMobileView() {
+    const disabledArrow = isPrevArrowDisable(
+      dateList,
+      dateList.dateRange[currentDateIndex]
+    )
+      ? `Disabled`
+      : ``;
     return (
       <Box
         sx={{
@@ -218,7 +224,7 @@ export const FilterResult = ({
                 padding: 0,
                 color: "#003b4a",
               }}
-              aria-label={"Navigate to previous week option"}
+              aria-label={`Navigate to previous week option. ${disabledArrow}`}
               data-testId="filter-result-arrow-button-prev"
             >
               <ArrowBackIosIcon
