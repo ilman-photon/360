@@ -6,6 +6,8 @@
   height: 100%;
   font-family: "Museo Sans", sans-serif;
   background-color: #f4f4f4;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .sidebarLinkWrapper {
@@ -22,9 +24,9 @@
 }
 
 .sidebarLink {
-  display: flex;
+  display: block;
   align-items: center;
-  padding: 13px 16px;
+  padding: 9px 18px;
   gap: 10px;
 
   // width: 324px;

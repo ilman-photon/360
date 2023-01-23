@@ -79,7 +79,7 @@ export const AccountSidebar = () => {
 
   return (
     <div className={styles.sidebarWrapper}>
-      <Stack className={styles.sidebarLinkWrapper} spacing={2}>
+      <Stack className={styles.sidebarLinkWrapper} spacing={1}>
         {sidebarLinks.map((link, idx) => {
           return link.href ? (
             <Stack
