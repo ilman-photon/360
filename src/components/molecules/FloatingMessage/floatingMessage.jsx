@@ -37,6 +37,8 @@ export default function FloatingMessage({
       sx={sx}
     >
       <Alert
+        tabIndex={0}
+        aria-label={text}
         icon={<CheckCircleOutlineIcon />}
         onClose={handleClose}
         data-testId="floating-message-close"

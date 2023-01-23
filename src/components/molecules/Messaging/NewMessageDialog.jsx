@@ -437,6 +437,7 @@ export const NewMessageDialog = ({
             }}
           >
             <AttachmentOutlinedIcon
+              tabIndex={0}
               aria-label={t("addAttachments")}
               sx={{
                 color: "#0000008A",
@@ -470,6 +471,7 @@ export const NewMessageDialog = ({
                   onClick={() => onSaveToDraft(getValues())}
                   data-testId="draft-new-message"
                   aria-label={t("moveToDraft")}
+                  tabIndex={0}
                   sx={{
                     color: "#007E8F",
                     fontSize: "16px",
@@ -492,6 +494,7 @@ export const NewMessageDialog = ({
                 <Button
                   type="submit"
                   onClick={onClickCheck}
+                  tabIndex={0}
                   aria-label={t("sendText")}
                   data-testId="send-new-message"
                   sx={{
