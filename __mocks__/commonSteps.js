@@ -1398,8 +1398,7 @@ export async function renderMessagePage(mockInstance) {
     );
   });
   await waitFor(() => container.getAllByLabelText(/messagingText/i)[0]);
-  expect(container.getAllByText(/filterByText/i)[0]).toBeInTheDocument();
-
+  await waitFor(() => container.getAllByText(/filterByText/i)[0]);
   await waitFor(() => container.getByTestId("inbox-tab"));
 
   const inboxTab = container.getByTestId("inbox-tab");
