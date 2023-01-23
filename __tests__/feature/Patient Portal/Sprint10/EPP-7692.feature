@@ -7,6 +7,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - Download the o
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-5256_STORY_EPP-7692- Verify User should be able to see the download the form to the user’s local system/ device
     Given User is logged into the portal

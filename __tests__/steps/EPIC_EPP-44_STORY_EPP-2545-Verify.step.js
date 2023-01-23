@@ -389,6 +389,7 @@ defineFeature(feature, (test) => {
       userType: "patient",
     };
     mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+
   };
 
   const providesUsernamePassword = () => {
@@ -402,10 +403,12 @@ defineFeature(feature, (test) => {
     expect("formTitle").toEqual(title.textContent);
   };
 
-  const clickLogin = () => {
-    const loginButton = container.getByRole("button", {
-      name: /loginButtonLabel/i,
-    });
+  const clickLogin = async () => {
+    const loginButton = await waitFor(() => {
+      container.getByRole("button", {
+        name: /loginButtonLabel/i,
+      });
+    })
     fireEvent.click(loginButton);
   };
 
@@ -532,7 +535,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user clicks on Login button", () => {
-      // clickLogin();
+      clickLogin();
     });
 
     then("user navigates to the Patient Portal application", () => {
@@ -594,7 +597,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user clicks on Login button", () => {
-      // clickLogin();
+      clickLogin();
     });
 
     then("user navigates to the Patient Portal application", () => {
@@ -641,18 +644,18 @@ defineFeature(feature, (test) => {
     });
 
     then("user should lands onto review appointment page", async () => {
-      // container.rerender(
-      //   <Provider store={store}>
-      //     {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
-      //   </Provider>
-      // );
-      // await waitFor(() => container.getAllByText("Review Appointment Details"));
+      container.rerender(
+        <Provider store={store}>
+          {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
+        </Provider>
+      );
+      await waitFor(() => container.getAllByText("Review Appointment Details"));
     });
 
     and("user should see Review Appointnment detail", () => {
-      // expect(
-      //   container.getAllByText("Review Appointment Details")[0]
-      // ).toBeTruthy();
+      expect(
+        container.getAllByText("Review Appointment Details")[0]
+      ).toBeTruthy();
     });
   });
 });
