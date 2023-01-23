@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { doLogin, renderLogin } from "../../__mocks__/commonSteps";
 import LoginSecurityPage from "../../src/pages/patient/account/login-&-security";
 import { onViewSecurityQuestions } from "../../src/store/accountRecovery";
+import moment from "moment";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint10/EPP-9328.feature"
@@ -53,15 +54,18 @@ defineFeature(feature, (test) => {
     mock
       .onGet(`/ecp/accountRecovery/viewSecurityQuestions/${patientId}`)
       .reply(200, mockSecurityQuestions);
+    mock.onPost(`/ecp/patient/getLastUpdatedPasswordDate`).reply(200, {
+      lastUpdatedPasswordDate: moment().subtract(2, "m").format(),
+    });
   }
 
-  // const userLandsOnLoginSecurityScreen = () => {
-  //   container.rerender(
-  //     <Provider store={store}>
-  //       <LoginSecurityPage />
-  //     </Provider>
-  //   )
-  // }
+  const userLandsOnLoginSecurityScreen = () => {
+    container.rerender(
+      <Provider store={store}>
+        <LoginSecurityPage />
+      </Provider>
+    )
+  }
 
   const userSeeUpdateSecurityQuestionBtn = async () => {
     const updateBtn = await waitFor(() => container.getByTestId("update-security-question-btn"))
@@ -80,6 +84,7 @@ defineFeature(feature, (test) => {
       </Provider>
     )
   }
+  
 
   const userSeeQuestionOne = async () => {
     const questionOne = await waitFor(() => container.getByText(/What was the first book you read?/i))
@@ -111,15 +116,15 @@ defineFeature(feature, (test) => {
     });
 
     when('User lands on Set-up/ Update Security Question screen', async () => {
-      //userLandsOnLoginSecurityScreen()
+      userLandsOnLoginSecurityScreen()
     });
 
     then('User should be able to view Set security questions& answers CTA if security questions are not set by user during registration', () => {
-      //userSeeUpdateSecurityQuestionBtn()
+      userSeeUpdateSecurityQuestionBtn()
     });
 
     when('User clicks on the Set security questions& answers CTA', () => {
-      //userClickUpdateSecurityQuestionBtn()
+      userClickUpdateSecurityQuestionBtn()
     });
 
     then('User should be navigated to Set security questions& answers screen', () => {
@@ -146,15 +151,15 @@ defineFeature(feature, (test) => {
     });
 
     when('User lands on Set-up/ Update Security Question screen', async () => {
-      //userLandsOnLoginSecurityScreen()
+      userLandsOnLoginSecurityScreen()
     });
 
     then('User should be able to view Set security questions& answers CTA if security questions are not set by user during registration', () => {
-      //userSeeUpdateSecurityQuestionBtn()
+      userSeeUpdateSecurityQuestionBtn()
     });
 
     when('User clicks on the Set security questions& answers CTA', () => {
-      //userClickUpdateSecurityQuestionBtn()
+      userClickUpdateSecurityQuestionBtn()
     });
 
     then('User should be navigated to Set security questions& answers screen', () => {
@@ -185,15 +190,15 @@ defineFeature(feature, (test) => {
     });
 
     when('User lands on Set-up/ Update Security Question screen', async () => {
-      //userLandsOnLoginSecurityScreen()
+      userLandsOnLoginSecurityScreen()
     });
 
     then('User should be able to view Set security questions& answers CTA if security questions are not set by user during registration', () => {
-      //userSeeUpdateSecurityQuestionBtn()
+      userSeeUpdateSecurityQuestionBtn()
     });
 
     when('User clicks on the Set security questions& answers CTA', () => {
-      //userClickUpdateSecurityQuestionBtn()
+      userClickUpdateSecurityQuestionBtn()
     });
 
     then('User should be navigated to Set security questions& answers screen', () => {

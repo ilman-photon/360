@@ -7,6 +7,7 @@ Feature: Patient Portal : Form Customization (Documents/ Forms) - View option to
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint10
   Scenario: EPIC_EPP-5256_STORY_EPP-7691- Verify User should be able to view the option to download each form to fill them offline
     Given User is logged into the portal

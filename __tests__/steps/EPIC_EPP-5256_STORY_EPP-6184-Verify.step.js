@@ -28,13 +28,11 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
 
-  beforeEach( () => {
+  beforeEach(() => {
     mock
       .onGet(`/ecp/patients/forms/getformContent`)
       .reply(200, dummyFormDocument);
-    mock
-      .onPut(`/ecp/patients/forms/editformContent`)
-      .reply(200, {});
+    mock.onPut(`/ecp/patients/forms/editformContent`).reply(200, {});
   });
 
   afterEach(() => {
@@ -170,7 +168,9 @@ defineFeature(feature, (test) => {
     and(
       "Admin should be able to view the heading of each form customizable which when changed by the admin will also change the display name of the form (eg. if the heading was “A”, then the form’s display name when patient or admin view would be “A”. If the heading is changed to “B”, then the display name of form also changes to “B”)",
       () => {
-        const backtoIntakeFormLink = container.getByText("Is there any protected health information you would like to exclude from disclosure to the parties listed above? If yes, fill in here:");
+        const backtoIntakeFormLink = container.getByText(
+          "Is there any protected health information you would like to exclude from disclosure to the parties listed above? If yes, fill in here:"
+        );
         expect(backtoIntakeFormLink).toBeInTheDocument();
       }
     );
@@ -178,7 +178,9 @@ defineFeature(feature, (test) => {
     and(
       "Admin user should be able to view the portions that can be customized within the form which the admin user can update/ change",
       () => {
-        const backtoIntakeFormLink = container.getByText("This form replaces all prior disclosure authorizations as of the date above.");
+        const backtoIntakeFormLink = container.getByText(
+          "This form replaces all prior disclosure authorizations as of the date above."
+        );
         expect(backtoIntakeFormLink).toBeInTheDocument();
       }
     );
@@ -193,19 +195,23 @@ defineFeature(feature, (test) => {
     and(
       "Admin user should be able to view the option to publish the form",
       () => {
-        defaultValidation();
+        const editBtn = container.getByTestId("edit-document-btn");
+        expect(editBtn).toBeInTheDocument();
+        fireEvent.click(editBtn);
       }
     );
 
     and(
       "Admin user should be able to view the option to discard changes",
       () => {
-        defaultValidation();
+        expect(container.getByTestId("edit-save-btn")).toBeInTheDocument();
+        expect(container.getByTestId("edit-cancel-btn")).toBeInTheDocument();
       }
     );
 
     when("Admin user clicks on cancel button", () => {
-      defaultValidation();
+      const cancelBtn = container.getByTestId("edit-cancel-btn");
+      fireEvent.click(cancelBtn);
     });
 
     and("the service is unavailable", () => {
@@ -298,19 +304,23 @@ defineFeature(feature, (test) => {
     and(
       "Admin user should be able to view the option to publish the form",
       () => {
-        defaultValidation();
+        const editBtn = container.getByTestId("edit-document-btn");
+        expect(editBtn).toBeInTheDocument();
+        fireEvent.click(editBtn);
       }
     );
 
     and(
       "Admin user should be able to view the option to discard changes",
       () => {
-        defaultValidation();
+        expect(container.getByTestId("edit-save-btn")).toBeInTheDocument();
+        expect(container.getByTestId("edit-cancel-btn")).toBeInTheDocument();
       }
     );
 
     when("Admin user clicks on cancel button", () => {
-      defaultValidation();
+      const cancelBtn = container.getByTestId("edit-cancel-btn");
+      fireEvent.click(cancelBtn);
     });
 
     and("the internet service is unavailable", () => {
@@ -403,14 +413,17 @@ defineFeature(feature, (test) => {
     and(
       "Admin user should be able to view the option to publish the form",
       () => {
-        defaultValidation();
+        const editBtn = container.getByTestId("edit-document-btn");
+        expect(editBtn).toBeInTheDocument();
+        fireEvent.click(editBtn);
       }
     );
 
     and(
       "Admin user should be able to view the option to discard changes",
       () => {
-        defaultValidation();
+        expect(container.getByTestId("edit-save-btn")).toBeInTheDocument();
+        expect(container.getByTestId("edit-cancel-btn")).toBeInTheDocument();
       }
     );
 
@@ -503,14 +516,17 @@ defineFeature(feature, (test) => {
     and(
       "Admin user should be able to view the option to publish the form",
       () => {
-        defaultValidation();
+        const editBtn = container.getByTestId("edit-document-btn");
+        expect(editBtn).toBeInTheDocument();
+        fireEvent.click(editBtn);
       }
     );
 
     and(
       "Admin user should be able to view the option to discard changes",
       () => {
-        defaultValidation();
+        expect(container.getByTestId("edit-save-btn")).toBeInTheDocument();
+        expect(container.getByTestId("edit-cancel-btn")).toBeInTheDocument();
       }
     );
   });
@@ -592,7 +608,9 @@ defineFeature(feature, (test) => {
     and(
       "Admin user should be able to view the option to publish the form",
       () => {
-        defaultValidation();
+        const editBtn = container.getByTestId("edit-document-btn");
+        expect(editBtn).toBeInTheDocument();
+        fireEvent.click(editBtn);
       }
     );
   });

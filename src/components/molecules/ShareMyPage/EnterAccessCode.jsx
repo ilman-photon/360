@@ -135,6 +135,7 @@ export const EnterAccessCode = ({
           render={({ field: { onChange, value } }) => {
             return (
               <StyledInput
+                data-testid={"access-code-input"}
                 type="text"
                 id="accessCode"
                 label={t("accessCode")}
@@ -157,6 +158,7 @@ export const EnterAccessCode = ({
         />
         <Stack direction="column">
           <Button
+            data-testid={"submit-code-button"}
             type="submit"
             disabled={!isActiveAccessCode ? true : false}
             sx={{
@@ -178,6 +180,7 @@ export const EnterAccessCode = ({
             {t("submitBtn")}
           </Button>
           <Button
+            data-testid={"resend-code-button"}
             onClick={handleResendCode}
             disabled={!isActiveAccessCode ? true : false}
             type="submit"

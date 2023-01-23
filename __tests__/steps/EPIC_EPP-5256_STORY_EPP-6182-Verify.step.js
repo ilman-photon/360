@@ -27,15 +27,13 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
 
-  beforeEach( () => {
+  beforeEach(() => {
     mock
       .onGet(`/ecp/patients/forms/getformContent`)
       .reply(200, dummyFormDocument);
-    mock
-      .onPut(`/ecp/patients/forms/editformContent`)
-      .reply(200, {});
+    mock.onPut(`/ecp/patients/forms/editformContent`).reply(200, {});
   });
-  
+
   afterEach(() => {
     mock.reset();
   });
@@ -261,11 +259,15 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("Admin user should be able to select a form to customize", async() => {
+    and("Admin user should be able to select a form to customize", async () => {
       await navigateToDocumentPage(
         "Consent to Treatment of a Minor When Parent/Guardiansare Temporarily Unavailable"
       );
-      expect(container.getAllByText(/Consent to Treatment of a Minor When Parent/i)[0]).toBeInTheDocument();
+      expect(
+        container.getAllByText(
+          /Consent to Treatment of a Minor When Parent/i
+        )[0]
+      ).toBeInTheDocument();
     });
   });
 
@@ -330,7 +332,8 @@ defineFeature(feature, (test) => {
     );
 
     and("Admin user should be able to select a form to customize", () => {
-      defaultValidation();
+      const form2 = container.getByTestId("intakeFormDocleft-2");
+      fireEvent.click(form2);
     });
 
     and(
