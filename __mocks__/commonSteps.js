@@ -40,7 +40,9 @@ import {
   MOCK_MESSAGING,
   MOCK_OPEN_INVOICES,
   MOCK_INVOICE_HISTORY,
-  educationMaterials
+  educationMaterials,
+  mockInvoiceWithNumber,
+  mockInvoiceAsset
 } from "./mockResponse";
 
 jest.mock("universal-cookie", () => {
@@ -1476,15 +1478,15 @@ export const expectPushRouter = (expectedPath) => {
   });
 };
 
-export async function navigateToPayMyBill() {
+export async function navigateToPayMyBill(mock) {
   const domain = window.location.origin;
-  const mock = new MockAdapter(axios);
   const userProfile = JSON.parse(localStorage.getItem("userProfile"));
   const mockRouter = {
     back: jest.fn(),
     query: { 
       username: "patient1@gmail.com",
-      activeTab: 0 
+      activeTab: 0,
+      invoiceNumber:"1234" 
     },
     push: jest.fn(),
     replace: jest.fn(),
@@ -1526,29 +1528,20 @@ export async function navigateToPayMyBill() {
   return container;
 }
 
-export async function navigateToSummaryDetail(mock) {
-  const domain = window.location.origin;
-  const expectedResult = {
-    invoiceNumber: "124345456",
-    dos: "Oct 17, 2022, 4:31:42 PM",
-    balanceDue: 75,
-    totalCharge: 227.5,
-    totalAllowed: 239.5,
-    insurancePaid: 174.5,
-    patientPaid: 302.2,
-    description: "Service, Frame, Misc",
-    providerName: "John Chenaa",
-  };
+export async function navigateToSummaryDetail(mock, id="1234") {
   mock
-    .onGet(`${domain}/api/dummy/payMyBill/getSummaryBill?id=124345456`)
-    .reply(200, expectedResult);
+    .onGet(`/ecp/patientbillingsystem/getInvoiceWithInvoiceNumber/${id}?embed=payments,adjustments`)
+    .reply(200, mockInvoiceWithNumber);
 
+  mock
+    .onGet(`/ecp/patientbillingsystem/getInvoiceReceipts/13719a16-8004-40b3-8b29-8770efa37d1a`)
+    .reply(200, mockInvoiceAsset);
   let container;
   window.matchMedia = createMatchMedia("1920px");
   act(() => {
     container = render(
       <Provider store={store}>
-        <SummaryBillPage />)
+        <SummaryBillPage />
       </Provider>
     );
   });

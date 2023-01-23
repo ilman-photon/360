@@ -14,23 +14,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSource } from "../../../utils/fetchDigitalAssetSource";
 import { LoadingModal } from "../../../components/molecules/LoadingModal/LoadingModal";
-
-export function getInvoiceReceipts(id, print, isOpen, callback) {
-  const api = new Api();
-  api
-    .getInvoiceReceipts(id)
-    .then(function (response) {
-      downloadReceipts(response.entities, print, isOpen);
-    })
-    .catch(function () {
-      //Handle error searchInvoice by date
-    })
-    .finally(function () {
-      if (callback) {
-        callback();
-      }
-    });
-}
+import { forEach } from "jszip";
 
 export function downloadReceipts(receipts, print, isOpen = false) {
   receipts.forEach((item) => {
@@ -63,6 +47,7 @@ export default function PayMyBillPage() {
   );
   const searchDataList = useSelector((state) => state.payMyBill.searchDataList);
   const [loading, setLoading] = useState(false);
+  const [isLoad, setIsLoad] = useState(false);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "payMyBill",
@@ -149,14 +134,42 @@ export default function PayMyBillPage() {
     }
   }, [searchDataList]);
 
+  //Call API for Invoice Recipient
+  async function getDigitalAssetId(data, callback) {
+    const api = new Api();
+    const arrayPromise = [];
+    data?.entities.forEach((item) => {
+      arrayPromise.push(
+        new Promise((resolve, reject) => {
+          api
+            .getInvoiceReceipts(item?._id)
+            .then(function (response) {
+              item["digitalAsset"] = response.entities;
+              resolve();
+            })
+            .catch(function () {
+              reject();
+            });
+        })
+      );
+    });
+    await Promise.all(arrayPromise);
+    callback(data);
+  }
+
   //Call API for Billing Invoice
   function onCalledBillingInvoice() {
+    setLoading(true);
     const api = new Api();
     api
       .getInvoiceWithPatientDetails()
       .then(function (response) {
-        dispatch(setBillingOpenList({ response, isOpen: true }));
-        dispatch(setBillingHistoryList({ response, isOpen: false }));
+        const callback = (data) => {
+          setLoading(false);
+          dispatch(setBillingOpenList({ response: data, isOpen: true }));
+          dispatch(setBillingHistoryList({ response: data, isOpen: false }));
+        };
+        getDigitalAssetId(response, callback);
       })
       .catch(function () {
         //Handle error getInvoiceList
@@ -165,15 +178,20 @@ export default function PayMyBillPage() {
 
   //Call API for Search Invoice By Date
   function onCalledSearchInvoiceByDate(postBody) {
+    setLoading(true);
     const api = new Api();
     api
       .searchInvoiceByDate(postBody)
       .then(function (response) {
-        if (activeTabs?.index == 0) {
-          dispatch(setSearchDataList({ response, isOpen: true }));
-        } else {
-          dispatch(setSearchDataList({ response, isOpen: false }));
-        }
+        const callback = (data) => {
+          setLoading(false);
+          if (activeTabs?.index == 0) {
+            dispatch(setSearchDataList({ response: data, isOpen: true }));
+          } else {
+            dispatch(setSearchDataList({ response: data, isOpen: false }));
+          }
+        };
+        getDigitalAssetId(response, callback);
       })
       .catch(function () {
         //Handle error searchInvoice by date
@@ -182,16 +200,20 @@ export default function PayMyBillPage() {
 
   //Call API for Search Invoice By Date
   function onCalledSearchByInvoiceNumber(id) {
+    setLoading(true);
     const api = new Api();
-    const data = [];
     api
       .searchInvoiceByInvoiceNumber(id)
       .then(function (response) {
-        if (activeTabs?.index == 0) {
-          dispatch(setSearchDataList({ response, isOpen: true }));
-        } else {
-          dispatch(setSearchDataList({ response, isOpen: false }));
-        }
+        const callback = (data) => {
+          setLoading(false);
+          if (activeTabs?.index == 0) {
+            dispatch(setSearchDataList({ response: data, isOpen: true }));
+          } else {
+            dispatch(setSearchDataList({ response: data, isOpen: false }));
+          }
+        };
+        getDigitalAssetId(response, callback);
       })
       .catch(function () {
         //Handle error searchInvoice by date
@@ -219,8 +241,11 @@ export default function PayMyBillPage() {
       index: query?.activeTab ? parseInt(query?.activeTab) : 0,
       title: query?.activeTab == "0" ? t("openInvoices") : t("invoiceHistory"),
     });
-    onCalledBillingInvoice();
-    getAccountCredit();
+    if (!isLoad) {
+      setIsLoad(true);
+      onCalledBillingInvoice();
+      getAccountCredit();
+    }
   }, [router]);
 
   //Handle to call api service search by date range
@@ -288,12 +313,8 @@ export default function PayMyBillPage() {
     }
   };
 
-  const handleAssetDownload = (id, print, isOpen = false) => {
-    setLoading(true);
-    const callBack = () => {
-      setLoading(false);
-    };
-    getInvoiceReceipts(id, print, isOpen, callBack);
+  const handleAssetDownload = (digitalAsset, print, isOpen = false) => {
+    downloadReceipts(digitalAsset, print, isOpen);
   };
 
   return (

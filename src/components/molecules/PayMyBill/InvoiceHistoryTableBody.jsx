@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import TableWithSort from "../TableWithSort/tableWithSort";
-import { Button, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import styles from "./styles.module.scss";
 import FileDownloadIcon from "../../../assets/icons/FileDownload";
 import PictureAsPdfOutlinedIcon from "@mui/icons-material/PictureAsPdfOutlined";
@@ -116,44 +116,62 @@ export const InvoiceHistoryTableBody = ({
       },
       {
         type: "button-icon-text",
+        cellProps: {
+          style: {
+            padding: "12px",
+          },
+        },
         children: (props) => {
-          return (
-            <Button
-              onClick={() => handleAssetDownload(props.id, false, true)}
-              data-testid="invoice-view-pdf"
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                backgroundColor: "#007e8f",
-                color: "#ffffff",
-                gap: "8px",
-                padding: "8px 20px",
-                height: "46px",
-                alignItems: "center",
-                justifyContent: "center",
-                textTransform: "inherit",
-                borderRadius: "30px",
-                ":hover": { backgroundColor: "#007e8f" },
-              }}
-            >
-              <PictureAsPdfOutlinedIcon className={styles.btnIcon} />
-              <Typography
+          if (props?.digitalAsset && props?.digitalAsset.length > 0) {
+            return (
+              <Button
+                onClick={() =>
+                  handleAssetDownload(props.digitalAsset, false, true)
+                }
+                data-testid="invoice-view-pdf"
                 sx={{
-                  fontWeight: "600",
-                  color: "#FFFFFF",
-                  fontSize: "16px",
-                  lineHeight: "18px",
+                  display: "flex",
+                  flexDirection: "row",
+                  backgroundColor: "#007e8f",
+                  color: "#ffffff",
+                  gap: "8px",
+                  padding: "8px 20px",
+                  height: "46px",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textTransform: "inherit",
+                  borderRadius: "30px",
+                  ":hover": { backgroundColor: "#007e8f" },
                 }}
               >
-                {t("viewPDF")}
-              </Typography>
-            </Button>
-          );
+                <PictureAsPdfOutlinedIcon className={styles.btnIcon} />
+                <Typography
+                  sx={{
+                    fontWeight: "600",
+                    color: "#FFFFFF",
+                    fontSize: "16px",
+                    lineHeight: "18px",
+                  }}
+                >
+                  {t("viewPDF")}
+                </Typography>
+              </Button>
+            );
+          } else {
+            return (
+              <Box
+                sx={{
+                  height: "46px",
+                }}
+              ></Box>
+            );
+          }
         },
       },
       {
         type: "download-asset",
-        valueKey: "id",
+        valueKey: "digitalAsset",
+        isMultipleAsset: true,
         contentStyle: { padding: "16px 5px" },
         icon: (
           <IconButton
@@ -166,7 +184,8 @@ export const InvoiceHistoryTableBody = ({
       },
       {
         type: "download-asset",
-        valueKey: "id",
+        valueKey: "digitalAsset",
+        isMultipleAsset: true,
         contentStyle: { padding: "16px 5px" },
         customTooltipText: "Print",
         icon: (

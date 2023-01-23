@@ -210,7 +210,8 @@ export const OpenInvoiceTableBody = ({
       },
       {
         type: "download-asset",
-        valueKey: "id",
+        valueKey: "digitalAsset",
+        isMultipleAsset: true,
         contentStyle: { padding: "16px" },
         icon: (
           <IconButton
@@ -224,7 +225,8 @@ export const OpenInvoiceTableBody = ({
       },
       {
         type: "download-asset",
-        valueKey: "id",
+        valueKey: "digitalAsset",
+        isMultipleAsset: true,
         contentStyle: { padding: "16px" },
         icon: (
           <IconButton

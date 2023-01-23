@@ -21,6 +21,7 @@ const getObjectData = (item) => ({
   status: item?._invoiceStatus,
   id: item?._id,
   patient: item?.patient,
+  digitalAsset: item?.digitalAsset || [],
 });
 
 const getDescription = (item) => {
@@ -55,18 +56,21 @@ export function getBalanceData(data) {
   return formatter.format(totalBalance);
 }
 
-const getSummaryObjectData = (item) => ({
-  id: item?._id,
-  invoiceNumber: item?._invoiceNumber,
-  dos: item?.serviceDate,
-  balanceDue: getBalanceData(item),
-  totalCharges: item?.summary?.totalRetail,
-  totalAllowed: 0,
-  insurancePaid: item?.summary?.totalInsurance,
-  patientPaid: item?.summary?.totalPayment,
-  description: getDescription(item.lineItems),
-  providerName: `${item?.provider?.firstName} ${item?.provider?.lastName}`,
-});
+export const getSummaryObjectData = (item) => {
+  return {
+    id: item?._id,
+    invoiceNumber: item?._invoiceNumber,
+    dos: item?.serviceDate,
+    balanceDue: getBalanceData(item),
+    totalCharges: item?.summary?.totalRetail,
+    totalAllowed: 0,
+    insurancePaid: item?.summary?.totalInsurance,
+    patientPaid: item?.summary?.totalPayment,
+    description: getDescription(item.lineItems),
+    providerName: `${item?.provider?.firstName} ${item?.provider?.lastName}`,
+    digitalAsset: item?.digitalAsset || [],
+  };
+};
 
 const pushNewDataByCondition = (newData, item, isOpen) => {
   if (isOpen) {

@@ -38967,3 +38967,391 @@ export const providerList = [
 ];
 
 export const submitedForm = {"count":1,"entities":[{"name":"Insurance Communication.pdf","documentType":"application/pdf","category":"FORM CUSTOMIZATION","patientId":"22d899b7-6a3f-4fef-9b77-3ec264b0fcad","status":"CREATED","digital_assets":{"_id":"4083027f-6a65-4219-a46c-29521600616a"},"_id":"9f150e0b-89b4-4566-bcd2-1f28eb9063fc","_version":"00ad3f64-c760-42a9-806d-d3554d5aa116","_created":"Jan 3, 2023, 9:45:11 AM","_updated":"Jan 3, 2023, 9:45:11 AM","_createdBy":{"_id":"a677f406-56b3-4f25-b7a5-37d9266675ba","_links":{"self":{"href":"/v1/employees/a677f406-56b3-4f25-b7a5-37d9266675ba"}}},"_links":{"self":{"href":"/v1/patients/9f150e0b-89b4-4566-bcd2-1f28eb9063fc"}}}],"_links":{"self":{"href":"/patient-management?pageNo=0&pageSize=10"}}}
+
+export const mockInvoiceWithNumber = {
+  "patient": {
+    "firstName": "Rahaman",
+    "lastName": "sharif",
+    "age": "39",
+    "dob": "11/17/1983",
+    "sex": 1,
+    "preferredPhone": "9384283959",
+    "preferredEmail": "k.rahamansharif@gmail.com",
+    "address": [],
+    "_links": {
+      "self": {
+        "href": "/v1/patients/a3e61090-270e-4ab6-903b-192700ee09be"
+      }
+    },
+    "_id": "a3e61090-270e-4ab6-903b-192700ee09be",
+    "_version": "a1246590-035a-41f9-aef7-b3a6c2dbef4f"
+  },
+  "provider": {
+    "firstName": "Portal",
+    "lastName": "User",
+    "designation": "Dr",
+    "overrideExpiredPromo": false,
+    "managerialAdjustments": false,
+    "isProvider": true,
+    "_links": {
+      "self": {
+        "href": "/v1/employee/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+      }
+    },
+    "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    "_version": "58346ecd-48f9-456a-935f-f8a9a39df2e8"
+  },
+  "office": {
+    "locationNumber": "10022",
+    "name": "Ballwin",
+    "taxId": "12312",
+    "addressLine1": "568 Allens Mill Rd",
+    "city": "Yorktown",
+    "state": "VA",
+    "zip": "23692",
+    "labAccountNumber": "21312",
+    "_links": {
+      "self": {
+        "href": "/v1/offices/4cd970a0-8529-4b44-a4c5-99c9f4e8d078"
+      }
+    },
+    "_id": "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+    "_version": "bd74ef1a-c70a-4160-a0ec-c1c4f2ff22d5"
+  },
+  "serviceDate": "12/09/2022",
+  "preferredContactMethod": 1,
+  "encounter": {
+    "encounterNo": 10000806,
+    "_links": {
+      "self": {
+        "href": "/v1/encounter/1a0fba03-cdfb-4403-aa72-1247f6c78e91"
+      }
+    },
+    "_id": "1a0fba03-cdfb-4403-aa72-1247f6c78e91"
+  },
+  "lineItems": [
+    {
+      "category": "FRAME",
+      "itemSource": "SO",
+      "skuItems": [
+        {
+          "itemType": "FRAME",
+          "sku": "101695048",
+          "skuId": "30a5e1f8-cd56-4fc0-8705-e5a139559e8f",
+          "skuVersion": "07c411ae-af69-40c7-8b12-b556920555ea",
+          "skuDetails": {
+            "dataRefreshedOn": "2022-10-13 10:06:35.255",
+            "rxAble": true,
+            "itemType": 10,
+            "notes": "NGF DNR NON RXABLE",
+            "afterMarket": false,
+            "color": "2AU5J2 HAVANA/LIGHT BROWN",
+            "_links": {
+              "self": {
+                "href": "/v1/frames/30a5e1f8-cd56-4fc0-8705-e5a139559e8f"
+              }
+            },
+            "available": true,
+            "panelFrame": false,
+            "_createdBy": {
+              "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              "_links": {
+                "self": {
+                  "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+                }
+              }
+            },
+            "framesUpdatedStamp": "2022-07-05 16:42:01.60006",
+            "locationStamp": "8EBBE1B453631CE542B11663626BB007",
+            "defaultRetailPrice": 229,
+            "yCode": "V2025",
+            "ffPrice": 88,
+            "manufacturer": {
+              "_id": "f665a58c-474c-4369-bef5-accd0636f8f4",
+              "name": "LUXOTTICA",
+              "_links": {
+                "self": {
+                  "href": "/v1/vendors/f665a58c-474c-4369-bef5-accd0636f8f4"
+                }
+              },
+              "_version": "190e009b-413d-4459-bc08-50e1489269b0",
+              "nickName": "LUX",
+              "shortNickName": "LUX"
+            },
+            "backOrder": false,
+            "sourceDatabase": "CEC",
+            "traced": false,
+            "framesCreatedStamp": "2020-02-22 22:57:41.0",
+            "staticFlag": false,
+            "vCode": "V2025",
+            "_version": "07c411ae-af69-40c7-8b12-b556920555ea",
+            "ed": 60,
+            "_updatedBy": {
+              "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+              "_links": {
+                "self": {
+                  "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+                }
+              }
+            },
+            "b": 46,
+            "cost": 83.6,
+            "cpt": "V2025",
+            "specialOrder": false,
+            "upc": "8053672507522",
+            "dynamicFrame": false,
+            "_updated": "Nov 25, 2022, 1:16:41 PM",
+            "doNotOrder": false,
+            "collection": "PRADA SUN",
+            "categoryCode": "2",
+            "dbl": 17,
+            "typeCode": "4",
+            "size": 55,
+            "_created": "Sep 13, 2022, 10:24:10 AM",
+            "name": "PR08SS",
+            "temple": 140,
+            "_id": "30a5e1f8-cd56-4fc0-8705-e5a139559e8f",
+            "retailPrice": 229,
+            "defaultAvailable": true,
+            "status": "UPDATED"
+          },
+          "quantity": 1,
+          "retailPrice": 229,
+          "tax": 0,
+          "insuranceAmount": 0,
+          "adjustment": 0,
+          "discount": 0,
+          "payment": 200,
+          "insuranceResponse": {
+            "reimbursementExpected": 0,
+            "writeOff": 0,
+            "thirdPartyDiscount": 0,
+            "coPayExpected": 0,
+            "oopExpected": 0
+          },
+          "sequence": 1,
+          "returned": false,
+          "skuAdjustments": [],
+          "_id": "55a400da-bf19-4bd1-a90e-ce81af23242c",
+          "_version": "56065c72-5feb-459a-8f32-61d33bd5bd6b",
+          "_created": "Dec 9, 2022, 2:42:41 PM",
+          "_updated": "Dec 9, 2022, 2:45:05 PM",
+          "status": "CREATED",
+          "_createdBy": {
+            "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            "_links": {
+              "self": {
+                "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+              }
+            }
+          },
+          "_updatedBy": {
+            "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            "_links": {
+              "self": {
+                "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+              }
+            }
+          }
+        }
+      ],
+      "summary": {
+        "totalRetail": 229,
+        "insuranceBenefit": {},
+        "totalInsurance": 0,
+        "totalDiscount": 0,
+        "totalAdjustment": 0,
+        "totalTax": 0,
+        "totalPayment": 200
+      },
+      "sequence": 1,
+      "_id": "8b0f262f-79df-4736-88b8-e93162aa98b8",
+      "_version": "c9de70f4-399d-4f81-b9bc-d4d5ffd8f04a",
+      "_created": "Dec 9, 2022, 2:42:41 PM",
+      "_updated": "Dec 9, 2022, 2:45:05 PM",
+      "status": "CREATED",
+      "_createdBy": {
+        "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+          }
+        }
+      },
+      "_updatedBy": {
+        "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "totalRetail": 229,
+    "insuranceBenefit": {},
+    "totalInsurance": 0,
+    "totalDiscount": 0,
+    "totalAdjustment": 0,
+    "totalTax": 0,
+    "totalPayment": 200
+  },
+  "operator": {
+    "firstName": "Portal",
+    "lastName": "User",
+    "designation": "Dr",
+    "overrideExpiredPromo": false,
+    "managerialAdjustments": false,
+    "isProvider": true,
+    "_links": {
+      "self": {
+        "href": "/v1/employee/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+      }
+    },
+    "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+  },
+  "payments": [
+    {
+      "patient": {
+        "firstName": "Rahaman",
+        "lastName": "sharif",
+        "age": "39",
+        "dob": "11/17/1983",
+        "sex": 1,
+        "preferredPhone": "9384283959",
+        "preferredEmail": "k.rahamansharif@gmail.com",
+        "address": [],
+        "_links": {
+          "self": {
+            "href": "/v1/patients/a3e61090-270e-4ab6-903b-192700ee09be"
+          }
+        },
+        "_id": "a3e61090-270e-4ab6-903b-192700ee09be",
+        "_version": "a1246590-035a-41f9-aef7-b3a6c2dbef4f"
+      },
+      "office": {
+        "locationNumber": "10022",
+        "name": "Ballwin",
+        "taxId": "12312",
+        "addressLine1": "568 Allens Mill Rd",
+        "city": "Yorktown",
+        "state": "VA",
+        "zip": "23692",
+        "labAccountNumber": "21312",
+        "_links": {
+          "self": {
+            "href": "/v1/offices/4cd970a0-8529-4b44-a4c5-99c9f4e8d078"
+          }
+        },
+        "_id": "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        "_version": "bd74ef1a-c70a-4160-a0ec-c1c4f2ff22d5"
+      },
+      "paymentType": "INVOICE",
+      "paymentDetails": [
+        {
+          "amount": 200,
+          "note": "tetst",
+          "paymentMethod": "VISA",
+          "lastFourDigits": 7777,
+          "skuItemPayments": [],
+          "_id": "17e970a2-408a-480e-a0f0-52513a3f743d"
+        }
+      ],
+      "enteredBy": {
+        "firstName": "Portal",
+        "lastName": "User",
+        "designation": "Dr",
+        "overrideExpiredPromo": false,
+        "managerialAdjustments": false,
+        "isProvider": true,
+        "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "_version": "58346ecd-48f9-456a-935f-f8a9a39df2e8"
+      },
+      "receiptNumber": null,
+      "status": "CREATED",
+      "_id": "a218f362-114b-4deb-9e4f-4fff12ac985c",
+      "_version": "0ad908d9-6652-4210-ba10-2e7d5bf8818e",
+      "_links": {
+        "self": {
+          "href": "/v1/payments/a218f362-114b-4deb-9e4f-4fff12ac985c"
+        }
+      },
+      "_created": "Dec 9, 2022, 2:45:05 PM",
+      "_updated": "Dec 9, 2022, 2:45:05 PM",
+      "_createdBy": {
+        "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+          }
+        }
+      }
+    }
+  ],
+  "adjustments": [],
+  "status": "UPDATED",
+  "sources": [],
+  "_invoiceNumber": "32701487510022",
+  "_invoiceType": "WALK_IN",
+  "_invoiceStatus": "FINALIZED",
+  "_links": {
+    "self": {
+      "href": "/v1/invoices/13719a16-8004-40b3-8b29-8770efa37d1a"
+    }
+  },
+  "_id": "13719a16-8004-40b3-8b29-8770efa37d1a",
+  "_version": "120e861f-fec0-4582-806b-219d1ce2406b",
+  "_created": "Dec 9, 2022, 2:41:34 PM",
+  "_updated": "Dec 9, 2022, 2:45:05 PM",
+  "_createdBy": {
+    "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    "_links": {
+      "self": {
+        "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+      }
+    }
+  },
+  "_updatedBy": {
+    "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    "_links": {
+      "self": {
+        "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+      }
+    }
+  }
+}
+
+export const mockInvoiceAsset = {
+  "count": 1,
+  "entities": [
+    {
+      "digitalAssetId": "fc9f5fd6-1d5d-4575-a28c-69607d3a8cc5",
+      "name": "32701487510022_RECEIPT_20221209.pdf",
+      "type": "application/pdf",
+      "receiptNumber": "27441",
+      "invoice": {
+        "lineItems": [],
+        "_id": "13719a16-8004-40b3-8b29-8770efa37d1a"
+      },
+      "status": "CREATED",
+      "_id": "157f579b-f0cf-4f45-8540-defd726ba936",
+      "_version": "dd274212-f65c-49e4-b3f8-0d9850cf1794",
+      "_created": "Dec 9, 2022, 2:45:07 PM",
+      "_updated": "Dec 9, 2022, 2:45:07 PM",
+      "_createdBy": {
+        "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+          }
+        }
+      }
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/pos?pageNo=0&pageSize=100"
+    }
+  }
+}

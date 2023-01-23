@@ -58,70 +58,90 @@ export function tableConfiguration(
       {
         type: "custom-content",
         children: (props) => {
-          return (
-            <Stack
-              flexDirection={"row"}
-              sx={{
-                borderTop: "1px solid #dadada80",
-                paddingTop: "24px",
-                justifyContent: "space-between",
-              }}
-            >
-              <Button
-                onClick={() => {
-                  primaryAction(props, isSummary);
-                }}
-                sx={{
-                  display: "flex",
-                  backgroundColor: "#007e8f",
-                  color: "#ffffff",
-                  gap: "8px",
-                  padding: "8px 20px",
-                  height: "46px",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: "30px",
-                  textTransform: "capitalize",
-                }}
-              >
-                <ReceiptIcon
-                  sx={{
-                    color: "#FFFFFF",
-                    width: "20px",
-                    height: "20px",
-                  }}
-                />
-                View Details
-              </Button>
+          if (
+            (props?.digitalAsset && props?.digitalAsset.length > 0) ||
+            isSummary
+          ) {
+            return (
               <Stack
                 flexDirection={"row"}
                 sx={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "46px",
+                  borderTop: "1px solid #dadada80",
+                  paddingTop: "24px",
+                  justifyContent: "space-between",
                 }}
               >
-                <IconButton
-                  sx={{ width: 24, height: 24, p: 0, marginRight: "18px" }}
-                  data-testid="downloadPDFButton"
+                <Button
                   onClick={() => {
-                    secondaryAction(props.id);
+                    primaryAction(props, isSummary);
+                  }}
+                  sx={{
+                    display: "flex",
+                    backgroundColor: "#007e8f",
+                    color: "#ffffff",
+                    gap: "8px",
+                    padding: "8px 20px",
+                    height: "46px",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: "30px",
+                    textTransform: "capitalize",
                   }}
                 >
-                  <FileDownloadIcon sx={{ fill: colors.darkGreen }} />
-                </IconButton>
-                <IconButton
-                  sx={{ width: 24, height: 24, p: 0 }}
-                  data-testid="printPDFButton"
-                  onClick={() => {
-                    secondaryAction(props.id, true);
+                  <ReceiptIcon
+                    sx={{
+                      color: "#FFFFFF",
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                  View Details
+                </Button>
+                <Stack
+                  flexDirection={"row"}
+                  sx={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: "46px",
                   }}
                 >
-                  <LocalPrintshopOutlinedIcon sx={{ fill: colors.darkGreen }} />
-                </IconButton>
+                  {props?.digitalAsset && props?.digitalAsset.length > 0 ? (
+                    <>
+                      <IconButton
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          p: 0,
+                          marginRight: "18px",
+                        }}
+                        data-testid="downloadPDFButton"
+                        onClick={() => {
+                          secondaryAction(props.id);
+                        }}
+                      >
+                        <FileDownloadIcon sx={{ fill: colors.darkGreen }} />
+                      </IconButton>
+                      <IconButton
+                        sx={{ width: 24, height: 24, p: 0 }}
+                        data-testid="printPDFButton"
+                        onClick={() => {
+                          secondaryAction(props.id, true);
+                        }}
+                      >
+                        <LocalPrintshopOutlinedIcon
+                          sx={{ fill: colors.darkGreen }}
+                        />
+                      </IconButton>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </Stack>
               </Stack>
-            </Stack>
-          );
+            );
+          } else {
+            return <></>;
+          }
         },
       },
     ],
