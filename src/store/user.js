@@ -196,7 +196,7 @@ const buildInsurancePostBody = (postBody = {}, payload = {}) => {
     priority: payload.priority,
     subscriberRelation:
       RELATIONSHIP_LIST.findIndex((v) => v === subscriberData.relationship) +
-        1 || 1,
+        1 || 4,
     payer: {
       _id: payload.provider.id,
     },
