@@ -3,6 +3,7 @@ import {
   Button,
   IconButton,
   Stack,
+  Tooltip,
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -71,13 +72,21 @@ export const MessagingDetailContentView = ({
         >
           Follow-up from past visit/message
         </Typography>
-        <IconButton
-          tabIndex={0}
-          aria-label={"Delete Button"}
-          onClick={() => openDeletedDialog(data._id, data)}
+        <Tooltip
+          title={"Delete"}
+          PopperProps={{
+            role: "alert",
+          }}
+          aria-label={`Delete`}
         >
-          <DeleteOutlinedIcon data-testid="delete-message-icon" />
-        </IconButton>
+          <IconButton
+            tabIndex={0}
+            aria-label={"Delete Button"}
+            onClick={() => openDeletedDialog(data._id, data)}
+          >
+            <DeleteOutlinedIcon data-testid="delete-message-icon" />
+          </IconButton>
+        </Tooltip>
       </Box>
       {/* )} */}
       <Stack
