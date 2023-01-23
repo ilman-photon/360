@@ -7,6 +7,7 @@ import {
   IconButton,
   Divider,
   Button,
+  useMediaQuery,
 } from "@mui/material";
 import * as styles from "./styles.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
@@ -28,6 +29,7 @@ const FilterBy = ({
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [expand, setExpand] = React.useState(false);
   const [activeFilter, setActiveFilter] = React.useState([]);
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
   React.useEffect(() => {
     setOpenDrawer(isOpen);
@@ -62,10 +64,21 @@ const FilterBy = ({
 
   const renderCheckbox = (category, idx, isMultiple, showDivider) => {
     const isShowSeeMore = category.checklist && category.checklist.length > 6;
+    const maxLengthDoctorByItem =
+      category.checklist && category.checklist.length;
+    const maxLengthDoctorFilter = isMobile ? 6 : 7;
+    let citySize = 0;
+
+    if (isDoctorSearch && category.checklist)
+      citySize =
+        maxLengthDoctorByItem < maxLengthDoctorFilter
+          ? maxLengthDoctorByItem * 40 + 2
+          : maxLengthDoctorFilter * 40 + 2;
+
     return (
       <Box
         className={
-          showDivider
+          showDivider && !isDoctorSearch
             ? styles.checkBoxContainerDivider
             : styles.checkBoxContainer
         }
@@ -82,16 +95,13 @@ const FilterBy = ({
           }
           sx={
             isDoctorSearch && {
-              height: {
-                sm: "calc((100vh - 335px)/2) !important",
-                md: `${
-                  category.checklist.length < 7
-                    ? category.checklist.length * 40
-                    : "280"
-                }px !important`,
-              },
+              height:
+                category.name === "City"
+                  ? `${citySize}px !important`
+                  : "auto !important",
               flexWrap: "nowrap",
-              overflow: "scroll",
+              overflowY: "scroll",
+              border: category.name === "City" ? "1px solid #f3f3f3" : "none",
 
               "& .MuiFormControlLabel-root": {
                 marginLeft: "unset",
