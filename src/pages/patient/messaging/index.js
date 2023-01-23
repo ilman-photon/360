@@ -577,6 +577,8 @@ export default function MessagingPage() {
     setIsFilterOpen(true);
   };
 
+  const isDataEmpty = shownMessages.length === 0;
+
   const providerFieldFocus = () => {
     const dummyEl = document.getElementById("name");
     // check for focus
@@ -651,6 +653,7 @@ export default function MessagingPage() {
         onOpenFilter={openFilterView}
         onDownloadAllAttachmentClicked={handleDownloadAllAttachment}
         inboxValue={unReadMsg}
+        filterDisabled={isDataEmpty}
       />
       <DeletedDialog
         opened={showDeletedDialog}

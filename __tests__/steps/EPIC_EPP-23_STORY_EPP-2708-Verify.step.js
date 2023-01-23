@@ -4,9 +4,9 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import {
-  doLogin,
-  renderLogin,
-  renderMessagePage,
+    doLogin,
+    renderLogin,
+    renderMessagePage,
 } from "../../__mocks__/commonSteps";
 
 const mock = new MockAdapter(axios);

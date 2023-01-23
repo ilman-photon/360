@@ -32,6 +32,7 @@ const MessagingContainer = ({
   openDeletedDialog,
   openNewMessageDialog,
   inboxValue,
+  filterDisabled = false,
   onSelectedMessage = () => {
     // This is intended
   },
@@ -162,7 +163,7 @@ const MessagingContainer = ({
               onChangeTabs={onChangeTabEvent}
               inboxValue={inboxValue}
             />
-            {activeTabs === 0 && isDesktop && (
+            {activeTabs === 0 && isDesktop && !filterDisabled && (
               <MessagingFilterComponent OnFilterClicked={OnFilterClicked} />
             )}
             <Box
