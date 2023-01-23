@@ -79,24 +79,12 @@ export function UpcomingAppointmentCard({
               ariaLabel={"Purpose of Visit"}
               variant={"body1"}
               className={styles.visitOfPurpose}
-              style={{
-                height: "24px",
-                "font-family": "Museo Sans",
-                "font-style": "normal",
-                "font-weight": "600",
-                "font-size": "16px",
-                "line-height": "24px",
-                /* identical to box height, or 144% */
-
-                "letter-spacing": "0.0016em",
-                color: "#003B4A",
-              }}
               sx={{
                 height: "24px",
                 "font-family": "Museo Sans",
                 "font-style": "normal",
                 "font-weight": "600",
-                "font-size": "16px",
+                "font-size": "18px",
                 "line-height": "24px",
                 /* identical to box height, or 144% */
 
@@ -110,6 +98,9 @@ export function UpcomingAppointmentCard({
               tabIndex={0}
               ariaLabel={data.appointmentInfo.appointmentType}
               variant="body2"
+              sx={{
+                fontSize: 18,
+              }}
             >
               {data.appointmentInfo.appointmentType}
             </Typography>
@@ -135,6 +126,7 @@ export function UpcomingAppointmentCard({
                   data.providerInfo.address.zipcode,
               })
             }
+            className={styles.addToCalendarButton}
           >
             Add to calendar
           </AppointmentButton>

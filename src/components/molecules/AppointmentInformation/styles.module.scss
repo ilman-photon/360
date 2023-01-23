@@ -1,161 +1,163 @@
-.imageContainer {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  border-radius: 100%;
+.appointmentInformation {
+  .imageContainer {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 100%;
 
-  @media (max-width: 992px) {
-    width: 66px;
-    height: 66px;
-  }
-}
-
-.profilePhoto {
-  border-radius: 100%;
-}
-
-.nameContainer {
-  display: flex;
-  margin-left: 120px;
-  border-bottom: 1px solid #d4d4d4;
-  margin-bottom: 14px;
-  padding-bottom: 14px;
-
-  .subtitleStyle {
-    font-family: "Museo Sans", sans-serif;
-    font-style: normal;
-    font-weight: 300 !important;
-    font-size: 18px !important;
-    line-height: 28px !important;
-    color: #003b4a;
+    @media (max-width: 600px) {
+      width: 66px;
+      height: 66px;
+    }
   }
 
-  .patientSubtitleStyle {
-    font-family: "Museo Sans", sans-serif;
-    font-style: normal;
-    font-weight: 300 !important;
-    font-size: 18px !important;
-    line-height: 28px !important;
+  .profilePhoto {
+    border-radius: 100%;
+  }
+
+  .nameContainer {
+    display: flex;
+    margin-left: 120px;
+    border-bottom: 1px solid #d4d4d4;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+
+    .subtitleStyle {
+      font-family: "Museo Sans", sans-serif;
+      font-style: normal;
+      font-weight: 300 !important;
+      font-size: 18px !important;
+      line-height: 28px !important;
+      color: #003b4a;
+    }
+
+    .patientSubtitleStyle {
+      font-family: "Museo Sans", sans-serif;
+      font-style: normal;
+      font-weight: 300 !important;
+      font-size: 18px !important;
+      line-height: 28px !important;
+    }
+
+    h6 {
+      font-family: "Museo Sans", sans-serif !important;
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      margin-left: unset;
+      width: auto;
+      padding-left: 85px;
+      padding-bottom: 17px;
+      padding-top: 5px;
+    }
+  }
+
+  .doctorName {
+    width: 211px;
+    margin-right: 90px !important;
+  }
+
+  .locationContainer {
+    display: flex;
+    margin-left: 120px;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      margin-left: unset;
+    }
+  }
+
+  .locationWrapper {
+    width: 211px;
+    margin-right: 90px;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+
+    @media (max-width: 600px) {
+      margin-bottom: 24px;
+    }
   }
 
   h6 {
-    font-family: "Museo Sans", sans-serif !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    line-height: 28px !important;
+    color: #003b4a !important;
   }
 
-  @media (max-width: 992px) {
-    flex-direction: column;
-    margin-left: unset;
-    width: auto;
-    padding-left: 85px;
-    padding-bottom: 17px;
-    padding-top: 5px;
+  .locationContainer h6 {
+    font-size: 16px !important;
+    line-height: 24px !important;
   }
-}
 
-.doctorName {
-  width: 211px;
-  margin-right: 90px !important;
-}
-
-.locationContainer {
-  display: flex;
-  margin-left: 120px;
-
-  @media (max-width: 992px) {
-    flex-direction: column;
-    margin-left: unset;
+  .bodyTitle {
+    font-weight: 400 !important;
+    color: #191919;
   }
-}
 
-.locationWrapper {
-  width: 211px;
-  margin-right: 90px;
-  gap: 6px;
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 992px) {
-    margin-bottom: 24px;
+  p {
+    font-style: normal;
+    font-size: 16px !important;
+    line-height: 24px !important;
   }
-}
 
-.appointmentInformation h6 {
-  font-style: normal !important;
-  font-weight: 600 !important;
-  font-size: 18px !important;
-  line-height: 28px !important;
-  color: #003b4a !important;
-}
-
-.locationContainer h6 {
-  font-size: 16px !important;
-  line-height: 19px !important;
-}
-
-.appointmentInformation .bodyTitle {
-  font-weight: 400 !important;
-  color: #191919;
-}
-
-.appointmentInformation p {
-  font-style: normal;
-  font-size: 16px !important;
-  line-height: 19px !important;
-}
-
-.subTitleWrapper {
-  display: flex;
-  align-items: baseline;
-  gap: 5px;
-}
-
-.titleLocation {
-  margin-bottom: 8px !important;
-}
-
-.insuranceWrapper {
-  margin-right: unset;
-  @extend .locationWrapper;
-}
-
-.viewDetails {
-  width: 645px;
-  display: flex;
-  margin-left: 120px;
-  justify-content: center;
-  margin-top: 48px;
-  @media (max-width: 992px) {
-    width: auto;
-    margin-left: unset;
-    margin-top: 24px;
+  .subTitleWrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
   }
-}
 
-.getDirectionLink {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 19px;
-
-  @media (max-width: 992px) {
-    margin-top: 10px;
+  .titleLocation {
+    margin-bottom: 8px !important;
   }
-}
 
-.getDirectionLinkText {
-  font-family: "Museo Sans", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: 0.0016em;
-  color: #008294 !important;
-  cursor: pointer;
-  text-decoration-color: inherit !important;
-}
+  .insuranceWrapper {
+    margin-right: unset;
+    @extend .locationWrapper;
+  }
 
-.phone {
-  letter-spacing: 0.0016em;
-  color: #003b4a !important;
-  line-height: 24px !important;
+  .viewDetails {
+    width: 645px;
+    display: flex;
+    margin-left: 120px;
+    justify-content: center;
+    margin-top: 48px;
+    @media (max-width: 600px) {
+      width: auto;
+      margin-left: unset;
+      margin-top: 24px;
+    }
+  }
+
+  .getDirectionLink {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 19px;
+
+    @media (max-width: 600px) {
+      margin-top: 10px;
+    }
+  }
+
+  .getDirectionLinkText {
+    font-family: "Museo Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.0016em;
+    color: #008294 !important;
+    cursor: pointer;
+    text-decoration-color: inherit !important;
+  }
+
+  .phone {
+    letter-spacing: 0.0016em;
+    color: #003b4a !important;
+    line-height: 24px !important;
+  }
 }

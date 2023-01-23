@@ -110,18 +110,7 @@ export function PastAppointmentCard({ data, threshold }) {
                     tabIndex={0}
                     ariaLabel={"Purpose of Visit:"}
                     variant="subtitle2"
-                    style={{
-                      height: "24px",
-                      "font-family": "Museo Sans",
-                      "font-style": "normal",
-                      "font-weight": "600",
-                      "font-size": "18px",
-                      "line-height": "24px",
-                      /* identical to box height, or 144% */
-
-                      "letter-spacing": "0.0016em",
-                      color: "#003B4A",
-                    }}
+                    className={styles.purposeOfVisitHead}
                   >
                     Purpose of Visit:{" "}
                   </Typography>
