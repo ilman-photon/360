@@ -33,6 +33,9 @@ export default function AppointmentDetails({
             p: 3,
           },
         }}
+        textStyle={{
+          fontWeight: 400,
+        }}
         actionContent={
           <Button
             data-testid={
@@ -88,9 +91,9 @@ export default function AppointmentDetails({
                 color: "#003B4A",
                 fontFamily: "Museo Sans",
                 fontSize: "16px",
-                fontWeight: "400",
+                fontWeight: "300",
                 "font-style": "normal",
-                "font-weight": "400",
+                "font-weight": "300",
                 "font-size": "16px",
                 "line-height": "24px",
               }}
@@ -138,7 +141,7 @@ export default function AppointmentDetails({
                 color: "#003B4A",
                 fontFamily: "Museo Sans",
                 "font-style": "normal",
-                "font-weight": "400",
+                "font-weight": "300",
                 "font-size": "16px",
                 "line-height": "24px",
               }}
@@ -183,7 +186,7 @@ export default function AppointmentDetails({
                 color: colors.darkGreen,
                 fontFamily: "Museo Sans",
                 "font-style": "normal",
-                "font-weight": "400",
+                "font-weight": "300",
                 "font-size": "16px",
                 "line-height": "24px",
               }}

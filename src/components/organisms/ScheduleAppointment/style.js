@@ -108,7 +108,7 @@ export const styles = {
     textDecorationLine: "underline",
     textTransform: "capitalize",
     fontFamily: "Museo Sans",
-    fontWeight: 500,
+    fontWeight: 400,
     fontSize: "16px",
   },
   scheduledText: {
