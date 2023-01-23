@@ -21,11 +21,20 @@ export default function ConstentToTreat({
   },
 }) {
   const [isEditable, setIsEditable] = useState(false);
+  const { errors, isSubmitting, control } = useFormProps;
 
   useEffect(() => {
     setIsEditable(isEdit);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEdit]);
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 1 && errors.sign) {
+      const signBtn = document.getElementById("signBtn");
+      signBtn.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   return (
     <Stack className={styles.textContainer}>
@@ -45,10 +54,14 @@ export default function ConstentToTreat({
         <Grid item xs={12} md={7}>
           <Controller
             name={controlName.patientName}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            control={control}
+            render={({
+              field: { onChange, value, ref },
+              fieldState: { error },
+            }) => {
               return (
                 <StyledInput
+                  inputRef={ref}
                   value={value}
                   onChange={onChange}
                   maxLength={50}
@@ -87,10 +100,14 @@ export default function ConstentToTreat({
         <Grid item xs={12} md={4}>
           <Controller
             name={controlName.dob}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            control={control}
+            render={({
+              field: { onChange, value, ref },
+              fieldState: { error },
+            }) => {
               return (
                 <StyledInput
+                  inputRef={ref}
                   disableFuture
                   type="default"
                   maxLength={50}
@@ -129,10 +146,14 @@ export default function ConstentToTreat({
       </Grid>
       <Controller
         name={controlName.textInfo}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledTextArea
+              inputRef={ref}
               onChange={onChange}
               value={value}
               isEdit={isEditable}

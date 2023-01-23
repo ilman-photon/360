@@ -13,6 +13,7 @@ export default function ConsentToUse({
   isSubmitForm = false,
   useFormProps = null,
   isNewForm = false,
+  firstErrorKey = null,
   controlName = {
     textInfo: "textInfo",
     sign: "sign",
@@ -36,11 +37,28 @@ export default function ConsentToUse({
 }) {
   const [isEditable, setIsEditable] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const { isSubmitting, control } = useFormProps;
 
   useEffect(() => {
     setIsEditable(isEdit);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEdit]);
+
+  useEffect(() => {
+    if (firstErrorKey === "sign") {
+      const signBtn = document.getElementById("signBtn");
+      signBtn.focus();
+    } else if (firstErrorKey === "signCommunication") {
+      const signBtnComunication = document.getElementById(
+        "signBtnComunication"
+      );
+      signBtnComunication.focus();
+    } else if (firstErrorKey === "signOptional") {
+      const signBtnOptional = document.getElementById("signBtnOptional");
+      signBtnOptional.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
 
   function renderOptionalFormUI() {
     return (
@@ -62,10 +80,14 @@ export default function ConsentToUse({
         >
           <Controller
             name={controlName.textInfo4}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            control={control}
+            render={({
+              field: { onChange, value, ref },
+              fieldState: { error },
+            }) => {
               return (
                 <StyledTextArea
+                  inputRef={ref}
                   multiline={isMobile}
                   onChange={onChange}
                   value={value}
@@ -111,10 +133,14 @@ export default function ConsentToUse({
           />
           <Controller
             name={controlName.agentName}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            control={control}
+            render={({
+              field: { onChange, value, ref },
+              fieldState: { error },
+            }) => {
               return (
                 <StyledInput
+                  inputRef={ref}
                   value={value}
                   onChange={onChange}
                   maxLength={50}
@@ -157,10 +183,14 @@ export default function ConsentToUse({
           />
           <Controller
             name={controlName.textInfo5}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            control={control}
+            render={({
+              field: { onChange, value, ref },
+              fieldState: { error },
+            }) => {
               return (
                 <StyledTextArea
+                  inputRef={ref}
                   multiline={isMobile}
                   onChange={onChange}
                   value={value}
@@ -218,10 +248,14 @@ export default function ConsentToUse({
           </Typography>
           <Controller
             name={controlName.patientName}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            control={control}
+            render={({
+              field: { onChange, value, ref },
+              fieldState: { error },
+            }) => {
               return (
                 <StyledInput
+                  inputRef={ref}
                   value={value}
                   onChange={onChange}
                   maxLength={50}
@@ -261,10 +295,14 @@ export default function ConsentToUse({
           </Typography>
           <Controller
             name={controlName.patientDOB}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            control={control}
+            render={({
+              field: { onChange, value, ref },
+              fieldState: { error },
+            }) => {
               return (
                 <StyledInput
+                  inputRef={ref}
                   value={value}
                   onChange={onChange}
                   maxLength={50}
@@ -311,10 +349,14 @@ export default function ConsentToUse({
     <Stack className={styles.textContainer}>
       <Controller
         name={controlName.textInfo}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledTextArea
+              inputRef={ref}
               onChange={onChange}
               value={value}
               isEdit={isEditable}
@@ -355,10 +397,14 @@ export default function ConsentToUse({
       />
       <Controller
         name={controlName.textInfo2}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledTextArea
+              inputRef={ref}
               onChange={onChange}
               value={value}
               isEdit={isEditable}
@@ -401,13 +447,18 @@ export default function ConsentToUse({
           relationship: controlName.signCommunicationRelationship,
         }}
         customSignText={isNewForm ? "Initial" : ""}
+        signButtonId="signBtnComunication"
       />
       <Controller
         name={controlName.textInfo3}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledTextArea
+              inputRef={ref}
               onChange={onChange}
               value={value}
               isEdit={isEditable}
@@ -449,13 +500,18 @@ export default function ConsentToUse({
           date: controlName.signOptionalDate,
           relationship: controlName.signOptionalRelationship,
         }}
+        signButtonId="signBtnOptional"
       />
       <Controller
         name={controlName.textInfo6}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledTextArea
+              inputRef={ref}
               onChange={onChange}
               value={value}
               isEdit={isEditable}

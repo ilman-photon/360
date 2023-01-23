@@ -19,19 +19,33 @@ export default function ContactLens({
 }) {
   const [isEditable, setIsEditable] = useState(false);
 
+  const { errors, isSubmitting, control } = useFormProps;
+
   useEffect(() => {
     setIsEditable(isEdit);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEdit]);
 
+  useEffect(() => {
+    if (Object.keys(errors).length === 1 && errors.sign) {
+      const signBtn = document.getElementById("signBtn");
+      signBtn.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
+
   return (
     <Stack className={styles.textContainer}>
       <Controller
         name={controlName.textInfo}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledTextArea
+              inputRef={ref}
               onChange={onChange}
               value={value}
               isEdit={isEditable}

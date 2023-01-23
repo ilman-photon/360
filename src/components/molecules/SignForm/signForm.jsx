@@ -32,6 +32,7 @@ export default function SignForm({
     date: "date",
   },
   customSignText = "Signed",
+  signButtonId = "signBtn",
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignedState, setIsSignedState] = useState(false);
@@ -57,6 +58,8 @@ export default function SignForm({
     const signButtonStyle = isSignedState
       ? styles.signedButton
       : styles.signButton;
+    const errorTxt =
+      "Please remember to provide an electronic signature in order to proceed with your request.";
     return (
       <Controller
         name={controlName.sign}
@@ -162,6 +165,11 @@ export default function SignForm({
                         mode={constants.PRIMARY}
                         sxButton={signButtonStyle}
                         onClick={() => setIsOpen(true)}
+                        id={signButtonId}
+                        tabIndex={0}
+                        aria-label={
+                          !isError ? signText : `${errorTxt}. ${signText}`
+                        }
                       >
                         {signText}
                       </StyledButton>
@@ -189,8 +197,7 @@ export default function SignForm({
         rules={
           !isEdit
             ? {
-                required:
-                  "Please remember to provide an electronic signature in order to proceed with your request.",
+                required: errorTxt,
               }
             : {}
         }
@@ -220,7 +227,7 @@ export default function SignForm({
               aria-hidden={true}
               tabIndex={-1}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
@@ -230,6 +237,7 @@ export default function SignForm({
                     type="text"
                     id="relationship"
                     label="Relationship"
+                    inputRef={ref}
                     inputProps={{
                       "aria-label": "Relationship field",
                     }}
@@ -276,11 +284,12 @@ export default function SignForm({
               name={controlName.date}
               control={useFormProps.control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <StyledInput
+                    inputRef={ref}
                     disableFuture
                     disabled={isEdit || isSubmitForm}
                     type="dob"

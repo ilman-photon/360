@@ -1,4 +1,5 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import { useEffect } from "react";
 import { Controller } from "react-hook-form";
 import StyledInput from "../../atoms/Input/input";
 import SignForm from "../../molecules/SignForm/signForm";
@@ -35,6 +36,17 @@ export default function ConsentToTreatment({
     signDate: "signDate",
   },
 }) {
+  const isDesktop = useMediaQuery("(min-width: 900px)");
+  const { errors, isSubmitting, control } = useFormProps;
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 1 && errors.sign) {
+      const signBtn = document.getElementById("signBtn");
+      signBtn.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
+
   const renderDefaultInput = (
     label,
     controlname,
@@ -48,10 +60,14 @@ export default function ConsentToTreatment({
     return (
       <Controller
         name={controlname}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledInput
+              inputRef={ref}
               value={value}
               onChange={onChange}
               maxLength={50}
@@ -114,10 +130,14 @@ export default function ConsentToTreatment({
       <Controller
         // name={controlName.phoneNumber}
         name={controlname}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledInput
+              inputRef={ref}
               value={value}
               widthPhone={widthDesktop}
               centerAlign={true}
@@ -224,31 +244,33 @@ export default function ConsentToTreatment({
             )}
           </Stack>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={5}
-          sx={{
-            display: { xs: "flex", md: "none" },
-            paddingLeft: "0px !important",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: { xs: "flex-start", md: "center" },
-          }}
-        >
-          <Typography className={styles.minorText} tabIndex={0}>
-            , a minor, authorizes
-          </Typography>
-          {renderDefaultInput(
-            "babysitter, guardian, etc.",
-            controlName.guardian,
-            "guardian-field",
-            "320px",
-            "0",
-            "10px",
-            false,
-            { backgroundColor: "#F4F4F4" }
-          )}
-        </Grid>
+        {!isDesktop && (
+          <Grid
+            item
+            xs={12}
+            md={5}
+            sx={{
+              display: { xs: "flex", md: "none" },
+              paddingLeft: "0px !important",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: { xs: "flex-start", md: "center" },
+            }}
+          >
+            <Typography className={styles.minorText} tabIndex={0}>
+              , a minor, authorizes
+            </Typography>
+            {renderDefaultInput(
+              "babysitter, guardian, etc.",
+              controlName.guardian,
+              "guardian-field",
+              "320px",
+              "0",
+              "10px",
+              false,
+              { backgroundColor: "#F4F4F4" }
+            )}
+          </Grid>
+        )}
         <Grid
           item
           xs={12}

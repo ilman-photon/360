@@ -1,9 +1,4 @@
-import {
-  render,
-  fireEvent,
-  waitFor,
-  screen,
-} from "@testing-library/react";
+import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MessagingDetailContentView from "../../../../src/components/molecules/Messaging/MessagingDetailContentView";
 
@@ -127,7 +122,7 @@ describe("container Components", () => {
     const containerDetails = container.getAllByTestId(
       /messaging-container-detail/i
     );
-    const deletedButton = container.getByTestId("DeleteOutlinedIcon");
+    const deletedButton = container.getByTestId("delete-message-icon");
     await waitFor(() => fireEvent.click(deletedButton));
     const addAttachmentButton = container.getByTestId("AttachmentOutlinedIcon");
     await waitFor(() => fireEvent.click(addAttachmentButton));

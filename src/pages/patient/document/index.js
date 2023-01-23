@@ -66,12 +66,20 @@ export default function DocumentPage({ title }) {
     (state) => state.document.defaultDataValue
   );
   const defaultDataKey = useSelector((state) => state.document.defaultDataKey);
-  const { handleSubmit, control, reset, watch } = useForm({
+  const {
+    handleSubmit,
+    control,
+    reset,
+    watch,
+    setFocus,
+    formState: { errors, isSubmitting },
+  } = useForm({
     defaultValues: defaultDataValue,
   });
   const intakeFormData = useSelector((state) => state.document.intakeFormData);
   const containerRef = React.useRef(null);
   const digitalAsset = new DigitalAssetsHandler();
+  const firstErrorKey = Object.keys(errors).find((key) => errors[key]);
 
   useEffect(() => {
     setIsAdmin(isAdminUser());
@@ -230,7 +238,13 @@ export default function DocumentPage({ title }) {
       return (
         <ConstentToTreat
           defaultDataValue={defaultDataValue}
-          useFormProps={{ handleSubmit, control }}
+          useFormProps={{
+            handleSubmit,
+            control,
+            errors,
+            setFocus,
+            isSubmitting,
+          }}
           disableInput={isAdmin}
           isEdit={isEdit}
           isSubmitForm={intakeFormData.isSubmit}
@@ -240,7 +254,13 @@ export default function DocumentPage({ title }) {
       return (
         <MedicationVisionExam
           defaultDataValue={defaultDataValue}
-          useFormProps={{ handleSubmit, control }}
+          useFormProps={{
+            handleSubmit,
+            control,
+            errors,
+            setFocus,
+            isSubmitting,
+          }}
           disableInput={isAdmin}
           isEdit={isEdit}
           isSubmitForm={intakeFormData.isSubmit}
@@ -250,17 +270,30 @@ export default function DocumentPage({ title }) {
       return (
         <InsuranceCommunication
           defaultDataValue={defaultDataValue}
-          useFormProps={{ handleSubmit, control }}
+          useFormProps={{
+            handleSubmit,
+            control,
+            errors,
+            setFocus,
+            isSubmitting,
+          }}
           disableInput={isAdmin}
           isEdit={isEdit}
           isSubmitForm={intakeFormData.isSubmit}
+          firstErrorKey={firstErrorKey}
         />
       );
     } else if (title?.indexOf("Contact Lens Prescription") > -1) {
       return (
         <ContactLens
           defaultDataValue={defaultDataValue}
-          useFormProps={{ handleSubmit, control }}
+          useFormProps={{
+            handleSubmit,
+            control,
+            errors,
+            setFocus,
+            isSubmitting,
+          }}
           disableInput={isAdmin}
           isEdit={isEdit}
           isSubmitForm={intakeFormData.isSubmit}
@@ -270,7 +303,13 @@ export default function DocumentPage({ title }) {
       return (
         <AuthorizationToDisclose
           defaultDataValue={defaultDataValue}
-          useFormProps={{ handleSubmit, control }}
+          useFormProps={{
+            handleSubmit,
+            control,
+            errors,
+            setFocus,
+            isSubmitting,
+          }}
           disableInput={isAdmin}
           isEdit={isEdit}
           isSubmitForm={intakeFormData.isSubmit}
@@ -280,11 +319,18 @@ export default function DocumentPage({ title }) {
       return (
         <ConsentToUse
           defaultDataValue={defaultDataValue}
-          useFormProps={{ handleSubmit, control }}
+          useFormProps={{
+            handleSubmit,
+            control,
+            errors,
+            setFocus,
+            isSubmitting,
+          }}
           disableInput={isAdmin}
           isEdit={isEdit}
           isSubmitForm={intakeFormData.isSubmit}
           isNewForm={title?.indexOf("V3") > -1}
+          firstErrorKey={firstErrorKey}
         />
       );
     } else if (title?.indexOf("Consent to Treat") > -1) {
@@ -292,7 +338,13 @@ export default function DocumentPage({ title }) {
         <ConsentToTreatment
           defaultDataValue={defaultDataValue}
           disableInput={isAdmin}
-          useFormProps={{ handleSubmit, control }}
+          useFormProps={{
+            handleSubmit,
+            control,
+            errors,
+            setFocus,
+            isSubmitting,
+          }}
           isEdit={isEdit}
           isSubmitForm={intakeFormData.isSubmit}
         />
