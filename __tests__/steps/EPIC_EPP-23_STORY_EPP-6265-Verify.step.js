@@ -72,13 +72,13 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("delete one message", () => {
-      clickOneMessage(container);
-      clickIconDelete(container);
+    and("delete one message", async () => {
+      await clickOneMessage(container);
+      await clickIconDelete(container);
     });
 
-    and("navigate to the Deleted messages.", () => {
-      clickDeletedTab(container);
+    and("navigate to the Deleted messages.", async () => {
+      await clickDeletedTab(container);
     });
 
     then(
@@ -115,13 +115,13 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("delete one message", () => {
-      clickOneMessage(container);
-      clickIconDelete(container);
+    and("delete one message", async () => {
+      await clickOneMessage(container);
+      await clickIconDelete(container);
     });
 
-    and("navigate to the Deleted messages.", () => {
-      clickDeletedTab(container);
+    and("navigate to the Deleted messages.", async () => {
+      await clickDeletedTab(container);
     });
 
     then(
@@ -158,13 +158,13 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("delete one message", () => {
-      clickOneMessage(container);
-      clickIconDelete(container);
+    and("delete one message", async () => {
+      await clickOneMessage(container);
+      await clickIconDelete(container);
     });
 
-    and("navigate to the Deleted messages.", () => {
-      clickDeletedTab(container);
+    and("navigate to the Deleted messages.", async () => {
+      await clickDeletedTab(container);
     });
 
     then("Patient should see the few words of Subject in the list view", () => {
@@ -198,13 +198,13 @@ defineFeature(feature, (test) => {
       }
     );
 
-    and("delete one message", () => {
-      clickOneMessage(container);
-      clickIconDelete(container);
+    and("delete one message", async () => {
+      await clickOneMessage(container);
+      await clickIconDelete(container);
     });
 
-    and("navigate to the Deleted messages.", () => {
-      clickDeletedTab(container);
+    and("navigate to the Deleted messages.", async () => {
+      await clickDeletedTab(container);
     });
 
     then(

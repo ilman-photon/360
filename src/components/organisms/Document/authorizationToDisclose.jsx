@@ -36,21 +36,34 @@ export default function AuthorizationToDisclose({
   },
 }) {
   const [isEditable, setIsEditable] = useState(false);
+  const { errors, isSubmitting, control } = useFormProps;
 
   useEffect(() => {
     setIsEditable(isEdit);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEdit]);
 
+  useEffect(() => {
+    if (Object.keys(errors).length === 1 && errors.sign) {
+      const signBtn = document.getElementById("signBtn");
+      signBtn.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
+
   function firstSection(key) {
     return (
       <Grid item xs={12} md={8}>
         <Controller
           name={controlName[`${key}`].name}
-          control={useFormProps.control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => {
+          control={control}
+          render={({
+            field: { onChange, value, ref },
+            fieldState: { error },
+          }) => {
             return (
               <StyledInput
+                inputRef={ref}
                 value={value}
                 onKeyDown={(e) => {
                   if (
@@ -102,10 +115,14 @@ export default function AuthorizationToDisclose({
       <Grid item xs={12} md={8}>
         <Controller
           name={controlName[`${key}`].relationship}
-          control={useFormProps.control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => {
+          control={control}
+          render={({
+            field: { onChange, value, ref },
+            fieldState: { error },
+          }) => {
             return (
               <StyledInput
+                inputRef={ref}
                 value={value}
                 onChange={onChange}
                 maxLength={50}
@@ -165,10 +182,14 @@ export default function AuthorizationToDisclose({
         <Grid item xs={12} md={4}>
           <Controller
             name={controlName[`${key}`].phoneNumber}
-            control={useFormProps.control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            control={control}
+            render={({
+              field: { onChange, value, ref },
+              fieldState: { error },
+            }) => {
               return (
                 <StyledInput
+                  inputRef={ref}
                   value={value}
                   onKeyDown={(e) => {
                     if (
@@ -245,13 +266,14 @@ export default function AuthorizationToDisclose({
           <Grid item xs={12} md={8}>
             <Controller
               name={controlName.protectionHealth}
-              control={useFormProps.control}
+              control={control}
               render={({
-                field: { onChange, value },
+                field: { onChange, value, ref },
                 fieldState: { error },
               }) => {
                 return (
                   <StyledInput
+                    inputRef={ref}
                     value={value}
                     onChange={onChange}
                     maxLength={50}
@@ -301,10 +323,14 @@ export default function AuthorizationToDisclose({
     <Stack className={styles.textContainer}>
       <Controller
         name={controlName.textInfo}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledTextArea
+              inputRef={ref}
               onChange={onChange}
               value={value}
               isEdit={isEditable}

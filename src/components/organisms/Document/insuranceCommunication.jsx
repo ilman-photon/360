@@ -17,22 +17,39 @@ export default function InsuranceCommunication({
     textInfo2: "textInfo2",
     signPrivatePay: "signPrivatePay",
   },
+  firstErrorKey = null,
 }) {
   const [isEditable, setIsEditable] = useState(false);
+  const { isSubmitting, control } = useFormProps;
 
   useEffect(() => {
     setIsEditable(isEdit);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEdit]);
 
+  useEffect(() => {
+    if (firstErrorKey === "sign") {
+      const signBtn = document.getElementById("signBtn");
+      signBtn.focus();
+    } else if (firstErrorKey === "signPrivatePay") {
+      const signPrivatePay = document.getElementById("signPrivatePay");
+      signPrivatePay.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSubmitting]);
+
   return (
     <Stack className={styles.textContainer}>
       <Controller
         name={controlName.textInfo}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledTextArea
+              inputRef={ref}
               onChange={onChange}
               value={value}
               data-testid={`${controlName.textInfo}-txt`}
@@ -93,10 +110,14 @@ export default function InsuranceCommunication({
       </Typography>
       <Controller
         name={controlName.textInfo2}
-        control={useFormProps.control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        control={control}
+        render={({
+          field: { onChange, value, ref },
+          fieldState: { error },
+        }) => {
           return (
             <StyledTextArea
+              inputRef={ref}
               onChange={onChange}
               value={value}
               isEdit={isEditable}
@@ -136,6 +157,7 @@ export default function InsuranceCommunication({
           sign: controlName.signPrivatePay,
         }}
         customSignText={"Initial"}
+        signButtonId="signPrivatePay"
       />
     </Stack>
   );

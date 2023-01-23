@@ -76,7 +76,7 @@ export const MessagingDetailContentView = ({
           aria-label={"Delete Button"}
           onClick={() => openDeletedDialog(data._id, data)}
         >
-          <DeleteOutlinedIcon data-testId="delete-message-icon" />
+          <DeleteOutlinedIcon data-testid="delete-message-icon" />
         </IconButton>
       </Box>
       {/* )} */}
