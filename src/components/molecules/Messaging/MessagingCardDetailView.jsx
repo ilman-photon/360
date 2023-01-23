@@ -85,6 +85,7 @@ export const MessagingCardDetailView = ({
         <Box className={styles.cardDetailHeader}>
           {!isDesktop && getProfilePicture()}
           <Typography
+            tabIndex={0}
             sx={{
               fontSize: isDesktop ? "18px" : "16px",
               fontWeight: "600",

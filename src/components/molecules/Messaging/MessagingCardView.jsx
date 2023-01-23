@@ -64,6 +64,7 @@ export const MessagingCardView = ({
       <Box className={styles.subjectContainer}>
         <Box className={styles.subjectContent}>
           <Box
+            tabIndex={0}
             sx={{
               display: "flex",
               flexDirection: "row",
@@ -139,6 +140,7 @@ export const MessagingCardView = ({
         />
         <Box className={styles.messageListContent}>
           <Typography
+            tabIndex={0}
             sx={{
               fontSize: isDesktop ? "16px" : "14px",
               fontWeight: "400",
