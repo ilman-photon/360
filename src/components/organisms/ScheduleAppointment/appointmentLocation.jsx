@@ -49,6 +49,9 @@ export default function AppointmentLocation({
             p: 3,
           },
         }}
+        textStyle={{
+          fontWeight: 400,
+        }}
         actionContent={
           <Button
             data-testid={
