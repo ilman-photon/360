@@ -70,7 +70,7 @@ export const MessagingDetailContentView = ({
             lineHeight: "32px",
           }}
         >
-          Follow-up from past visit/message
+          {data?.subject}
         </Typography>
         <Tooltip
           title={"Delete"}
