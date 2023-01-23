@@ -380,6 +380,7 @@ export default function MedicalRecordPage() {
 
   const isMobile = useMediaQuery("(max-width: 600px)");
 
+  console.log({ watchedCategory, isHideDisclaimer });
   const notifDocument = () => {
     if (!isHideDisclaimer && watchedCategory === "test-lab-result") {
       return (

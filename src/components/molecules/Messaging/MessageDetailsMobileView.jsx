@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import MessagingCardDetailView from "./MessagingCardDetailView";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -21,6 +21,9 @@ export const MessageDetailsMobileView = ({
   onCloseDetailMsg,
   isSelectedMsg,
   isDesktop,
+  onDownloadAllAttachmentClicked = () => {
+    //this is intentional
+  },
 }) => {
   const { t } = useTranslation("translation", {
     keyPrefix: "messaging",
@@ -34,6 +37,8 @@ export const MessageDetailsMobileView = ({
     });
     return message;
   };
+
+  const [replyContent, setReplyContent] = React.useState("");
 
   return (
     <Box
@@ -95,112 +100,164 @@ export const MessageDetailsMobileView = ({
               : styles.cardDetailDraftNewMsgContainer
           }
         >
-          {data?.messages?.length > 1 ? (
-            <>
-              {data.messages.map((item) => {
-                return (
-                  <MessagingCardDetailView
-                    key={item.id}
-                    data={item}
+          <Box className={styles.detailContentHeaderView}>
+            <Typography
+              tabIndex={0}
+              sx={{
+                fontFamily: "Museo Sans",
+                fontSize: "22px",
+                fontWeight: "400",
+                fontStyle: "normal",
+                color: "#003B4A",
+                lineHeight: "32px",
+              }}
+            >
+              Follow-up from past visit/message
+            </Typography>
+            <IconButton
+              tabIndex={0}
+              aria-label={"Delete Button"}
+              onClick={() => openDeletedDialog(data._id, data)}
+            >
+              <DeleteOutlinedIcon data-testid="delete-message-icon" />
+            </IconButton>
+          </Box>
+          {/* )} */}
+          <Stack
+            sx={{
+              p: 2,
+              border: "1px solid #D4D4D4",
+              borderRadius: "4px",
+            }}
+          >
+            <Box
+              className={
+                data?.messages?.length > 1
+                  ? styles.cardDetailViewContainer
+                  : styles.cardDetailDraftNewMsgContainer
+              }
+            >
+              {/* {messageNotEmpty ? ( */}
+              <>
+                {/* {data.messages.map((item) => {
+                    if (!item.isDraft) {
+                      return ( */}
+                <MessagingCardDetailView
+                  // key={item.id}
+                  // data={item}
+                  data={data}
+                  handleAssetDownload={handleAssetDownload}
+                  onDownloadAllAttachmentClicked={
+                    onDownloadAllAttachmentClicked
+                  }
+                />
+                {/* );
+                    }
+                  })} */}
+                <Box
+                  tabIndex={0}
+                  aria-label={`${t("writeMessages")} Field`}
+                  className={styles.messagesTextAreaContent}
+                  sx={{
+                    ".MuiFormControl-root": {
+                      backgroundColor: "#F4F4F4",
+                    },
+                  }}
+                >
+                  <StyledInput
+                    placeholder={`${t("writeMessages")}*`}
+                    // value={getDraftContentValue()}
+                    value={replyContent}
+                    onChange={(e) => setReplyContent(e.target.value)}
+                    multiline
+                    minRows={2}
+                    maxRows={3}
+                    ref={addAttachments}
+                    type="file"
+                    hidden
+                    sx={{
+                      width: "100%",
+                      marginTop: "8px",
+                      ".MuiTextField-root": {
+                        width: "100%",
+                      },
+                      ".MuiOutlinedInput-notchedOutline": {
+                        borderStyle: "unset",
+                        borderWidth: "0px",
+                      },
+                    }}
+                  />
+                  <AttachmentFile
+                    attachmentsSource={attachmentsSource}
                     handleAssetDownload={handleAssetDownload}
                   />
-                );
-              })}
-
-              <Box
-                className={styles.messagesTextAreaContent}
-                sx={{
-                  background: "#F4F4F4",
-                  ".MuiFormControl-root": {
-                    backgroundColor: "#F4F4F4",
-                  },
-                }}
-              >
-                <StyledInput
-                  placeholder={`${t("writeMessages")}*`}
-                  value={getDraftContentValue()}
-                  multiline
-                  rows={2}
-                  maxRows={3}
-                  ref={addAttachments}
-                  type="file"
-                  hidden
+                </Box>
+                <Box
                   sx={{
-                    width: "100%",
-                    marginTop: "8px",
-                    ".MuiTextField-root": {
-                      width: "100%",
-                    },
-                    ".MuiOutlinedInput-notchedOutline": {
-                      borderStyle: "unset",
-                      borderWidth: "0px",
-                    },
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
                   }}
-                />
-                <AttachmentFile
-                  attachmentsSource={attachmentsSource}
-                  handleAssetDownload={handleAssetDownload}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Button
-                  onClick={() => {
-                    addAttachments.current.click();
-                  }}
-                  sx={{
-                    gap: "5px",
-                    textTransform: "capitalize",
-                    border: "1px solid #003B4A",
-                    margin: "8px 0",
-                    borderRadius: "30px",
-                  }}
-                  data-testId="add-attachments-button"
                 >
-                  <AttachmentOutlinedIcon
-                    sx={{
-                      color: "#0000008A",
-                      width: "22px",
-                      height: "22px",
-                    }}
-                  />
-                  <Typography
+                  <Button
                     tabIndex={0}
-                    sx={{
-                      fontSize: "16px",
-                      fontWeight: "600",
-                      fontStyle: "normal",
-                      color: "#007E8F",
-                      lineHeight: "18px",
+                    aria-label={"Add Attachments button"}
+                    onClick={() => {
+                      addAttachments.current.click();
                     }}
+                    sx={{
+                      gap: "5px",
+                      textTransform: "capitalize",
+                      border: "1px solid #003B4A",
+                      margin: "8px 0",
+                      borderRadius: "30px",
+                    }}
+                    data-testId="add-attachments-button"
                   >
-                    {t("addAttachments")}
-                  </Typography>
-                </Button>
-                <Button
-                  sx={{ color: "#424747" }}
-                  data-testId="send-reply-button"
-                >
-                  <SendOutlinedIcon />
-                </Button>
-              </Box>
-            </>
-          ) : (
-            <NewMessageDialog
-              isDesktop={isDesktop}
-              isDraft={data?.messages?.length === 1}
-              isSelectedMsg={isSelectedMsg}
-              valueText={getDraftContentValue()}
-              onAddAttachFile={handleAssetDownload}
-              refAttachments={addAttachments}
-              attachmentsSource={attachmentsSource}
-            />
-          )}
+                    <AttachmentOutlinedIcon
+                      sx={{
+                        color: "#0000008A",
+                        width: "22px",
+                        height: "22px",
+                      }}
+                    />
+                    <Typography
+                      tabIndex={0}
+                      aria-label={"Add Attachments button"}
+                      sx={{
+                        fontSize: "16px",
+                        fontWeight: "600",
+                        fontStyle: "normal",
+                        color: "#007E8F",
+                        lineHeight: "18px",
+                      }}
+                    >
+                      {t("addAttachments")}
+                    </Typography>
+                  </Button>
+                  <Button
+                    tabIndex={0}
+                    aria-label={"Send Button"}
+                    sx={{ color: "#424747" }}
+                  >
+                    <SendOutlinedIcon />
+                  </Button>
+                </Box>
+              </>
+              {/* ) : (
+                <NewMessageDialog
+                  isDesktop={isDesktop}
+                  isDraft={data?.messages?.length === 1}
+                  isSelectedMsg={isSelectedMsg}
+                  valueText={getDraftContentValue()}
+                  onAddAttachFile={handleAssetDownload}
+                  refAttachments={addAttachments}
+                  attachmentsSource={attachmentsSource}
+                  onDiscardMessage={onDiscardMessage}
+                />
+              )} */}
+            </Box>
+          </Stack>
         </Box>
       </Box>
     </Box>
