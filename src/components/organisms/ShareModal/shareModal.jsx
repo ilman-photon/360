@@ -218,9 +218,9 @@ function ShareModal() {
   };
 
   const onCallShareAPI = async (postBody) => {
+    dispatch(setOpenModal(false));
     dispatch(submitShareModal({ payload: postBody })).then(
       async ({ payload }) => {
-        dispatch(setOpenModal(false));
         if (payload.success) {
           if (successCallback) {
             await successCallback({

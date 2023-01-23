@@ -8,10 +8,7 @@ import { Provider } from "react-redux";
 import EducationMaterials from "../../src/pages/patient/education-materials/index";
 import store from "../../src/store/store";
 import { renderWithProviders } from "../src/utils/test-util";
-import {
-  createMatchMedia,
-  navigateToPatientPortalHome,
-} from "../../__mocks__/commonSteps";
+import { createMatchMedia, navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
 import { educationMaterials } from "../../__mocks__/mockResponse";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 

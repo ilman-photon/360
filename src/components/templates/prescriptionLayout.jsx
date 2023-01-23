@@ -32,7 +32,7 @@ export default function PrescriptionLayout({
       setTimeout(() => {
         dispatch(setShowToastMessage(false));
         dispatch(resetShareData());
-      }, 3000);
+      }, 5000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showToastMessage]);
@@ -76,12 +76,7 @@ export default function PrescriptionLayout({
         <BaseHeader {...logoutProps} />
         {isAdmin ? <AdminNavbar /> : <Navbar />}
         {showToastMessage && scollToTop()}
-        <Collapse
-          in={showToastMessage}
-          unmountOnExit
-          aria-live="polite"
-          role="alert"
-        >
+        <Collapse in={showToastMessage} unmountOnExit>
           <Box
             sx={{
               background: colors.foundationGreen,
@@ -103,6 +98,7 @@ export default function PrescriptionLayout({
             <Typography
               variant="libreH4"
               sx={{ fontWeight: 500, color: "white" }}
+              role="alert"
             >
               {shareModalData?.successPostmessage}
             </Typography>
@@ -111,7 +107,7 @@ export default function PrescriptionLayout({
                 position: "absolute",
                 right: "28px",
               }}
-              onClick={() => showToastMessage(false)}
+              onClick={() => dispatch(setShowToastMessage(false))}
               aria-label="Close option"
             >
               <CloseIcon sx={{ color: "white" }} />
