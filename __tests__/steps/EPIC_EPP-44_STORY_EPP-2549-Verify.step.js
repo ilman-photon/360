@@ -20,7 +20,7 @@ import {
   clickSearch,
   renderResultsScreen,
 } from "../../__mocks__/commonSteps";
-import constants from "../../src/utils/constants";
+import constants, { TEST_ID } from "../../src/utils/constants";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import ScheduleAppointment from "../../src/pages/patient/schedule-appointment/index";
@@ -38,7 +38,7 @@ defineFeature(feature, (test) => {
     mock.reset();
   });
 
-  const appointmentDetailScreen = () => {
+  const appointmentDetailScreen = async () => {
     let container;
     act(() => {
       container = render(
@@ -47,6 +47,13 @@ defineFeature(feature, (test) => {
         </Provider>
       );
     });
+    expect(
+      await waitFor(() =>
+        container.getByTestId(
+          TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.editButton
+        )
+      )
+    ).toBeInTheDocument();
     return container;
   };
 
@@ -121,13 +128,16 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user clicks on the Search button", async() => {
+    and("user clicks on the Search button", async () => {
       await clickSearch(container);
     });
 
-    and("user views the results in the Schedule Appointments screen", async () => {
-      await renderResultsScreen(container);
-    });
+    and(
+      "user views the results in the Schedule Appointments screen",
+      async () => {
+        await renderResultsScreen(container);
+      }
+    );
 
     and("user selected a time slot", async () => {
       expect(container.getByText("3 In-network providers")).toBeInTheDocument();
@@ -265,9 +275,12 @@ defineFeature(feature, (test) => {
       await clickSearch(container);
     });
 
-    and("user views the results in the Schedule Appointments screen", async() => {
-      await renderResultsScreen(container);
-    });
+    and(
+      "user views the results in the Schedule Appointments screen",
+      async () => {
+        await renderResultsScreen(container);
+      }
+    );
 
     and("user selected a time slot", async () => {
       expect(container.getByText("3 In-network providers")).toBeInTheDocument();
@@ -363,9 +376,12 @@ defineFeature(feature, (test) => {
       await clickSearch(container);
     });
 
-    and("user views the results in the Schedule Appointments screen", async () => {
-      await renderResultsScreen(container);
-    });
+    and(
+      "user views the results in the Schedule Appointments screen",
+      async () => {
+        await renderResultsScreen(container);
+      }
+    );
 
     and("user selected a time slot", async () => {
       const hourButton = await waitFor(

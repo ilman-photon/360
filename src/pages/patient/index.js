@@ -306,7 +306,7 @@ export default function HomePage({ googleApiKey }) {
       });
       dispatch(setShowToastMessage(false));
       dispatch(resetShareData());
-    }, 3000);
+    }, 5000);
   }
 
   function renderFirstColumn() {
@@ -435,12 +435,7 @@ export default function HomePage({ googleApiKey }) {
           {isDesktop ? (
             <>
               {postMessage?.isShow && scollToTop()}
-              <Collapse
-                in={postMessage?.isShow}
-                unmountOnExit
-                aria-live="polite"
-                role="alert"
-              >
+              <Collapse in={postMessage?.isShow} unmountOnExit>
                 <Box
                   sx={{
                     background: colors.foundationGreen,
@@ -462,6 +457,7 @@ export default function HomePage({ googleApiKey }) {
                   <Typography
                     variant="libreH4"
                     sx={{ fontWeight: 500, color: "white" }}
+                    role="alert"
                   >
                     {postMessage?.message}
                   </Typography>
