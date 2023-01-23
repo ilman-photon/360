@@ -41,6 +41,30 @@ const SummaryBillDetail = ({
     });
   };
 
+  function getCTAButtonUI() {
+    return isDesktop ? (
+      <Box>
+        <IconButton
+          sx={{ marginRight: "16px" }}
+          onClick={() => {
+            handleAssetDownload(data?.digitalAsset, false);
+          }}
+        >
+          <FileDownloadOutlinedIcon sx={{ color: "#003B4A" }} />
+        </IconButton>
+        <IconButton
+          onClick={() => {
+            handleAssetDownload(data?.digitalAsset, true);
+          }}
+        >
+          <LocalPrintshopOutlinedIcon sx={{ color: "#003B4A" }} />
+        </IconButton>
+      </Box>
+    ) : (
+      <MoreOptionBtn />
+    );
+  }
+
   return (
     <div className={styles.summaryContainer}>
       <BaseHeader />
@@ -91,166 +115,169 @@ const SummaryBillDetail = ({
           height: "100%",
         }}
       >
-        <ThemeProvider theme={patientTypography}>
-          <Box sx={{ width: "100%" }}>
-            <Typography
-              sx={{
-                fontFamily: "Museo Sans",
-                fontStyle: "normal",
-                fontWeight: 300,
-                fontSize: isDesktop ? "32px" : "24px",
-                lineHeight: "44px",
-                color: "#003b4a",
-                padding: isDesktop ? "0px" : "16px 16px 0",
-                marginBottom: isDesktop ? "40px" : "0px",
-              }}
-            >
-              {`${t("billSummary")} - ${data?.invoiceNumber}`}
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                width: isDesktop ? "861px" : "100%",
-                padding: isDesktop ? "0px" : "16px",
-                marginBottom: "16px",
-              }}
-            >
-              <Box>
-                <Typography
-                  sx={{
-                    fontStyle: "normal",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "24px",
-                    color: "#757575",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {t("dos")}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: "Museo Sans",
-                    fontStyle: "normal",
-                    fontWeight: 300,
-                    fontSize: isDesktop ? "26px" : "20px",
-                    lineHeight: "32px",
-                    color: "#003b4a",
-                    marginTop: "5px",
-                  }}
-                >
-                  {getDateOfService(data?.dos)}
-                </Typography>
-              </Box>
-              {isDesktop ? (
+        {data ? (
+          <ThemeProvider theme={patientTypography}>
+            <Box sx={{ width: "100%" }}>
+              <Typography
+                sx={{
+                  fontFamily: "Museo Sans",
+                  fontStyle: "normal",
+                  fontWeight: 300,
+                  fontSize: isDesktop ? "32px" : "24px",
+                  lineHeight: "44px",
+                  color: "#003b4a",
+                  padding: isDesktop ? "0px" : "16px 16px 0",
+                  marginBottom: isDesktop ? "40px" : "0px",
+                }}
+              >
+                {`${t("billSummary")} - ${data?.invoiceNumber}`}
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "flex-end",
+                  width: isDesktop ? "861px" : "100%",
+                  padding: isDesktop ? "0px" : "16px",
+                  marginBottom: "16px",
+                }}
+              >
                 <Box>
-                  <IconButton
-                    sx={{ marginRight: "16px" }}
-                    onClick={() => {
-                      handleAssetDownload(data?.id, false);
-                    }}
-                  >
-                    <FileDownloadOutlinedIcon sx={{ color: "#003B4A" }} />
-                  </IconButton>
-                  <IconButton
-                    onClick={() => {
-                      handleAssetDownload(data?.id, true);
-                    }}
-                  >
-                    <LocalPrintshopOutlinedIcon sx={{ color: "#003B4A" }} />
-                  </IconButton>
-                </Box>
-              ) : (
-                <MoreOptionBtn />
-              )}
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                width: isDesktop ? "861px" : "100%",
-                padding: "16px",
-                background: "#f4f4f4",
-              }}
-            >
-              <Box className={styles.btnContainer}>
-                <Button
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    backgroundColor: "#007e8f",
-                    color: "#ffffff",
-                    gap: "8px",
-                    padding: "8px 20px",
-                    height: "46px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    textTransform: "inherit",
-                    borderRadius: "30px",
-                    ":hover": { backgroundColor: "#007e8f" },
-                  }}
-                >
-                  <PictureAsPdfOutlinedIcon className={styles.btnIcon} />
                   <Typography
                     sx={{
-                      fontWeight: 600,
-                      color: "#FFFFFF",
+                      fontStyle: "normal",
+                      fontWeight: 400,
                       fontSize: "16px",
-                      lineHeight: "18px",
+                      lineHeight: "24px",
+                      color: "#757575",
+                      textTransform: "uppercase",
                     }}
                   >
-                    {t("viewPDF")}
+                    {t("dos")}
                   </Typography>
-                </Button>
+                  <Typography
+                    sx={{
+                      fontFamily: "Museo Sans",
+                      fontStyle: "normal",
+                      fontWeight: 300,
+                      fontSize: isDesktop ? "26px" : "20px",
+                      lineHeight: "32px",
+                      color: "#003b4a",
+                      marginTop: "5px",
+                    }}
+                  >
+                    {getDateOfService(data?.dos)}
+                  </Typography>
+                </Box>
+                {data?.digitalAsset && data?.digitalAsset.length > 0 ? (
+                  getCTAButtonUI()
+                ) : (
+                  <></>
+                )}
               </Box>
-              <Box className={styles.infoContent}>
-                {Object.keys(data).map(function (key) {
-                  if (key != "invoiceNumber" && key != "dos" && key != "id") {
-                    return (
-                      <Box key={key} className={styles.listInfoContent}>
-                        <Typography
-                          sx={{
-                            fontFamily: "Museo Sans",
-                            fontStyle: "normal",
-                            fontWeight: key == "balanceDue" ? 500 : 600,
-                            fontSize: key == "balanceDue" ? "26px" : "16px",
-                            lineHeight: key == "balanceDue" ? "32px" : "24px",
-                            color: key == "balanceDue" ? "#0095a9" : "#575757",
-                            width: "50%",
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          {t(key)}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            fontFamily: "Museo Sans",
-                            fontStyle: "normal",
-                            fontWeight: key == "balanceDue" ? 500 : 700,
-                            fontSize: key == "balanceDue" ? "26px" : "18px",
-                            lineHeight: key == "balanceDue" ? "32px" : "28px",
-                            color: key == "balanceDue" ? "#0095a9" : "#003B4A",
-                            width: "50%",
-                            textAlign: isDesktop ? "left" : "right",
-                          }}
-                        >
-                          {key == "insurancePaid" || key == "patientPaid"
-                            ? `-${convertCurrency(data[key])}`
-                            : convertCurrency(data[key])}
-                        </Typography>
-                      </Box>
-                    );
-                  }
-                })}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  width: isDesktop ? "861px" : "100%",
+                  padding: "16px",
+                  background: "#f4f4f4",
+                }}
+              >
+                <Box className={styles.btnContainer}>
+                  {data?.digitalAsset && data?.digitalAsset.length > 0 ? (
+                    <Button
+                      sx={{
+                        display: "flex",
+                        flexDirection: "row",
+                        backgroundColor: "#007e8f",
+                        color: "#ffffff",
+                        gap: "8px",
+                        padding: "8px 20px",
+                        height: "46px",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        textTransform: "inherit",
+                        borderRadius: "30px",
+                        ":hover": { backgroundColor: "#007e8f" },
+                      }}
+                      onClick={() => {
+                        handleAssetDownload(data?.digitalAsset, false, true);
+                      }}
+                    >
+                      <PictureAsPdfOutlinedIcon className={styles.btnIcon} />
+                      <Typography
+                        sx={{
+                          fontWeight: 600,
+                          color: "#FFFFFF",
+                          fontSize: "16px",
+                          lineHeight: "18px",
+                        }}
+                      >
+                        {t("viewPDF")}
+                      </Typography>
+                    </Button>
+                  ) : (
+                    <></>
+                  )}
+                </Box>
+                <Box className={styles.infoContent}>
+                  {Object.keys(data).map(function (key) {
+                    if (
+                      key != "invoiceNumber" &&
+                      key != "dos" &&
+                      key != "id" &&
+                      key != "digitalAsset"
+                    ) {
+                      return (
+                        <Box key={key} className={styles.listInfoContent}>
+                          <Typography
+                            sx={{
+                              fontFamily: "Museo Sans",
+                              fontStyle: "normal",
+                              fontWeight: key == "balanceDue" ? 500 : 600,
+                              fontSize: key == "balanceDue" ? "26px" : "16px",
+                              lineHeight: key == "balanceDue" ? "32px" : "24px",
+                              color:
+                                key == "balanceDue" ? "#0095a9" : "#575757",
+                              width: "50%",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            {t(key)}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontFamily:
+                                key == "balanceDue" ? "Museo Sans" : "Inter",
+                              fontStyle: "normal",
+                              fontWeight: key == "balanceDue" ? 500 : 700,
+                              fontSize: key == "balanceDue" ? "26px" : "18px",
+                              lineHeight: key == "balanceDue" ? "32px" : "28px",
+                              color:
+                                key == "balanceDue" ? "#0095a9" : "#003B4A",
+                              width: "50%",
+                              textAlign: isDesktop ? "left" : "right",
+                            }}
+                          >
+                            {key == "insurancePaid" || key == "patientPaid"
+                              ? `-${convertCurrency(data[key])}`
+                              : convertCurrency(data[key])}
+                          </Typography>
+                        </Box>
+                      );
+                    }
+                  })}
+                </Box>
               </Box>
             </Box>
-          </Box>
-        </ThemeProvider>
+          </ThemeProvider>
+        ) : (
+          <></>
+        )}
       </Box>
     </div>
   );

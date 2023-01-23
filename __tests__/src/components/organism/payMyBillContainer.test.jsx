@@ -65,11 +65,17 @@ describe("App", () => {
               invoiceNumber: "124344554",
               dos: "Oct 09, 2022, 4:31:42 PM",
               provider: "Don John",
+              digitalAsset:[{
+                digitalAssetId:"23456543"
+              }]
             },
             {
               invoiceNumber: "124344556",
               dos: "Oct 14, 2022, 4:31:42 PM",
               provider: "James Black",
+              digitalAsset:[{
+                digitalAssetId:"23456543"
+              }]
             })
           }
         />
@@ -99,11 +105,17 @@ describe("App", () => {
               invoiceNumber: "124344554",
               dos: "Oct 09, 2022, 4:31:42 PM",
               provider: "Don John",
+              digitalAsset:[{
+                digitalAssetId:"23456543"
+              }]
             },
             {
               invoiceNumber: "124344556",
               dos: "Oct 14, 2022, 4:31:42 PM",
               provider: "James Black",
+              digitalAsset:[{
+                digitalAssetId:"23456543"
+              }]
             },
           ]}
         />
@@ -182,6 +194,9 @@ describe("App", () => {
               provider: "Don John",
               accCreditBalance: "123",
               patientDue: "321",
+              digitalAsset:[{
+                digitalAssetId:"23456543"
+              }]
             },
             {
               invoiceNumber: "124344556",
@@ -189,6 +204,9 @@ describe("App", () => {
               provider: "James Black",
               accCreditBalance: "123",
               patientDue: "321",
+              digitalAsset:[{
+                digitalAssetId:"23456543"
+              }]
             },
           ]}
         />
@@ -222,11 +240,17 @@ describe("App", () => {
               invoiceNumber: "124344554",
               dos: "Oct 09, 2022, 4:31:42 PM",
               provider: "Don John",
+              digitalAsset:[{
+                digitalAssetId:"23456543"
+              }]
             },
             {
               invoiceNumber: "124344556",
               dos: "Oct 14, 2022, 4:31:42 PM",
               provider: "James Black",
+              digitalAsset:[{
+                digitalAssetId:"23456543"
+              }]
             },
           ]}
         />

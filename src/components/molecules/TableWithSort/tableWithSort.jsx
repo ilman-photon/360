@@ -458,40 +458,48 @@ export default function TableWithSort({
     );
   }
 
+  const renderDigitalAssetMenu = (row, cell) => {
+    const isPrint = cell.customTooltipText == "Print";
+    const assetId = ref(row, cell.valueKey);
+    const renderUI = (
+      <Tooltip
+        title={
+          <Typography
+            sx={{
+              fontSize: {
+                xs: 13,
+                md: 14,
+                color: "white",
+              },
+            }}
+          >
+            {cell.customTooltipText ? cell.customTooltipText : "Download"}
+          </Typography>
+        }
+        placement="top"
+      >
+        <div
+          onClick={() => {
+            onAssetDownload(assetId, isPrint);
+          }}
+          aria-label="Download"
+        >
+          {cell.icon}
+        </div>
+      </Tooltip>
+    );
+    if (cell?.isMultipleAsset && assetId && assetId.length == 0) {
+      return <></>;
+    }
+    return renderUI;
+  };
+
   const renderCellContent = ({ row, cell, rowIdx, cellIdx }) => {
     switch (cell.type) {
       case "icon":
         return <>{cell.icon}</>;
       case "download-asset":
-        const isPrint = cell.customTooltipText == "Print";
-        return (
-          <Tooltip
-            title={
-              <Typography
-                sx={{
-                  fontSize: {
-                    xs: 13,
-                    md: 14,
-                    color: "white",
-                  },
-                }}
-              >
-                {cell.customTooltipText ? cell.customTooltipText : "Download"}
-              </Typography>
-            }
-            placement="top"
-          >
-            <div
-              onClick={() => {
-                const assetId = ref(row, cell.valueKey);
-                onAssetDownload(assetId, isPrint);
-              }}
-              aria-label="Download"
-            >
-              {cell.icon}
-            </div>
-          </Tooltip>
-        );
+        return renderDigitalAssetMenu(row, cell);
       case "download-icon":
         return (
           <Tooltip

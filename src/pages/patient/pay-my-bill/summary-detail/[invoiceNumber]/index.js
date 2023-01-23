@@ -4,21 +4,14 @@ import { Api } from "../../../../api/api";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@mui/material";
 import SummaryBillDetail from "../../../../../components/organisms/PayMyBill/billSummaryDetail";
-import { useDispatch, useSelector } from "react-redux";
-import { setSummaryData } from "../../../../../store/payMyBill";
-import { getInvoiceReceipts } from "../..";
+import { getSummaryObjectData } from "../../../../../store/payMyBill";
+import { downloadReceipts } from "../..";
 
 export default function SummaryBillPage() {
   const router = useRouter();
-  const [detailSummary, setDetailSummary] = useState({});
+  const [detailSummary, setDetailSummary] = useState(null);
   const isDesktop = useMediaQuery("(min-width: 834px)");
   const [accountCredit, setAccountCredit] = useState({});
-  const dispatch = useDispatch();
-  const summaryData = useSelector((state) => state.payMyBill.summaryData);
-
-  useEffect(() => {
-    setDetailSummary(summaryData);
-  }, [summaryData]);
 
   //Call API for get Account Credit Balance
   function getAccountCredit() {
@@ -33,18 +26,39 @@ export default function SummaryBillPage() {
       });
   }
 
+  function getInvoiceReceipts(data, callback) {
+    const api = new Api();
+    api
+      .getInvoiceReceipts(data?._id)
+      .then(function (response) {
+        data["digitalAsset"] = response.entities;
+      })
+      .catch(function () {
+        //Handle error searchInvoice by date
+      })
+      .finally(function () {
+        callback(data);
+      });
+  }
+
   useEffect(() => {
     const query = router?.query;
     function onCalledGetSummaryDetail() {
       const api = new Api();
-      api
-        .getSummaryBill(query?.invoiceNumber)
-        .then(function (response) {
-          dispatch(setSummaryData({ response }));
-        })
-        .catch(function () {
-          //Handle error getSummaryBill
-        });
+      if (query?.invoiceNumber) {
+        api
+          .getSummaryBill(query?.invoiceNumber)
+          .then(function (response) {
+            const callback = (data) => {
+              const detailData = getSummaryObjectData(data);
+              setDetailSummary(detailData);
+            };
+            getInvoiceReceipts(response, callback);
+          })
+          .catch(function (error) {
+            //Handle error getSummaryBill
+          });
+      }
     }
     onCalledGetSummaryDetail();
     getAccountCredit();
@@ -54,8 +68,8 @@ export default function SummaryBillPage() {
     router.back();
   };
 
-  const handleAssetDownload = (id, print) => {
-    getInvoiceReceipts(id, print);
+  const handleAssetDownload = (digitalAsset, print, isOpen) => {
+    downloadReceipts(digitalAsset, print, isOpen);
   };
 
   return (
