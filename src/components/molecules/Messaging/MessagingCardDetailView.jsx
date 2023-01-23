@@ -78,11 +78,96 @@ export const MessagingCardDetailView = ({
     }
   };
 
+  const renderAttachmentsUI = () => {
+    const attachments = data?.attachments || data?.digitalAssets;
+    return (
+      attachments?.length > 0 && (
+        <Box className={styles.attachmentContent}>
+          <Box
+            sx={{
+              justifyContent: "flex-start",
+              display: "flex",
+              flexDirection: "row",
+              gap: "16px",
+              maxWidth: "555px",
+              flexWrap: "wrap",
+              marginBottom: "8px",
+            }}
+          >
+            {attachments.map((item, index) => {
+              const fileName = item?.fileName || item?.name;
+              const digitalAssetsId = item?.id || item?._id;
+              return (
+                <Button
+                  key={index}
+                  onClick={() => handleAssetDownload(digitalAssetsId)}
+                  sx={{
+                    gap: "13.5px",
+                    padding: "10.5px 13.5px",
+                    backgroundColor: "#003B4A1A",
+                    textTransform: "capitalize",
+                    maxWidth: "153px",
+                  }}
+                  data-testId="button-asset-download-test"
+                >
+                  <DescriptionOutlinedIcon
+                    sx={{
+                      width: "21.5px",
+                      height: "26.5px",
+                      color: "#757575",
+                    }}
+                  />
+                  <Typography
+                    tabIndex={0}
+                    title={fileName}
+                    sx={{
+                      fontSize: "12px",
+                      fontWeight: "500",
+                      fontStyle: "normal",
+                      color: "#292929",
+                      lineHeight: "15px",
+                      textOverflow: "ellipsis",
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {fileName}
+                  </Typography>
+                </Button>
+              );
+            })}
+          </Box>
+          {attachments.length > 1 && (
+            <Button
+              className={styles.downloadAttachContent}
+              onClick={() => onDownloadAllAttachmentClicked(attachments)}
+              data-testId="button-all-asset-download-test"
+            >
+              <FileDownloadOutlinedIcon />
+              <Typography
+                tabIndex={0}
+                sx={{
+                  fontSize: "12px",
+                  fontWeight: "500",
+                  fontStyle: "normal",
+                  color: "#292929",
+                  lineHeight: "15px",
+                }}
+              >
+                {t("downloadAllAttachmentText")}
+              </Typography>
+            </Button>
+          )}
+        </Box>
+      )
+    );
+  };
+
   return (
     <Box key={key} className={styles.cardDetailView}>
       {isDesktop && getProfilePicture()}
       <Box flex={1}>
-        <Box className={styles.cardDetailHeader}>
+        <Box className={styles.cardDetailHeader} gap={1}>
           {!isDesktop && getProfilePicture()}
           <Typography
             tabIndex={0}
@@ -92,6 +177,7 @@ export const MessagingCardDetailView = ({
               fontStyle: "normal",
               color: "#003B4A",
               lineHeight: isDesktop ? "24px" : "32px",
+              flex: 1,
             }}
           >
             {getSenderName()}
@@ -136,86 +222,9 @@ export const MessagingCardDetailView = ({
                 marginBottom: "17px",
               }}
             >
-              {data.message || data.bodyNote}
+              {data?.message || data?.bodyNote}
             </Typography>
-            {data?.attachments?.length > 0 && (
-              <Box className={styles.attachmentContent}>
-                <Box
-                  sx={{
-                    justifyContent: "flex-start",
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "16px",
-                    maxWidth: "555px",
-                    flexWrap: "wrap",
-                    marginBottom: "8px",
-                  }}
-                >
-                  {data?.attachments.map((item, index) => {
-                    return (
-                      <Button
-                        key={index}
-                        onClick={() => handleAssetDownload(item.id)}
-                        sx={{
-                          gap: "13.5px",
-                          padding: "10.5px 13.5px",
-                          backgroundColor: "#003B4A1A",
-                          textTransform: "capitalize",
-                          maxWidth: "153px",
-                        }}
-                        data-testId="button-asset-download-test"
-                      >
-                        <DescriptionOutlinedIcon
-                          sx={{
-                            width: "21.5px",
-                            height: "26.5px",
-                            color: "#757575",
-                          }}
-                        />
-                        <Typography
-                          tabIndex={0}
-                          sx={{
-                            fontSize: "12px",
-                            fontWeight: "500",
-                            fontStyle: "normal",
-                            color: "#292929",
-                            lineHeight: "15px",
-                            textOverflow: "ellipsis",
-                            overflow: "hidden",
-                            whiteSpace: "nowrap",
-                          }}
-                        >
-                          {item?.fileName}
-                        </Typography>
-                      </Button>
-                    );
-                  })}
-                </Box>
-                {data?.attachments.length > 1 && (
-                  <Button
-                    className={styles.downloadAttachContent}
-                    onClick={() =>
-                      onDownloadAllAttachmentClicked(data?.attachments)
-                    }
-                    data-testId="button-all-asset-download-test"
-                  >
-                    <FileDownloadOutlinedIcon />
-                    <Typography
-                      tabIndex={0}
-                      sx={{
-                        fontSize: "12px",
-                        fontWeight: "500",
-                        fontStyle: "normal",
-                        color: "#292929",
-                        lineHeight: "15px",
-                      }}
-                    >
-                      {t("downloadAllAttachmentText")}
-                    </Typography>
-                  </Button>
-                )}
-              </Box>
-            )}
+            {renderAttachmentsUI()}
           </Box>
         )}
       </Box>
@@ -231,83 +240,9 @@ export const MessagingCardDetailView = ({
               marginBottom: "17px",
             }}
           >
-            {data?.message}
+            {data?.message || data?.bodyNote}
           </Typography>
-          {data?.attachments?.length > 0 && (
-            <Box className={styles.attachmentContent}>
-              <Box
-                sx={{
-                  justifyContent: "flex-start",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "16px",
-                  maxWidth: "555px",
-                  flexWrap: "wrap",
-                  marginBottom: "8px",
-                }}
-              >
-                {data.attachments.map((item, index) => {
-                  return (
-                    <Button
-                      key={index}
-                      onClick={() => handleAssetDownload(item.id)}
-                      sx={{
-                        gap: "13.5px",
-                        padding: "10.5px 13.5px",
-                        backgroundColor: "#003B4A1A",
-                        textTransform: "capitalize",
-                        maxWidth: "153px",
-                      }}
-                      data-testId="button-asset-download-mobile-test"
-                    >
-                      <DescriptionOutlinedIcon
-                        sx={{
-                          width: "21.5px",
-                          height: "26.5px",
-                          color: "#757575",
-                        }}
-                      />
-                      <Typography
-                        tabIndex={0}
-                        sx={{
-                          fontSize: "12px",
-                          fontWeight: "500",
-                          fontStyle: "normal",
-                          color: "#292929",
-                          lineHeight: "15px",
-                          textOverflow: "ellipsis",
-                          overflow: "hidden",
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        {item?.fileName}
-                      </Typography>
-                    </Button>
-                  );
-                })}
-              </Box>
-              {data?.attachments.length > 1 && (
-                <Button
-                  className={styles.downloadAttachContent}
-                  data-testId="button-all-asset-download-mobile-test"
-                >
-                  <FileDownloadOutlinedIcon />
-                  <Typography
-                    tabIndex={0}
-                    sx={{
-                      fontSize: "12px",
-                      fontWeight: "500",
-                      fontStyle: "normal",
-                      color: "#292929",
-                      lineHeight: "15px",
-                    }}
-                  >
-                    {t("downloadAllAttachmentText")}
-                  </Typography>
-                </Button>
-              )}
-            </Box>
-          )}
+          {renderAttachmentsUI()}
         </Box>
       )}
     </Box>

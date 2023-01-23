@@ -66,18 +66,6 @@ describe("container Components", () => {
     );
     const containerDetails = container.getAllByText(/Anthony Beth, D.O./i);
     expect(containerDetails[0]).toBeInTheDocument();
-
-    const buttonDownloadMobile = container.getAllByTestId(
-      /button-asset-download-mobile-test/i
-    );
-    expect(buttonDownloadMobile[0]).toBeInTheDocument();
-    await waitFor(() => fireEvent.click(buttonDownloadMobile[0]));
-
-    const buttonDownloadAll = container.getAllByTestId(
-      /button-all-asset-download-mobile-test/i
-    );
-    expect(buttonDownloadAll[0]).toBeInTheDocument();
-    await waitFor(() => fireEvent.click(buttonDownloadAll[0]));
   });
 
   it("container render with attachment null", async () => {

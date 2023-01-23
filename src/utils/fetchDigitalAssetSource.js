@@ -3,10 +3,10 @@ import DigitalAssetsHandler from "./digitalAssetsHandler";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
-async function download(url) {
+async function download(url, name) {
   const response = await axios.get(url, { responseType: "blob" });
   const blob = URL.createObjectURL(response.data);
-  saveAs(blob, `eyecare-document.pdf`);
+  saveAs(blob, name || `eyecare-document.pdf`);
 }
 
 function downloadOld(url, newTab = true) {
@@ -19,7 +19,7 @@ function downloadOld(url, newTab = true) {
   document.body.removeChild(a);
 }
 
-async function print(url) {
+async function print(url, name) {
   const response = await axios.get(url, { responseType: "blob" });
   const blobURL = URL.createObjectURL(response.data);
   const a = document.createElement("a");
@@ -29,7 +29,7 @@ async function print(url) {
   document.body.removeChild(a);
 }
 
-async function openNewTab(url) {
+async function openNewTab(url, name) {
   const response = await axios.get(url, { responseType: "blob" });
   const fileURL = URL.createObjectURL(response.data);
   window.open(fileURL, "_blank");
@@ -54,11 +54,11 @@ export const fetchSource = async (
     const response = await digitalAsset.fetchSourceURL();
     if (response) {
       if (isPrint) {
-        await print(response.presignedUrl);
+        await print(response.presignedUrl, response.name);
       } else if (isOpenPdf) {
-        await openNewTab(response.presignedUrl);
+        await openNewTab(response.presignedUrl, response.name);
       } else {
-        await download(response.presignedUrl);
+        await download(response.presignedUrl, response.name);
       }
       return {
         success: true,
