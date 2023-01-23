@@ -140,6 +140,7 @@ export default function LoginSecurityPage() {
                 onClick={handleSetupSecurityQuestionClicked}
                 aria-label={"Setup Security Question"}
                 data-testid="setup-security-question-btn"
+                role="link"
               >
                 <Stack direction="row" alignItems="center" component="span">
                   <EditOutlined
@@ -164,6 +165,7 @@ export default function LoginSecurityPage() {
                 onClick={handleSetupSecurityQuestionClicked}
                 aria-label={"Update Security Question"}
                 data-testid="update-security-question-btn"
+                role="link"
               >
                 <Stack direction="row" alignItems="center" component="span">
                   <EditOutlined

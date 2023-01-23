@@ -323,7 +323,7 @@ defineFeature(feature, (test) => {
                 });
 
                 and('user should be able to view Update button', () => {
-                        expect(container.getAllByRole("button", { name: /Update/i })[2]).toBeInTheDocument();
+                        expect(container.getAllByRole("link", { name: /Update/i })[2]).toBeInTheDocument();
                 });
 
                 and('user should be able to view Cancel button', () => {
@@ -331,7 +331,7 @@ defineFeature(feature, (test) => {
                 });
 
                 when('user click on Update button', async () => {
-                        fireEvent.click(container.getAllByRole("button", { name: /Update/i })[2]);
+                        fireEvent.click(container.getAllByRole("button", { name: /Update/i })[1]);
                         await waitFor(() => {
                                 container.getByText(/Username already exists!/i)
                         })
