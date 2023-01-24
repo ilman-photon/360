@@ -156,7 +156,7 @@ const ForgotPassword = ({
                       }}
                       label={t("usernamePlaceHolder")}
                       id="username"
-                      maxLength={254}
+                      maxLength={50}
                       variant="filled"
                       value={value}
                       inputRef={inputRef}

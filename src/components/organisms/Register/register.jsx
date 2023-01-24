@@ -505,6 +505,7 @@ export default function Register({
                       inputProps={{
                         "aria-label": "Email - Required",
                       }}
+                      maxLength={50}
                       value={value}
                       data-testid={REGISTER_TEST_ID.email}
                       onChange={onChange}
