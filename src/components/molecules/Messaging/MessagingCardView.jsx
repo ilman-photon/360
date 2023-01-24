@@ -22,17 +22,31 @@ export const MessagingCardView = ({
   const isDesktop = useMediaQuery("(min-width: 834px)");
   const whiteSpace = designation != "" ? " " : "";
   const senderName = `${designation}${whiteSpace}${name} ${lastName}`;
+
+  const getDate = (payload) => {
+    const datePayload = new Date(payload);
+    const today = new Date();
+    // call setHours to take the time out of the comparison
+    if (datePayload.setHours(0, 0, 0, 0) == today.setHours(0, 0, 0, 0)) {
+      // Date equals today's date
+      return moment(datePayload).format("hh:mm a");
+    } else return convertDate(payload);
+  };
+
   const convertDate = (data) => {
     let dateTime = "";
     const convertedDate = new Date(data);
     const currentDate = new Date();
-    if (convertedDate < currentDate) {
+
+    if (
+      convertedDate.setHours(0, 0, 0, 0) == currentDate.setHours(0, 0, 0, 0)
+    ) {
+      const newConvertDate = new moment(data);
+      dateTime = newConvertDate.format("hh:mma");
+    } else {
       const month = convertedDate.toLocaleString("default", { month: "short" });
       const date = convertedDate.getDate();
       dateTime = `${month} ${date}`;
-    } else {
-      const newConvertDate = new moment(data);
-      dateTime = newConvertDate.format("hh:mm A");
     }
 
     return dateTime;
