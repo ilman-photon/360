@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch } from "react-redux";
@@ -16,6 +16,7 @@ export default function UpdateUsername() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [userData, setUserData] = useState(null);
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -88,6 +89,7 @@ export default function UpdateUsername() {
     <>
       {userData !== null && (
         <UpdateUsernameView
+          reverseButton={isMobile}
           onUpdate={(usernameValue) => {
             setUsername(usernameValue);
             setShowModal(true);
@@ -120,10 +122,11 @@ export default function UpdateUsername() {
         }}
         buttonSx={{
           flexDirection: {
-            xs: "column-reverse",
+            xs: "column",
             sm: "row",
           },
         }}
+        reverseButton={isMobile}
       >
         <Typography
           variant="h3"

@@ -27,7 +27,9 @@ export default function UpdateLoginLayout({
               }}
               showNavbar={true}
               sxSubNavigation={{
-                paddingLeft: "48px",
+                paddingLeft: {
+                  sm: "48px",
+                },
               }}
             />
             <div className={styles.defaultContainer}>{children}</div>

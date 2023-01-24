@@ -19,6 +19,7 @@ export default function CustomModal({
   open,
   sx,
   buttonSx = {},
+  reverseButton = false,
 }) {
   return (
     <Dialog
@@ -49,6 +50,7 @@ export default function CustomModal({
               top: "14px",
               padding: 0,
             }}
+            role="button"
           >
             <CloseIcon
               sx={{
@@ -69,32 +71,53 @@ export default function CustomModal({
             ...buttonSx,
           }}
         >
-          {onClickSecondaryButton && (
-            <StyledButton
-              mode={constants.SECONDARY}
-              type="button"
-              aria-label={secondaryButtonText}
-              tabIndex={1}
-              size={constants.SMALL}
-              gradient={false}
-              onClick={onClickSecondaryButton}
-            >
-              {secondaryButtonText}
-            </StyledButton>
+          {!reverseButton ? (
+            <>
+              {onClickSecondaryButton && (
+                <StyledButton
+                  mode={constants.SECONDARY}
+                  type="button"
+                  size={constants.SMALL}
+                  gradient={false}
+                  onClick={onClickSecondaryButton}
+                >
+                  {secondaryButtonText}
+                </StyledButton>
+              )}
+              <StyledButton
+                mode={constants.PRIMARY}
+                type="button"
+                size={constants.SMALL}
+                gradient={false}
+                onClick={onClickButton}
+              >
+                {buttonText}
+              </StyledButton>
+            </>
+          ) : (
+            <>
+              <StyledButton
+                mode={constants.PRIMARY}
+                type="button"
+                size={constants.SMALL}
+                gradient={false}
+                onClick={onClickButton}
+              >
+                {buttonText}
+              </StyledButton>
+              {onClickSecondaryButton && (
+                <StyledButton
+                  mode={constants.SECONDARY}
+                  type="button"
+                  size={constants.SMALL}
+                  gradient={false}
+                  onClick={onClickSecondaryButton}
+                >
+                  {secondaryButtonText}
+                </StyledButton>
+              )}
+            </>
           )}
-          <StyledButton
-            mode={constants.PRIMARY}
-            type="button"
-            tabIndex={0}
-            size={constants.SMALL}
-            gradient={false}
-            aria-label={
-              buttonText == "Update" ? buttonText + " password" : buttonText
-            }
-            onClick={onClickButton}
-          >
-            {buttonText}
-          </StyledButton>
         </Box>
       </DialogContent>
     </Dialog>

@@ -12,6 +12,7 @@ export default function UpdateUsernameView({
   onUpdate = () => {
     // This is intentional
   },
+  reverseButton = false,
 }) {
   const [userData, setUserData] = useState(null);
   const { handleSubmit, control, setError } = useForm();
@@ -134,44 +135,83 @@ export default function UpdateUsernameView({
               sx={{
                 display: "flex",
                 flexDirection: {
-                  xs: "column-reverse",
+                  xs: "column",
                   sm: "row",
                 },
                 gap: 2,
               }}
             >
-              <StyledButton
-                mode={constants.SECONDARY}
-                type="button"
-                tabIndex={0}
-                aria-label={"Cancel button"}
-                size={constants.SMALL}
-                data-testid={"cancel-btn"}
-                gradient={false}
-                onClick={() => {
-                  router.push("/patient/account/login-&-security");
-                }}
-              >
-                <Typography
-                  variant="controlButtonText"
-                  color={colors.primaryButton}
-                >
-                  Cancel
-                </Typography>
-              </StyledButton>
-              <StyledButton
-                mode={constants.PRIMARY}
-                type="submit"
-                tabIndex={0}
-                aria-label={"Update button"}
-                size={constants.SMALL}
-                data-testid={"update-btn"}
-                gradient={false}
-              >
-                <Typography variant="controlButtonText" color={"unset"}>
-                  Update
-                </Typography>
-              </StyledButton>
+              {!reverseButton ? (
+                <>
+                  <StyledButton
+                    mode={constants.SECONDARY}
+                    type="button"
+                    tabIndex={0}
+                    aria-label={"Cancel button"}
+                    size={constants.SMALL}
+                    data-testid={"cancel-btn"}
+                    gradient={false}
+                    onClick={() => {
+                      router.push("/patient/account/login-&-security");
+                    }}
+                  >
+                    <Typography
+                      variant="controlButtonText"
+                      color={colors.primaryButton}
+                    >
+                      Cancel
+                    </Typography>
+                  </StyledButton>
+                  <StyledButton
+                    mode={constants.PRIMARY}
+                    type="submit"
+                    tabIndex={0}
+                    aria-label={"Update button"}
+                    size={constants.SMALL}
+                    data-testid={"update-btn"}
+                    gradient={false}
+                  >
+                    <Typography variant="controlButtonText" color={"unset"}>
+                      Update
+                    </Typography>
+                  </StyledButton>
+                </>
+              ) : (
+                <>
+                  <StyledButton
+                    mode={constants.PRIMARY}
+                    type="submit"
+                    tabIndex={0}
+                    aria-label={"Update button"}
+                    size={constants.SMALL}
+                    data-testid={"update-btn"}
+                    gradient={false}
+                  >
+                    <Typography variant="controlButtonText" color={"unset"}>
+                      Update
+                    </Typography>
+                  </StyledButton>
+                  <StyledButton
+                    mode={constants.SECONDARY}
+                    type="button"
+                    tabIndex={0}
+                    aria-label={"Cancel button"}
+                    size={constants.SMALL}
+                    data-testid={"cancel-btn"}
+                    gradient={false}
+                    onClick={() => {
+                      router.push("/patient/account/login-&-security");
+                    }}
+                  >
+                    <Typography
+                      variant="controlButtonText"
+                      color={colors.primaryButton}
+                    >
+                      Cancel
+                    </Typography>
+                  </StyledButton>
+                </>
+              )}
             </Box>
           </Stack>
         </form>

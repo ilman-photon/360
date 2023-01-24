@@ -359,6 +359,7 @@ export default function UpdatePasswordView({
               onClick={() => {
                 router.push("/patient/account/login-&-security");
               }}
+              sx={{ display: { xs: "none !important", sm: "flex !important" } }}
             >
               <Typography
                 variant="controlButtonText"

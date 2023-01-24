@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Provider, useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ import { Api } from "../../../api/api";
 export default function AccountUpdatePasswordPage() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
   const [postBody, setPostBody] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -53,10 +54,11 @@ export default function AccountUpdatePasswordPage() {
         open={showModal}
         buttonSx={{
           flexDirection: {
-            xs: "column-reverse",
+            xs: "column",
             sm: "row",
           },
         }}
+        reverseButton={isMobile}
         sx={{
           "& .MuiPaper-root": {
             top: { xs: "71px", md: "87px" },
