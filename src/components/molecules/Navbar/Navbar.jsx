@@ -327,7 +327,7 @@ const Navbar = ({ isDashboard = false }) => {
               </Box>
               <Button
                 onClick={() => router.push(myCareTeam.href)}
-                aria-label={`${myCareTeam.label} menu`}
+                aria-label={`${myCareTeam.label}`}
                 sx={{
                   my: 2,
                   color: "white",
@@ -344,13 +344,14 @@ const Navbar = ({ isDashboard = false }) => {
                       ? "solid 4px #D9D9D9"
                       : "solid 4px transparent",
                 }}
+                role={"menu"}
               >
                 {myCareTeam.label}
               </Button>
               <Box>
                 <Button
                   key={"PayMyBill"}
-                  aria-label={`Pay My Bill menu`}
+                  aria-label={`Pay My Bill dropdown`}
                   role={"menu"}
                   onClick={handleOpenPayMyBill}
                   sx={{
@@ -396,7 +397,7 @@ const Navbar = ({ isDashboard = false }) => {
               </Box>
               <Button
                 onClick={() => router.push(messaging.href)}
-                aria-label={`${messaging.label} menu`}
+                aria-label={`${messaging.label}`}
                 sx={{
                   my: 2,
                   color: "white",
@@ -413,6 +414,7 @@ const Navbar = ({ isDashboard = false }) => {
                       ? "solid 4px #D9D9D9"
                       : "solid 4px transparent",
                 }}
+                role={"menu"}
               >
                 {messaging.label}
               </Button>

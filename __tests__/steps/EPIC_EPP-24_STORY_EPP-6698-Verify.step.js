@@ -112,8 +112,8 @@ defineFeature(feature, (test) => {
       expect(
         container.getByLabelText("Health Chart dropdown")
       ).toBeInTheDocument();
-      expect(container.getByLabelText("My Care Team menu")).toBeInTheDocument();
-      expect(container.getByLabelText("Messaging menu")).toBeInTheDocument();
+      expect(container.getByLabelText("My Care Team")).toBeInTheDocument();
+      expect(container.getByLabelText("Messaging")).toBeInTheDocument();
       expect(
         container.getByLabelText("Documents dropdown")
       ).toBeInTheDocument();
@@ -166,8 +166,8 @@ defineFeature(feature, (test) => {
       expect(
         container.getByLabelText("Health Chart dropdown")
       ).toBeInTheDocument();
-      expect(container.getByLabelText("My Care Team menu")).toBeInTheDocument();
-      expect(container.getByLabelText("Messaging menu")).toBeInTheDocument();
+      expect(container.getByLabelText("My Care Team")).toBeInTheDocument();
+      expect(container.getByLabelText("Messaging")).toBeInTheDocument();
       expect(
         container.getByLabelText("Documents dropdown")
       ).toBeInTheDocument();

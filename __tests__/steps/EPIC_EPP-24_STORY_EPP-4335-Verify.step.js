@@ -420,11 +420,9 @@ defineFeature(feature, (test) => {
       containerDashboard.getByLabelText("Health Chart dropdown")
     ).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("My Care Team menu")
+      containerDashboard.getByLabelText("My Care Team")
     ).toBeInTheDocument();
-    expect(
-      containerDashboard.getByLabelText("Messaging menu")
-    ).toBeInTheDocument();
+    expect(containerDashboard.getByLabelText("Messaging")).toBeInTheDocument();
     expect(
       containerDashboard.getByLabelText("Documents dropdown")
     ).toBeInTheDocument();

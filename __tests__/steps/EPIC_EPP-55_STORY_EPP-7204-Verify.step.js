@@ -28,7 +28,7 @@ defineFeature(feature, (test) => {
   });
 
   const goToPayMyBill = () => {
-    fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+    fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     fireEvent.click(container.getByText("View & Pay Open Invoices"));
   };
 
