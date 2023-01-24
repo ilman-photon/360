@@ -69,11 +69,13 @@ export const MessagingCardView = ({
               display: "flex",
               flexDirection: "row",
               gap: "8px",
+              flex: 1,
             }}
           >
             <Typography
               tabIndex={0}
               sx={{
+                wordBreak: "break-all",
                 fontFamily: "Museo Sans",
                 fontSize: isDesktop ? "22px" : "16px",
                 fontWeight: "400",
@@ -151,6 +153,7 @@ export const MessagingCardView = ({
               span: {
                 backgroundColor: "#BFE4E8",
               },
+              overflowWrap: "anywhere",
             }}
             dangerouslySetInnerHTML={{ __html: message }}
           />
