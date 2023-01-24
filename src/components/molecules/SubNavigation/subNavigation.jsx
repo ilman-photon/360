@@ -6,7 +6,7 @@ import constants from "../../../utils/constants";
 export default function SubNavigation({ backTitle, onClick, sxSubNavigation }) {
   return (
     <Box className={styles.wrapper}>
-      <Box className={styles.backHeader} style={sxSubNavigation}>
+      <Box className={styles.backHeader} sx={sxSubNavigation}>
         <ChevronLeftIcon className={styles.arrowIcon} />
         <Link
           className={styles.link}
