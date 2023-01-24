@@ -328,24 +328,25 @@ export default function MessagingPage() {
     console.log("uploading...");
     const max = 4;
     const maxSize = max * 1024 * 1024; // 4MB
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-
-      if (file.size > maxSize) {
-        event.target.value = null;
-      } else {
-        try {
-          digitalAsset.setFile(file);
-          await digitalAsset.upload();
-          if (digitalAsset.status === "success") {
-            console.log("upload success");
-            setAddAttachmentsSource((oldArray) => [
-              ...oldArray,
-              digitalAsset.source,
-            ]);
+    if (event.target.files) {
+      const files = event.target.files;
+      for (const file of files) {
+        if (file.size > maxSize) {
+          event.target.value = null;
+        } else {
+          try {
+            digitalAsset.setFile(file);
+            await digitalAsset.upload();
+            if (digitalAsset.status === "success") {
+              console.log("upload success");
+              setAddAttachmentsSource((oldArray) => [
+                ...oldArray,
+                digitalAsset.source,
+              ]);
+            }
+          } catch (error) {
+            console.error("Error when uploading", error);
           }
-        } catch (error) {
-          console.error("Error when uploading", error);
         }
       }
     }
@@ -707,6 +708,7 @@ export default function MessagingPage() {
       {!isDesktop && btnNewMessageUI()}
       <input
         ref={addAttachments}
+        multiple
         type="file"
         data-testid={"loc_uploadImage"}
         hidden
