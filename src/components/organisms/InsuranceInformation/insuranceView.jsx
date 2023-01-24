@@ -56,7 +56,7 @@ export default function InsuranceView({
           if (items.length === 0) return;
           return (
             <Accordion
-              expanded={category === "PRIMARY"}
+              defaultExpanded={category === "PRIMARY"}
               key={idx}
               sx={{
                 "&.MuiAccordion-root": {
