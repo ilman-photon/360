@@ -412,7 +412,10 @@ export default function MessagingPage() {
       }
     });
     setDataMessages(cloneDataMessage);
-    setIsSelectedMessage({ active: true, id: currentData?.id });
+    setIsSelectedMessage({
+      active: true,
+      id: currentData?.id || currentData._id,
+    });
   };
 
   /**
