@@ -191,7 +191,9 @@ export default function DocumentPage({ title }) {
           setShowMessage(false);
         }, 2000);
         dispatch(setDefaultDataValue(data));
-        dispatch(resetIntakeFormData());
+        if (!isAdmin) {
+          dispatch(resetIntakeFormData());
+        }
       })
       .catch(function () {
         //Handle error
@@ -250,7 +252,10 @@ export default function DocumentPage({ title }) {
           isSubmitForm={intakeFormData.isSubmit}
         />
       );
-    } else if (title?.indexOf("Medical vs Vision") > -1) {
+    } else if (
+      title?.indexOf("Medical vs Vision") > -1 ||
+      title?.indexOf("VISION EXAM") > -1
+    ) {
       return (
         <MedicationVisionExam
           defaultDataValue={defaultDataValue}
@@ -522,6 +527,7 @@ export default function DocumentPage({ title }) {
               data-testid="edit-save-btn"
               aria-label={"Save"}
               className={styles.editBtnMenu}
+              type={"submit"}
             >
               Save
             </StyledButton>

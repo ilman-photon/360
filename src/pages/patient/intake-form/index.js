@@ -226,7 +226,10 @@ export default function IntakeFormPage() {
         patientName: patientName,
         signDate: currentDate,
       };
-    } else if (title.indexOf("Medical vs Vision") > -1) {
+    } else if (
+      title.indexOf("Medical vs Vision") > -1 ||
+      title.indexOf("VISION EXAM") > -1
+    ) {
       defaultData = {
         ...DEFAULT_MEDICATION_VISION_EXAM,
         textInfo: validateValue(
@@ -335,7 +338,7 @@ export default function IntakeFormPage() {
   };
 
   function renderFormBox(idx, item, isSubmit) {
-    if (isAdmin && item.title.indexOf("Treat Minor") > -1) {
+    if (isAdmin && item.title.indexOf("Consent to Treatment of a Minor") > -1) {
       return <></>;
     }
     return (

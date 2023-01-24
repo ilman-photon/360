@@ -151,7 +151,6 @@ export default function ConsentToUse({
                   variant="filled"
                   label="Person to be named as Agent"
                   data-testid={"agent-name-field"}
-                  required
                   sx={{
                     margin: "0 16px",
                     width: { xs: "100%", md: "377px" },
@@ -173,13 +172,6 @@ export default function ConsentToUse({
                 />
               );
             }}
-            rules={
-              !disableInput
-                ? {
-                    required: "Please update all required fields.",
-                  }
-                : {}
-            }
           />
           <Controller
             name={controlName.textInfo5}
@@ -388,6 +380,7 @@ export default function ConsentToUse({
         isEdit={disableInput}
         isSubmitForm={isSubmitForm}
         useFormProps={useFormProps}
+        mandatoryRelationShip={false}
         isReadOnlyDate={true}
         controlName={{
           sign: controlName.sign,
@@ -438,6 +431,7 @@ export default function ConsentToUse({
         isSubmitForm={isSubmitForm}
         useFormProps={useFormProps}
         isReadOnlyDate={true}
+        mandatoryRelationShip={isNewForm}
         showDate={!isNewForm}
         showRelationship={!isNewForm}
         textInfoPosition={isNewForm ? "none" : "bottom"}
@@ -446,7 +440,7 @@ export default function ConsentToUse({
           date: controlName.signCommunicationDate,
           relationship: controlName.signCommunicationRelationship,
         }}
-        customSignText={isNewForm ? "Initial" : ""}
+        customSignText={isNewForm ? "Initial" : "Sign"}
         signButtonId="signBtnComunication"
       />
       <Controller
@@ -472,7 +466,7 @@ export default function ConsentToUse({
                   color: isEditable
                     ? "#191919 !important"
                     : "#003B4A !important",
-                  fontFamily: `"Museo Sans, sans-serif`,
+                  fontFamily: `"Museo Sans", sans-serif`,
                   fontSize: "18px",
                 },
               }}
@@ -495,6 +489,7 @@ export default function ConsentToUse({
         isSubmitForm={isSubmitForm}
         useFormProps={useFormProps}
         isReadOnlyDate={true}
+        mandatoryRelationShip={false}
         controlName={{
           sign: controlName.signOptional,
           date: controlName.signOptionalDate,

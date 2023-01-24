@@ -64,7 +64,10 @@ export default function PrintDocumentForm({
           </div>
         </>
       );
-    } else if (title?.indexOf("Medical vs Vision") > -1) {
+    } else if (
+      title?.indexOf("Medical vs Vision") > -1 ||
+      title?.indexOf("VISION EXAM") > -1
+    ) {
       return (
         <>
           <div>

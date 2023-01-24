@@ -638,7 +638,7 @@ defineFeature(feature, (test) => {
     );
 
     when("Admin user selects a form", () => {
-      const formDoc = container.getByTestId("intakeFormDocright-0");
+      const formDoc = container.getByText(/Insurance Communication/i);
       expect(formDoc).toBeInTheDocument();
       fireEvent.click(formDoc);
     });

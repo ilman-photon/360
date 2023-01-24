@@ -129,6 +129,7 @@ module.exports = {
     APPOINTMENT_TEST_ID: {
       location: "location",
       searchbtn: "searchbtn",
+      searchSlotbtn: "searchAvailableSlot",
       filterbtn: "filterbtn",
       locationInput: "locationInput",
       dateInput: "dateInput",
