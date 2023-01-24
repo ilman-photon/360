@@ -11,7 +11,10 @@ import {
   navigateToSummaryDetail,
   defaultValidation,
 } from "../../__mocks__/commonSteps";
-import { mockInvoiceAsset, mockInvoiceWithNumber } from "../../__mocks__/mockResponse";
+import {
+  mockInvoiceAsset,
+  mockInvoiceWithNumber,
+} from "../../__mocks__/mockResponse";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint8/EPP-4326.feature"
@@ -24,7 +27,7 @@ defineFeature(feature, (test) => {
   beforeEach(() => {
     window.matchMedia = createMatchMedia("1920px");
     useRouter.mockReturnValue({
-      query: { activeTab: 0, invoiceNumber:"1234" },
+      query: { activeTab: 0, invoiceNumber: "1234" },
       prefetch: jest.fn(),
       back: jest.fn(),
       push: jest.fn(),
@@ -98,7 +101,7 @@ defineFeature(feature, (test) => {
     and(
       /^user should navigates to (.*) menu part of the global header$/,
       () => {
-        fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+        fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
       }
     );
 
@@ -133,11 +136,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see the (.*) menu part of the global header$/, () => {
-      expect(container.getByLabelText("Pay My Bill menu")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("Pay My Bill dropdown")
+      ).toBeInTheDocument();
     });
 
     then(/^user clicks on (.*) menu$/, () => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
 
     and(/^user should see the (.*) sub-menu$/, () => {
@@ -172,11 +177,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see the (.*) menu part of the global header$/, () => {
-      expect(container.getByLabelText("Pay My Bill menu")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("Pay My Bill dropdown")
+      ).toBeInTheDocument();
     });
 
     and(/^user clicks on (.*) menu$/, () => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
 
     when(/^user clicks on (.*) sub-menu$/, () => {
@@ -220,11 +227,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see the (.*) menu part of the global header$/, () => {
-      expect(container.getByLabelText("Pay My Bill menu")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("Pay My Bill dropdown")
+      ).toBeInTheDocument();
     });
 
     and(/^user clicks on (.*) menu$/, () => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
 
     when(/^user clicks on (.*) sub-menu$/, () => {
@@ -235,9 +244,12 @@ defineFeature(feature, (test) => {
       container = await navigateToPayMyBill(mock);
     });
 
-    and("user should should see the list of previous Bills or invoices", async () => {
-      tableHeader();
-    });
+    and(
+      "user should should see the list of previous Bills or invoices",
+      async () => {
+        tableHeader();
+      }
+    );
 
     and(
       "user should view the list of previous invoices ordered by recent ones at top",
@@ -273,11 +285,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see the (.*) menu part of the global header$/, () => {
-      expect(container.getByLabelText("Pay My Bill menu")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("Pay My Bill dropdown")
+      ).toBeInTheDocument();
     });
 
     and(/^user clicks on (.*) menu$/, () => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
 
     when(/^user clicks on (.*) sub-menu$/, () => {
@@ -312,11 +326,15 @@ defineFeature(feature, (test) => {
 
     and("user should view the details of each invoice", async () => {
       mock
-        .onGet(`/ecp/patientbillingsystem/getInvoiceWithInvoiceNumber/1234?embed=payments,adjustments`)
+        .onGet(
+          `/ecp/patientbillingsystem/getInvoiceWithInvoiceNumber/1234?embed=payments,adjustments`
+        )
         .reply(200, mockInvoiceWithNumber);
 
       mock
-        .onGet(`/ecp/patientbillingsystem/getInvoiceReceipts/13719a16-8004-40b3-8b29-8770efa37d1a`)
+        .onGet(
+          `/ecp/patientbillingsystem/getInvoiceReceipts/13719a16-8004-40b3-8b29-8770efa37d1a`
+        )
         .reply(200, mockInvoiceAsset);
       container = await navigateToSummaryDetail(mock, "1234");
     });
@@ -347,11 +365,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see the (.*) menu part of the global header$/, () => {
-      expect(container.getByLabelText("Pay My Bill menu")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("Pay My Bill dropdown")
+      ).toBeInTheDocument();
     });
 
     and(/^user clicks on (.*) menu$/, () => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
 
     when(/^user clicks on (.*) sub-menu$/, () => {
@@ -413,11 +433,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see the (.*) menu part of the global header$/, () => {
-      expect(container.getByLabelText("Pay My Bill menu")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("Pay My Bill dropdown")
+      ).toBeInTheDocument();
     });
 
     and(/^user clicks on (.*) menu$/, () => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
 
     when(/^user clicks on (.*) sub-menu$/, () => {
@@ -461,11 +483,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see the (.*) menu part of the global header$/, () => {
-      expect(container.getByLabelText("Pay My Bill menu")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("Pay My Bill dropdown")
+      ).toBeInTheDocument();
     });
 
     and(/^user clicks on (.*) menu$/, () => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
 
     when(/^user clicks on (.*) sub-menu$/, () => {

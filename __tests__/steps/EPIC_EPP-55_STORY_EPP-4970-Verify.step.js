@@ -47,9 +47,9 @@ defineFeature(feature, (test) => {
       "User views the ‘Invoice History' sub-menu under the ‘Pay My Bill’ menu present as part of the global header",
       () => {
         expect(
-          container.getByLabelText("Pay My Bill menu")
+          container.getByLabelText("Pay My Bill dropdown")
         ).toBeInTheDocument();
-        fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+        fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
         expect(
           container.getByText("View & Pay Open Invoices")
         ).toBeInTheDocument();

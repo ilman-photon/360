@@ -414,11 +414,9 @@ defineFeature(feature, (test) => {
       containerDashboard.getByLabelText("Health Chart dropdown")
     ).toBeInTheDocument();
     expect(
-      containerDashboard.getByLabelText("My Care Team menu")
+      containerDashboard.getByLabelText("My Care Team")
     ).toBeInTheDocument();
-    expect(
-      containerDashboard.getByLabelText("Messaging menu")
-    ).toBeInTheDocument();
+    expect(containerDashboard.getByLabelText("Messaging")).toBeInTheDocument();
     expect(
       containerDashboard.getByLabelText("Documents dropdown")
     ).toBeInTheDocument();
@@ -547,15 +545,12 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and(
-      "user click on one of specialities from the list",
-      async () => {
-        fireEvent.click(container.getByTestId("search-btn"));
-        await waitFor(() => {
-          container.getAllByText(/Robert Fox/i)[0];
-        });
-      }
-    );
+    and("user click on one of specialities from the list", async () => {
+      fireEvent.click(container.getByTestId("search-btn"));
+      await waitFor(() => {
+        container.getAllByText(/Robert Fox/i)[0];
+      });
+    });
 
     then(
       "user should be able to view list of doctor from the selected specialities",

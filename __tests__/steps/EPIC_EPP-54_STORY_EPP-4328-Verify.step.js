@@ -88,13 +88,13 @@ defineFeature(feature, (test) => {
       /^user should navigates to (.*) menu part of the global header$/,
       (arg0) => {
         expect(
-          container.getByLabelText("Pay My Bill menu")
+          container.getByLabelText("Pay My Bill dropdown")
         ).toBeInTheDocument();
       }
     );
 
     and(/^user should see the (.*) menu$/, async (arg0) => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
   });
 
@@ -124,11 +124,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see the (.*) menu part of the global header$/, (arg0) => {
-      expect(container.getByLabelText("Pay My Bill menu")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("Pay My Bill dropdown")
+      ).toBeInTheDocument();
     });
 
     then(/^user clicks on (.*) menu$/, (arg0) => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
 
     and(/^user should see the (.*) sub-menu$/, (arg0) => {
@@ -163,11 +165,13 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user should see the (.*) menu part of the global header$/, () => {
-      expect(container.getByLabelText("Pay My Bill menu")).toBeInTheDocument();
+      expect(
+        container.getByLabelText("Pay My Bill dropdown")
+      ).toBeInTheDocument();
     });
 
     and(/^user clicks on (.*) menu$/, (arg0) => {
-      fireEvent.click(container.getByLabelText("Pay My Bill menu"));
+      fireEvent.click(container.getByLabelText("Pay My Bill dropdown"));
     });
 
     when(/^user clicks on (.*) sub-menu$/, (arg0) => {
