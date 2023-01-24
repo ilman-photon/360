@@ -32,21 +32,23 @@ export default function AuthLayout({
 
   useEffect(() => {
     const appHeight = () => {
-      const doc = document.documentElement;
-      const loginHeight =
-        title === "Patient Login"
-          ? `calc(${window.innerHeight}px - 92px)`
-          : `auto`;
-      doc.style.setProperty("--app-height", `${window.innerHeight}px`);
-      doc.style.setProperty("--login-height", loginHeight);
+      window.setTimeout(function () {
+        const doc = document.documentElement;
+        const loginHeight =
+          title !== "User Registration"
+            ? `calc(${window.innerHeight}px - 92px)`
+            : `auto`;
+        doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+        doc.style.setProperty("--login-height", loginHeight);
+      }, 500);
     };
 
     if (typeof window !== "undefined") {
-      window.addEventListener("resize", appHeight);
+      window.addEventListener("orientationchange", appHeight);
       appHeight();
     }
     return () => {
-      window.removeEventListener("resize", appHeight);
+      window.removeEventListener("orientationchange", appHeight);
     };
   }, [title]);
 
@@ -65,6 +67,10 @@ export default function AuthLayout({
       <Provider store={store}>
         <Head>
           <title>{`EyeCare Patient Portal - ${titleState}`}</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+          />
         </Head>
         <div className={styles.authLayout}>
           <BaseHeader isNotShowHeader={isNotShowHeader}></BaseHeader>
@@ -77,7 +83,10 @@ export default function AuthLayout({
                 sx={{
                   paddingTop: {
                     xs: showMobileImage ? "0px!important" : "75px!important",
-                    md: "42px!important",
+                    md:
+                      title === "Patient Login"
+                        ? "92px!important"
+                        : "42px!important",
                   },
                   padding: 0,
                 }}
