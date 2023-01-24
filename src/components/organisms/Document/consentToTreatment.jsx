@@ -48,6 +48,7 @@ export default function ConsentToTreatment({
   }, [isSubmitting]);
 
   const renderDefaultInput = (
+    mandatory,
     label,
     controlname,
     testId,
@@ -81,7 +82,7 @@ export default function ConsentToTreatment({
               inputProps={{
                 "aria-label": `${label} field`,
               }}
-              required
+              required={mandatory}
               sx={{
                 width: "100%",
                 maxWidth: { xs: "100%", md: maxWidthDesktop },
@@ -109,7 +110,7 @@ export default function ConsentToTreatment({
           );
         }}
         rules={
-          !disableInput
+          !disableInput && mandatory
             ? {
                 required: "Please update all required fields.",
               }
@@ -120,6 +121,7 @@ export default function ConsentToTreatment({
   };
 
   const renderPhoneInput = (
+    mandatory,
     label,
     controlname,
     testId,
@@ -128,7 +130,6 @@ export default function ConsentToTreatment({
   ) => {
     return (
       <Controller
-        // name={controlName.phoneNumber}
         name={controlname}
         control={control}
         render={({
@@ -153,7 +154,7 @@ export default function ConsentToTreatment({
               inputProps={{
                 "aria-label": `${label} field`,
               }}
-              required
+              required={mandatory}
               sxContainer={{
                 width: { xs: "100%", md: widthDesktop },
                 m: 1,
@@ -168,7 +169,7 @@ export default function ConsentToTreatment({
           );
         }}
         rules={
-          !disableInput
+          !disableInput && mandatory
             ? {
                 required: "Please update all required fields.",
               }
@@ -206,6 +207,7 @@ export default function ConsentToTreatment({
             The undersigned parent(s) or guardian(s) of
           </Typography>
           {renderDefaultInput(
+            true,
             "patient's name",
             controlName.patientName,
             "patient-name-field",
@@ -233,6 +235,7 @@ export default function ConsentToTreatment({
               , a minor, authorizes
             </Typography>
             {renderDefaultInput(
+              false,
               "babysitter, guardian, etc.",
               controlName.guardian,
               "guardian-field",
@@ -260,6 +263,7 @@ export default function ConsentToTreatment({
               , a minor, authorizes
             </Typography>
             {renderDefaultInput(
+              false,
               "babysitter, guardian, etc.",
               controlName.guardian,
               "guardian-field",
@@ -286,6 +290,7 @@ export default function ConsentToTreatment({
             to consent to treatment of minor
           </Typography>
           {renderDefaultInput(
+            true,
             "patient's name",
             controlName.patientName2,
             "patient-name2-field",
@@ -332,6 +337,7 @@ export default function ConsentToTreatment({
             telephonecall, to
           </Typography>
           {renderPhoneInput(
+            false,
             "patient's telephone number",
             controlName.phoneNumber,
             "patient-number-field",
@@ -353,6 +359,7 @@ export default function ConsentToTreatment({
           sx={{ marginRight: { xs: "2.5px", md: "5px" } }}
         >
           {renderDefaultInput(
+            true,
             "Name",
             controlName.emergency1,
             "emergency-name-field",
@@ -366,6 +373,7 @@ export default function ConsentToTreatment({
           sx={{ marginLeft: { xs: "2.5px", md: "5px" } }}
         >
           {renderPhoneInput(
+            true,
             "Phone Number",
             controlName.contactEmergency1,
             "emergency1-number-field",
@@ -379,6 +387,7 @@ export default function ConsentToTreatment({
           sx={{ marginRight: { xs: "2.5px", md: "5px" } }}
         >
           {renderDefaultInput(
+            false,
             "Name",
             controlName.emergency2,
             "emergency-name2-field",
@@ -392,6 +401,7 @@ export default function ConsentToTreatment({
           sx={{ marginLeft: { xs: "2.5px", md: "5px" } }}
         >
           {renderPhoneInput(
+            false,
             "Phone Number",
             controlName.contactEmergency2,
             "emergency2-number-field",
@@ -403,6 +413,7 @@ export default function ConsentToTreatment({
             2. Medical concerns or any learning disabilities
           </Typography>
           {renderDefaultInput(
+            false,
             "Medical Concern",
             controlName.medicalConcern,
             "medical-concern-field",
@@ -412,6 +423,7 @@ export default function ConsentToTreatment({
             3. Known allergies
           </Typography>
           {renderDefaultInput(
+            false,
             "Known Allergies",
             controlName.knownAlergies,
             "known-allergies-field",
@@ -421,6 +433,7 @@ export default function ConsentToTreatment({
             4. Health Insurance Plan (name and number)
           </Typography>
           {renderDefaultInput(
+            false,
             "Health Insurance Plan",
             controlName.insurancePlan,
             "insurance-plan-field",
@@ -439,30 +452,35 @@ export default function ConsentToTreatment({
           sx={{ marginRight: { xs: "0", md: "10px" } }}
         >
           {renderDefaultInput(
+            false,
             "Father Name",
             controlName.faterName,
             "father-name-field",
             "100%"
           )}
           {renderPhoneInput(
+            true,
             "Business Phone",
             controlName.fatherBusinessPhone,
             "fatherBusiness-number-field",
             "100%"
           )}
           {renderPhoneInput(
+            true,
             "Home Phone",
             controlName.fatherHomePhone,
             "fatherHome-number-field",
             "100%"
           )}
           {renderDefaultInput(
+            true,
             "Address",
             controlName.fatherAddress,
             "father-address-field",
             "100%"
           )}
           {renderDefaultInput(
+            true,
             "City/State/Zip",
             controlName.fatherCity,
             "father-city-field",
@@ -476,30 +494,35 @@ export default function ConsentToTreatment({
           sx={{ marginLeft: { xs: "0", md: "10px" } }}
         >
           {renderDefaultInput(
+            false,
             "Mother Name",
             controlName.motherName,
             "mother-name-field",
             "100%"
           )}
           {renderPhoneInput(
+            false,
             "Business Phone",
             controlName.motherBusinessPhone,
             "motherBusiness-number-field",
             "100%"
           )}
           {renderPhoneInput(
+            false,
             "Home Phone",
             controlName.motherHomePhone,
             "motherHome-number-field",
             "100%"
           )}
           {renderDefaultInput(
+            false,
             "Address",
             controlName.motherAddress,
             "emergency-name2-field",
             "100%"
           )}
           {renderDefaultInput(
+            false,
             "City/State/Zip",
             controlName.motherCity,
             "mother-city-field",

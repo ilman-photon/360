@@ -22,6 +22,7 @@ export default function SignForm({
   isSubmitForm = false,
   isSigned = false,
   showRelationship = true,
+  mandatoryRelationShip = true,
   showDate = true,
   textInfo = "Signature of Patient, Parent or Legally Authorized Representative",
   textInfoPosition = "bottom",
@@ -31,12 +32,12 @@ export default function SignForm({
     relationship: "relationship",
     date: "date",
   },
-  customSignText = "Signed",
+  customSignText = "Sign",
   signButtonId = "signBtn",
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignedState, setIsSignedState] = useState(false);
-  const signTextInfo = customSignText ? customSignText : "Signed ";
+  const signTextInfo = customSignText != "Sign" ? customSignText : "Signed ";
   const signText = isSignedState ? (
     <Box sx={{ display: "flex" }}>
       {" "}
@@ -127,7 +128,7 @@ export default function SignForm({
                       aria-label="Sign label"
                     >
                       <span className={styles.signLabelTxt} aria-hidden={true}>
-                        {signTextInfo}
+                        {`Sign`}
                       </span>
                     </Box>
                   </Box>
@@ -246,7 +247,7 @@ export default function SignForm({
                     error={!!error}
                     variant="filled"
                     helperText={error ? error.message : null}
-                    required
+                    required={mandatoryRelationShip}
                     sx={{
                       margin: "8px",
                       backgroundColor: "transparent",
@@ -270,7 +271,7 @@ export default function SignForm({
                 );
               }}
               rules={
-                !isEdit
+                !isEdit && mandatoryRelationShip
                   ? {
                       required: "This field is required",
                     }

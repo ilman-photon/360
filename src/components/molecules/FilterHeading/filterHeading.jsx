@@ -865,6 +865,7 @@ const FilterHeading = ({
                 mode="filter"
                 size="small"
                 gradient={false}
+                id={APPOINTMENT_TEST_ID.searchSlotbtn}
                 data-testid={APPOINTMENT_TEST_ID.searchbtn}
                 sx={{
                   height: "100% !important",
@@ -880,6 +881,7 @@ const FilterHeading = ({
                 }}
               >
                 <SearchIcon
+                  id={`${APPOINTMENT_TEST_ID.searchSlotbtn}Icon`}
                   sx={{ color: colors.darkGreen, width: 26, height: 26 }}
                 />
               </StyledButton>

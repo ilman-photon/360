@@ -271,6 +271,7 @@ const FilterHeadingFilled = ({
             size="small"
             gradient={false}
             data-testid={APPOINTMENT_TEST_ID.searchbtn}
+            id={APPOINTMENT_TEST_ID.searchSlotbtn}
             sx={{
               padding: "0px",
               marginTop: "16px",

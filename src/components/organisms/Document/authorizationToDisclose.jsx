@@ -51,7 +51,7 @@ export default function AuthorizationToDisclose({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSubmitting]);
 
-  function firstSection(key) {
+  function firstSection(key, mandatory) {
     return (
       <Grid item xs={12} md={8}>
         <Controller
@@ -82,7 +82,7 @@ export default function AuthorizationToDisclose({
                 type="default"
                 variant="filled"
                 label="Name"
-                required
+                required={mandatory}
                 inputProps={{
                   "aria-label": "Name field",
                 }}
@@ -99,7 +99,7 @@ export default function AuthorizationToDisclose({
             );
           }}
           rules={
-            !disableInput
+            !disableInput && mandatory
               ? {
                   required: "Please update all required fields.",
                 }
@@ -110,7 +110,7 @@ export default function AuthorizationToDisclose({
     );
   }
 
-  function secondSection(key) {
+  function secondSection(key, mandatory) {
     return (
       <Grid item xs={12} md={8}>
         <Controller
@@ -132,7 +132,7 @@ export default function AuthorizationToDisclose({
                 type="default"
                 variant="filled"
                 label="Relationship"
-                required
+                required={mandatory}
                 inputProps={{
                   "aria-label": "Relationship field",
                 }}
@@ -149,7 +149,7 @@ export default function AuthorizationToDisclose({
             );
           }}
           rules={
-            !disableInput
+            !disableInput && mandatory
               ? {
                   required: "Please update all required fields.",
                 }
@@ -160,7 +160,7 @@ export default function AuthorizationToDisclose({
     );
   }
 
-  function renderPatientDataUI(index, key) {
+  function renderPatientDataUI(index, key, mandatory) {
     return (
       <Grid
         key={`patient-container-${index}`}
@@ -176,9 +176,9 @@ export default function AuthorizationToDisclose({
           },
         }}
       >
-        {firstSection(key)}
+        {firstSection(key, mandatory)}
         <Grid item xs={12} md={4}></Grid>
-        {secondSection(key)}
+        {secondSection(key, mandatory)}
         <Grid item xs={12} md={4}>
           <Controller
             name={controlName[`${key}`].phoneNumber}
@@ -212,7 +212,7 @@ export default function AuthorizationToDisclose({
                     "aria-label": "Phone Number field",
                   }}
                   data-testid={"patient-phone-number-field"}
-                  required
+                  required={mandatory}
                   sx={{
                     width: "100%",
                     ".MuiFormHelperText-root.Mui-error": {
@@ -225,7 +225,7 @@ export default function AuthorizationToDisclose({
               );
             }}
             rules={
-              !disableInput
+              !disableInput && mandatory
                 ? {
                     required: "Please update all required fields.",
                   }
@@ -241,7 +241,8 @@ export default function AuthorizationToDisclose({
     const intent = [];
     for (const [index, [key]] of Object.entries(Object.entries(controlName))) {
       if (key.indexOf("patient") > -1) {
-        intent.push(renderPatientDataUI(index, key));
+        const mandatory = key != "patient3";
+        intent.push(renderPatientDataUI(index, key, mandatory));
       }
     }
     return intent;
@@ -284,7 +285,6 @@ export default function AuthorizationToDisclose({
                     variant="filled"
                     label="Text field"
                     data-testid={"patient-protection-health-field"}
-                    required
                     sx={{
                       width: "100%",
                       ".MuiFormHelperText-root.Mui-error": {
@@ -296,13 +296,6 @@ export default function AuthorizationToDisclose({
                   />
                 );
               }}
-              rules={
-                !disableInput
-                  ? {
-                      required: "Please update all required fields.",
-                    }
-                  : {}
-              }
             />
           </Grid>
         </Grid>
