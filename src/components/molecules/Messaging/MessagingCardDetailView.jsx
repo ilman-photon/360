@@ -178,6 +178,7 @@ export const MessagingCardDetailView = ({
               color: "#003B4A",
               lineHeight: isDesktop ? "24px" : "32px",
               flex: 1,
+              wordBreak: "break-all",
             }}
           >
             {getSenderName()}
@@ -220,6 +221,7 @@ export const MessagingCardDetailView = ({
                 color: "#292929",
                 lineHeight: "24px",
                 marginBottom: "17px",
+                wordBreak: "break-all",
               }}
             >
               {data?.message || data?.bodyNote}
