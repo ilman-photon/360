@@ -613,7 +613,7 @@ export default function AppointmentForm({
                           fontFamily: "Museo Sans",
                         }}
                         sx={{
-                          width: { xs: "100%", md: "56%" },
+                          width: { xs: "100%", lg: "56%" },
                           m: 1,
                           justifyContent: "space-between",
                           fontSize: "16px",
