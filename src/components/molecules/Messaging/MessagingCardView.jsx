@@ -78,7 +78,7 @@ export const MessagingCardView = ({
                 wordBreak: "break-all",
                 fontFamily: "Museo Sans",
                 fontSize: isDesktop ? "22px" : "16px",
-                fontWeight: "400",
+                fontWeight: "300",
                 fontStyle: "normal",
                 color:
                   isSelectedMsg?.active && isSelectedMsg?.id === id
@@ -145,7 +145,7 @@ export const MessagingCardView = ({
             tabIndex={0}
             sx={{
               fontSize: isDesktop ? "16px" : "14px",
-              fontWeight: "400",
+              fontWeight: "300",
               fontStyle: "normal",
               color: "#292929",
               lineHeight: isDesktop ? "24px" : "18px",
