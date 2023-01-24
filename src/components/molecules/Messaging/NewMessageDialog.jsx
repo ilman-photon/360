@@ -81,11 +81,25 @@ export const NewMessageDialog = ({
     setClicked(true);
   };
 
-  const onSubmit = (data) => {
-    onSendMessage(data);
+  const resetInputAttachments = () => {
+    refAttachments.files = null;
+  };
+
+  const resetForms = () => {
     setNameProviderValue([]);
     reset();
     setAttachments([]);
+    resetInputAttachments();
+  };
+
+  const onSubmit = (data) => {
+    onSendMessage(data);
+    resetForms();
+  };
+
+  const onSubmitDraft = (data) => {
+    onSaveToDraft(data);
+    resetForms();
   };
 
   const onError = () => {
@@ -128,6 +142,8 @@ export const NewMessageDialog = ({
     setAttachments([]);
     clearErrors();
     handleClosed();
+    reset();
+    resetInputAttachments();
   };
 
   function getNewMessageContentView() {
@@ -468,7 +484,7 @@ export const NewMessageDialog = ({
             {!isDraft && !isSelectedMsg?.active ? (
               <>
                 <Button
-                  onClick={() => onSaveToDraft(getValues())}
+                  onClick={() => onSubmitDraft(getValues())}
                   data-testId="draft-new-message"
                   aria-label={t("moveToDraft")}
                   tabIndex={0}
