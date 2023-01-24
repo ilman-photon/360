@@ -142,7 +142,7 @@ const MessagingContainer = ({
         sx={{
           fontWeight: "400",
           lineHeight: "44px",
-          p: { marginLeft: "8px !important" },
+          p: { paddingLeft: "0px !important", maxWidth: "1488px !important" },
         }}
       />
       <div className={styles.messageContainer}>
