@@ -112,6 +112,7 @@ export const PageContent = ({
     keyPrefix: "scheduleAppoinment",
   });
   const cookies = new Cookies();
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const getScheduleButtonText = () => {
     if (isLoggedIn) {
@@ -177,9 +178,10 @@ export const PageContent = ({
         <>
           <Grid
             xs={12}
-            md={8}
+            sm={6}
+            lg={8}
             pr={2}
-            className={styles.examForComponent}
+            className={[styles.examForComponent, styles.width50]}
             data-testId="container-step-2"
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
@@ -195,7 +197,13 @@ export const PageContent = ({
               isSubmitLoading={isSubmitLoading}
             />
           </Grid>
-          <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
+          <Grid
+            sm={6}
+            lg={4}
+            pl={2}
+            sx={{ display: isDesktop ? "block" : "none" }}
+            className={[styles.width50, styles.width50]}
+          >
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
               OnEditClicked={OnEditClicked}
@@ -212,9 +220,10 @@ export const PageContent = ({
         <>
           <Grid
             xs={12}
-            md={8}
+            sm={6}
+            lg={8}
             pr={2}
-            className={styles.examForComponent}
+            className={[styles.examForComponent, styles.width50]}
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
             <AppointmentForm
@@ -231,7 +240,13 @@ export const PageContent = ({
               isSubmitLoading={isSubmitLoading}
             />
           </Grid>
-          <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
+          <Grid
+            sm={6}
+            lg={4}
+            pl={2}
+            sx={{ display: isDesktop ? "block" : "none" }}
+            className={styles.width50}
+          >
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
               OnEditClicked={OnEditClicked}
@@ -334,7 +349,7 @@ export function handleCreateAppointment(
 
 export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
-  const isDesktop = useMediaQuery("(min-width: 769px)");
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   const [isOpen, setIsOpen] = React.useState(false);
   const [isModalRegistered, setIsModalRegistered] = React.useState(false);
   const [isReschedule, setIsReschedule] = React.useState(false);
@@ -608,11 +623,11 @@ export default function ScheduleAppointmentPage() {
         steps={isLoggedIn ? loginSteps : steps}
         ariaLabelText="Review stage in progress bar"
       />
-      {activeStep === 2 ? (
+      {activeStep === 2 || activeStep === 3 ? (
         <Grid
           className={styles.mobileTopBar}
           xs={12}
-          sx={{ display: { md: "none", xs: "block" } }}
+          sx={{ display: isDesktop ? "none" : "block" }}
         >
           <MobileTopBar
             label="51 West 51st street..."
