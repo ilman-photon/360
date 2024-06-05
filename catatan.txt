@@ -1,0 +1,17 @@
+//By default environment variables are only available in the Node.js environment, meaning they won't be exposed to the browser.
+HOSTNAME="0.0.0.0"
+PORT="3000"
+HOST="http://$HOSTNAME:$PORT"
+
+NEXT_PUBLIC_API_URL = "https://dev-ppp-backend.eyecare360plus.eyecare-partners.com"
+MAPBOX_API_TOKEN = "pk.eyJ1Ijoia3VydWt1cnVydXUiLCJhIjoiY2w2dWdteXhlMDM4eTNkczh3ZnA4c2N6NSJ9.ilTZ5K51DsrAXlnJBuD_tw"
+GOOGLE_API_KEY = "AIzaSyC-qQiijvHAdB0Ag8z4r3vZoWdPViV-wfQ"
+NEXT_PUBLIC_EMBED_API = "AIzaSyC-qQiijvHAdB0Ag8z4r3vZoWdPViV-wfQ"
+ENV_NAME = "develop"
+
+//expose a variable to the browser
+NEXT_PUBLIC_HOST = "http://$HOSTNAME:$PORT"
+
+NEXT_PUBLIC_SYNC_LINK = "/patient/sync/set-password"
+NEXT_PUBLIC_ONE_TIME_LINK = "/patient/validate"
+NEXT_PUBLIC_MFA_TOKEN = 7.776e+6
